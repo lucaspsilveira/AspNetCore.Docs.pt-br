@@ -6,10 +6,10 @@ ms.author: scaddie
 ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
 ms.openlocfilehash: 68a45dc50e00bead564500a12509b62a4a193ec4
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511075"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
@@ -18,9 +18,9 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
-[SDK 2.2 ou posterior do .NET Core](https://dotnet.microsoft.com/download)
+[.NET Core SDK 2.2 ou posterior](https://dotnet.microsoft.com/download)
 
 ## <a name="target-frameworks"></a>Frameworks de destino
 
@@ -60,7 +60,7 @@ Essa abordagem associa o aplicativo e o servidor no qual ele é implantado de um
 
 Isso configura as rotas padrão e usa XmlSerialization em Json por padrão. Adicione outro Middleware para este pipeline conforme necessário (carregamento de serviços, definições de configuração, arquivos estáticos, etc.).
 
-O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método de `Main` *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por aí.
+O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso *Program.cs* `Main` é feito através do método `Startup` Program.cs (semelhante às aplicações do console) e é carregado por lá.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -143,7 +143,7 @@ Uma parte importante do desenvolvimento da Web é a capacidade de servir ativos 
 
 No ASP.NET, arquivos estáticos são armazenados em vários diretórios e referenciados nas exibições.
 
-No ASP.NET Core, arquivos estáticos são armazenados na "raiz da Web" ( *&lt;raiz do conteúdo&gt;/wwwroot*), a menos que configurado de outra forma. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
+No ASP.NET Core, os arquivos estáticos são armazenados na "raiz da Web"*&lt;(raiz de&gt;conteúdo /wwwroot),* a menos que configurado em contrário. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -155,13 +155,13 @@ Por exemplo, um ativo de imagem na pasta *wwwroot/imagens* está acessível para
 > [!NOTE]
 > Para obter uma referência mais aprofundada sobre como servir arquivos estáticos no ASP.NET Core, veja [Arquivos estáticos](xref:fundamentals/static-files).
 
-## <a name="multi-value-cookies"></a>Cookies com vários valores
+## <a name="multi-value-cookies"></a>Cookies de vários valores
 
-Não há suporte para [cookies de vários valores](xref:System.Web.HttpCookie.Values) no ASP.NET Core. Crie um cookie por valor.
+[Cookies de vários valores](xref:System.Web.HttpCookie.Values) não são suportados no ASP.NET Core. Crie um cookie por valor.
 
-## <a name="partial-app-migration"></a>Migração de aplicativo parcial
+## <a name="partial-app-migration"></a>Migração parcial de aplicativos
 
-Uma abordagem para a migração de aplicativo parcial é criar um subaplicativo do IIS e mover apenas determinadas rotas de ASP.NET 4. x para ASP.NET Core enquanto preserva a estrutura de URL do aplicativo. Por exemplo, considere a estrutura de URL do aplicativo do arquivo *ApplicationHost. config* :
+Uma abordagem para a migração parcial de aplicativos é criar um subaplicativo IIS e mover apenas certas rotas de ASP.NET 4.x para ASP.NET Core, preservando a estrutura de URL do aplicativo. Por exemplo, considere a estrutura de URL do aplicativo a partir do arquivo *applicationHost.config:*
 
 ```xml
 <sites>
@@ -181,7 +181,7 @@ Uma abordagem para a migração de aplicativo parcial é criar um subaplicativo 
 </sites>
 ```
 
-Estrutura de diretório:
+Estrutura do diretório:
 
 ```
 .

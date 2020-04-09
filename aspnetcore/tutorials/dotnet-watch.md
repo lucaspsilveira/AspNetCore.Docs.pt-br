@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
 ms.openlocfilehash: bedb3e6a65839db915ca7bc821a267a14d34bf30
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667408"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Desenvolver aplicativos ASP.NET Core usando um observador de arquivo
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-a [inspeção dotnet](https://www.nuget.org/packages/dotnet-watch) é uma ferramenta que executa um comando [CLI do .NET Core](/dotnet/core/tools) quando os arquivos de origem são alterados. Por exemplo, uma alteração de arquivo pode disparar uma compilação, execução de teste ou uma implantação.
+[o relógio dotnet](https://www.nuget.org/packages/dotnet-watch) é uma ferramenta que executa um comando [.NET Core CLI](/dotnet/core/tools) quando os arquivos de origem mudam. Por exemplo, uma alteração de arquivo pode disparar uma compilação, execução de teste ou uma implantação.
 
 Este tutorial usa um aplicativo de API Web existente com dois pontos de extremidade: um que retorna uma soma e outro que retorna um produto. O método de produto tem um bug, que é corrigido neste tutorial.
 
@@ -71,7 +71,7 @@ A ferramenta de observador de arquivo `dotnet watch` está incluída com a vers�
 
 Qualquer [comando da CLI do .NET Core](/dotnet/core/tools#cli-commands) pode ser executado com `dotnet watch`. Por exemplo:
 
-| {1&gt;Comando&lt;1} | Comando com inspeção |
+| Comando | Comando com inspeção |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
 | dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
@@ -154,7 +154,7 @@ Mais itens podem ser adicionados à lista de inspeção editando o arquivo *.csp
 
 `dotnet-watch` não é restrito a projetos C#. Projetos de inspeção personalizados podem ser criados para lidar com cenários diferentes. Considere o layout de projeto a seguir:
 
-* **test/**
+* **teste/**
   * *UnitTests/UnitTests.csproj*
   * *IntegrationTests/IntegrationTests.csproj*
 
@@ -185,4 +185,4 @@ O VSTest é executado quando há qualquer mudança de arquivo no projeto de test
 
 ## <a name="dotnet-watch-in-github"></a>`dotnet-watch` no GitHub
 
-`dotnet-watch` faz parte do [repositório dotnet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch)do github.
+`dotnet-watch`faz parte do [repositório dotnet/AspNetCore doGitHub.](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch)

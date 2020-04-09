@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/index
 ms.openlocfilehash: 464d19bd63e1f0f06bd7d218e7644afde04a5672
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657916"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedar e implantar o ASP.NET Core
@@ -32,7 +32,7 @@ O comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila o código 
 
 A pasta *publish* contém um ou mais arquivos do assembly, dependências e, opcionalmente, o runtime do .NET.
 
-Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o runtime do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de runtime do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [Implantação de aplicativos .NET Core](/dotnet/core/deploying/).
+Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o runtime do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de runtime do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [a implantação do aplicativo .NET Core](/dotnet/core/deploying/).
 
 Além de arquivos *.exe* e *.dll*, a pasta *publish* para um aplicativo ASP.NET Core normalmente contém arquivos de configuração, ativos estáticos e exibições do MVC. Para obter mais informações, consulte <xref:host-and-deploy/directory-structure>.
 
@@ -43,9 +43,9 @@ Um aplicativo ASP.NET Core é um aplicativo de console que deve ser iniciado qua
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
-* Portal
-  * [IIS](xref:host-and-deploy/iis/index)
-  * [Serviço Windows](xref:host-and-deploy/windows-service)
+* Windows
+  * [Iis](xref:host-and-deploy/iis/index)
+  * [Windows Service](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Configurar um proxy reverso
 
@@ -73,7 +73,7 @@ Confira <xref:host-and-deploy/visual-studio-publish-profiles> para obter instru�
 
 ## <a name="internet-information-services-iis"></a>Serviços de Informações da Internet (IIS)
 
-Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo *Web. config* , consulte os artigos em <xref:host-and-deploy/iis/index>.
+Para implantações no Internet Information Services (IIS) com configuração fornecida pelo <xref:host-and-deploy/iis/index>arquivo *web.config,* consulte os artigos em .
 
 ## <a name="host-in-a-web-farm"></a>Hospedar em uma web farm
 
@@ -90,7 +90,7 @@ Use o Middleware de verificação de integridade para executar verificações de
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:test/troubleshoot>
-* [Hospedagem ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
+* [hospedagem ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 ::: moniker-end
 
@@ -110,7 +110,7 @@ O comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila o código 
 
 A pasta *publish* contém um ou mais arquivos do assembly, dependências e, opcionalmente, o runtime do .NET.
 
-Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o runtime do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de runtime do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [Implantação de aplicativos .NET Core](/dotnet/core/deploying/).
+Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o runtime do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de runtime do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [a implantação do aplicativo .NET Core](/dotnet/core/deploying/).
 
 Além de arquivos *.exe* e *.dll*, a pasta *publish* para um aplicativo ASP.NET Core normalmente contém arquivos de configuração, ativos estáticos e exibições do MVC. Para obter mais informações, consulte <xref:host-and-deploy/directory-structure>.
 
@@ -121,9 +121,9 @@ Um aplicativo ASP.NET Core é um aplicativo de console que deve ser iniciado qua
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
-* Portal
-  * [IIS](xref:host-and-deploy/iis/index)
-  * [Serviço Windows](xref:host-and-deploy/windows-service)
+* Windows
+  * [Iis](xref:host-and-deploy/iis/index)
+  * [Windows Service](xref:host-and-deploy/windows-service)
 
 ## <a name="set-up-a-reverse-proxy"></a>Configurar um proxy reverso
 
@@ -151,7 +151,7 @@ Confira <xref:host-and-deploy/visual-studio-publish-profiles> para obter instru�
 
 ## <a name="internet-information-services-iis"></a>Serviços de Informações da Internet (IIS)
 
-Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo *Web. config* , consulte os artigos em <xref:host-and-deploy/iis/index>.
+Para implantações no Internet Information Services (IIS) com configuração fornecida pelo <xref:host-and-deploy/iis/index>arquivo *web.config,* consulte os artigos em .
 
 ## <a name="host-in-a-web-farm"></a>Hospedar em uma web farm
 
@@ -164,6 +164,6 @@ Para obter mais informações, consulte <xref:host-and-deploy/docker/index>.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:test/troubleshoot>
-* [Hospedagem ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
+* [hospedagem ASP.NET](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 ::: moniker-end

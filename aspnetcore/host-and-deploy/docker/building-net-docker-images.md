@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: b55235ffc44f0bacf44bd1644e45210b37f19607
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: 31161d6841986cb0bd8080468e5d523d59400490
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511321"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80405931"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Imagens do Docker para o ASP.NET Core
 
@@ -22,7 +22,7 @@ Neste tutorial, você:
 > * Saiba mais sobre as imagens do Docker no Microsoft .NET Core
 > * Baixar um aplicativo de exemplo do ASP.NET Core
 > * Executar o aplicativo de exemplo localmente
-> * Executar o aplicativo de exemplo em contêineres do Linux
+> * Executou o aplicativo de exemplo em contêineres do Linux
 > * Executar o aplicativo de exemplo em contêineres do Windows
 > * Criar e implantar manualmente
 
@@ -40,7 +40,7 @@ O exemplo de Dockerfile usa o [recurso de build de vários estágios do Docker](
 
    O exemplo usa essa imagem para executar o aplicativo. A imagem contém o runtime do ASP.NET Core e as bibliotecas e é otimizada para executar aplicativos em produção. Desenvolvida para acelerar a implantação e a inicialização do aplicativo, a imagem é relativamente pequena, portanto, o desempenho da rede no registro do Docker para o host do Docker é otimizado. Somente os binários e o conteúdo necessários para executar o aplicativo são copiados para o contêiner. O conteúdo está pronto para ser executado, permitindo mais rapidez do `Docker run` para a inicialização do aplicativo. A compilação de código dinâmico não é necessária no modelo do Docker.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 ::: moniker range="< aspnetcore-3.0"
 
 * [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
@@ -178,7 +178,7 @@ Para usar o aplicativo publicado manualmente em um contêiner do Docker, crie um
 
 ::: moniker range="< aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -187,7 +187,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>O Dockerfile
 
-Aqui está o *Dockerfile* usado pelo comando `docker build` que você executou anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
+Aqui está o *arquivo* Docker `docker build` usado pelo comando que você executou mais cedo.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
@@ -214,7 +214,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -223,7 +223,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>O Dockerfile
 
-Aqui está o *Dockerfile* usado pelo comando `docker build` que você executou anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
+Aqui está o *arquivo* Docker `docker build` usado pelo comando que você executou mais cedo.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
@@ -248,7 +248,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker-end
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -262,9 +262,9 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Exemplo do Docker do ASP.NET Core](https://github.com/dotnet/dotnet-docker) (aquele usado neste tutorial).
 * [Configurar o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Trabalhar com ferramentas de Docker do Visual Studio](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
-* [Depurar com o Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
+* [Depuração com o Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 O repositório Git que contém o aplicativo de exemplo também inclui a documentação. Para obter uma visão geral dos recursos disponíveis no repositório, confira [o arquivo Leiame](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). Em particular, saiba como implementar o HTTPS:
 

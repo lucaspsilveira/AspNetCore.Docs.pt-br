@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/development-time-iis-support
 ms.openlocfilehash: f87a1d8cf41248f14932908c0633f98a7198853f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664041"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
@@ -22,16 +22,16 @@ Por [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 Este artigo descreve o suporte do [Visual Studio](https://visualstudio.microsoft.com) para a depuração de aplicativos do ASP.NET Core em execução com o IIS no Windows Server. Este tópico orienta como habilitar esse cenário e configurar um projeto.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
-* [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
+* [Estúdio Visual para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
 * Certificado de segurança X.509 (para o suporte a HTTPS)
 
 ## <a name="enable-iis"></a>Habilitar o IIS
 
-1. No Windows, navegue até **painel de controle** > **programas** > **programas e recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. No Windows, navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
 1. Selecione a caixa de seleção **Serviços de Informações da Internet**. Selecione **OK**.
 
 A instalação do IIS pode exigir uma reinicialização do sistema.
@@ -40,7 +40,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* O **nome do host** &ndash; normalmente, o **site padrão** é usado com um **nome de host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
 * **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
@@ -68,7 +68,7 @@ Para um projeto que usa HTTP, o [Redirecionamento de HTTPS e o Middleware HSTS](
 
 Crie um novo perfil de inicialização para adicionar suporte ao IIS no tempo de desenvolvimento:
 
-1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Depurar**.
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Debug.**
 1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
 1. Para a configuração **Iniciar**, selecione **IIS** da lista.
 1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
@@ -117,7 +117,7 @@ Confirme se os pontos de extremidade `applicationUrl` e `launchUrl` correspondem
 Execute o Visual Studio como um administrador:
 
 * Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
-* Defina o [botão Iniciar Depuração](/visualstudio/debugger/debugger-feature-tour) para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
+* Defina o [botão Iniciar depuração](/visualstudio/debugger/debugger-feature-tour) no perfil **IIS** e selecione o botão para iniciar o aplicativo.
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 
@@ -137,16 +137,16 @@ Se for usado um certificado de desenvolvimento não confiável, o navegador pode
 
 Este artigo descreve o suporte do [Visual Studio](https://visualstudio.microsoft.com) para a depuração de aplicativos do ASP.NET Core em execução com o IIS no Windows Server. Este tópico orienta como habilitar esse cenário e configurar um projeto.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
-* [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
+* [Estúdio Visual para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
 * Certificado de segurança X.509 (para o suporte a HTTPS)
 
 ## <a name="enable-iis"></a>Habilitar o IIS
 
-1. No Windows, navegue até **painel de controle** > **programas** > **programas e recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. No Windows, navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
 1. Selecione a caixa de seleção **Serviços de Informações da Internet**. Selecione **OK**.
 
 A instalação do IIS pode exigir uma reinicialização do sistema.
@@ -155,7 +155,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* O **nome do host** &ndash; normalmente, o **site padrão** é usado com um **nome de host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
 * **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
@@ -183,7 +183,7 @@ Para um projeto que usa HTTP, o [Redirecionamento de HTTPS e o Middleware HSTS](
 
 Crie um novo perfil de inicialização para adicionar suporte ao IIS no tempo de desenvolvimento:
 
-1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Depurar**.
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Debug.**
 1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
 1. Para a configuração **Iniciar**, selecione **IIS** da lista.
 1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
@@ -232,7 +232,7 @@ Confirme se os pontos de extremidade `applicationUrl` e `launchUrl` correspondem
 Execute o Visual Studio como um administrador:
 
 * Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
-* Defina o [botão Iniciar Depuração](/visualstudio/debugger/debugger-feature-tour) para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
+* Defina o [botão Iniciar depuração](/visualstudio/debugger/debugger-feature-tour) no perfil **IIS** e selecione o botão para iniciar o aplicativo.
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 

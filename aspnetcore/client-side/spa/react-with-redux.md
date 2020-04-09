@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/13/2019
 uid: spa/react-with-redux
 ms.openlocfilehash: ed2e9aea449ddb09fef049a391f40f57452786a8
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657636"
 ---
 # <a name="use-the-react-with-redux-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com Redux com o ASP.NET Core
@@ -20,4 +20,4 @@ O modelo de projeto do React com Redux atualizado fornece um ponto inicial conve
 
 Com exceção do comando de criação de projeto, todas as informações sobre o modelo React com Redux são as mesmas que aquelas sobre o modelo React. Para criar esse tipo de projeto, execute `dotnet new reactredux` em vez de `dotnet new react`. Para obter mais informações sobre a funcionalidade comum para ambos os modelos baseados em reagir, confira a [Documentação do modelo React](xref:spa/react).
 
-Para obter informações sobre como configurar um subaplicativo reajam-com-Redux no IIS, consulte [modelo do ReactRedux 2,1: não é possível usar Spa no IIS (ASPNET/Templating &num;555)](https://github.com/aspnet/Templating/issues/555).
+Para obter informações sobre a configuração de um sub-aplicativo React-with-Redux no IIS, consulte [ReactRedux Template 2.1: Não é possível usar SPA no IIS (aspnet/Templating &num;555)](https://github.com/aspnet/Templating/issues/555).

@@ -5,66 +5,65 @@ description: Saiba como o ASP.NET Core MVC usa o middleware de roteamento para c
 ms.author: riande
 ms.date: 3/25/2020
 uid: mvc/controllers/routing
-ms.openlocfilehash: c1c0d978714718af1de0f627e50a54f66ed391ed
-ms.sourcegitcommit: 4b166b49ec557a03f99f872dd069ca5e56faa524
+ms.openlocfilehash: c63313ec060c5be368fcbd20edf5f0d557046d2e
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/27/2020
-ms.locfileid: "80362660"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80977205"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Roteamento para ações do controlador no ASP.NET Core
 
-Por [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5)e [Rick Anderson](https://twitter.com/RickAndMSFT)
+Por [Ryan Nowak,](https://github.com/rynowak) [Kirk Larkin](https://twitter.com/serpent5)e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Os controladores de ASP.NET Core usam o [middleware](xref:fundamentals/middleware/index) de roteamento para corresponder as URLs de solicitações de entrada e mapeá-las para [ações](#action).  Modelos de rotas:
+ASP.NET controladores Core usam o [middleware](xref:fundamentals/middleware/index) Routing para corresponder aos URLs das solicitações recebidas e mapeá-las para [ações](#action).  Modelos de rotas:
 
-* São definidos em código ou atributos de inicialização.
-* Descreva como os caminhos de URL são correspondidos às [ações](#action).
+* São definidos em código de inicialização ou atributos.
+* Descreva como os caminhos de URL são combinados com [as ações](#action).
 * São usados para gerar URLs para links. Os links gerados são normalmente retornados em respostas.
 
-As ações são [roteadas por convenção](#cr) ou [roteadas por atributo](#ar). Colocar uma rota no controlador ou na [ação](#action) a torna roteada por atributo. Para obter mais informações, consulte [Roteamento misto](#routing-mixed-ref-label).
+As ações são [convencionalmente roteadas](#cr) ou [roteadas por atributos](#ar). Colocar uma rota no controlador ou [ação](#action) torna-a roteada por atributos. Para obter mais informações, consulte [Roteamento misto](#routing-mixed-ref-label).
 
 Este documento:
 
-* Explica as interações entre o MVC e o roteamento:
-  * Como os aplicativos MVC típicos fazem uso dos recursos de roteamento.
-  * Aborda ambos:
-    * [Roteamento convencional](#cr) normalmente usado com controladores e exibições.
-    * *Roteamento de atributos* usado com APIs REST. Se você estiver interessado principalmente no roteamento de APIs REST, vá para a seção [Roteamento de atributo para APIs REST](#ar) .
+* Explica as interações entre MVC e roteamento:
+  * Como aplicativos MVC típicos fazem uso de recursos de roteamento.
+  * Cobre ambos:
+    * [Roteamento convencionalnormalmente](#cr) usado com controladores e visualizações.
+    * *Roteamento de atributos* usado com APIs REST. Se você estiver interessado principalmente em roteamento para APIs REST, pule para o [roteamento de atributo satisfaz a](#ar) seção REST APIs.
   * Consulte [Roteamento](xref:fundamentals/routing) para obter detalhes avançados de roteamento.
-* Refere-se ao sistema de roteamento padrão adicionado no ASP.NET Core 3,0, chamado roteamento de ponto de extremidade. É possível usar controladores com a versão anterior do roteamento para fins de compatibilidade. Consulte o [Guia de migração 2.2-3.0](xref:migration/22-to-30) para obter instruções. Consulte a [versão 2,2 deste documento](xref:mvc/controllers/routing?view=aspnetcore-2.2) para obter material de referência sobre o sistema de roteamento herdado.
+* Refere-se ao sistema de roteamento padrão adicionado em ASP.NET Core 3.0, chamado de roteamento de ponto final. É possível usar controladores com a versão anterior de roteamento para fins de compatibilidade. Consulte o [guia de migração 2.2-3.0](xref:migration/22-to-30) para obter instruções. Consulte a [versão 2.2 deste documento](xref:mvc/controllers/routing?view=aspnetcore-2.2) para obter material de referência no sistema de roteamento legado.
 
 <a name="cr"></a>
 
 ## <a name="set-up-conventional-route"></a>Configurar a rota convencional
 
-o `Startup.Configure` normalmente tem um código semelhante ao seguinte ao usar o [Roteamento convencional](#crd):
+`Startup.Configure`tipicamente tem código semelhante ao seguinte ao usar [roteamento convencional:](#crd)
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
-Dentro da chamada para <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> é usado para criar uma única rota. A rota única é denominada `default` rota. A maioria dos aplicativos com controladores e exibições usa um modelo de rota semelhante ao `default` rota. As APIs REST devem usar o [Roteamento de atributos](#ar).
+Dentro da <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>chamada <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> para , é usado para criar uma única rota. A rota única `default` é nomeada rota. A maioria dos aplicativos com controladores e `default` visualizações usa um modelo de rota semelhante à rota. As APIs REST devem usar [roteamento de atributos](#ar).
 
-O modelo de rota `"{controller=Home}/{action=Index}/{id?}"`:
+O modelo `"{controller=Home}/{action=Index}/{id?}"`de rota:
 
-* Corresponde a um caminho de URL como `/Products/Details/5`
-* Extrai os valores de rota `{ controller = Products, action = Details, id = 5 }` pela geração de tokens do caminho. A extração dos valores de rota resultará em uma correspondência se o aplicativo tiver um controlador chamado `ProductsController` e uma ação `Details`:
+* Corresponde a um caminho de URL como`/Products/Details/5`
+* Extrai os `{ controller = Products, action = Details, id = 5 }` valores da rota tokenizando o caminho. A extração de valores de rota resulta `ProductsController` em `Details` uma correspondência se o aplicativo tiver um controlador nomeado e uma ação:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
+  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
- O método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) está incluído no [download de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) e é usado para exibir informações de roteamento.
+  [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-  * `/Products/Details/5` modelo associa o valor de `id = 5` para definir o parâmetro `id` como `5`. Consulte [Associação de modelo](xref:mvc/models/model-binding) para obter mais detalhes.
-* `{controller=Home}` define `Home` como o `controller`padrão.
-* `{action=Index}` define `Index` como o `action`padrão.
-*  O caractere `?` no `{id?}` define `id` como opcional.
+* `/Products/Details/5`modelo liga o `id = 5` valor de `id` definir `5`o parâmetro para . Consulte [Model Binding](xref:mvc/models/model-binding) para obter mais detalhes.
+* `{controller=Home}`define `Home` como padrão `controller`.
+* `{action=Index}`define `Index` como padrão `action`.
+*  O `?` personagem `{id?}` define `id` como opcional.
   * Parâmetros de rota opcionais e padrão não precisam estar presentes no caminho da URL para que haja uma correspondência. Consulte [Referência de modelo de rota](xref:fundamentals/routing#route-template-reference) para obter uma descrição detalhada da sintaxe do modelo de rota.
-* Corresponde ao caminho da URL `/`.
-* Produz os valores de rota `{ controller = Home, action = Index }`.
-* O método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) está incluído no [download de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) e é usado para exibir informações de roteamento.
+* Corresponde ao `/`caminho da URL .
+* Produz os valores `{ controller = Home, action = Index }`da rota.
 
-Os valores para `controller` e `action` fazem uso dos valores padrão. `id` não produz um valor, pois não há nenhum segmento correspondente no caminho da URL. `/` só corresponde se existir uma `HomeController` e `Index` ação:
+Os valores para `controller` e `action` fazer uso dos valores padrão. `id`não produz um valor, uma vez que não há segmento correspondente no caminho da URL. `/`só corresponde se `HomeController` existir `Index` a e ação:
 
 ```csharp
 public class HomeController : Controller
@@ -73,14 +72,14 @@ public class HomeController : Controller
 }
 ```
 
-Usando a definição de controlador e o modelo de rota anteriores, a ação de `HomeController.Index` é executada para os seguintes caminhos de URL:
+Usando a definição do controlador `HomeController.Index` anterior e o modelo de rota, a ação é executada para os seguintes caminhos de URL:
 
 * `/Home/Index/17`
 * `/Home/Index`
 * `/Home`
 * `/`
 
-O caminho da URL `/` usa os controladores de `Home` padrão do modelo de rota e a ação de `Index`. O caminho da URL `/Home` usa a ação de `Index` padrão do modelo de rota.
+O caminho `/` url usa `Home` os controladores padrão e `Index` a ação do modelo de rota. O caminho `/Home` url usa `Index` a ação padrão do modelo de rota.
 
 O método de conveniência <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>:
 
@@ -88,120 +87,120 @@ O método de conveniência <xref:Microsoft.AspNetCore.Builder.ControllerEndpoint
 endpoints.MapDefaultControllerRoute();
 ```
 
-Substituto
+Substitui:
 
 ```csharp
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-O roteamento é configurado usando o <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> e o middleware de <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. Para usar controladores:
+O roteamento é <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> configurado usando o middleware e o middleware. Para usar controladores:
 
-* Chame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> dentro de `UseEndpoints` para mapear controladores [roteados de atributo](#ar) .
-* Chame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> ou <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>para mapear controladores [roteados de Convenção](#cr) .
+* Ligue <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> `UseEndpoints` para dentro para mapear [controladores roteados de atributos.](#ar)
+* Ligue <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>ou, para mapear controladores [roteados convencionalmente.](#cr)
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
 
 ## <a name="conventional-routing"></a>Roteamento convencional
 
-O roteamento convencional é usado com controladores e exibições. A rota `default`:
+O roteamento convencional é usado com controladores e visualizações. A rota `default`:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-é um exemplo de *roteamento convencional*. Ele é chamado de *Roteamento convencional* porque estabelece uma *Convenção* para caminhos de URL:
+é um exemplo de *roteamento convencional*. É chamado de *roteamento convencional* porque estabelece uma *convenção* para caminhos de URL:
 
-* O primeiro segmento de caminho, `{controller=Home}`, é mapeado para o nome do controlador.
-* O segundo segmento, `{action=Index}`, é mapeado para o nome da [ação](#action) .
-* O terceiro segmento, `{id?}` é usado para um `id`opcional. O `?` no `{id?}` o torna opcional. `id` é usado para mapear para uma entidade de modelo.
+* O primeiro segmento `{controller=Home}`de caminho, mapeia o nome do controlador.
+* O segundo `{action=Index}`segmento, mapas para o nome da [ação.](#action)
+* O terceiro `{id?}` segmento é usado `id`para um opcional . A `?` `{id?}` in torna opcional. `id`é usado para mapear para uma entidade modelo.
 
-Usando essa `default` rota, o caminho da URL:
+Usando `default` essa rota, o caminho da URL:
 
-* `/Products/List` mapeia para a ação de `ProductsController.List`.
-* `/Blog/Article/17` mapeia para `BlogController.Article` e, normalmente, o modelo associa o parâmetro `id` a 17.
+* `/Products/List`mapas para `ProductsController.List` a ação.
+* `/Blog/Article/17`mapas `BlogController.Article` para e tipicamente `id` modelo liga o parâmetro a 17.
 
 Este mapeamento:
 
-* É baseado **somente**nos nomes de controlador e de [ação](#action) .
-* Não é baseado em namespaces, locais de arquivos de origem ou parâmetros de método.
+* É baseado apenas no controlador e **nomes** [de ação](#action) .
+* Não é baseado em namespaces, locais de arquivo de origem ou parâmetros de método.
 
-O uso do roteamento convencional com a rota padrão permite a criação do aplicativo sem a necessidade de surgir um novo padrão de URL para cada ação. Para um aplicativo com ações de estilo [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) , tendo consistência para as URLs entre controladores:
+O uso do roteamento convencional com a rota padrão permite criar o aplicativo sem ter que criar um novo padrão de URL para cada ação. Para um aplicativo com ações de estilo [CRUD,](https://wikipedia.org/wiki/Create,_read,_update_and_delete) ter consistência para os URLs entre os controladores:
 
 * Ajuda a simplificar o código.
-* Torna a interface do usuário mais previsível.
+* Torna a ui mais previsível.
 
 > [!WARNING]
-> O `id` no código anterior é definido como opcional pelo modelo de rota. As ações podem ser executadas sem a ID opcional fornecida como parte da URL. Em geral, quando`id` é omitido da URL:
+> O `id` código anterior é definido como opcional pelo modelo de rota. As ações podem ser executadas sem o ID opcional fornecido como parte da URL. Geralmente, quando`id` é omitido da URL:
 >
-> * `id` é definido como `0` por associação de modelo.
-> * Nenhuma entidade encontrada no `id == 0`correspondente ao banco de dados.
+> * `id`é definido `0` por vinculação modelo.
+> * Nenhuma entidade é encontrada `id == 0`na correspondência do banco de dados .
 >
-> O [Roteamento de atributos](#ar) fornece controle refinado para tornar a ID necessária para algumas ações e não para outras. Por convenção, a documentação inclui parâmetros opcionais como `id` quando é provável que eles apareçam no uso correto.
+> [O roteamento de atributos](#ar) fornece controle fino para tornar o ID necessário para algumas ações e não para outras. Por convenção, a documentação `id` inclui parâmetros opcionais, como quando é provável que apareçam no uso correto.
 
 A maioria dos aplicativos deve escolher um esquema de roteamento básico e descritivo para que as URLs sejam legíveis e significativas. A rota convencional padrão `{controller=Home}/{action=Index}/{id?}`:
 
 * Dá suporte a um esquema de roteamento básico e descritivo.
 * É um ponto de partida útil para aplicativos baseados em interface do usuário.
-* É o único modelo de rota necessário para muitos aplicativos da interface do usuário da Web. Para aplicativos de interface do usuário da Web maiores, outra rota usando [áreas](#areas) , se for sempre tudo o que for necessário.
+* É o único modelo de rota necessário para muitos aplicativos de interface do web. Para aplicativos maiores de interface do web, outra rota usando [Áreas](#areas) se freqüentemente tudo o que é necessário.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> e <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*>:
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>e: <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*>
 
-* Atribua automaticamente um valor de **pedido** aos seus pontos de extremidade com base na ordem em que são invocados.
+* Atribua automaticamente um valor **de pedido** aos seus pontos finais com base na ordem em que são invocados.
 
-Roteamento de ponto de extremidade no ASP.NET Core 3,0 e posterior:
+Roteamento de ponto final no ASP.NET Núcleo 3.0 e posteriores:
 
 * Não tem um conceito de rotas.
-* Não fornece garantias de ordenação para a execução de extensibilidade, todos os pontos de extremidade são processados de uma só vez.
+* Não fornece garantias de pedidos para a execução da extensibilidade, todos os pontos finais são processados de uma só vez.
 
 Habilite o [Log](xref:fundamentals/logging/index) para ver como as implementações de roteamento internas, como <xref:Microsoft.AspNetCore.Routing.Route>, correspondem às solicitações.
 
-O [Roteamento de atributos](#ar) é explicado mais adiante neste documento.
+[O roteamento de atributos](#ar) é explicado mais tarde neste documento.
 
 <a name="mr"></a>
 
-### <a name="multiple-conventional-routes"></a>Várias rotas convencionais
+### <a name="multiple-conventional-routes"></a>Múltiplas rotas convencionais
 
-Várias [rotas convencionais](#cr) podem ser adicionadas dentro de `UseEndpoints` adicionando mais chamadas para <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> e <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>. Isso permite a definição de várias convenções ou a adição de rotas convencionais que são dedicadas a uma [ação](#action)específica, como:
+Várias [rotas convencionais](#cr) podem ser adicionadas dentro `UseEndpoints` adicionando mais chamadas e <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>. Isso permite definir várias convenções ou adicionar rotas convencionais dedicadas a uma [ação](#action)específica, tais como:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
 <a name="dcr"></a>
 
-A rota de `blog` no código anterior é uma **rota convencional dedicada**. Ele é chamado de rota convencional dedicada porque:
+A `blog` rota no código anterior é uma **rota convencional dedicada.** É chamada de rota convencional dedicada porque:
 
-* Ele usa o [Roteamento convencional](#cr).
-* Ele é dedicado a uma [ação](#action)específica.
+* Ele usa [roteamento convencional.](#cr)
+* É dedicado a uma [ação](#action)específica.
 
-Como `controller` e `action` não aparecem no modelo de rota `"blog/{*article}"` como parâmetros:
+Porque `controller` `action` e não aparecem no `"blog/{*article}"` modelo de rota como parâmetros:
 
-* Eles só podem ter os valores padrão `{ controller = "Blog", action = "Article" }`.
-* Essa rota sempre é mapeada para a ação `BlogController.Article`.
+* Eles só podem ter `{ controller = "Blog", action = "Article" }`os valores padrão.
+* Esta rota sempre mapeia para a ação. `BlogController.Article`
 
 `/Blog`, `/Blog/Article`e `/Blog/{any-string}` são os únicos caminhos de URL que correspondem à rota do blog.
 
 O exemplo anterior:
 
-* `blog` rota tem uma prioridade mais alta para correspondências do que a rota de `default`, pois ela é adicionada primeiro.
-* É um exemplo de roteamento de estilo de separador, onde é comum ter um [nome de artigo](https://developer.mozilla.org/docs/Glossary/Slug) como parte da URL.
+* `blog`rota tem uma prioridade maior `default` para partidas do que a rota porque é adicionada primeiro.
+* É e exemplo de roteamento estilo [Slug](https://developer.mozilla.org/docs/Glossary/Slug) onde é típico ter um nome de artigo como parte da URL.
 
 > [!WARNING]
-> No ASP.NET Core 3,0 e posterior, o roteamento não:
-> * Defina um conceito chamado *rota*. `UseRouting` adiciona a correspondência de rota ao pipeline de middleware. O middleware de `UseRouting` examina o conjunto de pontos de extremidade definidos no aplicativo e seleciona a melhor correspondência de ponto final com base na solicitação.
-> * Forneça garantias sobre a ordem de execução de extensibilidade, como <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> ou <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
+> Em ASP.NET Núcleo 3.0 e posterior, o roteamento não:
+> * Defina um conceito chamado *rota.* `UseRouting`adiciona correspondência de rota ao pipeline de middleware. O `UseRouting` middleware analisa o conjunto de pontos finais definidos no aplicativo e seleciona a melhor correspondência de ponto final com base na solicitação.
+> * Fornecer garantias sobre a ordem de <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>execução de extensibilidade como ou .
 >
->Consulte [Roteamento](xref:fundamentals/routing) para obter material de referência sobre roteamento.
+>Consulte [Roteamento](xref:fundamentals/routing) para obter material de referência no roteamento.
 
 <a name="cro"></a>
 
 ### <a name="conventional-routing-order"></a>Ordem de roteamento convencional
 
-O roteamento convencional só corresponde a uma combinação de ação e controlador que são definidos pelo aplicativo. Isso se destina a simplificar os casos em que as rotas convencionais se sobrepõem.
-Adicionar rotas usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>e <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> atribuir automaticamente um valor de pedido a seus pontos de extremidade com base na ordem em que são invocados. As correspondências de uma rota que aparece anteriormente têm uma prioridade mais alta. O roteamento convencional é dependente da ordem. Em geral, as rotas com áreas devem ser posicionadas antes, pois são mais específicas do que as rotas sem uma área. [Rotas convencionais dedicadas](#dcr) com [parâmetros de rota](xref:fundamentals/routing#greedy)catch all como `{*article}` podem tornar uma rota muito grande, o que significa que ela corresponde às URLs que você pretende corresponder a outras rotas. Coloque as rotas de ávido mais tarde na tabela de rotas para evitar correspondências de caminhada.
+O roteamento convencional corresponde apenas a uma combinação de ação e controlador que são definidas pelo aplicativo. O objetivo é simplificar os casos em que as rotas convencionais se sobrepõem.
+Adicionando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>rotas <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> , e atribua automaticamente um valor de pedido aos seus pontos finais com base na ordem em que são invocados. As correspondências de uma rota que aparece anteriormente têm uma prioridade maior. O roteamento convencional é dependente da ordem. Em geral, rotas com áreas devem ser colocadas mais cedo, pois são mais específicas do que rotas sem área. [Rotas convencionais dedicadas](#dcr) com `{*article}` captura de todos os parâmetros de rota, como podem fazer uma rota muito [gananciosa,](xref:fundamentals/routing#greedy)o que significa que combina com URLs que você pretendia combinar com outras rotas. Coloque as rotas gananciosas mais tarde na tabela de rotas para evitar partidas gananciosas.
 
 <a name="best"></a>
 
-### <a name="resolving-ambiguous-actions"></a>Resolvendo ações ambíguas
+### <a name="resolving-ambiguous-actions"></a>Resolução de ações ambíguas
 
-Quando dois pontos de extremidade correspondem ao roteamento, o roteamento deve seguir um destes procedimentos:
+Quando dois pontos finais correspondem através do roteamento, o roteamento deve fazer um dos seguintes:
 
 * Escolha o melhor candidato.
 * Gera uma exceção.
@@ -210,90 +209,90 @@ Por exemplo:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
-O controlador anterior define duas ações que correspondem a:
+O controlador anterior define duas ações que correspondem:
 
-* O caminho da URL `/Products33/Edit/17`
-* `{ controller = Products33, action = Edit, id = 17 }`de dados de rota.
+* O caminho da URL`/Products33/Edit/17`
+* Dados `{ controller = Products33, action = Edit, id = 17 }`de rota .
 
-Esse é um padrão típico para controladores MVC:
+Este é um padrão típico para controladores MVC:
 
-* `Edit(int)` exibe um formulário para editar um produto.
-* `Edit(int, Product)` processa o formulário Postado.
+* `Edit(int)`exibe um formulário para editar um produto.
+* `Edit(int, Product)`processa o formulário postado.
 
 Para resolver a rota correta:
 
-* `Edit(int, Product)` é selecionado quando a solicitação é um `POST`HTTP.
-* `Edit(int)` é selecionado quando o [verbo http](#verb) é qualquer outra coisa. `Edit(int)` geralmente é chamado via `GET`.
+* `Edit(int, Product)`é selecionado quando a `POST`solicitação é um HTTP .
+* `Edit(int)`é selecionado quando o [verbo HTTP é](#verb) qualquer outra coisa. `Edit(int)`é geralmente chamado `GET`via .
 
-O <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, é fornecido ao roteamento para que ele possa escolher com base no método HTTP da solicitação. O `HttpPostAttribute` faz `Edit(int, Product)` uma correspondência melhor do que `Edit(int)`.
+O <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute> `[HttpPost]`, , é fornecido para roteamento para que ele possa escolher com base no método HTTP da solicitação. O `HttpPostAttribute` `Edit(int, Product)` faz um `Edit(int)`jogo melhor do que .
 
-É importante entender a função de atributos, como `HttpPostAttribute`. Atributos semelhantes são definidos para outros [verbos HTTP](#verb). No [Roteamento convencional](#cr), é comum que as ações usem o mesmo nome de ação quando fazem parte de um fluxo de trabalho de Mostrar formulário, enviar formulário. Por exemplo, consulte [examinar os dois métodos de ação de edição](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+É importante entender o papel de `HttpPostAttribute`atributos como . Atributos semelhantes são definidos para outros [verbos HTTP](#verb). No [roteamento convencional,](#cr)é comum que as ações usem o mesmo nome de ação quando fazem parte de um formulário show, enviem o fluxo de trabalho do formulário. Por exemplo, consulte [Examine os dois métodos de ação Editar](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
 
-Se o roteamento não puder escolher um melhor candidato, um <xref:System.Reflection.AmbiguousMatchException> será lançado, listando os vários pontos de extremidade correspondentes.
+Se o roteamento não puder <xref:System.Reflection.AmbiguousMatchException> escolher o melhor candidato, um é lançado, listando os vários pontos finais combinados.
 
 <a name="routing-route-name-ref-label"></a>
 
-### <a name="conventional-route-names"></a>Nomes de rota convencionais
+### <a name="conventional-route-names"></a>Nomes de rotas convencionais
 
-As cadeias de caracteres `"blog"` e `"default"` nos exemplos a seguir são nomes de rotas convencionais:
+As `"blog"` strings `"default"` e nos seguintes exemplos são nomes de rota convencionais:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
-Os nomes de rota fornecem um nome lógico à rota. A rota nomeada pode ser usada para a geração de URL. O uso de uma rota nomeada simplifica a criação de URL quando a ordenação de rotas pode tornar a geração de URL complicada. Os nomes de rota devem ser de todo o aplicativo.
+Os nomes da rota dão à rota um nome lógico. A rota nomeada pode ser usada para geração de URL. O uso de uma rota nomeada simplifica a criação de URL quando o pedido de rotas pode complicar a geração de URL. Os nomes das rotas devem ser exclusivos de aplicação.
 
-Nomes de rota:
+Nomes da rota:
 
-* Não têm impacto sobre a correspondência de URL ou o tratamento de solicitações.
-* São usados somente para a geração de URL.
+* Não tenha nenhum impacto na correspondência de URL ou no manuseio de solicitações.
+* São usados apenas para geração de URL.
 
-O conceito de nome de rota é representado no roteamento como [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). Os termos **nome da rota** e **nome do ponto de extremidade**:
+O conceito de nome de rota é representado no roteamento como [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). Os termos **nome da rota** e nome do ponto **final:**
 
 * São intercambiáveis.
-* Qual delas é usada na documentação e no código depende da API que está sendo descrita.
+* Qual deles é usado na documentação e código depende da API ser descrita.
 
 <a name="attribute-routing-ref-label"></a>
 <a name="ar"></a>
 
 ## <a name="attribute-routing-for-rest-apis"></a>Roteamento de atributos para APIs REST
 
-As APIs REST devem usar o roteamento de atributos para modelar a funcionalidade do aplicativo como um conjunto de recursos em que as operações são representadas por [verbos HTTP](#verb).
+As APIs REST devem usar roteamento de atributos para modelar a funcionalidade do aplicativo como um conjunto de recursos onde as operações são representadas por [verbos HTTP](#verb).
 
-O roteamento de atributo usa um conjunto de atributos para mapear ações diretamente para modelos de rota. O código de `StartUp.Configure` a seguir é típico para uma API REST e é usado no próximo exemplo:
+O roteamento de atributo usa um conjunto de atributos para mapear ações diretamente para modelos de rota. O `StartUp.Configure` código a seguir é típico de uma API REST e é usado na próxima amostra:
 
 [!code-csharp[](routing/samples/3.x/main/StartupApi.cs?name=snippet)]
 
-No código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> é chamado dentro de `UseEndpoints` para mapear controladores roteados de atributo.
+No código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> é `UseEndpoints` chamado dentro para mapear controladores roteados de atributos.
 
 No exemplo a seguir:
 
-* O método de `Configure` anterior é usado.
-* `HomeController` corresponde a um conjunto de URLs semelhantes ao que a rota convencional padrão `{controller=Home}/{action=Index}/{id?}` corresponde.
+* O `Configure` método anterior é usado.
+* `HomeController`corresponde a um conjunto de URLs `{controller=Home}/{action=Index}/{id?}` semelhante ao que a rota convencional padrão corresponde.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
-A ação `HomeController.Index` é executada para qualquer um dos caminhos de URL `/`, `/Home`, `/Home/Index`ou `/Home/Index/3`.
+A `HomeController.Index` ação é executada para `/`qualquer `/Home` `/Home/Index`um `/Home/Index/3`dos caminhos de URL, ou .
 
-Este exemplo realça uma importante diferença de programação entre roteamento de atributo e [Roteamento convencional](#cr). O roteamento de atributos requer mais entrada para especificar uma rota. A rota padrão convencional lida com as rotas mais sucintamente. No entanto, o roteamento de atributos permite e exige um controle preciso de quais modelos de rota se aplicam a cada [ação](#action).
+Este exemplo destaca uma diferença de programação chave entre roteamento de atributos e [roteamento convencional](#cr). O roteamento de atributos requer mais entrada para especificar uma rota. A rota padrão convencional lida com rotas de forma mais sucinta. No entanto, o roteamento de atributos permite e requer um controle preciso de quais modelos de rota se aplicam a cada [ação](#action).
 
-Com o roteamento de atributos, o nome do controlador e os nomes de ação não desempenham **nenhuma** função na qual a ação é correspondida. O exemplo a seguir corresponde às mesmas URLs do exemplo anterior:
+Com o roteamento de atributos, o nome do controlador e os nomes de ação não desempenham **nenhum** papel no qual a ação é combinada. O exemplo a seguir corresponde aos mesmos URLs do exemplo anterior:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-O código a seguir usa a substituição de token para `action` e `controller`:
+O código a seguir `action` usa `controller`substituição de token para e:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet22)]
 
-O código a seguir aplica-se `[Route("[controller]/[action]")]` ao controlador:
+O código a `[Route("[controller]/[action]")]` seguir se aplica ao controlador:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
-No código anterior, os modelos de método de `Index` devem preceder `/` ou `~/` aos modelos de rota. Modelos de rota aplicados a uma ação, que começam com `/` ou `~/`, não são combinados com modelos de rota aplicados ao controlador.
+No código anterior, `Index` os modelos `/` de `~/` método devem ser preparados para os modelos de rota. Modelos de rota aplicados a uma ação, que começam com `/` ou `~/`, não são combinados com modelos de rota aplicados ao controlador.
 
-Consulte [precedência do modelo de rota](xref:fundamentals/routing#rtp) para obter informações sobre a seleção do modelo de rota.
+Consulte [a precedência do modelo de rota](xref:fundamentals/routing#rtp) para obter informações sobre a seleção do modelo de rota.
 
 ## <a name="reserved-routing-names"></a>Nomes reservados de roteamento
 
-As seguintes palavras-chave são nomes de parâmetro de rota reservados ao usar controladores ou Razor Pages:
+As seguintes palavras-chave são nomes de parâmetros de rota reservados ao usar Controladores ou Páginas de Navalha:
 
 * `action`
 * `area`
@@ -301,23 +300,23 @@ As seguintes palavras-chave são nomes de parâmetro de rota reservados ao usar 
 * `handler`
 * `page`
 
-O uso de `page` como um parâmetro de rota com roteamento de atributo é um erro comum. Fazer isso resulta em comportamento inconsistente e confuso com a geração de URL.
+Usar `page` como parâmetro de rota com roteamento de atributos é um erro comum. Fazer isso resulta em um comportamento inconsistente e confuso com a geração de URL.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
 
-Os nomes de parâmetro especiais são usados pela geração de URL para determinar se uma operação de geração de URL refere-se a uma página Razor ou a um controlador.
+Os nomes de parâmetros especiais são usados pela geração de URL para determinar se uma operação de geração de URL se refere a uma página de navalha ou a um controlador.
 
 <a name="verb"></a>
 
-## <a name="http-verb-templates"></a>Modelos de verbo HTTP
+## <a name="http-verb-templates"></a>Modelos de verbos HTTP
 
-ASP.NET Core tem os seguintes modelos de verbo HTTP:
+ASP.NET Core tem os seguintes modelos de verbos HTTP:
 
 * [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)
-* [HttpPost](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)
-* [HttpPut](xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute)
-* [HttpDelete](xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute)
-* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
+* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)
+* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute)
+* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute)
+* [[Httphead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
 * [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
 
 <a name="rt"></a>
@@ -326,12 +325,12 @@ ASP.NET Core tem os seguintes modelos de verbo HTTP:
 
 ASP.NET Core tem os seguintes modelos de rota:
 
-* Todos os [modelos de verbo http](#verb) são modelos de rota.
-* [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
+* Todos os [modelos de verbo HTTP](#verb) são modelos de rota.
+* [[Rota]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
 <a name="arx"></a>
 
-### <a name="attribute-routing-with-http-verb-attributes"></a>Roteamento de atributos com atributos de verbo http
+### <a name="attribute-routing-with-http-verb-attributes"></a>Roteamento de atributos com atributos verbo http
 
 Considere o seguinte controlador:
 
@@ -339,84 +338,84 @@ Considere o seguinte controlador:
 
 No código anterior:
 
-* Cada ação contém o atributo `[HttpGet]`, que restringe a correspondência somente a solicitações HTTP GET.
-* A ação de `GetProduct` inclui o modelo de `"{id}"`, portanto `id` é anexado ao modelo `"api/[controller]"` no controlador. O modelo de métodos é `"api/[controller]/"{id}""`. Portanto, essa ação só corresponde às solicitações GET do formulário `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
+* Cada ação `[HttpGet]` contém o atributo, que restringe a correspondência apenas às solicitações HTTP GET.
+* A `GetProduct` ação inclui `"{id}"` o modelo, portanto, `id` `"api/[controller]"` é anexado ao modelo no controlador. O modelo de `"api/[controller]/"{id}""`métodos é . Portanto, esta ação corresponde apenas aos `/api/test2/xyz``/api/test2/123`pedidos`/api/test2/{any string}`get para o formulário, , etc.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
-* A ação `GetIntProduct` contém o modelo de `"int/{id:int}")`. A parte `:int` do modelo restringe os valores de rota `id` para cadeias de caracteres que podem ser convertidas em um número inteiro. Uma solicitação GET para `/api/test2/int/abc`:
-  * Não corresponde a esta ação.
-  * Retorna um erro [404 não encontrado](https://developer.mozilla.org/docs/Web/HTTP/Status/404) .
+* A `GetIntProduct` ação `"int/{id:int}")` contém o modelo. A `:int` parte do modelo `id` limita os valores de rota a strings que podem ser convertidas em um inteiro. Uma solicitação `/api/test2/int/abc`GET para:
+  * Não combina com essa ação.
+  * Retorna um erro [404 Não Encontrado.](https://developer.mozilla.org/docs/Web/HTTP/Status/404)
     [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet3)]
-* A ação de `GetInt2Product` contém `{id}` no modelo, mas não restringe `id` a valores que podem ser convertidos em um número inteiro. Uma solicitação GET para `/api/test2/int2/abc`:
-  * Corresponde a essa rota.
-  * A associação de modelo falha ao converter `abc` em um inteiro. O parâmetro `id` do método é inteiro.
-  * Retorna uma [solicitação inadequada 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) porque a associação de modelo falhou ao converter`abc` em um inteiro.
+* A `GetInt2Product` ação `{id}` contém no modelo, mas `id` não se restringe a valores que podem ser convertidos em um inteiro. Uma solicitação `/api/test2/int2/abc`GET para:
+  * Combina com essa rota.
+  * A vinculação `abc` do modelo não se converte em um inteiro. O `id` parâmetro do método é inteiro.
+  * Retorna uma [solicitação ruim de 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) porque a vinculação do modelo não foi convertida`abc` em um inteiro.
       [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
-O roteamento de atributos pode usar atributos de <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> como <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>e <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. Todos os atributos de [verbo http](#verb) aceitam um modelo de rota. O exemplo a seguir mostra duas ações que correspondem ao mesmo modelo de rota:
+O roteamento <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> de atributos pode usar atributos como <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>e <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. Todos os atributos [do verbo HTTP](#verb) aceitam um modelo de rota. O exemplo a seguir mostra duas ações que correspondem ao mesmo modelo de rota:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
-Usando o caminho da URL `/products3`:
+Usando o `/products3`caminho url:
 
-* A ação `MyProductsController.ListProducts` é executada quando o [verbo http](#verb) é `GET`.
-* A ação `MyProductsController.CreateProduct` é executada quando o [verbo http](#verb) é `POST`.
+* A `MyProductsController.ListProducts` ação é executada quando `GET`o [verbo HTTP](#verb) é .
+* A `MyProductsController.CreateProduct` ação é executada quando `POST`o [verbo HTTP](#verb) é .
 
-Ao criar uma API REST, é raro que você precise usar `[Route(...)]` em um método de ação, pois a ação aceita todos os métodos HTTP. É melhor usar o [atributo de verbo http](#verb) mais específico para ser preciso em relação ao que sua API dá suporte. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
+Ao construir uma API REST, é raro que `[Route(...)]` você precise usar em um método de ação porque a ação aceita todos os métodos HTTP. É melhor usar o [atributo http verbo](#verb) mais específico para ser preciso sobre o que sua API suporta. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
 
-As APIs REST devem usar o roteamento de atributos para modelar a funcionalidade do aplicativo como um conjunto de recursos em que as operações são representadas por verbos HTTP. Isso significa que muitas operações, por exemplo, GET e POST no mesmo recurso lógico usam a mesma URL. O roteamento de atributo fornece um nível de controle necessário para projetar cuidadosamente o layout de ponto de extremidade público de uma API.
+As APIs REST devem usar roteamento de atributos para modelar a funcionalidade do aplicativo como um conjunto de recursos onde as operações são representadas por verbos HTTP. Isso significa que muitas operações, por exemplo, GET e POST no mesmo recurso lógico usam a mesma URL. O roteamento de atributo fornece um nível de controle necessário para projetar cuidadosamente o layout de ponto de extremidade público de uma API.
 
-Como uma rota de atributo se aplica a uma ação específica, é fácil fazer com que parâmetros sejam obrigatórios como parte da definição do modelo de rota. No exemplo a seguir, `id` é necessário como parte do caminho da URL:
+Como uma rota de atributo se aplica a uma ação específica, é fácil fazer com que parâmetros sejam obrigatórios como parte da definição do modelo de rota. No exemplo a `id` seguir, é necessário como parte do caminho da URL:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
-A ação `Products2ApiController.GetProduct(int)`:
+A `Products2ApiController.GetProduct(int)` ação:
 
-* É executado com caminho de URL como `/products2/3`
-* Não é executado com o caminho da URL `/products2`.
+* É executado com caminho de URL como`/products2/3`
+* Não é executado com `/products2`o caminho da URL.
 
-O atributo [[consume]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) permite que uma ação limite os tipos de conteúdo de solicitação com suporte. Para obter mais informações, consulte [definir tipos de conteúdo de solicitação com suporte com o atributo consumes](xref:web-api/index#consumes).
+O atributo [[Consums]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) permite uma ação para limitar os tipos de conteúdo de solicitação suportados. Para obter mais informações, consulte Definir tipos de [conteúdo de solicitação suportados com o atributo Consums](xref:web-api/index#consumes).
 
  Consulte [Roteamento](xref:fundamentals/routing) para obter uma descrição completa de modelos de rota e as opções relacionadas.
 
-Para obter mais informações sobre `[ApiController]`, consulte [atributo ApiController](xref:web-api/index##apicontroller-attribute).
+Para obter `[ApiController]`mais informações sobre , consulte [atributo ApiController](xref:web-api/index##apicontroller-attribute).
 
 ## <a name="route-name"></a>Nome da rota
 
-O código a seguir define um nome de rota de `Products_List`:
+O código a seguir define um nome da rota como `Products_List`:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
-Nomes de rota podem ser usados para gerar uma URL com base em uma rota específica. Nomes de rota:
+Nomes de rota podem ser usados para gerar uma URL com base em uma rota específica. Nomes da rota:
 
-* Não têm impacto sobre o comportamento de correspondência de URL do roteamento.
-* São usados somente para a geração de URL.
+* Não tenha nenhum impacto no comportamento correspondente de URL do roteamento.
+* São usados apenas para geração de URL.
 
 Nomes de rotas devem ser exclusivos no nível do aplicativo.
 
-Compare o código anterior com a rota padrão convencional, que define o parâmetro `id` como opcional (`{id?}`). A capacidade de especificar com precisão as APIs tem vantagens, como permitir que `/products` e `/products/5` sejam expedidas para ações diferentes.
+Contraste o código anterior com a rota `id` padrão convencional,`{id?}`que define o parâmetro como opcional ( ). A capacidade de especificar precisamente APIs `/products` `/products/5` tem vantagens, como permitir e ser despachada para diferentes ações.
 
 <a name="routing-combining-ref-label"></a>
 
-## <a name="combining-attribute-routes"></a>Combinando rotas de atributo
+## <a name="combining-attribute-routes"></a>Combinando rotas de atributos
 
-Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações. Colocar um atributo de rota no controlador faz com que  **todas** as ações no controlador usem o roteamento de atributo.
+Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações.  Colocar um atributo de rota no controlador foz com que **todas** as ações no controlador usem o roteamento de atributo.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
 No exemplo anterior:
 
-* O caminho da URL `/products` pode corresponder `ProductsApi.ListProducts`
-* O caminho da URL `/products/5` pode corresponder `ProductsApi.GetProduct(int)`.
+* O caminho `/products` da URL pode corresponder`ProductsApi.ListProducts`
+* O caminho `/products/5` da `ProductsApi.GetProduct(int)`URL pode coincidir .
 
-Ambas as ações correspondem somente a `GET` HTTP porque elas são marcadas com o atributo `[HttpGet]`.
+Ambas as ações só `GET` correspondem a HTTP `[HttpGet]` porque estão marcadas com o atributo.
 
-Modelos de rota aplicados a uma ação, que começam com `/` ou `~/`, não são combinados com modelos de rota aplicados ao controlador. O exemplo a seguir corresponde a um conjunto de caminhos de URL semelhante à rota padrão.
+Modelos de rota aplicados a uma ação, que começam com `/` ou `~/`, não são combinados com modelos de rota aplicados ao controlador. O exemplo a seguir corresponde a um conjunto de caminhos de URL semelhantes à rota padrão.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
 
-A tabela a seguir explica os atributos de `[Route]` no código anterior:
+A tabela a `[Route]` seguir explica os atributos no código anterior:
 
-| Atributo               | Combina com `[Route("Home")]` | Define o modelo de rota |
+| Atributo               | Combina com`[Route("Home")]` | Define modelo de rota |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Sim | `"Home"` |
 | `[Route("Index")]` | Sim | `"Home/Index"` |
@@ -426,26 +425,26 @@ A tabela a seguir explica os atributos de `[Route]` no código anterior:
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
 
-### <a name="attribute-route-order"></a>Ordem de rota de atributo
+### <a name="attribute-route-order"></a>Ordem da rota de atributo
 
-O roteamento cria uma árvore e corresponde a todos os pontos de extremidade simultaneamente:
+O roteamento constrói uma árvore e corresponde a todos os pontos finais simultaneamente:
 
-* As entradas de rota se comportam como se colocadas em uma ordenação ideal.
-* As rotas mais específicas têm a chance de serem executadas antes das rotas mais gerais.
+* As entradas de rota se comportam como se fossem colocadas em um pedido ideal.
+* As rotas mais específicas têm a chance de executar antes das rotas mais gerais.
 
-Por exemplo, uma rota de atributo como `blog/search/{topic}` é mais específica do que uma rota de atributo como `blog/{*article}`. A rota de `blog/search/{topic}` tem prioridade mais alta, por padrão, porque é mais específica. Usando o [Roteamento convencional](#cr), o desenvolvedor é responsável por colocar rotas na ordem desejada.
+Por exemplo, uma `blog/search/{topic}` rota de atributo como `blog/{*article}`é mais específica do que uma rota de atributo como . A `blog/search/{topic}` rota tem maior prioridade, por padrão, porque é mais específica. Usando [o roteamento convencional,](#cr)o desenvolvedor é responsável por colocar rotas na ordem desejada.
 
-As rotas de atributo podem configurar um pedido usando a propriedade <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order>. Todos os [atributos de rota](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) fornecidos pelo framework incluem `Order`. As rotas são processadas segundo uma classificação crescente da propriedade `Order`. A ordem padrão é `0`. Definir uma rota usando `Order = -1` é executado antes das rotas que não definem um pedido. Definir uma rota usando `Order = 1` é executado após a ordenação de rota padrão.
+As rotas de atributos <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> podem configurar um pedido usando a propriedade. Todos os [atributos](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) de `Order` rota fornecidos pela estrutura incluem . As rotas são processadas segundo uma classificação crescente da propriedade `Order`. A ordem padrão é `0`. Definir uma `Order = -1` rota usando corridas antes de rotas que não definem um pedido. Definir uma `Order = 1` rota usando executa após o pedido de rota padrão.
 
-**Evite** , dependendo do `Order`. Se o espaço de URL de um aplicativo exigir valores de ordem explícitos para rotear corretamente, isso provavelmente será confuso para os clientes também. Em geral, o roteamento de atributos seleciona a rota correta com correspondência de URL. Se a ordem padrão usada para a geração de URL não estiver funcionando, usar um nome de rota como uma substituição é geralmente mais simples do que aplicar a propriedade `Order`.
+**Evite** depender `Order`de . Se o espaço de URL de um aplicativo requer valores de pedidos explícitos para rodar corretamente, então é provável que seja confuso para os clientes também. Em geral, o roteamento de atributos seleciona a rota correta com a correspondência de URL. Se o pedido padrão usado para geração de URL não estiver funcionando, usar um `Order` nome de rota como uma substituição é geralmente mais simples do que aplicar a propriedade.
 
-Considere os dois controladores a seguir que definem a rota correspondente `/home`:
+Considere os dois controladores a seguir `/home`que ambos definem a correspondência de rota:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-Solicitar `/home` com o código anterior gera uma exceção semelhante à seguinte:
+Solicitar `/home` com o código anterior lança uma exceção semelhante à seguinte:
 
 ```text
 AmbiguousMatchException: The request matched multiple endpoints. Matches:
@@ -454,29 +453,29 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
  WebMvcRouting.Controllers.MyDemoController.MyIndex
 ```
 
-Adicionar `Order` a um dos atributos de rota resolve a ambiguidade:
+Adicionar `Order` a um dos atributos da rota resolve a ambiguidade:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
-Com o código anterior, `/home` executa o ponto de extremidade `HomeController.Index`. Para obter o `MyDemoController.MyIndex`, solicite `/home/MyIndex`. **Observação**:
+Com o código `/home` anterior, executa o `HomeController.Index` ponto final. Para chegar `MyDemoController.MyIndex`ao `/home/MyIndex`, solicitação . **Observação**:
 
-* O código anterior é um exemplo de design de roteamento insatisfatório. Ele foi usado para ilustrar a propriedade `Order`.
-* A propriedade `Order` resolve apenas a ambiguidade, o modelo não pode ser correspondido. Seria melhor remover o modelo de `[Route("Home")]`.
+* O código anterior é um exemplo ou um design de roteamento ruim. Foi usado para `Order` ilustrar a propriedade.
+* A `Order` propriedade só resolve a ambiguidade, esse modelo não pode ser correspondido. Seria melhor remover o `[Route("Home")]` modelo.
 
-Consulte [Razor Pages rota e convenções de aplicativo: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order) para obter informações sobre a ordem de rota com Razor Pages.
+Consulte [a rota de páginas de barbear e convenções de aplicativos: Ordem de rota](xref:razor-pages/razor-pages-conventions#route-order) para obter informações sobre o pedido de rota com páginas de barbear.
 
-Em alguns casos, um erro HTTP 500 é retornado com rotas ambíguas. Use o [registro em log](xref:fundamentals/logging/index) para ver quais pontos de extremidade causaram a `AmbiguousMatchException`.
+Em alguns casos, um erro HTTP 500 é retornado com rotas ambíguas. Use [o registro](xref:fundamentals/logging/index) para ver `AmbiguousMatchException`quais pontos finais causaram o .
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
 ## <a name="token-replacement-in-route-templates-controller-action-area"></a>Substituição de token em modelos de rota [controlador], [ação], [área]
 
-Para sua conveniência, as rotas de atributo dão suporte à substituição de token para parâmetros de rota reservados ao colocar um token em um dos seguintes:
+Para conveniência, as rotas de atributo susem a substituição de tokens para parâmetros de rota reservados, anexando um token em um dos seguintes:
 
-* Chaves: `[]`
-* Chaves: `{}`
+* Aparelhos quadrados:`[]`
+* Aparelhos encaracolados:`{}`
 
-Os tokens `[action]`, `[area]`e `[controller]` são substituídos pelos valores do nome da ação, do nome da área e do nome do controlador da ação em que a rota é definida:
+Os tokens `[area]`, `[controller]` e são substituídos `[action]`pelos valores do nome da ação, nome da área e nome do controlador da ação onde a rota é definida:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
@@ -484,26 +483,26 @@ No código anterior:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
-  * Corresponde a `/Products0/List`
+  * Corresponde`/Products0/List`
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
-  * Corresponde a `/Products0/Edit/{id}`
+  * Corresponde`/Products0/Edit/{id}`
 
-A substituição de token ocorre como a última etapa da criação das rotas de atributo. O exemplo anterior se comporta da mesma forma que o código a seguir:
+A substituição de token ocorre como a última etapa da criação das rotas de atributo. O exemplo anterior se comporta da mesma forma que o seguinte código:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet20)]
 
 [!INCLUDE[](~/includes/MTcomments.md)]
 
-Rotas de atributo também podem ser combinadas com herança. Isso é poderoso combinado com a substituição de token. A substituição de token também se aplica a nomes de rota definidos por rotas de atributo.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`gera um nome de rota exclusivo para cada ação:
+Rotas de atributo também podem ser combinadas com herança. Isso é poderoso combinado com a substituição de tokens. A substituição de token também se aplica a nomes de rota definidos por rotas de atributo.
+`[Route("[controller]/[action]", Name="[controller]_[action]")]`gera um nome de rota único para cada ação:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
 A substituição de token também se aplica a nomes de rota definidos por rotas de atributo.
 `[Route("[controller]/[action]", Name="[controller]_[action]")]`
-gera um nome de rota exclusivo para cada ação.
+ gera um nome de rota exclusivo para cada ação.
 
 Para corresponder ao delimitador de substituição de token literal `[` ou `]`, faça seu escape repetindo o caractere (`[[` ou `]]`).
 
@@ -511,7 +510,7 @@ Para corresponder ao delimitador de substituição de token literal `[` ou `]`, 
 
 ### <a name="use-a-parameter-transformer-to-customize-token-replacement"></a>Usar um transformador de parâmetro para personalizar a substituição de token
 
-A substituição do token pode ser personalizada usando um transformador de parâmetro. Um transformador de parâmetro implementa <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> e transforma o valor dos parâmetros. Por exemplo, um transformador de parâmetro de `SlugifyParameterTransformer` personalizado altera o `SubscriptionManagement` valor de rota para `subscription-management`:
+A substituição do token pode ser personalizada usando um transformador de parâmetro. Um transformador de parâmetro implementa <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> e transforma o valor dos parâmetros. Por exemplo, `SlugifyParameterTransformer` um transformador de `SubscriptionManagement` parâmetro `subscription-management`personalizado altera o valor da rota para:
 
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
@@ -522,19 +521,19 @@ O <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConventi
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/SubscriptionManagementController.cs?name=snippet)]
 
-O método `ListAll` anterior corresponde a `/subscription-management/list-all`.
+O `ListAll` método `/subscription-management/list-all`anterior corresponde .
 
 O `RouteTokenTransformerConvention` está registrado como uma opção em `ConfigureServices`.
 
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
 
-Consulte [MDN Web docs no](https://developer.mozilla.org/docs/Glossary/Slug) separador para obter a definição do separador.
+Consulte [os web docs do MDN no Slug](https://developer.mozilla.org/docs/Glossary/Slug) para a definição de Slug.
 
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### <a name="multiple-attribute-routes"></a>Várias rotas de atributos
 
-O roteamento de atributo dá suporte à definição de várias rotas que atingem a mesma ação. O uso mais comum disso é imitar o comportamento da rota convencional padrão, conforme mostrado no exemplo a seguir:
+O roteamento de atributo dá suporte à definição de várias rotas que atingem a mesma ação. O uso mais comum desse recurso é para simular o comportamento da rota convencional padrão, conforme mostrado no exemplo a seguir:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6x)]
 
@@ -542,15 +541,15 @@ Colocar vários atributos de rota no controlador significa que cada um combina c
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
-Todas as restrições de rota de [verbo http](#verb) implementam `IActionConstraint`.
+Todas as restrições [de rota do verbo HTTP](#verb) implementam `IActionConstraint`.
 
-Quando vários atributos de rota que implementam <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> são colocados em uma ação:
+Quando vários atributos <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> de rota que implementam são colocados em uma ação:
 
 * Cada restrição de ação combina com o modelo de rota aplicado ao controlador.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
-O uso de várias rotas em ações pode parecer útil e eficiente, é melhor manter o espaço de URL básico e bem definido do aplicativo. Use várias rotas em ações **somente** quando necessário, por exemplo, para dar suporte a clientes existentes.
+Usar várias rotas em ações pode parecer útil e poderoso, é melhor manter o espaço de URL do seu aplicativo básico e bem definido. Use várias rotas em ações **apenas** quando necessário, por exemplo, para dar suporte aos clientes existentes.
 
 <a name="routing-attr-options"></a>
 
@@ -560,7 +559,7 @@ Rotas de atributo dão suporte à mesma sintaxe embutida que as rotas convencion
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
-No código anterior, `[HttpPost("product/{id:int}")]` aplica uma restrição de rota. A ação `ProductsController.ShowProduct` é correspondida somente por caminhos de URL como `/product/3`. A parte do modelo de rota `{id:int}` restringe esse segmento a apenas inteiros.
+No código anterior, `[HttpPost("product/{id:int}")]` aplica-se uma restrição de rota. A `ProductsController.ShowProduct` ação é combinada apenas `/product/3`por caminhos de URL como . A parte `{id:int}` do modelo de rota restringe esse segmento a apenas inteiros.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
@@ -570,49 +569,49 @@ Consulte [Referência de modelo de rota](xref:fundamentals/routing#route-templat
 
 ### <a name="custom-route-attributes-using-iroutetemplateprovider"></a>Atributos de rota personalizados usando IRouteTemplateProvider
 
-Todos os [atributos de rota](#rt) implementam <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. O tempo de execução de ASP.NET Core:
+Todos os [atributos](#rt) de rota implementam <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. O tempo de execução do ASP.NET Core:
 
-* Procura atributos em classes de controlador e métodos de ação quando o aplicativo é iniciado.
-* Usa os atributos que implementam `IRouteTemplateProvider` para criar o conjunto inicial de rotas.
+* Procura atributos nas classes de controladores e métodos de ação quando o aplicativo é iniciado.
+* Usa os atributos que implementam `IRouteTemplateProvider` para construir o conjunto inicial de rotas.
 
-Implemente `IRouteTemplateProvider` para definir atributos de rota personalizados. Cada `IRouteTemplateProvider` permite definir uma única rota com um nome, uma ordem e um modelo de rota personalizado:
+Implementar `IRouteTemplateProvider` para definir atributos de rota personalizados. Cada `IRouteTemplateProvider` permite definir uma única rota com um nome, uma ordem e um modelo de rota personalizado:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyTestApiController.cs?name=snippet&highlight=1-10)]
 
-O método `Get` anterior retorna `Order = 2, Template = api/MyTestApi`.
+O `Get` método `Order = 2, Template = api/MyTestApi`anterior retorna .
 
 <a name="routing-app-model-ref-label"></a>
 
-### <a name="use-application-model-to-customize-attribute-routes"></a>Usar o modelo de aplicativo para personalizar as rotas de atributo
+### <a name="use-application-model-to-customize-attribute-routes"></a>Use o modelo de aplicativo para personalizar rotas de atributos
 
-O modelo de aplicativo:
+O modelo de aplicação:
 
 * É um modelo de objeto criado na inicialização.
-* Contém todos os metadados usados pelo ASP.NET Core para rotear e executar as ações em um aplicativo.
+* Contém todos os metadados usados pelo ASP.NET Core para rodar e executar as ações em um aplicativo.
 
-O modelo de aplicativo inclui todos os dados coletados dos atributos de rota. Os dados dos atributos de rota são fornecidos pela implementação de `IRouteTemplateProvider`. Regras
+O modelo de aplicação inclui todos os dados coletados a partir de atributos de rota. Os dados dos atributos de `IRouteTemplateProvider` rota são fornecidos pela implementação. Convenções:
 
-* Pode ser escrito para modificar o modelo de aplicativo para personalizar a forma como o roteamento se comporta.
+* Pode ser escrito para modificar o modelo do aplicativo para personalizar como o roteamento se comporta.
 * São lidos na inicialização do aplicativo.
 
-Esta seção mostra um exemplo básico de personalização de roteamento usando o modelo de aplicativo. O código a seguir torna as rotas aproximadamente alinhadas com a estrutura de pastas do projeto.
+Esta seção mostra um exemplo básico de personalização do roteamento usando o modelo do aplicativo. O código a seguir faz com que as rotas se alintem aproximadamente com a estrutura da pasta do projeto.
 
 [!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
 
-O código a seguir impede que a Convenção de `namespace` seja aplicada a controladores que são roteados por atributo:
+O código a `namespace` seguir impede que a convenção seja aplicada aos controladores que são atributos roteados:
 
 [!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet2)]
 
-Por exemplo, o controlador a seguir não usa `NamespaceRoutingConvention`:
+Por exemplo, o controlador a `NamespaceRoutingConvention`seguir não usa:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/ManagersController.cs?name=snippet&highlight=1)]
 
 O método `NamespaceRoutingConvention.Apply`:
 
-* Não fará nada se o controlador for um atributo roteado.
-* Define o modelo de controladores com base na `namespace`, com a `namespace` de base removida.
+* Não faz nada se o controlador for atribuído.
+* Define o modelo de `namespace`controladores com `namespace` base no , com a base removida.
 
-O `NamespaceRoutingConvention` pode ser aplicado no `Startup.ConfigureServices`:
+O `NamespaceRoutingConvention` pode ser `Startup.ConfigureServices`aplicado em:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
 
@@ -622,9 +621,9 @@ Por exemplo, considere o seguinte controlador:
 
 No código anterior:
 
-* O `namespace` base é `My.Application`.
-* O nome completo do controlador anterior é `My.Application.Admin.Controllers.UsersController`.
-* O `NamespaceRoutingConvention` define o modelo de controladores como `Admin/Controllers/Users/[action]/{id?`.
+* A `namespace` base `My.Application`é.
+* O nome completo do `My.Application.Admin.Controllers.UsersController`controlador anterior é .
+* O `NamespaceRoutingConvention` conjunto define o `Admin/Controllers/Users/[action]/{id?`modelo de controladores para .
 
 O `NamespaceRoutingConvention` também pode ser aplicado como um atributo em um controlador:
 
@@ -634,29 +633,29 @@ O `NamespaceRoutingConvention` também pode ser aplicado como um atributo em um 
 
 ## <a name="mixed-routing-attribute-routing-vs-conventional-routing"></a>Roteamento misto: roteamento de atributo versus roteamento convencional
 
-ASP.NET Core aplicativos podem misturar o uso de roteamento convencional e roteamento de atributos. É comum usar rotas convencionais para controladores que servem páginas HTML para navegadores e usar o roteamento de atributo para controladores que servem APIs REST.
+ASP.NET aplicativos Core podem misturar o uso de roteamento convencional e roteamento de atributos. É comum usar rotas convencionais para controladores que servem páginas HTML para navegadores e usar o roteamento de atributo para controladores que servem APIs REST.
 
-As ações são roteadas convencionalmente ou segundo os atributos. Colocar uma rota no controlador ou na ação faz com que ela seja roteada segundo o atributo. Ações que definem rotas de atributo não podem ser acessadas por meio das rotas convencionais e vice-versa. **Qualquer** atributo de rota no controlador faz com que **todas as** ações no atributo do controlador sejam roteadas.
+As ações são roteadas convencionalmente ou segundo os atributos. Colocar uma rota no controlador ou na ação faz com que ela seja roteada segundo o atributo. Ações que definem rotas de atributo não podem ser acessadas por meio das rotas convencionais e vice-versa. **Qualquer** atributo de rota no controlador faz com que **todas as** ações no atributo controlador sejam roteadas.
 
-Roteamento de atributos e roteamento convencional usam o mesmo mecanismo de roteamento.
+Roteamento de atributos e roteamento convencional usam o mesmo motor de roteamento.
 
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
-## <a name="url-generation-and-ambient-values"></a>Geração de URL e valores de ambiente
+## <a name="url-generation-and-ambient-values"></a>Geração de URL e valores ambientais
 
-Os aplicativos podem usar os recursos de geração de URL de roteamento para gerar links de URL para ações. A geração de URLs elimina URLs de codificação, tornando o código mais robusto e passível de manutenção. Esta seção se concentra nos recursos de geração de URL fornecidos pelo MVC e aborda apenas noções básicas de como funciona a geração de URL. Consulte [Roteamento](xref:fundamentals/routing) para obter uma descrição detalhada da geração de URL.
+Os aplicativos podem usar recursos de geração de URL de roteamento para gerar links de URL para ações. A geração de URLs elimina URLs de codificação dura, tornando o código mais robusto e sustentável. Esta seção se concentra nos recursos de geração de URL fornecidos pela MVC e apenas cobre os fundamentos de como a geração de URL funciona. Consulte [Roteamento](xref:fundamentals/routing) para obter uma descrição detalhada da geração de URL.
 
-A interface <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> é o elemento subjacente da infraestrutura entre o MVC e o roteamento para a geração de URL. Uma instância de `IUrlHelper` está disponível por meio da propriedade `Url` em controladores, exibições e componentes de exibição.
+A <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface é o elemento subjacente da infra-estrutura entre MVC e roteamento para geração de URL. Uma instância `IUrlHelper` de está `Url` disponível através da propriedade em controladores, visualizações e componentes de exibição.
 
-No exemplo a seguir, a interface `IUrlHelper` é usada por meio da propriedade `Controller.Url` para gerar uma URL para outra ação.
+No exemplo a `IUrlHelper` seguir, a `Controller.Url` interface é usada através da propriedade para gerar uma URL para outra ação.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
 
-Se o aplicativo estiver usando a rota convencional padrão, o valor da variável `url` será a cadeia de caracteres do caminho da URL `/UrlGeneration/Destination`. Esse caminho de URL é criado pelo roteamento combinando:
+Se o aplicativo estiver usando a rota `url` convencional padrão, o `/UrlGeneration/Destination`valor da variável é a seqüência de caminho suiço . Esse caminho de URL é criado por roteamento combinando:
 
-* Os valores de rota da solicitação atual, que são chamados de **valores de ambiente**.
-* Os valores passados para `Url.Action` e substituindo esses valores no modelo de rota:
+* Os valores de rota da solicitação atual, que são chamados **de valores ambientais.**
+* Os valores `Url.Action` passaram e substituindo esses valores no modelo de rota:
 
 ``` text
 ambient values: { controller = "UrlGeneration", action = "Source" }
@@ -669,59 +668,59 @@ result: /UrlGeneration/Destination
 Cada parâmetro de rota no modelo de rota tem seu valor substituído por nomes correspondentes com os valores e os valores de ambiente. Um parâmetro de rota que não tem um valor pode:
 
 * Use um valor padrão se ele tiver um.
-* Será ignorado se for opcional. Por exemplo, o `id` do modelo de rota `{controller}/{action}/{id?}`.
+* Seja ignorado se for opcional. Por exemplo, `id` o modelo `{controller}/{action}/{id?}`de rota do modelo de rota .
 
-A geração de URL falhará se qualquer parâmetro de rota necessário não tiver um valor correspondente. Se a geração de URL falhar para uma rota, a rota seguinte será tentada até que todas as rotas tenham sido tentadas ou que uma correspondência seja encontrada.
+A geração de URL falha se algum parâmetro de rota necessário não tiver um valor correspondente. Se a geração de URL falhar para uma rota, a rota seguinte será tentada até que todas as rotas tenham sido tentadas ou que uma correspondência seja encontrada.
 
-O exemplo anterior de `Url.Action` pressupõe [Roteamento convencional](#cr). A geração de URL funciona de forma semelhante ao [Roteamento de atributos](#ar), embora os conceitos sejam diferentes. Com roteamento convencional:
+O exemplo `Url.Action` anterior de assume [o roteamento convencional.](#cr) A geração de URL funciona de forma semelhante com [o roteamento de atributos,](#ar)embora os conceitos sejam diferentes. Com roteamento convencional:
 
 * Os valores de rota são usados para expandir um modelo.
-* Os valores de rota para `controller` e `action` geralmente aparecem nesse modelo. Isso funciona porque as URLs correspondidas pelo roteamento aderem a uma convenção.
+* Os valores `controller` `action` de rota para e geralmente aparecem nesse modelo. Isso funciona porque as URLs coincidiram com o encaminhamento de uma convenção.
 
-O exemplo a seguir usa roteamento de atributo:
+O exemplo a seguir usa roteamento de atributos:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationAttrController.cs?name=snippet_1)]
 
-A ação de `Source` no código anterior gera `custom/url/to/destination`.
+A `Source` ação no código `custom/url/to/destination`anterior gera .
 
-<xref:Microsoft.AspNetCore.Routing.LinkGenerator> foi adicionado no ASP.NET Core 3,0 como uma alternativa ao `IUrlHelper`. o `LinkGenerator` oferece uma funcionalidade semelhante, mas mais flexível. Cada um dos outros métodos em `IUrlHelper` também tem uma família correspondente de métodos em `LinkGenerator`.
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator>foi adicionado no ASP.NET Núcleo 3.0 como alternativa a `IUrlHelper`. `LinkGenerator`oferece funcionalidade semelhante, mas mais flexível. Cada método `IUrlHelper` em tem uma família `LinkGenerator` correspondente de métodos também.
 
 ### <a name="generating-urls-by-action-name"></a>Gerando URLs pelo nome da ação
 
-A [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), [LinkGenerator. GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*)e todas as sobrecargas relacionadas são projetadas para gerar o ponto de extremidade de destino especificando um nome de controlador e um nome de ação.
+[Url.Action,](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) [LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*)e todas as sobrecargas relacionadas são projetadas para gerar o ponto final de destino especificando um nome de controlador e nome de ação.
 
-Ao usar `Url.Action`, os valores de rota atuais para `controller` e `action` são fornecidos pelo tempo de execução:
+Ao `Url.Action`usar, os valores `action` de rota atuais são `controller` fornecidos pelo tempo de execução:
 
-* O valor de `controller` e `action` fazem parte de [valores de ambiente](#ambient) e valores. O método `Url.Action` sempre usa os valores atuais de `action` e `controller` e gera um caminho de URL que roteia a ação atual.
+* O valor `controller` `action` e fazem parte dos valores e [valores ambientais.](#ambient) O `Url.Action` método sempre usa `action` os `controller` valores atuais e gera um caminho de URL que direciona para a ação atual.
 
-O roteamento tenta usar os valores em valores de ambiente para preencher as informações que não foram fornecidas durante a geração de uma URL. Considere uma rota como `{a}/{b}/{c}/{d}` com valores de ambiente `{ a = Alice, b = Bob, c = Carol, d = David }`:
+O roteamento tenta usar os valores em valores ambientais para preencher informações que não foram fornecidas ao gerar uma URL. Considere uma `{a}/{b}/{c}/{d}` rota como `{ a = Alice, b = Bob, c = Carol, d = David }`com valores ambientais:
 
-* O roteamento tem informações suficientes para gerar uma URL sem valores adicionais.
+* O roteamento tem informações suficientes para gerar uma URL sem quaisquer valores adicionais.
 * O roteamento tem informações suficientes porque todos os parâmetros de rota têm um valor.
 
-Se o valor `{ d = Donovan }` for adicionado:
+Se o `{ d = Donovan }` valor for adicionado:
 
-* O valor `{ d = David }` é ignorado.
-* O caminho de URL gerado é `Alice/Bob/Carol/Donovan`.
+* O `{ d = David }` valor é ignorado.
+* O caminho de `Alice/Bob/Carol/Donovan`URL gerado é .
 
-**Aviso**: os caminhos de URL são hierárquicos. No exemplo anterior, se o valor `{ c = Cheryl }` for adicionado:
+**Aviso**: os caminhos de URL são hierárquicos. No exemplo anterior, se `{ c = Cheryl }` o valor for adicionado:
 
-* Ambos os valores `{ c = Carol, d = David }` são ignorados.
-* Não há mais um valor para `d` e a geração de URL falha.
-* Os valores desejados de `c` e `d` devem ser especificados para gerar uma URL.  
+* Ambos os `{ c = Carol, d = David }` valores são ignorados.
+* Não há mais um `d` valor para e a geração de URL falha.
+* Os valores `c` desejados e `d` devem ser especificados para gerar uma URL.  
 
-Talvez você espere atingir esse problema com o `{controller}/{action}/{id?}`de rota padrão. Esse problema é raro na prática porque `Url.Action` sempre especifica explicitamente um `controller` e `action` valor.
+Você pode esperar para acertar este `{controller}/{action}/{id?}`problema com a rota padrão . Esse problema é raro `Url.Action` na prática porque `controller` `action` sempre especifica explicitamente um e valor.
 
-Várias sobrecargas de [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) usam um objeto de valores de rota para fornecer valores para parâmetros de rota diferentes de `controller` e `action`. O objeto de valores de rota é usado frequentemente com `id`. Por exemplo, `Url.Action("Buy", "Products", new { id = 17 })`. O objeto de valores de rota:
+Várias sobrecargas de [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) levam um objeto de `controller` valores de rota para fornecer valores para parâmetros de rota que não sejam e `action`. O objeto de valores `id`de rota é frequentemente usado com . Por exemplo, `Url.Action("Buy", "Products", new { id = 17 })`. O objeto de valores de rota:
 
-* Por convenção geralmente é um objeto de tipo anônimo.
-* Pode ser um `IDictionary<>` ou um [poco](https://wikipedia.org/wiki/Plain_old_CLR_object)).
+* Por convenção é geralmente um objeto de tipo anônimo.
+* Pode ser `IDictionary<>` um [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)).
 
 Qualquer valor de rota adicional que não corresponder aos parâmetros de rota será colocado na cadeia de caracteres de consulta.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs?name=snippet)]
 
-O código anterior gera `/Products/Buy/17?color=red`.
+O código `/Products/Buy/17?color=red`anterior gera .
 
 O código a seguir gera uma URL absoluta:
 
@@ -729,21 +728,21 @@ O código a seguir gera uma URL absoluta:
 
 Para criar uma URL absoluta, use um dos seguintes:
 
-* Uma sobrecarga que aceita uma `protocol`. Por exemplo, o código anterior.
-* [LinkGenerator. GetUriByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*), que gera URIs absolutos por padrão.
+* Uma sobrecarga que `protocol`aceita um. Por exemplo, o código anterior.
+* [LinkGenerator.GetUriByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*), que gera URIs absolutas por padrão.
 
 <a name="routing-gen-urls-route-ref-label"></a>
 
 ### <a name="generate-urls-by-route"></a>Gerar URLs por rota
 
-O código anterior demonstrou a geração de uma URL passando o nome do controlador e da ação. `IUrlHelper` também fornece a família de métodos [URL. RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) . Esses métodos são semelhantes a [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), mas não copiam os valores atuais de `action` e `controller` para os valores de rota. O uso mais comum de `Url.RouteUrl`:
+O código anterior demonstrou a geração de uma URL passando no controlador e no nome da ação. `IUrlHelper`também fornece a família de métodos [Url.RouteUrl.](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) Esses métodos são semelhantes ao [Url.Action,](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*)mas não `action` `controller` copiam os valores atuais de e para os valores de rota. O uso mais `Url.RouteUrl`comum de:
 
 * Especifica um nome de rota para gerar a URL.
-* Geralmente, não especifica um controlador ou um nome de ação.
+* Geralmente não especifica um controlador ou nome de ação.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
 
-O seguinte arquivo Razor gera um link HTML para o `Destination_Route`:
+O seguinte arquivo Razor gera `Destination_Route`um link HTML para:
 
 [!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
 
@@ -751,66 +750,66 @@ O seguinte arquivo Razor gera um link HTML para o `Destination_Route`:
 
 ### <a name="generate-urls-in-html-and-razor"></a>Gerar URLs em HTML e Razor
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> fornece os métodos de <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> [HTML. BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) e [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) para gerar elementos `<form>` e `<a>` respectivamente. Esses métodos usam o método [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) para gerar uma URL e aceitam argumentos semelhantes. O complementos `Url.RouteUrl` para `HtmlHelper` são `Html.BeginRouteForm` e `Html.RouteLink`, que têm uma funcionalidade semelhante.
+<xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>fornece <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> os métodos [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) e [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) para gerar `<form>` e `<a>` elementos, respectivamente. Esses métodos usam o método [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) para gerar uma URL e aceitam argumentos semelhantes. O complementos `Url.RouteUrl` para `HtmlHelper` são `Html.BeginRouteForm` e `Html.RouteLink`, que têm uma funcionalidade semelhante.
 
-TagHelpers geram URLs por meio do TagHelper `form` e do TagHelper `<a>`. Ambos usam `IUrlHelper` para sua implementação. Consulte [auxiliares de marca em formulários](xref:mvc/views/working-with-forms) para obter mais informações.
+TagHelpers geram URLs por meio do TagHelper `form` e do TagHelper `<a>`. Ambos usam `IUrlHelper` para sua implementação. Consulte [Tag Helpers em formulários](xref:mvc/views/working-with-forms) para obter mais informações.
 
 Nos modos de exibição, o `IUrlHelper` está disponível por meio da propriedade `Url` para qualquer geração de URL ad hoc não abordada acima.
 
 <a name="routing-gen-urls-action-ref-label"></a>
 
-### <a name="url-generation-in-action-results"></a>Geração de URL nos resultados da ação
+### <a name="url-generation-in-action-results"></a>Geração de URL em Resultados de Ação
 
-Os exemplos anteriores mostraram o uso de `IUrlHelper` em um controlador. O uso mais comum em um controlador é gerar uma URL como parte de um resultado de ação.
+Os exemplos anteriores `IUrlHelper` mostraram o uso em um controlador. O uso mais comum em um controlador é gerar uma URL como parte de um resultado de ação.
 
 As classes base <xref:Microsoft.AspNetCore.Mvc.ControllerBase> e <xref:Microsoft.AspNetCore.Mvc.Controller> fornecem métodos de conveniência para resultados de ação que fazem referência a outra ação. Um uso típico é redirecionar depois de aceitar a entrada do usuário:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
 
-A ação resulta em métodos de fábrica, como <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> e <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> seguir um padrão semelhante aos métodos no `IUrlHelper`.
+A ação resulta em <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> métodos de fábrica como `IUrlHelper`e seguem um padrão semelhante aos métodos em .
 
 <a name="routing-dedicated-ref-label"></a>
 
 ### <a name="special-case-for-dedicated-conventional-routes"></a>Caso especial para rotas convencionais dedicadas
 
-O [Roteamento convencional](#cr) pode usar um tipo especial de definição de rota chamada de [rota convencional dedicada](#dcr). No exemplo a seguir, a rota chamada `blog` é uma rota convencional dedicada:
+[O roteamento convencional](#cr) pode usar um tipo especial de definição de rota chamada [rota convencional dedicada](#dcr). No exemplo a seguir, `blog` a rota nomeada é uma rota convencional dedicada:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
-Usando as definições de rota anteriores, `Url.Action("Index", "Home")` gera o caminho da URL `/` usando a rota `default`, mas por quê? Você poderia imaginar que os valores de rota `{ controller = Home, action = Index }` seriam suficientes para gerar uma URL usando `blog` e o resultado seria `/blog?action=Index&controller=Home`.
+Usando as definições `Url.Action("Index", "Home")` de rota `/` anteriores, gera o caminho de URL usando a `default` rota, mas por quê? Você poderia imaginar que os valores de rota `{ controller = Home, action = Index }` seriam suficientes para gerar uma URL usando `blog` e o resultado seria `/blog?action=Index&controller=Home`.
 
-As [rotas convencionais dedicadas](#dcr) contam com um comportamento especial de valores padrão que não têm um parâmetro de rota correspondente que impede que a rota seja muito [ávido](xref:fundamentals/routing#greedy) com a geração de URL. Nesse caso, os valores padrão são `{ controller = Blog, action = Article }` e nem `controller` ou `action` aparece como um parâmetro de rota. Quando o roteamento executa a geração de URL, os valores fornecidos devem corresponder aos valores padrão. A geração de URL usando `blog` falha porque os valores `{ controller = Home, action = Index }` não correspondem `{ controller = Blog, action = Article }`. O roteamento, então, faz o fallback para tentar `default`, que é bem-sucedido.
+[As rotas convencionais dedicadas](#dcr) dependem de um comportamento especial de valores padrão que não possuem um parâmetro de rota correspondente que impede que a rota seja muito [gananciosa](xref:fundamentals/routing#greedy) com a geração de URL. Nesse caso, os valores padrão são `{ controller = Blog, action = Article }` e nem `controller` ou `action` aparece como um parâmetro de rota. Quando o roteamento executa a geração de URL, os valores fornecidos devem corresponder aos valores padrão. A geração `blog` de URL `{ controller = Home, action = Index }` usando falha `{ controller = Blog, action = Article }`porque os valores não correspondem . O roteamento, então, faz o fallback para tentar `default`, que é bem-sucedido.
 
 <a name="routing-areas-ref-label"></a>
 
 ## <a name="areas"></a>Áreas
 
-As [áreas](xref:mvc/controllers/areas) são um recurso do MVC usado para organizar a funcionalidade relacionada em um grupo como separado:
+[As áreas](xref:mvc/controllers/areas) são um recurso de MVC usado para organizar funcionalidades relacionadas em um grupo separadamente:
 
-* Namespace de roteamento para ações do controlador.
-* Estrutura de pastas para exibições.
+* Roteamento do namespace para ações do controlador.
+* Estrutura de pastas para visualizações.
 
-O uso de áreas permite que um aplicativo tenha vários controladores com o mesmo nome, desde que eles tenham áreas diferentes. O uso de áreas cria uma hierarquia para fins de roteamento, adicionando outro parâmetro de rota, `area` a `controller` e `action`. Esta seção discute como o roteamento interage com áreas. Consulte [áreas](xref:mvc/controllers/areas) para obter detalhes sobre como as áreas são usadas com exibições.
+O uso de áreas permite que um aplicativo tenha vários controladores com o mesmo nome, desde que tenham áreas diferentes. O uso de áreas cria uma hierarquia para fins de roteamento, adicionando outro parâmetro de rota, `area` a `controller` e `action`. Esta seção discute como o roteamento interage com as áreas. Consulte [Áreas](xref:mvc/controllers/areas) para obter detalhes sobre como as áreas são usadas com vistas.
 
-O exemplo a seguir configura o MVC para usar a rota convencional padrão e uma rota de `area` para um `area` chamado `Blog`:
+O exemplo a seguir configura mvc para `area` usar a `area` `Blog`rota convencional padrão e uma rota para um nomeado :
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
 
-No código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> é chamado para criar o `"blog_route"`. O segundo parâmetro, `"Blog"`, é o nome da área.
+No código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> é chamado `"blog_route"`para criar o . O segundo parâmetro `"Blog"`é o nome da área.
 
-Ao fazer a correspondência de um caminho de URL como `/Manage/Users/AddUser`, a rota de `"blog_route"` gera os valores de rota `{ area = Blog, controller = Users, action = AddUser }`. O valor de rota `area` é produzido por um valor padrão para `area`. A rota criada por `MapAreaControllerRoute` é equivalente à seguinte:
+Ao combinar um `/Manage/Users/AddUser`caminho `"blog_route"` de URL como, a rota gera os valores `{ area = Blog, controller = Users, action = AddUser }`de rota . O `area` valor da rota é `area`produzido por um valor padrão para . A rota criada `MapAreaControllerRoute` por é equivalente à seguinte:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup2.cs?name=snippet2)]
 
 `MapAreaControllerRoute` cria uma rota usando um valor padrão e a restrição para `area` usando o nome da área fornecido, nesse caso, `Blog`. O valor padrão garante que a rota sempre produza `{ area = Blog, ... }`, a restrição requer o valor `{ area = Blog, ... }` para geração de URL.
 
-O roteamento convencional é dependente da ordem. Em geral, as rotas com áreas devem ser posicionadas antes, pois são mais específicas do que as rotas sem uma área.
+O roteamento convencional é dependente da ordem. Em geral, rotas com áreas devem ser colocadas mais cedo, pois são mais específicas do que rotas sem área.
 
-Usando o exemplo anterior, os valores de rota `{ area = Blog, controller = Users, action = AddUser }` correspondem à seguinte ação:
+Usando o exemplo anterior, `{ area = Blog, controller = Users, action = AddUser }` os valores de rota correspondem à seguinte ação:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
-O atributo [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) é o que denota um controlador como parte de uma área. Esse controlador está na área de `Blog`. Os controladores sem um atributo `[Area]` não são membros de nenhuma área e **não** correspondem quando o valor de rota `area` é fornecido pelo roteamento. No exemplo a seguir, somente o primeiro controlador listado pode corresponder aos valores de rota `{ area = Blog, controller = Users, action = AddUser }`.
+O atributo [[Área]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) é o que denota um controlador como parte de uma área. Este controlador está `Blog` na área. Os controladores `[Area]` sem um atributo não são membros `area` de nenhuma área e **não** correspondem quando o valor da rota é fornecido pelo roteamento. No exemplo a seguir, somente o primeiro controlador listado pode corresponder aos valores de rota `{ area = Blog, controller = Users, action = AddUser }`.
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
@@ -818,7 +817,7 @@ O atributo [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) é o que denota
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
 
-O namespace de cada controlador é mostrado aqui para fins de integridade. Se os controladores anteriores usarem o mesmo namespace, um erro do compilador será gerado. Namespaces de classe não têm efeito sobre o roteamento do MVC.
+O namespace de cada controlador é mostrado aqui para completude. Se os controladores anteriores usarem o mesmo namespace, um erro do compilador será gerado. Namespaces de classe não têm efeito sobre o roteamento do MVC.
 
 Os primeiros dois controladores são membros de áreas e correspondem somente quando seus respectivos nomes de área são fornecidos pelo valor de rota `area`. O terceiro controlador não é um membro de nenhuma área e só pode corresponder quando nenhum valor para `area` for fornecido pelo roteamento.
 
@@ -826,13 +825,13 @@ Os primeiros dois controladores são membros de áreas e correspondem somente qu
 
 Em termos de não corresponder a *nenhum valor*, a ausência do valor de `area` é equivalente ao valor de `area` ser nulo ou uma cadeia de caracteres vazia.
 
-Ao executar uma ação dentro de uma área, o valor de rota para `area` está disponível como um [valor de ambiente](#ambient) para o roteamento a ser usado para a geração de URL. Isso significa que, por padrão, as áreas atuam como se fossem *autoadesivas* para a geração de URL, como demonstrado no exemplo a seguir.
+Ao executar uma ação dentro de uma `area` área, o valor de rota para está disponível como um [valor ambiente](#ambient) para roteamento para geração de URL. Isso significa que, por padrão, as áreas atuam como se fossem *autoadesivas* para a geração de URL, como demonstrado no exemplo a seguir.
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup3.cs?name=snippet3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 
-O código a seguir gera uma URL para `/Zebra/Users/AddUser`:
+O código a seguir `/Zebra/Users/AddUser`gera uma URL para:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/HomeController.cs?name=snippet)]
 
@@ -840,11 +839,11 @@ O código a seguir gera uma URL para `/Zebra/Users/AddUser`:
 
 ## <a name="action-definition"></a>Definição de ação
 
-Os métodos públicos em um controlador, exceto aqueles com o atributo [NonAction](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) , são ações.
+Métodos públicos em um controlador, exceto aqueles com o atributo [NonAction,](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) são ações.
 
 ## <a name="sample-code"></a>Código de exemplo
 
- * O método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) está incluído no [download de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) e é usado para exibir informações de roteamento.
+ * O método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) está incluído no download da [amostra](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) e é usado para exibir informações de roteamento.
 * [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([como baixar](xref:index#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
@@ -948,7 +947,7 @@ routes.DefaultHandler = new MvcRouteHandler(...);
 app.UseRouter(routes.Build());
 ```
 
-`UseMvc` não define diretamente nenhuma rota, ele adiciona um espaço reservado à coleção de rotas para a rota `attribute`. A sobrecarga `UseMvc(Action<IRouteBuilder>)` permite adicionar suas próprias rotas e também dá suporte ao roteamento de atributos.  `UseMvc` e todas as suas variações adicionam um espaço reservado para o atributo roteamento de atributo de rota está sempre disponível, independentemente de como você configura `UseMvc`. `UseMvcWithDefaultRoute` define uma rota padrão e dá suporte ao roteamento de atributos. A seção [Roteamento de atributos](#attribute-routing-ref-label) inclui mais detalhes sobre o roteamento de atributos.
+`UseMvc` não define diretamente nenhuma rota, ele adiciona um espaço reservado à coleção de rotas para a rota `attribute`. A sobrecarga `UseMvc(Action<IRouteBuilder>)` permite adicionar suas próprias rotas e também dá suporte ao roteamento de atributos.  `UseMvc`e todas as suas variações adicionam um espaço reservado para a rota de `UseMvc`atributos - o roteamento de atributos está sempre disponível independentemente de como você configura . `UseMvcWithDefaultRoute` define uma rota padrão e dá suporte ao roteamento de atributos. A seção [Roteamento de atributos](#attribute-routing-ref-label) inclui mais detalhes sobre o roteamento de atributos.
 
 <a name="routing-conventional-ref-label"></a>
 
@@ -960,11 +959,11 @@ A rota `default`:
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-O código anterior é um exemplo de roteamento convencional. Esse estilo é chamado de roteamento convencional porque ele estabelece uma *Convenção* para caminhos de URL:
+O código anterior é um exemplo de um roteamento convencional. Esse estilo é chamado de roteamento convencional porque estabelece uma *convenção* para caminhos de URL:
 
-* O primeiro segmento de caminho mapeia para o nome do controlador.
-* O segundo mapeia para o nome da ação.
-* O terceiro segmento é usado para um `id`opcional. `id` mapeia para uma entidade de modelo.
+* O primeiro segmento de caminho mapeia o nome do controlador.
+* O segundo mapeia o nome da ação.
+* O terceiro segmento é `id`usado para um opcional . `id`mapas para uma entidade modelo.
 
 Usando essa rota `default`, o caminho da URL `/Products/List` é mapeado para a ação `ProductsController.List` e `/Blog/Article/17` é mapeado para `BlogController.Article`. Esse mapeamento é baseado **somente** nos nomes do controlador e da ação e não é baseado em namespaces, locais de arquivos de origem ou parâmetros de método.
 
@@ -992,7 +991,7 @@ A rota `blog` aqui é uma *rota convencional dedicada*, o que significa que ela 
 As rotas na coleção de rotas são ordenadas e serão processadas na ordem em que forem adicionadas. Portanto, neste exemplo, a rota `blog` será tentada antes da rota `default`.
 
 > [!NOTE]
-> *Rotas convencionais dedicadas* geralmente usam parâmetros de rota **catch-all** como `{*article}` para capturar a parte restante do caminho da URL. Isso pode fazer com que uma rota fique "muito ambiciosa", ou seja, que faça a correspondência com URLs que deveriam ser correspondidas com outras rotas. Coloque as rotas "ambiciosas" mais adiante na tabela de rotas para solucionar esse problema.
+> *Rotas convencionais dedicadas* geralmente usam `{*article}` parâmetros de rota de captura de todos **os** gostos, como capturar a parte restante do caminho da URL. Isso pode fazer com que uma rota fique "muito ambiciosa", ou seja, que faça a correspondência com URLs que deveriam ser correspondidas com outras rotas. Coloque as rotas "ambiciosas" mais adiante na tabela de rotas para solucionar esse problema.
 
 ### <a name="fallback"></a>Fallback
 
@@ -1122,7 +1121,7 @@ public IActionResult CreateProduct(...)
 Para um caminho de URL como `/products`, a ação `ProductsApi.ListProducts` será executada quando o verbo HTTP for `GET` e `ProductsApi.CreateProduct` será executado quando o verbo HTTP for `POST`. Primeiro, o roteamento de atributo faz a correspondência da URL com o conjunto de modelos de rota definidos por atributos de rota. Quando um modelo de rota for correspondente, restrições de `IActionConstraint` serão aplicadas para determinar quais ações podem ser executadas.
 
 > [!TIP]
-> Ao criar uma API REST, é raro que você queira usar `[Route(...)]` em um método de ação, pois a ação aceitará todos os métodos HTTP. É melhor usar o `Http*Verb*Attributes` mais específico para ser preciso quanto ao que tem suporte de sua API. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
+> Ao construir uma API REST, é raro que `[Route(...)]` você queira usar em um método de ação, pois a ação aceitará todos os métodos HTTP. É melhor usar o `Http*Verb*Attributes` mais específico para ser preciso quanto ao que tem suporte de sua API. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
 
 Como uma rota de atributo se aplica a uma ação específica, é fácil fazer com que parâmetros sejam obrigatórios como parte da definição do modelo de rota. Neste exemplo, `id` é obrigatório como parte do caminho da URL.
 
@@ -1157,7 +1156,7 @@ Nomes de rota podem ser usados para gerar uma URL com base em uma rota específi
 
 ### <a name="combining-routes"></a>Combinando rotas
 
-Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações. Colocar um atributo de rota no controlador faz com que  **todas** as ações no controlador usem o roteamento de atributo.
+Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações.  Colocar um atributo de rota no controlador foz com que **todas** as ações no controlador usem o roteamento de atributo.
 
 ```csharp
 [Route("products")]
@@ -1171,7 +1170,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-Neste exemplo, o caminho de URL `/products` pode corresponder a `ProductsApi.ListProducts` e o caminho de URL `/products/5` pode corresponder a `ProductsApi.GetProduct(int)`. Ambas as ações correspondem somente a `GET` HTTP porque elas são marcadas com o `HttpGetAttribute`.
+Neste exemplo, o caminho de URL `/products` pode corresponder a `ProductsApi.ListProducts` e o caminho de URL `/products/5` pode corresponder a `ProductsApi.GetProduct(int)`. Ambas as ações só `GET` correspondem a HTTP `HttpGetAttribute`porque estão marcadas com o .
 
 Modelos de rota aplicados a uma ação, que começam com `/` ou `~/`, não são combinados com modelos de rota aplicados ao controlador. Este exemplo corresponde a um conjunto de caminhos de URL semelhante à *rota padrão*.
 
@@ -1202,7 +1201,7 @@ public class HomeController : Controller
 
 ### <a name="ordering-attribute-routes"></a>Ordenando rotas de atributos
 
-Ao contrário das rotas convencionais, que são executadas em uma ordem definida, o roteamento de atributo cria uma árvore e corresponde a todas as rotas simultaneamente. O comportamento é como se as entradas de rota fossem colocadas em uma ordem ideal; as rotas mais específicas têm uma chance de ser executadas antes das rotas mais gerais.
+Em contraste com as rotas convencionais, que são executadas em uma ordem definida, o roteamento de atributos constrói uma árvore e corresponde a todas as rotas simultaneamente. O comportamento é como se as entradas de rota fossem colocadas em uma ordem ideal; as rotas mais específicas têm uma chance de ser executadas antes das rotas mais gerais.
 
 Por exemplo, uma rota como `blog/search/{topic}` é mais específica que uma rota como `blog/{*article}`. Em termos da lógica, a rota `blog/search/{topic}` é "executada" primeiro, por padrão, porque essa é a única ordem que faz sentido. Usando o roteamento convencional, o desenvolvedor é responsável por colocar as rotas na ordem desejada.
 
@@ -1217,7 +1216,7 @@ Roteamento do Razor Pages e do controlador do MVC compartilham uma implementaç�
 
 ## <a name="token-replacement-in-route-templates-controller-action-area"></a>Substituição de token em modelos de rota ([controlador] [ação] [área])
 
-Para conveniência, as rotas de atributo dão suporte à *substituição de token* colocando um token entre chaves quadradas (`[`, `]`). Os tokens `[action]`, `[area]` e `[controller]` são substituídos pelos valores do nome da ação, do nome da área e do nome do controlador da ação em que a rota é definida. No exemplo a seguir, as ações correspondem a caminhos de URL conforme descrito nos comentários:
+Para conveniência, as rotas de atributo suportam a substituição`[`de `]` *tokens,* anexando um token em chaves quadradas (, ). Os tokens `[action]`, `[area]` e `[controller]` são substituídos pelos valores do nome da ação, do nome da área e do nome do controlador da ação em que a rota é definida. No exemplo a seguir, as ações correspondem a caminhos de URL conforme descrito nos comentários:
 
 [!code-csharp[](routing/samples/2.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 
@@ -1439,7 +1438,7 @@ O MVC cria uma tabela de pesquisa de todas as ações de atributo roteadas e faz
 `Url.Action` (`IUrlHelper` . `Action`) e todas as sobrecargas relacionadas são baseadas na ideia de que você deseja especificar ao que está vinculando, especificando um nome do controlador e um nome da ação.
 
 > [!NOTE]
-> Ao usar `Url.Action`, os valores de rota atuais para `controller` e `action` são especificados para você-o valor de `controller` e `action` são parte dos *valores de ambiente* **e** *valores*. O método `Url.Action` sempre usa os valores atuais de `action` e `controller` e gera um caminho de URL que roteia para a ação atual.
+> Ao usar `Url.Action`, os valores de rota atuais para `controller` e `action` são especificados para você – o valor de `controller` e `action` fazem parte de *valores de ambiente* **e de ** *valores*. O método `Url.Action` sempre usa os valores atuais de `action` e `controller` e gera um caminho de URL que roteia para a ação atual.
 
 O roteamento tenta usar os valores em valores de ambiente para preencher informações que você não forneceu ao gerar uma URL. Usando uma rota como `{a}/{b}/{c}/{d}` e valores de ambiente `{ a = Alice, b = Bob, c = Carol, d = David }`, o roteamento tem informações suficientes para gerar uma URL sem valores adicionais – uma vez que todos os parâmetros de rota têm um valor. Se você tiver adicionado o valor `{ d = Donovan }`, o valor `{ d = David }` será ignorado e o caminho de URL gerado será `Alice/Bob/Carol/Donovan`.
 
@@ -1465,7 +1464,7 @@ O código acima demonstrou a geração de uma URL passando o nome do controlador
 
 ### <a name="generating-urls-in-html"></a>Gerar URLs em HTML
 
-`IHtmlHelper` fornece o métodos `HtmlHelper` e `Html.BeginForm` de `Html.ActionLink` para gerar elementos `<form>` e `<a>` respectivamente. Esses métodos usam o método `Url.Action` para gerar uma URL e aceitam argumentos semelhantes. O complementos `Url.RouteUrl` para `HtmlHelper` são `Html.BeginRouteForm` e `Html.RouteLink`, que têm uma funcionalidade semelhante.
+`IHtmlHelper` fornece o métodos `Html.BeginForm` e `Html.ActionLink` de `HtmlHelper` para gerar elementos `<form>` e `<a>` respectivamente. Esses métodos usam o método `Url.Action` para gerar uma URL e aceitam argumentos semelhantes. O complementos `Url.RouteUrl` para `HtmlHelper` são `Html.BeginRouteForm` e `Html.RouteLink`, que têm uma funcionalidade semelhante.
 
 TagHelpers geram URLs por meio do TagHelper `form` e do TagHelper `<a>`. Ambos usam `IUrlHelper` para sua implementação. Consulte [Trabalhando com Formulários](../views/working-with-forms.md) para obter mais informações.
 
@@ -1587,7 +1586,7 @@ Conceitualmente, `IActionConstraint` é uma forma de *sobrecarga*, mas em vez de
 
 A maneira mais simples de implementar um `IActionConstraint` é criar uma classe derivada de `System.Attribute` e colocá-la em suas ações e controladores. O MVC descobrirá automaticamente qualquer `IActionConstraint` que for aplicado como atributo. Você pode usar o modelo de aplicativo para aplicar restrições e, provavelmente, essa é a abordagem mais flexível, pois permite a você faça uma metaprogramação de como elas são aplicadas.
 
-No exemplo a seguir, uma restrição escolhe uma ação com base em um *código de país* dos dados de rota. O [exemplo completo no GitHub](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs).
+No exemplo a seguir, uma restrição escolhe uma ação com base em um código de *país* a partir dos dados da rota. O [exemplo completo no GitHub](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs).
 
 ```csharp
 public class CountrySpecificAttribute : Attribute, IActionConstraint

@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
 ms.openlocfilehash: a5ea9b75cf8bb1f31cb07a2b32f361bdbfd4efa3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662900"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Nesta seção, as Migrações do [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First são usadas para:
 
@@ -101,11 +101,11 @@ Para este tutorial, as Migrações do Code First são usadas.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
+ No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
 
   ![Menu do PMC](adding-model/_static/pmc.png)
 
-No PMC, digite os seguintes comandos:
+No PMC, insira os seguintes comandos:
 
 ```powershell
 Add-Migration Rating
@@ -131,11 +131,11 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Execute o aplicativo e verifique se você pode criar, editar e exibir filmes com um campo `Rating`. Atualize o aplicativo:
+Execute o aplicativo e verifique se você pode `Rating` criar, editar e exibir filmes com um campo. Atualize o aplicativo:
 
-* Adicione o campo `Rating` ao `Edit`, `Details`e `Delete` modelos de exibição.
-* Atualize a associação no método editar ação do `MoviesController`.
+* Adicione `Rating` o campo `Edit` `Details`aos `Delete` modelos e visualização de modelos.
+* Atualize a vinculação no `MoviesController`método de ação de edição do .
 
 > [!div class="step-by-step"]
-> [Anterior](search.md)
-> [Próximo](validation.md)
+> [Próximo](search.md)
+> [anterior](validation.md)

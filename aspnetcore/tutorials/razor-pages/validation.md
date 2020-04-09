@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
 ms.openlocfilehash: f283234ed8a32dc9b7904bc6fee1cc9c04741029
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666015"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Nesta seção, a lógica de validação é adicionada para o modelo `Movie`. As regras de validação são impostas sempre que um usuário cria ou edita um filme.
 
@@ -93,7 +93,7 @@ Quando o JavaScript está desabilitado no navegador, o envio do formulário com 
    }
   ```
   
-Como alternativa, você pode [desabilitar a validação do lado do cliente no servidor](xref:mvc/models/validation#disable-client-side-validation).
+Alternativamente, você pode [desativar a validação do lado do cliente no servidor](xref:mvc/models/validation#disable-client-side-validation).
 
 O código a seguir mostra uma parte da página *Create.cshtml* gerada anteriormente com scaffold no tutorial. Ele é usado pelas páginas Criar e Editar para exibir o formulário inicial e exibir o formulário novamente, em caso de erro.
 
@@ -175,8 +175,8 @@ CREATE TABLE [dbo].[Movie] (
 
 As alterações do esquema anterior não fazem com que o EF lance uma exceção. No entanto, crie uma migração de forma que o esquema seja consistente com o modelo.
 
-No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
-No PMC, digite os seguintes comandos:
+ No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
+No PMC, insira os seguintes comandos:
 
 ```powershell
 Add-Migration New_DataAnnotations
@@ -209,7 +209,7 @@ As migrações não são necessárias para o SQLite.
 
 ### <a name="publish-to-azure"></a>Publicar no Azure
 
-Para obter informações sobre como implantar no Azure, consulte [tutorial: criar um aplicativo ASP.NET Core no Azure com o banco de dados SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+Para obter informações sobre a implantação no Azure, consulte [Tutorial: Construa um aplicativo ASP.NET Core no Azure com banco de dados SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
 Obrigado por concluir esta introdução às Páginas Razor. A [Introdução ao Razor Pages e ao EF Core](xref:data/ef-rp/intro) é um excelente acompanhamento para este tutorial.
 

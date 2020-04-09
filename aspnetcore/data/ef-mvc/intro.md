@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC'
+title: 'Tutorial: Comece com o EF Core em um aplicativo web ASP.NET MVC'
 description: Este é o primeiro de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University do zero.
 author: rick-anderson
 ms.author: riande
@@ -8,17 +8,17 @@ ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ms.openlocfilehash: fca9fdc425506ec8b4eec5c609237208f4c0d7b5
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511295"
 ---
-# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
+# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Comece com o EF Core em um aplicativo web ASP.NET MVC
 
-Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. A maioria das alterações de código para o ASP.NET Core 3,0 e a versão mais recente deste tutorial:
+Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. A maioria das alterações de código para o ASP.NET Core 3.0 e versão posterior deste tutorial:
 
-* Estão nos arquivos *Startup.cs* e *Program.cs* .
+* Estão nos arquivos *Startup.cs* e *Program.cs.*
 * Pode ser encontrado na [versão Razor Pages](xref:data/ef-rp/intro). 
 
 Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
@@ -42,7 +42,7 @@ Neste tutorial, você:
 > * Criar um controlador e exibições
 > * Exibir o banco de dados
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com as cargas de trabalho a seguir:
@@ -66,9 +66,9 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
 ![Página Editar Alunos](intro/_static/student-edit.png)
 
-## <a name="create-web-app"></a>Criar aplicativo Web
+## <a name="create-web-app"></a>Criar um aplicativo Web
 
-* {1&gt;Abra o Visual Studio.&lt;1}
+* Abra o Visual Studio.
 
 * No menu **Arquivo**, selecione **Novo > Projeto**.
 
@@ -80,11 +80,11 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
   ![Caixa de diálogo Novo Projeto](intro/_static/new-project2.png)
 
-* Aguarde a caixa de diálogo **Novo Aplicativo Web ASP.NET Core** aparecer.
+* Aguarde a apareça a caixa de diálogo **Novo ASP.NET Do Aplicativo Web** Central.
 
-* Selecione **.NET Core**, **ASP.NET Core 2.2** e o modelo **Aplicativo Web (Model-View-Controller)** .
+* Selecione **.NET Core**, **ASP.NET Core 2.2** e o modelo **Aplicativo Web (Model-View-Controller)**.
 
-* Verifique se a opção **Autenticação** está definida como **Sem Autenticação**.
+* Certifique-se de que **a autenticação** está definida **como Sem Autenticação**.
 
 * Selecione **OK**
 
@@ -140,7 +140,7 @@ Na pasta *Models*, crie um arquivo de classe chamado *Student.cs* e substitua o 
 
 A propriedade `ID` se tornará a coluna de chave primária da tabela de banco de dados que corresponde a essa classe. Por padrão, o Entity Framework interpreta uma propriedade nomeada `ID` ou `classnameID` como a chave primária.
 
-A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação armazenam outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma `Student entity` armazenará todas as entidades `Enrollment` relacionadas a essa entidade `Student`. Em outras palavras, se determinada linha Aluno no banco de dados tiver duas linhas Registro relacionadas (linhas que contêm o valor de chave primária do aluno na coluna de chave estrangeira StudentID), a propriedade de navegação `Student` dessa entidade `Enrollments` conterá as duas entidades `Enrollment`.
+A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação armazenam outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma `Student entity` armazenará todas as entidades `Enrollment` relacionadas a essa entidade `Student`. Em outras palavras, se determinada linha Aluno no banco de dados tiver duas linhas Registro relacionadas (linhas que contêm o valor de chave primária do aluno na coluna de chave estrangeira StudentID), a propriedade de navegação `Enrollments` dessa entidade `Student` conterá as duas entidades `Enrollment`.
 
 Se uma propriedade de navegação pode armazenar várias entidades (como em relações muitos para muitos ou um-para-muitos), o tipo precisa ser uma lista na qual entradas podem ser adicionadas, excluídas e atualizadas, como `ICollection<T>`. Especifique `ICollection<T>` ou um tipo, como `List<T>` ou `HashSet<T>`. Se você especificar `ICollection<T>`, o EF criará uma coleção `HashSet<T>` por padrão.
 
@@ -312,7 +312,7 @@ Clique com o botão direito do mouse na tabela **Aluno** e clique em **Exibir Da
 
 ![Tabela Aluno no SSOX](intro/_static/ssox-student-table.png)
 
-Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Usuários\\\<yourusername>* .
+Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Users\\\<yourusername>.*
 
 Como você está chamando `EnsureCreated` no método inicializador executado na inicialização do aplicativo, agora você pode fazer uma alteração na classe `Student`, excluir o banco de dados, executar novamente o aplicativo e o banco de dados será recriado automaticamente para que ele corresponda à alteração. Por exemplo, se você adicionar uma propriedade `EmailAddress` à classe `Student`, verá uma nova coluna `EmailAddress` na tabela recriada.
 
@@ -326,7 +326,7 @@ A quantidade de código feita para que o Entity Framework possa criar um banco d
 
 * As propriedades de entidade que são nomeadas ID ou classnameID são reconhecidas como propriedades de chave primária.
 
-* Uma propriedade é interpretada como sendo de chave estrangeira se tiver um *\<nome da propriedade de navegação>\<nome da propriedade de chave primária>* (por exemplo, `StudentID` para a propriedade de navegação `Student`, pois a chave primária da entidade `Student` é `ID`). As propriedades de chave estrangeira também podem ser nomeadas apenas *\<nome da propriedade da chave primária>* (por exemplo, `EnrollmentID`, pois a chave primária da entidade `Enrollment` é `EnrollmentID`).
+* Uma propriedade é interpretada como uma propriedade de chave estrangeira se for `StudentID` nomeada `Student` `Student` `ID` * \<nome \<* de propriedade de navegação>nome de propriedade principal>(por exemplo, para a propriedade de navegação, uma vez que a chave principal da entidade é ). Propriedades-chave estrangeiras também podem ser * \<nomeadas* simplesmente `EnrollmentID` nome de propriedade de chave primária>(por exemplo, uma vez que a `Enrollment` chave principal da entidade é `EnrollmentID`).
 
 O comportamento convencional pode ser substituído. Por exemplo, você pode especificar os nomes de tabela de forma explícita, conforme visto anteriormente neste tutorial. Além disso, você pode definir nomes de coluna e qualquer propriedade como a chave primária ou chave estrangeira, como você verá em um [tutorial posterior](complex-data-model.md) desta série.
 
@@ -364,7 +364,7 @@ Para obter mais informações sobre a programação assíncrona no .NET, consult
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 

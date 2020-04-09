@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
 ms.openlocfilehash: 47f78ba78741a8e0175ce801c0c0e51f091273a8
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511386"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Publicar um aplicativo ASP.NET Core no IIS
@@ -25,10 +25,10 @@ Este tutorial cobre os seguintes assuntos:
 > * Criar um site do IIS no Gerenciador do IIS.
 > * Implantar um aplicativo ASP.NET Core.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [SDK do .NET Core](/dotnet/core/sdk) instalado no computador de desenvolvimento.
-* O Windows Server foi configurado com a função de servidor **Servidor Web (IIS)** . Se o servidor não estiver configurado para hospedar sites com o IIS, siga as orientações na seção *Configuração do IIS* do artigo <xref:host-and-deploy/iis/index#iis-configuration> e, em seguida, retorne a este tutorial.
+* O Windows Server foi configurado com a função de servidor **Servidor Web (IIS)**. Se o servidor não estiver configurado para hospedar sites com o IIS, siga as orientações na seção *Configuração do IIS* do artigo <xref:host-and-deploy/iis/index#iis-configuration> e, em seguida, retorne a este tutorial.
 
 > [!WARNING]
 > **A configuração do IIS e a segurança do site envolvem conceitos que não são cobertos por este tutorial.** Consulte as diretrizes do IIS na [documentação do IIS da Microsoft](https://www.iis.net/) e o [artigo ASP.NET Core sobre como hospedar com o IIS](xref:host-and-deploy/iis/index) antes de hospedar aplicativos de produção no IIS.
@@ -41,7 +41,7 @@ Este tutorial cobre os seguintes assuntos:
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Instalar o pacote de hospedagem do .NET Core
 
-Instalar o *Pacote de Hospedagem do .NET Core* no servidor IIS. O pacote instala o Runtime .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
+Instalar o *Pacote de Hospedagem do .NET Core* no servidor IIS. O pacote instala o .NET Core Runtime, .NET Core Library e o [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
 
 Baixe o instalador usando o seguinte link:
 
@@ -55,7 +55,7 @@ Baixe o instalador usando o seguinte link:
 
 1. No servidor IIS, crie uma pasta para conter arquivos e pastas publicados do aplicativo. Em uma etapa a seguir, o caminho da pasta é fornecido ao IIS como o caminho físico para o aplicativo.
 
-1. No Gerenciador do IIS, abra o nó do servidor no painel **Conexões**. Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
+1. No IIS Manager, abra o nó do servidor no painel **Conexões.** Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
 
 1. Forneça um **Nome do site** e defina o **Caminho físico** como a pasta de implantação do aplicativo que você criou. Forneça a configuração **Associação** e crie o site ao selecionar **OK**.
 
@@ -97,13 +97,13 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
 
 ---
 
-## <a name="browse-the-website"></a>Navegar no site
+## <a name="browse-the-website"></a>Procurar no site
 
 O aplicativo pode ser acessado em um navegador depois de receber a primeira solicitação. Faça uma solicitação para o aplicativo na associação de ponto de extremidade que você estabeleceu no Gerenciador do IIS para o site.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
-Neste tutorial, você aprendeu como:
+Neste tutorial, você aprendeu a:
 
 > [!div class="checklist"]
 > * Instalar o Pacote de Hospedagem do .NET Core no Windows Server.

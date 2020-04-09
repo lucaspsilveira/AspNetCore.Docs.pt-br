@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 7/22/2019
 uid: tutorials/razor-pages/sql
 ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664335"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Trabalhar com um banco de dados e o ASP.NET Core
@@ -32,7 +32,7 @@ O objeto `RazorPagesMovieContext` cuida da tarefa de se conectar ao banco de dad
 
 ---
 
-O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a cadeia de conexão do arquivo *appsettings.json*.
+O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a seqüência de conexão do arquivo *appsettings.json.*
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -57,7 +57,7 @@ O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Expre
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu Visualizar](sql/_static/ssox.png)
+  ![Menu de exibição](sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` e selecione **Designer de exibição**:
 
@@ -116,10 +116,10 @@ A seguinte exceção ocorre quando `Update-Database` não foi executada:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Exclua todos os registros no BD. Você pode fazer isso com os links de exclusão no navegador ou do [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force o aplicativo a ser inicializado (chame os métodos na classe `Startup`) para que o método de semeadura seja executado. Para forçar a inicialização, o IIS Express deve ser interrompido e reiniciado. Faça isso com uma das seguintes abordagens:
 
-  * Clique com botão direito do mouse no ícone de bandeja do sistema do IIS Express na área de notificação e toque em **Sair** ou **Parar site**:
+  * Clique com o botão direito do mouse no ícone da bandeja do sistema IIS Express na área de notificação e toque em **Exit** ou **Stop Site**:
 
     ![Ícone de bandeja do sistema do IIS Express](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -141,8 +141,8 @@ O próximo tutorial melhorará a apresentação dos dados.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: Páginas do Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
-> [Próximo: Atualização das páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Páginas de navalha](xref:tutorials/razor-pages/page)
+> andaimes[próximas: Atualizando as páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -167,7 +167,7 @@ Para obter mais informações sobre os métodos usados em `ConfigureServices`, v
 * [Suporte ao RGPD (Regulamento Geral sobre a Proteção de Dados) da UE no ASP.NET Core](xref:security/gdpr) para `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a cadeia de conexão do arquivo *appsettings.json*.
+O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a seqüência de conexão do arquivo *appsettings.json.*
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -196,7 +196,7 @@ O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Expre
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu Visualizar](sql/_static/ssox.png)
+  ![Menu de exibição](sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` e selecione **Designer de exibição**:
 
@@ -260,7 +260,7 @@ O logon falhou para o usuário 'user name'.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Exclua todos os registros no BD. Você pode fazer isso com os links de exclusão no navegador ou do [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force o aplicativo a ser inicializado (chame os métodos na classe `Startup`) para que o método de semeadura seja executado. Para forçar a inicialização, o IIS Express deve ser interrompido e reiniciado. Faça isso com uma das seguintes abordagens:
 
   * Clique com botão direito do mouse no ícone na bandeja do sistema do IIS Express na área de notificação e toque em **Sair** ou em **Parar site**:
@@ -297,7 +297,7 @@ O próximo tutorial limpará a apresentação dos dados.
 * [Versão do YouTube deste tutorial](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Anterior: Páginas do Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
-> [Próximo: Atualização das páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Páginas de navalha](xref:tutorials/razor-pages/page)
+> andaimes[próximas: Atualizando as páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

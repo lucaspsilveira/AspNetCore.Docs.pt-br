@@ -9,10 +9,10 @@ no-loc:
 - SignalR
 uid: aspnetcore-2.1
 ms.openlocfilehash: af5807b782d4acec8c7d40111dc508dfa6127057
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667541"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
@@ -21,7 +21,7 @@ Este artigo destaca as alterações mais significativas no ASP.NET Core 2.1, com
 
 ## SignalR
 
-SignalR foi reescrito para ASP.NET Core 2,1. ASP.NET Core SignalR inclui vários aprimoramentos:
+SignalRfoi reescrito para ASP.NET Núcleo 2.1. ASP.NET SignalR Core inclui uma série de melhorias:
 
 * Um modelo de expansão simplificado.
 * Um novo cliente JavaScript sem dependência jQuery.
@@ -30,7 +30,7 @@ SignalR foi reescrito para ASP.NET Core 2,1. ASP.NET Core SignalR inclui vários
 * Um novo modelo de resposta de transmissão.
 * Suporte para clientes com base em WebSockets básicos.
 
-Para obter mais informações, consulte [ASP.NET Core SignalR](xref:signalr/introduction).
+Para obter mais informações, consulte [ASP.NET Core SignalR ](xref:signalr/introduction).
 
 ## <a name="razor-class-libraries"></a>Biblioteca de classes Razor
 
@@ -83,7 +83,7 @@ O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisito
 
 É introduzido um novo pacote que simplifica a criação e a execução do teste. O pacote [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) lida com as seguintes tarefas:
 
-* Copia o arquivo de dependência ( *\*.deps*) do aplicativo testado para a pasta *bin* do projeto de teste.
+* Copia o arquivo de dependência*\*(.deps)* do aplicativo testado na *pasta* bin do projeto de teste.
 * Define a raiz de conteúdo para a raiz do projeto do aplicativo testado para que arquivos estáticos e páginas/exibições sejam encontrados quando os testes forem executados.
 * Fornece a classe [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) para simplificar a inicialização do aplicativo testado com [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
@@ -139,7 +139,7 @@ Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de 
 
 O Construtor de Host Genérico (`HostBuilder`) foi introduzido. Este construtor pode ser usado para aplicativos que não processam solicitações HTTP (mensagens, tarefas em segundo plano etc.).
 
-Para obter mais informações, veja [Host Genérico do .NET](xref:fundamentals/host/generic-host).
+Para saber mais, confira [Host Genérico do .NET](xref:fundamentals/host/generic-host).
 
 ## <a name="updated-spa-templates"></a>Modelos do SPA atualizados
 
@@ -175,6 +175,6 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 
 Veja [Migrar do ASP.NET Core 2.0 para 2.1](xref:migration/20_21).
 
-## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
+## <a name="additional-information"></a>Informações adicionais
 
 Para obter uma lista de alterações, vejas as [Notas de versão do ASP.NET Core 2.1](https://github.com/dotnet/aspnetcore/releases/tag/2.1.0).

@@ -6,10 +6,10 @@ ms.author: scaddie
 ms.date: 09/26/2017
 uid: fundamentals/portable-object-localization
 ms.openlocfilehash: 08002564eb68bc04eebaeafed560202d0d69958a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656187"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurar a localização de objeto portátil no ASP.NET Core
@@ -29,7 +29,7 @@ Os arquivos PO são distribuídos como arquivos de texto que contém cadeias de 
 - Os arquivos PO não são compilados como os arquivos *.resx*. Dessa forma, não são necessárias ferramentas especializadas nem etapas de build.
 - Os arquivos PO funcionam bem com ferramentas de colaboração de edição online.
 
-### <a name="example"></a>{1&gt;Exemplo&lt;1}
+### <a name="example"></a>Exemplo
 
 Este é um arquivo PO de exemplo que contém a tradução de duas cadeias de caracteres em francês, incluindo uma com sua forma plural:
 
@@ -91,7 +91,7 @@ Uma instância `IViewLocalizer` é injetada e usada para traduzir o texto “Ol�
 
 ### <a name="creating-a-po-file"></a>Criando um arquivo PO
 
-Crie um arquivo chamado *\<culture code>.po* na pasta raiz do aplicativo. Neste exemplo, o nome do arquivo é *fr.po* porque o idioma francês é usado:
+Crie um arquivo chamado * \<culture code>.po* em sua pasta raiz do aplicativo. Neste exemplo, o nome do arquivo é *fr.po* porque o idioma francês é usado:
 
 [!code-text[](localization/sample/POLocalization/fr.po)]
 

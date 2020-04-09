@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
 ms.openlocfilehash: 1d81a0444487c6396bb32381ed2cb26d44312c3a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665714"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
@@ -59,7 +59,7 @@ O código anterior adiciona uma propriedade `FullName` e adiciona os seguintes a
 
 Para as datas de registro do aluno, todas as páginas atualmente exibem a hora do dia junto com a data, embora apenas a data seja relevante. Usando atributos de anotação de dados, você pode fazer uma alteração de código que corrigirá o formato de exibição em cada página que mostra os dados. 
 
-O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece vários tipos de dados, como data, hora, PhoneNumber, moeda, EmailAddress, etc. O atributo `DataType` também pode habilitar o aplicativo para fornecer automaticamente recursos específicos do tipo. Por exemplo:
+O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. O [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece muitos tipos de dados, como data, hora, número de telefone, moeda, endereço de e-mail, etc. O `DataType` atributo também pode permitir que o aplicativo forneça automaticamente recursos específicos do tipo. Por exemplo:
 
 * O link `mailto:` é criado automaticamente para `DataType.EmailAddress`.
 * O seletor de data é fornecido para `DataType.Date` na maioria dos navegadores.
@@ -81,7 +81,7 @@ O atributo `DisplayFormat` pode ser usado por si só. Geralmente, é uma boa ide
 * O navegador pode habilitar recursos do HTML5. Por exemplo, mostra um controle de calendário, o símbolo de moeda apropriado à localidade, links de email e validação de entrada do lado do cliente.
 * Por padrão, o navegador renderiza os dados usando o formato correto de acordo com a localidade.
 
-Para obter mais informações, consulte a [documentação do Auxiliar de Marcação \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Para obter mais informações, consulte a [ \<entrada> documentação do Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
 ### <a name="the-stringlength-attribute"></a>O atributo StringLength
 
@@ -390,7 +390,7 @@ public ICollection<Course> Courses { get; set; }
 
 por convenção, o EF Core habilita a exclusão em cascata em FKs que não permitem valor nulo e em relações muitos para muitos. Esse comportamento padrão pode resultar em regras circulares de exclusão em cascata. As regras de exclusão em cascata circular causam uma exceção quando uma migração é adicionada.
 
-Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como não anulável, o EF Core configurará uma regra de exclusão em cascata. Nesse caso, o departamento seria excluído quando o instrutor atribuído como seu administrador fosse excluído. Nesse cenário, uma regra restrita fará mais sentido. A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra restrita e desabilitará a exclusão em cascata.
+Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como não anulável, o EF Core configurará uma regra de exclusão em cascata. Nesse caso, o departamento seria excluído quando o instrutor atribuído como seu administrador fosse excluído. Nesse cenário, uma regra restrita fará mais sentido. A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra de restrição e desativaria a exclusão em cascata.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -431,7 +431,7 @@ public Student Student { get; set; }
 
 Há uma relação muitos para muitos entre as entidades `Student` e `Course`. A entidade `Enrollment` funciona como uma tabela de junção muitos para muitos *com conteúdo* no banco de dados. "Com conteúdo" significa que a tabela `Enrollment` contém dados adicionais além das FKs das tabelas unidas (nesse caso, a FK e `Grade`).
 
-A ilustração a seguir mostra a aparência dessas relações em um diagrama de entidades. (Esse diagrama foi gerado com o [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) para EF 6.x. A criação do diagrama não faz parte do tutorial.)
+A ilustração a seguir mostra a aparência dessas relações em um diagrama de entidades. (Este diagrama foi gerado usando [ferramentas elétricas EF](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) para EF 6.x. A criação do diagrama não faz parte do tutorial.)
 
 ![Relação muitos para muitos de Student-Course](complex-data-model/_static/student-course.png)
 
@@ -534,7 +534,7 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 ## <a name="add-a-migration"></a>Adicionar uma migração
 
-Crie o projeto.
+Compile o projeto.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -713,7 +713,7 @@ Como o método `DbInitializer.Initialize` foi projetado para funcionar apenas co
 
 Execute o aplicativo. A execução do aplicativo executa o método `DbInitializer.Initialize`. O `DbInitializer.Initialize` preenche o novo banco de dados.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Os próximos dois tutoriais mostram como ler e atualizar dados relacionados.
 
@@ -749,7 +749,7 @@ Atualize *Models/Student.cs* com o seguinte código realçado:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece vários tipos de dados, como data, hora, PhoneNumber, moeda, EmailAddress, etc. O atributo `DataType` também pode habilitar o aplicativo para fornecer automaticamente recursos específicos do tipo. Por exemplo:
+O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. O [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece muitos tipos de dados, como data, hora, número de telefone, moeda, endereço de e-mail, etc. O `DataType` atributo também pode permitir que o aplicativo forneça automaticamente recursos específicos do tipo. Por exemplo:
 
 * O link `mailto:` é criado automaticamente para `DataType.EmailAddress`.
 * O seletor de data é fornecido para `DataType.Date` na maioria dos navegadores.
@@ -771,7 +771,7 @@ O atributo `DisplayFormat` pode ser usado por si só. Geralmente, é uma boa ide
 * O navegador pode habilitar recursos do HTML5. Por exemplo, mostra um controle de calendário, o símbolo de moeda apropriado à localidade, links de email, validação de entrada do lado do cliente, etc.
 * Por padrão, o navegador renderiza os dados usando o formato correto de acordo com a localidade.
 
-Para obter mais informações, consulte a [documentação do Auxiliar de Marcação \<input>](xref:mvc/views/working-with-forms#the-input-tag-helper).
+Para obter mais informações, consulte a [ \<entrada> documentação do Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
 Execute o aplicativo. Navegue para a página Índice de Alunos. As horas não são mais exibidas. Cada exibição que usa o modelo `Student` exibe a data sem a hora.
 
@@ -827,7 +827,7 @@ SqlException: Invalid column name 'FirstName'.
 
 Para atualizar o BD:
 
-* Crie o projeto.
+* Compile o projeto.
 * Abra uma janela Comando na pasta do projeto. Insira os seguintes comandos para criar uma nova migração e atualizar o BD:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -1091,7 +1091,7 @@ Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como
 
 * O EF Core configura uma regra de exclusão em cascata para excluir o departamento quando o instrutor é excluído.
 * Excluir o departamento quando o instrutor é excluído não é o comportamento desejado.
-* A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra restrita em vez de Cascade.
+* A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra restrita em vez de cascata.
 
    ```csharp
    modelBuilder.Entity<Department>()
@@ -1134,7 +1134,7 @@ public Student Student { get; set; }
 
 Há uma relação muitos para muitos entre as entidades `Student` e `Course`. A entidade `Enrollment` funciona como uma tabela de junção muitos para muitos *com conteúdo* no banco de dados. "Com conteúdo" significa que a tabela `Enrollment` contém dados adicionais além das FKs das tabelas unidas (nesse caso, a FK e `Grade`).
 
-A ilustração a seguir mostra a aparência dessas relações em um diagrama de entidades. (Esse diagrama foi gerado com o [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) para EF 6.x. A criação do diagrama não faz parte do tutorial.)
+A ilustração a seguir mostra a aparência dessas relações em um diagrama de entidades. (Este diagrama foi gerado usando [ferramentas elétricas EF](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) para EF 6.x. A criação do diagrama não faz parte do tutorial.)
 
 ![Relação muitos para muitos de Student-Course](complex-data-model/_static/student-course.png)
 
@@ -1242,7 +1242,7 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 ## <a name="add-a-migration"></a>Adicionar uma migração
 
-Crie o projeto.
+Compile o projeto.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -1277,7 +1277,7 @@ database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 
 Agora que você tem um banco de dados existente, precisa pensar sobre como aplicar as alterações futuras a ele. Este tutorial mostra duas abordagens:
 
-* [Remover e recriar o banco de dados](#drop)
+* [Solte e recrie o banco de dados](#drop)
 * [Aplicar a migração ao banco de dados existente](#applyexisting). Embora esse método seja mais complexo e demorado, é a abordagem preferencial para ambientes de produção do mundo real. **Observação**: essa é uma seção opcional do tutorial. Você pode remover e recriar etapas e ignorar esta seção. Se você quiser seguir as etapas nesta seção, não realize as etapas de remover e recriar. 
 
 <a name="drop"></a>
@@ -1347,7 +1347,7 @@ Para fazer a migração `ComplexDataModel` funcionar com os dados existentes:
 
 #### <a name="fix-the-foreign-key-constraints"></a>Corrigir as restrições de chave estrangeira
 
-Atualize o método `ComplexDataModel` das classes `Up`:
+Atualize o método `Up` das classes `ComplexDataModel`:
 
 * Abra o arquivo *{timestamp}_ComplexDataModel.cs*.
 * Comente a linha de código que adiciona a coluna `DepartmentID` à tabela `Course`.
@@ -1358,7 +1358,7 @@ Adicione o código realçado a seguir. O novo código é inserido após o bloco 
 
 [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
-Com as alterações anteriores, as linhas de `Course` existentes estarão relacionadas ao departamento "Temp" após a execução do método de `Up` de `ComplexDataModel`.
+Com as alterações anteriores, as linhas `Course` existentes estarão relacionadas ao departamento "Temp" após a execução do método `ComplexDataModel` `Up`.
 
 Um aplicativo de produção:
 
@@ -1373,7 +1373,7 @@ O próximo tutorial abrange os dados relacionados.
 * [Versão do YouTube deste tutorial (Parte 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
 > [!div class="step-by-step"]
-> [Anterior](xref:data/ef-rp/migrations)
-> [Próximo](xref:data/ef-rp/read-related-data)
+> [Próximo](xref:data/ef-rp/migrations)
+> [anterior](xref:data/ef-rp/read-related-data)
 
 ::: moniker-end

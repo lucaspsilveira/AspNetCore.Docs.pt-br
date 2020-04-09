@@ -24,7 +24,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*, conforme mostrado
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 
@@ -45,7 +45,7 @@ Registre o contexto do banco de dados com o contêiner de [injeção de dependê
 
 ### <a name="add-required-nuget-packages"></a>Adicionar os pacotes NuGet necessários
 
-Execute o seguinte comando CLI do .NET Core para adicionar SQLite e CodeGeneration. Design ao projeto:
+Execute o seguinte comando .NET Core CLI para adicionar SQLite e CodeGeneration.Design ao projeto:
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
@@ -57,7 +57,7 @@ O pacote `Microsoft.VisualStudio.Web.CodeGeneration.Design` é necessário para 
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 

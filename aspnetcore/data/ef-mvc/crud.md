@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core'
+title: 'Tutorial: Implementar funcionalidade CRUD - ASP.NET MVC com EF Core'
 description: Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
 ms.openlocfilehash: 2aa4ef48509b9a34f3b25eb657b1ecac51c1374b
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/16/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79416208"
 ---
-# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core
+# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar funcionalidade CRUD - ASP.NET MVC com EF Core
 
 No tutorial anterior, você criou um aplicativo MVC que armazena e exibe dados usando o Entity Framework e o LocalDB do SQL Server. Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 
@@ -46,7 +46,7 @@ Os métodos `Include` e `ThenInclude` fazem com que o contexto carregue a propri
 
 O método `AsNoTracking` melhora o desempenho em cenários em que as entidades retornadas não serão atualizadas no tempo de vida do contexto atual. Você aprenderá mais sobre `AsNoTracking` ao final deste tutorial.
 
-### <a name="route-data"></a>Dados de rota
+### <a name="route-data"></a>Rotear dados
 
 O valor de chave que é passado para o método `Details` é obtido dos *dados de rota*. Dados de rota são dados que o associador de modelos encontrou em um segmento da URL. Por exemplo, a rota padrão especifica os segmentos de controlador, ação e ID:
 
@@ -58,7 +58,7 @@ Na URL a seguir, a rota padrão mapeia Instructor como o controlador, Index como
 http://localhost:1230/Instructor/Index/1?courseID=2021
 ```
 
-A última parte da URL ("?courseID=2021") é um valor de cadeia de caracteres de consulta. O associador de modelos passará o valor da ID para o parâmetro `Index` do método `id` se você passá-lo como um valor de cadeia de caracteres de consulta:
+A última parte da URL ("?courseID=2021") é um valor de cadeia de caracteres de consulta. O associador de modelos passará o valor da ID para o parâmetro `id` do método `Index` se você passá-lo como um valor de cadeia de caracteres de consulta:
 
 ```
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
@@ -151,11 +151,11 @@ Uma maneira alternativa de impedir o excesso de postagem preferida por muitos de
 
 ### <a name="test-the-create-page"></a>Testar a página Criar
 
-O código em *Views/Students/Create.cshtml* usa os auxiliares de marcação `label`, `input` e `span` (para mensagens de validação) para cada campo.
+O código em *Views/Students/Create.cshtml* usa `label`, `input`e `span` (para mensagens de validação) tag helpers para cada campo.
 
 Execute o aplicativo, selecione a guia **Alunos** e, em seguida, clique em **Criar Novo**.
 
-Insira nomes e uma data. Tente inserir uma data inválida se o navegador permitir fazer isso. (Alguns navegadores forçam você a usar um seletor de data.) Em seguida, clique em **criar** para ver a mensagem de erro.
+Insira nomes e uma data. Tente inserir uma data inválida se o navegador permitir fazer isso. (Alguns navegadores forçam você a usar um seletor de datas.) Em seguida, clique **em Criar** para ver a mensagem de erro.
 
 ![Erro de validação de data](crud/_static/date-error.png)
 
@@ -179,7 +179,7 @@ Essas alterações implementam uma melhor prática de segurança para evitar o 
 
 O novo código lê a entidade existente e chama `TryUpdateModel` para atualizar os campos na entidade recuperada [com base na entrada do usuário nos dados de formulário postados](xref:mvc/models/model-binding). O controle automático de alterações do Entity Framework define o sinalizador `Modified` nos campos alterados pela entrada de formulário. Quando o método `SaveChanges` é chamado, o Entity Framework cria instruções SQL para atualizar a linha de banco de dados. Os conflitos de simultaneidade são ignorados e somente as colunas de tabela que foram atualizadas pelo usuário são atualizadas no banco de dados. (Um tutorial posterior mostra como lidar com conflitos de simultaneidade.)
 
-Como uma melhor prática para evitar o excesso de postagem, os campos que você deseja que sejam atualizáveis pela página **Editar** estão na lista de permissões nos parâmetros `TryUpdateModel`. (A cadeia de caracteres vazia que precede a lista de campos na lista de parâmetros é para um prefixo a ser usado com os nomes dos campos de formulário.) Atualmente, não há nenhum campo extra que você esteja protegendo, mas a listagem dos campos que você deseja associar ao associador de modelo garante que, se você adicionar campos ao modelo de dados no futuro, eles serão automaticamente protegidos até que você os adicione explicitamente aqui.
+Como uma melhor prática para evitar o excesso de postagem, os campos que você deseja que sejam atualizáveis pela página **Editar** estão na lista de permissões nos parâmetros `TryUpdateModel`. (A seqüência vazia que precede a lista de campos na lista de parâmetros é para um prefixo para usar com os nomes dos campos de formulário.) Atualmente, não há campos extras que você está protegendo, mas listar os campos que você deseja que o modelo de vinculação vincule garante que, se você adicionar campos ao modelo de dados no futuro, eles serão automaticamente protegidos até que você os adicione explicitamente aqui.
 
 Como resultado dessas alterações, a assinatura do método HttpPost `Edit` é a mesma do método HttpGet `Edit`; portanto, você já renomeou o método `EditPost`.
 
@@ -199,15 +199,15 @@ O contexto de banco de dados controla se as entidades em memória estão em sinc
 
 Uma entidade pode estar em um dos seguintes estados:
 
-* `Added` A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
+* `Added`. A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
 
-* `Unchanged` Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
+* `Unchanged`. Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
 
-* `Modified` Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* `Modified`. Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted` A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* `Deleted`. A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
-* `Detached` A entidade não está sendo controlada pelo contexto de banco de dados.
+* `Detached`. A entidade não está sendo controlada pelo contexto de banco de dados.
 
 Em um aplicativo da área de trabalho, em geral, as alterações de estado são definidas automaticamente. Você lê uma entidade e faz alterações em alguns de seus valores de propriedade. Isso faz com que seu estado da entidade seja alterado automaticamente para `Modified`. Em seguida, quando você chama `SaveChanges`, o Entity Framework gera uma instrução SQL UPDATE que atualiza apenas as propriedades reais que você alterou.
 
@@ -275,7 +275,7 @@ Em *Startup.cs*, chame o [método de extensão AddDbContext](https://github.com/
 
 ## <a name="handle-transactions"></a>Lidar com transações
 
-Por padrão, o Entity Framework implementa transações de forma implícita. Em cenários em que são feitas alterações em várias linhas ou tabelas e, em seguida, `SaveChanges` é chamado, o Entity Framework verifica automaticamente se todas as alterações tiveram êxito ou se falharam. Se algumas alterações forem feitas pela primeira vez e, em seguida, ocorrer um erro, essas alterações serão revertidas automaticamente. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação –, consulte [Transações](/ef/core/saving/transactions).
+Por padrão, o Entity Framework implementa transações de forma implícita. Em cenários em que são feitas alterações em várias linhas ou tabelas e, em seguida, `SaveChanges` é chamado, o Entity Framework verifica automaticamente se todas as alterações tiveram êxito ou se falharam. Se algumas alterações forem feitas pela primeira vez e, em seguida, ocorrer um erro, essas alterações serão revertidas automaticamente. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação, consulte [Transações](/ef/core/saving/transactions).
 
 ## <a name="no-tracking-queries"></a>Consultas sem controle
 
@@ -289,7 +289,7 @@ Desabilite o controle de objetos de entidade em memória chamando o método `AsN
 
 * Você deseja anexar uma entidade para atualizá-la, mas anteriormente, recuperou a mesma entidade para uma finalidade diferente. Como a entidade já está sendo controlada pelo contexto de banco de dados, não é possível anexar a entidade que você deseja alterar. Uma maneira de lidar com essa situação é chamar `AsNoTracking` na consulta anterior.
 
-Para obter mais informações, consulte [acompanhamento versus sem rastreamento](/ef/core/querying/tracking).
+Para obter mais informações, consulte [Rastreamento vs. No-Tracking](/ef/core/querying/tracking).
 
 ## <a name="get-the-code"></a>Obter o código
 
@@ -309,4 +309,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para saber como expandir a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
 
 > [!div class="nextstepaction"]
-> [Em seguida: classificação, filtragem e paginação](sort-filter-page.md)
+> [Próximo: Classificação, filtragem e paginação](sort-filter-page.md)

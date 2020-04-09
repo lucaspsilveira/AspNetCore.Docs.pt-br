@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 08/17/2019
 uid: tutorials/razor-pages/page
 ms.openlocfilehash: cec4295a2c08c89db0975808583f41c7d09bfc88
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662445"
 ---
 # <a name="scaffolded-razor-pages-in-aspnet-core"></a>Páginas do Razor geradas por scaffolding no ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Este tutorial examina as Páginas do Razor criadas por scaffolding no [tutorial anterior](xref:tutorials/razor-pages/model).
 
@@ -30,9 +30,9 @@ Examine o Modelo de Página, *Pages/Movies/Index.cshtml.cs*:
 
 As Páginas do Razor são derivadas de `PageModel`. Por convenção, a classe derivada de `PageModel` é chamada de `<PageName>Model`. O construtor usa [injeção de dependência](xref:fundamentals/dependency-injection) para adicionar o `RazorPagesMovieContext` à página. Todas as páginas geradas por scaffolding seguem esse padrão. Confira [Código assíncrono](xref:data/ef-rp/intro#asynchronous-code) para obter mais informações sobre a programação assíncrona com o Entity Framework.
 
-Quando uma solicitação é feita à página, o método `OnGetAsync` retorna uma lista de filmes para a Página do Razor. `OnGetAsync` ou `OnGet` é chamado para inicializar o estado da página. Nesse caso, `OnGetAsync` obtém uma lista de filmes e os exibe.
+Quando uma solicitação é feita à página, o método `OnGetAsync` retorna uma lista de filmes para a Página do Razor. `OnGetAsync`ou `OnGet` é chamado para inicializar o estado da página. Nesse caso, `OnGetAsync` obtém uma lista de filmes e os exibe.
 
-Quando `OnGet` retorna `void` ou `OnGetAsync` retorna`Task`, nenhuma instrução de retorno é usada. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *pages/Movies/Create. cshtml. cs* `OnPostAsync`:
+Quando `OnGet` `void` retorna `OnGetAsync` `Task`ou retorna, nenhuma declaração de devolução é usada. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *Páginas/Filmes/Create.cshtml.cs:* `OnPostAsync`
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -44,7 +44,7 @@ O Razor pode fazer a transição do HTML em C# ou em marcação específica do R
 
 ### <a name="the-page-directive"></a>A diretiva @page
 
-A diretiva `@page` Razor torna o arquivo uma ação MVC, o que significa que ele pode lidar com solicitações. `@page` deve ser a primeira diretiva do Razor em uma página. `@page` é um exemplo de transição para a marcação específica do Razor. Consulte [Sintaxe Razor](xref:mvc/views/razor#razor-syntax) para obter mais informações.
+A `@page` diretiva Razor torna o arquivo uma ação MVC, o que significa que ele pode lidar com solicitações. `@page` deve ser a primeira diretiva do Razor em uma página. `@page` é um exemplo de transição para a marcação específica do Razor. Consulte [Sintaxe Razor](xref:mvc/views/razor#razor-syntax) para obter mais informações.
 
 Examine a expressão lambda usada no auxiliar HTML a seguir:
 
@@ -52,7 +52,7 @@ Examine a expressão lambda usada no auxiliar HTML a seguir:
 @Html.DisplayNameFor(model => model.Movie[0].Title)
 ```
 
-O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada na expressão lambda para determinar o nome de exibição. A expressão lambda é inspecionada em vez de avaliada. Isso significa que não há nenhuma violação de acesso quando `model`, `model.Movie`ou `model.Movie[0]` é `null` ou vazia. Quando a expressão lambda é avaliada (por exemplo, com `@Html.DisplayFor(modelItem => item.Title)`), os valores de propriedade do modelo são avaliados.
+O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada na expressão lambda para determinar o nome de exibição. A expressão lambda é inspecionada em vez de avaliada. Isso significa que não `model`há `model.Movie`violação `model.Movie[0]` `null` de acesso quando, ou está ou vazio. Quando a expressão lambda é avaliada (por exemplo, com `@Html.DisplayFor(modelItem => item.Title)`), os valores de propriedade do modelo são avaliados.
 
 <a name="md"></a>
 
@@ -60,7 +60,7 @@ O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada n
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado no `@Html.DisplayNameFor` e `@Html.DisplayFor` [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) na página.
+A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos  [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers)`@Html.DisplayNameFor` e `@Html.DisplayFor` na página.
 
 ### <a name="the-layout-page"></a>A página de layout
 
@@ -83,7 +83,7 @@ Considere a seguinte marcação do arquivo *Pages/Movies/Index.cshtml* file:
 
 A marcação realçada anteriormente é um exemplo de transição do Razor para C#. Os caracteres `{` e `}` circunscrevem um bloco de código C#.
 
-A classe base `PageModel` contém uma propriedade Dictionary de `ViewData` que pode ser usada para passar dados para uma exibição. Adicione objetos ao dicionário `ViewData` usando um padrão de chave/valor. No exemplo anterior, a propriedade `"Title"` é adicionada ao dicionário `ViewData`.
+A `PageModel` classe base `ViewData` contém uma propriedade de dicionário que pode ser usada para passar dados para uma exibição. Adicione objetos ao dicionário `ViewData` usando um padrão de chave/valor. No exemplo anterior, a propriedade `"Title"` é adicionada ao dicionário `ViewData`.
 
 A propriedade `"Title"` é usada no arquivo *Pages/Shared/_Layout.cshtml*. A marcação a seguir mostra as primeiras linhas do arquivo *Pages/_Layout.cshtml*.
 
@@ -116,7 +116,7 @@ O elemento de âncora anterior é um [Auxiliar de Marcas](xref:mvc/views/tag-hel
 
 Salve suas alterações e teste o aplicativo clicando no link **RpMovie**. Confira o arquivo [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) no GitHub caso tenha problemas.
 
-Teste os outros links (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Cada página define o título, que você pode ver na guia navegador. Quando você marcar uma página, o título será usado para o indicador.
+Teste os outros links (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Cada página define o título, que você pode ver na guia do navegador. Quando você marca uma página, o título é usado para o marcador.
 
 > [!NOTE]
 > Talvez você não consiga inserir casas decimais ou vírgulas no campo `Price`. Para dar suporte à [validação do jQuery](https://jqueryvalidation.org/) para localidades de idiomas diferentes do inglês que usam uma vírgula (“,”) para um ponto decimal e formatos de data diferentes do inglês dos EUA, você deve tomar medidas para globalizar o aplicativo. Confira [Problema 4076 do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) para obter instruções sobre como adicionar casas decimais.
@@ -191,25 +191,25 @@ O mecanismo de scaffolding cria marcação do Razor para cada campo no modelo (e
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml?range=15-20)]
 
-Os [auxiliares de marcas de validação](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` e `<span asp-validation-for`) exibem erros de validação. A validação será abordada em mais detalhes posteriormente nesta série.
+Os [auxiliares de validação](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (e)`<div asp-validation-summary` `<span asp-validation-for`exibem erros de validação. A validação será abordada em mais detalhes posteriormente nesta série.
 
-O [auxiliar de marcas de rótulo](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) gera a legenda do rótulo e o atributo `for` para a propriedade `Title`.
+O [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) `for` gera `Title` a legenda e o atributo do rótulo para a propriedade.
 
-O [auxiliar de marcas de entrada](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control">`) usa os atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz os atributos HTML necessários para validação jQuery no lado do cliente.
+O [Helper de marca de entrada](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control">`) usa os atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz atributos HTML necessários para a validação jQuery no lado do cliente.
 
 Para obter mais informações sobre Auxiliares de Marcas, como `<form method="post">`, confira [Auxiliares de Marcas no ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model)
-> [próximo: banco de dados](xref:tutorials/razor-pages/sql)
+> [Anterior: Adicionando um modelo](xref:tutorials/razor-pages/model)
+> [seguinte: Banco de dados](xref:tutorials/razor-pages/sql)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Este tutorial examina as Páginas do Razor criadas por scaffolding no [tutorial anterior](xref:tutorials/razor-pages/model).
 
@@ -225,7 +225,7 @@ As Páginas do Razor são derivadas de `PageModel`. Por convenção, a classe de
 
 Quando uma solicitação é feita à página, o método `OnGetAsync` retorna uma lista de filmes para a Página do Razor. `OnGetAsync` ou `OnGet` é chamado em uma Página do Razor para inicializar o estado da página. Nesse caso, `OnGetAsync` obtém uma lista de filmes e os exibe.
 
-Quando `OnGet` retorna `void` ou `OnGetAsync` retorna `Task`, então nenhum método de retorno é usado. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *pages/Movies/Create. cshtml. cs* `OnPostAsync`:
+Quando `OnGet` retorna `void` ou `OnGetAsync` retorna `Task`, então nenhum método de retorno é usado. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *Páginas/Filmes/Create.cshtml.cs:* `OnPostAsync`
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -251,7 +251,7 @@ O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada n
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado no `@Html.DisplayNameFor` e `@Html.DisplayFor` [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) na página.
+A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos  [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers)`@Html.DisplayNameFor` e `@Html.DisplayFor` na página.
 
 ### <a name="the-layout-page"></a>A página de layout
 
@@ -302,7 +302,7 @@ O elemento de âncora anterior é um [Auxiliar de Marcas](xref:mvc/views/tag-hel
 
 Salve suas alterações e teste o aplicativo clicando no link **RpMovie**. Confira o arquivo [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) no GitHub caso tenha problemas.
 
-Teste os outros links (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Cada página define o título, que você pode ver na guia navegador. Quando você marcar uma página, o título será usado para o indicador.
+Teste os outros links (**Home**, **RpMovie**, **Create**, **Edit** e **Delete**). Cada página define o título, que você pode ver na guia do navegador. Quando você marca uma página, o título é usado para o marcador.
 
 > [!NOTE]
 > Talvez você não consiga inserir casas decimais ou vírgulas no campo `Price`. Para dar suporte à [validação do jQuery](https://jqueryvalidation.org/) para localidades de idiomas diferentes do inglês que usam uma vírgula (“,”) para um ponto decimal e formatos de data diferentes do inglês dos EUA, você deve tomar medidas para globalizar o aplicativo. Veja [Problema 4076 do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) para obter instruções sobre como adicionar casas decimais.
@@ -359,18 +359,18 @@ O mecanismo de scaffolding cria marcação do Razor para cada campo no modelo (e
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=15-20)]
 
-Os [auxiliares de marcas de validação](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` e `<span asp-validation-for`) exibem erros de validação. A validação será abordada em mais detalhes posteriormente nesta série.
+Os [auxiliares de validação](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (e)`<div asp-validation-summary` `<span asp-validation-for`exibem erros de validação. A validação será abordada em mais detalhes posteriormente nesta série.
 
-O [auxiliar de marcas de rótulo](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) gera a legenda do rótulo e o atributo `for` para a propriedade `Title`.
+O [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) `for` gera `Title` a legenda e o atributo do rótulo para a propriedade.
 
-O [auxiliar de marcas de entrada](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control">`) usa os atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz os atributos HTML necessários para validação jQuery no lado do cliente.
+O [Helper de marca de entrada](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control">`) usa os atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz atributos HTML necessários para a validação jQuery no lado do cliente.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Versão do YouTube deste tutorial](https://youtu.be/zxgKjPYnOMM)
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model)
-> [próximo: banco de dados](xref:tutorials/razor-pages/sql)
+> [Anterior: Adicionando um modelo](xref:tutorials/razor-pages/model)
+> [seguinte: Banco de dados](xref:tutorials/razor-pages/sql)
 
 ::: moniker-end

@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core'
+title: 'Tutorial: Crie um modelo de dados complexo - ASP.NET MVC com EF Core'
 description: Neste tutorial, você adiciona mais entidades e relações e personaliza o modelo de dados especificando formatação, validação e regras de mapeamento.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
 ms.openlocfilehash: 91fd09874ecab8bfdb6a38a404faba04aeb73edc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657426"
 ---
-# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core
+# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Crie um modelo de dados complexo - ASP.NET MVC com EF Core
 
 Nos tutoriais anteriores, você trabalhou com um modelo de dados simples composto por três entidades. Neste tutorial, você adicionará mais entidades e relações e personalizará o modelo de dados especificando formatação, validação e regras de mapeamento de banco de dados.
 
@@ -38,7 +38,7 @@ Neste tutorial, você:
 > * Alterar a cadeia de conexão
 > * Atualizar o banco de dados
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Usar as migrações do EF Core](migrations.md)
 
@@ -72,7 +72,7 @@ Use Você pode usar o atributo `DisplayFormat` por si só, mas geralmente é uma
 
 * Por padrão, o navegador renderizará os dados usando o formato correto de acordo com a localidade.
 
-Para obter mais informações, consulte a [documentação do auxiliar de marcação \<input>](../../mvc/views/working-with-forms.md#the-input-tag-helper).
+Para obter mais informações, consulte a [ \<entrada> documentação do ajudante de marca](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Execute o aplicativo, acesse a página Índice de Alunos e observe que as horas não são mais exibidas nas datas de registro. O mesmo será verdadeiro para qualquer exibição que usa o modelo Aluno.
 
@@ -106,7 +106,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado *\<timeStamp>_MaxLengthOnNames.cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
+O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado * \<timeStamp>_MaxLengthOnNames.cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
 
 O carimbo de data/hora prefixado ao nome do arquivo de migrações é usado pelo Entity Framework para ordenar as migrações. Crie várias migrações antes de executar o comando de atualização de banco de dados e, em seguida, todas as migrações são aplicadas na ordem em que foram criadas.
 
@@ -512,7 +512,7 @@ Clique com o botão direito do mouse na tabela **CourseAssignment** e selecione 
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 
@@ -533,4 +533,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para aprender a acessar dados relacionados.
 
 > [!div class="nextstepaction"]
-> [Próximo: acessar dados relacionados](read-related-data.md)
+> [Próximo: Acesso de dados relacionados](read-related-data.md)

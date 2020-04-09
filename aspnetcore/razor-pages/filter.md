@@ -7,17 +7,17 @@ ms.author: riande
 ms.date: 2/18/2020
 uid: razor-pages/filter
 ms.openlocfilehash: cd772da8ed565bc779d8c6bcc7c9949a0c1c7c60
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78660751"
 ---
 # <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Métodos de filtro para Páginas Razor no ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Os filtros de página Razor [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) permitem que as Páginas Razor executem código antes e após a execução de um manipulador de Página Razor. Os filtros de página Razor são semelhantes aos [filtros de ação de MVC do ASP.NET Core](xref:mvc/controllers/filters#action-filters), exceto que eles não podem ser aplicados aos métodos do manipulador de cada página individual.
 
@@ -28,9 +28,9 @@ Filtros de página Razor:
 * Executam o código após a execução do método do manipulador.
 * Podem ser implementados em uma única página ou globalmente.
 * Não podem ser aplicados a métodos do manipulador de uma página específica.
-* Pode haver dependências de Construtor preenchidas pela [injeção de dependência](xref:fundamentals/dependency-injection) (di). Para obter mais informações, [consulte](/aspnet/core/mvc/controllers/filters#servicefilterattribute) [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute)e.
+* Pode ter dependências de construtores povoadas por [Injeção de Dependência](xref:fundamentals/dependency-injection) (DI). Para obter mais informações, consulte [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) e [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
 
-Embora os construtores de página e o middleware habilitem a execução do código personalizado antes que um método de manipulador seja executado, somente filtros de página Razor habilitam o acesso a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> e à página. O middleware tem acesso ao `HttpContext`, mas não ao "contexto da página". Os filtros têm um <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> parâmetro derivado, que fornece acesso ao `HttpContext`. Por exemplo, a amostra [Implementar um atributo de filtro](#ifa) adiciona um cabeçalho à resposta, algo que não pode ser feito com construtores nem middlewares.
+Enquanto os construtores de páginas e middleware permitem executar código personalizado antes da <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> execução de um método de manipulador, apenas os filtros de Página de Navalha permitem o acesso e a página. Middleware tem acesso `HttpContext`ao , mas não ao "contexto da página". Os filtros <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> possuem um parâmetro derivado, `HttpContext`que fornece acesso a . Por exemplo, a amostra [Implementar um atributo de filtro](#ifa) adiciona um cabeçalho à resposta, algo que não pode ser feito com construtores nem middlewares.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -47,7 +47,7 @@ Os filtros de página Razor fornecem os métodos a seguir, que podem ser aplicad
   * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0): chamado de forma assíncrona depois que o método do manipulador é selecionado, mas antes que o model binding ocorra.
   * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0): chamado de forma assíncrona, antes que o método do manipulador seja invocado, após a conclusão do model binding.
 
-Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, **não** ambas. Primeiro, a estrutura verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se ambas as interfaces forem implementadas, somente os métodos assíncronos serão chamados. A mesma regra aplica-se para substituições em páginas. Implemente a versão síncrona ou a assíncrona da substituição, não ambas.
+Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, **não** ambas. Primeiro, a estrutura verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se ambas as interfaces forem implementadas, apenas os métodos de assincronia serão chamados. A mesma regra aplica-se para substituições em páginas. Implemente a versão síncrona ou a assíncrona da substituição, não ambas.
 
 ## <a name="implement-razor-page-filters-globally"></a>Implementar filtros de página Razor globalmente
 
@@ -55,13 +55,13 @@ O código a seguir implementa `IAsyncPageFilter`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
 
-No código anterior, `ProcessUserAgent.Write` é um código fornecido pelo usuário que funciona com a cadeia de caracteres do agente do usuário.
+No código anterior, `ProcessUserAgent.Write` está o código fornecido pelo usuário que funciona com a seqüência de agentes do usuário.
 
 O código a seguir habilita o `SampleAsyncPageFilter` na classe `Startup`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2)]
 
-O código a seguir chama <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> para aplicar o `SampleAsyncPageFilter` a apenas páginas no */Movies*:
+As chamadas <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> de código `SampleAsyncPageFilter` a seguir para aplicar as somente páginas em */Filmes*:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Startup2.cs?name=snippet2)]
 
@@ -75,7 +75,7 @@ O código a seguir habilita o `SamplePageFilter`:
 
 ## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>Implementar filtros de página Razor substituindo os métodos de filtro
 
-O código a seguir substitui os filtros de página assíncronas do Razor:
+O código a seguir substitui os filtros assíncronos da Página de Navalha:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
@@ -83,7 +83,7 @@ O código a seguir substitui os filtros de página assíncronas do Razor:
 
 ## <a name="implement-a-filter-attribute"></a>Implementar um atributo de filtro
 
-O filtro interno baseado em atributo <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> filtro pode ser subclasse. O filtro a seguir adiciona um cabeçalho à resposta:
+O filtro de filtro <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> integrado baseado em atributos pode ser subclassificado. O filtro a seguir adiciona um cabeçalho à resposta:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
@@ -91,7 +91,7 @@ O código a seguir se aplica ao atributo `AddHeader`:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
 
-Use uma ferramenta como as ferramentas de desenvolvedor do navegador para examinar os cabeçalhos. Em **cabeçalhos de resposta**, `author: Rick` é exibido.
+Use uma ferramenta como as ferramentas do desenvolvedor do navegador para examinar os cabeçalhos. Em **'Cabeçalhos de resposta',** `author: Rick` é exibido.
 
 Confira [Substituindo a ordem padrão](xref:mvc/controllers/filters#overriding-the-default-order) para obter instruções sobre a substituição da ordem.
 
@@ -109,7 +109,7 @@ O atributo [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizea
 
 ::: moniker range="< aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Os filtros de página Razor [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) e [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) permitem que as Páginas Razor executem código antes e após a execução de um manipulador de Página Razor. Os filtros de página Razor são semelhantes aos [filtros de ação de MVC do ASP.NET Core](xref:mvc/controllers/filters#action-filters), exceto que eles não podem ser aplicados aos métodos do manipulador de cada página individual.
 
@@ -139,7 +139,7 @@ Os filtros de página Razor fornecem os métodos a seguir, que podem ser aplicad
   * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0): chamado de forma assíncrona, antes que o método do manipulador seja invocado, após a conclusão do model binding.
 
 > [!NOTE]
-> Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, não ambas. Primeiro, a estrutura verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se ambas as interfaces forem implementadas, somente os métodos assíncronos serão chamados. A mesma regra aplica-se para substituições em páginas. Implemente a versão síncrona ou a assíncrona da substituição, não ambas.
+> Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, não ambas. Primeiro, a estrutura verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se ambas as interfaces forem implementadas, apenas os métodos de assincronia serão chamados. A mesma regra aplica-se para substituições em páginas. Implemente a versão síncrona ou a assíncrona da substituição, não ambas.
 
 ## <a name="implement-razor-page-filters-globally"></a>Implementar filtros de página Razor globalmente
 

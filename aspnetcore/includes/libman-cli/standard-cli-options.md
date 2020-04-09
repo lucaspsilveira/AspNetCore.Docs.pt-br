@@ -1,10 +1,10 @@
 * `-h|--help`
 
-  Mostrar informações de ajuda.
+  Mostre informações sobre ajuda.
 
 * `--verbosity <LEVEL>`
 
-  Defina o detalhamento da saída. Substitua `<LEVEL>` por um dos seguintes valores:
+  Defina a verbosidade da saída. Substitua por `<LEVEL>` um dos seguintes valores:
   
   * `quiet`
   * `normal`

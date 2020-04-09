@@ -6,17 +6,17 @@ ms.author: riande
 ms.date: 8/16/2019
 uid: tutorials/first-mvc-app/working-with-sql
 ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665035"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O objeto `MvcMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
 
@@ -44,13 +44,13 @@ Quando o aplicativo é implantado em um servidor de teste ou de produção, uma 
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Express, que é direcionado para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos *.mdf* no diretório *C:/Users/{user}* .
+O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Express, que é direcionado para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos *.mdf* no diretório *C:/Users/{user}*.
 
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu Visualizar](working-with-sql/_static/ssox.png)
+  ![Menu de exibição](working-with-sql/_static/ssox.png)
 
-* Clique com o botão direito do mouse na tabela `Movie` **> Designer de Exibição**
+* Clique com o botão direito do mouse na tabela `Movie`**> Designer de Exibição**
 
   ![Menu contextual aberto na tabela Movie](working-with-sql/_static/design.png)
 
@@ -58,7 +58,7 @@ O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Expre
 
 Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propriedade chamada `ID` a chave primária.
 
-* Clique com o botão direito do mouse na tabela `Movie` **> Dados de Exibição**
+* Clique com o botão direito do mouse na tabela `Movie`**> Dados de Exibição**
 
   ![Menu contextual aberto na tabela Movie](working-with-sql/_static/ssox2.png)
 
@@ -91,7 +91,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Adicionar o inicializador de semeadura
 
-Substitua o conteúdo de *Program.cs* pelo código a seguir:
+Substitua o conteúdo do *Program.cs* pelo seguinte código:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
@@ -122,13 +122,13 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Anterior](adding-model.md)
-> [Próximo](controller-methods-views.md)
+> [Próximo](adding-model.md)
+> [anterior](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O objeto `MvcMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
 
@@ -156,13 +156,13 @@ Quando você implanta o aplicativo em um servidor de teste ou de produção, voc
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Express, que é direcionado para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos *.mdf* no diretório *C:/Users/{user}* .
+O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Express, que é direcionado para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos *.mdf* no diretório *C:/Users/{user}*.
 
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu Visualizar](working-with-sql/_static/ssox.png)
+  ![Menu de exibição](working-with-sql/_static/ssox.png)
 
-* Clique com o botão direito do mouse na tabela `Movie` **> Designer de Exibição**
+* Clique com o botão direito do mouse na tabela `Movie`**> Designer de Exibição**
 
   ![Menu contextual aberto na tabela Movie](working-with-sql/_static/design.png)
 
@@ -170,7 +170,7 @@ O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Expre
 
 Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propriedade chamada `ID` a chave primária.
 
-* Clique com o botão direito do mouse na tabela `Movie` **> Dados de Exibição**
+* Clique com o botão direito do mouse na tabela `Movie`**> Dados de Exibição**
 
   ![Menu contextual aberto na tabela Movie](working-with-sql/_static/ssox2.png)
 
@@ -203,7 +203,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Adicionar o inicializador de semeadura
 
-Substitua o conteúdo de *Program.cs* pelo código a seguir:
+Substitua o conteúdo do *Program.cs* pelo seguinte código:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
 
@@ -234,7 +234,7 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Anterior](adding-model.md)
-> [Próximo](controller-methods-views.md)
+> [Próximo](adding-model.md)
+> [anterior](controller-methods-views.md)
 
 ::: moniker-end

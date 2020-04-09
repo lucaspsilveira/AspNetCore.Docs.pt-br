@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/migrations
 ms.openlocfilehash: 86fd83c898fce8e121e4d259aaca12c59591e606
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656530"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
@@ -34,7 +34,7 @@ Em vez de remover e recriar o banco de dados quando o modelo de dados é alterad
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Use o SSOX **(Pesquisador de Objetos do SQL Server)** para excluir o banco de dados ou execute o seguinte comando no PMC **(Console do Gerenciador de Pacotes)** :
+Use o SSOX **(Pesquisador de Objetos do SQL Server)** para excluir o banco de dados ou execute o seguinte comando no PMC **(Console do Gerenciador de Pacotes)**:
 
 ```powershell
 Drop-Database
@@ -42,7 +42,7 @@ Drop-Database
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Execute o seguinte comando em um prompt de comando para instalar a CLI do EF:
+* Execute o seguinte comando em um prompt de comando para instalar o Cli EF:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -104,7 +104,7 @@ O parâmetro de nome da migração ("InitialCreate" no exemplo) é usado para o 
 
 As migrações criam um *instantâneo* do modelo de dados atual em *Migrations/SchoolContextModelSnapshot.cs*. Quando você adiciona uma migração, o EF determina o que foi alterado, comparando o modelo de dados atual com o arquivo de instantâneo.
 
-Como o arquivo de instantâneo rastreia o estado do modelo de dados, não é possível excluir uma migração excluindo o arquivo `<timestamp>_<migrationname>.cs`. Para fazer backup da migração mais recente, você precisa usar o comando `migrations remove`. Esse comando exclui a migração e garante que o instantâneo seja redefinido corretamente. Para saber mais, confira [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Como o arquivo de instantâneo rastreia o estado do modelo de dados, não é possível excluir uma migração excluindo o arquivo `<timestamp>_<migrationname>.cs`. Para fazer backup da migração mais recente, você precisa usar o comando `migrations remove`. Esse comando exclui a migração e garante que o instantâneo seja redefinido corretamente. Para obter mais informações, consulte [as migrações dotnet ef remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ## <a name="remove-ensurecreated"></a>Remover EnsureCreated
 
@@ -145,7 +145,7 @@ A solução pode ser executar `dotnet ef database update` em um prompt de comand
 * [CLI do EF Core](/ef/core/miscellaneous/cli/dotnet).
 * [Console do Gerenciador de Pacotes (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 O próximo tutorial cria o modelo de dados adicionando propriedades da entidade e novas entidades.
 
@@ -253,7 +253,7 @@ Remove-Migration
 dotnet ef migrations remove
 ```
 
-Para saber mais, confira [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Para obter mais informações, consulte [as migrações dotnet ef remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ---
 
@@ -311,14 +311,14 @@ Solução: execute `dotnet ef database update`
 ### <a name="additional-resources"></a>Recursos adicionais
 
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
-* [CLI do .NET Core](/ef/core/miscellaneous/cli/dotnet).
+* [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Console do Gerenciador de Pacotes (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 
 
 > [!div class="step-by-step"]
-> [Anterior](xref:data/ef-rp/sort-filter-page)
-> [Próximo](xref:data/ef-rp/complex-data-model)
+> [Próximo](xref:data/ef-rp/sort-filter-page)
+> [anterior](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
 

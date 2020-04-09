@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Adicionar classificação, filtragem e paginação-ASP.NET MVC com EF Core'
+title: 'Tutorial: Adicione classificação, filtragem e paginação - ASP.NET MVC com EF Core'
 description: Neste tutorial você adicionará as funcionalidades de classificação, filtragem e paginação à página Índice de Alunos. Você também criará uma página que faz um agrupamento simples.
 author: rick-anderson
 ms.author: riande
@@ -7,13 +7,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
 ms.openlocfilehash: 99bf9ed59b47e8fbba838b97c3e032b9808f6a94
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657132"
 ---
-# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicionar classificação, filtragem e paginação-ASP.NET MVC com EF Core
+# <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicione classificação, filtragem e paginação - ASP.NET MVC com EF Core
 
 No tutorial anterior, você implementou um conjunto de páginas da Web para operações CRUD básicas para entidades Student. Neste tutorial você adicionará as funcionalidades de classificação, filtragem e paginação à página Índice de Alunos. Você também criará uma página que faz um agrupamento simples.
 
@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Adicionar links de paginação
 > * Criar uma página Sobre
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Implementar funcionalidade CRUD](crud.md)
 
@@ -41,7 +41,7 @@ Para adicionar uma classificação à página Índice de Alunos, você alterará
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>Adicionar a funcionalidade de classificação ao método Index
 
-Em *StudentsController.cs*, substitua o método `Index` pelo seguinte código:
+Em *StudentsController.cs,* `Index` substitua o método pelo seguinte código:
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortOnly)]
 
@@ -91,9 +91,9 @@ Em *StudentsController.cs*, substitua o método `Index` pelo código a seguir (a
 Você adicionou um parâmetro `searchString` ao método `Index`. O valor de cadeia de caracteres de pesquisa é recebido em uma caixa de texto que você adicionará à exibição Índice. Você também adicionou à instrução LINQ uma cláusula Where, que seleciona somente os alunos cujo nome ou sobrenome contém a cadeia de caracteres de pesquisa. A instrução que adiciona a cláusula Where é executada somente se há um valor a ser pesquisado.
 
 > [!NOTE]
-> Aqui você está chamando o método `Where` em um objeto `IQueryable`, e o filtro será processado no servidor. Em alguns cenários, você pode chamar o método `Where` como um método de extensão em uma coleção em memória. (Por exemplo, suponha que você altere a referência para `_context.Students` de forma que, em vez de um EF `DbSet` ele faça referência a um método de repositório que retorne uma coleção de `IEnumerable`.) O resultado normalmente seria o mesmo, mas em alguns casos pode ser diferente.
+> Aqui você está chamando o método `Where` em um objeto `IQueryable`, e o filtro será processado no servidor. Em alguns cenários, você pode chamar o método `Where` como um método de extensão em uma coleção em memória. (Por exemplo, suponha `_context.Students` que você altere a `DbSet` referência para que, em vez `IEnumerable` de um EF, ele faça referência a um método de repositório que retorna uma coleção.) O resultado normalmente seria o mesmo, mas em alguns casos pode ser diferente.
 >
->Por exemplo, a implementação do .NET Framework do método `Contains` executa uma comparação que diferencia maiúsculas de minúsculas por padrão, mas no SQL Server, isso é determinado pela configuração de ordenação da instância do SQL Server. Por padrão, essa configuração diferencia maiúsculas de minúsculas. Você pode chamar o método `ToUpper` para fazer com que o teste diferencie maiúsculas de minúsculas de forma explícita: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())* . Isso garantirá que os resultados permaneçam os mesmos se você alterar o código mais tarde para usar um repositório que retorna uma coleção `IEnumerable` em vez de um objeto `IQueryable`. (Ao chamar o método `Contains` em uma coleção de `IEnumerable`, você obtém a implementação de .NET Framework; ao chamá-la em um objeto `IQueryable`, você obtém a implementação do provedor de banco de dados.) No entanto, há uma penalidade de desempenho para essa solução. O código `ToUpper` colocará uma função na cláusula WHERE da instrução TSQL SELECT. Isso pode impedir que o otimizador use um índice. Considerando que o SQL geralmente é instalado como não diferenciando maiúsculas e minúsculas, é melhor evitar o código `ToUpper` até você migrar para um armazenamento de dados que diferencia maiúsculas de minúsculas.
+>Por exemplo, a implementação do .NET Framework do método `Contains` executa uma comparação que diferencia maiúsculas de minúsculas por padrão, mas no SQL Server, isso é determinado pela configuração de ordenação da instância do SQL Server. Por padrão, essa configuração diferencia maiúsculas de minúsculas. Você pode chamar o método `ToUpper` para fazer com que o teste diferencie maiúsculas de minúsculas de forma explícita: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Isso garantirá que os resultados permaneçam os mesmos se você alterar o código mais tarde para usar um repositório que retorna uma coleção `IEnumerable` em vez de um objeto `IQueryable`. (Quando você `Contains` chama o `IEnumerable` método em uma coleção, você recebe a `IQueryable` implementação do .NET Framework; quando você o chama em um objeto, você recebe a implementação do provedor de banco de dados.) No entanto, há uma penalidade de desempenho para esta solução. O código `ToUpper` colocará uma função na cláusula WHERE da instrução TSQL SELECT. Isso pode impedir que o otimizador use um índice. Considerando que o SQL geralmente é instalado como não diferenciando maiúsculas e minúsculas, é melhor evitar o código `ToUpper` até você migrar para um armazenamento de dados que diferencia maiúsculas de minúsculas.
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Adicionar uma Caixa de Pesquisa à exibição Índice de Alunos
 
@@ -101,7 +101,7 @@ Em *Views/Student/Index.cshtml*, adicione o código realçado imediatamente ante
 
 [!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
-Esse código usa o [auxiliar de marca](xref:mvc/views/tag-helpers/intro) de `<form>` para adicionar a caixa de texto de pesquisa e o botão. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST, o que significa que os parâmetros são passados no corpo da mensagem HTTP e não na URL como cadeias de consulta. Quando você especifica HTTP GET, os dados de formulário são passados na URL como cadeias de consulta, o que permite aos usuários marcar a URL. As diretrizes do W3C recomendam o uso de GET quando a ação não resulta em uma atualização.
+Esse código usa o  [auxiliar de marcação](xref:mvc/views/tag-helpers/intro)`<form>` para adicionar o botão e a caixa de texto de pesquisa. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST, o que significa que os parâmetros são passados no corpo da mensagem HTTP e não na URL como cadeias de consulta. Quando você especifica HTTP GET, os dados de formulário são passados na URL como cadeias de consulta, o que permite aos usuários marcar a URL. As diretrizes do W3C recomendam o uso de GET quando a ação não resulta em uma atualização.
 
 Execute o aplicativo, selecione a guia **Alunos**, insira uma cadeia de caracteres de pesquisa e clique em Pesquisar para verificar se a filtragem está funcionando.
 
@@ -250,7 +250,7 @@ Execute o aplicativo e acesse a página Sobre. A contagem de alunos para cada da
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 
@@ -265,4 +265,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para aprender a manipular as alterações do modelo de dados usando migrações.
 
 > [!div class="nextstepaction"]
-> [Em seguida: manipular alterações no modelo de dados](migrations.md)
+> [Próximo: Lidar com as alterações do modelo de dados](migrations.md)

@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
 ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666211"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -22,7 +22,7 @@ O aplicativo de filme gerado por scaffolding tem um bom começo, mas a apresenta
 
 ![Aplicativo de filme aberto no Chrome](sql/_static/m55.png)
 
-## <a name="update-the-generated-code"></a>Atualize o código gerado
+## <a name="update-the-generated-code"></a>Atualizar o código gerado
 
 Abra o arquivo *Models/Movie.cs* e adicione as linhas realçadas mostradas no seguinte código:
 
@@ -99,7 +99,7 @@ O código de produção talvez deseje detectar conflitos de simultaneidade. Conf
 
 ### <a name="posting-and-binding-review"></a>Análise de postagem e associação
 
-Examine o arquivo *Pages/Movies/Edit.cshtml.cs*:
+Examine o arquivo *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
 
@@ -127,7 +127,7 @@ Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um pa
 
 > [!div class="step-by-step"]
 > [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)
+> [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -137,7 +137,7 @@ O aplicativo de filme gerado por scaffolding tem um bom começo, mas a apresenta
 
 ![Aplicativo de filme aberto no Chrome](sql/_static/m55.png)
 
-## <a name="update-the-generated-code"></a>Atualize o código gerado
+## <a name="update-the-generated-code"></a>Atualizar o código gerado
 
 Abra o arquivo *Models/Movie.cs* e adicione as linhas realçadas mostradas no seguinte código:
 
@@ -212,7 +212,7 @@ O código de produção talvez deseje detectar conflitos de simultaneidade. Conf
 
 ### <a name="posting-and-binding-review"></a>Análise de postagem e associação
 
-Examine o arquivo *Pages/Movies/Edit.cshtml.cs*:
+Examine o arquivo *Pages/Movies/Edit.cshtml.cs*: 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
 
@@ -244,6 +244,6 @@ A pesquisa é adicionada no próximo tutorial.
 
 > [!div class="step-by-step"]
 > [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)
+> [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

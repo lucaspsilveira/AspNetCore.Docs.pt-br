@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/sort-filter-page
 ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656460"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Classificação, filtro, paginação – 3 de 8
@@ -106,7 +106,7 @@ O código anterior:
 * Adiciona o parâmetro `searchString` ao método `OnGetAsync` e salva o valor do parâmetro na propriedade `CurrentFilter`. O valor de cadeia de caracteres de pesquisa é recebido de uma caixa de texto que é adicionada na próxima seção.
 * Adiciona uma cláusula `Where` à instrução LINQ. A cláusula `Where` seleciona somente os alunos cujo nome ou sobrenome contém a cadeia de caracteres de pesquisa. A instrução LINQ é executada somente se há um valor a ser pesquisado.
 
-### <a name="iqueryable-vs-ienumerable"></a>IQueryable versus IEnumerable
+### <a name="iqueryable-vs-ienumerable"></a>IQueryable vs. IEnumerable
 
 O código chama o método `Where` em um objeto `IQueryable`, e o filtro é processado no servidor. Em alguns cenários, o aplicativo pode chamar o método `Where` como um método de extensão em uma coleção em memória. Por exemplo, suponha que `_context.Students` seja alterado do `DbSet` do EF Core para um método de repositório que retorna uma coleção `IEnumerable`. O resultado normalmente é o mesmo, mas em alguns casos pode ser diferente.
 
@@ -132,7 +132,7 @@ Substitua o código em *Pages/Students/index.cshtml* para criar um botão de **P
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
-O código anterior usa o [auxiliar de marca](xref:mvc/views/tag-helpers/intro) de `<form>` para adicionar a caixa de texto de pesquisa e o botão. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST. Com o POST, os parâmetros são passados no corpo da mensagem HTTP e não na URL. Quando o HTTP GET é usado, os dados de formulário são passados na URL como cadeias de consulta. Passar os dados com cadeias de consulta permite aos usuários marcar a URL. As [diretrizes do W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recomendam o uso de GET quando a ação não resulta em uma atualização.
+O código anterior usa o  [auxiliar de marcação](xref:mvc/views/tag-helpers/intro)`<form>` para adicionar o botão e a caixa de texto de pesquisa. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST. Com o POST, os parâmetros são passados no corpo da mensagem HTTP e não na URL. Quando o HTTP GET é usado, os dados de formulário são passados na URL como cadeias de consulta. Passar os dados com cadeias de consulta permite aos usuários marcar a URL. As [diretrizes do W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recomendam o uso de GET quando a ação não resulta em uma atualização.
 
 Teste o aplicativo:
 
@@ -205,7 +205,7 @@ Se a cadeia de caracteres de pesquisa é alterada durante a paginação, a pági
 
 ### <a name="add-paging-links-to-the-razor-page"></a>Adicionar links de paginação à Página do Razor
 
-Substitua o código em *Students/Index.cshtml* pelo código a seguir. As alterações são realçadas:
+Substitua o código em *Students/Index.cshtml* pelo seguinte código. As alterações são realçadas:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
@@ -228,7 +228,7 @@ Execute o aplicativo e navegue para a página de alunos.
 
 Esta seção cria uma página Sobre que exibe quantos alunos se inscreveram para cada data de registro. A atualização usa o agrupamento e inclui as seguintes etapas:
 
-* Criar um modelo de exibição para os dados usados pela página **Sobre**.
+* Crie um modelo de exibição para os dados usados pela página **Sobre.**
 * Atualizar a página Sobre para usar o modelo de exibição.
 
 ### <a name="create-the-view-model"></a>Criar o modelo de exibição
@@ -257,7 +257,7 @@ Execute o aplicativo e navegue para a página Sobre. A contagem de alunos para c
 
 ![Página Sobre](sort-filter-page/_static/about30.png)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 
@@ -279,15 +279,15 @@ Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](
 
 ## <a name="add-sorting-to-the-index-page"></a>Adicionar uma classificação à página Índice
 
-Adicione cadeias de caracteres à `PageModel` *Students/index. cshtml. cs* para conter os parâmetros de classificação:
+Adicionar strings aos *Alunos/Index.cshtml.cs* `PageModel` para conter os parâmetros de classificação:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
 
-Atualize os `OnGetAsync` *estudantes/index. cshtml. cs* com o seguinte código:
+Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly)]
 
-O código anterior recebe um parâmetro `sortOrder` da cadeia de caracteres de consulta na URL. A URL (incluindo a cadeia de caracteres de consulta) é gerada pelo [Auxiliar de Marcação de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+O código anterior recebe um parâmetro `sortOrder` da cadeia de caracteres de consulta na URL. A URL (incluindo a seqüência de consultas) é gerada pelo [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 )
 
 O parâmetro `sortOrder` é "Name" ou "Data". O parâmetro `sortOrder` é opcionalmente seguido de "_desc" para especificar a ordem descendente. A ordem de classificação padrão é crescente.
@@ -359,7 +359,7 @@ Para adicionar a filtragem à página Índice de Alunos:
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Adicionar a funcionalidade de filtragem a método Index
 
-Atualize os `OnGetAsync` *estudantes/index. cshtml. cs* com o seguinte código:
+Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
@@ -387,7 +387,7 @@ Em *Pages/Students/Index.cshtml*, adicione o código realçado a seguir para cri
 
 [!code-html[](intro/samples/cu21/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
-O código anterior usa o [auxiliar de marca](xref:mvc/views/tag-helpers/intro) de `<form>` para adicionar a caixa de texto de pesquisa e o botão. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST. Com o POST, os parâmetros são passados no corpo da mensagem HTTP e não na URL. Quando o HTTP GET é usado, os dados de formulário são passados na URL como cadeias de consulta. Passar os dados com cadeias de consulta permite aos usuários marcar a URL. As [diretrizes do W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recomendam o uso de GET quando a ação não resulta em uma atualização.
+O código anterior usa o  [auxiliar de marcação](xref:mvc/views/tag-helpers/intro)`<form>` para adicionar o botão e a caixa de texto de pesquisa. Por padrão, o auxiliar de marcação `<form>` envia dados de formulário com um POST. Com o POST, os parâmetros são passados no corpo da mensagem HTTP e não na URL. Quando o HTTP GET é usado, os dados de formulário são passados na URL como cadeias de consulta. Passar os dados com cadeias de consulta permite aos usuários marcar a URL. As [diretrizes do W3C](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recomendam o uso de GET quando a ação não resulta em uma atualização.
 
 Teste o aplicativo:
 
@@ -424,7 +424,7 @@ Em *Students/Index.cshtml.cs*, atualize o tipo de `Student` em `IList<Student>` 
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
-Atualize os `OnGetAsync` *estudantes/index. cshtml. cs* com o seguinte código:
+Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
 
@@ -533,8 +533,8 @@ Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído p
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 
 > [!div class="step-by-step"]
-> [Anterior](xref:data/ef-rp/crud)
-> [Próximo](xref:data/ef-rp/migrations)
+> [Próximo](xref:data/ef-rp/crud)
+> [anterior](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 

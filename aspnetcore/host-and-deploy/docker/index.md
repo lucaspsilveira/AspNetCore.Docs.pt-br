@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 01/08/2018
 uid: host-and-deploy/docker/index
 ms.openlocfilehash: cb5f774db5fab46a57f8ca4bbbca148f20f371ba
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78664076"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Hospedar o ASP.NET Core em contêineres do Docker
@@ -20,7 +20,7 @@ Os artigos a seguir estão disponíveis para saber mais sobre como hospedar apli
 [Introdução aos contêineres e ao Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index)  
 Veja como o uso de contêineres é uma abordagem de desenvolvimento de software na qual um aplicativo ou serviço, suas dependências e sua configuração são empacotados juntos como uma imagem de contêiner. A imagem pode ser testada e, em seguida, implantada em um host.
 
-[O que é o Docker?](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-defined)  
+[O que é Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-defined)  
 Descubra como o Docker é um projeto de software livre para automatizar a implantação de aplicativos como contêineres autossuficientes portáteis que podem ser executados na nuvem ou localmente.
 
 [Terminologia do Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-terminology)  
@@ -32,7 +32,7 @@ Descubra como imagens de contêiner do Docker são armazenadas em um registro de
 <xref:host-and-deploy/docker/building-net-docker-images> Saiba como criar um aplicativo ASP.NET Core e convertê-lo para Docker. Explore imagens do Docker mantidas pela Microsoft e examine os casos de uso.
 
 [Ferramentas de contêiner do Visual Studio](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
-Descubra como o Visual Studio dá suporte à criação, à depuração e à execução de aplicativos ASP.NET Core direcionados ao .NET Framework ou ao .NET Core no Docker for Windows. Há suporte para contêineres do Windows e Linux.
+Descubra como o Visual Studio dá suporte à criação, à depuração e à execução de aplicativos ASP.NET Core direcionados ao .NET Framework ou ao .NET Core no Docker for Windows. Contêineres do Windows e do Linux são compatíveis.
 
 [Publicar no Registro de Contêiner do Azure](/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)  
 Saiba como usar a extensão Ferramentas de Contêiner do Visual Studio para implantar um aplicativo do ASP.NET Core para um host Docker no Azure usando o PowerShell.

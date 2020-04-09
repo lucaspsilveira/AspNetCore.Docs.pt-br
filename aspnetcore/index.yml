@@ -1,68 +1,68 @@
 ### YamlMime:Hub
 title: Documentação do ASP.NET
-summary: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços que são rápidos, seguros, entre plataformas e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
+summary: Aprenda a usar ASP.NET Core para criar aplicativos e serviços web que sejam rápidos, seguros, multiplataformas e baseados em nuvem. Procurar tutoriais, código de exemplo, fundamentos, referência de API e muito mais.
 brand: aspnet
 metadata:
   title: Documentação do ASP.NET
-  description: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços que são rápidos, seguros, entre plataformas e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
+  description: Aprenda a usar ASP.NET Core para criar aplicativos e serviços web que sejam rápidos, seguros, multiplataformas e baseados em nuvem. Procurar tutoriais, código de exemplo, fundamentos, referência de API e muito mais.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
   ms.date: 03/27/2020
   ms.openlocfilehash: fb6d03616560649a336df8a624e7fb59006a7ea8
-  ms.sourcegitcommit: 4b166b49ec557a03f99f872dd069ca5e56faa524
+  ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/27/2020
+  ms.lasthandoff: 04/06/2020
   ms.locfileid: "80366648"
 highlightedContent:
   items:
-  - title: Criar um aplicativo ASP.NET Core em qualquer plataforma em 5 minutos
+  - title: Crie um aplicativo ASP.NET Core em qualquer plataforma em 5 minutos
     itemType: get-started
     url: getting-started/index.md
-  - title: Visão geral de ASP.NET Core
+  - title: Visão geral do Núcleo ASP.NET
     itemType: overview
     url: introduction-to-aspnet-core.md
-  - title: Tutoriais de vídeo ASP.NET Core
+  - title: tutoriais de vídeo ASP.NET Core
     itemType: video
     url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oW8nviYduHq7bmKode-p8Wy
   - title: Novidades nos documentos do ASP.NET Core
     itemType: whats-new
     url: whats-new/index.yml
-  - title: Criar sua primeira interface do usuário da Web
+  - title: Crie sua primeira ui web
     itemType: get-started
     url: tutorials/build-your-first-blazor-app.md
-  - title: Criar sua primeira API Web
+  - title: Crie sua primeira API web
     itemType: get-started
     url: tutorials/first-web-api.md
-  - title: Crie seu primeiro aplicativo Web em tempo real
+  - title: Crie seu primeiro aplicativo web em tempo real
     itemType: get-started
     url: tutorials/signalr.md
-  - title: Criar seu primeiro aplicativo Web MVC controlado por dados
+  - title: Crie seu primeiro aplicativo web MVC baseado em dados
     itemType: get-started
     url: tutorials/first-mvc-app/index.md
 conceptualContent:
   title: Desenvolver aplicativos ASP.NET Core
-  summary: Escolha aplicativos Web interativos, API da Web, aplicativos padronizados do MVC, aplicativos em tempo real e muito mais
+  summary: Escolha aplicativos web interativos, API web, aplicativos com padrão MVC, aplicativos em tempo real e muito mais
   items:
-  - title: Aplicativos de mais alto do cliente interativo
-    summary: Desenvolva com componentes de interface do usuário reutilizáveis que podem aproveitar o Webassembly para desempenho quase nativo
+  - title: Aplicativos Interativos blazor do lado do cliente
+    summary: Desenvolva com componentes de iu de ia reutilizáveis que podem tirar proveito do WebAssembly para um desempenho quase nativo
     links:
     - url: blazor/index.md
       itemType: overview
       text: Visão geral
     - url: blazor/get-started.md
       itemType: get-started
-      text: Crie seu primeiro aplicativo de mais incrivelmente
+      text: Crie seu primeiro aplicativo Blazor
     - url: tutorials/build-your-first-blazor-app.md
       itemType: get-started
-      text: Crie seu primeiro aplicativo de mais incrivelmente com componentes reutilizáveis
+      text: Construa seu primeiro aplicativo Blazor com componentes reutilizáveis
     - url: blazor/hosting-models.md
       itemType: concept
-      text: Modelos de hospedagem mais incrivelmente
-  - title: Aplicativos de API Web RESTful
-    summary: Desenvolver serviços HTTP RESTful com API Web ASP.NET Core
+      text: Modelos de hospedagem blazor
+  - title: Aplicativos de API web RESTful
+    summary: Desenvolva serviços HTTP RESTful com ASP.NET API web Core
     links:
     - url: tutorials/first-web-api.md
       itemType: get-started
@@ -72,7 +72,7 @@ conceptualContent:
       text: Criar APIs Web com o ASP.NET Core
     - url: tutorials/web-api-help-pages-using-swagger.md
       itemType: tutorial
-      text: Gerar páginas de ajuda da API Web com o Swagger/OpenAPI
+      text: Gerar páginas de ajuda de API web com Swagger / OpenAPI
     - url: web-api/action-return-types.md
       itemType: concept
       text: Tipos de retorno de ação do controlador
@@ -85,15 +85,15 @@ conceptualContent:
     - url: tutorials/web-api-javascript.md
       itemType: tutorial
       text: Chamar uma API Web do ASP.NET Core com o JavaScript
-  - title: Interface do usuário da Web com foco em página com Razor Pages
-    summary: Desenvolva aplicativos Web voltados para a página com uma separação clara de preocupações
+  - title: UI web focada em páginas com páginas de barbear
+    summary: Desenvolver aplicativos web focados em páginas com uma separação limpa de preocupações
     links:
     - url: tutorials/razor-pages/razor-pages-start.md
       itemType: get-started
-      text: Criar seu primeiro aplicativo Web Razor Pages
+      text: Crie seu primeiro aplicativo web Razor Pages
     - url: https://docs.microsoft.com/learn/modules/create-razor-pages-aspnet-core/
       itemType: tutorial
-      text: Criar uma interface do usuário da Web focada na página que consome uma API da Web
+      text: Crie uma iu web focada em página que consuma uma API web
     - url: mvc/views/razor.md
       itemType: concept
       text: Sintaxe Razor
@@ -103,15 +103,15 @@ conceptualContent:
     - url: razor-pages/razor-pages-conventions.md
       itemType: concept
       text: Roteamento
-  - title: Interface do usuário da Web com foco em página com o MVC
-    summary: Desenvolver aplicativos Web usando o padrão de design Model-View-Controller
+  - title: UI web focada em página com MVC
+    summary: Desenvolver aplicativos web usando o padrão de design Model-View-Controller
     links:
     - url: mvc/overview.md
       itemType: overview
       text: Visão geral
     - url: tutorials/first-mvc-app/index.md
       itemType: get-started
-      text: Criar seu primeiro aplicativo MVC ASP.NET Core
+      text: Crie seu primeiro aplicativo MVC do ASP.NET Core
     - url: mvc/views/overview.md
       itemType: concept
       text: Exibições
@@ -127,15 +127,15 @@ conceptualContent:
     - url: mvc/controllers/testing.md
       itemType: concept
       text: Teste de unidade
-  - title: Aplicativos Web em tempo real com Signalr
-    summary: Adicionar funcionalidade em tempo real ao seu aplicativo Web, habilitar o código do servidor para enviar conteúdo por push instantaneamente
+  - title: Aplicativos web em tempo real com SignalR
+    summary: Adicione funcionalidade em tempo real ao seu aplicativo web, habilite o código do lado do servidor para empurrar o conteúdo instantaneamente
     links:
     - url: signalr/introduction.md
       itemType: overview
       text: Visão geral
     - url: signalr/introduction.md
       itemType: get-started
-      text: Criar seu primeiro aplicativo Signalr
+      text: Crie seu primeiro aplicativo SignalR
     - url: tutorials/signalr-blazor-webassembly.md
       itemType: tutorial
       text: SignalR com Blazor WebAssembly
@@ -154,8 +154,8 @@ conceptualContent:
     - url: signalr/scale.md
       itemType: concept
       text: Hospedar e dimensionar
-  - title: Aplicativos RPC (chamada de procedimento remoto)-serviços gRPCs
-    summary: Desenvolva serviços de alto desempenho e de contrato com o gRPC em ASP.NET Core
+  - title: Aplicativos de Chamada de Procedimento Remoto (RPC) - serviços gRPC
+    summary: Desenvolver serviços de alto desempenho com gRPC em ASP.NET Core
     links:
     - url: grpc/index.md
       itemType: overview
@@ -165,7 +165,7 @@ conceptualContent:
       text: Criar um cliente e servidor gRPC
     - url: grpc/basics.md
       itemType: concept
-      text: conceitos dos serviços gRPCs emC#
+      text: 'conceitos de serviços gRPC em C #'
     - url: https://github.com/grpc/grpc-dotnet/tree/master/examples
       itemType: sample
       text: Exemplos
@@ -174,31 +174,31 @@ conceptualContent:
       text: Comparar serviços gRPC com APIs HTTP
     - url: grpc/aspnetcore.md
       itemType: tutorial
-      text: Adicionar um serviço gRPC a um aplicativo ASP.NET Core
+      text: Adicione um serviço gRPC a um aplicativo ASP.NET Core
     - url: grpc/client.md
       itemType: tutorial
-      text: Chamar serviços gRPCs com o cliente .NET
+      text: Ligue para os serviços gRPC com o cliente .NET
     - url: grpc/browser.md
       itemType: tutorial
       text: Usar o gRPC em aplicativos de navegador
-  - title: Aplicativos Web controlados por dados
-    summary: Criar aplicativos Web controlados por dados no ASP.NET Core
+  - title: Aplicativos web baseados em dados
+    summary: Crie aplicativos web baseados em dados no ASP.NET Core
     links:
     - url: tutorials/first-mvc-app/working-with-sql.md
       itemType: tutorial
-      text: SQL com ASP.NET Core
+      text: SQL com núcleo ASP.NET
     - url: blazor/data-binding.md
       itemType: concept
-      text: Vinculação de dados no mais ASP.NET Core
+      text: Vinculação de dados em ASP.NET Core Blazor
     - url: tutorials/razor-pages/sql.md
       itemType: tutorial
-      text: SQL Server Express e Razor Pages
+      text: Páginas expressas e navalha do servidor SQL
     - url: data/ef-rp/intro.md
       itemType: tutorial
-      text: Entity Framework Core com Razor Pages
+      text: Núcleo de Estrutura de Entidades com Páginas de Navalha
     - url: data/ef-rp/intro.md
       itemType: tutorial
-      text: Entity Framework Core com ASP.NET Core MVC
+      text: Núcleo de Estruturas de Entidades com MVC ASP.NET Núcleo
     - url: https://docs.microsoft.com/visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
       itemType: tutorial
       text: Armazenamento do Azure
@@ -208,8 +208,8 @@ conceptualContent:
     - url: https://docs.microsoft.com/azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=%2Faspnet%2Fcore%2Ftoc.json&bc=%2Faspnet%2Fcore%2Fbreadcrumb%2Ftoc.json&view=aspnetcore-3.1
       itemType: concept
       text: Armazenamento de Tabelas do Azure
-  - title: Versões anteriores do ASP.NET Framework
-    summary: Explore as visões gerais, tutoriais, conceitos fundamentais, arquitetura e referência de API para versões anteriores do ASP.NET Framework
+  - title: Versões-quadro ASP.NET anteriores
+    summary: Explore visões gerais, tutoriais, conceitos fundamentais, arquitetura e referência de API para versões framework ASP.NET anteriores
     links:
     - url: https://docs.microsoft.com/aspnet/overview
       itemType: concept
@@ -249,7 +249,7 @@ additionalContent:
       - url: security/authorization/introduction.md
         text: Autorização
       - url: https://docs.microsoft.com/learn/modules/secure-aspnet-core-identity/
-        text: 'Curso: proteger um aplicativo Web ASP.NET Core com a estrutura de identidade'
+        text: 'Curso: Proteja um aplicativo web ASP.NET Core com a estrutura de identidade'
       - url: security/data-protection/introduction.md
         text: Proteção de dados
       - url: security/app-secrets.md
@@ -285,23 +285,23 @@ additionalContent:
       - url: fundamentals/logging/index.md
         text: Registro em log
       - url: https://docs.microsoft.com/learn/modules/load-test-web-app-azure-devops/
-        text: Carregar aplicativos Web do Azure de teste usando o Azure DevOps
-    - title: Azure e ASP.NET Core
+        text: Teste de carga de aplicativos Web do Azure com o Azure DevOps
+    - title: Núcleo Azure e ASP.NET
       links:
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-dotnet
         text: Implantar um aplicativo Web ASP.NET
       - url: https://docs.microsoft.com/visualstudio/containers/container-tools?view=vs-2019.md
         text: ASP.NET Core e Docker
       - url: https://docs.microsoft.com/learn/modules/host-a-web-app-with-azure-app-service/
-        text: Hospedar um aplicativo Web com o serviço Azure App
+        text: Hospedar um aplicativo Web com o Serviço de Aplicativo do Azure
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
-        text: Serviço de aplicativo e banco de dados SQL do Azure
+        text: Serviço de aplicativos e banco de dados SQL do Azure
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-connect-msi
-        text: Identidade gerenciada com o ASP.NET e o banco de dados SQL do Azure
+        text: Identidade gerenciada com banco de dados sql ASP.NET e Azure
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-rest-api
-        text: API Web com CORS no serviço Azure App
+        text: API web com CORS no serviço de aplicativos do Azure
       - url: https://docs.microsoft.com/learn/modules/capture-application-logs-app-service/
-        text: Capturar logs de aplicativos Web com o log de diagnóstico do serviço de aplicativo
+        text: Capturar logs do aplicativo Web com o log de diagnósticos do Serviço de Aplicativo
     - title: Desempenho
       links:
       - url: performance/performance-best-practices.md
@@ -331,13 +331,13 @@ additionalContent:
     - title: Migração
       links:
       - url: migration/31-to-50.md
-        text: ASP.NET Core 3,1 a 5,0
+        text: núcleo ASP.NET 3.1 a 5.0
       - url: migration/30-to-31.md
-        text: ASP.NET Core 3,0 a 3,1
+        text: núcleo ASP.NET 3.0 a 3.1
       - url: migration/22-to-30.md
-        text: ASP.NET Core 2,2 a 3,0
+        text: núcleo ASP.NET 2.2 a 3.0
       - url: migration/21-to-22.md
-        text: ASP.NET Core 2,1 a 2,2
+        text: núcleo ASP.NET 2.1 a 2.2
       - url: migration/20_21.md
         text: ASP.NET Core 2.0 para 2.1
       - url: migration/1x-to-2x/index.md
@@ -347,13 +347,13 @@ additionalContent:
     - title: Arquitetura
       links:
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps
-        text: Escolha entre aplicativos Web tradicionais e aplicativos de página única (SPAs)
+        text: Escolha entre aplicativos web tradicionais e SPAs (Single Page Apps, aplicativos de página única)
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/architectural-principles
         text: Princípios de arquitetura
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
         text: Arquiteturas comuns de aplicativo Web
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-client-side-web-technologies
-        text: Tecnologias da Web comuns no lado do cliente
+        text: Tecnologias web comuns do lado do cliente
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/development-process-for-azure
         text: Processo de desenvolvimento para o Azure
-  footer: Contribuir para o ASP.NET docs. Leia nosso [Guia do colaborador](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md).
+  footer: Contribua para ASP.NET docs. Leia nosso [guia de contribuintes.](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)

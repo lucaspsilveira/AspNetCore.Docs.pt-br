@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 01/24/2019
 uid: fundamentals/troubleshoot-aspnet-core-localization
 ms.openlocfilehash: 229e274a22e170d984a16d3b1ee64ebc38c4ef77
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78660373"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>Solucionar problemas de Localização no ASP.NET Core
@@ -50,7 +50,7 @@ As causas comuns para não localizar recursos incluem:
 - O recurso está ausente do `resx` para alguns idiomas, mas presente em outros.
 - Se ainda houver problemas, verifique as mensagens de log de localização (que estão no nível de log `Debug`) para saber mais detalhes sobre os recursos ausentes.
 
-_**Dica:** Ao usar `CookieRequestCultureProvider`, verifique se aspas simples não são usadas com as culturas dentro do valor do cookie de localização. Por exemplo, `c='en-UK'|uic='en-US'` é um valor de cookie inválido, enquanto `c=en-UK|uic=en-US` é válido._
+_**Dica:** Ao `CookieRequestCultureProvider`usar, verifique se as cotações individuais não são usadas com as culturas dentro do valor do cookie de localização. Por exemplo, `c='en-UK'|uic='en-US'` é um valor `c=en-UK|uic=en-US` de cookie inválido, enquanto é válido._
 
 ## <a name="resources--class-libraries-issues"></a>Problemas de bibliotecas de recursos e classes
 
@@ -71,7 +71,7 @@ A classe `RequestLocalizationOptions` tem três provedores padrão:
 
 O [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) permite personalizar como a cultura de localização é fornecida no aplicativo. O `CustomRequestCultureProvider` é usado quando os provedores padrão não atendem aos seus requisitos.
 
-- Um motivo comum para o provedor personalizado não funcionar corretamente é não ser o primeiro provedor na lista `RequestCultureProviders`. Para resolver esse problema:
+- Um motivo comum para o provedor personalizado não funcionar corretamente é não ser o primeiro provedor na lista `RequestCultureProviders`. Para resolver o problema:
 
 - Insira o provedor personalizado na posição 0 da lista `RequestCultureProviders`, desta maneira:
 
@@ -102,7 +102,7 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
 Quando o namespace raiz de um assembly for diferente do nome do assembly, a localização não funcionará por padrão. Para evitar esse problema, use [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1), que é descrito em detalhes [aqui](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
 
 > [!WARNING]
-> Isso pode ocorrer quando o nome de um projeto não é um identificador .NET válido. Por exemplo, `my-project-name.csproj` usará o namespace raiz `my_project_name` e o nome do assembly `my-project-name` levando a esse erro. 
+> Isso pode ocorrer quando o nome de um projeto não é um identificador .NET válido. Por `my-project-name.csproj` exemplo, usará o `my_project_name` namespace `my-project-name` raiz e o nome de montagem que leva a esse erro. 
 
 ## <a name="resources--build-action"></a>Recursos e ação de build
 

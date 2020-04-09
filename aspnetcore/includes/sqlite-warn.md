@@ -11,9 +11,9 @@
 > * Remover a tabela antiga.
 > * Renomear a nova tabela.
 >
-> Escrever código específico do banco de dados desse tipo está fora do escopo deste tutorial. Em vez disso, este tutorial descarta e recria o banco de dados sempre que uma tentativa de aplicar uma migração falha. Para obter mais informações, consulte os seguintes recursos:
+> Escrever código específico do banco de dados desse tipo está fora do escopo deste tutorial. Em vez disso, este tutorial descarta e recria o banco de dados sempre que uma tentativa de aplicar uma migração falha. Para saber mais, consulte os recursos a seguir:
 >
 > * [Limitações do Provedor de Banco de Dados EF Core do SQLite](/ef/core/providers/sqlite/limitations)
 > * [Personalizar o código de migração](/ef/core/managing-schemas/migrations/#customize-migration-code)
-> * [Propagação de dados](/ef/core/modeling/data-seeding)
+> * [Semeamento de dados](/ef/core/modeling/data-seeding)
 > * [Instrução SQLite ALTER TABLE](https://sqlite.org/lang_altertable.html)

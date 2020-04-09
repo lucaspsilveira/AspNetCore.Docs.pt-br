@@ -1,4 +1,4 @@
-## <a name="grpc-not-supported-on-azure-app-service"></a>gRPC não tem suporte no serviço Azure App
+## <a name="grpc-not-supported-on-azure-app-service"></a>gRPC não suportado no Azure App Service
 
 > [!WARNING]
-> No momento, não há suporte para o [ASP.NET Core gRPC](xref:grpc/index) no serviço Azure app ou no IIS. A implementação HTTP/2 de http. sys não dá suporte a cabeçalhos de direita de resposta HTTP dos quais o gRPC se baseia. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/AspNetCore/issues/9020).
+> [ASP.NET Core gRPC](xref:grpc/index) não é suportado atualmente no Azure App Service ou IIS. A implementação HTTP/2 do Http.Sys não suporta cabeçalhos de resposta HTTP que o gRPC conta. Para obter mais informações, consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore/issues/9020).

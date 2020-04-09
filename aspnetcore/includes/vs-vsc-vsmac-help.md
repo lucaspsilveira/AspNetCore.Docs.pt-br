@@ -9,10 +9,10 @@
 
 ## <a name="visual-studio-code-help"></a>Ajuda do Visual Studio Code
 
-* [Guia de Introdução](https://code.visualstudio.com/docs)
+* [Começando](https://code.visualstudio.com/docs)
 * [Depuração](https://code.visualstudio.com/docs/editor/debugging)
 * [Terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal)
-* [Atalhos de teclado](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
+* [Atalhos do teclado](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
 
   * [Atalhos de teclado do macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
   * [Atalhos de teclado do Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)

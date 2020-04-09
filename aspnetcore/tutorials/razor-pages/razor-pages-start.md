@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
 ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658539"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 Este é o primeiro tutorial de uma série que ensina as noções básicas da criação de um aplicativo Web do Razor Pages no ASP.NET Core.
@@ -36,7 +36,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -56,19 +56,19 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
+* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 * Crie um aplicativo Web ASP.NET Core e selecione **Avançar**.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 * Nomeie o projeto **RazorPagesMovie**. É importante nomear o projeto *RazorPagesMovie* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selecione **ASP.NET Core 3,1** no menu suspenso, **aplicativo Web**e, em seguida, selecione **criar**.
+* Selecione **ASP.NET Núcleo 3.1** na estada, aplicativo **da Web**e selecione **Criar**.
 
 ![novo Aplicativo Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
   O seguinte projeto inicial é criado:
 
-  ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
+  ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -86,23 +86,23 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim**.
+* Depois que o ícone de chama OmniSharp da barra de status fica verde, uma caixa de diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'RazorPagesMovie'. Adicioná-los?** Selecione **Sim**.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **arquivo** > **nova solução**.
+* Selecione **Arquivo** > **Nova Solução**.
 
 ![Nova solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Selecione **.NET Core** > **aplicativo** > **aplicativo Web** > **Avançar**.
+* Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web** > **Avançar**.
 
   ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
-* Na caixa de diálogo **configurar seu novo aplicativo Web** , defina a **estrutura de destino** como **.NET Core 3,1**.
+* Na **configuração da nova** caixa de diálogo do aplicativo da Web, defina o **Framework de destino** para **.NET Core 3.1**.
 
-  ![seleção do macOS .NET Core 3,1](razor-pages-start/_static/targetframework3.png)
+  ![seleção macOS .NET Core 3.1](razor-pages-start/_static/targetframework3.png)
 
 * Nomeie o projeto **RazorPagesMovie** e, em seguida, selecione **Criar**.
 
@@ -145,7 +145,7 @@ Contém o ponto de entrada para o programa. Para obter mais informações, consu
 
 contém código que configura o comportamento do aplicativo. Para obter mais informações, consulte <xref:fundamentals/startup>.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Vá para o próximo tutorial da série:
 
@@ -177,7 +177,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -197,7 +197,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
+* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 
 * Crie um aplicativo Web ASP.NET Core e selecione **Avançar**.
 
@@ -213,7 +213,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   O seguinte projeto inicial é criado:
 
-  ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
+  ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -231,21 +231,21 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim**.
+* Depois que o ícone de chama OmniSharp da barra de status fica verde, uma caixa de diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'RazorPagesMovie'. Adicioná-los?** Selecione **Sim**.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **arquivo** > **nova solução**.
+* Selecione **Arquivo** > **Nova Solução**.
 
 ![Nova solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Selecione **.NET Core** > **aplicativo** > **aplicativo Web** > **Avançar**.
+* Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web** > **Avançar**.
 
   ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
-* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** como **.NET Core 3,1**.
+* Na **configuração da nova caixa de diálogo ASP.NET Core API** da Web, defina o **Framework de destino** para **.NET Core 3.1**.
 
   ![Seleção do .NET Core 3.0 do macOS](razor-pages-start/_static/targetframework3.png)
 
@@ -281,7 +281,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Pressione **Ctrl-F5** para execução sem o depurador.
+* Pressione **Ctrl-F5** para funcionar sem o depurador.
 
   O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
 
@@ -348,9 +348,9 @@ Contém o código que configura o comportamento do aplicativo, como se ele reque
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versão do Youtube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Vá para o próximo tutorial da série:
 

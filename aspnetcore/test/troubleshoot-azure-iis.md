@@ -1,49 +1,49 @@
 ---
-title: Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
+title: Solucionar problemas ASP.NET Núcleo no Serviço de Aplicativos e IIS do Azure
 author: rick-anderson
-description: Saiba como diagnosticar problemas com implantações de serviço Azure App e Serviços de Informações da Internet (IIS) de aplicativos ASP.NET Core.
+description: Saiba como diagnosticar problemas com as implantações do Azure App Service e do Internet Information Services (IIS) de aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: test/troubleshoot-azure-iis
 ms.openlocfilehash: 671f68da2ea261cb8ae32a9d5ef875217859054d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78655326"
 ---
-# <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
+# <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Núcleo no Serviço de Aplicativos e IIS do Azure
 
 De [Justin Kotalik](https://github.com/jkotalik)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Este artigo fornece informações sobre erros de inicialização de aplicativo comuns e instruções sobre como diagnosticar erros quando um aplicativo é implantado no serviço de Azure App ou IIS:
+Este artigo fornece informações sobre erros comuns de inicialização do aplicativo e instruções sobre como diagnosticar erros quando um aplicativo é implantado no Azure App Service ou IIS:
 
 [Erros de inicialização do aplicativo](#app-startup-errors)  
-Explica cenários de código de status HTTP de inicialização comuns.
+Explica cenários comuns de código de status HTTP da startup.
 
-[Solucionar problemas no serviço Azure App](#troubleshoot-on-azure-app-service)  
-Fornece conselhos de solução de problemas para aplicativos implantados no serviço Azure App.
+[Solução de problemas no Serviço de Aplicativos Do Azure](#troubleshoot-on-azure-app-service)  
+Fornece conselhos de solução de problemas para aplicativos implantados no Azure App Service.
 
 [Solução de problemas no IIS](#troubleshoot-on-iis)  
-Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica às implantações do Windows Server e do Windows desktop.
+Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica tanto às implantações do Windows Server quanto do Windows.
 
-[Limpar caches de pacote](#clear-package-caches)  
-Explica o que fazer quando pacotes incoerentes interrompem um aplicativo ao executar atualizações importantes ou alterar versões de pacotes.
+[Limpar caches de pacotes](#clear-package-caches)  
+Explica o que fazer quando pacotes incoerentes quebram um aplicativo ao realizar grandes atualizações ou alterar as versões do pacote.
 
 [Recursos adicionais](#additional-resources)  
 Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. A *502.5 - Falha de processo* ou *500.30 - Falha inicial* que ocorre quando a depuração local pode ser diagnosticada usando o conselho neste tópico.
 
-### <a name="40314-forbidden"></a>403,14 proibido
+### <a name="40314-forbidden"></a>403.14 Proibido
 
-Falha ao iniciar o aplicativo. O seguinte erro é registrado em log:
+O aplicativo não consegue iniciar. O seguinte erro está registrado:
 
 ```
 The Web server is configured to not list the contents of this directory.
@@ -51,32 +51,32 @@ The Web server is configured to not list the contents of this directory.
 
 O erro geralmente é causado por uma implantação quebrada no sistema de hospedagem, que inclui qualquer um dos seguintes cenários:
 
-* O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
-* O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O aplicativo é implantado na pasta errada no sistema de hospedagem.
+* O processo de implantação falhou em mover todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
+* O arquivo *Web.config* está ausente da implantação, ou o conteúdo do arquivo *Web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
-1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na pasta `D:\home\site\wwwroot`.
-   * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
-1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
+1. Reimplante o conteúdo da pasta de *publicação* do aplicativo para o sistema de hospedagem usando seu método normal de implantação, como Visual Studio, PowerShell ou implantação manual:
+   * Confirme se o arquivo *Web.config* está presente na implantação e que seu conteúdo está correto.
+   * Ao hospedar no Azure App Service, confirme `D:\home\site\wwwroot` se o aplicativo está implantado na pasta.
+   * Quando o aplicativo estiver hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **Configurações Básicas**do **IIS Manager**.
+1. Confirme se todos os arquivos e pastas do aplicativo foram implantados comparando a implantação no sistema de hospedagem com o conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure>. Para obter mais informações sobre o arquivo *Web. config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Para obter mais informações sobre o layout <xref:host-and-deploy/directory-structure>de um aplicativo publicado ASP.NET Core, consulte . Para obter mais informações sobre o <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>arquivo *web.config,* consulte .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
-Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do módulo ASP.NET Core para solucionar o problema.
+Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do Módulo do ASP.NET Core para solucionar o problema.
 
 ### <a name="5000-in-process-handler-load-failure"></a>500.0 Falha de carregamento de manipulador em processo
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-Erro desconhecido ao carregar ASP.NET Core componentes do [módulo](xref:host-and-deploy/aspnet-core-module) . Execute uma das seguintes ações:
+Ocorreu um erro desconhecido ao carregar ASP.NET componentes [do Módulo Núcleo.](xref:host-and-deploy/aspnet-core-module) Execute uma das seguintes ações:
 
 * Entre em contato com o [Suporte da Microsoft](https://support.microsoft.com/oas/default.aspx?prid=15832) (selecione **Ferramentas para Desenvolvedores** e, em seguida, **ASP.NET Core**).
 * Faça uma pergunta no Stack Overflow.
@@ -86,18 +86,18 @@ Erro desconhecido ao carregar ASP.NET Core componentes do [módulo](xref:host-an
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o .NET Core CLR em processo, mas falha ao iniciar. A causa de uma falha de inicialização do processo normalmente pode ser determinada das entradas no log de eventos do aplicativo e do log de stdout do módulo ASP.NET Core.
+O [módulo de núcleo ASP.NET](xref:host-and-deploy/aspnet-core-module) tenta iniciar o .NET Core CLR em processo, mas não consegue iniciar. A causa de uma falha de inicialização do processo geralmente pode ser determinada com base em entradas no Log de Eventos do Aplicativo e no log de stdout do Módulo do ASP.NET Core.
 
 Condições comuns de falha:
 
-* O aplicativo está configurado incorretamente devido ao direcionamento de uma versão do ASP.NET Core estrutura compartilhada que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino.
-* Usando Azure Key Vault, falta de permissões para o Key Vault. Verifique as políticas de acesso no Key Vault de destino para garantir que as permissões corretas sejam concedidas.
+* O aplicativo está mal configurado devido ao direcionamento de uma versão do ASP.NET Core quadro compartilhado que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino.
+* Usando o Azure Key Vault, falta de permissões para o Cofre de Chaves. Verifique as políticas de acesso no Cofre de Chaves direcionado para garantir que as permissões corretas sejam concedidas.
 
 ### <a name="50031-ancm-failed-to-find-native-dependencies"></a>500.31 O ANCM não pôde encontrar dependências nativas
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o tempo de execução do .NET Core em processo, mas falha ao iniciar. A causa mais comum dessa falha de inicialização é quando o runtime `Microsoft.NETCore.App` ou `Microsoft.AspNetCore.App` não está instalado. Se o aplicativo for implantado no ASP.NET Core 3.0 de destino e essa versão não existir no computador, esse erro ocorrerá. Segue um exemplo de mensagem de erro:
+O [ASP.NET Módulo Central](xref:host-and-deploy/aspnet-core-module) tenta iniciar o tempo de execução do .NET Core em processo, mas não consegue iniciar. A causa mais comum dessa falha de inicialização é quando o runtime `Microsoft.NETCore.App` ou `Microsoft.AspNetCore.App` não está instalado. Se o aplicativo for implantado no ASP.NET Core 3.0 de destino e essa versão não existir no computador, esse erro ocorrerá. Segue um exemplo de mensagem de erro:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -115,7 +115,7 @@ A mensagem de erro lista todas as versões instaladas do .NET Core e a versão s
 * Altere o aplicativo para uma versão do .NET Core que está presente no computador de destino.
 * Publique o aplicativo como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-Durante a execução no desenvolvimento (quando a variável de ambiente `ASPNETCORE_ENVIRONMENT` está definida como `Development`), o erro específico é gravado na resposta HTTP. A causa de uma falha de inicialização do processo também é encontrada no log de eventos do aplicativo.
+Durante a execução no desenvolvimento (quando a variável de ambiente `ASPNETCORE_ENVIRONMENT` está definida como `Development`), o erro específico é gravado na resposta HTTP. A causa de uma falha de inicialização do processo também é encontrada no Log de Eventos do Aplicativo.
 
 ### <a name="50032-ancm-failed-to-load-dll"></a>500.32 O ANCM não pôde carregar o dll
 
@@ -132,7 +132,7 @@ Para corrigir esse erro:
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente aplicativos direcionados para o `Microsoft.AspNetCore.App` Framework podem ser hospedados pelo [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Apenas aplicativos direcionados à `Microsoft.AspNetCore.App` estrutura podem ser hospedados pelo ASP.NET Módulo [Núcleo](xref:host-and-deploy/aspnet-core-module).
 
 Para corrigir esse erro, confirme se o aplicativo está direcionado para a estrutura `Microsoft.AspNetCore.App`. Confira o `.runtimeconfig.json` para verificar a estrutura de destino do aplicativo.
 
@@ -144,13 +144,13 @@ Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS sepa
 
 ### <a name="50035-ancm-multiple-in-process-applications-in-same-process"></a>500.35 Vários aplicativos do ANCM em processo no mesmo processo
 
-O processo de trabalho não pode executar vários aplicativos em processo no mesmo processo.
+O processo do trabalhador não pode executar vários aplicativos em processo no mesmo processo.
 
 Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS separados.
 
 ### <a name="50036-ancm-out-of-process-handler-load-failure"></a>500.36 Falha ao carregar o manipulador de fora do processo do ANCM
 
-O manipulador de solicitação de fora do processo *aspnetcorev2_outofprocess.dll* não está próximo do arquivo *aspnetcorev2.dll*. Isso indica uma instalação corrompida do [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+O manipulador de solicitação de fora do processo *aspnetcorev2_outofprocess.dll* não está próximo do arquivo *aspnetcorev2.dll*. Isso indica uma instalação corrompida do [ASP.NET Módulo Central](xref:host-and-deploy/aspnet-core-module).
 
 Para corrigir esse erro, repare a instalação do [Pacote de Hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (para IIS) ou do Visual Studio (para o IIS Express).
 
@@ -164,7 +164,7 @@ Esse erro pode ocorrer ao iniciar um grande número de aplicativos no mesmo comp
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo normalmente pode ser determinada das entradas no log de eventos do aplicativo e do log de stdout do módulo ASP.NET Core.
+O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo geralmente pode ser determinada com base em entradas no Log de Eventos do Aplicativo e no log de stdout do Módulo do ASP.NET Core.
 
 Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll*) instalado no computador e referenciado por um metapacote como `Microsoft.AspNetCore.App`. A referência do metapacote pode especificar a versão mínima necessária. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
@@ -178,7 +178,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-O aplicativo falhou ao ser iniciado porque o assembly do aplicativo ( *.dll*) não pôde ser carregado.
+O aplicativo falhou ao ser iniciado porque o assembly do aplicativo (*.dll*) não pôde ser carregado.
 
 Esse erro ocorre quando há uma incompatibilidade de número de bits entre o aplicativo publicado e o processo w3wp/iisexpress.
 
@@ -190,7 +190,7 @@ Confirme se a configuração de 32 bits do pool de aplicativos está correta:
    * Se estiver implantando um aplicativo de 32 bits (x86), defina o valor como `True`.
    * Se estiver implantando um aplicativo de 64 bits (x64), defina o valor como `False`.
 
-Confirme se não há um conflito entre uma `<Platform>` Propriedade do MSBuild no arquivo de projeto e o bit de bits publicado do aplicativo.
+Confirme se não há um `<Platform>` conflito entre uma propriedade MSBuild no arquivo do projeto e a bitividade publicada do aplicativo.
 
 ### <a name="connection-reset"></a>Redefinição de conexão
 
@@ -198,13 +198,13 @@ Se um erro ocorrer após os cabeçalhos serem enviados, será tarde demais para 
 
 ### <a name="default-startup-limits"></a>Limites de inicialização padrão
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com um *startupTimeLimit* padrão de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com uma *inicialização padrãoTimeLimit* de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-## <a name="troubleshoot-on-azure-app-service"></a>Solucionar problemas no serviço Azure App
+## <a name="troubleshoot-on-azure-app-service"></a>Solução de problemas no Serviço de Aplicativos Do Azure
 
 [!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
-### <a name="application-event-log-azure-app-service"></a>Log de eventos do aplicativo (serviço Azure App)
+### <a name="application-event-log-azure-app-service"></a>Registro de eventos de aplicativos (serviço de aplicativos do Azure)
 
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
@@ -216,7 +216,7 @@ Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e soluci
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -226,7 +226,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -249,7 +249,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x86).*
 
@@ -271,7 +271,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x64).*
 
@@ -280,19 +280,19 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
+### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>ASP.NET registro de stdout do Módulo Central (Serviço de Aplicativos Azure)
 
 O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro úteis não encontradas no Log de Eventos do Aplicativo. Para habilitar e exibir logs de stdout:
 
 1. Navegue até a folha **Diagnosticar e resolver problemas** no portal do Azure.
 1. Em **SELECIONAR CATEGORIA DE PROBLEMA**, selecione o botão **Aplicativo Web Inoperante**.
-1. Em **soluções sugeridas** > **habilitar o redirecionamento de log stdout**, selecione o botão para **abrir o console do kudu para editar Web. config**.
+1. Em **Soluções Sugeridas** > **Habilitar o Redirecionamento de Log de Stdout**, selecione o botão para **Abrir o Console do Kudu para editar o Web.Config**.
 1. No **Console de Diagnóstico** do Kudu, abra as pastas no caminho **site** > **wwwroot**. Role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -311,19 +311,19 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="aspnet-core-module-debug-log-azure-app-service"></a>Log de depuração do módulo ASP.NET Core (serviço Azure App)
+### <a name="aspnet-core-module-debug-log-azure-app-service"></a>ASP.NET registro de depuração do Módulo Central (Serviço de Aplicativos Do Azure)
 
 O log de depuração do Módulo do ASP.NET Core fornece registro em log adicional e mais profundo do Módulo do ASP.NET Core. Para habilitar e exibir logs de stdout:
 
 1. Para habilitar o log de diagnóstico avançado, execute um destes procedimentos:
    * Siga as instruções em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para configurar o aplicativo para um log de diagnósticos avançado. Reimplante o aplicativo.
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
-     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-     1. Abra as pastas no caminho **site** > **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra as pastas no **site** > de caminho**wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas no caminho **site** > **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
+1. Abra as pastas no **site** > de caminho**wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
 
 Desabilite o registro em log de depuração quando a solução de problemas for concluída:
@@ -340,7 +340,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (serviço de Azure App)
+### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (Serviço de Aplicativos Azure)
 
 Para saber mais sobre quando um aplicativo responde lentamente ou trava em uma solicitação, confira os seguintes artigos:
 
@@ -363,9 +363,9 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas para o **site** do caminho > **wwwroot** e role para baixo para revelar o arquivo *Web. config* na parte inferior da lista.
+1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
@@ -395,13 +395,13 @@ Para obter mais informações, veja [Habilitar log de diagnósticos para aplicat
 >
 > Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-## <a name="troubleshoot-on-iis"></a>Solucionar problemas no IIS
+## <a name="troubleshoot-on-iis"></a>Solução de problemas no IIS
 
-### <a name="application-event-log-iis"></a>Log de eventos do aplicativo (IIS)
+### <a name="application-event-log-iis"></a>Registro de eventos de aplicativos (IIS)
 
 Acesse o Log de Eventos do Aplicativo:
 
-1. Abra o menu Iniciar, procure *Visualizador de eventos*e selecione o aplicativo **Visualizador de eventos** .
+1. Abra o menu Iniciar, procure o *Visualizador de Eventos*e selecione o aplicativo **Visualizador de Eventos.**
 1. No **Visualizador de Eventos**, abra o nó **Logs do Windows**.
 1. Selecione **Aplicativo** para abrir o Log de Eventos do Aplicativo.
 1. Procure erros associados ao aplicativo com falha. Os erros têm um valor *Módulo AspNetCore do IIS* ou *Módulo AspNetCore do IIS Express* na coluna *Origem*.
@@ -426,7 +426,7 @@ Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#s
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
-### <a name="aspnet-core-module-stdout-log-iis"></a>Log de stdout do módulo ASP.NET Core (IIS)
+### <a name="aspnet-core-module-stdout-log-iis"></a>ASP.NET registro de stdout do Módulo Central (IIS)
 
 Para habilitar e exibir logs de stdout:
 
@@ -452,9 +452,9 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="aspnet-core-module-debug-log-iis"></a>Log de depuração do módulo ASP.NET Core (IIS)
+### <a name="aspnet-core-module-debug-log-iis"></a>ASP.NET registro de depuração do Módulo Central (IIS)
 
-Adicione as seguintes configurações do manipulador ao arquivo *Web. config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
+Adicione as seguintes configurações do manipulador ao arquivo *Web.config* do aplicativo para habilitar ASP.NET registro de depuração do Módulo Central:
 
 ```xml
 <aspNetCore ...>
@@ -471,7 +471,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="enable-the-developer-exception-page"></a>Habilitar a página de exceção do desenvolvedor
 
-A [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada a Web. config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
+A  [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -493,7 +493,7 @@ Se um aplicativo for capaz de responder às solicitações, obtenha as solicita�
 
 ### <a name="slow-or-hanging-app-iis"></a>Aplicativo lento ou suspenso (IIS)
 
-Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, de inicialização ou de um aplicativo lento.
+Um *crash dump* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, falha de inicialização ou aplicativo lento.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>O aplicativo falha ou encontra uma exceção
 
@@ -534,23 +534,23 @@ Depois que um aplicativo falhar e a coleta de despejo de memória for concluída
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
 
-Quando um aplicativo *paralisa* (para de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [arquivos de despejo no modo de usuário: escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o despejo.
+Quando um aplicativo *é travado* (pára de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [Arquivos de despejo do modo de usuário: Escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o dump.
 
 #### <a name="analyze-the-dump"></a>Analisar o despejo de memória
 
 Um despejo de memória pode ser analisado usando várias abordagens. Para obter mais informações, confira [Analisando um arquivo de despejo de memória do modo de usuário](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
-## <a name="clear-package-caches"></a>Limpar caches de pacote
+## <a name="clear-package-caches"></a>Limpar caches de pacotes
 
-Um aplicativo em funcionamento pode falhar imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
+Um aplicativo em funcionamento pode falhar imediatamente após atualizar o .NET Core SDK na máquina de desenvolvimento ou alterar as versões do pacote dentro do aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
 
 1. Exclua as pastas *bin* e *obj*.
-1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
+1. Limpe os caches do pacote executando [os locais dotnet nuget tudo -- limpar](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacotes também pode ser realizada `nuget locals all -clear`com a ferramenta [nuget.exe](https://www.nuget.org/downloads) e executando o comando . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
-1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
+1. Exclua todos os arquivos da pasta de implantação no servidor antes de reimplantar o aplicativo.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -562,54 +562,54 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 ### <a name="azure-documentation"></a>Documentação do Azure
 
 * [Application Insights para ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
-* [Seção aplicativos Web de depuração remota de solução de problemas de um aplicativo Web no serviço Azure App usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
+* [Seção de aplicativos web de depuração remota de Problemas soluciona um aplicativo web no Azure App Service usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
 * [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics)
-* [Como monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
+* [Como monitorar aplicativos Web no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
 * [Solucionar problemas de um aplicativo Web no Serviço de Aplicativo do Azure usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
-* [Solucionar problemas de erros HTTP de "502 – gateway incorreto" e "503 – serviço não disponível" em seus aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
+* [Solucionar problemas de erros HTTP de "502 Gateway Incorreto" e "503 Serviço Indisponível" em seus Aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Solucionar problemas de desempenho de aplicativo Web lento no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
-* [Perguntas frequentes sobre o desempenho do aplicativo para aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
+* [Perguntas frequentes do desempenho do aplicativo para Aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
 * [Área restrita do aplicativo Web do Azure (limitações de execução de runtime do Serviço de Aplicativo)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 * [Azure Friday: experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 
 ### <a name="visual-studio-documentation"></a>Documentação do Visual Studio
 
-* [ASP.NET Core de depuração remota no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
-* [ASP.NET Core de depuração remota em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
+* [Debug remoto ASP.NET Núcleo no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
+* [Depuração remota ASP.NET Núcleo em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
 * [Aprenda a depurar usando o Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
 
 ### <a name="visual-studio-code-documentation"></a>Documentação do Visual Studio Code
 
-* [Depurar com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+* [Depuração com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
 
-Este artigo fornece informações sobre erros de inicialização de aplicativo comuns e instruções sobre como diagnosticar erros quando um aplicativo é implantado no serviço de Azure App ou IIS:
+Este artigo fornece informações sobre erros comuns de inicialização do aplicativo e instruções sobre como diagnosticar erros quando um aplicativo é implantado no Azure App Service ou IIS:
 
 [Erros de inicialização do aplicativo](#app-startup-errors)  
-Explica cenários de código de status HTTP de inicialização comuns.
+Explica cenários comuns de código de status HTTP da startup.
 
-[Solucionar problemas no serviço Azure App](#troubleshoot-on-azure-app-service)  
-Fornece conselhos de solução de problemas para aplicativos implantados no serviço Azure App.
+[Solução de problemas no Serviço de Aplicativos Do Azure](#troubleshoot-on-azure-app-service)  
+Fornece conselhos de solução de problemas para aplicativos implantados no Azure App Service.
 
 [Solução de problemas no IIS](#troubleshoot-on-iis)  
-Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica às implantações do Windows Server e do Windows desktop.
+Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica tanto às implantações do Windows Server quanto do Windows.
 
-[Limpar caches de pacote](#clear-package-caches)  
-Explica o que fazer quando pacotes incoerentes interrompem um aplicativo ao executar atualizações importantes ou alterar versões de pacotes.
+[Limpar caches de pacotes](#clear-package-caches)  
+Explica o que fazer quando pacotes incoerentes quebram um aplicativo ao realizar grandes atualizações ou alterar as versões do pacote.
 
 [Recursos adicionais](#additional-resources)  
 Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. A *502.5 - Falha de processo* ou *500.30 - Falha inicial* que ocorre quando a depuração local pode ser diagnosticada usando o conselho neste tópico.
 
-### <a name="40314-forbidden"></a>403,14 proibido
+### <a name="40314-forbidden"></a>403.14 Proibido
 
-Falha ao iniciar o aplicativo. O seguinte erro é registrado em log:
+O aplicativo não consegue iniciar. O seguinte erro está registrado:
 
 ```
 The Web server is configured to not list the contents of this directory.
@@ -617,32 +617,32 @@ The Web server is configured to not list the contents of this directory.
 
 O erro geralmente é causado por uma implantação quebrada no sistema de hospedagem, que inclui qualquer um dos seguintes cenários:
 
-* O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
-* O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O aplicativo é implantado na pasta errada no sistema de hospedagem.
+* O processo de implantação falhou em mover todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
+* O arquivo *Web.config* está ausente da implantação, ou o conteúdo do arquivo *Web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
-1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na pasta `D:\home\site\wwwroot`.
-   * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
-1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
+1. Reimplante o conteúdo da pasta de *publicação* do aplicativo para o sistema de hospedagem usando seu método normal de implantação, como Visual Studio, PowerShell ou implantação manual:
+   * Confirme se o arquivo *Web.config* está presente na implantação e que seu conteúdo está correto.
+   * Ao hospedar no Azure App Service, confirme `D:\home\site\wwwroot` se o aplicativo está implantado na pasta.
+   * Quando o aplicativo estiver hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **Configurações Básicas**do **IIS Manager**.
+1. Confirme se todos os arquivos e pastas do aplicativo foram implantados comparando a implantação no sistema de hospedagem com o conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure>. Para obter mais informações sobre o arquivo *Web. config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Para obter mais informações sobre o layout <xref:host-and-deploy/directory-structure>de um aplicativo publicado ASP.NET Core, consulte . Para obter mais informações sobre o <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>arquivo *web.config,* consulte .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
-Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do módulo ASP.NET Core para solucionar o problema.
+Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do Módulo do ASP.NET Core para solucionar o problema.
 
 ### <a name="5000-in-process-handler-load-failure"></a>500.0 Falha de carregamento de manipulador em processo
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o .NET Core CLR e encontrar o manipulador de solicitação em processo (*aspnetcorev2_inprocess. dll*). Verifique que:
+O [módulo de núcleo ASP.NET](xref:host-and-deploy/aspnet-core-module) falha ao encontrar o .NET Core CLR e encontrar o manipulador de solicitação em processo *(aspnetcorev2_inprocess.dll*). Verifique se:
 
 * O aplicativo destina-se ao pacote NuGet [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) ou ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 * A versão da estrutura compartilhada do ASP.NET Core a que o aplicativo se destina está instalada no computador de destino.
@@ -651,13 +651,13 @@ O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao local
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o manipulador de solicitação de hospedagem fora do processo. Verifique se a *aspnetcorev2_outofprocess.dll* está presente em uma subpasta próxima a *aspnetcorev2.dll*.
+O [ASP.NET Módulo Núcleo](xref:host-and-deploy/aspnet-core-module) falha ao encontrar o manipulador de solicitação de hospedagem fora do processo. Verifique se a *aspnetcorev2_outofprocess.dll* está presente em uma subpasta próxima a *aspnetcorev2.dll*.
 
 ### <a name="5025-process-failure"></a>502.5 Falha de processo
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo normalmente pode ser determinada das entradas no log de eventos do aplicativo e do log de stdout do módulo ASP.NET Core.
+O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo geralmente pode ser determinada com base em entradas no Log de Eventos do Aplicativo e no log de stdout do Módulo do ASP.NET Core.
 
 Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll*) instalado no computador e referenciado por um metapacote como `Microsoft.AspNetCore.App`. A referência do metapacote pode especificar a versão mínima necessária. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
@@ -671,7 +671,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-O aplicativo falhou ao ser iniciado porque o assembly do aplicativo ( *.dll*) não pôde ser carregado.
+O aplicativo falhou ao ser iniciado porque o assembly do aplicativo (*.dll*) não pôde ser carregado.
 
 Esse erro ocorre quando há uma incompatibilidade de número de bits entre o aplicativo publicado e o processo w3wp/iisexpress.
 
@@ -683,7 +683,7 @@ Confirme se a configuração de 32 bits do pool de aplicativos está correta:
    * Se estiver implantando um aplicativo de 32 bits (x86), defina o valor como `True`.
    * Se estiver implantando um aplicativo de 64 bits (x64), defina o valor como `False`.
 
-Confirme se não há um conflito entre uma `<Platform>` Propriedade do MSBuild no arquivo de projeto e o bit de bits publicado do aplicativo.
+Confirme se não há um `<Platform>` conflito entre uma propriedade MSBuild no arquivo do projeto e a bitividade publicada do aplicativo.
 
 ### <a name="connection-reset"></a>Redefinição de conexão
 
@@ -691,13 +691,13 @@ Se um erro ocorrer após os cabeçalhos serem enviados, será tarde demais para 
 
 ### <a name="default-startup-limits"></a>Limites de inicialização padrão
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com um *startupTimeLimit* padrão de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com uma *inicialização padrãoTimeLimit* de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-## <a name="troubleshoot-on-azure-app-service"></a>Solucionar problemas no serviço Azure App
+## <a name="troubleshoot-on-azure-app-service"></a>Solução de problemas no Serviço de Aplicativos Do Azure
 
 [!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
-### <a name="application-event-log-azure-app-service"></a>Log de eventos do aplicativo (serviço Azure App)
+### <a name="application-event-log-azure-app-service"></a>Registro de eventos de aplicativos (serviço de aplicativos do Azure)
 
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
@@ -709,7 +709,7 @@ Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e soluci
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -719,7 +719,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -742,7 +742,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x86).*
 
@@ -764,7 +764,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x64).*
 
@@ -773,19 +773,19 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
+### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>ASP.NET registro de stdout do Módulo Central (Serviço de Aplicativos Azure)
 
 O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro úteis não encontradas no Log de Eventos do Aplicativo. Para habilitar e exibir logs de stdout:
 
 1. Navegue até a folha **Diagnosticar e resolver problemas** no portal do Azure.
 1. Em **SELECIONAR CATEGORIA DE PROBLEMA**, selecione o botão **Aplicativo Web Inoperante**.
-1. Em **soluções sugeridas** > **habilitar o redirecionamento de log stdout**, selecione o botão para **abrir o console do kudu para editar Web. config**.
+1. Em **Soluções Sugeridas** > **Habilitar o Redirecionamento de Log de Stdout**, selecione o botão para **Abrir o Console do Kudu para editar o Web.Config**.
 1. No **Console de Diagnóstico** do Kudu, abra as pastas no caminho **site** > **wwwroot**. Role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -804,19 +804,19 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="aspnet-core-module-debug-log-azure-app-service"></a>Log de depuração do módulo ASP.NET Core (serviço Azure App)
+### <a name="aspnet-core-module-debug-log-azure-app-service"></a>ASP.NET registro de depuração do Módulo Central (Serviço de Aplicativos Do Azure)
 
 O log de depuração do Módulo do ASP.NET Core fornece registro em log adicional e mais profundo do Módulo do ASP.NET Core. Para habilitar e exibir logs de stdout:
 
 1. Para habilitar o log de diagnóstico avançado, execute um destes procedimentos:
    * Siga as instruções em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para configurar o aplicativo para um log de diagnósticos avançado. Reimplante o aplicativo.
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
-     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-     1. Abra as pastas no caminho **site** > **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra as pastas no **site** > de caminho**wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas no caminho **site** > **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
+1. Abra as pastas no **site** > de caminho**wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
 
 Desabilite o registro em log de depuração quando a solução de problemas for concluída:
@@ -833,7 +833,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (serviço de Azure App)
+### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (Serviço de Aplicativos Azure)
 
 Para saber mais sobre quando um aplicativo responde lentamente ou trava em uma solicitação, confira os seguintes artigos:
 
@@ -856,9 +856,9 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas para o **site** do caminho > **wwwroot** e role para baixo para revelar o arquivo *Web. config* na parte inferior da lista.
+1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
@@ -888,13 +888,13 @@ Para obter mais informações, veja [Habilitar log de diagnósticos para aplicat
 >
 > Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-## <a name="troubleshoot-on-iis"></a>Solucionar problemas no IIS
+## <a name="troubleshoot-on-iis"></a>Solução de problemas no IIS
 
-### <a name="application-event-log-iis"></a>Log de eventos do aplicativo (IIS)
+### <a name="application-event-log-iis"></a>Registro de eventos de aplicativos (IIS)
 
 Acesse o Log de Eventos do Aplicativo:
 
-1. Abra o menu Iniciar, procure *Visualizador de eventos*e selecione o aplicativo **Visualizador de eventos** .
+1. Abra o menu Iniciar, procure o *Visualizador de Eventos*e selecione o aplicativo **Visualizador de Eventos.**
 1. No **Visualizador de Eventos**, abra o nó **Logs do Windows**.
 1. Selecione **Aplicativo** para abrir o Log de Eventos do Aplicativo.
 1. Procure erros associados ao aplicativo com falha. Os erros têm um valor *Módulo AspNetCore do IIS* ou *Módulo AspNetCore do IIS Express* na coluna *Origem*.
@@ -919,7 +919,7 @@ Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#s
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
-### <a name="aspnet-core-module-stdout-log-iis"></a>Log de stdout do módulo ASP.NET Core (IIS)
+### <a name="aspnet-core-module-stdout-log-iis"></a>ASP.NET registro de stdout do Módulo Central (IIS)
 
 Para habilitar e exibir logs de stdout:
 
@@ -945,9 +945,9 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="aspnet-core-module-debug-log-iis"></a>Log de depuração do módulo ASP.NET Core (IIS)
+### <a name="aspnet-core-module-debug-log-iis"></a>ASP.NET registro de depuração do Módulo Central (IIS)
 
-Adicione as seguintes configurações do manipulador ao arquivo *Web. config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
+Adicione as seguintes configurações do manipulador ao arquivo *Web.config* do aplicativo para habilitar ASP.NET registro de depuração do Módulo Central:
 
 ```xml
 <aspNetCore ...>
@@ -964,7 +964,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="enable-the-developer-exception-page"></a>Habilitar a página de exceção do desenvolvedor
 
-A [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada a Web. config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
+A  [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -986,7 +986,7 @@ Se um aplicativo for capaz de responder às solicitações, obtenha as solicita�
 
 ### <a name="slow-or-hanging-app-iis"></a>Aplicativo lento ou suspenso (IIS)
 
-Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, de inicialização ou de um aplicativo lento.
+Um *crash dump* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, falha de inicialização ou aplicativo lento.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>O aplicativo falha ou encontra uma exceção
 
@@ -1027,23 +1027,23 @@ Depois que um aplicativo falhar e a coleta de despejo de memória for concluída
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
 
-Quando um aplicativo *paralisa* (para de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [arquivos de despejo no modo de usuário: escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o despejo.
+Quando um aplicativo *é travado* (pára de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [Arquivos de despejo do modo de usuário: Escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o dump.
 
 #### <a name="analyze-the-dump"></a>Analisar o despejo de memória
 
 Um despejo de memória pode ser analisado usando várias abordagens. Para obter mais informações, confira [Analisando um arquivo de despejo de memória do modo de usuário](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
-## <a name="clear-package-caches"></a>Limpar caches de pacote
+## <a name="clear-package-caches"></a>Limpar caches de pacotes
 
-Um aplicativo em funcionamento pode falhar imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
+Um aplicativo em funcionamento pode falhar imediatamente após atualizar o .NET Core SDK na máquina de desenvolvimento ou alterar as versões do pacote dentro do aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
 
 1. Exclua as pastas *bin* e *obj*.
-1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
+1. Limpe os caches do pacote executando [os locais dotnet nuget tudo -- limpar](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacotes também pode ser realizada `nuget locals all -clear`com a ferramenta [nuget.exe](https://www.nuget.org/downloads) e executando o comando . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
-1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
+1. Exclua todos os arquivos da pasta de implantação no servidor antes de reimplantar o aplicativo.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -1055,54 +1055,54 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 ### <a name="azure-documentation"></a>Documentação do Azure
 
 * [Application Insights para ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
-* [Seção aplicativos Web de depuração remota de solução de problemas de um aplicativo Web no serviço Azure App usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
+* [Seção de aplicativos web de depuração remota de Problemas soluciona um aplicativo web no Azure App Service usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
 * [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics)
-* [Como monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
+* [Como monitorar aplicativos Web no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
 * [Solucionar problemas de um aplicativo Web no Serviço de Aplicativo do Azure usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
-* [Solucionar problemas de erros HTTP de "502 – gateway incorreto" e "503 – serviço não disponível" em seus aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
+* [Solucionar problemas de erros HTTP de "502 Gateway Incorreto" e "503 Serviço Indisponível" em seus Aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Solucionar problemas de desempenho de aplicativo Web lento no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
-* [Perguntas frequentes sobre o desempenho do aplicativo para aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
+* [Perguntas frequentes do desempenho do aplicativo para Aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
 * [Área restrita do aplicativo Web do Azure (limitações de execução de runtime do Serviço de Aplicativo)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 * [Azure Friday: experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 
 ### <a name="visual-studio-documentation"></a>Documentação do Visual Studio
 
-* [ASP.NET Core de depuração remota no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
-* [ASP.NET Core de depuração remota em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
+* [Debug remoto ASP.NET Núcleo no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
+* [Depuração remota ASP.NET Núcleo em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
 * [Aprenda a depurar usando o Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
 
 ### <a name="visual-studio-code-documentation"></a>Documentação do Visual Studio Code
 
-* [Depurar com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+* [Depuração com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-Este artigo fornece informações sobre erros de inicialização de aplicativo comuns e instruções sobre como diagnosticar erros quando um aplicativo é implantado no serviço de Azure App ou IIS:
+Este artigo fornece informações sobre erros comuns de inicialização do aplicativo e instruções sobre como diagnosticar erros quando um aplicativo é implantado no Azure App Service ou IIS:
 
 [Erros de inicialização do aplicativo](#app-startup-errors)  
-Explica cenários de código de status HTTP de inicialização comuns.
+Explica cenários comuns de código de status HTTP da startup.
 
-[Solucionar problemas no serviço Azure App](#troubleshoot-on-azure-app-service)  
-Fornece conselhos de solução de problemas para aplicativos implantados no serviço Azure App.
+[Solução de problemas no Serviço de Aplicativos Do Azure](#troubleshoot-on-azure-app-service)  
+Fornece conselhos de solução de problemas para aplicativos implantados no Azure App Service.
 
 [Solução de problemas no IIS](#troubleshoot-on-iis)  
-Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica às implantações do Windows Server e do Windows desktop.
+Fornece conselhos de solução de problemas para aplicativos implantados no IIS ou em execução no IIS Express localmente. A orientação se aplica tanto às implantações do Windows Server quanto do Windows.
 
-[Limpar caches de pacote](#clear-package-caches)  
-Explica o que fazer quando pacotes incoerentes interrompem um aplicativo ao executar atualizações importantes ou alterar versões de pacotes.
+[Limpar caches de pacotes](#clear-package-caches)  
+Explica o que fazer quando pacotes incoerentes quebram um aplicativo ao realizar grandes atualizações ou alterar as versões do pacote.
 
 [Recursos adicionais](#additional-resources)  
 Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de processo 502,5* que ocorre ao depurar localmente pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de processo 502.5* que ocorre quando a depuração local pode ser diagnosticada usando o conselho neste tópico.
 
-### <a name="40314-forbidden"></a>403,14 proibido
+### <a name="40314-forbidden"></a>403.14 Proibido
 
-Falha ao iniciar o aplicativo. O seguinte erro é registrado em log:
+O aplicativo não consegue iniciar. O seguinte erro está registrado:
 
 ```
 The Web server is configured to not list the contents of this directory.
@@ -1110,32 +1110,32 @@ The Web server is configured to not list the contents of this directory.
 
 O erro geralmente é causado por uma implantação quebrada no sistema de hospedagem, que inclui qualquer um dos seguintes cenários:
 
-* O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
-* O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O aplicativo é implantado na pasta errada no sistema de hospedagem.
+* O processo de implantação falhou em mover todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
+* O arquivo *Web.config* está ausente da implantação, ou o conteúdo do arquivo *Web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
-1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na pasta `D:\home\site\wwwroot`.
-   * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
-1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
+1. Reimplante o conteúdo da pasta de *publicação* do aplicativo para o sistema de hospedagem usando seu método normal de implantação, como Visual Studio, PowerShell ou implantação manual:
+   * Confirme se o arquivo *Web.config* está presente na implantação e que seu conteúdo está correto.
+   * Ao hospedar no Azure App Service, confirme `D:\home\site\wwwroot` se o aplicativo está implantado na pasta.
+   * Quando o aplicativo estiver hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **Configurações Básicas**do **IIS Manager**.
+1. Confirme se todos os arquivos e pastas do aplicativo foram implantados comparando a implantação no sistema de hospedagem com o conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure>. Para obter mais informações sobre o arquivo *Web. config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+Para obter mais informações sobre o layout <xref:host-and-deploy/directory-structure>de um aplicativo publicado ASP.NET Core, consulte . Para obter mais informações sobre o <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>arquivo *web.config,* consulte .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
-Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do módulo ASP.NET Core para solucionar o problema.
+Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do Módulo do ASP.NET Core para solucionar o problema.
 
 ### <a name="5025-process-failure"></a>502.5 Falha de processo
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo normalmente pode ser determinada das entradas no log de eventos do aplicativo e do log de stdout do módulo ASP.NET Core.
+O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. A causa de uma falha de inicialização do processo geralmente pode ser determinada com base em entradas no Log de Eventos do Aplicativo e no log de stdout do Módulo do ASP.NET Core.
 
 Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll*) instalado no computador e referenciado por um metapacote como `Microsoft.AspNetCore.App`. A referência do metapacote pode especificar a versão mínima necessária. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
@@ -1149,7 +1149,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-O aplicativo falhou ao ser iniciado porque o assembly do aplicativo ( *.dll*) não pôde ser carregado.
+O aplicativo falhou ao ser iniciado porque o assembly do aplicativo (*.dll*) não pôde ser carregado.
 
 Esse erro ocorre quando há uma incompatibilidade de número de bits entre o aplicativo publicado e o processo w3wp/iisexpress.
 
@@ -1161,7 +1161,7 @@ Confirme se a configuração de 32 bits do pool de aplicativos está correta:
    * Se estiver implantando um aplicativo de 32 bits (x86), defina o valor como `True`.
    * Se estiver implantando um aplicativo de 64 bits (x64), defina o valor como `False`.
 
-Confirme se não há um conflito entre uma `<Platform>` Propriedade do MSBuild no arquivo de projeto e o bit de bits publicado do aplicativo.
+Confirme se não há um `<Platform>` conflito entre uma propriedade MSBuild no arquivo do projeto e a bitividade publicada do aplicativo.
 
 ### <a name="connection-reset"></a>Redefinição de conexão
 
@@ -1169,13 +1169,13 @@ Se um erro ocorrer após os cabeçalhos serem enviados, será tarde demais para 
 
 ### <a name="default-startup-limits"></a>Limites de inicialização padrão
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com um *startupTimeLimit* padrão de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado com uma *inicialização padrãoTimeLimit* de 120 segundos. Quando deixado no valor padrão, um aplicativo pode levar até dois minutos para iniciar antes que uma falha do processo seja registrada em log pelo módulo. Para obter informações sobre como configurar o módulo, veja [Atributos do elemento aspNetCore](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-## <a name="troubleshoot-on-azure-app-service"></a>Solucionar problemas no serviço Azure App
+## <a name="troubleshoot-on-azure-app-service"></a>Solução de problemas no Serviço de Aplicativos Do Azure
 
 [!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
-### <a name="application-event-log-azure-app-service"></a>Log de eventos do aplicativo (serviço Azure App)
+### <a name="application-event-log-azure-app-service"></a>Registro de eventos de aplicativos (serviço de aplicativos do Azure)
 
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
@@ -1187,7 +1187,7 @@ Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e soluci
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -1197,7 +1197,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -1220,7 +1220,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x86).*
 
@@ -1242,7 +1242,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-**Implantação dependente de estrutura em execução em uma versão de visualização**
+**Implantação dependente da estrutura em execução em uma versão de visualização**
 
 *Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x64).*
 
@@ -1251,19 +1251,19 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
+### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>ASP.NET registro de stdout do Módulo Central (Serviço de Aplicativos Azure)
 
 O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro úteis não encontradas no Log de Eventos do Aplicativo. Para habilitar e exibir logs de stdout:
 
 1. Navegue até a folha **Diagnosticar e resolver problemas** no portal do Azure.
 1. Em **SELECIONAR CATEGORIA DE PROBLEMA**, selecione o botão **Aplicativo Web Inoperante**.
-1. Em **soluções sugeridas** > **habilitar o redirecionamento de log stdout**, selecione o botão para **abrir o console do kudu para editar Web. config**.
+1. Em **Soluções Sugeridas** > **Habilitar o Redirecionamento de Log de Stdout**, selecione o botão para **Abrir o Console do Kudu para editar o Web.Config**.
 1. No **Console de Diagnóstico** do Kudu, abra as pastas no caminho **site** > **wwwroot**. Role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -1282,7 +1282,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (serviço de Azure App)
+### <a name="slow-or-hanging-app-azure-app-service"></a>Aplicativo lento ou suspenso (Serviço de Aplicativos Azure)
 
 Para saber mais sobre quando um aplicativo responde lentamente ou trava em uma solicitação, confira os seguintes artigos:
 
@@ -1305,9 +1305,9 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas para o **site** do caminho > **wwwroot** e role para baixo para revelar o arquivo *Web. config* na parte inferior da lista.
+1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
@@ -1337,13 +1337,13 @@ Para obter mais informações, veja [Habilitar log de diagnósticos para aplicat
 >
 > Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-## <a name="troubleshoot-on-iis"></a>Solucionar problemas no IIS
+## <a name="troubleshoot-on-iis"></a>Solução de problemas no IIS
 
-### <a name="application-event-log-iis"></a>Log de eventos do aplicativo (IIS)
+### <a name="application-event-log-iis"></a>Registro de eventos de aplicativos (IIS)
 
 Acesse o Log de Eventos do Aplicativo:
 
-1. Abra o menu Iniciar, procure *Visualizador de eventos*e selecione o aplicativo **Visualizador de eventos** .
+1. Abra o menu Iniciar, procure o *Visualizador de Eventos*e selecione o aplicativo **Visualizador de Eventos.**
 1. No **Visualizador de Eventos**, abra o nó **Logs do Windows**.
 1. Selecione **Aplicativo** para abrir o Log de Eventos do Aplicativo.
 1. Procure erros associados ao aplicativo com falha. Os erros têm um valor *Módulo AspNetCore do IIS* ou *Módulo AspNetCore do IIS Express* na coluna *Origem*.
@@ -1368,7 +1368,7 @@ Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#s
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
-### <a name="aspnet-core-module-stdout-log-iis"></a>Log de stdout do módulo ASP.NET Core (IIS)
+### <a name="aspnet-core-module-stdout-log-iis"></a>ASP.NET registro de stdout do Módulo Central (IIS)
 
 Para habilitar e exibir logs de stdout:
 
@@ -1396,7 +1396,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="enable-the-developer-exception-page"></a>Habilitar a página de exceção do desenvolvedor
 
-A [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada a Web. config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
+A  [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -1417,7 +1417,7 @@ Se um aplicativo for capaz de responder às solicitações, obtenha as solicita�
 
 ### <a name="slow-or-hanging-app-iis"></a>Aplicativo lento ou suspenso (IIS)
 
-Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, de inicialização ou de um aplicativo lento.
+Um *crash dump* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, falha de inicialização ou aplicativo lento.
 
 #### <a name="app-crashes-or-encounters-an-exception"></a>O aplicativo falha ou encontra uma exceção
 
@@ -1458,23 +1458,23 @@ Depois que um aplicativo falhar e a coleta de despejo de memória for concluída
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
 
-Quando um aplicativo *paralisa* (para de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [arquivos de despejo no modo de usuário: escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o despejo.
+Quando um aplicativo *é travado* (pára de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [Arquivos de despejo do modo de usuário: Escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o dump.
 
 #### <a name="analyze-the-dump"></a>Analisar o despejo de memória
 
 Um despejo de memória pode ser analisado usando várias abordagens. Para obter mais informações, confira [Analisando um arquivo de despejo de memória do modo de usuário](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
-## <a name="clear-package-caches"></a>Limpar caches de pacote
+## <a name="clear-package-caches"></a>Limpar caches de pacotes
 
-Um aplicativo em funcionamento pode falhar imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
+Um aplicativo em funcionamento pode falhar imediatamente após atualizar o .NET Core SDK na máquina de desenvolvimento ou alterar as versões do pacote dentro do aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
 
 1. Exclua as pastas *bin* e *obj*.
-1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
+1. Limpe os caches do pacote executando [os locais dotnet nuget tudo -- limpar](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacotes também pode ser realizada `nuget locals all -clear`com a ferramenta [nuget.exe](https://www.nuget.org/downloads) e executando o comando . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
-1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
+1. Exclua todos os arquivos da pasta de implantação no servidor antes de reimplantar o aplicativo.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -1486,24 +1486,24 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 ### <a name="azure-documentation"></a>Documentação do Azure
 
 * [Application Insights para ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
-* [Seção aplicativos Web de depuração remota de solução de problemas de um aplicativo Web no serviço Azure App usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
+* [Seção de aplicativos web de depuração remota de Problemas soluciona um aplicativo web no Azure App Service usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
 * [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics)
-* [Como monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
+* [Como monitorar aplicativos Web no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)
 * [Solucionar problemas de um aplicativo Web no Serviço de Aplicativo do Azure usando o Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
-* [Solucionar problemas de erros HTTP de "502 – gateway incorreto" e "503 – serviço não disponível" em seus aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
+* [Solucionar problemas de erros HTTP de "502 Gateway Incorreto" e "503 Serviço Indisponível" em seus Aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Solucionar problemas de desempenho de aplicativo Web lento no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
-* [Perguntas frequentes sobre o desempenho do aplicativo para aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
+* [Perguntas frequentes do desempenho do aplicativo para Aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
 * [Área restrita do aplicativo Web do Azure (limitações de execução de runtime do Serviço de Aplicativo)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 * [Azure Friday: experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 
 ### <a name="visual-studio-documentation"></a>Documentação do Visual Studio
 
-* [ASP.NET Core de depuração remota no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
-* [ASP.NET Core de depuração remota em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
+* [Debug remoto ASP.NET Núcleo no IIS no Azure no Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
+* [Depuração remota ASP.NET Núcleo em um computador IIS remoto no Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
 * [Aprenda a depurar usando o Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
 
 ### <a name="visual-studio-code-documentation"></a>Documentação do Visual Studio Code
 
-* [Depurar com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+* [Depuração com o Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
 ::: moniker-end

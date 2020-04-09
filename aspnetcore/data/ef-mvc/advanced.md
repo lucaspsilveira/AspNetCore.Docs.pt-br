@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core'
+title: 'Tutorial: Conheça cenários avançados - ASP.NET MVC com EF Core'
 description: Este tutorial apresenta tópicos úteis para ir além das noções básicas de desenvolvimento de aplicativos Web ASP.NET Core que usam o Entity Framework Core.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/16/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79416229"
 ---
-# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core
+# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Conheça cenários avançados - ASP.NET MVC com EF Core
 
 No tutorial anterior, você implementou a herança de tabela por hierarquia. Este tutorial apresenta vários tópicos que são úteis para consideração quando você vai além dos conceitos básicos de desenvolvimento de aplicativos Web ASP.NET Core que usam o Entity Framework Core.
 
@@ -109,7 +109,7 @@ Clique em **Atualizar**. O número de linhas afetadas é exibido:
 
 Clique em **Voltar para a Lista** para ver a lista de cursos com o número revisado de créditos.
 
-Observe que o código de produção deve garantir que as atualizações sempre resultem em dados válidos. O código simplificado mostrado aqui pode multiplicar o número de créditos o suficiente para resultar em números maiores que 5. (A propriedade `Credits` tem um atributo `[Range(0, 5)]`.) A consulta de atualização funcionaria, mas os dados inválidos poderiam causar resultados inesperados em outras partes do sistema que assumem que o número de créditos é de 5 ou menos.
+Observe que o código de produção deve garantir que as atualizações sempre resultem em dados válidos. O código simplificado mostrado aqui pode multiplicar o número de créditos o suficiente para resultar em números maiores que 5. (A `Credits` propriedade `[Range(0, 5)]` tem um atributo.) A consulta de atualização funcionaria, mas os dados inválidos poderiam causar resultados inesperados em outras partes do sistema que assumem que o número de créditos é de 5 ou menos.
 
 Para obter mais informações sobre consultas SQL brutas, consulte [Consultas SQL brutas](/ef/core/querying/raw-sql).
 
@@ -181,7 +181,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Código-fonte e planos de desenvolvimento do EF Core
 
-O código-fonte do Entity Framework Core está em [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore). O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/dotnet/efcore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
+A fonte do Núcleo [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)do Quadro da Entidade está em . O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/dotnet/efcore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
 
 Embora o código-fonte seja aberto, há suporte completo para o Entity Framework Core como um produto Microsoft. A equipe do Microsoft Entity Framework mantém controle sobre quais contribuições são aceitas e testa todas as alterações de código para garantir a qualidade de cada versão.
 
@@ -203,7 +203,7 @@ Tom Dykstra e Rick Anderson (twitter @RickAndMSFT) escreveram este tutorial. Row
 
 <a id="common-errors"></a>
 
-## <a name="troubleshoot-common-errors"></a>Solucionar erros comuns
+## <a name="troubleshoot-common-errors"></a>Solução de problemas comuns
 
 ### <a name="contosouniversitydll-used-by-another-process"></a>ContosoUniversity.dll usada por outro processo
 
@@ -243,7 +243,7 @@ dotnet ef database drop
 
 Mensagem de erro:
 
-> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
+> Ocorreu um erro relacionado à rede ou específico da instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome de instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
 
 Solução:
 

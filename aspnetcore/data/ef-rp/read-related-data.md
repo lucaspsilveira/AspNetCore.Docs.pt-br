@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 09/28/2019
 uid: data/ef-rp/read-related-data
 ms.openlocfilehash: d244ce1527486466bcbc6557ec35869aa206bc4f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656572"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Ler dados relacionados – 6 de 8
@@ -33,7 +33,7 @@ As seguintes ilustrações mostram as páginas concluídas para este tutorial:
 
 Há várias maneiras pelas quais o EF Core pode carregar dados relacionados nas propriedades de navegação de uma entidade:
 
-* [Carregamento adiantado](/ef/core/querying/related-data#eager-loading). O carregamento adiantado é quando uma consulta para um tipo de entidade também carrega entidades relacionadas. Quando uma entidade é lida, seus dados relacionados são recuperados. Normalmente, isso resulta em uma única consulta de junção que recupera todos os dados necessários. O EF Core emitirá várias consultas para alguns tipos de carregamento adiantado. A emissão de várias consultas pode ser mais eficiente do que uma única consulta gigante. O carregamento adiantado é especificado com os métodos `Include` e `ThenInclude`.
+* [Carregamento ansioso](/ef/core/querying/related-data#eager-loading). O carregamento adiantado é quando uma consulta para um tipo de entidade também carrega entidades relacionadas. Quando uma entidade é lida, seus dados relacionados são recuperados. Normalmente, isso resulta em uma única consulta de junção que recupera todos os dados necessários. O EF Core emitirá várias consultas para alguns tipos de carregamento adiantado. A emissão de várias consultas pode ser mais eficiente do que uma única consulta gigante. O carregamento adiantado é especificado com os métodos `Include` e `ThenInclude`.
 
   ![Exemplo de carregamento adiantado](read-related-data/_static/eager-loading.png)
  
@@ -52,7 +52,7 @@ Há várias maneiras pelas quais o EF Core pode carregar dados relacionados nas 
 
   ![Exemplo de carregamento explícito](read-related-data/_static/explicit-loading.png)
 
-* [Carregamento lento](/ef/core/querying/related-data#lazy-loading). [O carregamento lento foi adicionado ao EF Core na versão 2.1](/ef/core/querying/related-data#lazy-loading). Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. Na primeira vez que uma propriedade de navegação é acessada, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada para o banco de dados sempre que uma propriedade de navegação é acessada pela primeira vez.
+* [Carregamento preguiçoso](/ef/core/querying/related-data#lazy-loading). [O carregamento lento foi adicionado ao EF Core na versão 2.1](/ef/core/querying/related-data#lazy-loading). Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. Na primeira vez que uma propriedade de navegação é acessada, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada para o banco de dados sempre que uma propriedade de navegação é acessada pela primeira vez.
 
 ## <a name="create-course-pages"></a>Criar páginas do Curso
 
@@ -148,7 +148,7 @@ Consulte [IndexSelect.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/mas
 Esta seção aplica scaffold a páginas do Instrutor e adiciona Cursos e Inscrições relacionados à página Índice de Instrutores.
 
 <a name="IP"></a>
-![Página Índice de Instrutores](read-related-data/_static/instructors-index30.png)
+![Página de índice de instrutores](read-related-data/_static/instructors-index30.png)
 
 Essa página lê e exibe dados relacionados das seguintes maneiras:
 
@@ -196,7 +196,7 @@ Crie *SchoolViewModels/InstructorIndexData.cs* com o seguinte código:
 
 Para ver a aparência da página com scaffold antes de atualizá-la, execute o aplicativo e navegue até a página Instrutores.
 
-Atualize *Pages/Instructors/Index.cshtml.cs* pelo seguinte código:
+Atualizar *páginas/instrutores/Index.cshtml.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
@@ -258,7 +258,7 @@ O código anterior faz as seguintes alterações:
   }
   ```
 
-* Adiciona uma coluna **Cursos** que exibe os cursos ministrados por cada instrutor. Consulte [transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) para obter mais informações sobre essa sintaxe do Razor.
+* Adiciona uma coluna **Cursos** que exibe os cursos ministrados por cada instrutor. Consulte [a transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) para mais sobre esta sintaxe de navalha.
 
 * Adiciona um código que adiciona dinamicamente `class="success"` ao elemento `tr` do instrutor e do curso selecionados. Isso define uma cor da tela de fundo para a linha selecionada usando uma classe Bootstrap.
 
@@ -281,7 +281,7 @@ O código anterior faz as seguintes alterações:
 
 * Adiciona uma tabela de inscrições de alunos para o curso selecionado.
 
-Execute o aplicativo e selecione a guia **instrutores** . A página exibe a `Location` (Office) da entidade `OfficeAssignment` relacionada. Se `OfficeAssignment` for nulo, uma célula de tabela vazia será exibida.
+Execute o aplicativo e selecione a guia **Instrutores.** A página `Location` exibe o (escritório) da entidade relacionada. `OfficeAssignment` Se `OfficeAssignment` for nulo, uma célula de tabela vazia será exibida.
 
 Clique no link **Selecionar** para um instrutor. As alterações de estilo de linha e os cursos atribuídos a esse instrutor são exibidos.
 
@@ -318,7 +318,7 @@ Observe que o código anterior comenta `.AsNoTracking()`. As propriedades de nav
 
 Testar o aplicativo. De uma perspectiva dos usuários, o aplicativo se comporta de forma idêntica à versão anterior.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 O próximo tutorial mostra como atualizar os dados relacionados.
 
@@ -344,7 +344,7 @@ As seguintes ilustrações mostram as páginas concluídas para este tutorial:
 
 Há várias maneiras pelas quais o EF Core pode carregar dados relacionados nas propriedades de navegação de uma entidade:
 
-* [Carregamento adiantado](/ef/core/querying/related-data#eager-loading). O carregamento adiantado é quando uma consulta para um tipo de entidade também carrega entidades relacionadas. Quando a entidade é lida, seus dados relacionados são recuperados. Normalmente, isso resulta em uma única consulta de junção que recupera todos os dados necessários. O EF Core emitirá várias consultas para alguns tipos de carregamento adiantado. A emissão de várias consultas pode ser mais eficiente do que era o caso para algumas consultas no EF6 quando havia uma única consulta. O carregamento adiantado é especificado com os métodos `Include` e `ThenInclude`.
+* [Carregamento ansioso](/ef/core/querying/related-data#eager-loading). O carregamento adiantado é quando uma consulta para um tipo de entidade também carrega entidades relacionadas. Quando a entidade é lida, seus dados relacionados são recuperados. Normalmente, isso resulta em uma única consulta de junção que recupera todos os dados necessários. O EF Core emitirá várias consultas para alguns tipos de carregamento adiantado. A emissão de várias consultas pode ser mais eficiente do que era o caso para algumas consultas no EF6 quando havia uma única consulta. O carregamento adiantado é especificado com os métodos `Include` e `ThenInclude`.
 
   ![Exemplo de carregamento adiantado](read-related-data/_static/eager-loading.png)
  
@@ -363,7 +363,7 @@ Há várias maneiras pelas quais o EF Core pode carregar dados relacionados nas 
 
   ![Exemplo de carregamento explícito](read-related-data/_static/explicit-loading.png)
 
-* [Carregamento lento](/ef/core/querying/related-data#lazy-loading). [O carregamento lento foi adicionado ao EF Core na versão 2.1](/ef/core/querying/related-data#lazy-loading). Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. Na primeira vez que uma propriedade de navegação é acessada, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada para o BD sempre que uma propriedade de navegação é acessada pela primeira vez.
+* [Carregamento preguiçoso](/ef/core/querying/related-data#lazy-loading). [O carregamento lento foi adicionado ao EF Core na versão 2.1](/ef/core/querying/related-data#lazy-loading). Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. Na primeira vez que uma propriedade de navegação é acessada, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada para o BD sempre que uma propriedade de navegação é acessada pela primeira vez.
 
 * O operador `Select` carrega somente os dados relacionados necessários.
 
@@ -396,7 +396,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 ---
 
-O comando anterior gera o modelo `Course` por scaffolding. {1&gt;Abra o projeto no Visual Studio.&lt;1}
+O comando anterior gera o modelo `Course` por scaffolding. Abra o projeto no Visual Studio.
 
 Abra *Pages/Courses/Index.cshtml.cs* e examine o método `OnGetAsync`. O mecanismo de scaffolding especificou o carregamento adiantado para a propriedade de navegação `Department`. O método `Include` especifica o carregamento adiantado.
 
@@ -451,7 +451,7 @@ Consulte [IndexSelect.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/mas
 Nesta seção, a página Instrutores é criada.
 
 <a name="IP"></a>
-![Página Índice de Instrutores](read-related-data/_static/instructors-index.png)
+![Página de índice de instrutores](read-related-data/_static/instructors-index.png)
 
 Essa página lê e exibe dados relacionados das seguintes maneiras:
 
@@ -527,7 +527,7 @@ A marcação anterior faz as seguintes alterações:
   }
   ```
 
-* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Consulte [transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) para obter mais informações sobre essa sintaxe do Razor.
+* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Consulte [a transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) para mais sobre esta sintaxe de navalha.
 
 * Adicionou um código que adiciona `class="success"` dinamicamente ao elemento `tr` do instrutor selecionado. Isso define uma cor da tela de fundo para a linha selecionada usando uma classe Bootstrap.
 
@@ -546,7 +546,7 @@ A marcação anterior faz as seguintes alterações:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Execute o aplicativo e selecione a guia **instrutores** . A página exibe a `Location` (Office) da entidade `OfficeAssignment` relacionada. Se OfficeAssignment é nulo, uma célula de tabela vazia é exibida.
+Execute o aplicativo e selecione a guia **Instrutores.** A página `Location` exibe o (escritório) da entidade relacionada. `OfficeAssignment` Se OfficeAssignment é nulo, uma célula de tabela vazia é exibida.
 
 Clique no link **Selecionar**. O estilo de linha é alterado.
 
@@ -646,7 +646,7 @@ O próximo tutorial mostra como atualizar os dados relacionados.
 * [Versão do YouTube deste tutorial (parte 2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
->[Anterior](xref:data/ef-rp/complex-data-model)
->[Próximo](xref:data/ef-rp/update-related-data)
+>[Próximo](xref:data/ef-rp/complex-data-model)
+>[anterior](xref:data/ef-rp/update-related-data)
 
 ::: moniker-end

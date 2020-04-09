@@ -10,10 +10,10 @@ no-loc:
 - SignalR
 uid: fundamentals/websockets
 ms.openlocfilehash: a8040003374906fd93e12c9fde44c4a5ccc2cf37
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78655781"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Suporte ao WebSockets no ASP.NET Core
@@ -22,7 +22,7 @@ Por [Tom Dykstra](https://github.com/tdykstra) e [Andrew Stanton-Nurse](https://
 
 Este artigo explica como começar a usar o WebSockets no ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) é um protocolo que permite canais de comunicação persistentes bidirecionais em conexões TCP. Ele é usado em aplicativos que se beneficiam de comunicação rápida e em tempo real, como chat, painel e aplicativos de jogos.
 
-[Exibir ou baixar um código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([como baixar](xref:index#how-to-download-a-sample)). [Como executar](#sample-app).
+[Exibir ou baixar o código de amostra](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) [(como baixar).](xref:index#how-to-download-a-sample) [Como correr.](#sample-app)
 
 ## <a name="signalr"></a>SignalR
 
@@ -30,7 +30,7 @@ Este artigo explica como começar a usar o WebSockets no ASP.NET Core. [WebSocke
 
 Para a maioria dos aplicativos, recomendamos o SignalR sobre WebSockets brutos. O SignalR fornece o fallback de transporte para os ambientes em que o WebSocket não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E, na maioria dos cenários, o SignalR não tem nenhuma desvantagem de desempenho significativa em comparação ao uso de WebSockets brutos.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * ASP.NET Core 1.1 ou posterior
 * Qualquer sistema operacional compatível com o ASP.NET Core:
@@ -68,7 +68,7 @@ Adicione o middleware do WebSockets no método `Configure` da classe `Startup`:
 
 ::: moniker range="< aspnetcore-2.2"
 
-As seguintes definições podem ser configuradas:
+As seguintes configurações podem ser definidas:
 
 * `KeepAliveInterval` – a frequência para enviar quadros "ping" ao cliente para garantir que os proxies mantenham a conexão aberta. O padrão é dois minutos.
 * `ReceiveBufferSize` – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
@@ -77,7 +77,7 @@ As seguintes definições podem ser configuradas:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-As seguintes definições podem ser configuradas:
+As seguintes configurações podem ser definidas:
 
 * `KeepAliveInterval` – a frequência para enviar quadros "ping" ao cliente para garantir que os proxies mantenham a conexão aberta. O padrão é dois minutos.
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize> – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
@@ -184,13 +184,13 @@ Para habilitar o suporte para o protocolo WebSocket no Windows 8 ou posterior:
 > [!NOTE]
 > Estas etapas não são necessárias ao usar o IIS Express
 
-1. Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
-1. Abra os nós a seguir: **Serviços de Informações da Internet** > **Serviços da World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**.
+1. Navegue para **programas**de > **painéis de** > controle**Programas e recursos** > **Ligue ou desligue os recursos do Windows** (lado esquerdo da tela).
+1. Abra os seguintes nós: **Serviços de informação da Internet Recursos** > de desenvolvimento**de aplicativos de serviços** > web**em todo o mundo**.
 1. Selecione o recurso **Protocolo WebSocket**. Selecione **OK**.
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Desabilite o WebSocket ao usar o socket.io no Node.js
 
-Se estiver usando o suporte WebSocket no [Socket.Io](https://socket.io/) no [node. js](https://nodejs.org/), desabilite o módulo WebSocket padrão do IIS usando o elemento `webSocket` em *Web. config* ou *ApplicationHost. config*. Se essa etapa não for executada, o módulo WebSocket do IIS tentará manipular a comunicação WebSocket em vez do node. js e do aplicativo.
+Se usar o suporte ao WebSocket em [socket.io](https://socket.io/) no [Node.js,](https://nodejs.org/) `webSocket` desative o módulo Padrão IIS WebSocket usando o elemento em *Web.config* ou *applicationHost.config*. Se essa etapa não for executada, o módulo IIS WebSocket tentará lidar com a comunicação do WebSocket em vez de Node.js e do aplicativo.
 
 ```xml
 <system.webServer>

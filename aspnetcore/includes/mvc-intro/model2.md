@@ -14,7 +14,7 @@ O código anterior cria uma propriedade `DbSet` para o conjunto de entidades. Na
 
 ### <a name="add-a-database-connection-string"></a>Adicionar uma cadeia de conexão de banco de dados
 
-Adicione uma cadeia de conexão ao arquivo *appsettings.json*:
+Adicione uma seqüência de conexões ao arquivo *appsettings.json:*
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
@@ -24,7 +24,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*:
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 
@@ -53,7 +53,7 @@ O código anterior cria uma propriedade `DbSet` para o conjunto de entidades. Na
 
 ### <a name="add-a-database-connection-string"></a>Adicionar uma cadeia de conexão de banco de dados
 
-Adicione uma cadeia de conexão ao arquivo *appsettings.json*:
+Adicione uma seqüência de conexões ao arquivo *appsettings.json:*
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
@@ -70,7 +70,7 @@ O pacote `Microsoft.VisualStudio.Web.CodeGeneration.Design` é necessário para 
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 

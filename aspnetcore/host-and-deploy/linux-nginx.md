@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/05/2020
 uid: host-and-deploy/linux-nginx
 ms.openlocfilehash: 320a5364efe85b06028d8e80000e3455bb8ebd18
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657909"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
@@ -32,17 +32,17 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.
-   1. Visite a [página baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Selecione a versão mais recente do .NET Core sem visualização.
-   1. Baixe o tempo de execução de não visualização mais recente na tabela em **executar aplicativos-tempo de execução**.
-   1. Selecione o link de **instruções do Gerenciador de pacotes** do Linux e siga as instruções do Ubuntu para sua versão do Ubuntu.
+   1. Visite a [página Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selecione a versão mais recente não visualização .NET Core.
+   1. Baixe o tempo de execução não visualizatório mais recente na tabela em **Executar aplicativos - Runtime**.
+   1. Selecione o link **de instruções do gerenciador de pacotes** Linux e siga as instruções do Ubuntu para a sua versão do Ubuntu.
 1. Um aplicativo ASP.NET Core existente.
 
-A qualquer momento no futuro depois de atualizar a estrutura compartilhada, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
+Em qualquer momento no futuro, após atualizar a estrutura compartilhada, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
@@ -81,7 +81,7 @@ O Kestrel é excelente para servir conteúdo dinâmico do ASP.NET Core. No entan
 
 Para os fins deste guia, uma única instância de Nginx é usada. Ela é executada no mesmo servidor, junto com o servidor HTTP. Com base nos requisitos, uma configuração diferente pode ser escolhida.
 
-Uma vez que as solicitações são encaminhadas pelo proxy reverso, use o [Middleware de Cabeçalhos Encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/). O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
+Como as solicitações são encaminhadas por proxy reverso, use o [Middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft.AspNetCore.HttpOverrides.](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
 
 Qualquer componente que dependa do esquema, como autenticação, geração de link, redirecionamentos e localização geográfica, deverá ser colocado depois de invocar o Middleware de Cabeçalhos Encaminhados. Como regra geral, o Middleware de Cabeçalhos Encaminhados deve ser executado antes de outro middleware, exceto middleware de tratamento de erro e de diagnóstico. Essa ordenação garantirá que o middleware conte com informações de cabeçalhos encaminhadas que podem consumir os valores de cabeçalho para processamento.
 
@@ -149,7 +149,7 @@ server {
 }
 ```
 
-Se o aplicativo for um aplicativo de servidor mais incrivelmente que se baseia em WebSockets do Signalr, consulte <xref:host-and-deploy/blazor/server#linux-with-nginx> para obter informações sobre como definir o cabeçalho `Connection`.
+Se o aplicativo é um aplicativo Blazor Server que <xref:host-and-deploy/blazor/server#linux-with-nginx> conta com WebSockets `Connection` SignalR, consulte informações sobre como definir o cabeçalho.
 
 Quando nenhum `server_name` corresponde, o Nginx usa o servidor padrão. Se nenhum servidor padrão é definido, o primeiro servidor no arquivo de configuração é o servidor padrão. Como prática recomendada, adicione um servidor padrão específico que retorna um código de status 444 no arquivo de configuração. Um exemplo de configuração de servidor padrão é:
 
@@ -211,7 +211,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-No exemplo anterior, o usuário que gerencia o serviço é especificado pela opção `User`. O usuário (`www-data`) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
+No exemplo anterior, o usuário que gerencia o `User` serviço é especificado pela opção. O usuário`www-data`( ) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
 
 Use `TimeoutStopSec` para configurar a duração do tempo de espera para o aplicativo desligar depois de receber o sinal de interrupção inicial. Se o aplicativo não desligar nesse período, o SIGKILL será emitido para encerrá-lo. Forneça o valor como segundos sem unidade (por exemplo, `150`), um valor de duração (por exemplo, `2min 30s`) ou `infinity` para desabilitar o tempo limite. `TimeoutStopSec` é revertido para o valor padrão de `DefaultTimeoutStopSec` no arquivo de configuração do gerenciador (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf* e *user.conf.d*). O tempo limite padrão para a maioria das distribuições é de 90 segundos.
 
@@ -273,7 +273,7 @@ Já que o aplicativo Web usando Kestrel é gerenciado usando `systemd`, todos os
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-Para obter mais filtragem, opções de tempo como `--since today`, `--until 1 hour ago` ou uma combinação desses fatores pode reduzir a quantidade de entradas retornadas.
+Para obter mais filtragem, opções de hora como `--since today`, `--until 1 hour ago` ou uma combinação delas, pode reduzir a quantidade de entradas retornadas.
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
@@ -287,7 +287,7 @@ Se o token de autenticação for armazenado na memória quando o aplicativo for 
 
 * Todos os tokens de autenticação baseados em cookies serão invalidados.
 * Os usuários precisam entrar novamente na próxima solicitação deles.
-* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir os [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [cookies TempData do MVC do ASP.NET Core](xref:fundamentals/app-state#tempdata).
+* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET principais cookies MVC TempData](xref:fundamentals/app-state#tempdata).
 
 Para configurar a proteção de dados de modo que ela mantenha e criptografe o token de autenticação, consulte:
 
@@ -296,7 +296,7 @@ Para configurar a proteção de dados de modo que ela mantenha e criptografe o t
 
 ## <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
 
-As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 4 K ou 8 K, dependendo da plataforma. Um aplicativo pode exigir campos maiores do que o padrão (por exemplo, aplicativos que usam [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, as configurações padrão do servidor proxy exigirão ajuste. Os valores a serem aplicados dependem do cenário. Para obter mais informações, confira a documentação do servidor.
+As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 4 K ou 8 K, dependendo da plataforma. Um aplicativo pode exigir campos mais longos do que o padrão (por exemplo, aplicativos que usam [o Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, as configurações padrão do servidor proxy exigirão ajuste. Os valores a serem aplicados dependem do cenário. Para obter mais informações, confira a documentação do servidor.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)
@@ -314,7 +314,7 @@ O LSM (Módulos de Segurança do Linux) é uma estrutura que é parte do kernel 
 
 ### <a name="configure-the-firewall"></a>Configurar o firewall
 
-Feche todas as portas externas que não estão em uso. O UFW (firewall incomplicado) fornece um front-end para `iptables` fornecendo uma CLI para configurar o firewall.
+Feche todas as portas externas que não estão em uso. O firewall descomplicado (ufw) `iptables` fornece um front-end para fornecer uma CLI para configurar o firewall.
 
 > [!WARNING]
 > Um firewall impedirá o acesso a todo o sistema se não ele estiver configurado corretamente. Se houver falha ao especificar a porta SSH correta, você será bloqueado do sistema se estiver usando o SSH para se conectar a ele. A porta padrão é a 22. Para obter mais informações, consulte a [introdução ao ufw](https://help.ubuntu.com/community/UFW) e o [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
@@ -350,7 +350,7 @@ Configure o servidor com os módulos adicionais necessários. Considere usar um 
 
 **Configurar o aplicativo para conexões seguras (HTTPS) locais**
 
-O comando [dotnet run](/dotnet/core/tools/dotnet-run) usa o arquivo *Properties/launchSettings.json* do aplicativo, que configura o aplicativo para escutar nas URLs fornecidas pela propriedade `applicationUrl` (por exemplo, `https://localhost:5001; http://localhost:5000`).
+O comando [dotnet run](/dotnet/core/tools/dotnet-run) usa o arquivo *Properties/launchSettings.json* do aplicativo, que configura o aplicativo para escutar nas URLs fornecidas pela propriedade `applicationUrl` (por exemplo, `https://localhost:5001;http://localhost:5000`).
 
 Configure o aplicativo para usar um certificado no desenvolvimento para o comando `dotnet run` ou no ambiente de desenvolvimento (F5 ou Ctrl + F5 no Visual Studio Code) usando uma das seguintes abordagens:
 
@@ -403,9 +403,9 @@ sudo nano /etc/nginx/nginx.conf
 
 Adicione a linha `add_header X-Content-Type-Options "nosniff";` e salve o arquivo, depois reinicie o Nginx.
 
-## <a name="additional-nginx-suggestions"></a>Sugestões de Nginx adicionais
+## <a name="additional-nginx-suggestions"></a>Sugestões adicionais de Nginx
 
-Depois de atualizar a estrutura compartilhada no servidor, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
+Depois de atualizar a estrutura compartilhada no servidor, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

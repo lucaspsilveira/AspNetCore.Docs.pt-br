@@ -1,82 +1,82 @@
 ---
-title: Proteger um aplicativo ASP.NET Core Blazor Webassembly autônomo com Azure Active Directory
+title: Proteja um Blazor aplicativo autônomo ASP.NET WebAssembly do Core Com o Azure Active Directory
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 04/08/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: e12c38ed42a4e2714d785ef8f03097246c40d36e
-ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
+ms.openlocfilehash: 7e132723657b7e12803b67ec12c3a33f1945baa3
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80218967"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80976984"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteger um aplicativo ASP.NET Core Blazor Webassembly autônomo com Azure Active Directory
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteja um Blazor aplicativo autônomo ASP.NET WebAssembly do Core Com o Azure Active Directory
 
-Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
+Por [Javier Calvarro Nelson](https://github.com/javiercn) e Luke [Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-Para criar um aplicativo autônomo Webassembly Blazor que usa [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) para autenticação:
+Para criar Blazor um aplicativo autônomo do WebAssembly que usa [o AAD (AAD) active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) para autenticação:
 
-[Criar um locatário do AAD e um aplicativo Web](/azure/active-directory/develop/v2-overview):
+[Crie um inquilino AAD e um aplicativo web:](/azure/active-directory/develop/v2-overview)
 
-Registre um aplicativo do AAD na área **Azure Active Directory** > **registros de aplicativo** do portal do Azure:
+Registre um aplicativo AAD na área de inscrições do **Azure Active Directory** > **App** do portal Azure:
 
-1. Forneça um **nome** para o aplicativo (por exemplo, **Blazor AAD do cliente**).
-1. Escolha um **tipo de conta com suporte**. Você pode selecionar **contas neste diretório organizacional somente** para esta experiência.
-1. Deixe a lista suspensa **URI de redirecionamento** definida como **Web**e forneça um URI de redirecionamento de `https://localhost:5001/authentication/login-callback`.
-1. Desabilite as **permissões** > **conceder administrador concento para OpenID e caixa de seleção permissões de offline_access** .
+1. Forneça um **nome** para o aplicativo (por exemplo, ** Blazor Client AAD**).
+1. Escolha um **tipo de conta suportada**. Você pode selecionar **Contas neste diretório organizacional apenas** para esta experiência.
+1. Deixe o **URI redirecionar** definido para **web**e forneça `https://localhost:5001/authentication/login-callback`um URI redirecionado de .
+1. Desabilite a caixa de seleção de **permissões** > grant para**openid e offline_access permissões.**
 1. Selecione **Registrar**.
 
-Em **autenticação** > **configurações da plataforma** > **Web**:
+Em**configurações** > da plataforma **de autenticação** > **Web**:
 
-1. Confirme se o **URI de redirecionamento** do `https://localhost:5001/authentication/login-callback` está presente.
-1. Para **concessão implícita**, marque as caixas de seleção para **tokens de acesso** e **tokens de ID**.
-1. Os padrões restantes para o aplicativo são aceitáveis para essa experiência.
+1. Confirme se o `https://localhost:5001/authentication/login-callback` **URI redirecionamento** está presente.
+1. Para **conceder implicitamente,** selecione as caixas de seleção **para tokens de acesso** e **tokens de ID**.
+1. Os demais padrões para o aplicativo são aceitáveis para esta experiência.
 1. Selecione o botão **Salvar**.
 
 Registre as seguintes informações:
 
-* ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111`)
-* ID do diretório (ID do locatário) (por exemplo, `22222222-2222-2222-2222-222222222222`)
+* ID do aplicativo (ID do `11111111-1111-1111-1111-111111111111`cliente) (por exemplo, )
+* ID do diretório (ID do `22222222-2222-2222-2222-222222222222`inquilino) (por exemplo, )
 
-Substitua os espaços reservados no comando a seguir pelas informações registradas anteriormente e execute o comando em um shell de comando:
+Substitua os espaços reservados no seguinte comando com as informações gravadas anteriormente e execute o comando em um shell de comando:
 
 ```dotnetcli
 dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENANT ID}"
 ```
 
-Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample`). O nome da pasta também se torna parte do nome do projeto.
+Para especificar o local de saída, que cria uma pasta de projeto se ela não `-o BlazorSample`existir, inclua a opção de saída no comando com um caminho (por exemplo, ). O nome da pasta também passa a fazer parte do nome do projeto.
 
 ## <a name="authentication-package"></a>Pacote de autenticação
 
-Quando um aplicativo é criado para usar contas corporativas ou de estudante (`SingleOrg`), o aplicativo recebe automaticamente uma referência de pacote para a [biblioteca de autenticação da Microsoft](/azure/active-directory/develop/msal-overview) (`Microsoft.Authentication.WebAssembly.Msal`). O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
+Quando um aplicativo é criado para usar`SingleOrg`contas de trabalho ou escola ( ), o`Microsoft.Authentication.WebAssembly.Msal`aplicativo recebe automaticamente uma referência de pacote para a [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ( ). O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
 
-Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
+Se adicionar autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
     Version="{VERSION}" />
 ```
 
-Substitua `{VERSION}` na referência do pacote anterior pela versão do pacote `Microsoft.AspNetCore.Blazor.Templates` mostrado no artigo <xref:blazor/get-started>.
+Substitua `{VERSION}` a referência do pacote `Microsoft.AspNetCore.Blazor.Templates` anterior pela <xref:blazor/get-started> versão do pacote mostrado no artigo.
 
-O pacote de `Microsoft.Authentication.WebAssembly.Msal` adiciona transitivamente o pacote de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` ao aplicativo.
+O `Microsoft.Authentication.WebAssembly.Msal` pacote adiciona transitivamente o `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacote ao aplicativo.
 
 ## <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
 
-O suporte para autenticação de usuários é registrado no contêiner de serviço com o método de extensão `AddMsalAuthentication` fornecido pelo pacote `Microsoft.Authentication.WebAssembly.Msal`. Esse método configura todos os serviços necessários para que o aplicativo interaja com o provedor de identidade (IP).
+O suporte para autenticar usuários é registrado `AddMsalAuthentication` no contêiner de `Microsoft.Authentication.WebAssembly.Msal` serviço com o método de extensão fornecido pelo pacote. Este método configura todos os serviços necessários para que o aplicativo interaja com o Provedor de Identidade (IP).
 
-*Program.cs*:
+*Program.cs:*
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -87,21 +87,38 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-O método `AddMsalAuthentication` aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo. Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD do portal do Azure quando você registra o aplicativo.
+O `AddMsalAuthentication` método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo. Os valores necessários para a configuração do aplicativo podem ser obtidos na configuração AAD do Portal Azure ao registrar o aplicativo.
 
-O modelo Webassembly Blazor não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura. Para provisionar um token como parte do fluxo de entrada, adicione o escopo aos escopos de token de acesso padrão do `MsalProviderOptions`:
+## <a name="access-token-scopes"></a>Acessar escopos de token
+
+O Blazor modelo WebAssembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura. Para provisionar um token como parte do fluxo de login, adicione o `MsalProviderOptions`escopo aos escopos de token de acesso padrão do :
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
     ...
-    options.ProviderOptions.DefaultAccessTokenScopes.Add(
-        "{SERVER API APP CLIENT ID}/{DEFAULT SCOPE}");
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 > [!NOTE]
-> O escopo do token de acesso padrão deve estar no formato `{SERVER API APP CLIENT ID}/{DEFAULT SCOPE}` (por exemplo, `11111111-1111-1111-1111-111111111111/API.Access`). Se um esquema ou esquema e host for fornecido para a configuração de escopo (como mostrado no portal do Azure), o *aplicativo cliente* lançará uma exceção sem tratamento quando receber uma resposta de *401 não autorizado* do *aplicativo de API do servidor*.
+> Se o portal Azure fornecer um URI de escopo e **o aplicativo lançar uma exceção não tratada** quando receber uma resposta não autorizada do *401 Da* API, tente usar um URI de escopo que não inclua o esquema e o host. Por exemplo, o portal Azure pode fornecer um dos seguintes formatos uri de escopo:
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> Forneça o URI de escopo sem o esquema e o host:
+>
+> ```csharp
+> options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+Para obter mais informações, consulte <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+## <a name="imports-file"></a>Arquivo de importações
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
 
 ## <a name="index-page"></a>Página de índice
 
@@ -111,7 +128,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-## <a name="redirecttologin-component"></a>Componente RedirectToLogin
+## <a name="redirecttologin-component"></a>Componente RedirecionarToLogin
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
@@ -127,4 +144,6 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
+* [Solicite tokens de acesso adicionais](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
 * <xref:security/authentication/azure-active-directory/index>
+* [Documentação da plataforma de identidade da Microsoft](/azure/active-directory/develop/)

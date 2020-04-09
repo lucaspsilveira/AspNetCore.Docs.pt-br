@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 11/30/2019
 uid: fundamentals/localization
 ms.openlocfilehash: b175354220a8a71c029e005f27443d5a72749a11
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662116"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
@@ -74,7 +74,7 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 
 Um arquivo de recurso em francês pode conter o seguinte:
 
-| Chave | {1&gt;Valor&lt;1} |
+| Chave | Valor |
 | ----- | ------ |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
@@ -90,7 +90,7 @@ Para usar um arquivo de recurso compartilhado em uma exibição, injete `IHtmlLo
 
 As mensagens de erro de DataAnnotations são localizadas com `IStringLocalizer<T>`. Usando a opção `ResourcesPath = "Resources"`, as mensagens de erro em `RegisterViewModel` podem ser armazenadas em um dos seguintes caminhos:
 
-* *Resources/ViewModels.Account.RegisterViewModel.fr.resx*
+* *Recursos/ViewModels.Account.RegisterViewModel.fr.resx*
 * *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
 [!code-csharp[](localization/sample/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
@@ -167,7 +167,7 @@ Se você não usar a opção `ResourcesPath`, o arquivo *.resx* de uma exibiçã
 O atributo [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) fornece o namespace raiz de um assembly quando o namespace raiz de um assembly é diferente do nome do assembly. 
 
 > [!WARNING]
-> Isso pode ocorrer quando o nome de um projeto não é um identificador .NET válido. Por exemplo, `my-project-name.csproj` usará o namespace raiz `my_project_name` e o nome do assembly `my-project-name` levando a esse erro. 
+> Isso pode ocorrer quando o nome de um projeto não é um identificador .NET válido. Por `my-project-name.csproj` exemplo, usará o `my_project_name` namespace `my-project-name` raiz e o nome de montagem que leva a esse erro. 
 
 Se o namespace raiz de um assembly é diferente do nome do assembly:
 
@@ -249,7 +249,7 @@ Se você passar somente uma das duas (`culture` ou `ui-culture`), o provedor da 
 
 Em geral, aplicativos de produção fornecerão um mecanismo para definir a cultura com o cookie de cultura do ASP.NET Core. Use o método `MakeCookieValue` para criar um cookie.
 
-O `CookieRequestCultureProvider` `DefaultCookieName` retorna o nome de cookie padrão usado para controlar as informações de cultura preferencial do usuário. O nome padrão do cookie é `.AspNetCore.Culture`.
+O `CookieRequestCultureProvider` `DefaultCookieName` retorna o nome de cookie padrão usado para rastrear as informações de cultura preferidas do usuário. O nome padrão do cookie é `.AspNetCore.Culture`.
 
 O formato do cookie é `c=%LANGCODE%|uic=%LANGCODE%`, em que `c` é `Culture` e `uic` é `UICulture`, por exemplo:
 
@@ -278,21 +278,21 @@ O [cabeçalho Accept-Language](https://www.w3.org/International/questions/qa-acc
 6. Toque no idioma e, em seguida, em **Mover Para Cima**.
 
 ::: moniker range="> aspnetcore-3.1"
-### <a name="the-content-language-http-header"></a>O cabeçalho HTTP do idioma do conteúdo
+### <a name="the-content-language-http-header"></a>O cabeçalho HTTP do idioma de conteúdo
 
-O cabeçalho da entidade de [linguagem de conteúdo](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) :
+O [cabeçalho da](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entidade de idioma de conteúdo:
 
  - É usado para descrever os idiomas destinados ao público.
- - Permite que um usuário diferencie de acordo com a linguagem preferencial dos usuários.
+ - Permite que um usuário se diferencie de acordo com o idioma preferido dos usuários.
 
-Os cabeçalhos de entidade são usados tanto em solicitações HTTP quanto em respostas.
+Cabeçalhos de entidade são usados tanto em solicitações http quanto em respostas.
 
-O cabeçalho `Content-Language` pode ser adicionado definindo a propriedade `ApplyCurrentCultureToResponseHeaders`.
+O `Content-Language` cabeçalho pode ser `ApplyCurrentCultureToResponseHeaders`adicionado definindo a propriedade .
 
-Adicionando o cabeçalho de `Content-Language`:
+Adicionando `Content-Language` o cabeçalho:
 
- - Permite que o RequestLocalizationMiddleware defina o cabeçalho de `Content-Language` com o `CurrentUICulture`.
- - Elimina a necessidade de definir o cabeçalho de resposta `Content-Language` explicitamente.
+ - Permite que o RequestLocalizationMiddleware defina o `Content-Language` cabeçalho com o `CurrentUICulture`.
+ - Elimina a necessidade de definir `Content-Language` o cabeçalho de resposta explicitamente.
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions
@@ -374,9 +374,9 @@ O método `SetLanguage` define o cookie de cultura.
 
 Não é possível conectar o *_SelectLanguagePartial.cshtml* ao código de exemplo para este projeto. O projeto **Localization.StarterWeb** no [GitHub](https://github.com/aspnet/entropy) contém o código para o fluxo do `RequestLocalizationOptions` para uma parcial do Razor por meio do contêiner de [Injeção de Dependência](dependency-injection.md).
 
-## <a name="model-binding-route-data-and-query-strings"></a>Dados de rota de associação de modelo e cadeias de caracteres de consulta
+## <a name="model-binding-route-data-and-query-strings"></a>Modelo de dados de rota de vinculação e seqüências de consulta
 
-Consulte [comportamento de globalização de dados de rota de associação de modelo e cadeias de consulta](xref:mvc/models/model-binding#glob).
+Consulte [o comportamento de globalização dos dados de rota de vinculação do modelo e das seqüências de consulta](xref:mvc/models/model-binding#glob).
 
 ## <a name="globalization-and-localization-terms"></a>Termos de globalização e localização
 
@@ -410,6 +410,6 @@ Termos:
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * O [projeto Localization.StarterWeb](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) usado no artigo.
 * [Globalizando e localizando aplicativos do .NET](/dotnet/standard/globalization-localization/index)
-* [Recursos em arquivos .resx](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Recursos em Arquivos .resx](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Kit de Ferramentas de Aplicativo Multilíngue da Microsoft](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localização e genéricos](http://hishambinateya.com/localization-and-generics)

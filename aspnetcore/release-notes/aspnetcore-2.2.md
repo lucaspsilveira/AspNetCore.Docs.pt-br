@@ -8,12 +8,12 @@ ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 97deafd520926476f7653fc3de40d577b394734b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 54d3f1e7b0c94d69781c052694305a389a675019
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661045"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80977165"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 
@@ -21,13 +21,13 @@ Este artigo destaca as alterações mais significativas no ASP.NET Core 2.2, com
 
 ## <a name="openapi-analyzers--conventions"></a>Analisadores e convenções do OpenAPI
 
-O Open API (anteriormente conhecido como Swagger) é uma especificação independente de linguagem para descrever APIs REST. O ecossistema do Open API tem ferramentas que permitem descobrir, testar e produzir o código do cliente usando a especificação. O suporte para gerar e visualizar documentos do OpenAPI no ASP.NET Core MVC é fornecido por meio de projetos controlados pela comunidade, como [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). O ASP.NET Core 2.2 fornece ferramentas e experiências de runtime aprimoradas para a criação de documentos do OpenAPI.
+O Open API (anteriormente conhecido como Swagger) é uma especificação independente de linguagem para descrever APIs REST. O ecossistema do Open API tem ferramentas que permitem descobrir, testar e produzir o código do cliente usando a especificação. O suporte para gerar e visualizar documentos OpenAPI em ASP.NET MVC core é fornecido através de projetos orientados pela comunidade, como [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). O ASP.NET Core 2.2 fornece ferramentas e experiências de runtime aprimoradas para a criação de documentos do OpenAPI.
 
-Para obter mais informações, consulte os seguintes recursos:
+Para saber mais, consulte os recursos a seguir:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
-* [ASP.NET Core 2.2.0-Preview1: analisadores de OpenAPI & convenções](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+* [ASP.NET Core 2.2.0-preview1: OpenAPI Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## <a name="problem-details-support"></a>Suporte de detalhes do problema
 
@@ -37,7 +37,7 @@ O ASP.NET Core 2.1 introduziu o `ProblemDetails`, com base na especificação [R
 
 O ASP.NET Core 2.2 usa um novo sistema de *roteamento de ponto de extremidade* para expedição aprimorada de solicitações. As alterações incluem novos membros da API de geração de link e transformadores de parâmetro de rota.
 
-Para obter mais informações, consulte os seguintes recursos:
+Para saber mais, consulte os recursos a seguir:
 
 * [Roteamento de ponto de extremidade no 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
 * [Transformadores de parâmetro de rota](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (confira a seção **Roteamento**)
@@ -57,12 +57,12 @@ Para obter mais informações, confira [Verificações de integridade no ASP.NET
 
 O ASP.NET Core 2.2 adiciona suporte ao HTTP/2.
 
-O HTTP/2 é uma revisão principal do protocolo HTTP. Os recursos notáveis do HTTP/2 incluem:
+O HTTP/2 é uma revisão principal do protocolo HTTP. Características notáveis do HTTP/2 incluem:
 
 * Suporte para compactação de cabeçalho.
 * Fluxos totalmente multiplexados em uma única conexão.
 
-Embora HTTP/2 preserve a semântica de HTTP (por exemplo, cabeçalhos e métodos HTTP), trata-se de uma alteração significativa do HTTP/1. x sobre como os dados são emoldurados e enviados entre o cliente e o servidor.
+Embora http/2 preserve a semântica http (por exemplo, cabeçalhos http e métodos), é uma mudança de ruptura de HTTP/1.x sobre como os dados são enquadrados e enviados entre o cliente e o servidor.
 
 Como consequência dessa alteração no enquadramento, os servidores e os clientes precisam negociar a versão de protocolo usada. O recurso ALPN (Negociação de Protocolo da Camada de Aplicativo) é uma extensão TLS com a qual o servidor e o cliente podem negociar a versão de protocolo usada como parte do handshake TLS. Embora seja possível ter um conhecimento prévio entre o servidor e o cliente sobre o protocolo, todos os principais navegadores dão suporte ALPN como a única maneira de estabelecer uma conexão HTTP/2.
 
@@ -70,7 +70,7 @@ Para obter mais informações, confira [Suporte ao HTTP/2](xref:fundamentals/ser
 
 ## <a name="kestrel-configuration"></a>Configuração do Kestrel
 
-Em versões anteriores do ASP.NET Core, as opções do Kestrel são configuradas por meio da chamada a `UseKestrel`. No 2.2, as opções do Kestrel são configuradas por meio da chamada a `ConfigureKestrel` no construtor do host. Essa alteração resolve um problema com a ordem dos registros `IServer` para a hospedagem em processo. Para obter mais informações, consulte os seguintes recursos:
+Em versões anteriores do ASP.NET Core, as opções do Kestrel são configuradas por meio da chamada a `UseKestrel`. No 2.2, as opções do Kestrel são configuradas por meio da chamada a `ConfigureKestrel` no construtor do host. Essa alteração resolve um problema com a ordem dos registros `IServer` para a hospedagem em processo. Para saber mais, consulte os recursos a seguir:
 
 * [Atenuar conflitos do UseIIS](https://github.com/aspnet/KestrelHttpServer/issues/2760)
 * [Configurar opções do servidor Kestrel com ConfigureKestrel](xref:fundamentals/servers/kestrel?view=aspnetcore-2.2#how-to-use-kestrel-in-aspnet-core-apps)
@@ -81,11 +81,11 @@ Em versões anteriores do ASP.NET Core, o IIS funciona como um proxy reverso. No
 
 Para obter mais informações, confira [Hospedagem em processo para IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
-## <a name="opno-locsignalr-java-client"></a>SignalR cliente Java
+## <a name="opno-locsignalr-java-client"></a>SignalRCliente Java
 
-ASP.NET Core 2,2 apresenta um cliente Java para SignalR. Este cliente dá suporte à conexão com um ASP.NET Core SignalR Server a partir do código Java, incluindo aplicativos Android.
+ASP.NET Core 2.2 introduz um SignalRJava Client para . Este cliente suporta a conexão SignalR a um ASP.NET Core Server de código Java, incluindo aplicativos Android.
 
-Para obter mais informações, consulte [ASP.NET Core SignalR cliente Java](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
+Para obter mais informações, consulte [ASP.NET cliente Core SignalR Java](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
 
 ## <a name="cors-improvements"></a>Melhorias do CORS
 
@@ -107,7 +107,7 @@ Os modelos de projeto Web ASP.NET Core foram atualizados para o [Bootstrap 4](ht
 
 ## <a name="validation-performance"></a>Desempenho de validação
 
-O sistema de validação do MVC foi projetado para ser extensível e flexível, permitindo que você determine a cada solicitação quais validadores se aplicam a determinado modelo. Isso é ótimo para a criação de provedores de validação complexa. No entanto, na maioria dos casos, um aplicativo usa apenas os validadores internos e não exige essa flexibilidade extra. Validadores internos incluem DataAnnotations como [Required] e [StringLength], e `IValidatableObject`.
+O sistema de validação do MVC foi projetado para ser extensível e flexível, permitindo determinar por solicitação quais validadores se aplicam a um determinado modelo. Isso é ótimo para a criação de provedores de validação complexa. No entanto, no caso mais comum, um aplicativo usa apenas os validadores incorporados e não exige essa flexibilidade extra. Validadores internos incluem DataAnnotations como [Required] e [StringLength], e `IValidatableObject`.
 
 No ASP.NET Core 2.2, o MVC poderá causar um curto-circuito na validação se ele determinar que um grafo de modelo fornecido não exige validação. Ignorar a validação resulta em melhorias significativas ao validar modelos que não podem ou não têm nenhum validador. Isso inclui objetos, como coleções de primitivos (como `byte[]`, `string[]`, `Dictionary<string, string>`), ou grafos de objeto complexo sem muitos validadores.
 
@@ -117,6 +117,6 @@ No ASP.NET Core 2.2, o desempenho do `SocketsHttpHandler` foi aprimorado, reduzi
 
 Para obter mais informações, confira [a solicitação de pull que fez essa melhoria](https://github.com/dotnet/corefx/pull/32568).
 
-## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
+## <a name="additional-information"></a>Informações adicionais
 
 Para obter a lista completa de alterações, confira as [Notas sobre a versão do ASP.NET Core 2.2](https://github.com/dotnet/aspnetcore/releases/tag/2.2.0).

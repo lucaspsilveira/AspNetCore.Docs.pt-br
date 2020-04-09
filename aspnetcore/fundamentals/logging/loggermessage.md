@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 08/26/2019
 uid: fundamentals/logging/loggermessage
 ms.openlocfilehash: 48ebba69b5c15a0f9a42f7f6b3d2c1fcb0a2211c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78663215"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
@@ -41,7 +41,7 @@ Cada mensagem de log é uma <xref:System.Action> mantida em um campo estático c
 
 Para a <xref:System.Action>, especifique:
 
-* O nível do log.
+* O nível de log.
 * Um identificador de evento exclusivo (<xref:Microsoft.Extensions.Logging.EventId>) com o nome do método de extensão estático.
 * O modelo de mensagem (cadeia de caracteres de formato nomeada). 
 
@@ -83,7 +83,7 @@ O método de extensão estático para adicionar aspas, `QuoteAdded`, recebe o va
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-No modelo da página de Índice (*Pages/Index.cshtml.cs*), `QuoteAdded` é chamado para registrar a mensagem em log:
+No modelo de página da página Índice *(Páginas/Index.cshtml.cs),* `QuoteAdded` é chamado para registrar a mensagem:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -207,7 +207,7 @@ Cada mensagem de log é uma <xref:System.Action> mantida em um campo estático c
 
 Para a <xref:System.Action>, especifique:
 
-* O nível do log.
+* O nível de log.
 * Um identificador de evento exclusivo (<xref:Microsoft.Extensions.Logging.EventId>) com o nome do método de extensão estático.
 * O modelo de mensagem (cadeia de caracteres de formato nomeada). 
 
@@ -249,7 +249,7 @@ O método de extensão estático para adicionar aspas, `QuoteAdded`, recebe o va
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-No modelo da página de Índice (*Pages/Index.cshtml.cs*), `QuoteAdded` é chamado para registrar a mensagem em log:
+No modelo de página da página Índice *(Páginas/Index.cshtml.cs),* `QuoteAdded` é chamado para registrar a mensagem:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -352,4 +352,4 @@ info: LoggerMessageSample.Pages.IndexModel[4]
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Logging](xref:fundamentals/logging/index)
+* [Registro em log](xref:fundamentals/logging/index)

@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor configuração do modelo de hospedagem
+title: configuração Blazor do modelo de hospedagem ASP.NET Core
 author: guardrex
-description: Saiba mais sobre a configuração do modelo de hospedagem Blazor, incluindo como integrar componentes do Razor em aplicativos Razor Pages e MVC.
+description: Saiba Blazor mais sobre a configuração do modelo de hospedagem, incluindo como integrar componentes Razor em páginas de barbear e aplicativos MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,48 +11,48 @@ no-loc:
 - SignalR
 uid: blazor/hosting-model-configuration
 ms.openlocfilehash: 1f71ac63bbe9dc9d56cfca2ded19a5b863be828f
-ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "80306428"
 ---
-# <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core configuração de modelo de hospedagem mais incrivelmente
+# <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET configuração do modelo de hospedagem Core Blazor
 
 Por [Daniel Roth](https://github.com/danroth27)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Este artigo aborda a configuração do modelo de hospedagem.
+Este artigo abrange a configuração do modelo de hospedagem.
 
 ## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
-A partir da versão ASP.NET Core 3,2 Preview 3, o Webassembly mais claro dá suporte à configuração de:
+A partir da versão ASP.NET Core 3.2 Preview 3, o Blazor WebAssembly suporta a configuração a partir de:
 
-* *wwwroot/appSettings. JSON*
-* *wwwroot/appSettings. {ENVIRONMENT}. JSON*
+* *wwwroot/appsettings.json*
+* *wwwroot/appsettings. {ENVIRONMENT}.json*
 
-Em um aplicativo hospedado mais, o [ambiente de tempo de execução](xref:fundamentals/environments) é o mesmo que o valor do aplicativo do servidor.
+Em um aplicativo Blazor Hosted, o [ambiente de tempo de execução](xref:fundamentals/environments) é o mesmo que o valor do aplicativo do servidor.
 
-Ao executar o aplicativo localmente, o ambiente assume como padrão o desenvolvimento. Quando o aplicativo é publicado, o ambiente assume como padrão a produção. Para obter mais informações, incluindo como configurar o ambiente, consulte <xref:fundamentals/environments>.
+Ao executar o aplicativo localmente, o ambiente é padrão para o Desenvolvimento. Quando o aplicativo é publicado, o ambiente é padrão para Produção. Para obter mais informações, incluindo como <xref:fundamentals/environments>configurar o ambiente, consulte .
 
 > [!WARNING]
-> A configuração em um aplicativo Webassembly mais incrivelmente é visível para os usuários. **Não armazene os segredos ou as credenciais do aplicativo na configuração.**
+> A configuração em um aplicativo Blazor WebAssembly é visível para os usuários. **Não armazene segredos de aplicativos ou credenciais na configuração.**
 
-Os arquivos de configuração são armazenados em cache para uso offline. Com [PWAs (aplicativos Web progressivos)](xref:blazor/progressive-web-app), você só pode atualizar arquivos de configuração ao criar uma nova implantação. A edição de arquivos de configuração entre implantações não tem efeito porque:
+Os arquivos de configuração são armazenados em cache para uso off-line. Com [pwAs (Progressive Web Applications, aplicativos da Web progressivos),](xref:blazor/progressive-web-app)você só pode atualizar arquivos de configuração ao criar uma nova implantação. Editar arquivos de configuração entre implantações não tem efeito porque:
 
-* Os usuários têm versões em cache dos arquivos que eles continuam a usar.
-* Os arquivos *Service-Worker. js* e *Service-Worker-assets. js* do PWA devem ser recriados na compilação, que sinaliza ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.
+* Os usuários têm versões armazenadas em cache dos arquivos que eles continuam a usar.
+* Os arquivos *service-worker.js* e *service-worker-assets.js* do PWA devem ser reconstruídos na compilação, que sinaliza para o aplicativo na próxima visita on-line do usuário que o aplicativo foi reimplantado.
 
-Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates>.
+Para obter mais informações sobre como as atualizações <xref:blazor/progressive-web-app#background-updates>em segundo plano são tratadas pelos PWAs, consulte .
 
 ## <a name="blazor-server"></a>Servidor Blazor
 
-### <a name="reflect-the-connection-state-in-the-ui"></a>Refletir o estado da conexão na interface do usuário
+### <a name="reflect-the-connection-state-in-the-ui"></a>Reflita o estado de conexão na UI
 
-Quando o cliente detecta que a conexão foi perdida, uma interface de usuário padrão é exibida para o usuário enquanto o cliente tenta se reconectar. Se a reconexão falhar, o usuário receberá a opção de tentar novamente.
+Quando o cliente detecta que a conexão foi perdida, uma ui padrão é exibida para o usuário enquanto o cliente tenta se reconectar. Se a reconexão falhar, o usuário tem a opção de tentar novamente.
 
-Para personalizar a interface do usuário, defina um elemento com uma `id` de `components-reconnect-modal` na `<body>` da página do Razor *_Host. cshtml* :
+Para personalizar a ia de `id` usuário, defina um elemento com um of `components-reconnect-modal` na `<body>` página *_Host.cshtml* Razor:
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -60,18 +60,18 @@ Para personalizar a interface do usuário, defina um elemento com uma `id` de `c
 </div>
 ```
 
-A tabela a seguir descreve as classes CSS aplicadas ao elemento `components-reconnect-modal`.
+A tabela a seguir descreve as classes `components-reconnect-modal` CSS aplicadas ao elemento.
 
 | Classe CSS                       | Indica&hellip; |
 | ------------------------------- | ----------------- |
-| `components-reconnect-show`     | Uma conexão perdida. O cliente está tentando se reconectar. Mostrar o modal. |
-| `components-reconnect-hide`     | Uma conexão ativa é restabelecida com o servidor. Ocultar a janela restrita. |
-| `components-reconnect-failed`   | Falha na reconexão, provavelmente devido a uma falha de rede. Para tentar a reconexão, chame `window.Blazor.reconnect()`. |
-| `components-reconnect-rejected` | Reconexão rejeitada. O servidor foi atingido, mas recusou a conexão, e o estado do usuário no servidor foi perdido. Para recarregar o aplicativo, chame `location.reload()`. Esse estado de conexão pode resultar quando:<ul><li>Ocorre uma falha no circuito do lado do servidor.</li><li>O cliente é desconectado por tempo suficiente para o servidor descartar o estado do usuário. As instâncias dos componentes com os quais o usuário está interagindo são descartadas.</li><li>O servidor é reiniciado ou o processo de trabalho do aplicativo é reciclado.</li></ul> |
+| `components-reconnect-show`     | Uma conexão perdida. O cliente está tentando se reconectar. Mostre o modal. |
+| `components-reconnect-hide`     | Uma conexão ativa é restabelecida ao servidor. Esconda o modal. |
+| `components-reconnect-failed`   | A reconexão falhou, provavelmente devido a uma falha de rede. Para tentar reconectar, ligue . `window.Blazor.reconnect()` |
+| `components-reconnect-rejected` | Reconexão rejeitada. O servidor foi alcançado, mas recusou a conexão, e o estado do usuário no servidor foi perdido. Para recarregar o `location.reload()`aplicativo, ligue . Esse estado de conexão pode resultar quando:<ul><li>Ocorre uma falha no circuito do lado do servidor.</li><li>O cliente está desconectado tempo suficiente para que o servidor abandone o estado do usuário. As instâncias dos componentes com os quais o usuário está interagindo são descartadas.</li><li>O servidor é reiniciado ou o processo de trabalhador do aplicativo é reciclado.</li></ul> |
 
 ### <a name="render-mode"></a>Modo de renderização
 
-Os aplicativos de servidor mais poseriais são configurados por padrão para PreRender a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida. Isso é configurado na página Razor *_Host. cshtml* :
+Os aplicativos do Blazor Server são configurados por padrão para pré-renderizar a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida. Isso está configurado na página *_Host.cshtml* Razor:
 
 ```cshtml
 <body>
@@ -83,30 +83,30 @@ Os aplicativos de servidor mais poseriais são configurados por padrão para Pre
 </body>
 ```
 
-`RenderMode` configura se o componente:
+`RenderMode`configura se o componente:
 
-* É renderizado na página.
-* É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
+* É pré-renderizado na página.
+* É renderizado como HTML estático na página ou se inclui as informações necessárias para bootstrap um aplicativo Blazor do agente usuário.
 
 | `RenderMode`        | Descrição |
 | ------------------- | ----------- |
-| `ServerPrerendered` | Renderiza o componente em HTML estático e inclui um marcador para um aplicativo do Blazor Server. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
-| `Server`            | Renderiza um marcador para um aplicativo do Blazor Server. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
-| `Static`            | Renderiza o componente em HTML estático. |
+| `ServerPrerendered` | Renderiza o componente em HTML estático e Blazor inclui um marcador para um aplicativo Server. Quando o usuário-agente é iniciado, este Blazor marcador é usado para inicializar um aplicativo. |
+| `Server`            | Renderiza um marcador Blazor para um aplicativo do Servidor. A saída do componente não está incluída. Quando o usuário-agente é iniciado, este Blazor marcador é usado para inicializar um aplicativo. |
+| `Static`            | Torna o componente em HTML estático. |
 
-Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
+A renderização de componentes do servidor de uma página HTML estática não é suportada.
 
-### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Renderizar componentes interativos com estado de páginas e exibições do Razor
+### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Renderizar componentes interativos imponentes a partir de páginas e visualizações de Navalha
 
-Os componentes interativos com estado podem ser adicionados a uma página ou exibição Razor.
+Componentes interativos imponentes podem ser adicionados a uma página ou exibição de Navalha.
 
-Quando a página ou a exibição renderiza:
+Quando a página ou exibição renderiza:
 
-* O componente é renderizado com a página ou exibição.
-* O estado inicial do componente usado para o pré-processamento é perdido.
-* O novo estado do componente é criado quando a conexão de SignalR é estabelecida.
+* O componente é pré-renderizado com a página ou exibição.
+* O estado de componente inicial usado para pré-renderização é perdido.
+* Novo estado componente é SignalR criado quando a conexão é estabelecida.
 
-A seguinte página Razor renderiza um componente `Counter`:
+A página Navalha `Counter` a seguir renderiza um componente:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -120,9 +120,9 @@ A seguinte página Razor renderiza um componente `Counter`:
 }
 ```
 
-### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Renderizar componentes não interativos de páginas e exibições do Razor
+### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Renderizar componentes não interativos de páginas e visualizações de Navalha
 
-Na página Razor a seguir, o componente `Counter` é processado estaticamente com um valor inicial que é especificado usando um formulário:
+Na página Navalha `Counter` a seguir, o componente é renderizado estáticamente com um valor inicial especificado usando um formulário:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -141,16 +141,16 @@ Na página Razor a seguir, o componente `Counter` é processado estaticamente co
 }
 ```
 
-Como `MyComponent` é processado estaticamente, o componente não pode ser interativo.
+Uma `MyComponent` vez que é renderizado estáticamente, o componente não pode ser interativo.
 
-### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configurar o cliente do SignalR para aplicativos do Blazor Server
+### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configure SignalR o Blazor cliente para aplicativos do Servidor
 
-Às vezes, você precisa configurar o cliente SignalR usado por aplicativos do Blazor Server. Por exemplo, talvez você queira configurar o registro em log no cliente SignalR para diagnosticar um problema de conexão.
+Às vezes, você precisa SignalR configurar Blazor o cliente usado pelos aplicativos do Servidor. Por exemplo, você pode querer configurar SignalR o login no cliente para diagnosticar um problema de conexão.
 
-Para configurar o cliente do SignalR no arquivo *pages/_Host. cshtml* :
+Para configurar SignalR o cliente no arquivo *Páginas/_Host.cshtml:*
 
-* Adicione um atributo `autostart="false"` à marca de `<script>` para o script de `blazor.server.js`.
-* Chame `Blazor.start` e passe um objeto de configuração que especifica o construtor de SignalR.
+* Adicione `autostart="false"` um atributo `<script>` à `blazor.server.js` tag para o script.
+* Ligue `Blazor.start` e passe em um objeto SignalR de configuração que especifica o construtor.
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>

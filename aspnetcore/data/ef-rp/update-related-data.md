@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
 ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78656418"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
 
-Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
+Por [Tom Dykstra](https://github.com/tdykstra)e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
@@ -227,7 +227,7 @@ O código anterior faz as seguintes alterações:
 
 Execute o aplicativo e teste a página Excluir.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 > [!div class="step-by-step"]
 > [Tutorial anterior](xref:data/ef-rp/read-related-data)
@@ -450,7 +450,7 @@ O código anterior faz as seguintes alterações:
 * [Versão do YouTube deste tutorial (Parte 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
-> [Anterior](xref:data/ef-rp/read-related-data)
-> [Próximo](xref:data/ef-rp/concurrency)
+> [Próximo](xref:data/ef-rp/read-related-data)
+> [anterior](xref:data/ef-rp/concurrency)
 
 ::: moniker-end

@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/search
 ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667702"
 ---
 # <a name="add-search-to-aspnet-core-razor-pages"></a>Adicionar a pesquisa às Páginas Razor do ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -26,7 +26,7 @@ Adicione as seguintes propriedades realçadas em *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` tem o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
+* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString`tem [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) o atributo. `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
 * `Genres`: contém a lista de gêneros. `Genres` permite que o usuário selecione um gênero na lista. `SelectList` exige `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contém o gênero específico que o usuário seleciona (por exemplo, "Oeste").
 * `Genres` e `MovieGenre` são abordados mais adiante neste tutorial.
@@ -115,7 +115,7 @@ Teste o aplicativo pesquisando por gênero, título do filme e por ambos.
 
 > [!div class="step-by-step"]
 > [Anterior: Atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [Próximo: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [seguintes: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -129,7 +129,7 @@ Adicione as seguintes propriedades realçadas em *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` tem o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
+* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString`tem [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) o atributo. `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
 * `Genres`: contém a lista de gêneros. `Genres` permite que o usuário selecione um gênero na lista. `SelectList` exige `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contém o gênero específico que o usuário seleciona (por exemplo, "Oeste").
 * `Genres` e `MovieGenre` são abordados mais adiante neste tutorial.
@@ -210,7 +210,7 @@ Atualize *Index.cshtml* da seguinte maneira:
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Teste o aplicativo pesquisando por gênero, título do filme e por ambos.
-O código anterior usa o auxiliar [Select tag](xref:mvc/views/working-with-forms#the-select-tag-helper) e a marca Option Helper.
+O código anterior usa o [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper) e o Option Tag Helper.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -218,6 +218,6 @@ O código anterior usa o auxiliar [Select tag](xref:mvc/views/working-with-forms
 
 > [!div class="step-by-step"]
 > [Anterior: Atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [Próximo: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [seguintes: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

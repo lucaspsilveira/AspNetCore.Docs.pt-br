@@ -1,7 +1,7 @@
 ---
-title: Manipulação de eventos de Blazor de ASP.NET Core
+title: ASP.NET Blazor core manipulação de eventos
 author: guardrex
-description: Saiba mais sobre os recursos de manipulação de eventos de Blazor, incluindo tipos de argumento de evento, retornos de chamada de evento e gerenciamento de eventos de navegador padrão.
+description: Saiba Blazormais sobre os recursos de manipulação de eventos, incluindo tipos de argumentos de eventos, retornos de eventos e gerenciamento de eventos padrão do navegador.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,19 +11,19 @@ no-loc:
 - SignalR
 uid: blazor/event-handling
 ms.openlocfilehash: c144841805e07a136f153c25a78c7f9af7c5801b
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511360"
 ---
-# <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core manipulação de eventos mais incrivelmente
+# <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor
 
-De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
+Por [Luke Latham](https://github.com/guardrex) e Daniel [Roth](https://github.com/danroth27)
 
-Os componentes do Razor fornecem recursos de manipulação de eventos. Para um atributo de elemento HTML chamado [`@on{EVENT}`](xref:mvc/views/razor#onevent) (por exemplo, `@onclick`) com um valor de tipo delegado, um componente Razor trata o valor do atributo como um manipulador de eventos.
+Os componentes da navalha fornecem recursos de manuseio de eventos. Para um atributo [`@on{EVENT}`](xref:mvc/views/razor#onevent) de elemento `@onclick`HTML nomeado (por exemplo) com um valor digitado pelo delegado, um componente Razor trata o valor do atributo como um manipulador de eventos.
 
-O código a seguir chama o método `UpdateHeading` quando o botão é selecionado na interface do usuário:
+O código a `UpdateHeading` seguir chama o método quando o botão é selecionado na ui:
 
 ```razor
 <button class="btn btn-primary" @onclick="UpdateHeading">
@@ -38,7 +38,7 @@ O código a seguir chama o método `UpdateHeading` quando o botão é selecionad
 }
 ```
 
-O código a seguir chama o método `CheckChanged` quando a caixa de seleção é alterada na interface do usuário:
+O código a `CheckChanged` seguir chama o método quando a caixa de seleção é alterada na ui:
 
 ```razor
 <input type="checkbox" class="form-check-input" @onchange="CheckChanged" />
@@ -51,9 +51,9 @@ O código a seguir chama o método `CheckChanged` quando a caixa de seleção é
 }
 ```
 
-Os manipuladores de eventos também podem ser assíncronos e retornar um <xref:System.Threading.Tasks.Task>. Não é necessário chamar [StateHasChanged](xref:blazor/lifecycle#state-changes)manualmente. As exceções são registradas quando ocorrem.
+Os manipuladores de eventos também podem <xref:System.Threading.Tasks.Task>ser assíncronos e retornar um . Não há necessidade de chamar manualmente [StateHasChanged](xref:blazor/lifecycle#state-changes). As exceções são registradas quando ocorrem.
 
-No exemplo a seguir, `UpdateHeading` é chamado de forma assíncrona quando o botão é selecionado:
+No exemplo a `UpdateHeading` seguir, é chamado assíncronamente quando o botão é selecionado:
 
 ```razor
 <button class="btn btn-primary" @onclick="UpdateHeading">
@@ -70,39 +70,39 @@ No exemplo a seguir, `UpdateHeading` é chamado de forma assíncrona quando o bo
 
 ## <a name="event-argument-types"></a>Tipos de argumento de evento
 
-Para alguns eventos, são permitidos tipos de argumento de evento. A especificação de um tipo de evento na chamada do método só será necessária se o tipo de evento for usado no método.
+Para alguns eventos, tipos de argumento de eventos são permitidos. Especificar um tipo de evento na chamada do método só é necessário se o tipo de evento for usado no método.
 
-Os `EventArgs` com suporte são mostrados na tabela a seguir.
+Os `EventArgs` suportes são mostrados na tabela a seguir.
 
-| {1&gt;Evento&lt;1}            | Classe                | Eventos e observações do DOM |
+| Evento            | Classe                | Eventos e notas do DOM |
 | ---------------- | -------------------- | -------------------- |
 | Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
-| Arraste             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
-| Error            | `ErrorEventArgs`     | `onerror` |
-| {1&gt;Evento&lt;1}            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
-| Foco            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte para `relatedTarget`. |
+| Arrastar             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer`e `DataTransferItem` manter dados de itens arrastados. |
+| Erro            | `ErrorEventArgs`     | `onerror` |
+| Evento            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| Focus            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte `relatedTarget`para . |
 | Entrada            | `ChangeEventArgs`    | `onchange`, `oninput` |
 | Teclado         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
 | Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
 | Ponteiro do mouse    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
-| Roda do mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
+| Botão de rolagem do mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
 | Andamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
-| Toque            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` representa um único ponto de contato em um dispositivo sensível ao toque. |
+| Toque            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint`representa um único ponto de contato em um dispositivo sensível ao toque. |
 
-Para obter mais informações, consulte os seguintes recursos:
+Para saber mais, consulte os recursos a seguir:
 
-* [Classes EventArgs no ASP.NET Core fonte de referência (dotNet/aspnetcore versão/3.1 Branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
-* [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; inclui informações sobre quais elementos HTML oferecem suporte a cada evento dom.
+* [Classes EventArgs na fonte de referência ASP.NET Core (versão dotnet/aspnetcore/ramo 3.1)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
+* [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; Inclui informações sobre quais elementos HTML suportam cada evento DOM.
 
 ## <a name="lambda-expressions"></a>Expressões lambda
 
-As [expressões lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) também podem ser usadas:
+[Expressões lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) também podem ser usadas:
 
 ```razor
 <button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
-Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conjunto de elementos. O exemplo a seguir cria três botões, cada um dos quais chamadas `UpdateHeading` passando um argumento de evento (`MouseEventArgs`) e seu número de botão (`buttonNumber`) quando selecionado na interface do usuário:
+Muitas vezes é conveniente fechar sobre valores adicionais, como quando iterasobre um conjunto de elementos. O exemplo a seguir cria três `UpdateHeading` botões, cada`MouseEventArgs`um dos quais`buttonNumber`chama passando um argumento de evento ( ) e seu número de botão ( ) quando selecionado na ui:
 
 ```razor
 <h2>@_message</h2>
@@ -129,19 +129,19 @@ Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conju
 ```
 
 > [!NOTE]
-> **Não** use a variável de loop (`i`) em um loop de `for` diretamente em uma expressão lambda. Caso contrário, a mesma variável é usada por todas as expressões lambda, fazendo com que `i`valor seja o mesmo em todos os lambdas. Sempre Capture seu valor em uma variável local (`buttonNumber` no exemplo anterior) e, em seguida, use-o.
+> **Não** use a variável`i`loop `for` ( ) em um loop diretamente em uma expressão lambda. Caso contrário, a mesma variável é usada `i`por todas as expressões lambda fazendo com que o valor seja o mesmo em todas as lambdas. Sempre capture seu valor em`buttonNumber` uma variável local (no exemplo anterior) e, em seguida, use-o.
 
 ## <a name="eventcallback"></a>EventCallback
 
-Um cenário comum com componentes aninhados é o desejo de executar o método de um componente pai quando ocorre um evento de componente filho&mdash;por exemplo, quando um evento de `onclick` ocorre no filho. Para expor eventos entre componentes, use um `EventCallback`. Um componente pai pode atribuir um método de retorno de chamada para o `EventCallback`de um componente filho.
+Um cenário comum com componentes aninhados é o desejo de&mdash;executar o método `onclick` de um componente pai quando um evento componente filho ocorre, por exemplo, quando um evento ocorre na criança. Para expor eventos entre componentes, use um `EventCallback`. Um componente pai pode atribuir um método de `EventCallback`retorno de chamada a um componente filho .
 
-O `ChildComponent` no aplicativo de exemplo (*Components/ChildComponent. Razor*) demonstra como o manipulador de `onclick` de um botão é configurado para receber um delegado de `EventCallback` da `ParentComponent`de exemplo. O `EventCallback` é digitado com `MouseEventArgs`, que é apropriado para um evento de `onclick` de um dispositivo periférico:
+O `ChildComponent` aplicativo na amostra *(Components/ChildComponent.razor)* demonstra `onclick` como o manipulador de `EventCallback` um botão é `ParentComponent`configurado para receber um delegado da amostra . O `EventCallback` é digitado com `MouseEventArgs`, `onclick` o que é apropriado para um evento a partir de um dispositivo periférico:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
-O `ParentComponent` define o `EventCallback<T>` (`OnClickCallback`) do filho como seu método `ShowMessage`.
+O `ParentComponent` conjunto da `EventCallback<T>` criança`OnClickCallback`( `ShowMessage` ) ao seu método.
 
-*Páginas/ParentComponent. Razor*:
+*Páginas/ParentComponent.razor:*
 
 ```razor
 @page "/ParentComponent"
@@ -166,33 +166,33 @@ O `ParentComponent` define o `EventCallback<T>` (`OnClickCallback`) do filho com
 }
 ```
 
-Quando o botão estiver selecionado na `ChildComponent`:
+Quando o botão estiver `ChildComponent`selecionado no:
 
-* O método `ShowMessage` do `ParentComponent`é chamado. `_messageText` é atualizado e exibido no `ParentComponent`.
-* Uma chamada para [StateHasChanged](xref:blazor/lifecycle#state-changes) não é necessária no método do retorno de chamada (`ShowMessage`). `StateHasChanged` é chamado automaticamente para renderizar novamente o `ParentComponent`, assim como os eventos filho disparam o reprocessamento de componentes em manipuladores de eventos que são executados dentro do filho.
+* O `ParentComponent`método `ShowMessage` é chamado. `_messageText`é atualizado e exibido `ParentComponent`no .
+* Uma chamada para [StateHasChanged](xref:blazor/lifecycle#state-changes) não é necessária no`ShowMessage`método de retorno de chamada (). `StateHasChanged`é chamado automaticamente para `ParentComponent`rerenderizar o , assim como eventos crianças acionam a rerenderização do componente em manipuladores de eventos que executam dentro da criança.
 
-`EventCallback` e `EventCallback<T>` permitir delegados assíncronos. `EventCallback<T>` é fortemente tipado e requer um tipo de argumento específico. `EventCallback` é digitado de forma fraca e permite qualquer tipo de argumento.
+`EventCallback`e `EventCallback<T>` permitir delegados assíncronos. `EventCallback<T>`é fortemente digitado e requer um tipo de argumento específico. `EventCallback`é fracamente digitado e permite qualquer tipo de argumento.
 
 ```razor
 <ChildComponent 
     OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
 ```
 
-Invoque um `EventCallback` ou `EventCallback<T>` com `InvokeAsync` e aguardar a <xref:System.Threading.Tasks.Task>:
+Invoque `EventCallback<T>` `InvokeAsync` um `EventCallback` ou <xref:System.Threading.Tasks.Task>com e aguarde o:
 
 ```csharp
 await callback.InvokeAsync(arg);
 ```
 
-Use `EventCallback` e `EventCallback<T>` para manipulação de eventos e parâmetros de componente de associação.
+Use `EventCallback` `EventCallback<T>` e para os parâmetros dos componentes de manuseio e vinculação de eventos.
 
-Prefira a `EventCallback<T>` com rigidez de tipos sobre `EventCallback`. `EventCallback<T>` fornece melhores comentários de erro para os usuários do componente. Semelhante a outros manipuladores de eventos de interface do usuário, especificar o parâmetro de evento é opcional. Use `EventCallback` quando não houver valor passado para o retorno de chamada.
+Prefira o `EventCallback<T>` fortemente digitado sobre `EventCallback`. `EventCallback<T>`fornece melhor feedback de erro para os usuários do componente. Semelhante a outros manipuladores de eventos de ui, especificando que o parâmetro de evento é opcional. Use `EventCallback` quando não houver valor passado para o retorno de chamada.
 
 ## <a name="prevent-default-actions"></a>Impedir ações padrão
 
-Use o atributo de diretiva [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) para evitar a ação padrão para um evento.
+Use [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) o atributo diretiva para impedir a ação padrão de um evento.
 
-Quando uma chave é selecionada em um dispositivo de entrada e o foco do elemento está em uma caixa de texto, um navegador normalmente exibe o caractere da chave na caixa de texto. No exemplo a seguir, o comportamento padrão é impedido pela especificação do atributo de diretiva `@onkeypress:preventDefault`. O contador é incrementado e a chave de **+** não é capturada no valor do elemento de `<input>`:
+Quando uma chave é selecionada em um dispositivo de entrada e o foco do elemento está em uma caixa de texto, um navegador normalmente exibe o caractere da chave na caixa de texto. No exemplo a seguir, o comportamento padrão `@onkeypress:preventDefault` é impedido por especificar o atributo diretiva. O contador incrementa, **+** e a chave não `<input>` é capturada no valor do elemento:
 
 ```razor
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
@@ -210,9 +210,9 @@ Quando uma chave é selecionada em um dispositivo de entrada e o foco do element
 }
 ```
 
-Especificar o atributo `@on{EVENT}:preventDefault` sem um valor é equivalente a `@on{EVENT}:preventDefault="true"`.
+Especificar `@on{EVENT}:preventDefault` o atributo sem `@on{EVENT}:preventDefault="true"`um valor é equivalente a .
 
-O valor do atributo também pode ser uma expressão. No exemplo a seguir, `_shouldPreventDefault` é um campo de `bool` definido como `true` ou `false`:
+O valor do atributo também pode ser uma expressão. No exemplo a `_shouldPreventDefault` seguir, é `bool` um `false`campo definido para ou: `true`
 
 ```razor
 <input @onkeypress:preventDefault="_shouldPreventDefault" />
@@ -222,9 +222,9 @@ Um manipulador de eventos não é necessário para impedir a ação padrão. O m
 
 ## <a name="stop-event-propagation"></a>Parar a propagação do evento
 
-Use o atributo de diretiva [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) para parar a propagação do evento.
+Use [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) o atributo diretiva para interromper a propagação do evento.
 
-No exemplo a seguir, marcar a caixa de seleção impede que eventos de clique do segundo filho `<div>` sejam propagados para o `<div>`pai:
+No exemplo a seguir, selecionar a caixa de seleção impede que eventos de clique da segunda criança `<div>` se prossigam para o pai `<div>`:
 
 ```razor
 <label>

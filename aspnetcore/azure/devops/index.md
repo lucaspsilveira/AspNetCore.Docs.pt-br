@@ -7,21 +7,21 @@ ms.date: 08/07/2018
 ms.custom: mvc, seodec18
 uid: azure/devops/index
 ms.openlocfilehash: f45bb2a5dd4b3d1a820085ede7ce3219045ed80b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658077"
 ---
 # <a name="devops-with-aspnet-core-and-azure"></a>DevOps com ASP.NET Core e Azure
 
-[![Imagem da capa](./media/cover-large.png)](https://aka.ms/devopsbook)
+[![Imagem de capa](./media/cover-large.png)](https://aka.ms/devopsbook)
 
 Por [Cam Soper](https://twitter.com/camsoper) e [Scott Addie](https://twitter.com/scottaddie)
 
 Este guia está disponível como um [e-book em PDF para download](https://aka.ms/devopsbook).
 
-## <a name="welcome"></a>Bem-vindo 
+## <a name="welcome"></a>Bem-Vindo 
 
 Bem-vindo ao guia de ciclo de vida de desenvolvimento do Azure para .NET. Este guia apresenta os conceitos básicos da criação de um ciclo de vida de desenvolvimento para o Azure usando processos e ferramentas do .NET. Depois de concluí-lo, você aproveitará os benefícios de uma cadeia de ferramentas madura do DevOps.
 
@@ -45,11 +45,11 @@ Saiba onde obter as ferramentas usadas neste guia.
 
 Aprenda os vários métodos para implantar um aplicativo ASP.NET Core no Serviço de Aplicativo do Azure.
 
-### <a name="continuous-integration-and-deployment"></a>[Integração contínua e implantação](xref:azure/devops/cicd)
+### <a name="continuous-integration-and-deployment"></a>[Integração e implantação contínuas](xref:azure/devops/cicd)
 
 Crie uma solução de implantação e integração contínua de ponta a ponta para seu aplicativo ASP.NET Core com o GitHub, o Azure DevOps Services e o Azure.
 
-### <a name="monitor-and-debug"></a>[Monitorar e depurar](xref:azure/devops/monitor)
+### <a name="monitor-and-debug"></a>[Monitor e depuração](xref:azure/devops/monitor)
 
 Use as ferramentas do Azure para monitorar, solucionar problemas e ajustar seu aplicativo.
 

@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/crud
 ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78665644"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
@@ -138,7 +138,7 @@ O contexto de banco de dados controla se as entidades em memória estão em sinc
 
 Uma entidade pode estar em um dos [seguintes estados](/dotnet/api/microsoft.entityframeworkcore.entitystate):
 
-* `Added`: a entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
+* `Added`: A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
 
 * `Unchanged`: nenhuma alteração precisa ser salva com essa entidade. Uma entidade tem esse status quando é lida do banco de dados.
 
@@ -146,7 +146,7 @@ Uma entidade pode estar em um dos [seguintes estados](/dotnet/api/microsoft.enti
 
 * `Deleted`: a entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
-* `Detached`: a entidade não está sendo rastreada pelo contexto do banco de dados.
+* `Detached`: A entidade não está sendo rastreada pelo contexto do banco de dados.
 
 Em um aplicativo da área de trabalho, em geral, as alterações de estado são definidas automaticamente. Uma entidade é lida, as alterações são feitas e o estado da entidade é alterado automaticamente para `Modified`. A chamada a `SaveChanges` gera uma instrução SQL UPDATE que atualiza apenas as propriedades alteradas.
 
@@ -173,7 +173,7 @@ Adicione uma mensagem de erro à página Excluir Razor (*Pages//Students/Delete.
 
 Execute o aplicativo e exclua um aluno para testar a página Excluir.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 > [!div class="step-by-step"]
 > [Tutorial anterior](xref:data/ef-rp/intro)
@@ -414,7 +414,7 @@ Cada Página do Razor deve incluir a diretiva `@page`.
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 
 > [!div class="step-by-step"]
-> [Anterior](xref:data/ef-rp/intro)
-> [Próximo](xref:data/ef-rp/sort-filter-page)
+> [Próximo](xref:data/ef-rp/intro)
+> [anterior](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end

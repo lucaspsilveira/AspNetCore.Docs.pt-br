@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: fb670902b0dafa7dce2b3372e550095387844936
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666988"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Adicionar um controlador a um aplicativo ASP.NET Core MVC
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -26,7 +26,7 @@ O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em tr�
 
 * **C**ontrollers: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/Privacy` tem dados de rota de `Home` (o controlador) e `Privacy` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
 
-O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da IU fica na exibição. A lógica de entrada fica no controlador. A lógica de negócios fica no modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
+O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da interface do usuário pertence à exibição. A lógica de entrada pertence ao controlador. A lógica de negócios pertence ao modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
 
 Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los para criar um aplicativo de filme. O projeto MVC contém pastas para os *Controladores* e as *Exibições*.
 
@@ -34,8 +34,8 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Controlador**
-  ![Menu de Contexto](adding-controller/_static/add_controller.png)
+* No **Solution Explorer,** **os controladores**
+  ![com botão direito do mouse > adicionar > menu contextual do controlador](adding-controller/_static/add_controller.png)
 
 * Na caixa de diálogo **Adicionar Scaffold**, selecione **Controlador MVC – Vazio**
 
@@ -106,11 +106,11 @@ Execute o aplicativo e navegue até:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
+(Substitua pelo `{PORT}` número da porta.) Você pode tentar `name` valores diferentes para e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando uma resposta de aplicativo de Hello Rick, NumTimes é\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta de\: aplicativo de Hello Rick, NumTimes é 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Na imagem acima, o segmento de URL (`Parameters`) não é usado, os parâmetros `name` e `numTimes` são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta segue. O caractere `&` separa os pares campo-valor.
+Na imagem acima, o`Parameters`segmento URL ( ) `name` `numTimes` não é usado, os parâmetros e parâmetros são passados na [seqüência de consulta .](https://wikipedia.org/wiki/Query_string) O `?` (ponto de interrogação) na URL acima é um separador, e a seqüência de consultas segue. O `&` caractere separa pares de valor de campo.
 
 Substitua o método `Welcome` pelo seguinte código:
 
@@ -125,8 +125,8 @@ Agora, o terceiro segmento de URL correspondeu ao parâmetro de rota `id`. O mé
 Nestes exemplos, o controlador tem feito a parte "VC" do MVC – ou seja, o trabalho de **V**iew e de **C**ontroller. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, normalmente, você usa um arquivo de modelo de exibição do Razor separado para gerar a resposta HTML. Faça isso no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior](start-mvc.md)
-> [Próximo](adding-view.md)
+> [Próximo](start-mvc.md)
+> [anterior](adding-view.md)
 
 ::: moniker-end
 
@@ -140,7 +140,7 @@ O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em tr�
 
 * **C**ontrollers: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/About` tem dados de rota de `Home` (o controlador) e `About` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
 
-O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da IU fica na exibição. A lógica de entrada fica no controlador. A lógica de negócios fica no modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
+O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da interface do usuário pertence à exibição. A lógica de entrada pertence ao controlador. A lógica de negócios pertence ao modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
 
 Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los para criar um aplicativo de filme. O projeto MVC contém pastas para os *Controladores* e as *Exibições*.
 
@@ -148,8 +148,8 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Controlador**
-  ![Menu de Contexto](adding-controller/_static/add_controller.png)
+* No **Solution Explorer,** **os controladores**
+  ![com botão direito do mouse > adicionar > menu contextual do controlador](adding-controller/_static/add_controller.png)
 
 * Na caixa de diálogo **Adicionar Scaffold**, selecione **Controlador MVC – Vazio**
 
@@ -225,11 +225,11 @@ Execute o aplicativo e navegue até:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
+(Substitua pelo `{PORT}` número da porta.) Você pode tentar `name` valores diferentes para e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando uma resposta de aplicativo de Hello Rick, NumTimes é\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta de\: aplicativo de Hello Rick, NumTimes é 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Na imagem acima, o segmento de URL (`Parameters`) não é usado, os parâmetros `name` e `numTimes` são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta segue. O caractere `&` separa os pares campo-valor.
+Na imagem acima, o`Parameters`segmento URL ( ) `name` `numTimes` não é usado, os parâmetros e parâmetros são passados na [seqüência de consulta .](https://wikipedia.org/wiki/Query_string) O `?` (ponto de interrogação) na URL acima é um separador, e a seqüência de consultas segue. O `&` caractere separa pares de valor de campo.
 
 Substitua o método `Welcome` pelo seguinte código:
 
@@ -244,7 +244,7 @@ Agora, o terceiro segmento de URL correspondeu ao parâmetro de rota `id`. O mé
 Nestes exemplos, o controlador faz a parte “VC” do MVC – ou seja, o trabalho da exibição e do controlador. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, normalmente, você usa um arquivo de modelo de exibição do Razor separado para ajudar a gerar a resposta HTML. Faça isso no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior](start-mvc.md)
-> [Próximo](adding-view.md)
+> [Próximo](start-mvc.md)
+> [anterior](adding-view.md)
 
 ::: moniker-end

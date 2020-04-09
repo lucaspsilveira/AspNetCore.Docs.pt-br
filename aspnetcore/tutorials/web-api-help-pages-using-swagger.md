@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 12/07/2019
 uid: tutorials/web-api-help-pages-using-swagger
 ms.openlocfilehash: 4408e02996b958bf009903aa1e4eeda9ad4f457c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658469"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Páginas de ajuda da API Web ASP.NET Core com o Swagger/OpenAPI
@@ -31,7 +31,7 @@ O Swagger é uma especificação independente de linguagem para descrever APIs [
 
 ## <a name="swagger-specification-swaggerjson"></a>Especificação do Swagger (swagger.json)
 
-O ponto central para o fluxo do Swagger é a especificação do Swagger que é, por padrão, um documento chamado &mdash;swagger.json *. Ele é gerado pela cadeia de ferramentas do Swagger (ou por implementações de terceiros) com base no seu serviço. Ele descreve os recursos da API e como acessá-lo com HTTP. Ele gera a interface do usuário do Swagger e é usado pela cadeia de ferramentas para habilitar a geração e a descoberta de código de cliente. Aqui está um exemplo de uma especificação do Swagger, resumida:
+O ponto central para o fluxo do Swagger é a especificação do Swagger que é, por padrão, um documento chamado *swagger.json*. Ele é gerado pela cadeia de ferramentas do Swagger (ou por implementações de terceiros) com base no seu serviço. Ele descreve os recursos da API e como acessá-lo com HTTP. Ele gera a interface do usuário do Swagger e é usado pela cadeia de ferramentas para habilitar a geração e a descoberta de código de cliente. Aqui está um exemplo de uma especificação do Swagger, resumida:
 
 ```json
 {
@@ -108,14 +108,14 @@ A [Interface do usuário do Swagger](https://swagger.io/swagger-ui/) oferece uma
 
 ![IU do Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Todo método de ação pública nos controladores pode ser testado da interface do usuário. Clique em um nome de método para expandir a seção. Adicione os parâmetros necessários e, em seguida, clique em **Experimente!** .
+Todo método de ação pública nos controladores pode ser testado da interface do usuário. Clique em um nome de método para expandir a seção. Adicione todos os parâmetros necessários e clique **em Experimentá-lo!**.
 
 ![Teste GET de Swagger de exemplo](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
 > [!NOTE]
 > A versão da interface do usuário do Swagger usada para as capturas de tela é a versão 2. Para obter um exemplo da versão 3, confira [Exemplo Petstore](https://petstore.swagger.io/).
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 * [Introdução ao Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Introdução ao NSwag](xref:tutorials/get-started-with-nswag)

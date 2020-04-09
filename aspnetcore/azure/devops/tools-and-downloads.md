@@ -1,36 +1,36 @@
 ---
-title: Ferramentas e downloads - DevOps com o ASP.NET Core e o Azure
+title: Ferramentas e downloads - DevOps com ASP.NET Core e Azure
 author: CamSoper
-description: Ferramentas e downloads necessários para operações de desenvolvimento com ASP.NET Core e o Azure.
+description: Ferramentas e downloads necessários para DevOps com ASP.NET Core e Azure.
 ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/tools-and-downloads
 ms.openlocfilehash: 9c1042dd48b9167209b46e97a09e011b80e2609c
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "79511139"
 ---
 # <a name="tools-and-downloads"></a>Ferramentas e downloads
 
-O Azure tem várias interfaces para provisionar e gerenciar recursos, como o [portal do Azure](https://portal.azure.com), [CLI do Azure](/cli/azure/), [Azure PowerShell](/powershell/azure/overview), [Azure cloud Shell](https://shell.azure.com/bash)e Visual Studio. Este guia usa uma abordagem minimalista e usa o Azure Cloud Shell sempre que possível para reduzir as etapas necessárias. No entanto, o portal do Azure deve ser usado para algumas partes.
+O Azure possui diversas interfaces para provisionamento e gerenciamento de recursos, como o [portal Azure](https://portal.azure.com), [Azure CLI,](/cli/azure/) [Azure PowerShell,](/powershell/azure/overview) [Azure Cloud Shell](https://shell.azure.com/bash)e Visual Studio. Este guia adota uma abordagem minimalista e usa o Azure Cloud Shell sempre que possível para reduzir as etapas necessárias. No entanto, o portal Azure deve ser usado para algumas porções.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
-As assinaturas a seguir são necessárias:
+As seguintes assinaturas são necessárias:
 
-* &mdash; do Azure se você não tiver uma conta, [obtenha uma avaliação gratuita](https://azure.microsoft.com/free/).
-* Azure DevOps Services &mdash; sua assinatura e organização do DevOps do Azure é criada no capítulo 4.
-* O GitHub &mdash; se você não tiver uma conta, [Inscreva-se gratuitamente](https://github.com/join).
+* Azure &mdash; Se você não tem uma conta, [obtenha uma avaliação gratuita](https://azure.microsoft.com/free/).
+* Azure DevOps &mdash; Services sua assinatura e organização Do Azure DevOps é criada no Capítulo 4.
+* GitHub &mdash; Se você não tiver uma conta, [inscreva-se gratuitamente](https://github.com/join).
 
-As ferramentas a seguir são necessárias:
+As seguintes ferramentas são necessárias:
 
-* O [git](https://git-scm.com/downloads) &mdash; um entendimento fundamental do git é recomendado para este guia. Examine a [documentação do git](https://git-scm.com/doc), especificamente [git remoto](https://git-scm.com/docs/git-remote) e [git Push](https://git-scm.com/docs/git-push).
-* [SDK do .NET Core](https://dotnet.microsoft.com/download/) &mdash; versão 2.1.300 ou posterior é necessária para compilar e executar o aplicativo de exemplo. Se o Visual Studio estiver instalado com a carga de trabalho de **desenvolvimento de plataforma cruzada do .NET Core** , o SDK do .NET Core já estará instalado.
+* [Git](https://git-scm.com/downloads) &mdash; Uma compreensão fundamental de Git é recomendada para este guia. Revise a documentação do [Git,](https://git-scm.com/doc)especificamente [git remote](https://git-scm.com/docs/git-remote) e [git push](https://git-scm.com/docs/git-push).
+* [.NET Core SDK](https://dotnet.microsoft.com/download/) &mdash; Versão 2.1.300 ou posterior é necessária para construir e executar o aplicativo de amostra. Se o Visual Studio estiver instalado com a carga **de trabalho de desenvolvimento multiplataforma .NET Core,** o .NET Core SDK já está instalado.
 
-    Verifique se a instalação do SDK do .NET Core. Abra um shell de comando e execute o seguinte comando:
+    Verifique a instalação do .NET Core SDK. Abra uma camada de comando e execute o seguinte comando:
 
     ```dotnetcli
     dotnet --version
@@ -38,10 +38,10 @@ As ferramentas a seguir são necessárias:
 
 ## <a name="recommended-tools-windows-only"></a>Ferramentas recomendadas (somente Windows)
 
-* As ferramentas robustas do Azure do [Visual Studio](https://visualstudio.microsoft.com)fornecem uma GUI para a maioria das funcionalidades descritas neste guia. Qualquer edição do Visual Studio funcionará, incluindo o Visual Studio Community Edition gratuito. Os tutoriais são gravados para demonstrar o desenvolvimento, implantação e operações de desenvolvimento com e sem o Visual Studio.
+* [As](https://visualstudio.microsoft.com)ferramentas robustas do Azure do Visual Studio fornecem uma GUI para a maior parte das funcionalidades descritas neste guia. Qualquer edição do Visual Studio funcionará, incluindo o Visual Studio Community Edition gratuito. Os tutoriais são escritos para demonstrar desenvolvimento, implantação e DevOps com e sem visual studio.
 
-  Confirme se o Visual Studio tem as seguintes [cargas de trabalho](/visualstudio/install/modify-visual-studio) instaladas:
+  Confirme se o Visual Studio tem as [seguintes cargas de trabalho instaladas:](/visualstudio/install/modify-visual-studio)
 
-  * Desenvolvimento do ASP.NET e para a Web
+  * Desenvolvimento Web e ASP.NET
   * Desenvolvimento do Azure
-  * Desenvolvimento de plataforma cruzada do .NET Core
+  * Desenvolvimento multiplataforma com o .NET Core

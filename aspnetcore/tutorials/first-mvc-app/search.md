@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/search
 ms.openlocfilehash: 89f1fa84783430f160ca0b840bf7ae9699520cb7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662865"
 ---
 # <a name="add-search-to-an-aspnet-core-mvc-app"></a>Adicionar a pesquisa a um aplicativo ASP.NET Core MVC
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Nesta seção, você adiciona a funcionalidade de pesquisa ao método de ação `Index` que permite pesquisar filmes por *gênero* ou *nome*.
 
@@ -132,7 +132,7 @@ Quando o usuário pesquisa o item, o valor de pesquisa é mantido na caixa de pe
 
 ## <a name="add-search-by-genre-to-the-index-view"></a>Adicionar pesquisa por gênero à exibição Índice
 
-Atualize `Index.cshtml`, encontrado em *Views/Movies/* , da seguinte maneira:
+Atualize `Index.cshtml`, encontrado em *Views/Movies/*, da seguinte maneira:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
 
@@ -147,5 +147,5 @@ Teste o aplicativo pesquisando por gênero, título do filme e por ambos:
 ![Janela do navegador mostrando resultados de https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/s2.png)
 
 > [!div class="step-by-step"]
-> [Anterior](controller-methods-views.md)
-> [Próximo](new-field.md)
+> [Próximo](controller-methods-views.md)
+> [anterior](new-field.md)

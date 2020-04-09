@@ -7,15 +7,15 @@ ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vs
 ms.openlocfilehash: 7fc3644df3dcb957f2537538aaa9506c6b38a480
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78662200"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker range=">= aspnetcore-3.0"
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
@@ -23,11 +23,11 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker-end
 
 
-Consulte [publicar um aplicativo Web para Azure app serviço usando Visual Studio para Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) se você estiver trabalhando no MacOS.
+Consulte [Publicar um aplicativo web para o Azure App Service usando o Visual Studio para Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) se você estiver trabalhando no macOS.
 
 Para solucionar um problema de implantação do Serviço de Aplicativo, confira <xref:test/troubleshoot-azure-iis>.
 
-## <a name="set-up"></a>Configurar
+## <a name="set-up"></a>Configuração
 
 * Abra uma [conta do Azure gratuita](https://azure.microsoft.com/free/dotnet/) se você não tiver uma. 
 
@@ -37,7 +37,7 @@ Na página inicial do Visual Studio, selecione **Arquivo > Novo > Projeto...**
 
 ![Menu Arquivo](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
-Faça as configurações necessárias na caixa de diálogo **Novo Projeto**:
+Complete a caixa de diálogo **Novo Projeto**:
 
 * No painel esquerdo, selecione **.NET Core**.
 * No painel central, toque em **Aplicativo Web ASP.NET Core**.
@@ -47,7 +47,7 @@ Faça as configurações necessárias na caixa de diálogo **Novo Projeto**:
 
 Na caixa de diálogo **Novo Aplicativo Web ASP.NET Core**:
 
-* Selecione **Aplicativo Web**.
+* Selecione **o Aplicativo web**.
 * Selecione **Mudar Autenticação**.
 
 ![Caixa de diálogo Novo Projeto](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
@@ -64,7 +64,7 @@ O Visual Studio cria a solução.
 ## <a name="run-the-app"></a>Executar o aplicativo
 
 * Pressione CTRL+F5 para executar o projeto.
-* Teste os links **Sobre** e **Contato**.
+* Teste os links **Sobre** e **Contato.**
 
 ![Aplicativo Web aberto no Microsoft Edge no localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
@@ -72,7 +72,7 @@ O Visual Studio cria a solução.
 
 * Selecione **Registrar** e registre um novo usuário. Você pode usar um endereço de email fictício. Ao enviar, a página exibirá o seguinte erro:
 
-    *"Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes para o contexto do BD de aplicativos pode resolver esse problema. "*
+    *"Erro interno do servidor: uma operação de banco de dados falhou durante o processamento da solicitação. Exceção SQL: Não é possível abrir o banco de dados. A aplicação de migrações existentes para o contexto db do aplicativo pode resolver esse problema."*
 * Selecione **Aplicar Migrações** e, depois que a página for atualizada, atualize a página.
 
 ![Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema.](publish-to-azure-webapp-using-vs/_static/mig.png)
@@ -83,7 +83,7 @@ O aplicativo exibe o email usado para registrar o novo usuário e um link **Faze
 
 ## <a name="deploy-the-app-to-azure"></a>Implantar o aplicativo no Azure
 
-Clique com o botão direito do mouse no projeto no Gerenciador de Soluções e selecione **Publicar...** .
+Clique com o botão direito do mouse no projeto no Solution Explorer e selecione **Publicar...**.
 
 ![Menu contextual aberto com o link Publicar realçado](publish-to-azure-webapp-using-vs/_static/pub.png)
 
@@ -97,7 +97,7 @@ Na caixa de diálogo **Publicar**:
 
 ### <a name="create-azure-resources"></a>Criar recursos do Azure
 
-A caixa de diálogo **Criar Serviço de Aplicativo** será exibida:
+A caixa de diálogo **Criar serviço de aplicativos** é exibida:
 
 * Insira sua assinatura.
 * Os campos de entrada **Nome do Aplicativo**, **Grupo de Recursos** e **Plano do Serviço de Aplicativo** serão populados. Você pode manter esses nomes ou alterá-los.
@@ -106,7 +106,7 @@ A caixa de diálogo **Criar Serviço de Aplicativo** será exibida:
 
 * Selecione a guia **Serviços** para criar um novo banco de dados.
 
-* Selecione o ícone verde **+** para criar um novo Banco de Dados SQL
+* Selecione **+** o ícone verde para criar um novo banco de dados SQL
 
 ![Novo banco de dados SQL](publish-to-azure-webapp-using-vs/_static/sql.png)
 
@@ -116,7 +116,7 @@ A caixa de diálogo **Criar Serviço de Aplicativo** será exibida:
 
 A caixa de diálogo **Configurar o SQL Server** é exibida.
 
-* Insira um nome de usuário do administrador e a senha e, em seguida, selecione **OK**. Você pode manter o **Nome do Servidor** padrão. 
+* Insira um nome de usuário do administrador e a senha e, em seguida, selecione **OK**. Você pode manter o nome padrão do **servidor**. 
 
 > [!NOTE]
 > “admin” não é permitido como o nome de usuário administrador.
@@ -139,10 +139,10 @@ Quando a implantação for concluída, selecione **Configurações**:
 
 Na página **Configurações** da caixa de diálogo **Publicar**:
 
-* Expanda **Bancos de Dados** e marque a opção **Usar esta cadeia de conexão no runtime**.
-* Expanda **Migrações do Entity Framework** e marque a opção **Aplicar esta migração durante a publicação**.
+* Expandir **bancos de dados** e verificar Usar essa **seqüência de conexões em tempo de execução**.
+* Expandir **migrações do framework de entidades** e verificar **Aplicar essa migração na publicação**.
 
-* Selecione **Salvar**. O Visual Studio retorna para a caixa de diálogo **Publicar**. 
+* Clique em **Salvar**. O Visual Studio retorna para a caixa de diálogo **Publicar**. 
 
 ![Caixa de diálogo Publicar: painel Configurações](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
@@ -184,7 +184,7 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 
 * Insira o nome do grupo de recursos e selecione **Excluir**. O aplicativo e todos os outros recursos criados neste tutorial agora foram excluídos do Azure.
 
-### <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+### <a name="next-steps"></a>Próximas etapas
 
 * <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
@@ -193,6 +193,6 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 * Para o Visual Studio Code, confira [Perfis de publicação](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
 * [Grupos de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
-* [Banco de Dados SQL do Azure](/azure/sql-database/)
+* [Banco de dados SQL do Azure](/azure/sql-database/)
 * <xref:host-and-deploy/visual-studio-publish-profiles>
 * <xref:test/troubleshoot-azure-iis>

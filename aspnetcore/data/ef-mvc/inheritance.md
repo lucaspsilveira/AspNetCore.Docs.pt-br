@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: implementar a herança – ASP.NET MVC com o EF Core'
+title: 'Tutorial: Implementar herança - ASP.NET MVC com EF Core'
 description: Este tutorial mostrará como implementar a herança no modelo de dados, usando o Entity Framework Core em um aplicativo ASP.NET Core.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/inheritance
 ms.openlocfilehash: dab3d2b057162f6d986db10e74e3681acc0ada3b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657237"
 ---
-# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a herança – ASP.NET MVC com o EF Core
+# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar herança - ASP.NET MVC com EF Core
 
 No tutorial anterior, você tratou exceções de simultaneidade. Este tutorial mostrará como implementar a herança no modelo de dados.
 
@@ -30,7 +30,7 @@ Neste tutorial, você:
 > * Criará e atualizará migrações
 > * Testará a implementação
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Manipular a simultaneidade](concurrency.md)
 
@@ -156,7 +156,7 @@ Clique com o botão direito do mouse na tabela Person e, em seguida, clique em *
 
 Para obter mais informações sobre a herança no Entity Framework Core, consulte [Herança](/ef/core/modeling/inheritance).
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 

@@ -11,10 +11,10 @@ products:
 - vs-mac
 urlFragment: getstarted-swashbuckle-aspnetcore
 ms.openlocfilehash: e02247325f430b0ce23dbb3f5bc344a60a1a164a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78659932"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introdução ao Swashbuckle e ao ASP.NET Core
@@ -63,7 +63,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-A chamada do método `UseSwaggerUI` precedente habilita o [middleware de arquivos estáticos](https://docs.microsoft.com/aspnet/core/fundamentals/static-files). Se você estiver direcionando ao .NET Framework ou ao .NET Core 1.x, adicione o pacote NuGet [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) ao projeto.
+A chamada do método `UseSwaggerUI` precedente habilita o [middleware de arquivos estáticos](https://docs.microsoft.com/aspnet/core/fundamentals/static-files). Se tiver como alvo o .NET Framework ou o .NET Core 1.x, adicione o pacote [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet ao projeto.
 
 Inicie o aplicativo e navegue até `http://localhost:<port>/swagger/v1/swagger.json`. O documento gerado que descreve os pontos de extremidade é exibido conforme é mostrado na [Especificação do Swagger (swagger.json)](https://docs.microsoft.com/aspnet/core/tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
 
@@ -144,7 +144,7 @@ Comentários XML podem ser habilitados com as seguintes abordagens:
 
 #### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* No *Painel de Soluções*, pressione **control** e clique no nome do projeto. Navegue até **Ferramentas** > **Editar arquivo**.
+* No *Painel de Soluções*, pressione **control** e clique no nome do projeto. Navegue até **o Arquivo** > **de edição de ferramentas**.
 * Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 
 ```xml
@@ -179,7 +179,7 @@ Para suprimir os avisos de todo o projeto, defina uma lista separada por ponto e
 <NoWarn>$(NoWarn);1591</NoWarn>
 ```
 
-Para suprimir avisos somente para membros específicos, coloque o código nas diretivas de pré-processador [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning). Essa abordagem é útil para o código que não deve ser exposto por meio dos documentos da API. No exemplo a seguir, o código de aviso CS1591 é ignorado para toda a classe de `Program`. A imposição do código de aviso é restaurada no fechamento da definição de classe. Especifique vários códigos de aviso com uma lista delimitada por vírgulas.
+Para suprimir avisos somente para membros específicos, coloque o código nas diretivas de pré-processador [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning). Esta abordagem é útil para códigos que não devem ser expostos através dos docs da API. No exemplo a seguir, o código de aviso CS1591 é ignorado para toda `Program` a classe. A imposição do código de aviso é restaurada no fechamento da definição de classe. Especifique vários códigos de aviso com uma lista delimitada por vírgulas.
 
 ```csharp
 namespace TodoApi
@@ -239,9 +239,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-No código anterior, a [Reflexão](/dotnet/csharp/programming-guide/concepts/reflection) é usada para criar um nome de arquivo XML correspondente ao do projeto de API Web. A propriedade [AppContext.BaseDirectory](/dotnet/api/system.appcontext.basedirectory) é usada para construir um caminho para o arquivo XML. Alguns recursos do Swagger (como os esquemas de parâmetros de entrada ou dos métodos HTTP e os códigos de resposta dos respectivos atributos) funcionam sem o uso de um arquivo de documentação XML. Para a maioria dos recursos, ou seja, resumos de método e descrições dos parâmetros e códigos de resposta, é obrigatório o uso de um arquivo XML.
+No código anterior, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) é usado para construir um nome de arquivo XML correspondente ao do projeto de API da Web. A propriedade [AppContext.BaseDirectory](/dotnet/api/system.appcontext.basedirectory) é usada para construir um caminho para o arquivo XML. Alguns recursos do Swagger (como os esquemas de parâmetros de entrada ou dos métodos HTTP e os códigos de resposta dos respectivos atributos) funcionam sem o uso de um arquivo de documentação XML. Para a maioria dos recursos, ou seja, resumos de método e descrições dos parâmetros e códigos de resposta, é obrigatório o uso de um arquivo XML.
 
-Adicionar comentários de barra tripla a uma ação aprimora a interface do usuário do Swagger adicionando a descrição ao cabeçalho da seção. Adicione um elemento [\<summary>](/dotnet/csharp/programming-guide/xmldoc/summary) acima da ação `Delete`:
+Adicionar comentários de barra tripla a uma ação aprimora a interface do usuário do Swagger adicionando a descrição ao cabeçalho da seção. Adicione [ \<](/dotnet/csharp/programming-guide/xmldoc/summary) um elemento de>`Delete` de resumo acima da ação:
 
 ```csharp
 /// <summary>
@@ -296,7 +296,7 @@ A interface do usuário é controlada pelo esquema JSON gerado:
     }
 }
 ```
-Adicione um elemento [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) na documentação do método da ação `Create`. Ele complementa as informações especificadas no elemento `<summary>` e fornece uma interface de usuário do Swagger mais robusta. O conteúdo do elemento `<remarks>` pode consistir em texto, JSON ou XML.
+Adicione um [ \<elemento>observações](/dotnet/csharp/programming-guide/xmldoc/remarks) à documentação do `Create` método de ação. Ele complementa as informações especificadas no elemento `<summary>` e fornece uma interface de usuário do Swagger mais robusta. O conteúdo do elemento `<remarks>` pode consistir em texto, JSON ou XML.
 
 ```csharp
 /// <summary>
@@ -334,7 +334,7 @@ Observe os aprimoramentos da interface do usuário com esses comentários adicio
 
 ### <a name="data-annotations"></a>Anotações de dados
 
-Marque o modelo com atributos, encontrado no namespace [System. ComponentModel. Annotations](/dotnet/api/system.componentmodel.dataannotations) , para ajudar a orientar os componentes da interface do usuário do Swagger.
+Marque o modelo com atributos, encontrados no espaço de nome [System.ComponentModel.DataAnnotações,](/dotnet/api/system.componentmodel.dataannotations) para ajudar a impulsionar os componentes da IU Swagger.
 
 Adicione o atributo `[Required]` à propriedade `Name` da classe `TodoItem`:
 
@@ -421,4 +421,4 @@ A interface do usuário do Swagger agora documenta claramente os códigos de res
 
 No ASP.NET Core 2.2 ou posterior, as convenções podem ser usadas como uma alternativa para decorar explicitamente as ações individuais com `[ProducesResponseType]`. Para obter mais informações, confira [Usar convenções da API Web](https://docs.microsoft.com/aspnet/core/web-api/advanced/conventions).
 
-Para obter informações sobre como personalizar a interface do usuário, consulte: [Personalizar a interface do usuário](/aspnet/core/tutorials/getting-started-with-swashbuckle?#customize-and-extend)
+Para obter informações sobre a personalização da iu: [Personalizar a ui](/aspnet/core/tutorials/getting-started-with-swashbuckle?#customize-and-extend)

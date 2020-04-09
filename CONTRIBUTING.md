@@ -4,7 +4,7 @@ Este documento aborda o processo para contribuir para os artigos e exemplos de c
 
 ## <a name="how-to-make-a-simple-correction-or-suggestion"></a>Como fazer uma correção ou sugestão simples
 
-Artigos são armazenados no repositório, como arquivos de Markdown. São feitas alterações simples ao conteúdo de um arquivo Markdown no navegador selecionando o link **Editar** no canto superior direito da janela do navegador. (Em uma janela estreita do navegador, expanda a barra de **Opções** para ver o link **Editar** .) Siga as instruções para criar uma solicitação de pull (PR). Vamos examinar a PR e aceitá-la ou sugerir alterações.
+Artigos são armazenados no repositório, como arquivos de Markdown. São feitas alterações simples ao conteúdo de um arquivo Markdown no navegador selecionando o link **Editar** no canto superior direito da janela do navegador. (Em uma janela estreita do navegador, expanda a barra **de opções** para ver o link **Editar.)** Siga as instruções para criar uma solicitação de tração (PR). Vamos examinar a PR e aceitá-la ou sugerir alterações.
 
 ## <a name="how-to-make-a-more-complex-submission"></a>Como fazer um envio mais complexo
 
@@ -122,7 +122,7 @@ O DocFX requer:
 
 * Em um navegador, navegue até `http://localhost:8080/group1-dest/`.
 
-### <a name="mono-instructions"></a>Instruções do mono
+### <a name="mono-instructions"></a>Instruções do Mono
 
 * Instalar o Mono por meio do Homebrew:
 
@@ -149,7 +149,7 @@ O DocFX requer:
 
 ## <a name="voice-and-tone"></a>Voz e tom
 
-Nossa meta é escrever uma documentação que possa ser facilmente compreendida pelo maior público possível. Para esse fim, estabelecemos diretrizes para estilo de escrita que pedimos que nosso colaboradores sigam. Para obter mais informações, confira [Diretrizes de voz e tom](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) no repositório do .NET.
+Nossa meta é escrever documentação que possa ser facilmente compreendida pelo maior público possível. Para esse fim, estabelecemos diretrizes para estilo de escrita que pedimos que nosso colaboradores sigam. Para obter mais informações, confira [Diretrizes de voz e tom](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) no repositório do .NET.
 
 ## <a name="microsoft-writing-style-guide"></a>Guia de Estilo de Escrita da Microsoft
 

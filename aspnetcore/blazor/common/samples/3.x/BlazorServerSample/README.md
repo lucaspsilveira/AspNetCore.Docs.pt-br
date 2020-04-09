@@ -1,3 +1,3 @@
-# <a name="blazor-server-sample-app"></a>Aplicativo de exemplo de servidor mais incrivelmente
+# <a name="blazor-server-sample-app"></a>Aplicativo de amostra gemido do servidor Blazor
 
-Este exemplo ilustra o uso de cenários de mais claros descritos na documentação mais simples.
+Esta amostra ilustra o uso dos cenários blazor descritos na documentação blazor.

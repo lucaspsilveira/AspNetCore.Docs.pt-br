@@ -2,7 +2,7 @@
 
 | Parâmetro               | Descrição|
 | ----------------- | ------------ |
-| -m  | O nome do modelo. |
+| -M  | O nome do modelo. |
 | -dc  | A classe `DbContext` a ser usada. |
 | -udl | Use o layout padrão. |
 | -outDir | O caminho da pasta de saída relativa para criar as exibições. |
@@ -14,4 +14,4 @@ Use a opção `h` para obter ajuda sobre o comando `aspnet-codegenerator razorpa
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-Para obter mais informações, consulte [dotnet ASPNET-CodeGenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+Para obter mais informações, consulte [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).

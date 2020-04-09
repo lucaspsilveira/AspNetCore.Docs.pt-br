@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor plataformas com suporte
+title: plataformas Blazor suportadas pelo ASP.NET Core
 author: guardrex
-description: Saiba mais sobre as plataformas com suporte para Blazorde ASP.NET Core.
+description: Conheça as plataformas suportadas Blazorpara ASP.NET Core .
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,13 +11,13 @@ no-loc:
 - SignalR
 uid: blazor/supported-platforms
 ms.openlocfilehash: 505974280b5c96ec2bcae42c6e076ab67a15bb07
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78658854"
 ---
-# <a name="aspnet-core-blazor-supported-platforms"></a>ASP.NET Core plataformas suportadas com suporte
+# <a name="aspnet-core-blazor-supported-platforms"></a>ASP.NET Plataformas suportadas pelo Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex)
 
@@ -27,19 +27,19 @@ Por [Luke Latham](https://github.com/guardrex)
 
 ### <a name="blazor-webassembly"></a>WebAssembly Blazor
 
-| Navegador.                          | {1&gt;Version&lt;1}               |
+| Navegador                          | Versão               |
 | -------------------------------- | :-------------------: |
 | Microsoft Edge                   | Current               |
 | Mozilla Firefox                  | Current               |
 | Google Chrome, incluindo Android | Current               |
 | Safari, incluindo iOS            | Current               |
-| Microsoft Internet Explorer      | Sem suporte&dagger; |
+| Microsoft Internet Explorer      | Não suportado&dagger; |
 
-&dagger;o Microsoft Internet Explorer não dá suporte ao [Webassembly](https://webassembly.org).
+&dagger;O Microsoft Internet Explorer não suporta [WebAssembly](https://webassembly.org).
 
 ### <a name="blazor-server"></a>Servidor Blazor
 
-| Navegador.                          | {1&gt;Version&lt;1}    |
+| Navegador                          | Versão    |
 | -------------------------------- | :--------: |
 | Microsoft Edge                   | Current    |
 | Mozilla Firefox                  | Current    |
@@ -47,7 +47,7 @@ Por [Luke Latham](https://github.com/guardrex)
 | Safari, incluindo iOS            | Current    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
-&dagger;outros suportes retroativos são necessários (por exemplo, as promessas podem ser adicionadas por meio de um pacote [polyfill.Io](https://polyfill.io/v3/) ).
+&dagger;São necessários polipreenchimentos adicionais (por exemplo, promessas podem ser adicionadas através de um pacote [de Polyfill.io).](https://polyfill.io/v3/)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

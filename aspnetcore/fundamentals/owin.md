@@ -7,10 +7,10 @@ ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
 uid: fundamentals/owin
 ms.openlocfilehash: 14b23ba6d284413e20417bbd4142e19a656350ac
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666680"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>OWIN (Open Web Interface para .NET) com o ASP.NET Core
@@ -221,7 +221,7 @@ Essa [amostra](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/
 
 ![Cliente de teste de Soquete da Web](owin/_static/websocket-test.png)
 
-## <a name="owin-environment"></a>Ambiente OWIN
+## <a name="owin-environment"></a>Ambiente do OWIN
 
 Você pode construir um ambiente do OWIN usando o `HttpContext`.
 

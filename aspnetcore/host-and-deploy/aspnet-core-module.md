@@ -8,15 +8,15 @@ ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/aspnet-core-module
 ms.openlocfilehash: 298d424557600735668217e1ef07ace606dac60b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78667296"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
-Por [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), [Chris Ross](https://github.com/Tratcher), [Rick Anderson](https://twitter.com/RickAndMSFT), [sourabh Shirhatti](https://twitter.com/sshirhatti)e [Justin Kotalik](https://github.com/jkotalik)
+Por [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), [Chris Ross](https://github.com/Tratcher), Rick [Anderson](https://twitter.com/RickAndMSFT), [Sourabh Shirhatti](https://twitter.com/sshirhatti), e [Justin Kotalik](https://github.com/jkotalik)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -32,13 +32,13 @@ Versões do Windows com suporte:
 
 Ao fazer uma hospedagem em processo, o módulo usa uma implementação de servidor em processo do IIS, chamado Servidor HTTP do IIS (`IISHttpServer`).
 
-Ao hospedar de fora do processo, o módulo só funciona com o Kestrel. O módulo não funciona com [http. sys](xref:fundamentals/servers/httpsys).
+Ao hospedar de fora do processo, o módulo só funciona com o Kestrel. O módulo não funciona com [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## <a name="hosting-models"></a>Modelos de hospedagem
 
 ### <a name="in-process-hosting-model"></a>Modelo de hospedagem em processo
 
-ASP.NET Core aplicativos assumem como padrão o modelo de hospedagem em processo.
+ASP.NET os aplicativos Core padrão para o modelo de hospedagem em processo.
 
 As seguintes características se aplicam ao hospedar em processo:
 
@@ -77,11 +77,11 @@ As seguintes características se aplicam ao hospedar em processo:
   }
   ```
   
-  * Não há suporte para [implantações de pacote da Web (arquivo único)](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) .
+  * [As implantações do Pacote Web (arquivo único)](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) não são suportadas.
 
 ### <a name="out-of-process-hosting-model"></a>Modelo de hospedagem de fora do processo
 
-Para configurar um aplicativo para hospedagem fora do processo, defina o valor da propriedade `<AspNetCoreHostingModel>` como `OutOfProcess` no arquivo de projeto ( *. csproj*):
+Para configurar um aplicativo para hospedagem fora de processo, defina o valor da `<AspNetCoreHostingModel>` propriedade no `OutOfProcess` arquivo do projeto (*.csproj*):
 
 ```xml
 <PropertyGroup>
@@ -89,9 +89,9 @@ Para configurar um aplicativo para hospedagem fora do processo, defina o valor d
 </PropertyGroup>
 ```
 
-A hospedagem em processo é definida com `InProcess`, que é o valor padrão.
+A hospedagem em `InProcess`processo é definida com , que é o valor padrão.
 
-O valor de `<AspNetCoreHostingModel>` não diferencia maiúsculas de minúsculas e, portanto, `inprocess` e `outofprocess` são valores válidos.
+O valor `<AspNetCoreHostingModel>` do caso é `inprocess` insensível, então e `outofprocess` são valores válidos.
 
 O servidor [Kestrel](xref:fundamentals/servers/kestrel) é usado, em vez do servidor HTTP do IIS (`IISHttpServer`).
 
@@ -165,7 +165,7 @@ O seguinte *web.config* é publicado para uma [implantação autossuficiente](/d
 </configuration>
 ```
 
-A propriedade <xref:System.Configuration.SectionInformation.InheritInChildApplications*> é definida como `false` para indicar que as configurações especificadas no elemento [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) não são herdadas por aplicativos que residem em um subdiretório do aplicativo.
+A <xref:System.Configuration.SectionInformation.InheritInChildApplications*> propriedade está `false` definida para indicar que as configurações especificadas no [ \<local>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) elemento não são herdados por aplicativos que residem em um subdiretório do aplicativo.
 
 Quando um aplicativo é implantado no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), o caminho `stdoutLogFile` é definido para `\\?\%home%\LogFiles\stdout`. O caminho salva logs de stdout para a pasta *LogFiles*, que é um local criado automaticamente pelo serviço.
 
@@ -178,7 +178,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p> | |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Atributo booliano opcional.</p><p>Se for true, o token será encaminhado para o processo filho escutando em %ASPNETCORE_PORT% como um cabeçalho 'MS-ASPNETCORE-WINAUTHTOKEN' por solicitação. É responsabilidade desse processo chamar CloseHandle nesse token por solicitação.</p> | `true` |
-| `hostingModel` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o modelo de hospedagem como em processo (`InProcess`/`inprocess`) ou fora do processo (`OutOfProcess`/`outofprocess`).</p> | `InProcess`<br>`inprocess` |
+| `hostingModel` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o modelo de hospedagem`InProcess`/`inprocess`como em processo (`OutOfProcess`/`outofprocess`) ou fora de processo ( ).</p> | `InProcess`<br>`inprocess` |
 | `processesPerApplication` | <p>Atributo inteiro opcional.</p><p>Especifica o número de instâncias do processo especificado na configuração **processPath** que pode ser ativada por aplicativo.</p><p>&dagger;Para hospedagem em processo, o valor está limitado a `1`.</p><p>A configuração `processesPerApplication` é desencorajada. Esse atributo será removido em uma versão futura.</p> | Padrão: `1`<br>Mín.: `1`<br>Máx.: `100`&dagger; |
 | `processPath` | <p>Atributo de cadeia de caracteres obrigatório.</p><p>Caminho para o executável que inicia um processo que escuta solicitações HTTP. Caminhos relativos são compatíveis. Se o caminho começa com `.`, o caminho é considerado relativo à raiz do site.</p> | |
 | `rapidFailsPerMinute` | <p>Atributo inteiro opcional.</p><p>Especifica o número de vezes que o processo especificado em **processPath** pode falhar por minuto. Se esse limite for excedido, o módulo interromperá a inicialização do processo pelo restante do minuto.</p><p>Sem suporte com hospedagem padrão.</p> | Padrão: `10`<br>Mín.: `0`<br>Máx.: `100` |
@@ -186,13 +186,13 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 | `shutdownTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o executável desligar normalmente quando o arquivo *app_offline.htm* é detectado.</p> | Padrão: `10`<br>Mín.: `0`<br>Máx.: `600` |
 | `startupTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o arquivo executável iniciar um processo escutando na porta. Se esse tempo limite é excedido, o módulo encerra o processo. O módulo tentará reiniciar o processo quando ele receber uma nova solicitação e continuará a tentar reiniciar o processo em solicitações subsequentes de entrada, a menos que o aplicativo falhe em iniciar um número de vezes igual a **rapidFailsPerMinute** no último minuto sem interrupção.</p><p>Um valor de 0 (zero) **não** é considerado um tempo limite infinito.</p> | Padrão: `120`<br>Mín.: `0`<br>Máx.: `3600` |
 | `stdoutLogEnabled` | <p>Atributo booliano opcional.</p><p>Se for true, **stdout** e **stderr** para o processo especificado em **processPath** serão redirecionados para o arquivo especificado em **stdoutLogFile**.</p> | `false` |
-| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. Todas as pastas fornecidas no caminho são criadas pelo módulo quando o arquivo de log é criado. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo ( *.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
+| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. Todas as pastas fornecidas no caminho são criadas pelo módulo quando o arquivo de log é criado. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo (*.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
 
 ### <a name="set-environment-variables"></a>Definir variáveis de ambiente
 
 Variáveis de ambiente podem ser especificadas para o processo no atributo `processPath`. Especificar uma variável de ambiente com o elemento filho `<environmentVariable>` de um elemento de coleção `<environmentVariables>`. Variáveis de ambiente definidas nesta seção têm precedência sobre variáveis de ambiente do sistema.
 
-O exemplo a seguir define duas variáveis de ambiente em *Web. config*. `ASPNETCORE_ENVIRONMENT` configura o ambiente do aplicativo para `Development`. Um desenvolvedor pode definir esse valor temporariamente no arquivo *web.config* para forçar o carregamento da [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) ao depurar uma exceção de aplicativo. `CONFIG_DIR` é um exemplo de uma variável de ambiente definida pelo usuário, em que o desenvolvedor escreveu código que lê o valor de inicialização para formar um caminho no qual carregar o arquivo de configuração do aplicativo.
+O exemplo a seguir define duas variáveis de ambiente em *web.config*. `ASPNETCORE_ENVIRONMENT` configura o ambiente do `Development`aplicativo para . Um desenvolvedor pode definir esse valor temporariamente no arquivo *web.config* para forçar o carregamento da [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) ao depurar uma exceção de aplicativo. `CONFIG_DIR` é um exemplo de uma variável de ambiente definida pelo usuário, em que o desenvolvedor escreveu código que lê o valor de inicialização para formar um caminho no qual carregar o arquivo de configuração do aplicativo.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -208,7 +208,7 @@ O exemplo a seguir define duas variáveis de ambiente em *Web. config*. `ASPNETC
 ```
 
 > [!NOTE]
-> Uma alternativa para definir o ambiente diretamente no *Web. config* é incluir a propriedade `<EnvironmentName>` no perfil de [publicação (. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+> Uma alternativa para definir o ambiente diretamente no `<EnvironmentName>` *web.config* é incluir a propriedade no perfil de publicação [(.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou arquivo do projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 >
 > ```xml
 > <PropertyGroup>
@@ -245,15 +245,15 @@ O Módulo do ASP.NET Core redireciona as saídas de console stdout e stderr para
 
 Logs não sofrem rotação, a menos que ocorra a reciclagem/reinicialização do processo. É responsabilidade do hoster limitar o espaço em disco consumido pelos logs.
 
-O uso do log stdout é recomendado apenas para solucionar problemas de inicialização do aplicativo ao hospedar no IIS ou ao usar o [suporte a tempo de desenvolvimento para o IIS com o Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), não durante a depuração local e a execução do aplicativo com IIS Express.
+O uso do registro de stdout só é recomendado para solucionar problemas de inicialização de aplicativos ao hospedar no IIS ou ao usar [o suporte ao tempo de desenvolvimento para IIS com o Visual Studio,](xref:host-and-deploy/iis/development-time-iis-support)não enquanto depura localmente e executa o aplicativo com o IIS Express.
 
 Não use o log de stdout para fins gerais de registro em log do aplicativo. Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo ( *.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
+Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo (*.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
 
 Se `stdoutLogEnabled` for falso, os erros que ocorrerem na inicialização do aplicativo serão capturados e emitidos no log de eventos até 30 KB. Após a inicialização, todos os logs adicionais são descartados.
 
-O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho relativo `.\log\`. Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
+O elemento `aspNetCore` de amostra a seguir configura `.\log\`o registro de stdout no caminho relativo . Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -264,15 +264,15 @@ O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho
 </aspNetCore>
 ```
 
-Ao publicar um aplicativo para implantação Azure App serviço, o SDK da Web define o valor de `stdoutLogFile` como `\\?\%home%\LogFiles\stdout`. A variável de ambiente `%home` é predefinida para aplicativos hospedados pelo serviço Azure App.
+Ao publicar um aplicativo para implantação do Azure App `stdoutLogFile` Service, `\\?\%home%\LogFiles\stdout`o SDK da Web define o valor para . A `%home` variável ambiente é predefinida para aplicativos hospedados pelo Azure App Service.
 
-Para criar regras de filtro de log, consulte as seções de [configuração](xref:fundamentals/logging/index#log-filtering) e [filtragem de log](xref:fundamentals/logging/index#log-filtering) da documentação de log de ASP.NET Core.
+Para criar regras de filtro de registro, consulte as seções de [filtragem](xref:fundamentals/logging/index#log-filtering) de [configuração](xref:fundamentals/logging/index#log-filtering) e log da documentação de registro do ASP.NET Core.
 
 Para obter mais informações sobre formatos de caminho, consulte [formatos de caminho de arquivo em sistemas Windows](/dotnet/standard/io/file-path-formats).
 
 ## <a name="enhanced-diagnostic-logs"></a>Logs de diagnóstico avançados
 
-O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` em *Web. config*. Definir a `debugLevel` como `TRACE` expõe uma fidelidade mais alta das informações de diagnóstico:
+O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione `<handlerSettings>` o elemento `<aspNetCore>` ao elemento em *web.config*. Definir `debugLevel` o `TRACE` ''''''''''''''''''''''''''
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -302,12 +302,12 @@ Locais (vários locais são permitidos):
 
 * CONSOLE
 * EVENTLOG
-* ARQUIVO
+* FILE
 
 As configurações do manipulador também podem ser fornecidas por meio de variáveis de ambiente:
 
-* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; caminho para o arquivo de log de depuração. (Padrão: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração de nível de depuração.
+* `ASPNETCORE_MODULE_DEBUG_FILE`&ndash; Caminho para o arquivo de registro de depuração. (Padrão: *aspnetcore-debug.log*)
+* `ASPNETCORE_MODULE_DEBUG`&ndash; Configuração do nível de depuração.
 
 > [!WARNING]
 > **Não** deixe o log de depuração habilitado na implantação por mais tempo que o necessário para solucionar um problema. O tamanho do log não é limitado. Deixar o log de depuração habilitado pode esgotar o espaço em disco disponível e causar falha no servidor ou no serviço de aplicativo.
@@ -316,9 +316,9 @@ Veja [Configuração com web.config](#configuration-with-webconfig) para obter u
 
 ## <a name="modify-the-stack-size"></a>Modificar o tamanho da pilha
 
-*Aplica-se somente ao usar o modelo de hospedagem em processo.*
+*Só se aplica ao usar o modelo de hospedagem em processo.*
 
-Configure o tamanho da pilha gerenciada usando a configuração de `stackSize` em bytes em *Web. config*. O tamanho padrão é `1048576` bytes (1 MB).
+Configure o tamanho da `stackSize` pilha gerenciada usando a configuração em bytes em *web.config*. O tamanho `1048576` padrão é bytes (1 MB).
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -364,13 +364,13 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **Detalhes.** A **versão Arquivo** e a versão do **produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
+Os logs de instalação do Pacote de Hospedagem para o módulo são encontrados em *\\C:\\Users %UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *\<dd_DotNetCoreWinSvrHosting__ carimbo de tempo>_000_AspNetCoreModule_x64.log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
-### <a name="module"></a>{1&gt;Módulo&lt;1}
+### <a name="module"></a>Módulo
 
 **IIS (x86/amd64):**
 
@@ -392,9 +392,9 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-### <a name="schema"></a>Schema
+### <a name="schema"></a>Esquema
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
 
@@ -408,7 +408,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 ### <a name="configuration"></a>Configuração
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\applicationHost.config
 
@@ -436,7 +436,7 @@ Versões do Windows com suporte:
 
 Ao fazer uma hospedagem em processo, o módulo usa uma implementação de servidor em processo do IIS, chamado Servidor HTTP do IIS (`IISHttpServer`).
 
-Ao hospedar de fora do processo, o módulo só funciona com o Kestrel. O módulo não funciona com [http. sys](xref:fundamentals/servers/httpsys).
+Ao hospedar de fora do processo, o módulo só funciona com o Kestrel. O módulo não funciona com [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## <a name="hosting-models"></a>Modelos de hospedagem
 
@@ -452,7 +452,7 @@ Para configurar um aplicativo para hospedagem em processo, adicione a propriedad
 
 Não há suporte para o modelo de hospedagem em processo para aplicativos ASP.NET Core direcionados ao .NET Framework.
 
-O valor de `<AspNetCoreHostingModel>` não diferencia maiúsculas de minúsculas e, portanto, `inprocess` e `outofprocess` são valores válidos.
+O valor `<AspNetCoreHostingModel>` do caso é `inprocess` insensível, então e `outofprocess` são valores válidos.
 
 Se a propriedade `<AspNetCoreHostingModel>` não estiver presente no arquivo, o valor padrão será `OutOfProcess`.
 
@@ -506,7 +506,7 @@ Para configurar um aplicativo para hospedagem fora do processo, use qualquer uma
 </PropertyGroup>
 ```
 
-O valor não diferencia maiúsculas de minúsculas, portanto `inprocess` e `outofprocess` são valores válidos.
+O valor é caso insensível, então `inprocess` e `outofprocess` são valores válidos.
 
 O servidor [Kestrel](xref:fundamentals/servers/kestrel) é usado, em vez do servidor HTTP do IIS (`IISHttpServer`).
 
@@ -580,7 +580,7 @@ O seguinte *web.config* é publicado para uma [implantação autossuficiente](/d
 </configuration>
 ```
 
-A propriedade <xref:System.Configuration.SectionInformation.InheritInChildApplications*> é definida como `false` para indicar que as configurações especificadas no elemento [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) não são herdadas por aplicativos que residem em um subdiretório do aplicativo.
+A <xref:System.Configuration.SectionInformation.InheritInChildApplications*> propriedade está `false` definida para indicar que as configurações especificadas no [ \<local>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) elemento não são herdados por aplicativos que residem em um subdiretório do aplicativo.
 
 Quando um aplicativo é implantado no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), o caminho `stdoutLogFile` é definido para `\\?\%home%\LogFiles\stdout`. O caminho salva logs de stdout para a pasta *LogFiles*, que é um local criado automaticamente pelo serviço.
 
@@ -593,7 +593,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p> | |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
 | `forwardWindowsAuthToken` | <p>Atributo booliano opcional.</p><p>Se for true, o token será encaminhado para o processo filho escutando em %ASPNETCORE_PORT% como um cabeçalho 'MS-ASPNETCORE-WINAUTHTOKEN' por solicitação. É responsabilidade desse processo chamar CloseHandle nesse token por solicitação.</p> | `true` |
-| `hostingModel` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o modelo de hospedagem como em processo (`InProcess`/`inprocess`) ou fora do processo (`OutOfProcess`/`outofprocess`).</p> | `OutOfProcess`<br>`outofprocess` |
+| `hostingModel` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o modelo de hospedagem`InProcess`/`inprocess`como em processo (`OutOfProcess`/`outofprocess`) ou fora de processo ( ).</p> | `OutOfProcess`<br>`outofprocess` |
 | `processesPerApplication` | <p>Atributo inteiro opcional.</p><p>Especifica o número de instâncias do processo especificado na configuração **processPath** que pode ser ativada por aplicativo.</p><p>&dagger;Para hospedagem em processo, o valor está limitado a `1`.</p><p>A configuração `processesPerApplication` é desencorajada. Esse atributo será removido em uma versão futura.</p> | Padrão: `1`<br>Mín.: `1`<br>Máx.: `100`&dagger; |
 | `processPath` | <p>Atributo de cadeia de caracteres obrigatório.</p><p>Caminho para o executável que inicia um processo que escuta solicitações HTTP. Caminhos relativos são compatíveis. Se o caminho começa com `.`, o caminho é considerado relativo à raiz do site.</p> | |
 | `rapidFailsPerMinute` | <p>Atributo inteiro opcional.</p><p>Especifica o número de vezes que o processo especificado em **processPath** pode falhar por minuto. Se esse limite for excedido, o módulo interromperá a inicialização do processo pelo restante do minuto.</p><p>Sem suporte com hospedagem padrão.</p> | Padrão: `10`<br>Mín.: `0`<br>Máx.: `100` |
@@ -601,7 +601,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 | `shutdownTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o executável desligar normalmente quando o arquivo *app_offline.htm* é detectado.</p> | Padrão: `10`<br>Mín.: `0`<br>Máx.: `600` |
 | `startupTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o arquivo executável iniciar um processo escutando na porta. Se esse tempo limite é excedido, o módulo encerra o processo. O módulo tentará reiniciar o processo quando ele receber uma nova solicitação e continuará a tentar reiniciar o processo em solicitações subsequentes de entrada, a menos que o aplicativo falhe em iniciar um número de vezes igual a **rapidFailsPerMinute** no último minuto sem interrupção.</p><p>Um valor de 0 (zero) **não** é considerado um tempo limite infinito.</p> | Padrão: `120`<br>Mín.: `0`<br>Máx.: `3600` |
 | `stdoutLogEnabled` | <p>Atributo booliano opcional.</p><p>Se for true, **stdout** e **stderr** para o processo especificado em **processPath** serão redirecionados para o arquivo especificado em **stdoutLogFile**.</p> | `false` |
-| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. Todas as pastas fornecidas no caminho são criadas pelo módulo quando o arquivo de log é criado. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo ( *.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
+| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. Todas as pastas fornecidas no caminho são criadas pelo módulo quando o arquivo de log é criado. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo (*.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
 
 ### <a name="setting-environment-variables"></a>Configurando variáveis de ambiente
 
@@ -623,7 +623,7 @@ O exemplo a seguir define duas variáveis de ambiente. `ASPNETCORE_ENVIRONMENT` 
 ```
 
 > [!NOTE]
-> Uma alternativa para definir o ambiente diretamente no *Web. config* é incluir a propriedade `<EnvironmentName>` no perfil de [publicação (. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+> Uma alternativa para definir o ambiente diretamente no `<EnvironmentName>` *web.config* é incluir a propriedade no perfil de publicação [(.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou arquivo do projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 >
 > ```xml
 > <PropertyGroup>
@@ -660,15 +660,15 @@ O Módulo do ASP.NET Core redireciona as saídas de console stdout e stderr para
 
 Logs não sofrem rotação, a menos que ocorra a reciclagem/reinicialização do processo. É responsabilidade do hoster limitar o espaço em disco consumido pelos logs.
 
-O uso do log stdout é recomendado apenas para solucionar problemas de inicialização do aplicativo ao hospedar no IIS ou ao usar o [suporte a tempo de desenvolvimento para o IIS com o Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), não durante a depuração local e a execução do aplicativo com IIS Express.
+O uso do registro de stdout só é recomendado para solucionar problemas de inicialização de aplicativos ao hospedar no IIS ou ao usar [o suporte ao tempo de desenvolvimento para IIS com o Visual Studio,](xref:host-and-deploy/iis/development-time-iis-support)não enquanto depura localmente e executa o aplicativo com o IIS Express.
 
 Não use o log de stdout para fins gerais de registro em log do aplicativo. Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo ( *.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
+Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo (*.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
 
 Se `stdoutLogEnabled` for falso, os erros que ocorrerem na inicialização do aplicativo serão capturados e emitidos no log de eventos até 30 KB. Após a inicialização, todos os logs adicionais são descartados.
 
-O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho relativo `.\log\`. Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
+O elemento `aspNetCore` de amostra a seguir configura `.\log\`o registro de stdout no caminho relativo . Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -679,13 +679,13 @@ O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho
 </aspNetCore>
 ```
 
-Ao publicar um aplicativo para implantação Azure App serviço, o SDK da Web define o valor de `stdoutLogFile` como `\\?\%home%\LogFiles\stdout`. A variável de ambiente `%home` é predefinida para aplicativos hospedados pelo serviço Azure App.
+Ao publicar um aplicativo para implantação do Azure App `stdoutLogFile` Service, `\\?\%home%\LogFiles\stdout`o SDK da Web define o valor para . A `%home` variável ambiente é predefinida para aplicativos hospedados pelo Azure App Service.
 
 Para obter mais informações sobre formatos de caminho, consulte [formatos de caminho de arquivo em sistemas Windows](/dotnet/standard/io/file-path-formats).
 
 ## <a name="enhanced-diagnostic-logs"></a>Logs de diagnóstico avançados
 
-O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` em *Web. config*. Definir a `debugLevel` como `TRACE` expõe uma fidelidade mais alta das informações de diagnóstico:
+O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione `<handlerSettings>` o elemento `<aspNetCore>` ao elemento em *web.config*. Definir `debugLevel` o `TRACE` ''''''''''''''''''''''''''
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -715,12 +715,12 @@ Locais (vários locais são permitidos):
 
 * CONSOLE
 * EVENTLOG
-* ARQUIVO
+* FILE
 
 As configurações do manipulador também podem ser fornecidas por meio de variáveis de ambiente:
 
-* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; caminho para o arquivo de log de depuração. (Padrão: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração de nível de depuração.
+* `ASPNETCORE_MODULE_DEBUG_FILE`&ndash; Caminho para o arquivo de registro de depuração. (Padrão: *aspnetcore-debug.log*)
+* `ASPNETCORE_MODULE_DEBUG`&ndash; Configuração do nível de depuração.
 
 > [!WARNING]
 > **Não** deixe o log de depuração habilitado na implantação por mais tempo que o necessário para solucionar um problema. O tamanho do log não é limitado. Deixar o log de depuração habilitado pode esgotar o espaço em disco disponível e causar falha no servidor ou no serviço de aplicativo.
@@ -759,13 +759,13 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **Detalhes.** A **versão Arquivo** e a versão do **produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
+Os logs de instalação do Pacote de Hospedagem para o módulo são encontrados em *\\C:\\Users %UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *\<dd_DotNetCoreWinSvrHosting__ carimbo de tempo>_000_AspNetCoreModule_x64.log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
-### <a name="module"></a>{1&gt;Módulo&lt;1}
+### <a name="module"></a>Módulo
 
 **IIS (x86/amd64):**
 
@@ -787,9 +787,9 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-### <a name="schema"></a>Schema
+### <a name="schema"></a>Esquema
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
 
@@ -803,7 +803,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 ### <a name="configuration"></a>Configuração
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\applicationHost.config
 
@@ -836,7 +836,7 @@ O diagrama a seguir ilustra a relação entre o IIS, o Módulo do ASP.NET Core e
 
 As solicitações chegam da Web para o driver do HTTP.sys no modo kernel. O driver roteia as solicitações ao IIS na porta configurada do site, normalmente, a 80 (HTTP) ou a 443 (HTTPS). O módulo encaminha as solicitações ao Kestrel em uma porta aleatória do aplicativo, que não seja a porta 80 ou 443.
 
-O módulo especifica a porta por meio de uma variável de ambiente na inicialização e o [middleware de integração do IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura o servidor para escutar em `http://localhost:{port}`. Outras verificações são executadas e as solicitações que não se originam do módulo são rejeitadas. O módulo não é compatível com encaminhamento de HTTPS, portanto, as solicitações são encaminhadas por HTTP, mesmo se recebidas pelo IIS por HTTPS.
+O módulo especifica a porta através de uma variável de ambiente na inicialização, `http://localhost:{port}`e o [IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura o servidor para ouvir . Outras verificações são executadas e as solicitações que não se originam do módulo são rejeitadas. O módulo não é compatível com encaminhamento de HTTPS, portanto, as solicitações são encaminhadas por HTTP, mesmo se recebidas pelo IIS por HTTPS.
 
 Depois que o Kestrel coleta a solicitação do módulo, a solicitação é enviada por push ao pipeline do middleware do ASP.NET Core. O pipeline do middleware manipula a solicitação e a passa como uma instância de `HttpContext` para a lógica do aplicativo. O middleware adicionado pela integração do IIS atualiza o esquema, o IP remoto e pathbase para encaminhar a solicitação para o Kestrel. A resposta do aplicativo é retornada ao IIS, que a retorna por push para o cliente HTTP que iniciou a solicitação.
 
@@ -907,7 +907,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 | `shutdownTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o executável desligar normalmente quando o arquivo *app_offline.htm* é detectado.</p> | Padrão: `10`<br>Mín.: `0`<br>Máx.: `600` |
 | `startupTimeLimit` | <p>Atributo inteiro opcional.</p><p>Duração em segundos que o módulo espera para o arquivo executável iniciar um processo escutando na porta. Se esse tempo limite é excedido, o módulo encerra o processo. O módulo tentará reiniciar o processo quando ele receber uma nova solicitação e continuará a tentar reiniciar o processo em solicitações subsequentes de entrada, a menos que o aplicativo falhe em iniciar um número de vezes igual a **rapidFailsPerMinute** no último minuto sem interrupção.</p><p>Um valor de 0 (zero) **não** é considerado um tempo limite infinito.</p> | Padrão: `120`<br>Mín.: `0`<br>Máx.: `3600` |
 | `stdoutLogEnabled` | <p>Atributo booliano opcional.</p><p>Se for true, **stdout** e **stderr** para o processo especificado em **processPath** serão redirecionados para o arquivo especificado em **stdoutLogFile**.</p> | `false` |
-| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. As pastas fornecidas no caminho devem existir para que o módulo crie o arquivo de log. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo ( *.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
+| `stdoutLogFile` | <p>Atributo de cadeia de caracteres opcional.</p><p>Especifica o caminho relativo ou absoluto para o qual **stdout** e **stderr** do processo especificado em **processPath** são registrados em log. Os caminhos relativos são relativos à raiz do site. Qualquer caminho começando com `.` é relativo à raiz do site e todos os outros caminhos são tratados como caminhos absolutos. As pastas fornecidas no caminho devem existir para que o módulo crie o arquivo de log. Usando delimitadores de sublinhado, um carimbo de data/hora, uma ID de processo e a extensão de arquivo (*.log*) são adicionados ao último segmento do caminho **stdoutLogFile**. Se `.\logs\stdout` é fornecido como um valor, um log de exemplo stdout é salvo como *stdout_20180205194132_1934.log* na pasta *logs* quando salvos em 5/2/2018, às 19:41:32, com uma ID de processo de 1934.</p> | `aspnetcore-stdout` |
 
 ### <a name="setting-environment-variables"></a>Configurando variáveis de ambiente
 
@@ -951,13 +951,13 @@ O Módulo do ASP.NET Core redireciona as saídas de console stdout e stderr para
 
 Logs não sofrem rotação, a menos que ocorra a reciclagem/reinicialização do processo. É responsabilidade do hoster limitar o espaço em disco consumido pelos logs.
 
-O uso do log stdout é recomendado apenas para solucionar problemas de inicialização do aplicativo ao hospedar no IIS ou ao usar o [suporte a tempo de desenvolvimento para o IIS com o Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), não durante a depuração local e a execução do aplicativo com IIS Express.
+O uso do registro de stdout só é recomendado para solucionar problemas de inicialização de aplicativos ao hospedar no IIS ou ao usar [o suporte ao tempo de desenvolvimento para IIS com o Visual Studio,](xref:host-and-deploy/iis/development-time-iis-support)não enquanto depura localmente e executa o aplicativo com o IIS Express.
 
 Não use o log de stdout para fins gerais de registro em log do aplicativo. Para registro em log de rotina em um aplicativo ASP.NET Core, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
 
-Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo ( *.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
+Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticamente quando o arquivo de log é criado. O nome do arquivo de log é composto por meio do acréscimo do carimbo de data/hora, da ID do processo e da extensão de arquivo (*.log*) para o último segmento do caminho `stdoutLogFile` (normalmente *stdout*), delimitados por sublinhados. Se o caminho `stdoutLogFile` termina com *stdout*, um log para um aplicativo com um PID de 1934, criado em 5/2/2018 às 19:42:32, tem o nome de arquivo *stdout_20180205194132_1934.log*.
 
-O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho relativo `.\log\`. Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
+O elemento `aspNetCore` de amostra a seguir configura `.\log\`o registro de stdout no caminho relativo . Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -967,9 +967,9 @@ O elemento `aspNetCore` de exemplo a seguir configura o log de stdout no caminho
 </aspNetCore>
 ```
 
-Ao publicar um aplicativo para implantação Azure App serviço, o SDK da Web define o valor de `stdoutLogFile` como `\\?\%home%\LogFiles\stdout`. A variável de ambiente `%home` é predefinida para aplicativos hospedados pelo serviço Azure App.
+Ao publicar um aplicativo para implantação do Azure App `stdoutLogFile` Service, `\\?\%home%\LogFiles\stdout`o SDK da Web define o valor para . A `%home` variável ambiente é predefinida para aplicativos hospedados pelo Azure App Service.
 
-Para criar regras de filtro de log, consulte as seções de [configuração](xref:fundamentals/logging/index#log-filtering) e [filtragem de log](xref:fundamentals/logging/index#log-filtering) da documentação de log de ASP.NET Core.
+Para criar regras de filtro de registro, consulte as seções de [filtragem](xref:fundamentals/logging/index#log-filtering) de [configuração](xref:fundamentals/logging/index#log-filtering) e log da documentação de registro do ASP.NET Core.
 
 Para obter mais informações sobre formatos de caminho, consulte [formatos de caminho de arquivo em sistemas Windows](/dotnet/standard/io/file-path-formats).
 
@@ -997,13 +997,13 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **Detalhes.** A **versão Arquivo** e a versão do **produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
+Os logs de instalação do Pacote de Hospedagem para o módulo são encontrados em *\\C:\\Users %UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *\<dd_DotNetCoreWinSvrHosting__ carimbo de tempo>_000_AspNetCoreModule_x64.log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
-### <a name="module"></a>{1&gt;Módulo&lt;1}
+### <a name="module"></a>Módulo
 
 **IIS (x86/amd64):**
 
@@ -1017,9 +1017,9 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
 
-### <a name="schema"></a>Schema
+### <a name="schema"></a>Esquema
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
 
@@ -1029,7 +1029,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 ### <a name="configuration"></a>Configuração
 
-**IIS**
+**Iis**
 
 * %windir%\System32\inetsrv\config\applicationHost.config
 
@@ -1047,5 +1047,5 @@ Os arquivos podem ser encontrados pesquisando por *aspnetcore* no arquivo *appli
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
-* [ASP.NET Core fonte de referência do módulo (Branch mestre)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2) &ndash; use a lista suspensa **Branch** para selecionar uma versão específica (por exemplo, `release/3.1`).
+* [ASP.NET fonte de referência do módulo central (ramo mestre)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2) &ndash; Use a `release/3.1`lista de sosseletas **do Ramo** para selecionar uma versão específica (por exemplo, ).
 * <xref:host-and-deploy/iis/modules>

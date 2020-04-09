@@ -1,4 +1,4 @@
-Se você receber um erro scaffolding, verifique se o moniker da estrutura de destino (TFM) corresponde à versão do pacote NuGet no arquivo do projeto. Por exemplo, o seguinte arquivo de projeto contém a versão 3,1 para .NET Core e os pacotes NuGet listados:
+Se você tiver um erro de andaime, verifique se o TFM (Target Framework Moniker, nome da estrutura de destino) corresponde à versão do pacote NuGet no arquivo do projeto. Por exemplo, o arquivo de projeto a seguir contém a versão 3.1 para .NET Core e os pacotes NuGet listados:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

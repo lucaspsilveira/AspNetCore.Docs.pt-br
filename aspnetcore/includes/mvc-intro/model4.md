@@ -2,7 +2,7 @@ A tabela a seguir detalha os parâmetros do gerador de código do ASP.NET Core:
 
 | Parâmetro               | Descrição|
 | ----------------- | ------------ |
-| -m  | O nome do modelo. |
+| -M  | O nome do modelo. |
 | -dc  | O contexto de dados. |
 | -udl | Use o layout padrão. |
 | --relativeFolderPath | O caminho da pasta de saída relativa para criar os arquivos. |

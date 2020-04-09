@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core'
+title: 'Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core'
 description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 author: rick-anderson
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ms.openlocfilehash: 83d662659fb4bc7a2867be563e4e36927d2adafe
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657139"
 ---
-# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
 
 No tutorial anterior, você exibiu dados relacionados; neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 
@@ -33,7 +33,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Adicionar o local do escritório e cursos à página Criar
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Ler dados relacionados](read-related-data.md)
 
@@ -297,13 +297,13 @@ Faça o teste executando o aplicativo e criando um instrutor.
 
 ## <a name="handling-transactions"></a>Manipulando transações
 
-Conforme explicado no [tutorial do CRUD](crud.md), o Entity Framework implementa transações de forma implícita. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação –, consulte [Transações](/ef/core/saving/transactions).
+Conforme explicado no [tutorial do CRUD](crud.md), o Entity Framework implementa transações de forma implícita. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação, consulte [Transações](/ef/core/saving/transactions).
 
 ## <a name="get-the-code"></a>Obter o código
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 

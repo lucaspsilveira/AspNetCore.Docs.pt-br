@@ -6,16 +6,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
 uid: getting-started
-ms.openlocfilehash: 047fd7a74d3d53f68a730d67b63c65fe6bda529f
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 86a0c8d017138a949fddc0356f3de548d368a4c0
+ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78658462"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80417604"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: introdução ao ASP.NET Core
 
-Este tutorial mostra como criar e executar um aplicativo Web ASP.NET Core usando o CLI do .NET Core.
+Este tutorial mostra como criar e executar um aplicativo web ASP.NET Core usando o .NET Core CLI.
 
 Você aprenderá a:
 
@@ -29,7 +29,7 @@ No final, você terá um aplicativo Web de trabalho em execução no seu computa
 
 ![Página inicial do aplicativo Web](_static/home-page.png)
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 [!INCLUDE[](~/includes/3.1-SDK.md)]
 
@@ -43,8 +43,8 @@ dotnet new webapp -o aspnetcoreapp
 
 O comando anterior:
 
-* Cria um novo aplicativo Web.  
-* O parâmetro `-o aspnetcoreapp` cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
+* Cria um novo aplicativo web.  
+* O `-o aspnetcoreapp` parâmetro cria um diretório chamado *aspnetcoreapp* com os arquivos de origem do aplicativo.
 
 ### <a name="trust-the-development-certificate"></a>Confiar no certificado de desenvolvimento
 
@@ -70,7 +70,7 @@ dotnet dev-certs https --trust
 
 O comando anterior exibe a mensagem a seguir:
 
-*A confiança do certificado de desenvolvimento https foi solicitada. Se o certificado ainda não for confiável, executaremos o seguinte comando:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+*Foi solicitado o certificado de desenvolvimento HTTPS. Se o certificado ainda não estiver confiável, executaremos o seguinte comando:*`'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
 
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
@@ -91,17 +91,17 @@ cd aspnetcoreapp
 dotnet watch run
 ```
 
-Depois que o shell de comando indicar que o aplicativo foi iniciado, navegue até [https://localhost:5001](https://localhost:5001).
+Depois que o shell de comando indicar que o aplicativo foi iniciado, navegue até `https://localhost:5001`.
 
 ## <a name="edit-a-razor-page"></a>Editar uma página do Razor
 
-Abra *pages/index. cshtml* e modifique e salve a página com a seguinte marcação realçada:
+Abrir *páginas/Index.cshtml* e modificar e salvar a página com a seguinte marcação destacada:
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Navegue até [https://localhost:5001](https://localhost:5001), atualize a página e verifique se as alterações são exibidas.
+Navegue `https://localhost:5001`para atualizar a página e verificar se as alterações estão exibidas.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você aprendeu a:
 

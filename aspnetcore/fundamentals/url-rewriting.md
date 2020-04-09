@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 08/16/2019
 uid: fundamentals/url-rewriting
 ms.openlocfilehash: 7d63cf381f1d8a19ed4fb789348e36f94304ad63
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78666463"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
@@ -100,9 +100,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente `www` a solicitação para o`www`subdomínio se a solicitação não for. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada for não`www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a `www` solicitação para o subdomínio se`www`a solicitação recebida não for... Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -200,7 +200,7 @@ A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a c
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
 | `/anotherrewrite-rule/1234/5678`  | Não    |
 
-Após a parte `^rewrite-rule/` da expressão, há dois grupos de captura, `(\d+)/(\d+)`. O `\d` significa *corresponder a um dígito (número)* . O sinal de adição (`+`) significa *corresponder a um ou mais caracteres anteriores*. Portanto, a URL precisa conter um número seguido de uma barra "/" seguida de outro número. Esses grupos de captura são injetados na URL reconfigurada como `$1` e `$2`. A cadeia de caracteres de substituição da regra de reconfiguração coloca os grupos capturados na cadeia de consulta. O caminho solicitado de `/rewrite-rule/1234/5678` foi reconfigurado para obter o recurso em `/rewritten?var1=1234&var2=5678`. Se uma cadeia de consulta estiver presente na solicitação original, ela será preservada quando a URL for reconfigurada.
+Após a parte `^rewrite-rule/` da expressão, há dois grupos de captura, `(\d+)/(\d+)`. O `\d` significa *corresponder a um dígito (número)*. O sinal de adição (`+`) significa *corresponder a um ou mais caracteres anteriores*. Portanto, a URL precisa conter um número seguido de uma barra "/" seguida de outro número. Esses grupos de captura são injetados na URL reconfigurada como `$1` e `$2`. A cadeia de caracteres de substituição da regra de reconfiguração coloca os grupos capturados na cadeia de consulta. O caminho solicitado de `/rewrite-rule/1234/5678` foi reconfigurado para obter o recurso em `/rewritten?var1=1234&var2=5678`. Se uma cadeia de consulta estiver presente na solicitação original, ela será preservada quando a URL for reconfigurada.
 
 Não há nenhuma viagem de ida e volta para o servidor para obtenção do recurso. Se o recurso existir, ele será buscado e retornado para o cliente com um código de status *200 – OK*. Como o cliente não é redirecionado, a URL na barra de endereços do navegador não é alterada. Os clientes não conseguem detectar que uma operação de reconfiguração de URL ocorreu no servidor.
 
@@ -359,7 +359,7 @@ Solicitação original: `/image.jpg`
 
 ## <a name="regex-examples"></a>Exemplos do regex
 
-| Meta | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
+| Goal | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
 | ---- | ------------------------------- | -------------------------------------- |
 | Reconfigurar o caminho na cadeia de consulta | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Barra "/" à direita da faixa | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
@@ -454,9 +454,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente `www` a solicitação para o`www`subdomínio se a solicitação não for. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada for não`www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a `www` solicitação para o subdomínio se`www`a solicitação recebida não for... Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -554,7 +554,7 @@ A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a c
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
 | `/anotherrewrite-rule/1234/5678`  | Não    |
 
-Após a parte `^rewrite-rule/` da expressão, há dois grupos de captura, `(\d+)/(\d+)`. O `\d` significa *corresponder a um dígito (número)* . O sinal de adição (`+`) significa *corresponder a um ou mais caracteres anteriores*. Portanto, a URL precisa conter um número seguido de uma barra "/" seguida de outro número. Esses grupos de captura são injetados na URL reconfigurada como `$1` e `$2`. A cadeia de caracteres de substituição da regra de reconfiguração coloca os grupos capturados na cadeia de consulta. O caminho solicitado de `/rewrite-rule/1234/5678` foi reconfigurado para obter o recurso em `/rewritten?var1=1234&var2=5678`. Se uma cadeia de consulta estiver presente na solicitação original, ela será preservada quando a URL for reconfigurada.
+Após a parte `^rewrite-rule/` da expressão, há dois grupos de captura, `(\d+)/(\d+)`. O `\d` significa *corresponder a um dígito (número)*. O sinal de adição (`+`) significa *corresponder a um ou mais caracteres anteriores*. Portanto, a URL precisa conter um número seguido de uma barra "/" seguida de outro número. Esses grupos de captura são injetados na URL reconfigurada como `$1` e `$2`. A cadeia de caracteres de substituição da regra de reconfiguração coloca os grupos capturados na cadeia de consulta. O caminho solicitado de `/rewrite-rule/1234/5678` foi reconfigurado para obter o recurso em `/rewritten?var1=1234&var2=5678`. Se uma cadeia de consulta estiver presente na solicitação original, ela será preservada quando a URL for reconfigurada.
 
 Não há nenhuma viagem de ida e volta para o servidor para obtenção do recurso. Se o recurso existir, ele será buscado e retornado para o cliente com um código de status *200 – OK*. Como o cliente não é redirecionado, a URL na barra de endereços do navegador não é alterada. Os clientes não conseguem detectar que uma operação de reconfiguração de URL ocorreu no servidor.
 
@@ -713,7 +713,7 @@ Solicitação original: `/image.jpg`
 
 ## <a name="regex-examples"></a>Exemplos do regex
 
-| Meta | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
+| Goal | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
 | ---- | ------------------------------- | -------------------------------------- |
 | Reconfigurar o caminho na cadeia de consulta | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Barra "/" à direita da faixa | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
@@ -729,7 +729,7 @@ Solicitação original: `/image.jpg`
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Expressões regulares no .NET](/dotnet/articles/standard/base-types/regular-expressions)
-* [Linguagem de expressão regular – referência rápida](/dotnet/articles/standard/base-types/quick-ref)
+* [Linguagem de expressão regular - referência rápida](/dotnet/articles/standard/base-types/quick-ref)
 * [mod_rewrite do Apache](https://httpd.apache.org/docs/2.4/rewrite/)
 * [Usando o Módulo de Reconfiguração de URL 2.0 (para IIS)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20)
 * [Referência de configuração do Módulo de Reconfiguração de URL](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)

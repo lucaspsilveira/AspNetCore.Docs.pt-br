@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/proxy-load-balancer
 ms.openlocfilehash: b5c81e0cfa29cddeb1aeed1119a711fca4d91ae4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78659379"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configure o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga
@@ -41,9 +41,9 @@ O middleware de cabeçalhos encaminhados, do pacote [Microsoft.AspNetCore.HttpOv
 
 As atualizações de middleware:
 
-* [HttpContext. Connection. RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; definido usando o valor do cabeçalho `X-Forwarded-For`. Configurações adicionais influenciam o modo como o middleware define `RemoteIpAddress`. Para obter detalhes, veja as [Opções de middleware de cabeçalhos encaminhados](#forwarded-headers-middleware-options).
-* [HttpContext. Request. Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; definido usando o valor do cabeçalho `X-Forwarded-Proto`.
-* [HttpContext. Request. Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; definido usando o valor do cabeçalho `X-Forwarded-Host`.
+* [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-For`. Configurações adicionais influenciam o modo como o middleware define `RemoteIpAddress`. Para obter detalhes, veja as [Opções de middleware de cabeçalhos encaminhados](#forwarded-headers-middleware-options).
+* [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-Proto`.
+* [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-Host`.
 
 As [configurações padrão](#forwarded-headers-middleware-options) de middleware de cabeçalhos encaminhados podem ser definidas. As configurações padrão são:
 
@@ -123,7 +123,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-| {1&gt;Opção&lt;1} | Descrição |
+| Opção | Descrição |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restringe os hosts com o cabeçalho `X-Forwarded-Host` para os valores fornecidos.<ul><li>Os valores são comparados usando ordinal-ignore-case.</li><li>Os número de porta devem ser excluídos.</li><li>Se a lista estiver vazia, todos os hosts serão permitidos.</li><li>Um curinga de nível superior `*` permite todos os hosts não vazios.</li><li>Curingas de subdomínio são permitidos, mas não correspondem ao domínio raiz. Por exemplo, `*.contoso.com` corresponde o subdomínio `foo.contoso.com`, mas não ao domínio raiz `contoso.com`.</li><li>Nomes do host Unicode são permitidos, mas são convertidos em [Punycode](https://tools.ietf.org/html/rfc3492) para correspondência.</li><li>[Endereços IPv6](https://tools.ietf.org/html/rfc4291) devem incluir colchetes delimitadores e estar no [formato convencional](https://tools.ietf.org/html/rfc4291#section-2.2) (por exemplo, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). Endereços IPv6 não têm caso especial para verificar se há igualdade lógica entre formatos diferentes, e nenhuma canonicalização é executada.</li><li>Falha ao restringir os hosts permitidos pode permitir que um atacante falsifique links gerados pelo serviço.</li></ul>O valor padrão é um `IList<string>` vazio. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use o cabeçalho especificado por essa propriedade, em vez de um especificado por [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). Esta opção é usada quando o proxy/encaminhador não usa o cabeçalho `X-Forwarded-For`, mas usa algum outro cabeçalho para encaminhar as informações.<br><br>O padrão é `X-Forwarded-For`. |
@@ -258,38 +258,38 @@ if (string.Equals(
 
 ### <a name="azure"></a>Azure
 
-Para configurar o serviço de Azure App para encaminhamento de certificado, consulte [Configurar a autenticação mútua TLS para o serviço Azure app](/azure/app-service/app-service-web-configure-tls-mutual-auth). As diretrizes a seguir pertencem à configuração do aplicativo ASP.NET Core.
+Para configurar o Azure App Service para encaminhamento de certificados, consulte [Configurar a autenticação mútua TLS para o Azure App Service](/azure/app-service/app-service-web-configure-tls-mutual-auth). As seguintes orientações dizem respeito à configuração do aplicativo ASP.NET Core.
 
-Em `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
+Em `Startup.Configure`, adicione o seguinte `app.UseAuthentication();`código antes da chamada para:
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
 
-Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho que o Azure usa. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
+Configure o Middleware de encaminhamento de certificados para especificar o nome de cabeçalho que o Azure usa. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho a partir do qual o middleware constrói um certificado:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "X-ARR-ClientCert");
 ```
 
-### <a name="other-web-proxies"></a>Outros proxies da Web
+### <a name="other-web-proxies"></a>Outros proxies da web
 
-Se for usado um proxy que não seja o Application Request Routing do IIS ou Azure App do serviço (ARR), configure o proxy para encaminhar o certificado que ele recebeu em um cabeçalho HTTP. Em `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
+Se for usado um proxy que não seja o ARR (Application Request Routing, roteamento de solicitação de solicitação do aplicativo do Azure App Service) do IIS ou do Azure App Service, configure o proxy para encaminhar o certificado recebido em um cabeçalho HTTP. Em `Startup.Configure`, adicione o seguinte `app.UseAuthentication();`código antes da chamada para:
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
-Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
+Configure o Middleware de encaminhamento de certificados para especificar o nome do cabeçalho. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho a partir do qual o middleware constrói um certificado:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
 ```
 
-Se o proxy não estiver codificando o certificado em Base64 (como é o caso com Nginx), defina a opção `HeaderConverter`. Considere o exemplo a seguir em `Startup.ConfigureServices`:
+Se o proxy não estiver codificando o certificado base64 (como é `HeaderConverter` o caso do Nginx), defina a opção. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -304,7 +304,7 @@ services.AddCertificateForwarding(options =>
 });
 ```
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Quando os cabeçalhos não são encaminhados conforme o esperado, habilite [registro em log](xref:fundamentals/logging/index). Se os logs não fornecerem informações suficientes para solucionar o problema, enumere os cabeçalhos de solicitação recebidos pelo servidor. Use middleware embutido para gravar cabeçalhos de solicitação para uma resposta do aplicativo ou para log dos cabeçalhos. 
 
@@ -369,7 +369,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-Quando processado, os valores `X-Forwarded-{For|Proto|Host}` são movidos para `X-Original-{For|Proto|Host}`. Quando houver vários valores em um determinado cabeçalho, o middleware de cabeçalhos encaminhados os processará na ordem inversa, da direita para esquerda. O padrão `ForwardLimit` é `1` (um), portanto, apenas o valor mais à direita dos cabeçalhos será processado, a menos que o valor de `ForwardLimit` seja aumentado.
+Quando processado, os valores `X-Forwarded-{For|Proto|Host}` são movidos para `X-Original-{For|Proto|Host}`. Quando houver vários valores em um determinado cabeçalho, o middleware de cabeçalhos encaminhados os processará na ordem inversa, da direita para esquerda. O padrão `ForwardLimit` é `ForwardLimit` (um), portanto, apenas o valor mais à direita dos cabeçalhos será processado, a menos que o valor de `1` seja aumentado.
 
 O IP de remoto original da solicitação precisa corresponder a uma entrada nas listas `KnownProxies` ou `KnownNetworks` antes dos cabeçalhos encaminhados serem processados. Isso limita a falsificação de cabeçalho por não aceitar encaminhadores de proxies não confiáveis. Quando um proxy desconhecido é detectado, o registro em log indica o endereço dele:
 
@@ -419,9 +419,9 @@ O middleware de cabeçalhos encaminhados, do pacote [Microsoft.AspNetCore.HttpOv
 
 As atualizações de middleware:
 
-* [HttpContext. Connection. RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; definido usando o valor do cabeçalho `X-Forwarded-For`. Configurações adicionais influenciam o modo como o middleware define `RemoteIpAddress`. Para obter detalhes, veja as [Opções de middleware de cabeçalhos encaminhados](#forwarded-headers-middleware-options).
-* [HttpContext. Request. Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; definido usando o valor do cabeçalho `X-Forwarded-Proto`.
-* [HttpContext. Request. Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; definido usando o valor do cabeçalho `X-Forwarded-Host`.
+* [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-For`. Configurações adicionais influenciam o modo como o middleware define `RemoteIpAddress`. Para obter detalhes, veja as [Opções de middleware de cabeçalhos encaminhados](#forwarded-headers-middleware-options).
+* [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-Proto`.
+* [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) &ndash; Definido usando o valor do cabeçalho `X-Forwarded-Host`.
 
 As [configurações padrão](#forwarded-headers-middleware-options) de middleware de cabeçalhos encaminhados podem ser definidas. As configurações padrão são:
 
@@ -501,7 +501,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-| {1&gt;Opção&lt;1} | Descrição |
+| Opção | Descrição |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restringe os hosts com o cabeçalho `X-Forwarded-Host` para os valores fornecidos.<ul><li>Os valores são comparados usando ordinal-ignore-case.</li><li>Os número de porta devem ser excluídos.</li><li>Se a lista estiver vazia, todos os hosts serão permitidos.</li><li>Um curinga de nível superior `*` permite todos os hosts não vazios.</li><li>Curingas de subdomínio são permitidos, mas não correspondem ao domínio raiz. Por exemplo, `*.contoso.com` corresponde o subdomínio `foo.contoso.com`, mas não ao domínio raiz `contoso.com`.</li><li>Nomes do host Unicode são permitidos, mas são convertidos em [Punycode](https://tools.ietf.org/html/rfc3492) para correspondência.</li><li>[Endereços IPv6](https://tools.ietf.org/html/rfc4291) devem incluir colchetes delimitadores e estar no [formato convencional](https://tools.ietf.org/html/rfc4291#section-2.2) (por exemplo, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). Endereços IPv6 não têm caso especial para verificar se há igualdade lógica entre formatos diferentes, e nenhuma canonicalização é executada.</li><li>Falha ao restringir os hosts permitidos pode permitir que um atacante falsifique links gerados pelo serviço.</li></ul>O valor padrão é um `IList<string>` vazio. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use o cabeçalho especificado por essa propriedade, em vez de um especificado por [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). Esta opção é usada quando o proxy/encaminhador não usa o cabeçalho `X-Forwarded-For`, mas usa algum outro cabeçalho para encaminhar as informações.<br><br>O padrão é `X-Forwarded-For`. |
@@ -632,7 +632,7 @@ if (string.Equals(
 }
 ```
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Quando os cabeçalhos não são encaminhados conforme o esperado, habilite [registro em log](xref:fundamentals/logging/index). Se os logs não fornecerem informações suficientes para solucionar o problema, enumere os cabeçalhos de solicitação recebidos pelo servidor. Use middleware embutido para gravar cabeçalhos de solicitação para uma resposta do aplicativo ou para log dos cabeçalhos. 
 
@@ -697,7 +697,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-Quando processado, os valores `X-Forwarded-{For|Proto|Host}` são movidos para `X-Original-{For|Proto|Host}`. Quando houver vários valores em um determinado cabeçalho, o middleware de cabeçalhos encaminhados os processará na ordem inversa, da direita para esquerda. O padrão `ForwardLimit` é `1` (um), portanto, apenas o valor mais à direita dos cabeçalhos será processado, a menos que o valor de `ForwardLimit` seja aumentado.
+Quando processado, os valores `X-Forwarded-{For|Proto|Host}` são movidos para `X-Original-{For|Proto|Host}`. Quando houver vários valores em um determinado cabeçalho, o middleware de cabeçalhos encaminhados os processará na ordem inversa, da direita para esquerda. O padrão `ForwardLimit` é `ForwardLimit` (um), portanto, apenas o valor mais à direita dos cabeçalhos será processado, a menos que o valor de `1` seja aumentado.
 
 O IP de remoto original da solicitação precisa corresponder a uma entrada nas listas `KnownProxies` ou `KnownNetworks` antes dos cabeçalhos encaminhados serem processados. Isso limita a falsificação de cabeçalho por não aceitar encaminhadores de proxies não confiáveis. Quando um proxy desconhecido é detectado, o registro em log indica o endereço dele:
 

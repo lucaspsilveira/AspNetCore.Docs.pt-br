@@ -1,36 +1,36 @@
 ---
-title: Proteger um aplicativo hospedado do Webassembly ASP.NET Core Blazor com o Identity Server
+title: Proteja um Blazor aplicativo hospedado ASP.NET WebAssembly do Core com o Identity Server
 author: guardrex
-description: Para criar um novo aplicativo hospedado Blazor com autenticação de dentro do Visual Studio que usa um back-end [IdentityServer](https://identityserver.io/)
+description: Para criar Blazor um novo aplicativo hospedado com autenticação dentro do Visual Studio que usa um backend [do IdentityServer](https://identityserver.io/)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 03/30/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 6c7942a827d88a620e6f295af3f523c23f4b3890
-ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
+ms.openlocfilehash: 832109530c4aac372fd75aa1a1d2edbe3768f55f
+ms.sourcegitcommit: 1d8f1396ccc66a0c3fcb5e5f36ea29b50db6d92a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80219045"
+ms.lasthandoff: 04/01/2020
+ms.locfileid: "80501276"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteger um aplicativo hospedado do Webassembly ASP.NET Core Blazor com o Identity Server
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteja um Blazor aplicativo hospedado ASP.NET WebAssembly do Core com o Identity Server
 
-Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
+Por [Javier Calvarro Nelson](https://github.com/javiercn) e Luke [Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-Para criar um novo aplicativo hospedado Blazor no Visual Studio que usa [IdentityServer](https://identityserver.io/) para autenticar usuários e chamadas de API:
+Para criar Blazor um novo aplicativo hospedado no Visual Studio que usa [o IdentityServer](https://identityserver.io/) para autenticar usuários e chamadas de API:
 
-1. Use o Visual Studio para criar um novo aplicativo de **WebassemblyBlazor** . Para obter mais informações, consulte <xref:blazor/get-started>.
-1. Na caixa de diálogo **criar um novo aplicativo Blazor** , selecione **alterar** na seção **autenticação** .
-1. Selecione **contas de usuário individuais** seguidas por **OK**.
-1. Marque a caixa de seleção **ASP.NET Core hospedado** na seção **avançado** .
+1. Use o Visual Studio ** Blazor ** para criar um novo aplicativo WebAssembly. Para obter mais informações, consulte <xref:blazor/get-started>.
+1. Na **criação de Blazor uma nova** caixa de diálogo de aplicativo, **selecione Alterar** na seção **Autenticação.**
+1. Selecione **Contas de Usuário Individuais** seguidas por **OK**.
+1. Selecione a caixa de seleção **hospedada ASP.NET Core** na seção **Avançado.**
 1. Selecione o botão **Criar**.
 
 Para criar o aplicativo em um shell de comando, execute o seguinte comando:
@@ -39,19 +39,19 @@ Para criar o aplicativo em um shell de comando, execute o seguinte comando:
 dotnet new blazorwasm -au Individual -ho
 ```
 
-Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample`). O nome da pasta também se torna parte do nome do projeto.
+Para especificar o local de saída, que cria uma pasta de projeto se ela não `-o BlazorSample`existir, inclua a opção de saída no comando com um caminho (por exemplo, ). O nome da pasta também passa a fazer parte do nome do projeto.
 
-## <a name="server-app-configuration"></a>Configuração de aplicativo do servidor
+## <a name="server-app-configuration"></a>Configuração do aplicativo do servidor
 
-As seções a seguir descrevem as adições ao projeto quando o suporte à autenticação é incluído.
+As seções a seguir descrevem adições ao projeto quando o suporte à autenticação é incluído.
 
 ### <a name="startup-class"></a>Classe de inicialização
 
-A classe `Startup` tem as seguintes adições:
+A `Startup` classe tem as seguintes adições:
 
 * Em `Startup.ConfigureServices`:
 
-  * Identidade com a interface do usuário padrão:
+  * Identidade com a ui padrão:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -62,14 +62,14 @@ A classe `Startup` tem as seguintes adições:
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer com um método auxiliar adicional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> que configura algumas convenções de ASP.NET Core padrão na parte superior do IdentityServer:
+  * IdentityServer com <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> um método de ajuda adicional que configura algumas convenções padrão ASP.NET Core em cima do IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Autenticação com um método auxiliar <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> adicional que configura o aplicativo para validar tokens JWT produzidos por IdentityServer:
+  * Autenticação com <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> um método auxiliar adicional que configura o aplicativo para validar tokens JWT produzidos pelo IdentityServer:
 
     ```csharp
     services.AddAuthentication()
@@ -78,46 +78,46 @@ A classe `Startup` tem as seguintes adições:
 
 * Em `Startup.Configure`:
 
-  * O middleware de autenticação que é responsável por validar as credenciais de solicitação e definir o usuário no contexto da solicitação:
+  * O middleware de autenticação responsável pela validação das credenciais de solicitação e pela definição do usuário no contexto da solicitação:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-  * O middleware IdentityServer que expõe os pontos de extremidade do OIDC (Open ID Connect):
+  * O middleware IdentityServer que expõe os pontos finais do Open ID Connect (OIDC):
 
     ```csharp
     app.UseIdentityServer();
     ```
 
-### <a name="addapiauthorization"></a>AddApiAuthorization
+### <a name="addapiauthorization"></a>Autorização do AddApi
 
-O método auxiliar <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> configura [IdentityServer](https://identityserver.io/) para cenários de ASP.NET Core. O IdentityServer é uma estrutura avançada e extensível para lidar com questões de segurança de aplicativo. O IdentityServer expõe complexidade desnecessária para os cenários mais comuns. Consequentemente, um conjunto de convenções e opções de configuração é fornecido para considerarmos um bom ponto de partida. Depois que a autenticação precisar ser alterada, toda a potência do IdentityServer ainda estará disponível para personalizar a autenticação para atender aos requisitos de um aplicativo.
+O <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> método helper configura [O IdentityServer](https://identityserver.io/) para ASP.NET cenários Core. IdentityServer é uma estrutura poderosa e extensível para lidar com preocupações de segurança de aplicativos. IdentityServer expõe complexidade desnecessária para os cenários mais comuns. Consequentemente, um conjunto de convenções e opções de configuração é fornecido que consideramos um bom ponto de partida. Uma vez que sua autenticação precise ser mudada, o poder total do IdentityServer ainda está disponível para personalizar a autenticação de acordo com as necessidades de um aplicativo.
 
 ### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
 
-O método auxiliar <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> configura um esquema de política para o aplicativo como o manipulador de autenticação padrão. A política está configurada para permitir que a identidade manipule todas as solicitações roteadas para qualquer subcaminho no `/Identity`de espaço da URL de identidade. O <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> lida com todas as outras solicitações. Além disso, esse método:
+O <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método helper configura um esquema de diretiva para o aplicativo como o manipulador de autenticação padrão. A diretiva está configurada para permitir que a Identidade manuseie `/Identity`todas as solicitações roteadas para qualquer subcaminho no espaço URL de identidade . O <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> cabo todos os outros pedidos. Além disso, este método:
 
-* Registra um recurso de API `{APPLICATION NAME}API` com IdentityServer com um escopo padrão de `{APPLICATION NAME}API`.
-* Configura o middleware do token de portador JWT para validar tokens emitidos por IdentityServer para o aplicativo.
+* Registra um `{APPLICATION NAME}API` recurso de API com o `{APPLICATION NAME}API`IdentityServer com um escopo padrão de .
+* Configura o JWT Bearer Token Middleware para validar tokens emitidos pelo IdentityServer para o aplicativo.
 
 ### <a name="weatherforecastcontroller"></a>WeatherForecastController
 
-No `WeatherForecastController` (*Controllers/WeatherForecastController. cs*), o atributo [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) é aplicado à classe. O atributo indica que o usuário deve ser autorizado com base na política padrão para acessar o recurso. A política de autorização padrão é configurada para usar o esquema de autenticação padrão, que é configurado por <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> para o esquema de política mencionado anteriormente. O método auxiliar configura <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> como o manipulador padrão para solicitações para o aplicativo.
+No `WeatherForecastController` *(Controllers/WeatherForecastController.cs),* [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) o atributo é aplicado à classe. O atributo indica que o usuário deve ser autorizado com base na política padrão para acessar o recurso. A política de autorização padrão está configurada para usar o <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> esquema de autenticação padrão, que é configurado pelo esquema de diretiva mencionado anteriormente. O método helper <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> configura-se como o manipulador padrão para solicitações ao aplicativo.
 
 ### <a name="applicationdbcontext"></a>ApplicationDbContext
 
-No `ApplicationDbContext` (*Data/ApplicationDbContext. cs*), o mesmo <xref:Microsoft.EntityFrameworkCore.DbContext> é usado em identidade com a exceção que ele estende <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> para incluir o esquema para IdentityServer. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> é derivado de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+No `ApplicationDbContext` (*Data/ApplicationDbContext.cs*), <xref:Microsoft.EntityFrameworkCore.DbContext> o mesmo é usado em <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> Identidade, com a exceção que se estende para incluir o esquema para IdentityServer. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601>é derivado <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>de .
 
-Para obter controle total do esquema de banco de dados, herde de uma das classes de identidade <xref:Microsoft.EntityFrameworkCore.DbContext> disponíveis e configure o contexto para incluir o esquema de identidade chamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` no método `OnModelCreating`.
+Para obter o controle total do esquema do banco <xref:Microsoft.EntityFrameworkCore.DbContext> de dados, herde de uma das classes `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` de `OnModelCreating` Identidade disponíveis e configure o contexto para incluir o esquema de Identidade, chamando o método.
 
-### <a name="oidcconfigurationcontroller"></a>OidcConfigurationController
+### <a name="oidcconfigurationcontroller"></a>Controlador de configuração oidc
 
-No `OidcConfigurationController` (*controladores/OidcConfigurationController. cs*), o ponto de extremidade do cliente é provisionado para atender aos parâmetros OIDC.
+No `OidcConfigurationController` *(Controllers/OidcConfigurationController.cs*), o ponto final do cliente é provisionado para atender aos parâmetros OIDC.
 
-### <a name="app-settings-files"></a>Arquivos de configurações do aplicativo
+### <a name="app-settings-files"></a>Arquivos de configuração do aplicativo
 
-No arquivo de configurações do aplicativo (*appSettings. JSON*) na raiz do projeto, a seção `IdentityServer` descreve a lista de clientes configurados. No exemplo a seguir, há um único cliente. O nome do cliente corresponde ao nome do aplicativo e é mapeado por convenção para o parâmetro de `ClientId` do OAuth. O perfil indica o tipo de aplicativo que está sendo configurado. O perfil é usado internamente para direcionar as convenções que simplificam o processo de configuração para o servidor. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+No arquivo de configurações do aplicativo *(appsettings.json*) na raiz do projeto, a `IdentityServer` seção descreve a lista de clientes configurados. No exemplo a seguir, há um único cliente. O nome do cliente corresponde ao nome do aplicativo e `ClientId` é mapeado por convenção para o parâmetro OAuth. O perfil indica que o tipo de aplicativo está sendo configurado. O perfil é usado internamente para conduzir convenções que simplificam o processo de configuração do servidor. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -129,7 +129,7 @@ No arquivo de configurações do aplicativo (*appSettings. JSON*) na raiz do pro
 }
 ```
 
-No arquivo de configurações do aplicativo do ambiente de desenvolvimento (*appSettings. Development. JSON*) na raiz do projeto, a seção `IdentityServer` descreve a chave usada para assinar tokens. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
+No arquivo de configurações do aplicativo ambiente Desenvolvimento *(appsettings. Development.json*) Na raiz `IdentityServer` do projeto, a seção descreve a chave usada para assinar tokens. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
 
 ```json
 "IdentityServer": {
@@ -143,9 +143,9 @@ No arquivo de configurações do aplicativo do ambiente de desenvolvimento (*app
 
 ### <a name="authentication-package"></a>Pacote de autenticação
 
-Quando um aplicativo é criado para usar contas de usuário individuais (`Individual`), o aplicativo recebe automaticamente uma referência de pacote para o pacote de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` no arquivo de projeto do aplicativo. O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
+Quando um aplicativo é criado para`Individual`usar contas de usuário individuais ( `Microsoft.AspNetCore.Components.WebAssembly.Authentication` ), o aplicativo recebe automaticamente uma referência de pacote para o pacote no arquivo de projeto do aplicativo. O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
 
-Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
+Se adicionar autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
 
 ```xml
 <PackageReference 
@@ -153,17 +153,21 @@ Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pa
     Version="{VERSION}" />
 ```
 
-Substitua `{VERSION}` na referência do pacote anterior pela versão do pacote `Microsoft.AspNetCore.Blazor.Templates` mostrado no artigo <xref:blazor/get-started>.
+Substitua `{VERSION}` a referência do pacote `Microsoft.AspNetCore.Blazor.Templates` anterior pela <xref:blazor/get-started> versão do pacote mostrado no artigo.
 
-### <a name="api-authorization-support"></a>Suporte à autorização de API
+### <a name="api-authorization-support"></a>Suporte à autorização da API
 
-O suporte para autenticação de usuários é conectado ao contêiner de serviço pelo método de extensão fornecido dentro do pacote de `Microsoft.AspNetCore.Components.WebAssembly.Authentication`. Esse método configura todos os serviços necessários para que o aplicativo interaja com o sistema de autorização existente.
+O suporte para autenticar usuários é conectado ao contêiner de serviço `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pelo método de extensão fornecido dentro do pacote. Este método configura todos os serviços necessários para que o aplicativo interaja com o sistema de autorização existente.
 
 ```csharp
 builder.Services.AddApiAuthorization();
 ```
 
-Por padrão, ele carrega a configuração do aplicativo por convenção de `_configuration/{client-id}`. Por convenção, a ID do cliente é definida como o nome do assembly do aplicativo. Essa URL pode ser alterada para apontar para um ponto de extremidade separado chamando a sobrecarga com opções.
+Por padrão, ele carrega a configuração `_configuration/{client-id}`para o aplicativo por convenção de . Por convenção, o ID do cliente é definido para o nome de montagem do aplicativo. Esta URL pode ser alterada para apontar para um ponto final separado, chamando a sobrecarga com opções.
+
+### <a name="imports-file"></a>Arquivo de importações
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
 
 ### <a name="index-page"></a>Página de índice
 
@@ -173,21 +177,21 @@ Por padrão, ele carrega a configuração do aplicativo por convenção de `_con
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-### <a name="redirecttologin-component"></a>Componente RedirectToLogin
+### <a name="redirecttologin-component"></a>Componente RedirecionarToLogin
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
 ### <a name="logindisplay-component"></a>Componente LoginDisplay
 
-O componente `LoginDisplay` (*Shared/LoginDisplay. Razor*) é renderizado no componente `MainLayout` (*Shared/MainLayout. Razor*) e gerencia os seguintes comportamentos:
+O `LoginDisplay` componente (*Compartilhado/LoginDisplay.razor*) é `MainLayout` renderizado no componente *(Compartilhado/MainLayout.razor)* e gerencia os seguintes comportamentos:
 
 * Para usuários autenticados:
   * Exibe o nome de usuário atual.
-  * Oferece um link para a página de perfil do usuário em ASP.NET Core identidade.
-  * Oferece um botão para fazer logoff do aplicativo.
+  * Oferece um link para a página de perfil do usuário em ASP.NET Identidade Central.
+  * Oferece um botão para sair do aplicativo.
 * Para usuários anônimos:
-  * Oferece a opção de se registrar.
-  * Oferece a opção de fazer logon.
+  * Oferece a opção de se inscrever.
+  * Oferece a opção de fazer login.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -227,6 +231,12 @@ O componente `LoginDisplay` (*Shared/LoginDisplay. Razor*) é renderizado no com
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-Execute o aplicativo no projeto do servidor. Ao usar o Visual Studio, selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .
+Execute o aplicativo do projeto Servidor. Ao usar o Visual Studio, selecione o projeto Servidor no **Solution Explorer** e selecione o botão **Executar** na barra de ferramentas ou iniciar o aplicativo no menu **Debug.**
+
+[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Solicite tokens de acesso adicionais](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)

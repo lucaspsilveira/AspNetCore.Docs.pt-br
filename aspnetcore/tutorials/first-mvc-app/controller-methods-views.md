@@ -6,15 +6,15 @@ ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/controller-methods-views
 ms.openlocfilehash: 87b3cb2f4429157123d30274d1f12cd589c1cc99
-ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "80242504"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Temos um bom começo para o aplicativo de filme, mas a apresentação não é ideal. Por exemplo, **ReleaseDate** deveria ser separado em duas palavras.
 
@@ -36,7 +36,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo Auxiliar de Ma
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do atributo HTML `href` do método de ação do controlador e da ID da rota. Use o **modo de exibição de origem** do seu navegador favorito ou use as ferramentas de desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
+Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código acima, `AnchorTagHelper` o valor `href` do atributo HTML gera dinamicamente o valor do atributo HTML a partir do método de ação do controlador e do id de rota. Você usa **o View Source** do seu navegador favorito ou usa as ferramentas do desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
 ```html
  <td>
@@ -114,7 +114,7 @@ Observe como o modelo de exibição tem uma instrução `@model MvcMovie.Models.
 
 O código com scaffolding usa vários métodos de Auxiliares de Marcação para simplificar a marcação HTML. O – [Auxiliar de Marcação de Rótulo](xref:mvc/views/working-with-forms) exibe o nome do campo (“Title”, “ReleaseDate”, “Genre” ou “Price”). O [Auxiliar de Marcação de Entrada](xref:mvc/views/working-with-forms) renderiza um elemento `<input>` HTML. O [Auxiliar de Marcação de Validação](xref:mvc/views/working-with-forms) exibe todas as mensagens de validação associadas a essa propriedade.
 
-Execute o aplicativo e navegue para a URL `/Movies`. Clique em um link **Editar**. No navegador, exiba a origem da página. O HTML gerado para o elemento `<form>` é mostrado abaixo.
+Execute o aplicativo e navegue para a URL `/Movies`. Clique em um link **Editar.** No navegador, exiba a origem da página. O HTML gerado para o elemento `<form>` é mostrado abaixo.
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/edit_view_source.html?highlight=1,6,10,17,24,28)]
 
@@ -154,12 +154,12 @@ Todos os métodos `HttpGet` no controlador de filme seguem um padrão semelhante
 * [Falsificação anti-solicitação](xref:security/anti-request-forgery)
 * Proteger o controlador contra o [excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
-* [Auxiliar de marcação de formulário](xref:mvc/views/working-with-forms)
+* [Ajudante de tag de formulário](xref:mvc/views/working-with-forms)
 * [Auxiliar de marcação de entrada](xref:mvc/views/working-with-forms)
 * [Auxiliar de marcação de rótulo](xref:mvc/views/working-with-forms)
 * [Selecionar o auxiliar de marcação](xref:mvc/views/working-with-forms)
 * [Auxiliar de marcação de validação](xref:mvc/views/working-with-forms)
 
 > [!div class="step-by-step"]
-> [Anterior](working-with-sql.md)
-> [Próximo](search.md)  
+> [Próximo](working-with-sql.md)
+> [anterior](search.md)  

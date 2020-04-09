@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 02/05/2020
 uid: host-and-deploy/linux-apache
 ms.openlocfilehash: 3a3edd961b08c1952e6ded8038ed7ada381c54b0
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78657895"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
@@ -20,17 +20,17 @@ Por [Shayne Boyer](https://github.com/spboyer)
 
 Usando este guia, saiba como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no servidor [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
 * Instale o runtime do .NET Core no servidor.
-   1. Visite a [página baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Selecione a versão mais recente do .NET Core sem visualização.
-   1. Baixe o tempo de execução de não visualização mais recente na tabela em **executar aplicativos-tempo de execução**.
-   1. Selecione o link de **instruções do Gerenciador de pacotes** do Linux e siga as instruções do CentOS.
+   1. Visite a [página Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selecione a versão mais recente não visualização .NET Core.
+   1. Baixe o tempo de execução não visualizatório mais recente na tabela em **Executar aplicativos - Runtime**.
+   1. Selecione o link **de instruções do gerenciador de pacotes** Linux e siga as instruções do CentOS.
 * Um aplicativo ASP.NET Core existente.
 
-A qualquer momento no futuro depois de atualizar a estrutura compartilhada, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
+Em qualquer momento no futuro, após atualizar a estrutura compartilhada, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
@@ -60,7 +60,7 @@ Um proxy reverso é uma configuração comum para atender a aplicativos Web din�
 
 Um servidor proxy é aquele que encaminha as solicitações de cliente para outro servidor, em vez de atendê-las por conta própria. Um proxy reverso encaminha para um destino fixo, normalmente, em nome de clientes arbitrários. Neste guia, o Apache é configurado como o proxy reverso em execução no mesmo servidor em que o Kestrel está servindo o aplicativo ASP.NET Core.
 
-Uma vez que as solicitações são encaminhadas pelo proxy reverso, use o [Middleware de Cabeçalhos Encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/). O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
+Como as solicitações são encaminhadas por proxy reverso, use o [Middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft.AspNetCore.HttpOverrides.](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
 
 Qualquer componente que dependa do esquema, como autenticação, geração de link, redirecionamentos e localização geográfica, deverá ser colocado depois de invocar o Middleware de Cabeçalhos Encaminhados. Como regra geral, o Middleware de Cabeçalhos Encaminhados deve ser executado antes de outro middleware, exceto middleware de tratamento de erro e de diagnóstico. Essa ordenação garantirá que o middleware conte com informações de cabeçalhos encaminhadas que podem consumir os valores de cabeçalho para processamento.
 
@@ -202,7 +202,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-No exemplo anterior, o usuário que gerencia o serviço é especificado pela opção `User`. O usuário (`apache`) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
+No exemplo anterior, o usuário que gerencia o `User` serviço é especificado pela opção. O usuário`apache`( ) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
 
 Use `TimeoutStopSec` para configurar a duração do tempo de espera para o aplicativo desligar depois de receber o sinal de interrupção inicial. Se o aplicativo não desligar nesse período, o SIGKILL será emitido para encerrá-lo. Forneça o valor como segundos sem unidade (por exemplo, `150`), um valor de duração (por exemplo, `2min 30s`) ou `infinity` para desabilitar o tempo limite. `TimeoutStopSec` é revertido para o valor padrão de `DefaultTimeoutStopSec` no arquivo de configuração do gerenciador (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf* e *user.conf.d*). O tempo limite padrão para a maioria das distribuições é de 90 segundos.
 
@@ -276,7 +276,7 @@ Se o token de autenticação for armazenado na memória quando o aplicativo for 
 
 * Todos os tokens de autenticação baseados em cookies serão invalidados.
 * Os usuários precisam entrar novamente na próxima solicitação deles.
-* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir os [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [cookies TempData do MVC do ASP.NET Core](xref:fundamentals/app-state#tempdata).
+* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET principais cookies MVC TempData](xref:fundamentals/app-state#tempdata).
 
 Para configurar a proteção de dados de modo que ela mantenha e criptografe o token de autenticação, consulte:
 
@@ -323,7 +323,7 @@ rich rules:
 
 **Configurar o aplicativo para conexões seguras (HTTPS) locais**
 
-O comando [dotnet run](/dotnet/core/tools/dotnet-run) usa o arquivo *Properties/launchSettings.json* do aplicativo, que configura o aplicativo para escutar nas URLs fornecidas pela propriedade `applicationUrl` (por exemplo, `https://localhost:5001; http://localhost:5000`).
+O comando [dotnet run](/dotnet/core/tools/dotnet-run) usa o arquivo *Properties/launchSettings.json* do aplicativo, que configura o aplicativo para escutar nas URLs fornecidas pela propriedade `applicationUrl` (por exemplo, `https://localhost:5001;http://localhost:5000`).
 
 Configure o aplicativo para usar um certificado no desenvolvimento para o comando `dotnet run` ou no ambiente de desenvolvimento (F5 ou Ctrl + F5 no Visual Studio Code) usando uma das seguintes abordagens:
 
@@ -388,9 +388,9 @@ sudo systemctl restart httpd
 
 ## <a name="additional-apache-suggestions"></a>Sugestões adicionais do Apache
 
-### <a name="restart-apps-with-shared-framework-updates"></a>Reiniciar aplicativos com atualizações de estrutura compartilhadas
+### <a name="restart-apps-with-shared-framework-updates"></a>Reiniciar aplicativos com atualizações de framework compartilhadas
 
-Depois de atualizar a estrutura compartilhada no servidor, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
+Depois de atualizar a estrutura compartilhada no servidor, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
 
 ### <a name="additional-headers"></a>Cabeçalhos adicionais
 
@@ -428,7 +428,7 @@ sudo nano /etc/httpd/conf/httpd.conf
 
 Adicione a linha `Header set X-Content-Type-Options "nosniff"`. Salve o arquivo. Reinicie o Apache.
 
-### <a name="load-balancing"></a>Balanceamento de carga
+### <a name="load-balancing"></a>Balanceamento de Carga
 
 Este exemplo mostra como instalar e configurar o Apache no CentOS 7 e no Kestrel no mesmo computador da instância. Para não ter um ponto único de falha, o uso de *mod_proxy_balancer* e a modificação do **VirtualHost** permitiriam o gerenciamento de várias instâncias dos aplicativos Web protegidos pelo servidor proxy do Apache.
 
@@ -495,7 +495,7 @@ O arquivo de exemplo limita a largura de banda a 600 KB/s no local raiz:
 
 ### <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
 
-As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 8.190 bytes. Um aplicativo pode exigir campos maiores do que o padrão (por exemplo, aplicativos que usam [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, a diretiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) do servidor proxy exigirá ajuste. O valor a ser aplicado depende do cenário. Para obter mais informações, confira a documentação do servidor.
+As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 8.190 bytes. Um aplicativo pode exigir campos mais longos do que o padrão (por exemplo, aplicativos que usam [o Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, a diretiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) do servidor proxy requer ajuste. O valor a ser aplicado depende do cenário. Para obter mais informações, confira a documentação do servidor.
 
 > [!WARNING]
 > Não aumente o valor padrão de `LimitRequestFieldSize` a menos que necessário. Aumentar esse valor aumenta o risco de estouro de buffer (estouro) e ataques de DoS (negação de serviço) por usuários mal-intencionados.

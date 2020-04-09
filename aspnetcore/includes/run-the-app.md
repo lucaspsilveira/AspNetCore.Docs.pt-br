@@ -10,7 +10,7 @@
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Pressione **Ctrl-F5** para execução sem o depurador.
+* Pressione **Ctrl-F5** para funcionar sem o depurador.
 
   O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
 
@@ -19,7 +19,7 @@
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* No Visual Studio, pressione **opt-cmd-Return** para executar sem o depurador. Como alternativa, navegue até a barra de menus e vá para **executar > iniciar sem depuração**.
+* No Visual Studio, **pressione Opt-Cmd-Return** para executar sem o depurador. Alternativamente, navegue até a barra de menus e vá para **Executar>Iniciar Sem Depuração**.
 
   O Visual Studio inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `http://localhost:5001`.
 
