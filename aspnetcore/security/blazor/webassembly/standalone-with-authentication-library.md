@@ -1,47 +1,47 @@
 ---
-title: Proteger um ASP.NET Core aplicativo autônomo Webassembly Blazor com a biblioteca de autenticação
+title: Proteja um Blazor aplicativo autônomo do WebAssembly ASP.NET com a biblioteca de autenticação
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/19/2020
+ms.date: 04/08/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: ea50d94835b044f9c3d6a0561868f081d32cb62a
-ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
+ms.openlocfilehash: 893fff10df37e1c2be549604f4cb83cd20049108
+ms.sourcegitcommit: f0aeeab6ab6e09db713bb9b7862c45f4d447771b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80218993"
+ms.lasthandoff: 04/08/2020
+ms.locfileid: "80977035"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a><span data-ttu-id="fdf99-102">Proteger um ASP.NET Core aplicativo autônomo Webassembly Blazor com a biblioteca de autenticação</span><span class="sxs-lookup"><span data-stu-id="fdf99-102">Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library</span></span>
+# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-the-authentication-library"></a><span data-ttu-id="f2243-102">Proteja um Blazor aplicativo autônomo do WebAssembly ASP.NET com a biblioteca de autenticação</span><span class="sxs-lookup"><span data-stu-id="f2243-102">Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library</span></span>
 
-<span data-ttu-id="fdf99-103">Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="fdf99-103">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="f2243-103">Por [Javier Calvarro Nelson](https://github.com/javiercn) e Luke [Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="f2243-103">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-<span data-ttu-id="fdf99-104">*Para Azure Active Directory (AAD) e Azure Active Directory B2C (AAD B2C), não siga as orientações neste tópico. Consulte os tópicos do AAD e do AAD B2C no nó Sumário.*</span><span class="sxs-lookup"><span data-stu-id="fdf99-104">*For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*</span></span>
+<span data-ttu-id="f2243-104">*Para o Azure Active Directory (AAD) e o Azure Active Directory B2C (AAD B2C), não siga as orientações neste tópico. Consulte os tópicos AAD e AAD B2C nesta tabela de nó de conteúdo.*</span><span class="sxs-lookup"><span data-stu-id="f2243-104">*For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*</span></span>
 
-<span data-ttu-id="fdf99-105">Para criar um aplicativo autônomo Webassembly Blazor que usa `Microsoft.AspNetCore.Components.WebAssembly.Authentication` biblioteca, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="fdf99-105">To create a Blazor WebAssembly standalone app that uses `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library, execute the following command in a command shell:</span></span>
+<span data-ttu-id="f2243-105">Para criar Blazor um aplicativo autônomo `Microsoft.AspNetCore.Components.WebAssembly.Authentication` do WebAssembly que usa biblioteca, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="f2243-105">To create a Blazor WebAssembly standalone app that uses `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library, execute the following command in a command shell:</span></span>
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
 ```
 
-<span data-ttu-id="fdf99-106">Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample`).</span><span class="sxs-lookup"><span data-stu-id="fdf99-106">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="fdf99-107">O nome da pasta também se torna parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="fdf99-107">The folder name also becomes part of the project's name.</span></span>
+<span data-ttu-id="f2243-106">Para especificar o local de saída, que cria uma pasta de projeto se ela não `-o BlazorSample`existir, inclua a opção de saída no comando com um caminho (por exemplo, ).</span><span class="sxs-lookup"><span data-stu-id="f2243-106">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="f2243-107">O nome da pasta também passa a fazer parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="f2243-107">The folder name also becomes part of the project's name.</span></span>
 
-<span data-ttu-id="fdf99-108">No Visual Studio, [crie um aplicativo Webassembly Blazor](xref:blazor/get-started).</span><span class="sxs-lookup"><span data-stu-id="fdf99-108">In Visual Studio, [create a Blazor WebAssembly app](xref:blazor/get-started).</span></span> <span data-ttu-id="fdf99-109">Defina a **autenticação** para **contas de usuário individuais** com a opção **armazenar contas de usuário no aplicativo** .</span><span class="sxs-lookup"><span data-stu-id="fdf99-109">Set **Authentication** to **Individual User Accounts** with the **Store user accounts in-app** option.</span></span>
+<span data-ttu-id="f2243-108">No Visual Studio, [crie um Blazor aplicativo WebAssembly](xref:blazor/get-started).</span><span class="sxs-lookup"><span data-stu-id="f2243-108">In Visual Studio, [create a Blazor WebAssembly app](xref:blazor/get-started).</span></span> <span data-ttu-id="f2243-109">Definir **autenticação** **para contas de usuário individuais** com a opção De usuário da Loja no **aplicativo.**</span><span class="sxs-lookup"><span data-stu-id="f2243-109">Set **Authentication** to **Individual User Accounts** with the **Store user accounts in-app** option.</span></span>
 
-## <a name="authentication-package"></a><span data-ttu-id="fdf99-110">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="fdf99-110">Authentication package</span></span>
+## <a name="authentication-package"></a><span data-ttu-id="f2243-110">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="f2243-110">Authentication package</span></span>
 
-<span data-ttu-id="fdf99-111">Quando um aplicativo é criado para usar contas de usuário individuais, o aplicativo recebe automaticamente uma referência de pacote para o pacote de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` no arquivo de projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="fdf99-111">When an app is created to use Individual User Accounts, the app automatically receives a package reference for the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package in the app's project file.</span></span> <span data-ttu-id="fdf99-112">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="fdf99-112">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+<span data-ttu-id="f2243-111">Quando um aplicativo é criado para usar contas de usuário individuais, `Microsoft.AspNetCore.Components.WebAssembly.Authentication` o aplicativo recebe automaticamente uma referência de pacote para o pacote no arquivo de projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="f2243-111">When an app is created to use Individual User Accounts, the app automatically receives a package reference for the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package in the app's project file.</span></span> <span data-ttu-id="f2243-112">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="f2243-112">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
 
-<span data-ttu-id="fdf99-113">Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="fdf99-113">If adding authentication to an app, manually add the package to the app's project file:</span></span>
+<span data-ttu-id="f2243-113">Se adicionar autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="f2243-113">If adding authentication to an app, manually add the package to the app's project file:</span></span>
 
 ```xml
 <PackageReference 
@@ -49,13 +49,13 @@ dotnet new blazorwasm -au Individual
     Version="{VERSION}" />
 ```
 
-<span data-ttu-id="fdf99-114">Substitua `{VERSION}` na referência do pacote anterior pela versão do pacote `Microsoft.AspNetCore.Blazor.Templates` mostrado no artigo <xref:blazor/get-started>.</span><span class="sxs-lookup"><span data-stu-id="fdf99-114">Replace `{VERSION}` in the preceding package reference with the version of the `Microsoft.AspNetCore.Blazor.Templates` package shown in the <xref:blazor/get-started> article.</span></span>
+<span data-ttu-id="f2243-114">Substitua `{VERSION}` a referência do pacote `Microsoft.AspNetCore.Blazor.Templates` anterior pela <xref:blazor/get-started> versão do pacote mostrado no artigo.</span><span class="sxs-lookup"><span data-stu-id="f2243-114">Replace `{VERSION}` in the preceding package reference with the version of the `Microsoft.AspNetCore.Blazor.Templates` package shown in the <xref:blazor/get-started> article.</span></span>
 
-## <a name="authentication-service-support"></a><span data-ttu-id="fdf99-115">Suporte ao serviço de autenticação</span><span class="sxs-lookup"><span data-stu-id="fdf99-115">Authentication service support</span></span>
+## <a name="authentication-service-support"></a><span data-ttu-id="f2243-115">Suporte ao serviço de autenticação</span><span class="sxs-lookup"><span data-stu-id="f2243-115">Authentication service support</span></span>
 
-<span data-ttu-id="fdf99-116">O suporte para autenticação de usuários é registrado no contêiner de serviço com o método de extensão `AddOidcAuthentication` fornecido pelo pacote `Microsoft.AspNetCore.Components.WebAssembly.Authentication`.</span><span class="sxs-lookup"><span data-stu-id="fdf99-116">Support for authenticating users is registered in the service container with the `AddOidcAuthentication` extension method provided by the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package.</span></span> <span data-ttu-id="fdf99-117">Esse método configura todos os serviços necessários para que o aplicativo interaja com o provedor de identidade (IP).</span><span class="sxs-lookup"><span data-stu-id="fdf99-117">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
+<span data-ttu-id="f2243-116">O suporte para autenticar usuários é registrado `AddOidcAuthentication` no contêiner de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` serviço com o método de extensão fornecido pelo pacote.</span><span class="sxs-lookup"><span data-stu-id="f2243-116">Support for authenticating users is registered in the service container with the `AddOidcAuthentication` extension method provided by the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package.</span></span> <span data-ttu-id="f2243-117">Este método configura todos os serviços necessários para que o aplicativo interaja com o Provedor de Identidade (IP).</span><span class="sxs-lookup"><span data-stu-id="f2243-117">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
 
-<span data-ttu-id="fdf99-118">*Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="fdf99-118">*Program.cs*:</span></span>
+<span data-ttu-id="f2243-118">*Program.cs:*</span><span class="sxs-lookup"><span data-stu-id="f2243-118">*Program.cs*:</span></span>
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -65,26 +65,61 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-<span data-ttu-id="fdf99-119">O suporte de autenticação para aplicativos autônomos é oferecido usando o Open ID Connect (OIDC).</span><span class="sxs-lookup"><span data-stu-id="fdf99-119">Authentication support for standalone apps is offered using Open ID Connect (OIDC).</span></span> <span data-ttu-id="fdf99-120">O método `AddOidcAuthentication` aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo usando OIDC.</span><span class="sxs-lookup"><span data-stu-id="fdf99-120">The `AddOidcAuthentication` method accepts a callback to configure the parameters required to authenticate an app using OIDC.</span></span> <span data-ttu-id="fdf99-121">Os valores necessários para configurar o aplicativo podem ser obtidos do IP em conformidade com o OIDC.</span><span class="sxs-lookup"><span data-stu-id="fdf99-121">The values required for configuring the app can be obtained from the OIDC-compliant IP.</span></span> <span data-ttu-id="fdf99-122">Obtenha os valores ao registrar o aplicativo, que normalmente ocorre em seu portal online.</span><span class="sxs-lookup"><span data-stu-id="fdf99-122">Obtain the values when you register the app, which typically occurs in their online portal.</span></span>
+<span data-ttu-id="f2243-119">O suporte à autenticação para aplicativos autônomos é oferecido usando o Open ID Connect (OIDC).</span><span class="sxs-lookup"><span data-stu-id="f2243-119">Authentication support for standalone apps is offered using Open ID Connect (OIDC).</span></span> <span data-ttu-id="f2243-120">O `AddOidcAuthentication` método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo usando OIDC.</span><span class="sxs-lookup"><span data-stu-id="f2243-120">The `AddOidcAuthentication` method accepts a callback to configure the parameters required to authenticate an app using OIDC.</span></span> <span data-ttu-id="f2243-121">Os valores necessários para a configuração do aplicativo podem ser obtidos a partir do IP compatível com OIDC.</span><span class="sxs-lookup"><span data-stu-id="f2243-121">The values required for configuring the app can be obtained from the OIDC-compliant IP.</span></span> <span data-ttu-id="f2243-122">Obtenha os valores ao cadastrar o aplicativo, o que normalmente ocorre em seu portal online.</span><span class="sxs-lookup"><span data-stu-id="f2243-122">Obtain the values when you register the app, which typically occurs in their online portal.</span></span>
 
-## <a name="index-page"></a><span data-ttu-id="fdf99-123">Página de índice</span><span class="sxs-lookup"><span data-stu-id="fdf99-123">Index page</span></span>
+## <a name="access-token-scopes"></a><span data-ttu-id="f2243-123">Acessar escopos de token</span><span class="sxs-lookup"><span data-stu-id="f2243-123">Access token scopes</span></span>
+
+<span data-ttu-id="f2243-124">O Blazor modelo WebAssembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura.</span><span class="sxs-lookup"><span data-stu-id="f2243-124">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="f2243-125">Para provisionar um token como parte do fluxo de login, adicione o `OidcProviderOptions`escopo aos escopos de token padrão do :</span><span class="sxs-lookup"><span data-stu-id="f2243-125">To provision a token as part of the sign-in flow, add the scope to the default token scopes of the `OidcProviderOptions`:</span></span>
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+{
+    ...
+    options.ProviderOptions.DefaultScopes.Add("{SCOPE URI}");
+});
+```
+
+> [!NOTE]
+> <span data-ttu-id="f2243-126">Se o portal Azure fornecer um URI de escopo e **o aplicativo lançar uma exceção não tratada** quando receber uma resposta não autorizada do *401 Da* API, tente usar um URI de escopo que não inclua o esquema e o host.</span><span class="sxs-lookup"><span data-stu-id="f2243-126">If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host.</span></span> <span data-ttu-id="f2243-127">Por exemplo, o portal Azure pode fornecer um dos seguintes formatos uri de escopo:</span><span class="sxs-lookup"><span data-stu-id="f2243-127">For example, the Azure portal may provide one of the following scope URI formats:</span></span>
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> <span data-ttu-id="f2243-128">Forneça o URI de escopo sem o esquema e o host:</span><span class="sxs-lookup"><span data-stu-id="f2243-128">Supply the scope URI without the scheme and host:</span></span>
+>
+> ```csharp
+> options.ProviderOptions.DefaultScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+<span data-ttu-id="f2243-129">Para obter mais informações, consulte <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.</span><span class="sxs-lookup"><span data-stu-id="f2243-129">For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.</span></span>
+
+## <a name="imports-file"></a><span data-ttu-id="f2243-130">Arquivo de importações</span><span class="sxs-lookup"><span data-stu-id="f2243-130">Imports file</span></span>
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+
+## <a name="index-page"></a><span data-ttu-id="f2243-131">Página de índice</span><span class="sxs-lookup"><span data-stu-id="f2243-131">Index page</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
-## <a name="app-component"></a><span data-ttu-id="fdf99-124">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="fdf99-124">App component</span></span>
+## <a name="app-component"></a><span data-ttu-id="f2243-132">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="f2243-132">App component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-## <a name="redirecttologin-component"></a><span data-ttu-id="fdf99-125">Componente RedirectToLogin</span><span class="sxs-lookup"><span data-stu-id="fdf99-125">RedirectToLogin component</span></span>
+## <a name="redirecttologin-component"></a><span data-ttu-id="f2243-133">Componente RedirecionarToLogin</span><span class="sxs-lookup"><span data-stu-id="f2243-133">RedirectToLogin component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-## <a name="logindisplay-component"></a><span data-ttu-id="fdf99-126">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="fdf99-126">LoginDisplay component</span></span>
+## <a name="logindisplay-component"></a><span data-ttu-id="f2243-134">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="f2243-134">LoginDisplay component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
 
-## <a name="authentication-component"></a><span data-ttu-id="fdf99-127">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="fdf99-127">Authentication component</span></span>
+## <a name="authentication-component"></a><span data-ttu-id="f2243-135">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="f2243-135">Authentication component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+
+## <a name="additional-resources"></a><span data-ttu-id="f2243-136">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="f2243-136">Additional resources</span></span>
+
+* [<span data-ttu-id="f2243-137">Solicite tokens de acesso adicionais</span><span class="sxs-lookup"><span data-stu-id="f2243-137">Request additional access tokens</span></span>](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
