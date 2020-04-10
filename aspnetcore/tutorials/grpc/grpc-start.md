@@ -3,14 +3,14 @@ title: Criar um cliente e um servidor gRPC do .NET Core no ASP.NET Core
 author: juntaoluo
 description: Este tutorial mostra como criar um serviço gRPC e um cliente gRPC no ASP.NET Core. Saiba como criar um projeto de serviço gRPC, editar um arquivo pronto e adicionar uma chamada de streaming duplex.
 ms.author: johluo
-ms.date: 12/05/2019
+ms.date: 04/08/2020
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 0cedeb021427455c3f60a8a8cc36b52794a055bc
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2bbd40b4b89af170dae40b8a5277749d6bcd5faf
+ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665819"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "80994637"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Crie um cliente e servidor gRPC no ASP.NET Core
 
@@ -75,7 +75,7 @@ Neste tutorial, você:
   * O comando `code` abre a pasta *GrpcGreeter* em uma nova instância do Visual Studio Code.
 
   Uma caixa de diálogo é exibida com **os ativos necessários para construir e depurar estão faltando no 'GrpcGreeter'. Adicioná-los?**
-* Selecione **Sim**.
+* Selecione **Sim** na barra superior.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -298,7 +298,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 > [!NOTE]
-> O código neste artigo requer o certificado de desenvolvimento HTTPS do ASP.NET Core para proteger o serviço gRPC. Se houver falha no cliente e for exibida a mensagem `The remote certificate is invalid according to the validation procedure.`, o certificado de desenvolvimento não será confiável. Para obter instruções sobre como corrigir esse problema, confira [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core no Windows e no macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+> O código neste artigo requer o certificado de desenvolvimento HTTPS do ASP.NET Core para proteger o serviço gRPC. Se o cliente .NET gRPC `The remote certificate is invalid according to the validation procedure.` `The SSL connection could not be established.`falhar com a mensagem ou , o certificado de desenvolvimento não é confiável. Para corrigir esse problema, consulte [Chamar um serviço gRPC com um certificado não confiável/inválido](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 

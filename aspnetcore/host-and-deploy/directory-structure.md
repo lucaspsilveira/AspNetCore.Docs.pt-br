@@ -5,14 +5,14 @@ description: Saiba mais sobre a estrutura do diretório de aplicativos publicado
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/20/2020
+ms.date: 04/09/2020
 uid: host-and-deploy/directory-structure
-ms.openlocfilehash: 0e7bf40520385b7719cb37120709e0a3fd2442e3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 3ed27db31c5fda8376ed108568ea74b657d30531
+ms.sourcegitcommit: 4506a8f71ece921010ad6b7edebc8b200618f40d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79989734"
+ms.lasthandoff: 04/09/2020
+ms.locfileid: "81002932"
 ---
 # <a name="aspnet-core-directory-structure"></a>Estrutura do diretório do ASP.NET Core
 
@@ -28,7 +28,7 @@ O diretório *publish* contém os ativos implantáveis do aplicativo produzidos 
 
 | Tipo de Aplicativo | Estrutura de diretórios |
 | -------- | ------------------- |
-| [Executável dependente de quadro (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC; se as visualizações não são pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DA MONTAGEM} {. EXTENSÃO} *.exe* extensão no Windows, sem extensão no macOS ou Linux</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li><li>createdump[(utilitário de criação de linux)](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)</li><li>\*.so (Biblioteca de objetos compartilhados do Linux)</li><li>\*.a (arquivo macOS)</li><li>\*.dylib (biblioteca dinâmica do macOS)</li></ul></li></ul> |
+| [Executável dependente de quadro (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC; se as visualizações não são pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DA MONTAGEM} {. EXTENSÃO} .exe extensão no Windows, sem extensão no macOS ou Linux</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li><li>createdump[(utilitário de criação de linux)](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)</li><li>\*.so (Biblioteca de objetos compartilhados do Linux)</li><li>\*.a (arquivo macOS)</li><li>\*.dylib (biblioteca dinâmica do macOS)</li></ul></li></ul> |
 | [Implantação autônoma (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC, se as exibições não forem pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DO ASSEMBLY}.exe</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li></ul></li></ul> |
 
 &dagger;Indica um diretório
@@ -58,9 +58,9 @@ O diretório *publish* contém os ativos implantáveis do aplicativo produzidos 
 
 | Tipo de Aplicativo | Estrutura de diretórios |
 | -------- | ------------------- |
-| [Executável dependente de quadro (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC; se as visualizações não são pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DA MONTAGEM} {. EXTENSÃO} *.exe* extensão no Windows, sem extensão no macOS ou Linux</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li><li>createdump[(utilitário de criação de linux)](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)</li><li>\*.so (Biblioteca de objetos compartilhados do Linux)</li><li>\*.a (arquivo macOS)</li><li>\*.dylib (biblioteca dinâmica do macOS)</li></ul></li></ul> |
+| [Executável dependente de quadro (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC; se as visualizações não são pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DA MONTAGEM} {. EXTENSÃO} .exe extensão no Windows, sem extensão no macOS ou Linux</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li><li>createdump[(utilitário de criação de linux)](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy)</li><li>\*.so (Biblioteca de objetos compartilhados do Linux)</li><li>\*.a (arquivo macOS)</li><li>\*.dylib (biblioteca dinâmica do macOS)</li></ul></li></ul> |
 | [Implantação autônoma (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Visualiza&dagger; aplicativos MVC, se as exibições não forem pré-compiladas</li><li>Páginas&dagger; MVC ou Aplicativos de Páginas de Barbear, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DO ASSEMBLY}.exe</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li></ul></li></ul> |
--
+
 &dagger;Indica um diretório
 
 O diretório *publish* representa o *caminho raiz de conteúdo* (também chamado de *caminho base do aplicativo*) da implantação. Qualquer que seja o nome fornecido para o diretório *publish* do aplicativo implantado no servidor, o local dele serve como o caminho físico do servidor para o aplicativo hospedado.
