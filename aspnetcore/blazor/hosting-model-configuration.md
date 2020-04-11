@@ -5,17 +5,17 @@ description: Saiba Blazor mais sobre a configuração do modelo de hospedagem, i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 04/07/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: 1f71ac63bbe9dc9d56cfca2ded19a5b863be828f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ca1b3ea9092640ca561b3fbe02ddce6f974c525e
+ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80306428"
+ms.lasthandoff: 04/11/2020
+ms.locfileid: "81123381"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET configuração do modelo de hospedagem Core Blazor
 
@@ -27,14 +27,73 @@ Este artigo abrange a configuração do modelo de hospedagem.
 
 ## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
+### <a name="environment"></a>Ambiente
+
+Ao executar um aplicativo localmente, o ambiente é padrão para o Desenvolvimento. Quando o aplicativo é publicado, o ambiente é padrão para Produção.
+
+Um aplicativo WebAssembly hospedado pega o ambiente do servidor através de um middleware que `blazor-environment` comunica o ambiente ao navegador adicionando o cabeçalho. O valor do cabeçalho é o ambiente. O aplicativo Blazor hospedado e o aplicativo do servidor compartilham o mesmo ambiente. Para obter mais informações, incluindo como <xref:fundamentals/environments>configurar o ambiente, consulte .
+
+Para um aplicativo autônomo em execução local, o servidor de desenvolvimento adiciona o `blazor-environment` cabeçalho para especificar o ambiente Desenvolvimento. Para especificar o ambiente para outros `blazor-environment` ambientes de hospedagem, adicione o cabeçalho.
+
+No exemplo a seguir para IIS, adicione o cabeçalho personalizado ao arquivo *web.config* publicado. O arquivo *Web.config* está localizado na pasta *bin/Release/{TARGET FRAMEWORK}/publish:*
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+
+    ...
+
+    <httpProtocol>
+      <customHeaders>
+        <add name="blazor-environment" value="Staging" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+</configuration>
+```
+
+> [!NOTE]
+> Para usar um arquivo *web.config* personalizado para IIS que não seja substituído quando <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>o aplicativo for publicado na pasta *de publicação,* consulte .
+
+Obtenha o ambiente do aplicativo em `IWebAssemblyHostEnvironment` um componente `Environment` injetando e lendo a propriedade:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+<h1>Environment example</h1>
+
+<p>Environment: @HostEnvironment.Environment</p>
+```
+
+### <a name="configuration"></a>Configuração
+
 A partir da versão ASP.NET Core 3.2 Preview 3, o Blazor WebAssembly suporta a configuração a partir de:
 
 * *wwwroot/appsettings.json*
 * *wwwroot/appsettings. {ENVIRONMENT}.json*
 
-Em um aplicativo Blazor Hosted, o [ambiente de tempo de execução](xref:fundamentals/environments) é o mesmo que o valor do aplicativo do servidor.
+Adicionar um *arquivo appsettings.json* na pasta *wwwroot:*
 
-Ao executar o aplicativo localmente, o ambiente é padrão para o Desenvolvimento. Quando o aplicativo é publicado, o ambiente é padrão para Produção. Para obter mais informações, incluindo como <xref:fundamentals/environments>configurar o ambiente, consulte .
+```json
+{
+  "message": "Hello from config!"
+}
+```
+
+Injete uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância em um componente para acessar os dados de configuração:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<p>Message: @Configuration["message"]</p>
+```
 
 > [!WARNING]
 > A configuração em um aplicativo Blazor WebAssembly é visível para os usuários. **Não armazene segredos de aplicativos ou credenciais na configuração.**

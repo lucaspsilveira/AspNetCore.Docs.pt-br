@@ -5,17 +5,17 @@ description: Saiba mais sobre cenários de vinculação Blazor de dados para com
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/01/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: cf6056e0985d5433bddecac8dd183ca3f4c2af5b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6efa84c550a4605bde5e1f2bca4f2d1aa4a2667b
+ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218928"
+ms.lasthandoff: 04/11/2020
+ms.locfileid: "81123358"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET componentes do Core Razor em páginas de barbear e aplicativos MVC
 
@@ -60,13 +60,13 @@ Um aplicativo De navalha ou MVC existente pode integrar componentes do Razor em 
    @using MyAppNamespace
    ```
 
-1. Em `Startup.ConfigureServices`, Blazor registre o serviço servidor:
+1. Em `Startup.ConfigureServices`, registrar o serviço Blazor Server:
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. Em `Startup.Configure`, Blazor adicionar o `app.UseEndpoints`ponto final do Hub a:
+1. Em `Startup.Configure`, adicionar o ponto `app.UseEndpoints`final do Blazor Hub a:
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -112,6 +112,19 @@ Para suportar componentes de navalha routable em aplicativos Razor Pages:
    ```
 
    Os componentes usam o arquivo *_Layout.cshtml* compartilhado para seu layout.
+
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se `App` o componente:
+
+   * É pré-renderizado na página.
+   * É renderizado como HTML estático na página ou se inclui as informações necessárias para bootstrap um aplicativo Blazor do agente usuário.
+
+   | Modo renderização | Descrição |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e Blazor inclui um marcador para um aplicativo Server. Quando o usuário-agente é iniciado, este Blazor marcador é usado para inicializar um aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador Blazor para um aplicativo do Servidor. A saída `App` do componente não está incluída. Quando o usuário-agente é iniciado, este Blazor marcador é usado para inicializar um aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Torna o `App` componente em HTML estático. |
+
+   Para obter mais informações sobre o <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>Component Tag Helper, consulte .
 
 1. Adicione uma rota de baixa prioridade para a página *_Host.cshtml* para a configuração de ponto final em `Startup.Configure`:
 
