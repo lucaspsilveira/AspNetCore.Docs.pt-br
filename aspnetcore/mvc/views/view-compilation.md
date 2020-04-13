@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/8/2020
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 7f329ffb4c63e8699663f49720145984bb8802fd
-ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
+ms.openlocfilehash: 0afd39fdb5a6f570e0e78ad54f6c436460bad3a6
+ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "80994601"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81223953"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -31,7 +31,7 @@ Para habilitar a compilação em tempo de execução para todos os ambientes e m
 
 1. Instale o pacote [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet.
 
-1. Atualize o `Startup.ConfigureServices` método do projeto `AddRazorRuntimeCompilation`para incluir uma chamada para . Por exemplo:
+1. Atualize o `Startup.ConfigureServices` método do projeto <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>para incluir uma chamada para . Por exemplo:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -61,29 +61,15 @@ Para habilitar a compilação em tempo de execução com base no ambiente e no m
 
 1. Atualize o `Startup.ConfigureServices` método do projeto `AddRazorRuntimeCompilation`para incluir uma chamada para . Executar condicionalmente `AddRazorRuntimeCompilation` de modo que ele só `ASPNETCORE_ENVIRONMENT` é executado `Development`no modo Debug quando a variável é definida como :
 
-    ```csharp
-    public IWebHostEnvironment Env { get; set; }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        IMvcBuilder builder = services.AddRazorPages();
-
-    #if DEBUG
-        if (Env.IsDevelopment())
-        {
-            builder.AddRazorRuntimeCompilation();
-        }
-    #endif
-
-        // code omitted for brevity
-    }
-    ```
+  [!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet)]
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
+* [Propriedades RazorCompileOnBuild e RazorCompileOnPublish.](xref:razor-pages/sdk#properties)
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
+* Consulte a [amostra de compilação em tempo de execução no GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) para obter uma amostra que mostra fazer a compilação em tempo de execução funcionar entre projetos.
 
 ::: moniker-end
 
