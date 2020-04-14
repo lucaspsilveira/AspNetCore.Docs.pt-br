@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: df41f296e9c4e1eff6e31d45b29ec30ee1e20cf4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d7ee3e42d320d35c2aaff6e097203c45289ec5b1
+ms.sourcegitcommit: fbdb8b9ab5a52656384b117ff6e7c92ae070813c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657741"
+ms.lasthandoff: 04/13/2020
+ms.locfileid: "81228121"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Implantar um aplicativo para o App Service
 
@@ -85,7 +85,7 @@ Para implantar o aplicativo, você precisará criar um App Service [Web App](/az
 
     b. Crie um grupos de recursos. Os grupos de recursos fornecem um meio para agregar recursos do Azure a serem gerenciados em grupo.
 
-    ```azure-cli
+    ```azurecli
     az group create --location centralus --name AzureTutorial
     ```
 
@@ -93,25 +93,25 @@ Para implantar o aplicativo, você precisará criar um App Service [Web App](/az
 
     c. Crie um plano de serviço de aplicativo no nível S1. Um plano de Serviço de Aplicativo é um agrupamento de aplicativos web que compartilham o mesmo nível de preços. O nível S1 não é gratuito, mas é necessário para o recurso de slots de encenação.
 
-    ```azure-cli
+    ```azurecli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
     d. Crie o recurso do aplicativo web usando o plano App Service no mesmo grupo de recursos.
 
-    ```azure-cli
+    ```azurecli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
     ```
 
     e. Defina as credenciais de implantação. Essas credenciais de implantação se aplicam a todos os aplicativos da Web em sua assinatura. Não use caracteres especiais no nome do usuário.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Configure o aplicativo web para aceitar implantações do Git local e exiba a URL de implantação do *Git*. **Observe esta URL para referência mais tarde**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
@@ -170,13 +170,13 @@ Os slots de implantação suportam a realização de alterações sem afetar o a
 
     a. Crie um slot de implantação com o nome *encenando*.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
     b. Configure o slot de preparação para usar a implantação do Git local e obtenha a URL de implantação **de preparação.** **Observe esta URL para referência mais tarde**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
@@ -216,7 +216,7 @@ Os slots de implantação suportam a realização de alterações sem afetar o a
 
 7. Na Cloud Shell, troque o slot de preparação verificado/aquecido em produção.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
     ```
 

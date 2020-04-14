@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 5742ac6879ce46e01247ddd2f8bfe3e3b8a2a02a
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 0fc89ccf15c14c67f284a7084a21159af300a195
+ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751154"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81277217"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -454,6 +454,8 @@ Em geral, o uso de um modelo é a abordagem mais simples para o roteamento. Rest
 
 Segmentos complexos são processados combinando delimitadores literais da direita para a esquerda de forma [não gananciosa.](#greedy) Por exemplo, `[Route("/a{b}c{d}")]` é um segmento complexo.
 Segmentos complexos funcionam de uma maneira particular que deve ser entendida para usá-los com sucesso. O exemplo nesta seção demonstra por que segmentos complexos só funcionam bem quando o texto delimitador não aparece dentro dos valores dos parâmetros. Usar um [regex](/dotnet/standard/base-types/regular-expressions) e, em seguida, extrair manualmente os valores é necessário para casos mais complexos.
+
+[!INCLUDE[](~/includes/regex.md)]
 
 Este é um resumo das etapas que o `/a{b}c{d}` roteamento `/abcd`executa com o modelo e o caminho url . O `|` é usado para ajudar a visualizar como o algoritmo funciona:
 
