@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 uid: fundamentals/index
-ms.openlocfilehash: da2b42a7cf5d116a36d1dd9fa586d40ab31fc52d
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: c675644d8480ef7a5290045067e6cec2ea6f4764
+ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417651"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81384057"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -205,7 +205,7 @@ A raiz de conteúdo é o caminho base para:
   * Arquivos de dados *(.db)*
 * A [raiz da Web](#web-root), tipicamente a pasta *wwwroot.*
 
-Durante o desenvolvimento, a raiz de conteúdo é padrão para o diretório raiz do projeto. Este diretório também é o caminho base tanto para os arquivos de conteúdo do aplicativo quanto para a [raiz da Web](#web-root). Especifique uma raiz de conteúdo diferente definindo seu caminho [ao construir o host](#host). Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/generic-host#contentrootpath-1).
+Durante o desenvolvimento, a raiz de conteúdo é padrão para o diretório raiz do projeto. Este diretório também é o caminho base tanto para os arquivos de conteúdo do aplicativo quanto para a [raiz da Web](#web-root). Especifique uma raiz de conteúdo diferente definindo seu caminho [ao construir o host](#host). Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/generic-host#contentroot).
 
 ## <a name="web-root"></a>Raiz da Web
 
@@ -215,7 +215,7 @@ A raiz da Web é o caminho base para arquivos de recursos públicos e estáticos
 * JavaScript (*.js*)
 * Imagens (*.png*, *.jpg*)
 
-Por padrão, os arquivos estáticos são servidos apenas a partir do diretório raiz da Web e seus subdiretórios. O caminho raiz da Web é padrão para *{content root}/wwwroot*. Especifique uma raiz web diferente definindo seu caminho [ao construir o host](#host). Para obter mais informações, confira [Diretório base](xref:fundamentals/host/generic-host#webroot-1).
+Por padrão, os arquivos estáticos são servidos apenas a partir do diretório raiz da Web e seus subdiretórios. O caminho raiz da Web é padrão para *{content root}/wwwroot*. Especifique uma raiz web diferente definindo seu caminho [ao construir o host](#host). Para obter mais informações, confira [Diretório base](xref:fundamentals/host/generic-host#webroot).
 
 Impedir a publicação de arquivos em *wwwroot* com o [ \<item de projeto de> de conteúdo](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo do projeto. O exemplo a seguir impede a publicação de conteúdo em *wwwroot/local* e seus subdiretórios:
 

@@ -5,12 +5,12 @@ description: Saiba como as exibições tratam da apresentação de dados do apli
 ms.author: riande
 ms.date: 12/05/2019
 uid: mvc/views/overview
-ms.openlocfilehash: de78624bafeee16a3ace322643cf89337531eef8
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 70b8c2c01a28f99dd384351041a3b77d23f46a48
+ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78665105"
+ms.lasthandoff: 04/14/2020
+ms.locfileid: "81384074"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Exibições no ASP.NET Core MVC
 
@@ -18,7 +18,7 @@ Por [Steve Smith](https://ardalis.com/)
 
 Este documento explica as exibições usadas em aplicativos do ASP.NET Core MVC. Para obter informações sobre páginas do Razor, consulte [Introdução a Páginas do Razor](xref:razor-pages/index).
 
-No padrão MVC (Modelo-Exibição-Controlador), a *exibição* cuida da apresentação de dados do aplicativo e da interação com o usuário. Uma exibição é um modelo HTML com [marcação Razor](xref:mvc/views/razor) inserida. A marcação Razor é um código que interage com a marcação HTML para produzir uma página da Web que é enviada ao cliente.
+No padrão MVC (Model-View-Controller), a *exibição* trata da apresentação de dados do aplicativo e da interação com o usuário. Uma exibição é um modelo HTML com [marcação Razor](xref:mvc/views/razor) inserida. A marcação Razor é um código que interage com a marcação HTML para produzir uma página da Web que é enviada ao cliente.
 
 No ASP.NET Core MVC, as exibições são arquivos *.cshtml* que usam a [linguagem de programação C#](/dotnet/csharp/) na marcação Razor. Geralmente, arquivos de exibição são agrupados em pastas nomeadas para cada um dos [controladores](xref:mvc/controllers/actions) do aplicativo. As pastas são armazenadas em uma pasta chamada *Views* na raiz do aplicativo:
 
@@ -43,7 +43,7 @@ As exibições ajudam a estabelecer uma [separação de Interesses](/dotnet/stan
 
 ## <a name="creating-a-view"></a>Criando uma exibição
 
-Exibições que são específicas de um controlador são criadas na pasta *Views/ [NomeDoControlador]* . Exibições que são compartilhadas entre controladores são colocadas na pasta *Views/Shared*. Para criar uma exibição, adicione um novo arquivo e dê a ele o mesmo nome que o da ação de seu controlador associado, com a extensão de arquivo *.cshtml*. Para criar uma exibição correspondente à ação *About* no controlador *Home*, crie um arquivo *About.cshtml* na pasta *Views/Home*:
+Exibições que são específicas de um controlador são criadas na pasta *Views/ [NomeDoControlador]*. Exibições que são compartilhadas entre controladores são colocadas na pasta *Views/Shared*. Para criar uma exibição, adicione um novo arquivo e dê a ele o mesmo nome que o da ação de seu controlador associado, com a extensão de arquivo *.cshtml*. Para criar uma exibição correspondente à ação *About* no controlador *Home*, crie um arquivo *About.cshtml* na pasta *Views/Home*:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
@@ -87,7 +87,7 @@ O método auxiliar `View` tem várias sobrecargas. Opcionalmente, você pode esp
 
 Quando uma ação retorna uma exibição, um processo chamado *descoberta de exibição* ocorre. Esse processo determina qual arquivo de exibição é usado com base no nome da exibição. 
 
-O comportamento padrão do método `View` (`return View();`) é retornar uma exibição com o mesmo nome que o método de ação do qual ela é chamada. Por exemplo, o nome do método *About* `ActionResult` do controlador é usado para pesquisar um arquivo de exibição chamado *about. cshtml*. Primeiro, o tempo de execução pesquisa pela exibição na pasta *Views/[NomeDoControlador]* . Se não encontrar uma exibição correspondente nela, ele procura pela exibição na pasta *Shared*.
+O comportamento padrão do método `View` (`return View();`) é retornar uma exibição com o mesmo nome que o método de ação do qual ela é chamada. Por exemplo, o nome do método *Sobre* `ActionResult` do controlador é usado para procurar um arquivo de exibição chamado *About.cshtml*. Primeiro, o tempo de execução pesquisa pela exibição na pasta *Views/[NomeDoControlador]*. Se não encontrar uma exibição correspondente nela, ele procura pela exibição na pasta *Shared*.
 
 Não importa se você retornar implicitamente o `ViewResult` com `return View();` ou se passar explicitamente o nome de exibição para o método `View` com `return View("<ViewName>");`. Nos dois casos, a descoberta de exibição pesquisa por um arquivo de exibição correspondente nesta ordem:
 
@@ -192,23 +192,23 @@ Nada impede que você use as mesmas classes para seus tipos de viewmodel e seus 
 
 ### <a name="weakly-typed-data-viewdata-viewdata-attribute-and-viewbag"></a>Dados fracamente tipados (ViewData, atributo ViewData e ViewBag)
 
-`ViewBag` *não está disponível no Razor Pages.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
 Além de exibições fortemente tipadas, as exibições têm acesso a uma coleção de dados *fracamente tipados* (também chamada de *tipagem flexível*). Diferente dos tipos fortes, ter *tipos fracos* (ou *tipos flexíveis*) significa que você não declara explicitamente o tipo dos dados que está usando. Você pode usar a coleção de dados fracamente tipados para transmitir pequenas quantidades de dados para dentro e para fora dos controladores e das exibições.
 
-| Passar dados entre...                        | {1&gt;Exemplo&lt;1}                                                                        |
+| Passar dados entre...                        | Exemplo                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
 | Um controlador e uma exibição                             | Preencher uma lista suspensa com os dados.                                          |
-| Uma exibição e uma [exibição de layout](xref:mvc/views/layout)   | Definir o conteúdo do elemento **\<title>** na exibição de layout de um arquivo de exibição.  |
+| Uma exibição e uma [exibição de layout](xref:mvc/views/layout)   | Definir o ** \<conteúdo do** elemento>título na exibição de layout a partir de um arquivo de exibição.  |
 | Uma [exibição parcial](xref:mvc/views/partial) e uma exibição | Um widget que exibe dados com base na página da Web que o usuário solicitou.      |
 
-Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente. Observação: as pesquisas de chave não diferenciam maiúsculas de minúsculas para `ViewData` e `ViewBag`.
+Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente. Nota: As principais observações são `ViewData` `ViewBag`insensíveis a casos para ambos e .
 
 `ViewData` e `ViewBag` são resolvidos dinamicamente em runtime. Uma vez que não oferecem verificação de tipo em tempo de compilação, geralmente ambos são mais propensos a erros do que quando um viewmodel é usado. Por esse motivo, alguns desenvolvedores preferem nunca usar `ViewData` e `ViewBag` ou usá-los o mínimo possível.
 
 <a name="VD"></a>
 
-**ViewData**
+**Viewdata**
 
 `ViewData` é um objeto [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) acessado por meio de chaves `string`. Dados de cadeias de caracteres podem ser armazenados e usados diretamente, sem a necessidade de conversão, mas você precisa converter os valores de outros objetos `ViewData` em tipos específicos quando extraí-los. Você pode usar `ViewData` para passar dados de controladores para exibições e dentro das exibições, incluindo [exibições parciais](xref:mvc/views/partial) e [layouts](xref:mvc/views/layout).
 
@@ -252,9 +252,9 @@ Trabalhar com os dados em uma exibição:
 
 **Atributo ViewData**
 
-Outra abordagem que usa o [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) é [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). As propriedades em controladores ou modelos de página Razor marcados com o atributo `[ViewData]` têm seus valores armazenados e carregados do dicionário.
+Outra abordagem que usa o [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) é [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Propriedades em controladores ou modelos `[ViewData]` de página de navalha marcados com o atributo têm seus valores armazenados e carregados do dicionário.
 
-No exemplo a seguir, o controlador inicial contém uma propriedade `Title` marcada com `[ViewData]`. O método `About` define o título para a exibição About:
+No exemplo a seguir, o `Title` controlador `[ViewData]`Home contém uma propriedade marcada com . O método `About` define o título para a exibição About:
 
 ```csharp
 public class HomeController : Controller
@@ -272,12 +272,6 @@ public class HomeController : Controller
 }
 ```
 
-Na exibição About, acesse a propriedade `Title` como uma propriedade de modelo:
-
-```cshtml
-<h1>@Model.Title</h1>
-```
-
 No layout, o título é lido a partir do dicionário ViewData:
 
 ```cshtml
@@ -292,7 +286,7 @@ No layout, o título é lido a partir do dicionário ViewData:
 
 **ViewBag**
 
-`ViewBag` *não está disponível no Razor Pages.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
 `ViewBag` é um objeto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) que fornece acesso dinâmico aos objetos armazenados em `ViewData`. Pode ser mais conveniente trabalhar com `ViewBag`, pois ele não requer uma conversão. O exemplo a seguir mostra como usar `ViewBag` com o mesmo resultado que o uso de `ViewData` acima:
 
@@ -325,7 +319,7 @@ public IActionResult SomeAction()
 
 **Usando ViewData e ViewBag simultaneamente**
 
-`ViewBag` *não está disponível no Razor Pages.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
 Como `ViewData` e `ViewBag` fazem referência à mesma coleção `ViewData` subjacente, você pode usar `ViewData` e `ViewBag`, além de misturá-los e combiná-los ao ler e gravar valores.
 
@@ -368,7 +362,7 @@ Usar `ViewData` e `ViewBag` ao mesmo tempo funciona, assim como misturar e combi
  `ViewBag` não está disponível em páginas Razor.
 
 * `ViewData`
-  * Deriva de [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), de forma que tem propriedades de dicionário que podem ser úteis, como `ContainsKey`, `Add`, `Remove` e `Clear`.
+  * Deriva do [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), por isso tem propriedades de `ContainsKey`dicionário `Add` `Remove`que `Clear`podem ser úteis, tais como, , e .
   * Chaves no dicionário são cadeias de caracteres, de forma que espaços em branco são permitidos. Exemplo: `ViewData["Some Key With Whitespace"]`
   * Qualquer tipo diferente de `string` deve ser convertido na exibição para usar `ViewData`.
 * `ViewBag`
