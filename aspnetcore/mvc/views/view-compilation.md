@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como a compilação de arquivos do Razor ocorre em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 04/14/2020
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 67bbeb88cd944791b522900b69bd10cff38c9f3a
-ms.sourcegitcommit: 5af16166977da598953f82da3ed3b7712d38f6cb
+ms.openlocfilehash: 3d871ab960de28a565280d9e4cb2c597832e2455
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81277257"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440929"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -83,13 +83,23 @@ No exemplo a seguir, a compilação em tempo `IIS Express` `RazorPagesApp` de ex
 
 Não são necessárias mudanças `Startup` de código na classe do projeto. Em tempo de execução, ASP.NET Core procura um [atributo HostingStartup em nível de montagem](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) em `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. O `HostingStartup` atributo especifica o código de inicialização do aplicativo para ser executado. Esse código de inicialização permite a compilação em tempo de execução.
 
+## <a name="enable-runtime-compilation-for-a-razor-class-library"></a>Habilite a compilação em tempo de execução para uma Biblioteca de Classe de Barbear
+
+Considere um cenário no qual um projeto Razor Pages faz referência a uma [Biblioteca de Classe de Navalha (RCL)](xref:razor-pages/ui-class) chamada *MyClassLib*. A RCL contém um arquivo *_Layout.cshtml* que todos os projetos mvc e razor pages da sua equipe consomem. Você deseja ativar a compilação em tempo de execução para o arquivo *_Layout.cshtml* nessa RCL. Faça as seguintes alterações no projeto Páginas de Barbear:
+
+1. Habilite a compilação em tempo de execução com as instruções em [Conditionally habilitar compilação em tempo de execução em um projeto existente](#conditionally-enable-runtime-compilation-in-an-existing-project).
+1. Configure as opções `Startup.ConfigureServices`de compilação em tempo de execução em:
+
+    [!code-csharp[](~/mvc/views/view-compilation/samples/3.1/Startup.cs?name=snippet_ConfigureServices&highlight=5-10)]
+
+    No código anterior, um caminho absoluto para o *MyClassLib* RCL é construído. A [API PhysicalFileProvider](xref:fundamentals/file-providers#physicalfileprovider) é usada para localizar diretórios e arquivos nesse caminho absoluto. Finalmente, `PhysicalFileProvider` a instância é adicionada a uma coleção de provedores de arquivos, que permite o acesso aos arquivos *.cshtml* da RCL.
+
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Propriedades RazorCompileOnBuild e RazorCompileOnPublish.](xref:razor-pages/sdk#properties)
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
-* Consulte a [amostra de compilação em tempo de execução no GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) para obter uma amostra que mostra fazer a compilação em tempo de execução funcionar entre projetos.
 
 ::: moniker-end
 

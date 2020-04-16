@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: 0e6747a3de220b97cc7a84f9cd42b0da54b57ee9
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: ba79f0af8192ad9e8b263d4304ccc0df36c50f00
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78664062"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440747"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Ferramentas do Visual Studio para Contêineres com ASP.NET Core
 
@@ -238,3 +238,4 @@ Pode haver uma expectativa de que a imagem de produção ou versão seja menor e
 * [Implantar um aplicativo .NET em um contêiner do Windows no Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
 * [Solucionar problemas de desenvolvimento do Visual Studio com o Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
 * [Repositório do GitHub e Ferramentas do Visual Studio para Contêineres](https://github.com/Microsoft/DockerTools)
+* [GC usando Docker e pequenos recipientes](xref:performance/memory#sc)

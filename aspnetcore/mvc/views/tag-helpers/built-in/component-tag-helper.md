@@ -4,17 +4,17 @@ author: guardrex
 ms.author: riande
 description: Aprenda a usar o ASP.NET Core Component Tag Helper para renderizar componentes razor em páginas e visualizações.
 ms.custom: mvc
-ms.date: 04/01/2020
+ms.date: 04/15/2020
 no-loc:
 - Blazor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 4a6b21229ce086099fcddfeb51c3a959ef639f24
-ms.sourcegitcommit: e8dc30453af8bbefcb61857987090d79230a461d
+ms.openlocfilehash: aaa4b92a8912b4f52d861ed07432aa7cf3ca5240
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/11/2020
-ms.locfileid: "81123422"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440955"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Ajudante de tag componente no núcleo ASP.NET
 
@@ -24,7 +24,7 @@ Para renderizar um componente de uma página ou exibição, use o [Component Tag
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-Siga as orientações no *Prepare o aplicativo para usar componentes na* seção páginas e visualizações do <xref:blazor/integrate-components#prepare-the-app-to-use-components-in-pages-and-views> artigo.
+Siga as orientações no *Prepare o aplicativo para usar componentes na* seção páginas e visualizações do <xref:blazor/integrate-components#prepare-the-app> artigo.
 
 ## <a name="component-tag-helper"></a>Ajudante de tag componente
 

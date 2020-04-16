@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core fornece serviços e middleware para local
 ms.author: riande
 ms.date: 11/30/2019
 uid: fundamentals/localization
-ms.openlocfilehash: b175354220a8a71c029e005f27443d5a72749a11
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 91db83eb8685c7bee5e976f386c2a12c4090b734
+ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78662116"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81440812"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
@@ -120,11 +120,11 @@ No código anterior, `SharedResource` é a classe correspondente ao resx em que 
 
 ### <a name="supportedcultures-and-supporteduicultures"></a>SupportedCultures e SupportedUICultures
 
-O ASP.NET Core permite que você especifique dois valores de cultura, `SupportedCultures` e `SupportedUICultures`. O objeto [CultureInfo](/dotnet/api/system.globalization.cultureinfo) para `SupportedCultures` determina os resultados das funções dependentes de cultura, como data, hora, número e formatação de moeda. `SupportedCultures` também determina a ordem de classificação de texto, convenções de uso de maiúsculas e comparações de cadeia de caracteres. Consulte [CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture) para obter mais informações sobre como o servidor obtém a Cultura. O `SupportedUICultures` determina quais cadeias de caracteres traduzidas (de arquivos *.resx*) são pesquisadas pelo [ResourceManager](/dotnet/api/system.resources.resourcemanager). O `ResourceManager` apenas pesquisa cadeias de caracteres específicas a uma cultura determinadas por `CurrentUICulture`. Cada thread no .NET tem objetos `CurrentCulture` e `CurrentUICulture`. O ASP.NET Core inspeciona esses valores durante a renderização de funções dependentes de cultura. Por exemplo, se a cultura do thread atual estiver definida como "en-US" (inglês, Estados Unidos), `DateTime.Now.ToLongDateString()` exibirá "Thursday, February 18, 2016", mas se `CurrentCulture` estiver definida como "es-ES" (espanhol, Espanha), o resultado será "jueves, 18 de febrero de 2016".
+O ASP.NET Core permite que você especifique dois valores de cultura, `SupportedCultures` e `SupportedUICultures`. O objeto [CultureInfo](/dotnet/api/system.globalization.cultureinfo) para `SupportedCultures` determina os resultados das funções dependentes de cultura, como data, hora, número e formatação de moeda. `SupportedCultures` também determina a ordem de classificação de texto, convenções de uso de maiúsculas e comparações de cadeia de caracteres. Consulte [CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture) para obter mais informações sobre como o servidor obtém a Cultura. As `SupportedUICultures` determinações de quais strings traduzidas (a partir de arquivos *.resx)* são examinadas pelo [ResourceManager](/dotnet/api/system.resources.resourcemanager). O `ResourceManager` apenas pesquisa cadeias de caracteres específicas a uma cultura determinadas por `CurrentUICulture`. Cada thread no .NET tem objetos `CurrentCulture` e `CurrentUICulture`. O ASP.NET Core inspeciona esses valores durante a renderização de funções dependentes de cultura. Por exemplo, se a cultura do thread atual estiver definida como "en-US" (inglês, Estados Unidos), `DateTime.Now.ToLongDateString()` exibirá "Thursday, February 18, 2016", mas se `CurrentCulture` estiver definida como "es-ES" (espanhol, Espanha), o resultado será "jueves, 18 de febrero de 2016".
 
 ## <a name="resource-files"></a>Arquivos de recurso
 
-Um arquivo de recurso é um mecanismo útil para separar cadeias de caracteres localizáveis do código. Cadeias de caracteres traduzidas para o idioma não padrão são arquivos de recurso *.resx* isolados. Por exemplo, talvez você queira criar um arquivo de recurso em espanhol chamado *Welcome.es.resx* contendo cadeias de caracteres traduzidas. "es" são o código de idioma para o espanhol. Para criar esse arquivo de recurso no Visual Studio:
+Um arquivo de recurso é um mecanismo útil para separar cadeias de caracteres localizáveis do código. As seqüências traduzidas para o idioma não padrão estão isoladas em arquivos de recursos *.resx.* Por exemplo, talvez você queira criar um arquivo de recurso em espanhol chamado *Welcome.es.resx* contendo cadeias de caracteres traduzidas. "es" são o código de idioma para o espanhol. Para criar esse arquivo de recurso no Visual Studio:
 
 1. No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta que conterá o arquivo de recurso > **Adicionar** > **Novo Item**.
 
