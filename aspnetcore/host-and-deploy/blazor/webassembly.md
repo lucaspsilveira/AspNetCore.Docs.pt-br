@@ -5,17 +5,17 @@ description: Saiba como hospedar e Blazor implantar um aplicativo usando ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: f364d94085d175fde5596c222ef21852c0106ec1
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: f3508144f1e472ee906a35e427fc57f536008ab6
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751123"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488852"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedar e implantar Blazor ASP.NET WebAssembly principal
 
@@ -25,13 +25,17 @@ Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.tim
 
 Com o [ Blazor modelo de hospedagem WebAssembly:](xref:blazor/hosting-models#blazor-webassembly)
 
-* O Blazor aplicativo, suas dependências e o tempo de execução .NET são baixados para o navegador.
+* O Blazor aplicativo, suas dependências e o tempo de execução .NET são baixados para o navegador em paralelo.
 * O aplicativo é executado diretamente no thread da interface do usuário do navegador.
 
 As seguintes estratégias de implantação são suportadas:
 
 * O Blazor aplicativo é servido por um aplicativo ASP.NET Core. Esta estratégia é abordada na seção [Implantação hospedada com o ASP.NET Core](#hosted-deployment-with-aspnet-core).
 * O Blazor aplicativo é colocado em um servidor ou serviço de hospedagem Blazor estática, onde o .NET não é usado para servir o aplicativo. Essa estratégia é abordada na seção [de implantação autônoma,](#standalone-deployment) que inclui informações sobre a hospedagem de um Blazor aplicativo WebAssembly como um subaplicativo IIS.
+
+## <a name="brotli-precompression"></a>Precompressão de Brotli
+
+Quando Blazor um aplicativo WebAssembly é publicado, a saída é pré-compactada usando o [algoritmo de compactação Brotli](https://tools.ietf.org/html/rfc7932) no nível mais alto para reduzir o tamanho do aplicativo e remover a necessidade de compactação em tempo de execução.
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Reescrever as URLs para obter o roteamento correto
 

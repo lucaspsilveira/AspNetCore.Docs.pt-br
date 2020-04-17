@@ -7,25 +7,25 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: b528a33fa52bfe56faaf9f3ff8c7e43db0d4e184
-ms.sourcegitcommit: f29a12486313e38e0163a643d8a97c8cecc7e871
+ms.openlocfilehash: 46a56c278e889778e58a1fbb41ec217aaf023b13
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81384030"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488768"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
 ::: moniker range=">= aspnetcore-3.0 <= aspnetcore-3.1"
 
-Os modelos ASP.NET Core criam um<xref:Microsoft.Extensions.Hosting.HostBuilder>Host Genérico .NET Core ().
+Os modelos ASP.NET Core criam um <xref:Microsoft.Extensions.Hosting.HostBuilder>host genérico .NET Core, .
 
 ## <a name="host-definition"></a>Definição do host
 
 Um *host* é um objeto que encapsula os recursos de um aplicativo, tais como:
 
 * DI (injeção de dependência)
-* Registro em log
+* Registrando em log
 * Configuração
 * Implementações de `IHostedService`
 
@@ -40,7 +40,7 @@ O host normalmente é configurado, compilado e executado pelo código na classe 
 * Chama um método `CreateHostBuilder` para criar e configurar um objeto construtor.
 * Chama os métodos `Build` e `Run` no objeto construtor.
 
-Os modelos da Web ASP.NET Core geram o seguinte código para criar um host:
+Os modelos da Web ASP.NET Core geram o seguinte código para criar um Host genérico:
 
 ```csharp
 public class Program
@@ -59,7 +59,7 @@ public class Program
 }
 ```
 
-O código a seguir cria uma `IHostedService` carga de trabalho não-HTTP com uma implementação adicionada ao contêiner DI.
+O código a seguir cria um Host genérico usando carga de trabalho não-HTTP. A `IHostedService` implementação é adicionada ao contêiner DI:
 
 ```csharp
 public class Program
@@ -88,6 +88,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 ```
+
+O código anterior é gerado pelos modelos ASP.NET Core.
 
 Se o aplicativo usar o Entity Framework Core, não altere o nome ou a assinatura do método `CreateHostBuilder`. As [ferramentas do Entity Framework Core](/ef/core/miscellaneous/cli/) esperam encontrar um método `CreateHostBuilder` que elas possam chamar em tempo de design para configurar o host sem executar o aplicativo. Para obter mais informações, confira [Criação de DbContext no tempo de design](/ef/core/miscellaneous/cli/dbcontext-creation).
 
@@ -1000,7 +1002,7 @@ Os modelos ASP.NET Core criam um<xref:Microsoft.Extensions.Hosting.HostBuilder>H
 Um *host* é um objeto que encapsula os recursos de um aplicativo, tais como:
 
 * DI (injeção de dependência)
-* Registro em log
+* Registrando em log
 * Configuração
 * Implementações de `IHostedService`
 

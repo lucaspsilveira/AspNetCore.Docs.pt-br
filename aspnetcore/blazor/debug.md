@@ -5,17 +5,17 @@ description: Aprenda a depurar Blazor aplicativos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: eaa67d63f6d15249885d78d3de197ae53e73f072
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8b63444ba5c8cd45e64e722c8978ba4e6d90af36
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80381866"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488742"
 ---
 # <a name="debug-aspnet-core-opno-locblazor-webassembly"></a>Debug ASP.NET Blazor WebAssembly Central
 
@@ -55,7 +55,7 @@ A depuração requer qualquer um dos seguintes navegadores:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilite a depuração para visual studio e visual studio code
 
-A depuração é habilitada automaticamente para novos projetos que são criados Blazor usando o ASP.NET modelo de projeto Core 3.2 Preview 3 ou posterior do WebAssembly.
+A depuração é habilitada automaticamente para novos projetos que são criados Blazor usando o ASP.NET o modelo de projeto Do Core 3.2 Preview 3 ou posterior do WebAssembly[(a versão atual é 3.2 Preview 4](xref:blazor/get-started)).
 
 Para habilitar a depuração de um aplicativo WebAssembly existente, Blazor atualize o arquivo *launchSettings.json* no projeto de inicialização para incluir a seguinte `inspectUri` propriedade em cada perfil de lançamento:
 

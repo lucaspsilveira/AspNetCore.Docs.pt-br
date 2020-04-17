@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: f6dbac81b4efceb30c379ab06dd715005d879228
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7f7c2a09b74e6007ee3ea9c038398bac54988186
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658931"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488865"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -20,7 +20,7 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
-Nesta seção, são adicionadas aulas para o gerenciamento de filmes em um banco de [dados SQLite](https://www.sqlite.org/index.html)multiplataforma . Aplicativos criados a partir de um modelo ASP.NET Core usam um banco de dados SQLite. As classes de modelo do aplicativo são usadas com [o Entity Framework Core (EF Core)](/ef/core) [(SQLite EF Core Database Provider)](/ef/core/providers/sqlite)para trabalhar com o banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o acesso a dados.
+Nesta seção, são adicionadas aulas para o gerenciamento de filmes. As classes modelo do aplicativo usam [o Entity Framework Core (EF Core)](/ef/core) para trabalhar com o banco de dados. O EF Core é um mapeador relacional de objetos (O/RM) que simplifica o acesso aos dados.
 
 As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos") porque não têm nenhuma dependência do EF Core. Elas definem as propriedades dos dados que são armazenados no banco de dados.
 

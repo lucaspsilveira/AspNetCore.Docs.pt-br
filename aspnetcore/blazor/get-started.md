@@ -5,17 +5,17 @@ description: Comece construindo Blazor um Blazor aplicativo com a ferramenta de 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: e9e6eeeb1d29aa529e43d75f5d3951d2c4384d7e
-ms.sourcegitcommit: 4506a8f71ece921010ad6b7edebc8b200618f40d
+ms.openlocfilehash: 7fe4fbb082f08d4f71684c836a826d8b6dd888f6
+ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "81002906"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81488722"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Comece com ASP.NET Core Blazor
 
@@ -32,6 +32,12 @@ Para começar com Blazor, siga as orientações para a sua escolha de ferramenta
    Para criar aplicativos Blazor Server e Blazor WebAssembly, instale a última pré-visualização do [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) com a **carga de trabalho de desenvolvimento ASP.NET e web.**
 
    Para obter informações sobre os dois modelos de hospedagem <xref:blazor/hosting-models>blazor, *Blazor WebAssembly* e *Blazor Server*, consulte .
+
+1. Instale o modelo de visualização [do Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
+   ```
 
 1. Criar um novo projeto.
 
@@ -50,11 +56,11 @@ Para começar com Blazor, siga as orientações para a sua escolha de ferramenta
 1. Instale opcionalmente o modelo de visualização do [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
    ```
 
    > [!NOTE]
-   > A [versão 3.NET Core SDK 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessária** para usar o modelo 3.2 Preview 3 Blazor WebAssembly. Confirme a versão instalada do .NET `dotnet --version` Core SDK executando em um shell de comando.
+   > A [versão 3.NET Core SDK 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessária** para usar o modelo 3.2 Preview 4 Blazor WebAssembly. Confirme a versão instalada do .NET `dotnet --version` Core SDK executando em um shell de comando.
 
 1. Instale [o Visual Studio Code](https://code.visualstudio.com/).
 
@@ -113,11 +119,11 @@ Se um prompt aparecer para confiar no certificado de desenvolvimento, confie no 
 1. Instale opcionalmente o modelo de visualização do [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview4.20210.8
    ```
 
    > [!NOTE]
-   > A [versão 3.NET Core SDK 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessária** para usar o modelo 3.2 Preview 3 Blazor WebAssembly. Confirme a versão instalada do .NET `dotnet --version` Core SDK executando em um shell de comando.
+   > A [versão 3.NET Core SDK 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessária** para usar o modelo 3.2 Preview 4 Blazor WebAssembly. Confirme a versão instalada do .NET `dotnet --version` Core SDK executando em um shell de comando.
 
 1. Para uma experiência de Servidor Blazor, execute os seguintes comandos em um shell de comando:
 
