@@ -1,21 +1,25 @@
-O componente `FetchData` mostra como:
+O `FetchData` componente mostra como:
 
-* Provisionar um token de acesso.
-* Use o token de acesso para chamar uma API de recurso protegido no aplicativo do *servidor* .
+* Provisão um token de acesso.
+* Use o token de acesso para chamar uma API de recurso protegido no aplicativo *Server.*
 
-A diretiva `@attribute [Authorize]` indica para o sistema de autorização Webassembly mais incrivelmente que o usuário deve ser autorizado para visitar esse componente. A presença do atributo no aplicativo *cliente* não impede que a API no servidor seja chamada sem credenciais apropriadas. O aplicativo de *servidor* também deve usar `[Authorize]` nos pontos de extremidade apropriados para protegê-los corretamente.
+A `@attribute [Authorize]` diretiva indica ao sistema de autorização Blazor WebAssembly que o usuário deve ser autorizado a visitar este componente. A presença do atributo no aplicativo *Cliente* não impede que a API no servidor seja chamada sem credenciais adequadas. O aplicativo *Server* `[Authorize]` também deve usar nos pontos finais apropriados para protegê-los corretamente.
 
-`AuthenticationService.RequestAccessToken();` cuida da solicitação de um token de acesso que pode ser adicionado à solicitação para chamar a API. Se o token for armazenado em cache ou o serviço for capaz de provisionar um novo token de acesso sem interação do usuário, a solicitação de token terá sucesso. Caso contrário, a solicitação de token falhará.
+`AuthenticationService.RequestAccessToken();`cuida de solicitar um token de acesso que pode ser adicionado à solicitação para chamar a API. Se o token estiver em cache ou o serviço for capaz de provisionar um novo token de acesso sem interação do usuário, a solicitação do token será bem sucedida. Caso contrário, a solicitação de token falha.
 
-Para obter o token real a ser incluído na solicitação, o aplicativo deve verificar se a solicitação foi bem-sucedida chamando `tokenResult.TryGetToken(out var token)`. 
+Para obter o token real para incluir na solicitação, o aplicativo deve `tokenResult.TryGetToken(out var token)`verificar se a solicitação foi bem sucedida por meio da chamada . 
 
-Se a solicitação tiver sido bem-sucedida, a variável de token será populada com o token de acesso. A propriedade `Value` do token expõe a cadeia de caracteres literal a ser incluída no cabeçalho da solicitação `Authorization`.
+Se a solicitação foi bem sucedida, a variável token será preenchida com o token de acesso. A `Value` propriedade do token expõe a seqüência literal a ser inscisa na cabeçalho de `Authorization` solicitação.
 
-Se a solicitação falhou porque o token não pôde ser provisionado sem interação do usuário, o resultado do token contém uma URL de redirecionamento. Navegar até essa URL leva o usuário para a página de logon e de volta para a página atual após uma autenticação bem-sucedida.
+Se a solicitação falhou porque o token não pôde ser provisionado sem interação do usuário, o resultado do token contém uma URL redirecionada. Navegar para esta URL leva o usuário à página de login e volta para a página atual após uma autenticação bem-sucedida.
 
 ```razor
 @page "/fetchdata"
-...
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider AuthenticationService
+@inject NavigationManager Navigation
+@using {APPLICATION NAMESPACE}.Shared
 @attribute [Authorize]
 
 ...
@@ -46,4 +50,4 @@ Se a solicitação falhou porque o token não pôde ser provisionado sem intera�
 }
 ```
 
-Para obter mais informações, consulte [salvar o estado do aplicativo antes de uma operação de autenticação](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).
+Para obter mais informações, consulte [Salvar o estado do aplicativo antes de uma operação de autenticação](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).

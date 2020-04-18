@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como o CORS como padrão para permitir ou rejeitar solicitações de origem cruzada em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 04/17/2020
 uid: security/cors
-ms.openlocfilehash: e7731fd967c206679ac93209fdb84f40367bea37
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 56a339d9018f619af38aecc6f4c2ff40c3c43d2f
+ms.sourcegitcommit: 3d07e21868dafc503530ecae2cfa18a7490b58a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440903"
+ms.lasthandoff: 04/18/2020
+ms.locfileid: "81642693"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Habilite o CORS (Cross-Origin Requests, solicitação de origem cruzada) em ASP.NET Núcleo
 
@@ -71,7 +71,7 @@ O CORS Middleware lida com solicitações de origem cruzada. O código a seguir 
 O código anterior:
 
 * Define o nome `_myAllowSpecificOrigins`da política para . O nome da política é arbitrário.
-* Chama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> o método de `_myAllowSpecificOrigins` extensão e especifica a política cors. `UseCors`adiciona o middleware CORS.
+* Chama <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> o método de `_myAllowSpecificOrigins` extensão e especifica a política cors. `UseCors`adiciona o middleware CORS. A chamada `UseCors` deve ser `UseRouting`feita `UseAuthorization`depois, mas antes . Para obter mais informações, consulte [middleware order](xref:fundamentals/middleware/index#middleware-order).
 * Chamadas <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> com uma [expressão lambda.](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) A lambda <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> leva um objeto. [As opções de configuração,](#cors-policy-options)como `WithOrigins`, são descritas posteriormente neste artigo.
 * Habilita `_myAllowSpecificOrigins` a política CORS para todos os pontos finais do controlador. Consulte [o roteamento de ponto final](#ecors) para aplicar uma política CORS a pontos finais específicos.
 
