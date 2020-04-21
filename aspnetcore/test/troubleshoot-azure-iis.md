@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 671f68da2ea261cb8ae32a9d5ef875217859054d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: f994cd1274bda9082a7cd8b637968b2769db1671
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78655326"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661707"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Núcleo no Serviço de Aplicativos e IIS do Azure
 
@@ -159,6 +159,15 @@ Para corrigir esse erro, repare a instalação do [Pacote de Hospedagem do .NET 
 O ANCM não pôde ser iniciado dentro do limite de tempo de inicialização fornecido. Por padrão, o tempo limite é de 120 segundos.
 
 Esse erro pode ocorrer ao iniciar um grande número de aplicativos no mesmo computador. Verifique se há picos de uso de CPU/memória no servidor durante a inicialização. Talvez você precise balancear o processo de inicialização de vários aplicativos.
+
+### <a name="50038-ancm-application-dll-not-found"></a>500.38 ANCM Aplicativo DLL não encontrado
+
+O ANCM não conseguiu localizar o DLL do aplicativo, que deve estar ao lado do executável.
+
+Esse erro ocorre ao hospedar um aplicativo embalado como [executável em um único arquivo](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) usando o modelo de hospedagem em processo. O modelo em processo exige que o ANCM carregue o aplicativo .NET Core no processo IIS existente. Este cenário não é suportado pelo modelo de implantação de arquivo único. Use **uma** das seguintes abordagens no arquivo de projeto do aplicativo para corrigir esse erro:
+
+1. Desativar a publicação de arquivos `PublishSingleFile` únicos definindo `false`a propriedade MSBuild para .
+1. Mude para o modelo de hospedagem `AspNetCoreHostingModel` fora de processo `OutOfProcess`definindo a propriedade MSBuild para .
 
 ### <a name="5025-process-failure"></a>502.5 Falha de processo
 

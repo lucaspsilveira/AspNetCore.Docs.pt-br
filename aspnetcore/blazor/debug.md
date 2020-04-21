@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 8b63444ba5c8cd45e64e722c8978ba4e6d90af36
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: 7273ae3d240de0b59a58069fdcc1880247379751
+ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488742"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81661601"
 ---
 # <a name="debug-aspnet-core-opno-locblazor-webassembly"></a>Debug ASP.NET Blazor WebAssembly Central
 
@@ -103,6 +103,8 @@ Ao depurar Blazor seu aplicativo WebAssembly, você também pode depurar o códi
    ![Servidor de depuração](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
 1. Pressione <kbd>F5</kbd> novamente para permitir que a execução continue e veja a tabela de previsão do tempo renderizada.
+
+<a id="vscode"></a>
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
