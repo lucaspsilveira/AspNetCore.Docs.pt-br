@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: 1b0f5f4071be7134d7de08615ec016ca6567385d
-ms.sourcegitcommit: 49c91ad4b69f4f8032394cbf2d5ae1b19a7f863b
+ms.openlocfilehash: 6a3731657d11faed0b005b429058343b2be4c44b
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81544837"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791474"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET configuração do modelo de hospedagem Core Blazor
 
@@ -134,6 +134,10 @@ Os arquivos de configuração são armazenados em cache para uso off-line. Com [
 * Os arquivos *service-worker.js* e *service-worker-assets.js* do PWA devem ser reconstruídos na compilação, que sinaliza para o aplicativo na próxima visita on-line do usuário que o aplicativo foi reimplantado.
 
 Para obter mais informações sobre como as atualizações <xref:blazor/progressive-web-app#background-updates>em segundo plano são tratadas pelos PWAs, consulte .
+
+### <a name="logging"></a>Registro em log
+
+Para obter informações sobre o suporte <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>de registro do Blazor WebAssembly, consulte .
 
 ## <a name="blazor-server"></a>Servidor Blazor
 

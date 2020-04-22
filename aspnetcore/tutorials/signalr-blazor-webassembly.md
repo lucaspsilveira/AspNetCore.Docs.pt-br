@@ -5,17 +5,17 @@ description: Crie um aplicativo de SignalR bate-papo que use ASP.NET Core com Bl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 798068c83e16070d3279c88c44af0cd96d182fe2
-ms.sourcegitcommit: 77c046331f3d633d7cc247ba77e58b89e254f487
+ms.openlocfilehash: 03db8b48bdacec1d6877a4ea09f97c242761c42d
+ms.sourcegitcommit: f976dce28ad887bbd31720c318fd4a97cf96cc6d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81488878"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81738017"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Use ASP.NET Core SignalR com Blazor WebAssembly
 
@@ -168,7 +168,7 @@ No projeto **BlazorSignalRApp.Server,** crie uma pasta *Hubs* (plural) e adicion
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a>Adicionar serviços SignalR e um ponto final para o hub SignalR
+## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>Adicionar serviços e um ponto final para o hub SignalR
 
 1. No projeto **BlazorSignalRApp.Server,** abra o arquivo *Startup.cs.*
 
@@ -178,15 +178,13 @@ No projeto **BlazorSignalRApp.Server,** crie uma pasta *Hubs* (plural) e adicion
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Adicione os serviços `Startup.ConfigureServices`SignalR a:
+1. Adicionar serviços de middleware de `Startup.ConfigureServices`compressão de signalR e response para:
 
-   ```csharp
-   services.AddSignalR();
-   ```
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. Entre `Startup.Configure` os pontos finais da rota do controlador padrão e o recuo do lado do cliente, adicione um ponto final para o hub:
+1. Entre `Startup.Configure` os pontos finais para controladores e o recuo do lado do cliente, adicione um ponto final para o hub:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
 
 ## <a name="add-razor-component-code-for-chat"></a>Adicionar código de componente razor para bate-papo
 
@@ -202,7 +200,7 @@ No projeto **BlazorSignalRApp.Server,** crie uma pasta *Hubs* (plural) e adicion
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. No **Solution Explorer,** selecione o projeto **BlazorSignalRApp.Server.** Pressione **Ctrl+F5** para executar o aplicativo sem depuração.
+1. No **Solution Explorer,** selecione o projeto **BlazorSignalRApp.Server.** Pressione <kbd>F5</kbd> para executar o aplicativo com depuração ou <kbd>Ctrl</kbd>+<kbd>F5</kbd> para executar o aplicativo sem depuração.
 
 1. Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.
 
@@ -214,7 +212,13 @@ No projeto **BlazorSignalRApp.Server,** crie uma pasta *Hubs* (plural) e adicion
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Selecione **Depurar** > **Executar Sem Depuração** na barra de ferramentas.
+1. Quando o VS Code oferece a criação de um perfil de lançamento para `program` o aplicativo Server *(.vscode/launch.json),* a entrada aparece semelhante ao seguinte para apontar para a montagem do aplicativo (`{APPLICATION NAME}.Server.dll`):
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
+   ```
+
+1. Pressione <kbd>F5</kbd> para executar o aplicativo com depuração ou <kbd>Ctrl</kbd>+<kbd>F5</kbd> para executar o aplicativo sem depuração.
 
 1. Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.
 
@@ -226,7 +230,7 @@ No projeto **BlazorSignalRApp.Server,** crie uma pasta *Hubs* (plural) e adicion
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-1. Na barra lateral **solução,** selecione o projeto **BlazorSignalRApp.Server.** No menu, **selecione Executar iniciar** > **sem depuração**.
+1. Na barra lateral **solução,** selecione o projeto **BlazorSignalRApp.Server.** <kbd>⌘</kbd>+Pressione <kbd>↩</kbd>+<kbd>↩</kbd>** para executar o aplicativo com depuração <kbd>ou</kbd>+<kbd>↩</kbd> para executar o aplicativo sem depuração.
 
 1. Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.
 

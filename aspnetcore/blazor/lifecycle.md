@@ -5,17 +5,17 @@ description: Aprenda a usar os métodos de Blazor ciclo de vida dos componentes 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 831f575afa6ce11d06c016d43ecd1bb59d09eab6
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e7450ad57acc87500bb977aa8349c6ee009e3bf4
+ms.sourcegitcommit: c9d1208e86160615b2d914cce74a839ae41297a8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218902"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81791460"
 ---
 # <a name="aspnet-core-opno-locblazor-lifecycle"></a>ciclo Blazor de vida do núcleo ASP.NET
 
@@ -213,7 +213,7 @@ Para obter informações sobre erros de manuseio <xref:blazor/handle-errors#life
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Reconexão stateful após pré-renderização
 
-Em Blazor um aplicativo `RenderMode` `ServerPrerendered`server quando é , o componente é inicialmente renderizado estáticamente como parte da página. Uma vez que o navegador estabelece uma conexão de volta ao servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o método [onInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) para inicializar o componente estiver presente, o método será executado *duas vezes:*
+Em Blazor um aplicativo `RenderMode` `ServerPrerendered`server quando é , o componente é inicialmente renderizado estáticamente como parte da página. Uma vez que o navegador estabelece uma conexão de volta ao servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o método [onInitialized{Async}](#component-initialization-methods) para inicializar o componente estiver presente, o método será executado *duas vezes:*
 
 * Quando o componente é pré-renderizado estáticamente.
 * Depois que a conexão do servidor tiver sido estabelecida.
