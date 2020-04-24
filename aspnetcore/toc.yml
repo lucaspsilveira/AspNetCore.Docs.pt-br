@@ -357,7 +357,7 @@
           uid: blazor/handle-errors
         - name: Depurar WebAssembly
           uid: blazor/debug
-        - name: Chamar uma API Web
+        - name: Chamar uma API Web do WebAssembly
           uid: blazor/call-web-api
         - name: Aplicativos Web progressivos
           uid: blazor/progressive-web-app
