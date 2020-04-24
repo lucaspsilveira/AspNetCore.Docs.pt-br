@@ -1,9 +1,9 @@
-## <a name="usermanager-and-signinmanager"></a>Gerente de usuário e Gerente de Inscrição
+## <a name="usermanager-and-signinmanager"></a>Usermanager e SignInManager
 
-Defina o tipo de reclamação do identificador de usuário quando um aplicativo do Servidor exigir:
+Defina o tipo de declaração de identificador de usuário quando um aplicativo de servidor exigir:
 
-* <xref:Microsoft.AspNetCore.Identity.UserManager%601>ou <xref:Microsoft.AspNetCore.Identity.SignInManager%601> em um ponto final da API.
-* <xref:Microsoft.AspNetCore.Identity.IdentityUser>detalhes, como o nome do usuário, endereço de e-mail ou hora de término do bloqueio.
+* <xref:Microsoft.AspNetCore.Identity.UserManager%601>ou <xref:Microsoft.AspNetCore.Identity.SignInManager%601> em um ponto de extremidade de API.
+* <xref:Microsoft.AspNetCore.Identity.IdentityUser>detalhes, como o nome do usuário, o endereço de email ou a hora de término do bloqueio.
 
 Em `Startup.ConfigureServices`:
 
@@ -12,7 +12,7 @@ services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-Os `WeatherForecastController` registros a <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> seguir `Get` registram quando o método é chamado:
+O seguinte `WeatherForecastController` registra em <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> log quando `Get` o método é chamado:
 
 ```csharp
 using System;
@@ -23,10 +23,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using BlazorAppIdentityServer.Server.Models;
-using BlazorAppIdentityServer.Shared;
+using {APP NAMESPACE}.Server.Models;
+using {APP NAMESPACE}.Shared;
 
-namespace BlazorAppIdentityServer.Server.Controllers
+namespace {APP NAMESPACE}.Server.Controllers
 {
     [Authorize]
     [ApiController]
