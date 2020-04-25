@@ -39,5 +39,3 @@ Se a solicitação falhou porque o token não pôde ser provisionado sem intera�
     }
 }
 ```
-
-Para obter mais informações, consulte [salvar o estado do aplicativo antes de uma operação de autenticação](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).
