@@ -5,17 +5,17 @@ description: Saiba mais Blazor sobre a configuração do modelo de hospedagem, i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: cf5776109368dc7353d7e21bcad1e947561e7eb4
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: c7e8d1f2dcba6432072a5cc11a6c5d78e50c2398
+ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111052"
+ms.lasthandoff: 04/26/2020
+ms.locfileid: "82159613"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core configuração de modelo de hospedagem mais incrivelmente
 
@@ -249,7 +249,7 @@ Os arquivos de configuração são armazenados em cache para uso offline. Com [P
 
 Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates>.
 
-### <a name="logging"></a>Registro em log
+### <a name="logging"></a>Registrando em log
 
 Para obter informações sobre o suporte ao log de Webassembly <xref:fundamentals/logging/index#create-logs-in-blazor>mais incrivelmente, consulte.
 
@@ -303,53 +303,6 @@ Os aplicativos de servidor mais poseriais são configurados por padrão para Pre
 
 Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
 
-### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Renderizar componentes interativos com estado de páginas e exibições do Razor
-
-Os componentes interativos com estado podem ser adicionados a uma página ou exibição Razor.
-
-Quando a página ou a exibição renderiza:
-
-* O componente é renderizado com a página ou exibição.
-* O estado inicial do componente usado para o pré-processamento é perdido.
-* O novo estado do componente é criado SignalR quando a conexão é estabelecida.
-
-A seguinte página do Razor renderiza um `Counter` componente:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Renderizar componentes não interativos de páginas e exibições do Razor
-
-Na página Razor a seguir, o `Counter` componente é processado estaticamente com um valor inicial que é especificado usando um formulário:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Como `MyComponent` é processado estaticamente, o componente não pode ser interativo.
-
 ### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configurar o SignalR cliente para Blazor aplicativos de servidor
 
 Às vezes, você precisa configurar o SignalR cliente usado por Blazor aplicativos de servidor. Por exemplo, talvez você queira configurar o SignalR registro em log no cliente para diagnosticar um problema de conexão.
@@ -370,6 +323,6 @@ Para configurar o SignalR cliente no arquivo *pages/_Host. cshtml* :
 </script>
 ```
 
-### <a name="logging"></a>Registro em log
+### <a name="logging"></a>Registrando em log
 
 Para obter informações Blazor sobre o suporte a logs <xref:fundamentals/logging/index#create-logs-in-blazor>de servidor, consulte.
