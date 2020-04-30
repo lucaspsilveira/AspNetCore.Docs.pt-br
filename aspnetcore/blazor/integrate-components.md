@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: 282f96a4198d20b7fa38c186721b48ace5219ca6
-ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
+ms.openlocfilehash: 4e2103b7e8b65478808093d7a31e8cfe29b04984
+ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159600"
+ms.lasthandoff: 04/29/2020
+ms.locfileid: "82558912"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
 
@@ -269,7 +269,7 @@ A seguinte página do Razor renderiza um `Counter` componente:
 }
 ```
 
-Para obter mais informações, consulte <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ### <a name="render-noninteractive-components"></a>Renderizar componentes não interativos
 
@@ -292,7 +292,7 @@ Na página Razor a seguir, o `Counter` componente é processado estaticamente co
 }
 ```
 
-Para obter mais informações, consulte <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## <a name="component-namespaces"></a>Namespaces de componente
 
