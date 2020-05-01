@@ -5,17 +5,17 @@ description: Comece com Blazor a criação de um Blazor aplicativo com as ferram
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/30/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 2f10b00adce31c020d46d107c087159c17341beb
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 8ef55b92c45aa07113fd4601a3c7464b42125623
+ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111065"
+ms.lasthandoff: 04/30/2020
+ms.locfileid: "82604760"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -36,7 +36,7 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
 1. Instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
 
 1. Criar um novo projeto.
@@ -56,7 +56,7 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
 1. Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
 
    > [!NOTE]
@@ -98,19 +98,19 @@ Há suporte para o servidor mais incrivelmente no Visual Studio para Mac. Não h
 
 1. Selecione **arquivo** > **nova solução** ou crie um **novo projeto**.
 
-1. Na barra lateral, selecione**aplicativo** **.NET Core** > .
+1. Na barra lateral, selecione**aplicativo** **Web e de console** > .
 
-1. Selecione o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Criar**.
+1. Selecione o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Avançar**.
 
    Para obter informações sobre o modelo de Hospedagem de servidor mais <xref:blazor/hosting-models>incrivelmente, consulte.
 
-1. Defina a **estrutura de destino** como **.NET Core 3,1** e selecione **Avançar**.
+1. Confirme se a **estrutura de destino** está definida como **.NET Core 3,1** e selecione **Avançar**.
 
 1. No campo **nome do projeto** , nomeie o aplicativo `WebApplication1`. Selecione **Criar**.
 
-1. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** para executar o aplicativo *com o depurador*.
+1. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** ou o botão executar (&#9654;) para executar o aplicativo *com o depurador*.
 
-Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.
+Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue. As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado.
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
@@ -119,7 +119,7 @@ Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no 
 1. Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
 
    > [!NOTE]
@@ -149,7 +149,7 @@ Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no 
 
 Várias páginas estão disponíveis em guias na barra lateral:
 
-* Home
+* Início
 * Contador
 * Buscar dados
 

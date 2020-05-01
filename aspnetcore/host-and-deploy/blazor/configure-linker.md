@@ -1,21 +1,21 @@
 ---
-title: Configure o Linker para ASP.NET CoreBlazor
+title: Configurar o vinculador para ASP.NET CoreBlazor
 author: guardrex
-description: Aprenda a controlar o Linker de Língua Blazor Intermediária (IL) ao construir um aplicativo.
+description: Saiba como controlar o vinculador de linguagem intermediária (IL) ao criar um Blazor aplicativo.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 04/29/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 109da5ef400c3b9d64ccf3ceb33a5387ea6b5618
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 94cf1f09ddff47aa41181e9f5c52b4c65dc2ecf1
+ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80218655"
+ms.lasthandoff: 04/30/2020
+ms.locfileid: "82604773"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurar o vinculador para o Blazor do ASP.NET Core
 
@@ -23,20 +23,20 @@ Por [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-O Blazor WebAssembly executa o link [de Idioma Intermediário (IL)](/dotnet/standard/managed-code#intermediate-language--execution) durante uma compilação para cortar il desnecessário dos conjuntos de saída do aplicativo. O linker é desativado ao construir na configuração Debug. Os aplicativos devem ser configurados na configuração de versão para ativar o linker. Recomendamos a construção em Release ao implantar seus aplicativos Blazor WebAssembly. 
+Webassembly mais elaborado executa vinculação de [Il (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante uma compilação para cortar o Il desnecessário dos assemblies de saída do aplicativo. O vinculador está desabilitado ao compilar na configuração de depuração. Os aplicativos devem compilar na configuração de versão para habilitar o vinculador. É recomendável criar em versão ao implantar seus aplicativos Webassembly mais podestas. 
 
-Vincular um aplicativo otimiza para o tamanho, mas pode ter efeitos prejudiciais. Aplicativos que usam reflexão ou recursos dinâmicos relacionados podem quebrar quando cortados porque o linker não sabe sobre esse comportamento dinâmico e não pode determinar em geral quais tipos são necessários para reflexão em tempo de execução. Para aparar tais aplicativos, o linker deve ser informado sobre quaisquer tipos necessários por reflexão no código e em pacotes ou frameworks dos quais o aplicativo dependa. 
+A vinculação de um aplicativo otimiza o tamanho, mas pode ter efeitos prejudiciais. Os aplicativos que usam reflexão ou recursos dinâmicos relacionados podem interromper quando cortados porque o vinculador não conhece esse comportamento dinâmico e não pode determinar em geral quais tipos são necessários para reflexão em tempo de execução. Para cortar esses aplicativos, o vinculador deve ser informado sobre quaisquer tipos exigidos pela reflexão no código e em pacotes ou estruturas das quais o aplicativo depende. 
 
-Para garantir que o aplicativo aparado funcione corretamente uma vez implantado, é importante testar compilações de versão do aplicativo com freqüência durante o desenvolvimento.
+Para garantir que o aplicativo cortado funcione corretamente depois de implantado, é importante testar as compilações de versão do aplicativo com frequência durante o desenvolvimento.
 
-O link para aplicativos Blazor pode ser configurado usando estes recursos do MSBuild:
+A vinculação de aplicativos mais avançados pode ser configurada usando estes recursos do MSBuild:
 
-* Configure o link globalmente com uma [propriedade MSBuild](#control-linking-with-an-msbuild-property).
-* Controle a vinculação em uma base por conjunto com um [arquivo de configuração](#control-linking-with-a-configuration-file).
+* Configure o vínculo global com uma [Propriedade do MSBuild](#control-linking-with-an-msbuild-property).
+* Controle a vinculação em uma base por assembly com um [arquivo de configuração](#control-linking-with-a-configuration-file).
 
-## <a name="control-linking-with-an-msbuild-property"></a>Controle a vinculação com uma propriedade MSBuild
+## <a name="control-linking-with-an-msbuild-property"></a>Vinculação de controle com uma propriedade do MSBuild
 
-O linking é ativado quando `Release` um aplicativo é incorporado na configuração. Para alterar isso, `BlazorWebAssemblyEnableLinking` configure a propriedade MSBuild no arquivo do projeto:
+A vinculação é habilitada quando um aplicativo é `Release` criado na configuração. Para alterar isso, configure a `BlazorWebAssemblyEnableLinking` Propriedade MSBuild no arquivo de projeto:
 
 ```xml
 <PropertyGroup>
@@ -54,7 +54,7 @@ Controle a vinculação por assembly fornecendo um arquivo de configuração XML
 </ItemGroup>
 ```
 
-*LinkerConfig.xml*:
+*LinkerConfig. xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -86,13 +86,13 @@ Controle a vinculação por assembly fornecendo um arquivo de configuração XML
 </linker>
 ```
 
-Para obter mais informações, consulte [exemplos de arquivos Link xml (repositório gitHub mono/linker)](https://github.com/mono/linker#link-xml-file-examples).
+Para obter mais informações, consulte [link XML File Examples (mono/linkr GitHub Repository)](https://github.com/mono/linker#link-xml-file-examples).
 
-## <a name="add-an-xml-linker-configuration-file-to-a-library"></a>Adicione um arquivo de configuração do linker XML a uma biblioteca
+## <a name="add-an-xml-linker-configuration-file-to-a-library"></a>Adicionar um arquivo de configuração do vinculador XML a uma biblioteca
 
-Para configurar o linker de uma biblioteca específica, adicione um arquivo de configuração do linker XML na biblioteca como um recurso incorporado. O recurso incorporado deve ter o mesmo nome da montagem.
+Para configurar o vinculador para uma biblioteca específica, adicione um arquivo de configuração do vinculador XML à biblioteca como um recurso incorporado. O recurso inserido deve ter o mesmo nome que o assembly.
 
-No exemplo a seguir, o arquivo *LinkerConfig.xml* é especificado como um recurso incorporado que tem o mesmo nome do conjunto da biblioteca:
+No exemplo a seguir, o arquivo *LinkerConfig. xml* é especificado como um recurso inserido que tem o mesmo nome que o assembly da biblioteca:
 
 ```xml
 <ItemGroup>
@@ -102,21 +102,21 @@ No exemplo a seguir, o arquivo *LinkerConfig.xml* é especificado como um recurs
 </ItemGroup>
 ```
 
-### <a name="configure-the-linker-for-internationalization"></a>Configure o linker para internacionalização
+### <a name="configure-the-linker-for-internationalization"></a>Configurar o vinculador para internacionalização
 
-Por padrão, a configuração de linker do Blazor para aplicativos Blazor WebAssembly elimina as informações de internacionalização, exceto para locais explicitamente solicitados. A remoção desses conjuntos minimiza o tamanho do aplicativo.
+Por padrão, a configuração do vinculador de mais de um revelador para aplicativos Webassembly mais poseriais retira informações de internacionalização, exceto pelas localidades explicitamente solicitadas. Remover esses assemblies minimiza o tamanho do aplicativo.
 
-Para controlar quais conjuntos I18N são `<MonoLinkerI18NAssemblies>` retidos, defina a propriedade MSBuild no arquivo do projeto:
+Para controlar quais assemblies de I18N são retidos, `<BlazorWebAssemblyI18NAssemblies>` defina a Propriedade MSBuild no arquivo de projeto:
 
 ```xml
 <PropertyGroup>
-  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
+  <BlazorWebAssemblyI18NAssemblies>{all|none|REGION1,REGION2,...}</BlazorWebAssemblyI18NAssemblies>
 </PropertyGroup>
 ```
 
-| Valor da região     | Montagem da região mono    |
+| Valor da região     | Assembly de região mono    |
 | ---------------- | ----------------------- |
-| `all`            | Todas as assembléias incluídas |
+| `all`            | Todos os assemblies incluídos |
 | `cjk`            | *I18N.CJK.dll*          |
 | `mideast`        | *I18N.MidEast.dll*      |
 | `none` (padrão) | Nenhum                    |
@@ -124,6 +124,6 @@ Para controlar quais conjuntos I18N são `<MonoLinkerI18NAssemblies>` retidos, d
 | `rare`           | *I18N.Rare.dll*         |
 | `west`           | *I18N.West.dll*         |
 
-Use uma comma para separar múltiplos valores (por exemplo, `mideast,west`).
+Use uma vírgula para separar vários valores (por exemplo, `mideast,west`).
 
-Para obter mais informações, consulte [I18N: Pnetlib Internationalization Framework Library (repositório mono/mono GitHub)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+Para obter mais informações, consulte [i18n: Pnetlib Internacionalization Framework library (repositório do GitHub mono/mono)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
