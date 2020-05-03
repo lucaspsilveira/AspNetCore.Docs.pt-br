@@ -9,13 +9,13 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 04/26/2020
-  ms.openlocfilehash: a818ac9201cfb0bc3139d29dae8e8812978528fb
-  ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+  ms.date: 05/01/2020
+  ms.openlocfilehash: 2d653ab5ca78fb856098fb5f250a235e3f2635d0
+  ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
   ms.translationtype: HT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/28/2020
-  ms.locfileid: "82205794"
+  ms.lasthandoff: 05/02/2020
+  ms.locfileid: "82727658"
 highlightedContent:
   items:
   - title: Crie um aplicativo ASP.NET Core em qualquer plataforma em 5 minutos
@@ -32,7 +32,7 @@ highlightedContent:
     url: whats-new/index.yml
   - title: Crie sua primeira interface do usuário da Web
     itemType: get-started
-    url: tutorials/build-your-first-blazor-app.md
+    url: tutorials/razor-pages/razor-pages-start.md
   - title: Crie sua primeira API Web
     itemType: get-started
     url: tutorials/first-web-api.md
