@@ -5,17 +5,17 @@ description: Comece com Blazor a criação de um Blazor aplicativo com as ferram
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/02/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 8ef55b92c45aa07113fd4601a3c7464b42125623
-ms.sourcegitcommit: 6318d2bdd63116e178c34492a904be85ec9ac108
+ms.openlocfilehash: 6cf1de6e68d04505ce4ba5d18f2a7d0bbe5be333
+ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82604760"
+ms.lasthandoff: 05/02/2020
+ms.locfileid: "82727652"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -33,7 +33,7 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
 
    Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.
 
-1. Instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
+1. Instale o modelo de visualização do Webassembly mais incrivelmente executando o seguinte comando:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
@@ -58,9 +58,11 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.
 
    > [!NOTE]
-   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview 4 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
+   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
 
 1. Instale o [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -78,8 +80,6 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
    dotnet new blazorwasm -o WebApplication1
    ```
 
-   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
-
 1. Abra a pasta *WebApplication1* em Visual Studio Code.
 
 1. O IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
@@ -92,23 +92,49 @@ Para começar com o mais claro, siga as orientações para sua escolha de ferram
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-Há suporte para o servidor mais incrivelmente no Visual Studio para Mac. Não há suporte para Webassembly mais incrivelmente no momento. Para criar aplicativos Webassembly mais elaborados no macOS, siga as orientações na guia **CLI do .NET Core** .
+Há suporte para o servidor mais incrivelmente no Visual Studio para Mac. Não há suporte para Webassembly mais incrivelmente no momento. Para criar aplicativos Webassembly mais incrivelmente no macOS, siga as orientações na guia **CLI do .NET Core** . Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.
 
 1. Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).
 
-1. Selecione **arquivo** > **nova solução** ou crie um **novo projeto**.
+1. Selecione **arquivo** > **nova solução** ou crie um **novo** projeto na **janela iniciar**.
 
-1. Na barra lateral, selecione**aplicativo** **Web e de console** > .
+1. Na barra lateral, selecione**aplicativo** **.NET Core** > .
 
 1. Selecione o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Avançar**.
 
-   Para obter informações sobre o modelo de Hospedagem de servidor mais <xref:blazor/hosting-models>incrivelmente, consulte.
+1. Confirme as seguintes configurações:
 
-1. Confirme se a **estrutura de destino** está definida como **.NET Core 3,1** e selecione **Avançar**.
+   * **Estrutura de destino** definida como **.NET Core 3,1**.
+   * **Autenticação** definida como **sem autenticação**.
+   
+   Selecione **Avançar**.
 
 1. No campo **nome do projeto** , nomeie o aplicativo `WebApplication1`. Selecione **Criar**.
 
-1. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** ou o botão executar (&#9654;) para executar o aplicativo *com o depurador*.
+1. Selecione **executar** > **Iniciar sem depuração** para executar o aplicativo *sem o depurador*. Não há suporte para a depuração no momento.
+
+<!-- HOLD FOR 8.6 GA
+
+1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+
+1. In the sidebar, select **Web and Console** > **App**.
+
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+
+1. Confirm the following configurations:
+
+   * **Target Framework** set to **.NET Core 3.1**.
+   * **Authentication** set to **No Authentication**.
+   
+   Select **Next**.
+
+1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+
+1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+
+-->
 
 Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue. As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado.
 
@@ -116,14 +142,16 @@ Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no 
 
 1. Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
+1. Opcionalmente, instale o modelo de visualização do Webassembly mais incrivelmente executando o seguinte comando:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.
 
    > [!NOTE]
-   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview 4 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
+   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
 
 1. Para uma experiência de servidor mais incrivelmente, execute os seguintes comandos em um shell de comando:
 
@@ -140,8 +168,6 @@ Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no 
    cd WebApplication1
    dotnet run
    ```
-
-   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
 1. Em um navegador, navegue até `https://localhost:5001`.
 

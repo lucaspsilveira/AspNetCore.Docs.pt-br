@@ -5,17 +5,17 @@ description: Saiba como proteger Blazor aplicativos de servidor como ASP.NET Cor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/02/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/server/index
-ms.openlocfilehash: 0021911b731e57bc6eabf857c27a13462e7400ae
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 324b3e8ed2d931c81bb41381caa469b0ec2f2fda
+ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206364"
+ms.lasthandoff: 05/02/2020
+ms.locfileid: "82727808"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteger os aplicativos de servidor do mais ASP.NET Core
 
@@ -101,3 +101,7 @@ Usando a `-o|--output` opção, o comando usa o valor fornecido para o `{APP NAM
 Para obter mais informações, confira o [novo comando do dotnet](/dotnet/core/tools/dotnet-new) no Guia do .NET Core.
 
 ---
+
+## <a name="secure-an-existing-app"></a>Proteger um aplicativo existente
+
+BlazorOs aplicativos de servidor são configurados para segurança da mesma maneira que ASP.NET Core aplicativos. Para obter mais informações, consulte os artigos <xref:security/index>em.
