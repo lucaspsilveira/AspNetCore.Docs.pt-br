@@ -5,17 +5,23 @@ description: Um breve tutorial que cria e executa um aplicativo básico Olá, Mu
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: getting-started
-ms.openlocfilehash: 86a0c8d017138a949fddc0356f3de548d368a4c0
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 565cde233d6fc5f085ae1709e167e73980d5c3c2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80417604"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776227"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: introdução ao ASP.NET Core
 
-Este tutorial mostra como criar e executar um aplicativo web ASP.NET Core usando o .NET Core CLI.
+Este tutorial mostra como criar e executar um aplicativo Web ASP.NET Core usando o CLI do .NET Core.
 
 Você aprenderá a:
 
@@ -43,8 +49,8 @@ dotnet new webapp -o aspnetcoreapp
 
 O comando anterior:
 
-* Cria um novo aplicativo web.  
-* O `-o aspnetcoreapp` parâmetro cria um diretório chamado *aspnetcoreapp* com os arquivos de origem do aplicativo.
+* Cria um novo aplicativo Web.  
+* O `-o aspnetcoreapp` parâmetro cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
 
 ### <a name="trust-the-development-certificate"></a>Confiar no certificado de desenvolvimento
 
@@ -70,7 +76,7 @@ dotnet dev-certs https --trust
 
 O comando anterior exibe a mensagem a seguir:
 
-*Foi solicitado o certificado de desenvolvimento HTTPS. Se o certificado ainda não estiver confiável, executaremos o seguinte comando:*`'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+*A confiança do certificado de desenvolvimento https foi solicitada. Se o certificado ainda não for confiável, executaremos o seguinte comando:*`'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
 
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
@@ -93,13 +99,13 @@ dotnet watch run
 
 Depois que o shell de comando indicar que o aplicativo foi iniciado, navegue até `https://localhost:5001`.
 
-## <a name="edit-a-razor-page"></a>Editar uma página do Razor
+## <a name="edit-a-razor-page"></a>Editar uma Razor página
 
-Abrir *páginas/Index.cshtml* e modificar e salvar a página com a seguinte marcação destacada:
+Abra *pages/index. cshtml* e modifique e salve a página com a seguinte marcação realçada:
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Navegue `https://localhost:5001`para atualizar a página e verificar se as alterações estão exibidas.
+Navegue até `https://localhost:5001`, atualize a página e verifique se as alterações são exibidas.
 
 ## <a name="next-steps"></a>Próximas etapas
 

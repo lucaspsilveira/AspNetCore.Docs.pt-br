@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba mais sobre como usar o LocalDB ou o SQLite do SQL Server em um aplicativo ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/16/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 54b10f10fb048819fced223f77f06a32102512d0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665035"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776201"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
@@ -91,7 +97,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Adicionar o inicializador de semeadura
 
-Substitua o conteúdo do *Program.cs* pelo seguinte código:
+Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
@@ -122,8 +128,8 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Próximo](adding-model.md)
-> [anterior](controller-methods-views.md)
+> [Anterior](adding-model.md)
+> [próximo](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -203,7 +209,7 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Adicionar o inicializador de semeadura
 
-Substitua o conteúdo do *Program.cs* pelo seguinte código:
+Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
 
@@ -234,7 +240,7 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Próximo](adding-model.md)
-> [anterior](controller-methods-views.md)
+> [Anterior](adding-model.md)
+> [próximo](controller-methods-views.md)
 
 ::: moniker-end

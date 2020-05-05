@@ -6,17 +6,23 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 7b6a7328deb8718a2a1c67c104cec359a4f13497
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 530ce2d2a7f67f549f6d188a0c571a5d58518377
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661913"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776240"
 ---
 # <a name="use-web-api-analyzers"></a>Usar os analisadores da API Web
 
-O ASP.NET Core 2,2 e posterior fornece um pacote de analisadores MVC destinado ao uso com projetos de API Web. Os analisadores trabalham com controladores anotados com <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, ao criar [convenções de API Web](xref:web-api/advanced/conventions).
+O ASP.NET Core 2,2 e posterior fornece um pacote de analisadores MVC destinado ao uso com projetos de API Web. Os analisadores trabalham com controladores anotados com <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>o, ao criar [convenções de API Web](xref:web-api/advanced/conventions).
 
 O pacote de analisadores notifica você sobre qualquer ação do controlador que:
 
@@ -29,7 +35,7 @@ O pacote de analisadores notifica você sobre qualquer ação do controlador que
 
 ## <a name="reference-the-analyzer-package"></a>Referenciar o pacote do analisador
 
-No ASP.NET Core 3,0 ou posterior, os analisadores estão incluídos na SDK do .NET Core. Para habilitar o analisador em seu projeto, inclua a propriedade `IncludeOpenAPIAnalyzers` no arquivo de projeto:
+No ASP.NET Core 3,0 ou posterior, os analisadores estão incluídos na SDK do .NET Core. Para habilitar o analisador em seu projeto, inclua `IncludeOpenAPIAnalyzers` a propriedade no arquivo de projeto:
 
 ```xml
 <PropertyGroup>
@@ -48,7 +54,7 @@ Instale o pacote NuGet [Microsoft. AspNetCore. Mvc. API. Analyzers](https://www.
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Da janela **Console do Gerenciador de Pacotes**:
-  * Acesse **exibir** > **outro** console do **gerenciador de pacotes**do Windows >.
+  * Vá para **Exibir** > **outro** > **console do Gerenciador de pacotes**do Windows.
   * Navegue até o diretório no qual o arquivo *ApiConventions.csproj* está localizado.
   * Execute o comando a seguir:
 
@@ -58,8 +64,8 @@ Da janela **Console do Gerenciador de Pacotes**:
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse na pasta *pacotes* em **painel de soluções** > **adicionar pacotes...** .
-* Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** como "nuget.org".
+* Clique com o botão direito do mouse na pasta *pacotes* em **painel de soluções** > **adicionar pacotes...**.
+* Defina a lista suspensa **fonte** da janela **adicionar pacotes** para "NuGet.org".
 * Insira "Microsoft.AspNetCore.Mvc.Api.Analyzers" na caixa de pesquisa.
 * Selecione o pacote "Microsoft.AspNetCore.Mvc.Api.Analyzers" do painel de resultados e clique em **Adicionar Pacote**.
 
@@ -85,7 +91,7 @@ dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 
 ## <a name="analyzers-for-web-api-conventions"></a>Analisadores para convenções de API Web
 
-Documentos de OpenAPI contêm códigos de status e tipos de resposta que uma ação pode retornar. No ASP.NET Core MVC, atributos como <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> e <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> são usados para documentar uma ação. <xref:tutorials/web-api-help-pages-using-swagger> entrará em mais detalhes sobre como documentar sua API Web.
+Documentos de OpenAPI contêm códigos de status e tipos de resposta que uma ação pode retornar. No ASP.NET Core MVC, atributos como <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> e <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> são usados para documentar uma ação. <xref:tutorials/web-api-help-pages-using-swagger>apresenta mais detalhes sobre como documentar sua API Web.
 
 Um dos analisadores no pacote inspeciona controladores anotados com <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> e identifica ações que não documentam totalmente as respostas. Considere o exemplo a seguir:
 

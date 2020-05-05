@@ -5,13 +5,19 @@ description: Um guia que fornece orientação de ponta a ponta sobre a criação
 ms.author: casoper
 ms.date: 08/07/2018
 ms.custom: mvc, seodec18
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: azure/devops/index
-ms.openlocfilehash: f45bb2a5dd4b3d1a820085ede7ce3219045ed80b
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: da9d5365b6e3920dbf672f65d5fab4ea158932c2
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658077"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766895"
 ---
 # <a name="devops-with-aspnet-core-and-azure"></a>DevOps com ASP.NET Core e Azure
 
@@ -49,7 +55,7 @@ Aprenda os vários métodos para implantar um aplicativo ASP.NET Core no Serviç
 
 Crie uma solução de implantação e integração contínua de ponta a ponta para seu aplicativo ASP.NET Core com o GitHub, o Azure DevOps Services e o Azure.
 
-### <a name="monitor-and-debug"></a>[Monitor e depuração](xref:azure/devops/monitor)
+### <a name="monitor-and-debug"></a>[Monitorar e depurar](xref:azure/devops/monitor)
 
 Use as ferramentas do Azure para monitorar, solucionar problemas e ajustar seu aplicativo.
 

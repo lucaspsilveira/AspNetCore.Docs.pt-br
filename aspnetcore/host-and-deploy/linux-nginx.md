@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: ceb2ad857649dcfa8d04420dcc37792495edc3ff
-ms.sourcegitcommit: 6f1b516e0c899a49afe9a29044a2383ce2ada3c7
+ms.openlocfilehash: af2bea1b3a149ef8d80970031e939dc083d94a03
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/13/2020
-ms.locfileid: "81224018"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775889"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -36,13 +42,13 @@ Este guia:
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.
-   1. Visite a [página Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Selecione a versão mais recente não visualização .NET Core.
-   1. Baixe o tempo de execução não visualizatório mais recente na tabela em **Executar aplicativos - Runtime**.
-   1. Selecione o link **de instruções do gerenciador de pacotes** Linux e siga as instruções do Ubuntu para a sua versão do Ubuntu.
+   1. Visite a [página baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selecione a versão mais recente do .NET Core sem visualização.
+   1. Baixe o tempo de execução de não visualização mais recente na tabela em **executar aplicativos-tempo de execução**.
+   1. Selecione o link de **instruções do Gerenciador de pacotes** do Linux e siga as instruções do Ubuntu para sua versão do Ubuntu.
 1. Um aplicativo ASP.NET Core existente.
 
-Em qualquer momento no futuro, após atualizar a estrutura compartilhada, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
+A qualquer momento no futuro depois de atualizar a estrutura compartilhada, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
@@ -81,11 +87,11 @@ O Kestrel é excelente para servir conteúdo dinâmico do ASP.NET Core. No entan
 
 Para os fins deste guia, uma única instância de Nginx é usada. Ela é executada no mesmo servidor, junto com o servidor HTTP. Com base nos requisitos, uma configuração diferente pode ser escolhida.
 
-Como as solicitações são encaminhadas por proxy reverso, use o [Middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft.AspNetCore.HttpOverrides.](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
+Como as solicitações são encaminhadas pelo proxy reverso, use o [middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) do pacote [Microsoft. AspNetCore. HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) . O middleware atualiza o `Request.Scheme` usando o cabeçalho `X-Forwarded-Proto`, de forma que URIs de redirecionamento e outras políticas de segurança funcionam corretamente.
 
 Qualquer componente que dependa do esquema, como autenticação, geração de link, redirecionamentos e localização geográfica, deverá ser colocado depois de invocar o Middleware de Cabeçalhos Encaminhados. Como regra geral, o Middleware de Cabeçalhos Encaminhados deve ser executado antes de outro middleware, exceto middleware de tratamento de erro e de diagnóstico. Essa ordenação garantirá que o middleware conte com informações de cabeçalhos encaminhadas que podem consumir os valores de cabeçalho para processamento.
 
-Invoque o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> método `Startup.Configure` na parte superior antes de chamar outros middleware. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
+Invoque o <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> método na parte superior antes `Startup.Configure` de chamar outro middleware. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -149,7 +155,7 @@ server {
 }
 ```
 
-Se o aplicativo é um aplicativo Blazor Server que <xref:host-and-deploy/blazor/server#linux-with-nginx> conta com WebSockets `Connection` SignalR, consulte informações sobre como definir o cabeçalho.
+Se o aplicativo for um Blazor aplicativo de servidor que se baseia SignalR em WebSockets, <xref:host-and-deploy/blazor/server#linux-with-nginx> consulte para obter informações sobre como definir `Connection` o cabeçalho.
 
 Quando nenhum `server_name` corresponde, o Nginx usa o servidor padrão. Se nenhum servidor padrão é definido, o primeiro servidor no arquivo de configuração é o servidor padrão. Como prática recomendada, adicione um servidor padrão específico que retorna um código de status 444 no arquivo de configuração. Um exemplo de configuração de servidor padrão é:
 
@@ -211,7 +217,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-No exemplo anterior, o usuário que gerencia o `User` serviço é especificado pela opção. O usuário`www-data`( ) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
+No exemplo anterior, o usuário que gerencia o serviço é especificado pela `User` opção. O usuário (`www-data`) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
 
 Use `TimeoutStopSec` para configurar a duração do tempo de espera para o aplicativo desligar depois de receber o sinal de interrupção inicial. Se o aplicativo não desligar nesse período, o SIGKILL será emitido para encerrá-lo. Forneça o valor como segundos sem unidade (por exemplo, `150`), um valor de duração (por exemplo, `2min 30s`) ou `infinity` para desabilitar o tempo limite. `TimeoutStopSec` é revertido para o valor padrão de `DefaultTimeoutStopSec` no arquivo de configuração do gerenciador (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf* e *user.conf.d*). O tempo limite padrão para a maioria das distribuições é de 90 segundos.
 
@@ -287,7 +293,7 @@ Se o token de autenticação for armazenado na memória quando o aplicativo for 
 
 * Todos os tokens de autenticação baseados em cookies serão invalidados.
 * Os usuários precisam entrar novamente na próxima solicitação deles.
-* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET principais cookies MVC TempData](xref:fundamentals/app-state#tempdata).
+* Todos os dados protegidos com o token de autenticação não poderão mais ser descriptografados. Isso pode incluir [tokens CSRF](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) e [ASP.NET Core cookies TempData do MVC](xref:fundamentals/app-state#tempdata).
 
 Para configurar a proteção de dados de modo que ela mantenha e criptografe o token de autenticação, consulte:
 
@@ -296,7 +302,7 @@ Para configurar a proteção de dados de modo que ela mantenha e criptografe o t
 
 ## <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
 
-As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 4 K ou 8 K, dependendo da plataforma. Um aplicativo pode exigir campos mais longos do que o padrão (por exemplo, aplicativos que usam [o Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, as configurações padrão do servidor proxy exigirão ajuste. Os valores a serem aplicados dependem do cenário. Para obter mais informações, confira a documentação do servidor.
+As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 4 K ou 8 K, dependendo da plataforma. Um aplicativo pode exigir campos maiores do que o padrão (por exemplo, aplicativos que usam [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, as configurações padrão do servidor proxy exigirão ajuste. Os valores a serem aplicados dependem do cenário. Para obter mais informações, confira a documentação do servidor.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)
@@ -314,7 +320,7 @@ O LSM (Módulos de Segurança do Linux) é uma estrutura que é parte do kernel 
 
 ### <a name="configure-the-firewall"></a>Configurar o firewall
 
-Feche todas as portas externas que não estão em uso. O firewall descomplicado (ufw) `iptables` fornece um front-end para fornecer uma CLI para configurar o firewall.
+Feche todas as portas externas que não estão em uso. O UFW (firewall incomplicado) fornece um front- `iptables` end para o fornecendo uma CLI para configurar o firewall.
 
 > [!WARNING]
 > Um firewall impedirá o acesso a todo o sistema se não ele estiver configurado corretamente. Se houver falha ao especificar a porta SSH correta, você será bloqueado do sistema se estiver usando o SSH para se conectar a ele. A porta padrão é a 22. Para obter mais informações, consulte a [introdução ao ufw](https://help.ubuntu.com/community/UFW) e o [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
@@ -403,9 +409,9 @@ sudo nano /etc/nginx/nginx.conf
 
 Adicione a linha `add_header X-Content-Type-Options "nosniff";` e salve o arquivo, depois reinicie o Nginx.
 
-## <a name="additional-nginx-suggestions"></a>Sugestões adicionais de Nginx
+## <a name="additional-nginx-suggestions"></a>Sugestões de Nginx adicionais
 
-Depois de atualizar a estrutura compartilhada no servidor, reinicie os aplicativos ASP.NET Core hospedados pelo servidor.
+Depois de atualizar a estrutura compartilhada no servidor, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

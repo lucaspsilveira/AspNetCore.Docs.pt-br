@@ -4,13 +4,19 @@ author: rick-anderson
 description: Os esquemas de política de autenticação facilitam a tarefa de ter um único esquema de autenticação lógica
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: f02d8e5cac20a9b60c5eddbd28253efacf682ea1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660730"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767311"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de política no ASP.NET Core
 
@@ -19,7 +25,7 @@ Os esquemas de diretiva de autenticação facilitam a utilização de um único 
 * É fácil encaminhar qualquer ação de autenticação para outro esquema.
 * Encaminhe dinamicamente com base na solicitação.
 
-Todos os esquemas de autenticação que usam <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> derivadas e o [AuthenticationHandler associado\<TOptions >](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+Todos os esquemas de autenticação que <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> usam derivado e o [\<AuthenticationHandler TOptions associado>](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
 
 * São esquemas de política automaticamente no ASP.NET Core 2,1 e posterior.
 * Pode ser habilitado por meio da configuração das opções do esquema.
