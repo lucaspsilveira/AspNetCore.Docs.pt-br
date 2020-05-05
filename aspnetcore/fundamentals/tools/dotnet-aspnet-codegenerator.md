@@ -5,13 +5,19 @@ description: O comando dotnet aspnet-codegenerator aplica scaffold em projetos d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665182"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766466"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -121,7 +127,7 @@ O comando anterior gera as seguintes pastas:
 
 ### <a name="controller-options"></a>Opções de controlador
 
-A tabela a `aspnet-codegenerator` `controller` seguir `razorpage`lista opções para e:
+A tabela a seguir lista as `aspnet-codegenerator` `controller` opções `razorpage`para o e o:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -170,7 +176,7 @@ Normalmente, o modelo e o nome de arquivo gerado não são especificados e os se
 * `Details`
 * `List`
 
-A tabela a `aspnet-codegenerator` `razorpage` seguir `controller`lista opções para e:
+A tabela a seguir lista as `aspnet-codegenerator` `razorpage` opções `controller`para o e o:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -190,6 +196,6 @@ dotnet aspnet-codegenerator razorpage -h
 
 Confira [Fazer scaffold do modelo de filme](/aspnet/core/tutorials/razor-pages/model) para obter um exemplo de `dotnet aspnet-codegenerator razorpage`.
 
-### <a name="identity"></a>Identidade
+### Identity
 
-Confira [Identidade Scaffold](/aspnet/core/security/authentication/scaffold-identity)
+Consulte [Scaffold Identity ](/aspnet/core/security/authentication/scaffold-identity)

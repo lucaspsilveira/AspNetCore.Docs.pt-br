@@ -5,13 +5,19 @@ description: Saiba o que são os Componentes do Auxiliar de Marca e como usá-lo
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.date: 06/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: 5e2eb2d4322068c5864fbe49acaa6d0859bd319a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: df118cdc8346b99e4e5c60c9f0441c963543f4b4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660765"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82767506"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes do Auxiliar de Marca no ASP.NET Core
 
@@ -19,7 +25,7 @@ Por [Scott Addie](https://twitter.com/Scott_Addie) e [Fiyaz Bin Hasan](https://g
 
 Um Componente do Auxiliar de Marca é um Auxiliar de Marca que permite que você modifique ou adicione condicionalmente elementos HTML de código do lado do servidor. Esse recurso está disponível no ASP.NET Core 2.0 ou posterior.
 
-O ASP.NET Core inclui dois Componentes de Auxiliar de Marca internos: `head` e `body`. Eles estão localizados no namespace <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> e podem ser usados no MVC e no Razor Pages. Componentes do Auxiliar de Marca não requerem registro com o aplicativo em *_ViewImports.cshtml*.
+O ASP.NET Core inclui dois Componentes de Auxiliar de Marca internos: `head` e `body`. Eles estão localizados no <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace e podem ser usados no MVC e Razor nas páginas. Componentes do Auxiliar de Marca não requerem registro com o aplicativo em *_ViewImports.cshtml*.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -63,7 +69,7 @@ O código anterior associa um [widget de Dica de ferramenta de inicialização](
 Um Componente do Auxiliar de Marca precisa ser adicionado à coleção de Componentes do Auxiliar de Marca do aplicativo. Há três maneiras de adicioná-lo à coleção:
 
 * [Registro por contêiner de serviços](#registration-via-services-container)
-* [Registro por arquivo Razor](#registration-via-razor-file)
+* [Registro via Razor arquivo](#registration-via-razor-file)
 * [Registro por Modelo de página ou controlador](#registration-via-page-model-or-controller)
 
 ### <a name="registration-via-services-container"></a>Registro por contêiner de serviços
@@ -72,9 +78,9 @@ Se a classe do Componente do Auxiliar de Marca não for gerenciada com <xref:Mic
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
-### <a name="registration-via-razor-file"></a>Registro por arquivo Razor
+### <a name="registration-via-razor-file"></a>Registro via Razor arquivo
 
-Se o Componente do Auxiliar de Marca não estiver registrado com DI, ele poderá ser registrado por uma página do Razor Pages ou uma exibição do MVC. Essa técnica é usada para controlar a marcação injetada e o pedido de execução do componente de um arquivo Razor.
+Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado Razor em uma página de páginas ou em uma exibição do MVC. Essa técnica é usada para controlar a marcação injetada e a ordem de execução do componente Razor de um arquivo.
 
 `ITagHelperComponentManager` é usado para adicionar Componentes do Auxiliar de Marca ou removê-los do aplicativo. O código a seguir demonstra essa técnica com `AddressTagHelperComponent`:
 
@@ -82,7 +88,7 @@ Se o Componente do Auxiliar de Marca não estiver registrado com DI, ele poderá
 
 No código anterior:
 
-* A diretiva `@inject` fornece uma instância de `ITagHelperComponentManager`. A instância é atribuída a uma variável chamada `manager` para acesso downstream no arquivo Razor.
+* A diretiva `@inject` fornece uma instância de `ITagHelperComponentManager`. A instância é atribuída a uma variável chamada `manager` para acessar downstream no Razor arquivo.
 * Uma instância do `AddressTagHelperComponent` é adicionada à coleção de Componentes do Auxiliar de Marca do aplicativo.
 
 `AddressTagHelperComponent` é modificado para acomodar um construtor que aceita os parâmetros `markup` e `order`:
@@ -95,9 +101,9 @@ O parâmetro `markup` fornecido é usado em `ProcessAsync` da seguinte maneira:
 
 ### <a name="registration-via-page-model-or-controller"></a>Registro por Modelo de página ou controlador
 
-Se o Componente do Auxiliar de Marca não estiver registrado com DI, ele poderá ser registrado por um modelo de página do Razor Pages ou um controlador do MVC. Essa técnica é útil para separar a lógica C# de arquivos Razor.
+Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado Razor de um modelo de página de páginas ou de um controlador MVC. Essa técnica é útil para separar a lógica do C# Razor de arquivos.
 
-A injeção do construtor é usada para acessar uma instância de `ITagHelperComponentManager`. Um Componente do Auxiliar de Marca é adicionado à coleção de Componentes do Auxiliar de Marca da instância. O modelo de página do Razor Pages a seguir demonstra essa técnica com `AddressTagHelperComponent`:
+A injeção do construtor é usada para acessar uma instância de `ITagHelperComponentManager`. Um Componente do Auxiliar de Marca é adicionado à coleção de Componentes do Auxiliar de Marca da instância. O modelo Razor de página de páginas a seguir demonstra `AddressTagHelperComponent`essa técnica com:
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 
@@ -111,8 +117,8 @@ No código anterior:
 Para criar um Componente do Auxiliar de Marca personalizado:
 
 * Crie uma classe pública derivada de <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper>.
-* Aplique um atributo [`[HtmlTargetElement]`](xref:Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute) à classe. Especifique o nome do elemento HTML de destino.
-* *Opcional*: aplique um atributo [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) à classe para suprimir a exibição do tipo no IntelliSense.
+* Aplique um [`[HtmlTargetElement]`](xref:Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute) atributo à classe. Especifique o nome do elemento HTML de destino.
+* *Opcional*: aplique um [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) atributo à classe para suprimir a exibição do tipo no IntelliSense.
 
 O código a seguir cria um Componente do Auxiliar de Marca personalizado que tem como destino o elemento HTML `<address>`:
 

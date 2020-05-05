@@ -4,13 +4,19 @@ author: ardalis
 description: Saiba como usar layouts comuns, compartilhar diretivas e executar um código comum antes de renderizar exibições em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 07/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: db8c6c30397593c1a8375ebc800c1c0e34d241cb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667898"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766479"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout no ASP.NET Core
 
@@ -22,9 +28,9 @@ Páginas e exibições com frequência compartilham elementos visuais e program�
 * Compartilhar diretivas.
 * Executar o código comum antes de renderizar páginas ou modos de exibição.
 
-Este documento discute os layouts para as duas abordagens diferentes ao ASP.NET Core MVC: Razor Pages e controladores com exibições. Para este tópico, as diferenças são mínimas:
+Este documento discute layouts para as duas abordagens diferentes para ASP.NET Core MVC: Razor páginas e controladores com exibições. Para este tópico, as diferenças são mínimas:
 
-* Razor Pages estão na pasta *Pages*.
+* RazorAs páginas estão na pasta *páginas* .
 * Controladores com exibições usam uma pasta *Views* pasta exibições.
 
 ## <a name="what-is-a-layout"></a>O que é um layout
@@ -37,7 +43,7 @@ Estruturas HTML comuns, como scripts e folhas de estilo, também são usadas com
 
 Por convenção, o layout padrão de um aplicativo ASP.NET Core é chamado *_Layout.cshtml*. Os arquivos de layout para novos projetos do ASP.NET Core criados com os modelos são:
 
-* Razor Pages: *Pages/Shared/_Layout.cshtml*
+* RazorPáginas: *páginas/compartilhadas/_Layout. cshtml*
 
   ![Pasta das páginas no Gerenciador de Soluções](layout/_static/rp-web-project-views.png)
 
@@ -53,11 +59,11 @@ O código a seguir mostra o arquivo de layout para um modelo de projeto criado c
 
 ## <a name="specifying-a-layout"></a>Especificando um layout
 
-As exibições do Razor têm uma propriedade `Layout`. As exibições individuais especificam um layout com a configuração dessa propriedade:
+Razoras exibições `Layout` têm uma propriedade. As exibições individuais especificam um layout com a configuração dessa propriedade:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
-O layout especificado pode usar um caminho completo (por exemplo, */Pages/Shared/_Layout.cshtml* ou */Views/Shared/_Layout.cshtml*) ou um nome parcial (exemplo: `_Layout`). Quando um nome parcial for fornecido, o mecanismo de exibição do Razor pesquisará o arquivo de layout usando seu processo de descoberta padrão. A pasta em que o método do manipulador (ou controlador) existe é pesquisada primeiro, seguida pela pasta *Shared*. Esse processo de descoberta é idêntico àquele usado para descobrir [exibições parciais](xref:mvc/views/partial#partial-view-discovery).
+O layout especificado pode usar um caminho completo (por exemplo, */Pages/Shared/_Layout.cshtml* ou */Views/Shared/_Layout.cshtml*) ou um nome parcial (exemplo: `_Layout`). Quando um nome parcial é fornecido, o Razor mecanismo de exibição pesquisa o arquivo de layout usando seu processo de descoberta padrão. A pasta em que o método do manipulador (ou controlador) existe é pesquisada primeiro, seguida pela pasta *Shared*. Esse processo de descoberta é idêntico àquele usado para descobrir [exibições parciais](xref:mvc/views/partial#partial-view-discovery).
 
 Por padrão, todo layout precisa chamar `RenderBody`. Sempre que a chamada a `RenderBody` for feita, o conteúdo da exibição será renderizado.
 
@@ -73,9 +79,9 @@ Um layout, opcionalmente, pode referenciar uma ou mais *seções*, chamando `Ren
 @RenderSection("Scripts", required: false)
 ```
 
-Se uma seção obrigatória não for encontrada, uma exceção será gerada. As exibições individuais especificam o conteúdo a ser renderizado em uma seção usando a sintaxe Razor `@section`. Se uma página ou exibição definir uma seção, ela precisará ser renderizada (ou ocorrerá um erro).
+Se uma seção obrigatória não for encontrada, uma exceção será gerada. Modos de exibição individuais especificam o conteúdo a ser processado em uma `@section` Razor seção usando a sintaxe. Se uma página ou exibição definir uma seção, ela precisará ser renderizada (ou ocorrerá um erro).
 
-Uma definição `@section` de exemplo na exibição do Razor Pages:
+Uma definição `@section` de exemplo Razor no modo de exibição páginas:
 
 ```html
 @section Scripts {
@@ -93,23 +99,23 @@ A marcação a seguir usa o [Auxiliar de Marca Parcial](xref:mvc/views/tag-helpe
 }
 ```
 
-A marcação anterior foi gerada pela [Identidade de scaffolding](xref:security/authentication/scaffold-identity).
+A marcação anterior foi gerada por [scaffolding Identity ](xref:security/authentication/scaffold-identity).
 
 As seções definidas em uma página ou exibição estão disponíveis apenas em sua página de layout imediata. Elas não podem ser referenciadas em parciais, componentes de exibição ou outras partes do sistema de exibição.
 
 ### <a name="ignoring-sections"></a>Ignorando seções
 
-Por padrão, o corpo e todas as seções de uma página de conteúdo precisam ser renderizados pela página de layout. O mecanismo de exibição do Razor impõe isso acompanhando se o corpo e cada seção foram renderizados.
+Por padrão, o corpo e todas as seções de uma página de conteúdo precisam ser renderizados pela página de layout. O Razor mecanismo de exibição impõe isso rastreando se o corpo e cada seção foram renderizados.
 
 Para instruir o mecanismo de exibição a ignorar o corpo ou as seções, chame os métodos `IgnoreBody` e `IgnoreSection`.
 
-O corpo e cada seção em uma página do Razor precisam ser renderizados ou ignorados.
+O corpo e cada seção em uma Razor página devem ser renderizados ou ignorados.
 
 <a name="viewimports"></a>
 
 ## <a name="importing-shared-directives"></a>Importando diretivas compartilhadas
 
-Exibições e páginas podem usar diretivas Razor para importar namespaces e usar [injeção de dependência](dependency-injection.md). Diretivas compartilhadas por diversas exibições podem ser especificadas em um arquivo *_ViewImports.cshtml* comum. O arquivo `_ViewImports` dá suporte às seguintes diretivas:
+Exibições e páginas podem Razor usar diretivas para importar namespaces e usar [injeção de dependência](dependency-injection.md). Diretivas compartilhadas por diversas exibições podem ser especificadas em um arquivo *_ViewImports.cshtml* comum. O arquivo `_ViewImports` dá suporte às seguintes diretivas:
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -119,7 +125,7 @@ Exibições e páginas podem usar diretivas Razor para importar namespaces e usa
 * `@inherits`
 * `@inject`
 
-O arquivo não dá suporte a outros recursos do Razor, como funções e definições de seção.
+O arquivo não dá suporte Razor a outros recursos, como definições de funções e de seção.
 
 Um arquivo `_ViewImports.cshtml` de exemplo:
 

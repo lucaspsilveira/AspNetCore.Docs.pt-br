@@ -5,13 +5,19 @@ description: Saiba como migrar uma implementação de API da Web da API Web do A
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/webapi
-ms.openlocfilehash: 7f61b78c589fc9d01061b50554e5a639e372c3d8
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: dda457daa0cb8a59ccd4c326a601e375fe4a81bb
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661843"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82766583"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrar de ASP.NET Web API para ASP.NET Core
 
@@ -21,7 +27,7 @@ Uma API Web do ASP.NET 4. x é um serviço HTTP que atinge uma ampla variedade d
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 
@@ -33,17 +39,17 @@ No *global.asax.cs*, é feita uma chamada para `WebApiConfig.Register`:
 
 [!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
 
-A classe `WebApiConfig` é encontrada na pasta *App_Start* e tem um método de `Register` estático:
+A `WebApiConfig` classe é encontrada na pasta *App_Start* e tem um método estático `Register` :
 
 [!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
 
-Essa classe configura o [Roteamento de atributos](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), embora ele não esteja realmente sendo usado no projeto. Ele também configura a tabela de roteamento, que é usada pelo ASP.NET Web API. Nesse caso, a API Web ASP.NET 4. x espera que as URLs correspondam ao formato `/api/{controller}/{id}`, com `{id}` sendo opcional.
+Essa classe configura o [Roteamento de atributos](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), embora ele não esteja realmente sendo usado no projeto. Ele também configura a tabela de roteamento, que é usada pelo ASP.NET Web API. Nesse caso, a API Web ASP.NET 4. x espera que as URLs correspondam `/api/{controller}/{id}`ao `{id}` formato, sendo opcional.
 
 O projeto *ProductsApp* inclui um controlador. O controlador herda de `ApiController` e contém duas ações:
 
 [!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
 
-O modelo de `Product` usado pelo `ProductsController` é uma classe simples:
+O `Product` modelo usado pelo `ProductsController` é uma classe simples:
 
 [!code-csharp[](webapi/sample/ProductsApp/Models/Product.cs)]
 
@@ -53,7 +59,7 @@ As seções a seguir demonstram a migração do projeto de API Web para ASP.NET 
 
 Conclua as seguintes etapas no Visual Studio:
 
-* Vá para o **arquivo** > **novo** > **projeto** > **outros tipos de projeto** > soluções do **Visual Studio**. Selecione **solução em branco**e nomeie a solução *WebAPIMigration*. Clique no botão **OK**.
+* Vá para **arquivo** > **novo** > **projeto** > **outros tipos** > de projeto**soluções do Visual Studio**. Selecione **solução em branco**e nomeie a solução *WebAPIMigration*. Clique no botão **OK**.
 * Adicione o projeto *ProductsApp* existente à solução.
 * Adicione um novo projeto de **aplicativo Web ASP.NET Core** à solução. Selecione a estrutura de destino **.NET Core** na lista suspensa e selecione o modelo projeto de **API** . Nomeie o projeto *ProductsCore*e clique no botão **OK** .
 
@@ -61,9 +67,9 @@ A solução agora contém dois projetos. As seções a seguir explicam como migr
 
 ## <a name="migrate-configuration"></a>Migrar configuração
 
-ASP.NET Core não usa a pasta *App_Start* ou o arquivo *global. asax* , e o arquivo *Web. config* é adicionado no momento da publicação. *Startup.cs* é a substituição para *global. asax* e está localizada na raiz do projeto. A classe `Startup` manipula todas as tarefas de inicialização do aplicativo. Para obter mais informações, consulte <xref:fundamentals/startup>.
+ASP.NET Core não usa a pasta *App_Start* ou o arquivo *global. asax* , e o arquivo *Web. config* é adicionado no momento da publicação. *Startup.cs* é a substituição para *global. asax* e está localizada na raiz do projeto. A `Startup` classe manipula todas as tarefas de inicialização do aplicativo. Para obter mais informações, consulte <xref:fundamentals/startup>.
 
-No ASP.NET Core MVC, o roteamento de atributo é incluído por padrão quando <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> é chamado em `Startup.Configure`. A chamada a seguir `UseMvc` substitui o arquivo */webapiconfig.cs App_Start* do projeto *ProductsApp* :
+No ASP.NET Core MVC, o roteamento de atributo é incluído por <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> padrão quando é `Startup.Configure`chamado em. A chamada `UseMvc` a seguir substitui o arquivo de *App_Start/Webapiconfig.cs* do projeto *ProductsApp* :
 
 [!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13])]
 
@@ -73,21 +79,21 @@ Copie sobre o controlador do projeto *ProductApp* e o modelo que ele usa. Siga e
 
 1. Copie os *controladores/ProductsController. cs* do projeto original para o novo.
 1. Copie a pasta *modelos* inteira do projeto original para o novo.
-1. Altere os namespaces dos arquivos copiados para que correspondam ao novo nome do projeto (*ProductsCore*). Ajuste a instrução `using ProductsApp.Models;` em *ProductsController.cs* também.
+1. Altere os namespaces dos arquivos copiados para que correspondam ao novo nome do projeto (*ProductsCore*). Ajuste a `using ProductsApp.Models;` instrução em *ProductsController.cs* também.
 
 Neste ponto, a criação do aplicativo resulta em vários erros de compilação. Os erros ocorrem porque os seguintes componentes não existem no ASP.NET Core:
 
 * Classe `ApiController`
 * Namespace `System.Web.Http`
-* interface `IHttpActionResult`
+* Interface `IHttpActionResult`
 
 Corrija os erros da seguinte maneira:
 
-1. Alterar `ApiController` para <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Adicione `using Microsoft.AspNetCore.Mvc;` para resolver a referência de `ControllerBase`.
+1. Alterar `ApiController` para <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Adicione `using Microsoft.AspNetCore.Mvc;` para resolver a `ControllerBase` referência.
 1. Excluir `using System.Web.Http;`.
-1. Altere o tipo de retorno da ação de `GetProduct` de `IHttpActionResult` para `ActionResult<Product>`.
+1. Altere o `GetProduct` tipo de retorno da ação `IHttpActionResult` de `ActionResult<Product>`para.
 
-Simplifique a instrução `return` da ação de `GetProduct` para o seguinte:
+Simplifique a `GetProduct` instrução da `return` ação para o seguinte:
 
 ```csharp
 return product;
@@ -97,29 +103,29 @@ return product;
 
 Configure o roteamento da seguinte maneira:
 
-1. Marque a classe `ProductsController` com os seguintes atributos:
+1. Marque a `ProductsController` classe com os seguintes atributos:
 
     ```csharp
     [Route("api/[controller]")]
     [ApiController]
     ```
 
-    O atributo [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) anterior configura o padrão de roteamento de atributo do controlador. O atributo [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) torna o atributo roteando um requisito para todas as ações neste controlador.
+    O atributo [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) anterior configura o padrão de roteamento de atributo do controlador. O [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) atributo torna o atributo roteando um requisito para todas as ações neste controlador.
 
-    O roteamento de atributos dá suporte a tokens, como `[controller]` e `[action]`. No tempo de execução, cada token é substituído pelo nome do controlador ou da ação, respectivamente, ao qual o atributo foi aplicado. Os tokens reduzem o número de cadeias de caracteres mágicos no projeto. Os tokens também garantem que as rotas permaneçam sincronizadas com os controladores e ações correspondentes quando refatoração de renomeação automática são aplicadas.
+    O roteamento de atributos dá suporte a `[controller]` tokens, como e `[action]`. No tempo de execução, cada token é substituído pelo nome do controlador ou da ação, respectivamente, ao qual o atributo foi aplicado. Os tokens reduzem o número de cadeias de caracteres mágicos no projeto. Os tokens também garantem que as rotas permaneçam sincronizadas com os controladores e ações correspondentes quando refatoração de renomeação automática são aplicadas.
 1. Defina o modo de compatibilidade do projeto para ASP.NET Core 2,2:
 
     [!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
 
     A alteração anterior:
 
-    * É necessário para usar o atributo `[ApiController]` no nível do controlador.
+    * É necessário para usar o `[ApiController]` atributo no nível do controlador.
     * Optamos pelos comportamentos potencialmente em potencial introduzidos no ASP.NET Core 2,2.
-1. Habilite solicitações HTTP Get para as ações de `ProductController`:
-    * Aplique o atributo [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) à ação `GetAllProducts`.
-    * Aplique o atributo `[HttpGet("{id}")]` à ação `GetProduct`.
+1. Habilite solicitações HTTP Get para `ProductController` as ações:
+    * Aplique o [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) atributo à `GetAllProducts` ação.
+    * Aplique o `[HttpGet("{id}")]` atributo à `GetProduct` ação.
 
-Após as alterações anteriores e a remoção de instruções de `using` não usadas, o arquivo *ProductsController.cs* terá esta aparência:
+Após as alterações anteriores e a remoção de instruções não `using` usadas, o arquivo *ProductsController.cs* terá esta aparência:
 
 [!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
 
@@ -131,14 +137,14 @@ A biblioteca [Microsoft. AspNetCore. Mvc. WebApiCompatShim](https://www.nuget.or
 
 O Shim da compatibilidade da API Web deve ser usado como uma medida temporária para dar suporte à migração de projetos de API Web grandes ASP.NET 4. x para ASP.NET Core. Ao longo do tempo, os projetos devem ser atualizados para usar padrões de ASP.NET Core em vez de depender do Shim de compatibilidade.
 
-Os recursos de compatibilidade incluídos no `Microsoft.AspNetCore.Mvc.WebApiCompatShim` incluem:
+Os recursos de compatibilidade `Microsoft.AspNetCore.Mvc.WebApiCompatShim` incluídos no incluem:
 
-* Adiciona um tipo de `ApiController` para que os tipos base dos controladores não precisem ser atualizados.
+* Adiciona um `ApiController` tipo para que os tipos base dos controladores não precisem ser atualizados.
 * Habilita a associação de modelo de estilo de API Web. ASP.NET Core funções de associação de modelo MVC da mesma forma que o do ASP.NET 4. x MVC 5, por padrão. O Shim de compatibilidade altera a associação de modelo para ser mais semelhante às convenções de associação de modelo da API Web 2 do ASP.NET 4. x. Por exemplo, tipos complexos são associados automaticamente do corpo da solicitação.
-* Estende a associação de modelo para que as ações do controlador possam ter parâmetros do tipo `HttpRequestMessage`.
-* Adiciona os formatadores de mensagem, permitindo que as ações retornem resultados do tipo `HttpResponseMessage`.
+* Estende a associação de modelo para que as ações do controlador possam `HttpRequestMessage`ter parâmetros do tipo.
+* Adiciona os formatadores de mensagem, permitindo que as ações `HttpResponseMessage`retornem os resultados do tipo.
 * Adiciona métodos de resposta adicionais que as ações da API Web 2 podem ter usado para atender às respostas:
-  * geradores de `HttpResponseMessage`:
+  * `HttpResponseMessage`geradores
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * Métodos de resultado da ação:
@@ -148,13 +154,13 @@ Os recursos de compatibilidade incluídos no `Microsoft.AspNetCore.Mvc.WebApiCom
     * `InvalidModelStateResult`
     * `NegotiatedContentResult`
     * `ResponseMessageResult`
-* Adiciona uma instância de `IContentNegotiator` ao contêiner de injeção de dependência (DI) do aplicativo e disponibiliza os tipos relacionados à negociação de conteúdo de [Microsoft. AspNet. WebApi. Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/). Exemplos desses tipos incluem `DefaultContentNegotiator` e `MediaTypeFormatter`.
+* Adiciona uma instância do `IContentNegotiator` ao contêiner de injeção de dependência (di) do aplicativo e disponibiliza os tipos relacionados à negociação de conteúdo de [Microsoft. AspNet. WebApi. Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/). Exemplos desses tipos incluem `DefaultContentNegotiator` e. `MediaTypeFormatter`
 
 Para usar o Shim de compatibilidade:
 
 1. Instale o pacote NuGet [Microsoft. AspNetCore. Mvc. WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) .
-1. Registre os serviços da correção de compatibilidade com o contêiner de DI do aplicativo chamando `services.AddMvc().AddWebApiConventions()` em `Startup.ConfigureServices`.
-1. Defina rotas específicas da API Web usando `MapWebApiRoute` no `IRouteBuilder` na chamada de `IApplicationBuilder.UseMvc` do aplicativo.
+1. Registre os serviços da correção de compatibilidade com o contêiner de DI do aplicativo `services.AddMvc().AddWebApiConventions()` chamando `Startup.ConfigureServices`em.
+1. Defina rotas específicas da API Web usando `MapWebApiRoute` no `IRouteBuilder` na `IApplicationBuilder.UseMvc` chamada do aplicativo.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
