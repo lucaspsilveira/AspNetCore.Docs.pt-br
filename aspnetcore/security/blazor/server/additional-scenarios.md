@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/27/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/additional-scenarios
-ms.openlocfilehash: 1a3e5a215daedbb9b97c1924275701915806983e
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 95e9e57889fdbb5270f895874c9b8148ae4ca48d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206385"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772798"
 ---
 # <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>Cenários Blazor de segurança adicionais do ASP.NET Core Server
 
@@ -23,9 +26,9 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## <a name="pass-tokens-to-a-blazor-server-app"></a>Passar tokens para Blazor um aplicativo de servidor
 
-Os tokens disponíveis fora dos componentes do Razor Blazor em um aplicativo de servidor podem ser passados para componentes com a abordagem descrita nesta seção. Para obter o código de exemplo, `Startup.ConfigureServices` incluindo um exemplo completo, consulte os [tokens de passagem Blazor para um aplicativo do lado do servidor](https://github.com/javiercn/blazor-server-aad-sample).
+Os tokens disponíveis fora Razor dos componentes em Blazor um aplicativo de servidor podem ser passados para componentes com a abordagem descrita nesta seção. Para obter o código de exemplo, `Startup.ConfigureServices` incluindo um exemplo completo, consulte os [tokens de passagem Blazor para um aplicativo do lado do servidor](https://github.com/javiercn/blazor-server-aad-sample).
 
-Autentique o Blazor aplicativo de servidor como você faria com um aplicativo normal de Razor pages ou MVC. Provisione e salve os tokens no cookie de autenticação. Por exemplo:
+Autentique o Blazor aplicativo de servidor como você faria com páginas Razor regulares ou um aplicativo MVC. Provisione e salve os tokens no cookie de autenticação. Por exemplo: 
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

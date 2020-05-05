@@ -1,19 +1,25 @@
 ---
-title: 'Tutorial: Leia dados relacionados - ASP.NET MVC com EF Core'
+title: 'Tutorial: ler dados relacionados-ASP.NET MVC com EF Core'
 description: Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 author: rick-anderson
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: a6e63723101ab09219db81ee9796c3938a612226
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7cc400218d7ad8717311e56ec5b3fc190857862c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657104"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773530"
 ---
-# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Leia dados relacionados - ASP.NET MVC com EF Core
+# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: ler dados relacionados-ASP.NET MVC com EF Core
 
 No tutorial anterior, você concluiu o modelo de dados Escola. Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 
@@ -188,7 +194,7 @@ Você fez as seguintes alterações no código existente:
   }
   ```
 
-* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Para obter mais informações, consulte a seção [de transição](xref:mvc/views/razor#explicit-line-transition) de linha explícita do artigo de sintaxe Razor.
+* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Para obter mais informações, consulte a seção [transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) do artigo de Razor sintaxe.
 
 * Adicionou um código que adiciona `class="success"` dinamicamente ao elemento `tr` do instrutor selecionado. Isso define uma cor da tela de fundo para a linha selecionada usando uma classe Bootstrap.
 
@@ -207,7 +213,7 @@ Você fez as seguintes alterações no código existente:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Execute o aplicativo e selecione a guia **Instrutores.** A página exibe a propriedade Localização de entidades de Designação de Escritórios relacionadas e uma célula de tabela vazia quando não há entidade de Designação de Escritório relacionada.
+Execute o aplicativo e selecione a guia **instrutores** . A página exibe a propriedade Location das entidades OfficeAssignment relacionadas e uma célula de tabela vazia quando não há nenhuma entidade OfficeAssignment relacionada.
 
 ![Página Índice de Instrutores – nenhuma opção selecionada](read-related-data/_static/instructors-index-no-selection.png)
 

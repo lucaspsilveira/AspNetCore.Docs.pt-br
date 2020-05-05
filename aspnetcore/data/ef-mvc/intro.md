@@ -1,25 +1,31 @@
 ---
-title: 'Tutorial: Comece com o EF Core em um aplicativo web ASP.NET MVC'
+title: 'Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC'
 description: Este é o primeiro de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University do zero.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: fca9fdc425506ec8b4eec5c609237208f4c0d7b5
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7f17352d2e7e3f4239b338ec961120ab3088c77a
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511295"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773543"
 ---
-# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Comece com o EF Core em um aplicativo web ASP.NET MVC
+# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
-Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. A maioria das alterações de código para o ASP.NET Core 3.0 e versão posterior deste tutorial:
+Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [ Razor versão das páginas](xref:data/ef-rp/intro) foi atualizada. A maioria das alterações de código para o ASP.NET Core 3,0 e a versão mais recente deste tutorial:
 
-* Estão nos arquivos *Startup.cs* e *Program.cs.*
-* Pode ser encontrado na [versão Razor Pages](xref:data/ef-rp/intro). 
+* Estão nos arquivos *Startup.cs* e *Program.cs* .
+* Pode ser encontrado na [ Razor versão de páginas](xref:data/ef-rp/intro). 
 
 Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
@@ -80,11 +86,11 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
   ![Caixa de diálogo Novo Projeto](intro/_static/new-project2.png)
 
-* Aguarde a apareça a caixa de diálogo **Novo ASP.NET Do Aplicativo Web** Central.
+* Aguarde a exibição da caixa de diálogo **novo ASP.NET Core aplicativo Web** .
 
 * Selecione **.NET Core**, **ASP.NET Core 2.2** e o modelo **Aplicativo Web (Model-View-Controller)**.
 
-* Certifique-se de que **a autenticação** está definida **como Sem Autenticação**.
+* Verifique se a **autenticação** está definida como **sem autenticação**.
 
 * Selecione **OK**
 
@@ -312,7 +318,7 @@ Clique com o botão direito do mouse na tabela **Aluno** e clique em **Exibir Da
 
 ![Tabela Aluno no SSOX](intro/_static/ssox-student-table.png)
 
-Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Users\\\<yourusername>.*
+Os arquivos de banco de dados *. MDF* e *. ldf* estão na pasta *\\\<C:\Users seunomedeusuário>* .
 
 Como você está chamando `EnsureCreated` no método inicializador executado na inicialização do aplicativo, agora você pode fazer uma alteração na classe `Student`, excluir o banco de dados, executar novamente o aplicativo e o banco de dados será recriado automaticamente para que ele corresponda à alteração. Por exemplo, se você adicionar uma propriedade `EmailAddress` à classe `Student`, verá uma nova coluna `EmailAddress` na tabela recriada.
 
@@ -326,7 +332,7 @@ A quantidade de código feita para que o Entity Framework possa criar um banco d
 
 * As propriedades de entidade que são nomeadas ID ou classnameID são reconhecidas como propriedades de chave primária.
 
-* Uma propriedade é interpretada como uma propriedade de chave estrangeira se for `StudentID` nomeada `Student` `Student` `ID` * \<nome \<* de propriedade de navegação>nome de propriedade principal>(por exemplo, para a propriedade de navegação, uma vez que a chave principal da entidade é ). Propriedades-chave estrangeiras também podem ser * \<nomeadas* simplesmente `EnrollmentID` nome de propriedade de chave primária>(por exemplo, uma vez que a `Enrollment` chave principal da entidade é `EnrollmentID`).
+* Uma propriedade será interpretada como uma propriedade de chave estrangeira se for nomeada * \<nome da \<propriedade de navegação>nome da propriedade de chave primária>* (por exemplo, `Student` `StudentID` para a `Student` propriedade de navegação, desde que a chave primária da entidade seja `ID`). As propriedades de chave estrangeira também podem ser nomeadas simplesmente `EnrollmentID` `Enrollment` `EnrollmentID` * \<como nome de propriedade de chave primária>* (por exemplo, como a chave primária da entidade é).
 
 O comportamento convencional pode ser substituído. Por exemplo, você pode especificar os nomes de tabela de forma explícita, conforme visto anteriormente neste tutorial. Além disso, você pode definir nomes de coluna e qualquer propriedade como a chave primária ou chave estrangeira, como você verá em um [tutorial posterior](complex-data-model.md) desta série.
 

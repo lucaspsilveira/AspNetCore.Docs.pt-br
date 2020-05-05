@@ -5,13 +5,19 @@ description: Saiba mais sobre conceitos básicos de autenticação, autorizaçã
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/index
-ms.openlocfilehash: 0f8e96fb7d5246e746b95f8907745f849de60e24
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: b507832e34ac850d2bd4e80bab3066e73ea2ad95
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656033"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776507"
 ---
 # <a name="overview-of-aspnet-core-security"></a>Visão geral sobre a segurança do ASP.NET Core
 
@@ -19,9 +25,9 @@ O ASP.NET Core permite que desenvolvedores configurem e gerenciem facilmente a s
 
 ## <a name="aspnet-core-security-features"></a>Recursos de segurança do ASP.NET Core
 
-O ASP.NET Core fornece várias ferramentas e bibliotecas para proteger seus aplicativos, incluindo provedores de identidade internos, mas você pode usar serviços de identidade de terceiros, como Facebook, Twitter e LinkedIn. Com o ASP.NET Core, você pode gerenciar facilmente os segredos do aplicativo, que são uma maneira de armazenar e usar informações confidenciais sem a necessidade de expô-los no código.
+O ASP.NET Core fornece muitas ferramentas e bibliotecas para proteger seus aplicativos, incluindo Identity provedores internos, mas você pode usar serviços de identidade de terceiros, como Facebook, Twitter ou LinkedIn. Com o ASP.NET Core, você pode gerenciar facilmente os segredos do aplicativo, que são uma maneira de armazenar e usar informações confidenciais sem a necessidade de expô-los no código.
 
-## <a name="authentication-vs-authorization"></a>Autenticação vs. Autorização
+## <a name="authentication-vs-authorization"></a>Autenticação vs. autorização
 
 A autenticação é um processo em que um usuário fornece credenciais que são comparadas àquelas armazenadas em um sistema operacional, num banco de dados, no aplicativo ou no recurso. Se elas corresponderem, os usuários se autenticarão com êxito e, assim, poderão realizar ações para as quais são autorizados, durante um processo de autorização. A autorização é o processo que determina o que um usuário pode fazer.
 
@@ -36,4 +42,4 @@ O ASP.NET Core e o EF contêm recursos que ajudam a proteger seus aplicativos e 
 * [CSRF (solicitação intersite forjada)](xref:security/anti-request-forgery)
 * [Ataques de redirecionamento aberto](xref:security/preventing-open-redirects)
 
-Há mais vulnerabilidades sobre as quais você deve estar atento. Para obter mais informações, veja os outros artigos na seção **Segurança e identidade** do sumário.
+Há mais vulnerabilidades sobre as quais você deve estar atento. Para obter mais informações, consulte os outros artigos na seção **segurança Identity e** do Sumário.
