@@ -1,15 +1,6 @@
 ---
-no-loc:
-- Blazor
-- SignalR
-ms.openlocfilehash: 7ccb124ee78da68cbe7bd44fb5fe824353356057
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78655291"
 ---
 > [!IMPORTANT]
-> <span data-ttu-id="f2214-101">**BlazorWebAssembly em visualização**</span><span class="sxs-lookup"><span data-stu-id="f2214-101">**Blazor WebAssembly in preview**</span></span>
+> <span data-ttu-id="24973-101">**Webassembly mais incrivelmente em visualização**</span><span class="sxs-lookup"><span data-stu-id="24973-101">**Blazor WebAssembly in preview**</span></span>
 >
-> <span data-ttu-id="f2214-102">O servidor é suportado em ASP.NET Núcleo 3.0. \* Blazor \*</span><span class="sxs-lookup"><span data-stu-id="f2214-102">*Blazor Server* is supported in ASP.NET Core 3.0.</span></span> <span data-ttu-id="f2214-103">O WebAssembly está em pré-visualização para ASP.NET Core 3.1. \* Blazor \*</span><span class="sxs-lookup"><span data-stu-id="f2214-103">*Blazor WebAssembly* is in preview for ASP.NET Core 3.1.</span></span>
+> <span data-ttu-id="24973-102">Há suporte para o *servidor mais incrivelmente* no ASP.NET Core 3,0.</span><span class="sxs-lookup"><span data-stu-id="24973-102">*Blazor Server* is supported in ASP.NET Core 3.0.</span></span> <span data-ttu-id="24973-103">*Webassembly mais incrivelmente* está em versão prévia para ASP.NET Core 3,1.</span><span class="sxs-lookup"><span data-stu-id="24973-103">*Blazor WebAssembly* is in preview for ASP.NET Core 3.1.</span></span>
