@@ -1,29 +1,33 @@
 ---
-title: ASP.NET Núcleo Web SDK
+title: SDK do ASP.NET Core Web
 author: Rick-Anderson
-description: Visão geral do Microsoft.NET.Sdk.Web.
+description: Visão geral de Microsoft. NET. Sdk. Web.
 ms.author: riande
 ms.date: 01/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: razor-pages/web-sdk
-ms.openlocfilehash: 6a9d531efd2188aed525c949bb124914c31119db
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 2797f0b3003b8ad89093fe1115dee2acc8650c73
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78661052"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777157"
 ---
-# <a name="aspnet-core-web-sdk"></a><span data-ttu-id="5b227-103">ASP.NET Núcleo Web SDK</span><span class="sxs-lookup"><span data-stu-id="5b227-103">ASP.NET Core Web SDK</span></span>
+# <a name="aspnet-core-web-sdk"></a><span data-ttu-id="00522-103">SDK do ASP.NET Core Web</span><span class="sxs-lookup"><span data-stu-id="00522-103">ASP.NET Core Web SDK</span></span>
 
-### <a name="overview"></a><span data-ttu-id="5b227-104">Visão geral</span><span class="sxs-lookup"><span data-stu-id="5b227-104">Overview</span></span>
+### <a name="overview"></a><span data-ttu-id="00522-104">Visão geral</span><span class="sxs-lookup"><span data-stu-id="00522-104">Overview</span></span>
 
-<span data-ttu-id="5b227-105">`Microsoft.NET.Sdk.Web`é um [SDK do projeto MSBuild](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) para a construção de aplicativos ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5b227-105">`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps.</span></span> <span data-ttu-id="5b227-106">É possível construir um aplicativo ASP.NET Core sem este SDK, no entanto, o Web SDK é:</span><span class="sxs-lookup"><span data-stu-id="5b227-106">It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:</span></span>
+<span data-ttu-id="00522-105">`Microsoft.NET.Sdk.Web`é um [SDK de projeto do MSBuild](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) para compilar ASP.NET Core aplicativos.</span><span class="sxs-lookup"><span data-stu-id="00522-105">`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps.</span></span> <span data-ttu-id="00522-106">É possível criar um aplicativo ASP.NET Core sem esse SDK, no entanto, o SDK da Web é:</span><span class="sxs-lookup"><span data-stu-id="00522-106">It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:</span></span>
 
-* <span data-ttu-id="5b227-107">Adaptado para proporcionar uma experiência de primeira classe.</span><span class="sxs-lookup"><span data-stu-id="5b227-107">Tailored towards providing a first-class experience.</span></span>
-* <span data-ttu-id="5b227-108">O alvo recomendado para a maioria dos usuários.</span><span class="sxs-lookup"><span data-stu-id="5b227-108">The recommended target for most users.</span></span>
+* <span data-ttu-id="00522-107">Adaptado em direção à oferta de uma experiência de primeira classe.</span><span class="sxs-lookup"><span data-stu-id="00522-107">Tailored towards providing a first-class experience.</span></span>
+* <span data-ttu-id="00522-108">O destino recomendado para a maioria dos usuários.</span><span class="sxs-lookup"><span data-stu-id="00522-108">The recommended target for most users.</span></span>
 
-<span data-ttu-id="5b227-109">Use o Web.SDK em um projeto:</span><span class="sxs-lookup"><span data-stu-id="5b227-109">Use the Web.SDK in a project:</span></span>
+<span data-ttu-id="00522-109">Use o Web. SDK em um projeto do:</span><span class="sxs-lookup"><span data-stu-id="00522-109">Use the Web.SDK in a project:</span></span>
 
   ```xml
   <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -31,18 +35,18 @@ ms.locfileid: "78661052"
   </Project>
   ```
 
-<span data-ttu-id="5b227-110">Recursos habilitados usando o Web SDK:</span><span class="sxs-lookup"><span data-stu-id="5b227-110">Features enabled by using the Web SDK:</span></span>
+<span data-ttu-id="00522-110">Recursos habilitados usando o SDK da Web:</span><span class="sxs-lookup"><span data-stu-id="00522-110">Features enabled by using the Web SDK:</span></span>
 
-* <span data-ttu-id="5b227-111">Projetos direcionados ao .NET Core 3.0 ou posteriormente implicitamente referenciam:</span><span class="sxs-lookup"><span data-stu-id="5b227-111">Projects targeting .NET Core 3.0 or later implicitly reference:</span></span>
+* <span data-ttu-id="00522-111">Projetos voltados para o .NET Core 3,0 ou posterior referência implícita:</span><span class="sxs-lookup"><span data-stu-id="00522-111">Projects targeting .NET Core 3.0 or later implicitly reference:</span></span>
 
-  * <span data-ttu-id="5b227-112">A [estrutura compartilhada do Núcleo ASP.NET](xref:fundamentals/metapackage-app).</span><span class="sxs-lookup"><span data-stu-id="5b227-112">The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).</span></span>
-  * <span data-ttu-id="5b227-113">[Analisadores projetados](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) para construir aplicativos ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5b227-113">[Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.</span></span>
-* <span data-ttu-id="5b227-114">O Web SDK importa metas MSBuild que permitem o uso de perfis de publicação e publicação usando o WebDeploy.</span><span class="sxs-lookup"><span data-stu-id="5b227-114">The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.</span></span>
+  * <span data-ttu-id="00522-112">A [estrutura compartilhada ASP.NET Core](xref:fundamentals/metapackage-app).</span><span class="sxs-lookup"><span data-stu-id="00522-112">The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).</span></span>
+  * <span data-ttu-id="00522-113">[Analisadores](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) projetados para a criação de aplicativos ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="00522-113">[Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.</span></span>
+* <span data-ttu-id="00522-114">O SDK da Web importa destinos do MSBuild que habilitam o uso de perfis de publicação e publicação usando o WebDeploy.</span><span class="sxs-lookup"><span data-stu-id="00522-114">The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.</span></span>
 
-### <a name="properties"></a><span data-ttu-id="5b227-115">Propriedades</span><span class="sxs-lookup"><span data-stu-id="5b227-115">Properties</span></span>
+### <a name="properties"></a><span data-ttu-id="00522-115">Propriedades</span><span class="sxs-lookup"><span data-stu-id="00522-115">Properties</span></span>
 
-| <span data-ttu-id="5b227-116">Propriedade</span><span class="sxs-lookup"><span data-stu-id="5b227-116">Property</span></span> | <span data-ttu-id="5b227-117">Descrição</span><span class="sxs-lookup"><span data-stu-id="5b227-117">Description</span></span> |
+| <span data-ttu-id="00522-116">Propriedade</span><span class="sxs-lookup"><span data-stu-id="00522-116">Property</span></span> | <span data-ttu-id="00522-117">Descrição</span><span class="sxs-lookup"><span data-stu-id="00522-117">Description</span></span> |
 | -------- | ----------- |
-| `DisableImplicitFrameworkReferences` | <span data-ttu-id="5b227-118">Desativa a `Microsoft.AspNetCore.App` referência implícita à estrutura compartilhada.</span><span class="sxs-lookup"><span data-stu-id="5b227-118">Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework.</span></span> |
-| `DisableImplicitAspNetCoreAnalyzers` | <span data-ttu-id="5b227-119">Desativa a referência implícita aos analisadores ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="5b227-119">Disables implicit reference to ASP.NET Core analyzers.</span></span> |
-| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="5b227-120">Desativa a referência implícita aos analisadores de componentes de barbear ao criar Blazor aplicativos (servidor).</span><span class="sxs-lookup"><span data-stu-id="5b227-120">Disables implicit reference to Razor Components analyzers when building Blazor (server) applications.</span></span> |
+| `DisableImplicitFrameworkReferences` | <span data-ttu-id="00522-118">Desabilita a referência implícita à estrutura `Microsoft.AspNetCore.App` compartilhada.</span><span class="sxs-lookup"><span data-stu-id="00522-118">Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework.</span></span> |
+| `DisableImplicitAspNetCoreAnalyzers` | <span data-ttu-id="00522-119">Desabilita a referência implícita a ASP.NET Core analisadores.</span><span class="sxs-lookup"><span data-stu-id="00522-119">Disables implicit reference to ASP.NET Core analyzers.</span></span> |
+| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="00522-120">Desabilita a referência implícita aos analisadores de Razor componentes durante a Blazor compilação de aplicativos (servidor).</span><span class="sxs-lookup"><span data-stu-id="00522-120">Disables implicit reference to Razor Components analyzers when building Blazor (server) applications.</span></span> |
