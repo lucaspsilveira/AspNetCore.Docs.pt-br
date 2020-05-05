@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/24/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 6e01fa37e3b7b24b95bc86ea2a1dd53dbdd9c672
-ms.sourcegitcommit: 6d271f4b4c3cd1e82267f51d9bfb6de221c394fe
+ms.openlocfilehash: 77584c7102fd2b288227877a052addb9f2296fa6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82149965"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776650"
 ---
-# <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteger um aplicativo Blazor autônomo webassembly ASP.NET Core com Azure Active Directory
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory"></a>Proteger um aplicativo Blazor autônomo webassembly ASP.NET Core com Azure Active Directory
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -74,7 +77,7 @@ O `Microsoft.Authentication.WebAssembly.Msal` pacote adiciona transitivamente o 
 
 ## <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
 
-O suporte para autenticação de usuários é registrado no contêiner de serviço `AddMsalAuthentication` com o método de extensão `Microsoft.Authentication.WebAssembly.Msal` fornecido pelo pacote. Esse método configura todos os serviços necessários para que o aplicativo interaja com o provedor de identidade (IP).
+O suporte para autenticação de usuários é registrado no contêiner de serviço `AddMsalAuthentication` com o método de extensão `Microsoft.Authentication.WebAssembly.Msal` fornecido pelo pacote. Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
 
 *Program.cs*:
 

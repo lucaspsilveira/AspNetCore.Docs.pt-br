@@ -1,25 +1,31 @@
 ---
 title: Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 author: rick-anderson
-description: Este tutorial demonstra como construir um aplicativo ASP.NET Core usando o OAuth 2.0 com provedores de autenticação externos.
+description: Este tutorial demonstra como criar um aplicativo ASP.NET Core usando o OAuth 2,0 com provedores de autenticação externa.
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: c698edbd85d665509366287b1dcad08e276e71cc
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 880aeea4dce5f5ae6533a3293067d89f98587e72
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78668038"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777144"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Este tutorial demonstra como construir um aplicativo ASP.NET Core 3.0 que permite que os usuários entrem usando o OAuth 2.0 com credenciais de provedores de autenticação externos.
+Este tutorial demonstra como criar um aplicativo ASP.NET Core 3,0 que permite que os usuários entrem usando o OAuth 2,0 com credenciais de provedores de autenticação externa.
 
-Os provedores [do Facebook,](xref:security/authentication/facebook-logins) [Twitter,](xref:security/authentication/twitter-logins) [Google](xref:security/authentication/google-logins)e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seguintes seções e usam o projeto inicial criado neste artigo. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
+Os provedores do [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins)e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seções a seguir e usam o projeto inicial criado neste artigo. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 Permitir que os usuários entrem com suas credenciais existentes:
 
@@ -35,13 +41,13 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 * Criar um novo projeto.
 * Selecione **Aplicativo Web ASP.NET Core** e **Próximo**.
 * Forneça um **Nome do projeto** e confirme ou altere a **localização**. Selecione **Criar**.
-* Selecione a versão mais recente do ASP.NET Core no drop-down **(ASP.NET Core {X.Y}**), e selecione **A Aplicação da Web**.
+* Selecione a versão mais recente do ASP.NET Core na lista suspensa (**ASP.NET Core {X. Y}**) e, em seguida, selecione **aplicativo Web**.
 * Selecione **Autenticação** selecione **Mudar** e configure a autenticação para **Contas de Usuário Individuais**. Selecione **OK**.
 * Na janela **Criar novo aplicativo Web ASP.NET Core**, selecione **Criar**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Abra o terminal.  Para o Visual Studio Code você pode abrir o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Abra o terminal.  Para Visual Studio Code você pode abrir o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 
@@ -59,7 +65,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *WebApp1*.
   * `-au Individual` cria o código para autenticação individual.
-  * `-uld`usa localDB, uma versão leve do SQL Server Express para Windows. Omita `-uld` para usar o SQLite.
+  * `-uld`usa o LocalDB, uma versão leve do SQL Server Express para Windows. Omita `-uld` para usar o SQLite.
   * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
 
 ---
@@ -103,7 +109,7 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
-* Selecione **Criar**
+* Selecione **criar**
 
 ![Definir a página de senha](index/_static/pass2a.png)
 
@@ -111,7 +117,7 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 ## <a name="next-steps"></a>Próximas etapas
 
-* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/10563) para obter informações sobre como personalizar os botões de login.
+* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/10563) para obter informações sobre como personalizar os botões de logon.
 * Este artigo apresentou a autenticação externa e explicou os pré-requisitos necessários para adicionar logons externos ao aplicativo ASP.NET Core.
 * Páginas de referência específicas ao provedor para configurar logons para os provedores necessários para o aplicativo.
 * Você talvez queira manter os dados adicionais sobre o usuário e seus tokens de atualização e acesso. Para obter mais informações, consulte <xref:security/authentication/social/additional-claims>.

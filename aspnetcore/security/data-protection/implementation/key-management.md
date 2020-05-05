@@ -4,13 +4,19 @@ author: rick-anderson
 description: Aprenda detalhes de implementação das APIs de gerenciamento de chaves de proteção de dados ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/key-management
-ms.openlocfilehash: c571222d734fa69183563aefa5cc6ce5a10e7612
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0f54ceedf3558fb4fa2349903461fdfdb4dc02e6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664706"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776897"
 ---
 # <a name="key-management-in-aspnet-core"></a>Gerenciamento de chaves no ASP.NET Core
 
@@ -68,11 +74,11 @@ Quando o sistema de proteção de dados é inicializado, ele lê o anel de chave
 >[!WARNING]
 > Os desenvolvedores devem muito raramente (se nunca) precisarem usar as APIs de gerenciamento de chaves diretamente. O sistema de proteção de dados executará o gerenciamento automático de chaves, conforme descrito acima.
 
-O sistema de proteção de dados expõe uma interface `IKeyManager` que pode ser usada para inspecionar e fazer alterações no anel de chave. O sistema de DI que forneceu a instância do `IDataProtectionProvider` também pode fornecer uma instância de `IKeyManager` para seu consumo. Como alternativa, você pode extrair o `IKeyManager` diretamente do `IServiceProvider` como no exemplo abaixo.
+O sistema de proteção de dados expõe `IKeyManager` uma interface que pode ser usada para inspecionar e fazer alterações no anel de chave. O sistema de DI que forneceu a `IDataProtectionProvider` instância do também pode fornecer uma `IKeyManager` instância do para seu consumo. Como alternativa, você pode extrair o `IKeyManager` diretamente do `IServiceProvider` como no exemplo abaixo.
 
 Qualquer operação que modifique o anel de chave (criando uma nova chave explicitamente ou executando uma revogação) invalidará o cache na memória. A próxima chamada para `Protect` ou `Unprotect` fará com que o sistema de proteção de dados leia novamente o anel de chave e recrie o cache.
 
-O exemplo a seguir demonstra como usar a interface `IKeyManager` para inspecionar e manipular o anel de tecla, incluindo a revogação de chaves existentes e a geração manual de uma nova chave.
+O exemplo a seguir demonstra como `IKeyManager` usar a interface para inspecionar e manipular o anel de tecla, incluindo a revogação de chaves existentes e a geração manual de uma nova chave.
 
 [!code-csharp[](key-management/samples/key-management.cs)]
 

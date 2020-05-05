@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: d9beae68cc869b665ff5d2b6cf34f120406098dc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661885"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777092"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -29,14 +35,14 @@ Os [verbos HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelin
 * [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
-* [OPTIONS](#test-http-options-requests)
-* [PATCH](#test-http-patch-requests)
+* [Opções](#test-http-options-requests)
+* [DISTRIBUÍDO](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
-* [PUT](#test-http-put-requests)
+* [Posicione](#test-http-put-requests)
 
 Para acompanhar, [exiba ou baixe a API Web de exemplo do ASP.NET Core](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
@@ -134,7 +140,7 @@ Conecte-se à uma API Web executando o seguinte comando:
 httprepl <ROOT URI>
 ```
 
-`<ROOT URI>` é o URI de base para a API Web. Por exemplo:
+`<ROOT URI>` é o URI de base para a API Web. Por exemplo: 
 
 ```console
 httprepl https://localhost:5001
@@ -146,7 +152,7 @@ Outra opção é executar o seguinte comando a qualquer momento quando o HTTP RE
 connect <ROOT URI>
 ```
 
-Por exemplo:
+Por exemplo: 
 
 ```console
 (Disconnected)~ connect https://localhost:5001
@@ -160,7 +166,7 @@ O comando connect acima tentará localizar automaticamente o documento do Swagge
 connect <ROOT URI> --swagger <SWAGGER URI>
 ```
 
-Por exemplo:
+Por exemplo: 
 
 ```console
 (Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
@@ -199,7 +205,7 @@ https://localhost:5001/fruits~ ls
 https://localhost:5001/fruits~
 ```
 
-Outra opção é executar o comando `ui` para abrir a página da interface do usuário do Swagger da API Web em um navegador. Por exemplo:
+Outra opção é executar o comando `ui` para abrir a página da interface do usuário do Swagger da API Web em um navegador. Por exemplo: 
 
 ```console
 https://localhost:5001/~ ui
@@ -243,7 +249,7 @@ O arquivo *.httpreplprefs* é carregado na inicialização e suas alterações n
 
 ### <a name="view-the-settings"></a>Exibir as configurações
 
-Para exibir as configurações disponíveis, execute o comando `pref get`. Por exemplo:
+Para exibir as configurações disponíveis, execute o comando `pref get`. Por exemplo: 
 
 ```console
 https://localhost:5001/~ pref get
@@ -281,7 +287,7 @@ Quando chaves de cor específicas não estão definidas, mais chaves genéricas 
 
 ### <a name="set-indentation-size"></a>Definir o tamanho do recuo
 
-A personalização do tamanho do recuo da resposta só é compatível com JSON. O tamanho padrão é dois espaços. Por exemplo:
+A personalização do tamanho do recuo da resposta só é compatível com JSON. O tamanho padrão é dois espaços. Por exemplo: 
 
 ```json
 [
@@ -365,12 +371,12 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 Por padrão, HTTP REPL tem um conjunto de caminhos relativos que ele usa para localizar o documento do Swagger ao executar o comando `connect` sem a opção `--swagger`. Esses caminhos relativos são combinados com os caminhos raiz e base especificados no comando `connect`. Os caminhos relativos padrão são:
 
-- *swagger.json*
-- *swagger/v1/swagger.json*
-- */swagger.json*
+- *Swagger. JSON*
+- *Swagger/v1/Swagger. JSON*
+- */Swagger.JSON*
 - */swagger/v1/swagger.json*
 
-Para usar um conjunto diferente de caminhos de pesquisa em seu ambiente, defina a preferência `swagger.searchPaths`. O valor precisa ser uma lista delimitada por pipes de caminhos relativos. Por exemplo:
+Para usar um conjunto diferente de caminhos de pesquisa em seu ambiente, defina a preferência `swagger.searchPaths`. O valor precisa ser uma lista delimitada por pipes de caminhos relativos. Por exemplo: 
 
 ```console
 pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
@@ -390,13 +396,13 @@ get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 As opções a seguir estão disponíveis para o comando `get`:
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-### <a name="example"></a>{1&gt;Exemplo&lt;1}
+### <a name="example"></a>Exemplo
 
 Para emitir uma solicitação HTTP GET:
 
@@ -474,13 +480,13 @@ post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-f
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 [!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
-### <a name="example"></a>{1&gt;Exemplo&lt;1}
+### <a name="example"></a>Exemplo
 
 Para emitir uma solicitação HTTP POST:
 
@@ -490,7 +496,7 @@ Para emitir uma solicitação HTTP POST:
     https://localhost:5001/people~ post -h Content-Type=application/json
     ```
 
-    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo:
+    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo: 
 
     ```json
     {
@@ -544,17 +550,17 @@ put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-fo
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 [!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
-### <a name="example"></a>{1&gt;Exemplo&lt;1}
+### <a name="example"></a>Exemplo
 
 Para emitir uma solicitação HTTP PUT:
 
-1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Opcional*: execute o `get` comando para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -586,7 +592,7 @@ Para emitir uma solicitação HTTP PUT:
     https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
     ```
 
-    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo:
+    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo: 
 
     ```json
     {
@@ -616,7 +622,7 @@ Para emitir uma solicitação HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita um comando `get` para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
+1. *Opcional*: emita um `get` comando para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -659,15 +665,15 @@ delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:b
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-### <a name="example"></a>{1&gt;Exemplo&lt;1}
+### <a name="example"></a>Exemplo
 
 Para emitir uma solicitação HTTP DELETE:
 
-1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Opcional*: execute o `get` comando para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -707,7 +713,7 @@ Para emitir uma solicitação HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita um comando `get` para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
+1. *Opcional*: emita um `get` comando para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -746,7 +752,7 @@ patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -766,7 +772,7 @@ head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:bod
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -784,7 +790,7 @@ options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>{1&gt;Opções&lt;1}
+### <a name="options"></a>Opções
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -792,7 +798,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abordagens:
 
-* Configure embutido com a solicitação HTTP. Por exemplo:
+* Configure embutido com a solicitação HTTP. Por exemplo: 
 
     ```console
     https://localhost:5001/people~ post -h Content-Type=application/json
@@ -800,13 +806,13 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
     
     Com a abordagem anterior, cada cabeçalho de solicitação HTTP diferente exige sua própria opção `-h`.
 
-* Configure antes de enviar a solicitação HTTP. Por exemplo:
+* Configure antes de enviar a solicitação HTTP. Por exemplo: 
 
     ```console
     https://localhost:5001/people~ set header Content-Type application/json
     ```
     
-    Ao configurar o cabeçalho antes de enviar a solicitação, ele permanecerá configurado durante toda a sessão do shell de comando. Para limpar o cabeçalho, forneça um valor vazio. Por exemplo:
+    Ao configurar o cabeçalho antes de enviar a solicitação, ele permanecerá configurado durante toda a sessão do shell de comando. Para limpar o cabeçalho, forneça um valor vazio. Por exemplo: 
     
     ```console
     https://localhost:5001/people~ set header Content-Type
@@ -852,7 +858,7 @@ Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do A
     httprepl https://management.azure.com
     ```
 
-1. Defina o cabeçalho de solicitação HTTP `Authorization`:
+1. Defina o `Authorization` cabeçalho da solicitação http:
 
     ```console
     https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
@@ -900,14 +906,14 @@ Por padrão, a exibição da solicitação HTTP que está sendo enviada é supri
 
 ### <a name="enable-request-display"></a>Habilitar a exibição da solicitação
 
-Exiba a solicitação HTTP que está sendo enviada executando o comando `echo on`. Por exemplo:
+Exiba a solicitação HTTP que está sendo enviada executando o comando `echo on`. Por exemplo: 
 
 ```console
 https://localhost:5001/people~ echo on
 Request echoing is on
 ```
 
-As solicitações HTTP subsequentes na sessão atual exibem os cabeçalhos de solicitação. Por exemplo:
+As solicitações HTTP subsequentes na sessão atual exibem os cabeçalhos de solicitação. Por exemplo: 
 
 ```console
 https://localhost:5001/people~ post
@@ -945,7 +951,7 @@ https://localhost:5001/people~
 
 ### <a name="disable-request-display"></a>Desabilitar a exibição da solicitação
 
-Suprima a exibição da solicitação HTTP que está sendo enviada executando o comando `echo off`. Por exemplo:
+Suprima a exibição da solicitação HTTP que está sendo enviada executando o comando `echo off`. Por exemplo: 
 
 ```console
 https://localhost:5001/people~ echo off
@@ -954,7 +960,7 @@ Request echoing is off
 
 ## <a name="run-a-script"></a>Executar um script
 
-Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, considere armazená-los em um arquivo de texto. Os comandos no arquivo assumem a mesma forma que os executados manualmente na linha de comando. Os comandos podem ser executados em um modo em lote usando o comando `run`. Por exemplo:
+Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, considere armazená-los em um arquivo de texto. Os comandos no arquivo assumem a mesma forma que os executados manualmente na linha de comando. Os comandos podem ser executados em um modo em lote usando o comando `run`. Por exemplo: 
 
 1. Crie um arquivo de texto com um conjunto de comandos delimitados por nova linha. Para ilustrar, considere um arquivo *people-script.txt* com os seguintes comandos:
 
@@ -966,7 +972,7 @@ Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, consid
     get 1
     ```
 
-1. Execute o comando `run`, passando o caminho do arquivo de texto. Por exemplo:
+1. Execute o comando `run`, passando o caminho do arquivo de texto. Por exemplo: 
 
     ```console
     https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt

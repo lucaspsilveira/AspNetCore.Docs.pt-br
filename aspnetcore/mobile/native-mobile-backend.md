@@ -4,13 +4,19 @@ author: ardalis
 description: Saiba como criar serviços de back-end usando o ASP.NET Core MVC para dar suporte a aplicativos móveis nativos.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: dcd0a29af197ff0ca210c17bdff62b802219fb2d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1ffaf61bb21f44681f530e35e746a30e9e158c6d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664580"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777261"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Criar serviços de back-end para aplicativos móveis nativos com o ASP.NET Core
 
@@ -63,7 +69,7 @@ O aplicativo deve responder a todas as solicitações feitas através da porta 5
 > [!NOTE]
 > Execute o aplicativo diretamente, em vez de por trás do IIS Express, que ignora solicitações não local por padrão. Execute [dotnet run](/dotnet/core/tools/dotnet-run) em um prompt de comando ou escolha o perfil de nome do aplicativo no menu suspenso Destino de Depuração na barra de ferramentas do Visual Studio.
 
-Adicione uma classe de modelo para representar itens pendentes. Marque os campos obrigatórios com o atributo `[Required]`:
+Adicione uma classe de modelo para representar itens pendentes. Marque os campos obrigatórios `[Required]` com o atributo:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
 
@@ -108,7 +114,7 @@ Você pode testar o novo método de API usando uma variedade de ferramentas, com
 
 ### <a name="creating-items"></a>Criando itens
 
-Por convenção, a criação de novos itens de dados é mapeada para o verbo HTTP POST. O método `Create` tem um atributo `[HttpPost]` aplicado a ele e aceita uma instância `ToDoItem`. Como o argumento `item` é passado no corpo da POSTAgem, esse parâmetro especifica o atributo `[FromBody]`.
+Por convenção, a criação de novos itens de dados é mapeada para o verbo HTTP POST. O `Create` método tem um `[HttpPost]` atributo aplicado a ele e aceita uma `ToDoItem` instância. Como o `item` argumento é passado no corpo da postagem, esse parâmetro especifica o `[FromBody]` atributo.
 
 Dentro do método, o item é verificado quanto à validade e existência anterior no armazenamento de dados e, se nenhum problema ocorrer, ele será adicionado usando o repositório. A verificação de `ModelState.IsValid` executa a [validação do modelo](../mvc/models/validation.md) e deve ser feita em todos os métodos de API que aceitam a entrada do usuário.
 

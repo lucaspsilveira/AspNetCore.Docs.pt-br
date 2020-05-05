@@ -5,13 +5,19 @@ description: Saiba como usar o NSwag para gerar a documentação e as páginas d
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: 3eae5d3c66204a10806a8036c8f114af6c501b2c
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 50096ae6a77d5f8b07e6be795d9401fcbfd421e3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666050"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776702"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introdução ao NSwag e ao ASP.NET Core
 
@@ -50,7 +56,7 @@ Use uma das seguintes abordagens para instalar o pacote do NuGet do NSwag:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Da janela **Console do Gerenciador de Pacotes**:
-  * Ir para **exibir outro** > **console do gerenciador de** **pacotes** > do Windows
+  * Ir para **Exibir** > **outro** > **console do Gerenciador de pacotes** do Windows
   * Navegue para o diretório no qual o arquivo *TodoApi.csproj* está localizado
   * Execute o comando a seguir:
 
@@ -59,17 +65,17 @@ Use uma das seguintes abordagens para instalar o pacote do NuGet do NSwag:
     ```
 
 * Da caixa de diálogo **Gerenciar Pacotes NuGet**:
-  * Clique com o botão direito do mouse no projeto **no Solution Explorer** > **Manage NuGet Packages**
+  * Clique com o botão direito do mouse no projeto no **Gerenciador de soluções** > **gerenciar pacotes NuGet**
   * Defina a **Origem do pacote** para "nuget.org"
   * Insira "NSwag.AspNetCore" na caixa de pesquisa
   * Selecione o pacote "NSwag.AspNetCore" na guia **Procurar** e clique em **Instalar**
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse na pasta *Pacotes* em **Pacotes de Pacotes** > **de Pacotes de Solução Pad...**
+* Clique com o botão direito do mouse na pasta *pacotes* em **painel de soluções** > **adicionar pacotes...**
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** para "nuget.org"
 * Insira "NSwag.AspNetCore" na caixa de pesquisa
-* Selecione o pacote "NSwag.AspNetCore" no painel de resultados e clique **em Adicionar pacote**
+* Selecione o pacote "NSwag. AspNetCore" no painel de resultados e clique em **Adicionar pacote**
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
@@ -109,8 +115,8 @@ Você pode tirar proveito dos recursos de geração de código do NSwag, escolhe
 
 ### <a name="generate-code-with-nswagstudio"></a>Gerar o código com NSwagStudio
 
-* Instale o NSwagStudio, seguindo as instruções no [repositório GitHub do NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Na página de lançamento do NSwag você pode baixar uma versão xcopy que pode ser iniciada sem privilégios de instalação e admin.
-* Inicie o NSwagStudio e insira a URL do arquivo *swagger.json* na caixa de texto **URL de Especificação do Swagger**. Por exemplo, *http://localhost:44354/swagger/v1/swagger.json*.
+* Instale o NSwagStudio, seguindo as instruções no [repositório GitHub do NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). Na página de versão do NSwag, você pode baixar uma versão do XCOPY que pode ser iniciada sem privilégios de instalação e administrador.
+* Inicie o NSwagStudio e insira a URL do arquivo *swagger.json* na caixa de texto **URL de Especificação do Swagger**. Por exemplo, *http://localhost:44354/swagger/v1/swagger.json* .
 * Clique no botão **Criar Cópia local** para gerar uma representação JSON de sua especificação do Swagger.
 
   ![Criar uma cópia local da especificação do Swagger](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
@@ -157,7 +163,7 @@ namespace MyNamespace
 ```
 
 > [!TIP]
-> O código cliente C# é gerado com base em seleções na guia **Configurações.** Modifique as configurações para executar tarefas como renomeação de namespace padrão e geração de métodos síncronos.
+> O código do cliente C# é gerado com base nas seleções na guia **configurações** . modifique as configurações para executar tarefas como a renomeação do namespace padrão e a geração de método síncrono.
 
 * Copie o código C# gerado em um arquivo no projeto do cliente que consumirá a API.
 * Inicie o consumo da API Web:
@@ -215,7 +221,7 @@ Para habilitar os comentários XML, execute as seguintes etapas:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* No *Painel de Soluções*, pressione **control** e clique no nome do projeto. Navegue até **o Arquivo** > **de edição de ferramentas**.
+* No *Painel de Soluções*, pressione **control** e clique no nome do projeto. Navegue até **ferramentas** > **Editar arquivo**.
 * Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
@@ -271,7 +277,7 @@ Considere o exemplo a seguir:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-A ação anterior retorna `ActionResult<T>`. Dentro da ação, ela está retornando [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*). Uma vez que [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) o controlador tem o atributo, uma resposta [BadRequest](xref:System.Web.Http.ApiController.BadRequest*) também é possível. Para obter mais informações, veja [Respostas automáticas HTTP 400](xref:web-api/index#automatic-http-400-responses). Use anotações de dados para informar aos clientes quais códigos de status HTTP esta ação costuma retornar. Marque a ação com os seguintes atributos:
+A ação anterior retorna `ActionResult<T>`. Dentro da ação, ela está retornando [CreatedAtRoute](xref:System.Web.Http.ApiController.CreatedAtRoute*). Como o controlador tem o [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) atributo, uma resposta [BadRequest](xref:System.Web.Http.ApiController.BadRequest*) também é possível. Para obter mais informações, veja [Respostas automáticas HTTP 400](xref:web-api/index#automatic-http-400-responses). Use anotações de dados para informar aos clientes quais códigos de status HTTP esta ação costuma retornar. Marque a ação com os seguintes atributos:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 

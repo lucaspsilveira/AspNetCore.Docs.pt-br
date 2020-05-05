@@ -5,21 +5,27 @@ description: Definição de Auxiliar de Marca de Ambiente do ASP.NET Core, inclu
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: 308e7db47104ebd4d6bb8d08c64f14bbd118898b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 144cc8988ba5797265b38f0f7364f528e0dbb97e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663985"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777417"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Ambiente no ASP.NET Core
 
 Por [Peter Kellner](https://peterkellner.net) e [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
-O Auxiliar de Marca de Ambiente renderiza condicionalmente seu conteúdo contido com base no [ambiente de hospedagem](xref:fundamentals/environments) atual. Atributo único do Auxiliar de Marca de Ambiente, `names`, é uma lista separada por vírgulas de nomes de ambiente. Se nenhum dos nomes de ambiente fornecido corresponder ao ambiente atual, o conteúdo contido será renderizado.
+A marca de ambiente auxiliar processa condicionalmente seu conteúdo embutido com base no [ambiente de hospedagem](xref:fundamentals/environments)atual. Atributo único do Auxiliar de Marca de Ambiente, `names`, é uma lista separada por vírgulas de nomes de ambiente. Se nenhum dos nomes de ambiente fornecido corresponder ao ambiente atual, o conteúdo contido será renderizado.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 ## <a name="environment-tag-helper-attributes"></a>Atributos do Auxiliar de Marca de Ambiente
 
@@ -41,7 +47,7 @@ O exemplo a seguir usa um Auxiliar de Marca de Ambiente. O conteúdo será rende
 
 ## <a name="include-and-exclude-attributes"></a>incluir e excluir atributos
 
-`include` & `exclude` o controle de atributos que processam o conteúdo incluído com base nos nomes de ambiente de hospedagem incluídos ou excluídos.
+`include`& o controle de atributos que renderiza o conteúdo incluído com base nos nomes de ambiente de hospedagem incluídos ou `exclude` excluídos.
 
 ### <a name="include"></a>include
 
@@ -53,7 +59,7 @@ A propriedade `include` exibe um comportamento semelhante para o atributo `names
 </environment>
 ```
 
-### <a name="exclude"></a>excluir
+### <a name="exclude"></a>exclude
 
 Em contraste com o atributo `include`, o conteúdo da marcação `<environment>` é processado quando o ambiente de hospedagem não corresponde a um ambiente listado no valor do atributo `exclude`.
 
