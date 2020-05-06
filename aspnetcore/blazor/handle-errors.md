@@ -8,16 +8,19 @@ ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 63bb791958785fa9a4a676f1aab79126c6873068
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
+ms.openlocfilehash: 7eefc988da275c0efccd97958d04e76f04e7cad4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82111039"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772107"
 ---
-# <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos Blazor ASP.NET Core
+# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Tratar erros em aplicativos Blazor ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -80,7 +83,7 @@ O `blazor-error-ui` elemento é oculto pelos estilos incluídos nos Blazor model
 }
 ```
 
-## <a name="how-a-opno-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Como um Blazor aplicativo de servidor reage a exceções sem tratamento
+## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Como um Blazor aplicativo de servidor reage a exceções sem tratamento
 
 BlazorO servidor é uma estrutura com estado. Enquanto os usuários interagem com um aplicativo, eles mantêm uma conexão com o servidor conhecido como um *circuito*. O circuito contém instâncias de componentes ativos, além de muitos outros aspectos do estado, como:
 
@@ -216,7 +219,7 @@ Para obter mais informações, consulte os seguintes artigos:
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="opno-locblazor-server-prerendering"></a>BlazorPré-processamento de servidor
+### <a name="blazor-server-prerendering"></a>BlazorPré-processamento de servidor
 
 Blazoros componentes podem ser renderizados usando o [auxiliar de marca do componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para que sua marcação HTML renderizada seja retornada como parte da solicitação HTTP inicial do usuário. Isso funciona por:
 

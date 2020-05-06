@@ -5,17 +5,23 @@ ms.author: riande
 description: Descubra os atributos auxiliares de marca de script ASP.NET Core e a função que cada atributo desempenha ao estender o comportamento da marca de script HTML.
 ms.custom: mvc
 ms.date: 12/02/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-ms.openlocfilehash: a037abb6a454e6d06305e7d7f6ecad0c2a0ca717
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 4162221ef3401427c44fb54dee9c36b78b39564f
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659834"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774659"
 ---
 # <a name="script-tag-helper-in-aspnet-core"></a>Auxiliar de marca de script no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O [auxiliar de marca de script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper) gera um link para um arquivo de script primário ou de retorno. Normalmente, o arquivo de script primário está em uma CDN ( [rede de distribuição de conteúdo](/office365/enterprise/content-delivery-networks#what-exactly-is-a-cdn) ).
 
@@ -23,7 +29,7 @@ O [auxiliar de marca de script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptT
 
 O auxiliar de marca de script permite que você especifique uma CDN para o arquivo de script e um fallback quando a CDN não estiver disponível. O auxiliar de marca de script fornece a vantagem de desempenho de uma CDN com a robustez da hospedagem local.
 
-A marcação Razor a seguir mostra um elemento `script` com um fallback:
+A marcação Razor a seguir mostra `script` um elemento com um fallback:
 
 ```html
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -34,7 +40,7 @@ A marcação Razor a seguir mostra um elemento `script` com um fallback:
 </script>
 ```
 
-Não use a `<script>` atributo [Defer](https://developer.mozilla.org/docs/Web/HTML/Element/script) do elemento para adiar o carregamento do script CDN. O auxiliar de marca de script processa o JavaScript que executa imediatamente a expressão [ASP-fallback-Test](#asp-fallback-test) . A expressão falhará se o carregamento do script CDN for adiado.
+Não use o `<script>` atributo [Defer](https://developer.mozilla.org/docs/Web/HTML/Element/script) do elemento para adiar o carregamento do script CDN. O auxiliar de marca de script processa o JavaScript que executa imediatamente a expressão [ASP-fallback-Test](#asp-fallback-test) . A expressão falhará se o carregamento do script CDN for adiado.
 
 ## <a name="commonly-used-script-tag-helper-attributes"></a>Atributos auxiliares de marca de script comumente usados
 

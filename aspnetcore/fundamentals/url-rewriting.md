@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/16/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: 7d63cf381f1d8a19ed4fb789348e36f94304ad63
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 9e12831f57af02cd427d2a66d9d4c4d654905106
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666463"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774854"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
@@ -100,9 +106,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente `www` a solicitação para o`www`subdomínio se a solicitação não for. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente a solicitação para `www` o subdomínio se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a `www` solicitação para o subdomínio se`www`a solicitação recebida não for... Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a solicitação para `www` o subdomínio se a solicitação de entrada for`www`não. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -186,7 +192,7 @@ O acento circunflexo (`^`) no início da expressão significa que a correspondê
 
 No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não há nenhum acento circunflexo (`^`) no início do regex. Portanto, qualquer caractere pode preceder `redirect-rule/` no caminho para uma correspondência com êxito.
 
-| Caminho                               | Corresponder a |
+| Caminho                               | Correspondência |
 | ---------------------------------- | :---: |
 | `/redirect-rule/1234/5678`         | Sim   |
 | `/my-cool-redirect-rule/1234/5678` | Sim   |
@@ -194,7 +200,7 @@ No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não 
 
 A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a caminhos se eles são iniciados com `rewrite-rule/`. Na tabela a seguir, observe a diferença na correspondência.
 
-| Caminho                              | Corresponder a |
+| Caminho                              | Correspondência |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sim   |
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
@@ -454,9 +460,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente `www` a solicitação para o`www`subdomínio se a solicitação não for. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>&ndash; Redirecione permanentemente a solicitação para `www` o subdomínio se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a `www` solicitação para o subdomínio se`www`a solicitação recebida não for... Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>&ndash; Redirecione a solicitação para `www` o subdomínio se a solicitação de entrada for`www`não. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -540,7 +546,7 @@ O acento circunflexo (`^`) no início da expressão significa que a correspondê
 
 No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não há nenhum acento circunflexo (`^`) no início do regex. Portanto, qualquer caractere pode preceder `redirect-rule/` no caminho para uma correspondência com êxito.
 
-| Caminho                               | Corresponder a |
+| Caminho                               | Correspondência |
 | ---------------------------------- | :---: |
 | `/redirect-rule/1234/5678`         | Sim   |
 | `/my-cool-redirect-rule/1234/5678` | Sim   |
@@ -548,7 +554,7 @@ No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não 
 
 A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a caminhos se eles são iniciados com `rewrite-rule/`. Na tabela a seguir, observe a diferença na correspondência.
 
-| Caminho                              | Corresponder a |
+| Caminho                              | Correspondência |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sim   |
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
@@ -729,7 +735,7 @@ Solicitação original: `/image.jpg`
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Expressões regulares no .NET](/dotnet/articles/standard/base-types/regular-expressions)
-* [Linguagem de expressão regular - referência rápida](/dotnet/articles/standard/base-types/quick-ref)
+* [Linguagem de expressão regular-referência rápida](/dotnet/articles/standard/base-types/quick-ref)
 * [mod_rewrite do Apache](https://httpd.apache.org/docs/2.4/rewrite/)
 * [Usando o Módulo de Reconfiguração de URL 2.0 (para IIS)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20)
 * [Referência de configuração do Módulo de Reconfiguração de URL](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)

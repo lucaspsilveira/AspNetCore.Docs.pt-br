@@ -5,17 +5,20 @@ description: Saiba mais Blazor sobre os cenários de autenticação e autorizaç
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: ced8e90147b08bc75aec4534fdd8d8552506f88c
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d55880265ed1ceedf8f115412e5ac47309521239
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206093"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772889"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autenticação Blazor e autorização do ASP.NET Core
 
@@ -35,10 +38,10 @@ Cenários de segurança Blazor diferem Blazor entre aplicativos de servidor e We
 
 BlazorOs aplicativos Webassembly são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um Blazor usuário, um aplicativo Webassembly não pode impor regras de acesso de autorização.
 
-[Razor Pages as convenções de autorização](xref:security/authorization/razor-pages-authorization) não se aplicam a componentes do Razor roteáveis. Se um componente Razor não roteável for [inserido em uma página](xref:blazor/integrate-components#render-components-from-a-page-or-view), as convenções de autorização da página afetarão indiretamente o componente Razor junto com o restante do conteúdo da página.
+As convenções de autorização de páginas não Razor se aplicam a componentes roteáveis. [ Razor ](xref:security/authorization/razor-pages-authorization) Se um componente não roteável Razor for [inserido em uma página](xref:blazor/integrate-components#render-components-from-a-page-or-view), as convenções de autorização da página afetarão Razor indiretamente o componente junto com o restante do conteúdo da página.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601>e <xref:Microsoft.AspNetCore.Identity.UserManager%601> não têm suporte em componentes do Razor.
+> <xref:Microsoft.AspNetCore.Identity.SignInManager%601>e <xref:Microsoft.AspNetCore.Identity.UserManager%601> não têm suporte Razor em componentes do.
 
 ## <a name="authentication"></a>Autenticação
 
@@ -246,7 +249,7 @@ O acesso geralmente é concedido ou negado com base nos seguintes casos:
 * Se o usuário tem uma *declaração*.
 * Se uma *política* é atendida.
 
-Todos esses conceitos são iguais no MVC do ASP.NET Core ou em aplicativos Razor Pages. Para obter mais informações sobre a segurança do ASP.NET Core, confira os artigos em [Identidade e segurança do ASP.NET Core](xref:security/index).
+Cada um desses conceitos é o mesmo de um aplicativo ASP.NET Core MVC ou Razor de páginas. Para obter mais informações sobre ASP.NET Core segurança, consulte os artigos em [ASP.NET Core segurança Identitye ](xref:security/index).
 
 ## <a name="authorizeview-component"></a>Componente AuthorizeView
 
@@ -338,7 +341,7 @@ Essa abordagem não é normalmente aplicável Blazor a aplicativos de servidor. 
 
 ## <a name="authorize-attribute"></a>Atributo [Authorize]
 
-O `[Authorize]` atributo pode ser usado em componentes do Razor:
+O `[Authorize]` atributo pode ser usado em Razor componentes:
 
 ```razor
 @page "/"
@@ -426,6 +429,7 @@ Se o aplicativo determinar que os dados de estado de autenticação subjacentes 
 Se for necessário que o aplicativo verifique as regras de autorização como parte da lógica de procedimento, use um parâmetro em cascata do tipo `Task<AuthenticationState>` para obter o <xref:System.Security.Claims.ClaimsPrincipal> do usuário. O `Task<AuthenticationState>` pode ser combinado com outros serviços, como `IAuthorizationService`, para avaliar as políticas.
 
 ```razor
+@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
 <button @onclick="@DoSomething">Do something important</button>

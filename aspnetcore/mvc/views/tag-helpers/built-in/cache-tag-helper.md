@@ -5,13 +5,19 @@ description: Saiba como usar o Auxiliar de marca de cache.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: db9e1a968588410f11e5f137dfdd4542df505ebc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662732"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773936"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Auxiliar de Marca de Cache no ASP.NET Core MVC
 
@@ -19,7 +25,7 @@ Por [Peter Kellner](https://peterkellner.net)
 
 O Auxiliar de Marca de Cache possibilita melhorar o desempenho de seu aplicativo ASP.NET Core armazenando seu conteúdo em cache no provedor de cache interno do ASP.NET Core.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 A seguinte marcação Razor armazena em cache a data atual:
 
@@ -49,7 +55,7 @@ Exemplo:
 
 ### <a name="expires-on"></a>expires-on
 
-| Tipo de Atributo   | {1&gt;Exemplo&lt;1}                            |
+| Tipo de Atributo   | Exemplo                            |
 | ---------------- | ---------------------------------- |
 | `DateTimeOffset` | `@new DateTime(2025,1,29,17,02,0)` |
 
@@ -65,7 +71,7 @@ O exemplo a seguir armazena em cache o conteúdo do Auxiliar de Marca de Cache a
 
 ### <a name="expires-after"></a>expires-after
 
-| Tipo de Atributo | {1&gt;Exemplo&lt;1}                      | Padrão    |
+| Tipo de Atributo | Exemplo                      | Padrão    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 minutos |
 
@@ -83,7 +89,7 @@ O Mecanismo de Exibição do Razor define o valor `expires-after` padrão como v
 
 ### <a name="expires-sliding"></a>expires-sliding
 
-| Tipo de Atributo | {1&gt;Exemplo&lt;1}                     |
+| Tipo de Atributo | Exemplo                     |
 | -------------- | --------------------------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(60)` |
 
@@ -147,7 +153,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -191,7 +197,7 @@ Usar esse atributo mantém o conteúdo no cache durante um ciclo de entrada e sa
 
 ### <a name="vary-by"></a>vary-by
 
-| Tipo de Atributo | {1&gt;Exemplo&lt;1}  |
+| Tipo de Atributo | Exemplo  |
 | -------------- | -------- |
 | String         | `@Model` |
 
@@ -212,7 +218,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+*Index. cshtml*:
 
 ```cshtml
 <cache vary-by="@Model">

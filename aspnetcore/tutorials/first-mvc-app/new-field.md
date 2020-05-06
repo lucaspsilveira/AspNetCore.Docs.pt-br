@@ -5,13 +5,19 @@ description: Saiba como usar as Migrações do Entity Framework Code First para 
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: a5ea9b75cf8bb1f31cb07a2b32f361bdbfd4efa3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0cc708734726e5779951d63ac10d1b750b1cc2ac
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78662900"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777066"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
@@ -131,11 +137,11 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Execute o aplicativo e verifique se você pode `Rating` criar, editar e exibir filmes com um campo. Atualize o aplicativo:
+Execute o aplicativo e verifique se você pode criar, editar e exibir filmes com um `Rating` campo. Atualize o aplicativo:
 
-* Adicione `Rating` o campo `Edit` `Details`aos `Delete` modelos e visualização de modelos.
-* Atualize a vinculação no `MoviesController`método de ação de edição do .
+* Adicione o `Rating` campo aos modelos `Edit`de `Details`exibição, `Delete` e.
+* Atualize a associação no método editar ação do `MoviesController`.
 
 > [!div class="step-by-step"]
-> [Próximo](search.md)
-> [anterior](validation.md)
+> [Anterior](search.md)
+> [próximo](validation.md)

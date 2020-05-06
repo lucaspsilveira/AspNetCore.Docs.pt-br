@@ -5,21 +5,27 @@ description: Saiba mais sobre o conceito de proteção de dados e os princípios
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/introduction
-ms.openlocfilehash: 37f170a3e8a46ef2215b0999358d46dd402636df
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: db2c22454fc6c7e663ca603e9d70b6c12ce31af4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664440"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775798"
 ---
 # <a name="aspnet-core-data-protection"></a>Proteção de dados do ASP.NET Core
 
 Os aplicativos Web geralmente precisam armazenar dados sensíveis à segurança. O Windows fornece DPAPI para aplicativos de área de trabalho, mas isso não é adequado para aplicativos Web. A ASP.NET Core pilha de proteção de dados fornece uma API criptográfica simples e fácil de usar que um desenvolvedor pode usar para proteger dados, incluindo o gerenciamento e a rotação de chaves.
 
-O ASP.NET Core pilha de proteção de dados foi projetado para servir como a substituição de longo prazo para o elemento de&gt; &lt;machineKey no ASP.NET 1. x-4. x. Ele foi projetado para resolver muitas das deficiências da pilha criptográfica antiga, fornecendo uma solução pronta para uso para a maioria dos casos de utilização que os aplicativos modernos provavelmente encontrarão.
+O ASP.NET Core pilha de proteção de dados foi projetado para servir como a substituição de longo prazo &lt;para&gt; o elemento machineKey no ASP.NET 1. x-4. x. Ele foi projetado para resolver muitas das deficiências da pilha criptográfica antiga, fornecendo uma solução pronta para uso para a maioria dos casos de utilização que os aplicativos modernos provavelmente encontrarão.
 
-## <a name="problem-statement"></a>Declaração do problema
+## <a name="problem-statement"></a>Problema declarado
 
 A declaração geral do problema pode ser disparada de forma sucinta em uma única frase: preciso manter informações confiáveis para recuperação posterior, mas não confio no mecanismo de persistência. Em termos da Web, isso pode ser escrito como "preciso fazer ida e volta em estado confiável por meio de um cliente não confiável".
 
@@ -47,7 +53,7 @@ Com esses princípios em mente, desenvolvemos uma pilha de proteção de dados s
 
 O ASP.NET Core APIs de proteção de dados não se destina principalmente à persistência indefinida de cargas confidenciais. Outras tecnologias como o [Windows CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx) e o [Azure Rights Management](/rights-management/) são mais adequadas para o cenário de armazenamento indefinido e têm recursos de gerenciamento de chaves de alta segurança. Dito isso, não há nada proibindo um desenvolvedor de usar o ASP.NET Core APIs de proteção de dados para proteção de longo prazo de dados confidenciais.
 
-## <a name="audience"></a>Público-alvo
+## <a name="audience"></a>Público
 
 O sistema de proteção de dados é dividido em cinco pacotes principais. Vários aspectos dessas APIs visam três públicos principais;
 
@@ -67,13 +73,13 @@ O sistema de proteção de dados é dividido em cinco pacotes principais. Vário
 
 A pilha de proteção de dados consiste em cinco pacotes.
 
-* [Microsoft. AspNetCore. dataprotection. abstrações](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) contém as interfaces <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> e <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> para criar serviços de proteção de dados. Ele também contém métodos de extensão úteis para trabalhar com esses tipos (por exemplo, [IDataProtector. Protect](xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.Protect*)). Se o sistema de proteção de dados for instanciado em outro lugar e você estiver consumindo a API, `Microsoft.AspNetCore.DataProtection.Abstractions`de referência.
+* [Microsoft. AspNetCore. dataprotection. abstrações](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Abstractions/) contém as <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionProvider> interfaces e <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> para criar serviços de proteção de dados. Ele também contém métodos de extensão úteis para trabalhar com esses tipos (por exemplo, [IDataProtector. Protect](xref:Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions.Protect*)). Se o sistema de proteção de dados for instanciado em outro lugar e você estiver consumindo a API, referência `Microsoft.AspNetCore.DataProtection.Abstractions`.
 
-* O [Microsoft. AspNetCore.](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) dataprotection contém a implementação principal do sistema de proteção de dados, incluindo operações essenciais de criptografia, gerenciamento de chaves, configuração e extensibilidade. Para instanciar o sistema de proteção de dados (por exemplo, adicioná-lo a um <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>) ou modificar ou estender seu comportamento, `Microsoft.AspNetCore.DataProtection`de referência.
+* O [Microsoft. AspNetCore.](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) dataprotection contém a implementação principal do sistema de proteção de dados, incluindo operações essenciais de criptografia, gerenciamento de chaves, configuração e extensibilidade. Para instanciar o sistema de proteção de dados (por exemplo, adicioná <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>-lo a um) ou modificar ou estender `Microsoft.AspNetCore.DataProtection`seu comportamento, referência.
 
-* [Microsoft. AspNetCore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) contém APIs adicionais que os desenvolvedores podem encontrar úteis, mas que não pertencem ao pacote principal. Por exemplo, esse pacote contém métodos de fábrica para instanciar o sistema de proteção de dados para armazenar chaves em um local no sistema de arquivos sem injeção de dependência (consulte <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>). Ele também contém métodos de extensão para limitar o tempo de vida de cargas protegidas (consulte <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>).
+* [Microsoft. AspNetCore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) contém APIs adicionais que os desenvolvedores podem encontrar úteis, mas que não pertencem ao pacote principal. Por exemplo, esse pacote contém métodos de fábrica para instanciar o sistema de proteção de dados para armazenar chaves em um local no sistema de arquivos sem <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>injeção de dependência (consulte). Ele também contém métodos de extensão para limitar o tempo de vida de cargas protegidas (consulte <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>).
 
-* [Microsoft. AspNetCore. dataprotection. SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) pode ser instalado em um aplicativo ASP.NET 4. x existente para redirecionar suas operações de `<machineKey>` para usar a nova pilha de proteção de dados do ASP.NET Core. Para obter mais informações, consulte <xref:security/data-protection/compatibility/replacing-machinekey>.
+* [Microsoft. AspNetCore. dataprotection. SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) pode ser instalado em um aplicativo ASP.NET 4. x existente para redirecionar `<machineKey>` suas operações para usar o novo ASP.NET Core pilha de proteção de dados. Para obter mais informações, consulte <xref:security/data-protection/compatibility/replacing-machinekey>.
 
 * [Microsoft. AspNetCore. Cryptography. Keyderivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) fornece uma implementação da rotina de hash de senha do PBKDF2 e pode ser usada por sistemas que devem tratar senhas de usuário com segurança. Para obter mais informações, consulte <xref:security/data-protection/consumer-apis/password-hashing>.
 

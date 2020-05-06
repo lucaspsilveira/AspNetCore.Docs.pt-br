@@ -1,20 +1,26 @@
 ---
-title: 'Tutorial: Implementar funcionalidade CRUD - ASP.NET MVC com EF Core'
+title: 'Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core'
 description: Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 2aa4ef48509b9a34f3b25eb657b1ecac51c1374b
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 51334370b07709a773f6acd18d302f8b3ea88290
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79416208"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773582"
 ---
-# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar funcionalidade CRUD - ASP.NET MVC com EF Core
+# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core
 
 No tutorial anterior, você criou um aplicativo MVC que armazena e exibe dados usando o Entity Framework e o LocalDB do SQL Server. Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 
@@ -64,7 +70,7 @@ A última parte da URL ("?courseID=2021") é um valor de cadeia de caracteres de
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 ```
 
-Na página Índice, as URLs de hiperlinks são criadas por instruções de auxiliar de marcação na exibição do Razor. No código Razor a seguir, o parâmetro `id` corresponde à rota padrão e, portanto, `id` é adicionada aos dados de rota.
+Na página índice, as URLs de hiperlink são criadas pelas instruções auxiliares de Razor marca na exibição. No código a Razor seguir, o `id` parâmetro corresponde à rota padrão, portanto `id` , é adicionado aos dados de rota.
 
 ```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
@@ -76,7 +82,7 @@ Isso gera o seguinte HTML quando `item.ID` é 6:
 <a href="/Students/Edit/6">Edit</a>
 ```
 
-No código a seguir Razor, `studentID` não corresponde a um parâmetro na rota padrão e, portanto, ela é adicionada como uma cadeia de caracteres de consulta.
+No código a Razor seguir, `studentID` não corresponde a um parâmetro na rota padrão, portanto, ele é adicionado como uma cadeia de caracteres de consulta.
 
 ```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
@@ -151,11 +157,11 @@ Uma maneira alternativa de impedir o excesso de postagem preferida por muitos de
 
 ### <a name="test-the-create-page"></a>Testar a página Criar
 
-O código em *Views/Students/Create.cshtml* usa `label`, `input`e `span` (para mensagens de validação) tag helpers para cada campo.
+O código em *views/Students/Create. cshtml* usa `label` `input`, `span` e (para mensagens de validação) os auxiliares de marca para cada campo.
 
 Execute o aplicativo, selecione a guia **Alunos** e, em seguida, clique em **Criar Novo**.
 
-Insira nomes e uma data. Tente inserir uma data inválida se o navegador permitir fazer isso. (Alguns navegadores forçam você a usar um seletor de datas.) Em seguida, clique **em Criar** para ver a mensagem de erro.
+Insira nomes e uma data. Tente inserir uma data inválida se o navegador permitir fazer isso. (Alguns navegadores forçam você a usar um seletor de data.) Em seguida, clique em **criar** para ver a mensagem de erro.
 
 ![Erro de validação de data](crud/_static/date-error.png)
 
@@ -179,7 +185,7 @@ Essas alterações implementam uma melhor prática de segurança para evitar o 
 
 O novo código lê a entidade existente e chama `TryUpdateModel` para atualizar os campos na entidade recuperada [com base na entrada do usuário nos dados de formulário postados](xref:mvc/models/model-binding). O controle automático de alterações do Entity Framework define o sinalizador `Modified` nos campos alterados pela entrada de formulário. Quando o método `SaveChanges` é chamado, o Entity Framework cria instruções SQL para atualizar a linha de banco de dados. Os conflitos de simultaneidade são ignorados e somente as colunas de tabela que foram atualizadas pelo usuário são atualizadas no banco de dados. (Um tutorial posterior mostra como lidar com conflitos de simultaneidade.)
 
-Como uma melhor prática para evitar o excesso de postagem, os campos que você deseja que sejam atualizáveis pela página **Editar** estão na lista de permissões nos parâmetros `TryUpdateModel`. (A seqüência vazia que precede a lista de campos na lista de parâmetros é para um prefixo para usar com os nomes dos campos de formulário.) Atualmente, não há campos extras que você está protegendo, mas listar os campos que você deseja que o modelo de vinculação vincule garante que, se você adicionar campos ao modelo de dados no futuro, eles serão automaticamente protegidos até que você os adicione explicitamente aqui.
+Como uma melhor prática para evitar o excesso de postagem, os campos que você deseja que sejam atualizáveis pela página **Editar** estão na lista de permissões nos parâmetros `TryUpdateModel`. (A cadeia de caracteres vazia que precede a lista de campos na lista de parâmetros é para um prefixo a ser usado com os nomes dos campos de formulário.) Atualmente, não há nenhum campo extra que você esteja protegendo, mas a listagem dos campos que você deseja associar ao associador de modelo garante que, se você adicionar campos ao modelo de dados no futuro, eles serão automaticamente protegidos até que você os adicione explicitamente aqui.
 
 Como resultado dessas alterações, a assinatura do método HttpPost `Edit` é a mesma do método HttpGet `Edit`; portanto, você já renomeou o método `EditPost`.
 
@@ -289,7 +295,7 @@ Desabilite o controle de objetos de entidade em memória chamando o método `AsN
 
 * Você deseja anexar uma entidade para atualizá-la, mas anteriormente, recuperou a mesma entidade para uma finalidade diferente. Como a entidade já está sendo controlada pelo contexto de banco de dados, não é possível anexar a entidade que você deseja alterar. Uma maneira de lidar com essa situação é chamar `AsNoTracking` na consulta anterior.
 
-Para obter mais informações, consulte [Rastreamento vs. No-Tracking](/ef/core/querying/tracking).
+Para obter mais informações, consulte [acompanhamento versus sem rastreamento](/ef/core/querying/tracking).
 
 ## <a name="get-the-code"></a>Obter o código
 
@@ -309,4 +315,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para saber como expandir a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
 
 > [!div class="nextstepaction"]
-> [Próximo: Classificação, filtragem e paginação](sort-filter-page.md)
+> [Em seguida: classificação, filtragem e paginação](sort-filter-page.md)

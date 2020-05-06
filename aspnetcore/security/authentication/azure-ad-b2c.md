@@ -5,22 +5,28 @@ description: Descubra como configurar a autenticação do Azure Active Directory
 ms.author: casoper
 ms.custom: mvc
 ms.date: 01/21/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 136fa47788456492a9a7fe6d9d9e5996c13e8c20
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
-ms.translationtype: MT
+ms.openlocfilehash: 86808e6bdd3bb669a62ad9e333b11df4c09a9cd3
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663656"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774633"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação de nuvem com Azure Active Directory B2C no ASP.NET Core
 
 Por [Cam Soper](https://twitter.com/camsoper)
 
-O [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure ad B2C) é uma solução de gerenciamento de identidade de nuvem para aplicativos Web e móveis. O serviço fornece autenticação para aplicativos hospedados na nuvem e locais. Tipos de autenticação incluem contas individuais, contas de rede social e contas corporativas de federado. Além disso, Azure AD B2C pode fornecer autenticação multifator com configuração mínima.
+O [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure ad B2C) é uma solução de gerenciamento de identidade de nuvem para aplicativos Web e móveis. O serviço fornece autenticação para aplicativos hospedados na nuvem e no local. Os tipos de autenticação incluem contas individuais, contas de rede social e contas corporativas federadas. Além disso, Azure AD B2C pode fornecer autenticação multifator com configuração mínima.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) e o Azure AD B2C são ofertas de produtos separados. Um locatário do AD do Azure representa uma organização, enquanto que um locatário do Azure AD B2C representa uma coleção de identidades a serem usados com aplicativos de terceira parte confiável. Para saber mais, consulte [Azure ad B2C: perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) e Azure AD B2C são ofertas de produtos separadas. Um locatário do Azure AD representa uma organização, enquanto um locatário de Azure AD B2C representa uma coleção de identidades a ser usada com aplicativos de terceira parte confiável. Para saber mais, consulte [Azure ad B2C: perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 Neste tutorial, você aprenderá a:
 
@@ -30,16 +36,16 @@ Neste tutorial, você aprenderá a:
 > * Use o Visual Studio para criar um aplicativo Web ASP.NET Core configurado para usar o locatário Azure AD B2C para autenticação
 > * Configurar políticas que controlam o comportamento do locatário do Azure AD B2C
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
-A seguir é necessários para este passo a passo:
+Os itens a seguir são necessários para este passo a passos:
 
 * [Assinatura Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
-## <a name="create-the-azure-active-directory-b2c-tenant"></a>Criar o locatário do Azure Active Directory B2C
+## <a name="create-the-azure-active-directory-b2c-tenant"></a>Criar o locatário Azure Active Directory B2C
 
-Crie um locatário Azure Active Directory B2C [conforme descrito na documentação](/azure/active-directory-b2c/active-directory-b2c-get-started). Quando solicitado, associar o locatário com uma assinatura do Azure é opcional para este tutorial.
+Crie um locatário Azure Active Directory B2C [conforme descrito na documentação](/azure/active-directory-b2c/active-directory-b2c-get-started). Quando solicitado, associar o locatário a uma assinatura do Azure é opcional para este tutorial.
 
 ## <a name="register-the-app-in-azure-ad-b2c"></a>Registrar o aplicativo no Azure AD B2C
 
@@ -47,12 +53,12 @@ No locatário Azure AD B2C recém-criado, Registre seu aplicativo usando [as eta
 
 Use os seguintes valores:
 
-| Configuração                       | {1&gt;Valor&lt;1}                     | {1&gt;Observações&lt;1}                                                                                                                                                                                              |
+| Setting                       | Valor                     | Anotações                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**                      | *nome do aplicativo &lt;&gt;*        | Insira um **nome** para o aplicativo que descreve seu aplicativo para os consumidores.                                                                                                                                 |
+| **Nome**                      | *&lt;nome do aplicativo&gt;*        | Insira um **nome** para o aplicativo que descreve seu aplicativo para os consumidores.                                                                                                                                 |
 | **Incluir aplicativo Web/API Web** | Sim                       |                                                                                                                                                                                                    |
 | **Permitir fluxo implícito**       | Sim                       |                                                                                                                                                                                                    |
-| **URL de Resposta**                 | `https://localhost:44300/signin-oidc` | As URLs de Resposta são pontos de extremidade para onde o Azure AD B2C retornará os tokens que o aplicativo solicitar. O Visual Studio fornece a URL de resposta a ser usada. Por enquanto, insira `https://localhost:44300/signin-oidc` para preencher o formulário. |
+| **URL de resposta**                 | `https://localhost:44300/signin-oidc` | As URLs de Resposta são pontos de extremidade para onde o Azure AD B2C retornará os tokens que o aplicativo solicitar. O Visual Studio fornece a URL de resposta a ser usada. Por enquanto, insira `https://localhost:44300/signin-oidc` para preencher o formulário. |
 | **URI da ID do Aplicativo**                | Deixar em branco               | Não é necessário para este tutorial.                                                                                                                                                                    |
 | **Incluir cliente nativo**     | Não                        |                                                                                                                                                                                                    |
 
@@ -65,7 +71,7 @@ Nada mais pode ser configurado no locatário Azure AD B2C neste momento, mas dei
 
 ## <a name="create-an-aspnet-core-app-in-visual-studio"></a>Criar um aplicativo ASP.NET Core no Visual Studio
 
-O modelo de aplicativo Web Visual Studio pode ser configurado para usar o locatário do Azure AD B2C para autenticação.
+O modelo de aplicativo Web do Visual Studio pode ser configurado para usar o locatário Azure AD B2C para autenticação.
 
 No Visual Studio:
 
@@ -73,7 +79,7 @@ No Visual Studio:
 2. Selecione **aplicativo Web** na lista de modelos.
 3. Selecione o botão **alterar autenticação** .
     
-    ![Botão de autenticação de alteração](./azure-ad-b2c/_static/changeauth.png)
+    ![Botão Alterar autenticação](./azure-ad-b2c/_static/changeauth.png)
 
 4. Na caixa de diálogo **alterar autenticação** , selecione **contas de usuário individuais**e, em seguida, selecione **conectar a um repositório de usuários existente na nuvem** na lista suspensa. 
     
@@ -81,7 +87,7 @@ No Visual Studio:
 
 5. Preencha o formulário com os seguintes valores:
     
-    | Configuração                       | {1&gt;Valor&lt;1}                                                 |
+    | Setting                       | Valor                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **Nome de domínio**               | *&lt;o nome de domínio do seu locatário B2C&gt;*          |
     | **ID do aplicativo**            | *&lt;colar a ID do aplicativo da área de transferência&gt;* |
@@ -101,14 +107,14 @@ Retorne à janela do navegador com as propriedades do aplicativo B2C ainda abert
 
 ## <a name="configure-policies"></a>Configurar políticas
 
-Use as etapas na documentação do Azure AD B2C para [criar uma política de inscrição ou de entrada](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions)e, em seguida, [crie uma política de redefinição de senha](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Use os valores de exemplo fornecidos na documentação para **provedores de identidade**, **atributos de inscrição**e **declarações de aplicativo**. Usar o botão **executar agora** para testar as políticas, conforme descrito na documentação é opcional.
+Use as etapas na documentação do Azure AD B2C para [criar uma política de inscrição ou de entrada](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions)e, em seguida, [crie uma política de redefinição de senha](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Use os valores de exemplo fornecidos na documentação para ** Identity provedores**, **atributos de inscrição**e declarações de **aplicativo**. Usar o botão **executar agora** para testar as políticas, conforme descrito na documentação é opcional.
 
 > [!WARNING]
 > Verifique se os nomes de política são exatamente conforme descrito na documentação, pois essas políticas foram usadas na caixa de diálogo **alterar autenticação** no Visual Studio. Os nomes de política podem ser verificados em *appSettings. JSON*.
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Configurar as opções subjacentes de OpenIdConnectOptions/JwtBearer/cookie
 
-Para configurar as opções subjacentes diretamente, use a constante de esquema apropriada no `Startup.ConfigureServices`:
+Para configurar as opções subjacentes diretamente, use a constante de esquema `Startup.ConfigureServices`apropriada no:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(
@@ -142,9 +148,9 @@ O navegador redireciona para o locatário do Azure AD B2C. Entre com uma conta e
 
 Depois de entrar com êxito, o navegador redireciona para o aplicativo Web.
 
-![Êxito](./azure-ad-b2c/_static/success.png)
+![Sucesso](./azure-ad-b2c/_static/success.png)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você aprendeu a:
 

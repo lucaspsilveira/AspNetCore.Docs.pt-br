@@ -6,19 +6,25 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: d49b51d11d3f14d0c3edbe1765d74fd63e3ac061
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: f74327cd5bb6a5794c90ffdd3896f2b343e175a6
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657748"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774880"
 ---
 # <a name="use-web-api-conventions"></a>Usar convenções de API Web
 
 Por [Pranav Krishnamoorthy](https://github.com/pranavkm) e [Scott Addie](https://github.com/scottaddie)
 
-O ASP.NET Core 2.2 (e posterior) inclui uma forma de extrair a [documentação da API](xref:tutorials/web-api-help-pages-using-swagger) comum e aplicá-la a várias ações, controladores ou a todos os controladores em um assembly. As convenções de API da Web são um substituto para decorar ações individuais com [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
+O ASP.NET Core 2.2 (e posterior) inclui uma forma de extrair a [documentação da API](xref:tutorials/web-api-help-pages-using-swagger) comum e aplicá-la a várias ações, controladores ou a todos os controladores em um assembly. As convenções de API Web são um substituto para decorar ações [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute)individuais com o.
 
 Uma convenção permite que você:
 
@@ -35,7 +41,7 @@ No runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> reconhece as convençõe
 
 As convenções não fazem composição. Cada ação pode ser associada a exatamente uma convenção. As convenções mais específicas têm precedência sobre as menos específicas. A seleção é não determinística quando duas ou mais convenções da mesma prioridade se aplicam a uma ação. As seguintes opções existem para aplicar uma convenção a uma ação, da mais específica à menos específica:
 
-1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; se aplica a ações individuais e especifica o tipo de convenção e o método de Convenção que se aplica.
+1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute`&mdash; Aplica-se a ações individuais e especifica o tipo de convenção e o método de Convenção que se aplica.
 
     No exemplo a seguir, o método de convenção `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` do tipo de convenção padrão é aplicado à ação `Update`:
 
@@ -73,7 +79,7 @@ Se as convenções padrão da API não atenderem às suas necessidades, crie sua
 
 ### <a name="response-types"></a>Tipos de resposta
 
-Esses métodos são anotados com atributos `[ProducesResponseType]` ou `[ProducesDefaultResponseType]`. Por exemplo:
+Esses métodos são anotados com atributos `[ProducesResponseType]` ou `[ProducesDefaultResponseType]`. Por exemplo: 
 
 ```csharp
 public static class MyAppConventions
@@ -93,7 +99,7 @@ Se atributos de metadados mais específicos estão ausentes, a aplicação dessa
 
 ### <a name="naming-requirements"></a>Requisitos de nomenclatura
 
-Os atributos `[ApiConventionNameMatch]` e `[ApiConventionTypeMatch]` podem ser aplicados ao método de convenção que determina as ações às quais eles são aplicáveis. Por exemplo:
+Os atributos `[ApiConventionNameMatch]` e `[ApiConventionTypeMatch]` podem ser aplicados ao método de convenção que determina as ações às quais eles são aplicáveis. Por exemplo: 
 
 ```csharp
 [ProducesResponseType(StatusCodes.Status200OK)]

@@ -1,19 +1,23 @@
 ---
-title: Comece com ASP.NET CoreSignalR
+title: Introdução ao ASP.NET CoreSignalR
 author: bradygaster
-description: Neste tutorial, você cria um aplicativo SignalRde bate-papo que usa ASP.NET Core .
+description: Neste tutorial, você cria um aplicativo de chat que usa ASP.NET Core SignalR.
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/21/2019
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: 869eb325ee95a78e4b16c61c5b0573bb094292e3
-ms.sourcegitcommit: 9a46e78c79d167e5fa0cddf89c1ef584e5fe1779
+ms.openlocfilehash: 3fab97781fe354fd3d244880a00353957d7cfabf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/09/2020
-ms.locfileid: "80994618"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774555"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Tutorial: introdução ao SignalR para ASP.NET Core
 
@@ -58,7 +62,7 @@ No final, você terá um aplicativo de chat funcionando:
 
 * Na caixa de diálogo **Configurar seu novo projeto**, nomeie o projeto *SignalRChat* e, em seguida, selecione **Criar**.
 
-* Na **caixa de diálogo Criar um novo ASP.NET Página da Web,** selecione **.NET Core** e **ASP.NET Core 3.0**. 
+* Na caixa de diálogo **criar um novo aplicativo web ASP.NET Core** , selecione **.net Core** e **ASP.NET Core 3,0**. 
 
 * Selecione **Aplicativo Web** para criar um projeto que usa Razor Pages e, em seguida, selecione **Criar**.
 
@@ -89,7 +93,7 @@ No final, você terá um aplicativo de chat funcionando:
 
 ## <a name="add-the-signalr-client-library"></a>Adicionar a biblioteca de clientes do SignalR
 
-A biblioteca do servidor SignalR está incluída na estrutura compartilhada do ASP.NET Core 3.0. A biblioteca de clientes do JavaScript não é incluída automaticamente no projeto. No cenário deste tutorial, você usará o Gerenciador de Bibliotecas (LibMan) para baixar a biblioteca de clientes do *unpkg*. unpkg é uma rede de entrega de conteúdo (CDN) que pode entregar qualquer coisa encontrada no npm, o gerenciador de pacotes Node.js.
+A biblioteca do servidor SignalR está incluída na estrutura compartilhada do ASP.NET Core 3.0. A biblioteca de clientes do JavaScript não é incluída automaticamente no projeto. No cenário deste tutorial, você usará o Gerenciador de Bibliotecas (LibMan) para baixar a biblioteca de clientes do *unpkg*. unpkg é uma CDN (rede de distribuição de conteúdo) que pode entregar qualquer coisa encontrada em NPM, o Gerenciador de pacotes do node. js.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
@@ -101,11 +105,11 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
 * Selecione **Escolher arquivos específicos**, expanda a pasta *distribuidor/navegador* e selecione *signalr.js* e *signalr.min.js*.
 
-* Defina **a localização de destino** para *wwwroot/js/signalr/* e selecione **Instalar**.
+* Defina **local de destino** como *wwwroot/js/signalr/* e selecione **instalar**.
 
   ![Caixa de diálogo Adicionar Biblioteca do Lado do Cliente – selecionar biblioteca](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
-  LibMan cria uma pasta *wwwroot/js/signalr* e copia os arquivos selecionados para ele.
+  LibMan cria uma pasta *wwwroot/js/signalr* e copia os arquivos selecionados nela.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
@@ -123,7 +127,7 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
   Os parâmetros especificam as seguintes opções:
   * Use o provedor unpkg.
-  * Copiar arquivos para o destino *wwwroot/js/signalr.*
+  * Copie os arquivos para o destino *wwwroot/js/signalr* .
   * Copie apenas os arquivos especificados.
 
   A saída se parece com o seguinte exemplo:
@@ -152,7 +156,7 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
   Os parâmetros especificam as seguintes opções:
   * Use o provedor unpkg.
-  * Copiar arquivos para o destino *wwwroot/js/signalr.*
+  * Copie os arquivos para o destino *wwwroot/js/signalr* .
   * Copie apenas os arquivos especificados.
 
   A saída se parece com o seguinte exemplo:
@@ -242,7 +246,7 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 > [!TIP]
 > * Se o aplicativo não funcionar, abra as ferramentas para desenvolvedores do navegador (F12) e acesse o console. Você pode encontrar erros relacionados ao código HTML e JavaScript. Por exemplo, suponha que você coloque *signalr.js* em uma pasta diferente daquela direcionada. Nesse caso, a referência a esse arquivo não funcionará e ocorrerá um erro 404 no console.
 >   ![Erro de signalr.js não encontrado](signalr/_static/3.x/f12-console.png)
-> * Se você tiver o erro ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY no Chrome, execute esses comandos para atualizar seu certificado de desenvolvimento:
+> * Se você receber o erro ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY no Chrome, execute estes comandos para atualizar seu certificado de desenvolvimento:
 >
 >   ```dotnetcli
 >   dotnet dev-certs https --clean
@@ -261,7 +265,7 @@ Este tutorial ensina as noções básicas da criação de um aplicativo em tempo
 > * Criar um hub do SignalR.   
 > * Configurar o projeto para usar o SignalR.   
 > * Adicione o código que envia mensagens de qualquer cliente para todos os clientes conectados.  
-No final, você terá um aplicativo ![de bate-papo em funcionamento: aplicativo de exemplo SignalR](signalr/_static/2.x/signalr-get-started-finished.png) 
+No final, você terá um aplicativo de chat em funcionamento: ![aplicativo de exemplo do signalr](signalr/_static/2.x/signalr-get-started-finished.png) 
 
 ## <a name="prerequisites"></a>Pré-requisitos    
 
@@ -320,7 +324,7 @@ No final, você terá um aplicativo ![de bate-papo em funcionamento: aplicativo 
 
 ## <a name="add-the-signalr-client-library"></a>Adicionar a biblioteca de clientes do SignalR   
 
-A biblioteca do servidor SignalR está incluída no metapacote `Microsoft.AspNetCore.App`. A biblioteca de clientes do JavaScript não é incluída automaticamente no projeto. No cenário deste tutorial, você usará o Gerenciador de Bibliotecas (LibMan) para baixar a biblioteca de clientes do *unpkg*. unpkg é uma rede de entrega de conteúdo (CDN) que pode entregar qualquer coisa encontrada no npm, o gerenciador de pacotes Node.js. 
+A biblioteca do servidor SignalR está incluída no metapacote `Microsoft.AspNetCore.App`. A biblioteca de clientes do JavaScript não é incluída automaticamente no projeto. No cenário deste tutorial, você usará o Gerenciador de Bibliotecas (LibMan) para baixar a biblioteca de clientes do *unpkg*. unpkg é uma CDN (rede de distribuição de conteúdo) que pode entregar qualquer coisa encontrada em NPM, o Gerenciador de pacotes do node. js. 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)  
 
@@ -470,12 +474,12 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 
   O nome e a mensagem são exibidos em ambas as páginas instantaneamente.   
 
-  ![SignalRaplicativo amostra](signalr/_static/2.x/signalr-get-started-finished.png) 
+  ![SignalRaplicativo de exemplo](signalr/_static/2.x/signalr-get-started-finished.png) 
 
 > [!TIP]    
 > Se o aplicativo não funcionar, abra as ferramentas para desenvolvedores do navegador (F12) e acesse o console. Você pode encontrar erros relacionados ao código HTML e JavaScript. Por exemplo, suponha que você coloque *signalr.js* em uma pasta diferente daquela direcionada. Nesse caso, a referência a esse arquivo não funcionará e ocorrerá um erro 404 no console.   
 > ![Erro de signalr.js não encontrado](signalr/_static/2.x/f12-console.png)    
 ## <a name="additional-resources"></a>Recursos adicionais 
-* [Versão do Youtube deste tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)   
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)   
 
 ::: moniker-end

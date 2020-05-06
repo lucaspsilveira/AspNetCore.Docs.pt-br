@@ -6,21 +6,27 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 28b463bccfb8aff4d10b95aa9a984455b4f4b976
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: bbd16e2e045a24f018eb59b67dfdf50d9bed6f32
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658812"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775031"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
 Por [Tom Dykstra](https://github.com/tdykstra/) e [Steve Smith](https://ardalis.com/)
 
-Este artigo abrange abordagens comuns para lidar com erros em aplicativos web ASP.NET Core. Consulte <xref:web-api/handle-errors> as APIs da Web.
+Este artigo aborda abordagens comuns para lidar com erros em ASP.NET Core aplicativos Web. Consulte <xref:web-api/handle-errors> para APIs da Web.
 
-[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Como baixar](xref:index#how-to-download-a-sample).) O artigo inclui instruções sobre como definir`#if` `#endif`diretivas de pré-processador ( , ) `#define`no aplicativo de amostra para habilitar diferentes cenários.
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Como baixar](xref:index#how-to-download-a-sample).) O artigo inclui instruções sobre como definir diretivas de pré-processador (`#if`, `#endif`, `#define`) no aplicativo de exemplo para habilitar cenários diferentes.
 
 ## <a name="developer-exception-page"></a>Página de exceção do desenvolvedor
 
@@ -31,7 +37,7 @@ A *Página de exceção do desenvolvedor* exibe informações detalhadas sobre a
 Coloque a chamada para <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*> antes de qualquer middleware no qual você deseja capturar exceções.
 
 > [!WARNING]
-> Habilite a página de exceção do desenvolvedor **somente quando o aplicativo estiver em execução no ambiente Desenvolvimento**. Não é recomendável compartilhar informações de exceção detalhadas publicamente quando o aplicativo é executado em produção. Para saber mais sobre a configuração de ambientes, confira <xref:fundamentals/environments>.
+> Habilite a página de exceção do desenvolvedor **somente quando o aplicativo estiver em execução no ambiente de desenvolvimento**. Não é recomendável compartilhar informações de exceção detalhadas publicamente quando o aplicativo é executado em produção. Para saber mais sobre a configuração de ambientes, confira <xref:fundamentals/environments>.
 
 A página inclui as seguintes informações sobre a exceção e a solicitação:
 
@@ -53,7 +59,7 @@ No exemplo a seguir, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensio
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-O modelo de aplicativo Razor Pages fornece uma Página de erro (*.cshtml*) e uma classe <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) na pasta *Páginas*. Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
+O Razor modelo de aplicativo pages fornece uma página de erro (*. cshtml*) <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> e`ErrorModel`uma classe () na pasta *páginas* . Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
 
 ```csharp
 [AllowAnonymous]
@@ -64,7 +70,7 @@ public IActionResult Error()
 }
 ```
 
-Não marque o método de ação do manipulador `HttpGet`de erros com atributos do método HTTP, como . Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
+Não marque o método de ação do manipulador de erros com atributos do método `HttpGet`http, como. Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
 
 ### <a name="access-the-exception"></a>Acessar a exceção
 
@@ -85,7 +91,7 @@ Este é um exemplo de como usar um lambda para a manipulação de exceção:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_HandlerPageLambda)]
 
-No código anterior, `await context.Response.WriteAsync(new string(' ', 512));` é adicionado para que o navegador Internet Explorer exiba a mensagem de erro em vez de uma mensagem de erro IE. Para obter mais informações, consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
+No código anterior, `await context.Response.WriteAsync(new string(' ', 512));` é adicionado para que o navegador Internet Explorer exiba a mensagem de erro em vez de uma mensagem de erro do IE. Para obter mais informações, consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
 
 > [!WARNING]
 > **Não** forneça informações de erro confidenciais de <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> ou <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> para clientes. Fornecer erros é um risco à segurança.
@@ -133,7 +139,7 @@ O método de extensão <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensi
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-O modelo de URL pode incluir um espaço reservado `{0}` para o código de status, conforme mostrado no exemplo. Se o modelo de URL começar com um til (~), este será substituído pelo `PathBase` do aplicativo. Se você apontar para um ponto de extremidade dentro do aplicativo, crie um modo de exibição do MVC ou Razor Page para o ponto de extremidade. Consulte um exemplo de Razor Pages em *Pages/StatusCode.cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+O modelo de URL pode incluir um espaço reservado `{0}` para o código de status, conforme mostrado no exemplo. Se o modelo de URL começar com um til (~), este será substituído pelo `PathBase` do aplicativo. Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição Razor ou página do MVC para o ponto de extremidade. Para obter Razor um exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Este método normalmente é usado quando o aplicativo:
 
@@ -149,14 +155,14 @@ O método de extensão <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensi
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-Se você apontar para um ponto de extremidade dentro do aplicativo, crie um modo de exibição do MVC ou Razor Page para o ponto de extremidade. Consulte um exemplo de Razor Pages em *Pages/StatusCode.cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição Razor ou página do MVC para o ponto de extremidade. Para obter Razor um exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Este método normalmente é usado quando o aplicativo tem que:
 
 * Processar a solicitação sem redirecionar para um ponto de extremidade diferente. Para aplicativos Web, a barra de endereços do navegador do cliente reflete o ponto de extremidade originalmente solicitado.
 * Preservar e retornar o código de status original com a resposta.
 
-Os modelos de URL e cadeia de caracteres de consulta podem incluir um espaço reservado (`{0}`) para o código de status. O modelo de URL deve começar com uma barra (`/`). Ao usar um espaço reservado no caminho, verifique se o ponto de extremidade (página ou controlador) pode processar o segmento de linha. Por exemplo, uma Página do Razor para erros deve aceitar o valor de segmento de linha opcional com a diretiva `@page`:
+Os modelos de URL e cadeia de caracteres de consulta podem incluir um espaço reservado (`{0}`) para o código de status. O modelo de URL deve começar com uma barra (`/`). Ao usar um espaço reservado no caminho, verifique se o ponto de extremidade (página ou controlador) pode processar o segmento de linha. Por exemplo, uma Razor página de erros deve aceitar o valor do segmento de caminho opcional `@page` com a diretiva:
 
 ```cshtml
 @page "{code?}"
@@ -168,9 +174,9 @@ O ponto de extremidade que processa o erro pode obter a URL original que gerou o
 
 ## <a name="disable-status-code-pages"></a>Desabilitar páginas de código de status
 
-Para desativar páginas de código de status para um [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) controlador MVC ou método de ação, use o atributo.
+Para desabilitar páginas de código de status para um controlador MVC ou um método de [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) ação, use o atributo.
 
-Para desabilitar as páginas de código de status de solicitações específicas em um método manipulador Razor Pages ou em um controlador MVC, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
+Para desabilitar as páginas de código de status para solicitações Razor específicas em um método de manipulador de páginas ou em <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>um controlador MVC, use:
 
 ```csharp
 var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();
@@ -210,7 +216,7 @@ Quando executado no [IIS](/iis) (ou no Serviço de Aplicativo do Azure) ou no [I
 
 ## <a name="database-error-page"></a>Página de erro do banco de dados
 
-Página de erro do banco de dados O Middleware captura exceções relacionadas ao banco de dados que podem ser resolvidas usando migrações do Entity Framework. Quando estas exceções ocorrem, é gerada uma resposta HTML com detalhes das ações possíveis para resolver o problema. Esta página só deve ser habilitada no Ambiente de desenvolvimento. Habilite a página adicionando código a `Startup.Configure`:
+O middleware da página de erro do banco de dados captura as exceções relacionadas ao banco de dados que podem ser resolvidas usando Entity Framework migrações. Quando estas exceções ocorrem, é gerada uma resposta HTML com detalhes das ações possíveis para resolver o problema. Esta página só deve ser habilitada no Ambiente de desenvolvimento. Habilite a página adicionando código a `Startup.Configure`:
 
 ```csharp
 if (env.IsDevelopment())
@@ -223,7 +229,7 @@ if (env.IsDevelopment())
 
 ## <a name="exception-filters"></a>Filtros de exceção
 
-Em aplicativos MVC, os filtros de exceção podem ser configurados globalmente, por controlador ou por ação. Em aplicativos do Razor Pages, eles podem ser configurados globalmente ou por modelo de página. Esses filtros tratam qualquer exceção sem tratamento ocorrida durante a execução de uma ação do controlador ou de outro filtro. Para obter mais informações, consulte <xref:mvc/controllers/filters#exception-filters>.
+Em aplicativos MVC, os filtros de exceção podem ser configurados globalmente, por controlador ou por ação. Em Razor páginas aplicativos, eles podem ser configurados globalmente ou por modelo de página. Esses filtros tratam qualquer exceção sem tratamento ocorrida durante a execução de uma ação do controlador ou de outro filtro. Para obter mais informações, consulte <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
 > Os filtros de exceção são úteis para interceptar exceções que ocorrem em ações do MVC, mas não são tão flexíveis quanto o middleware de tratamento de exceção. É recomendável usar o middleware. Use filtros somente onde você precisar fazer o tratamento de erro de forma diferente com base na ação de MVC escolhida.

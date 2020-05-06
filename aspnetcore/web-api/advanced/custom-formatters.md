@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba como criar e usar formatadores personalizados para APIs Web no ASP.NET Core.
 ms.author: riande
 ms.date: 02/08/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: web-api/advanced/custom-formatters
-ms.openlocfilehash: dd25cda460ba758cd07de094eaadd1f2d8c28657
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 0836fc288a015adb9a6223c5a2b681b1b03bded4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667667"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777313"
 ---
 # <a name="custom-formatters-in-aspnet-core-web-api"></a>Formatadores personalizados na API Web ASP.NET Core
 
@@ -106,7 +112,7 @@ Para usar um formatador personalizado, adicione uma instância da classe de form
 
 Formatadores são avaliados na ordem em que você os insere. O primeiro deles tem precedência.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 * [Aplicativo de exemplo para este documento](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), que implementa formatadores de entrada e saída simples de vCard. O aplicativo lê e grava vCards parecidos com o exemplo a seguir:
 
@@ -115,7 +121,8 @@ BEGIN:VCARD
 VERSION:2.1
 N:Davolio;Nancy
 FN:Nancy Davolio
-UID:20293482-9240-4d68-b475-325df4a83728
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+uid:20293482-9240-4d68-b475-325df4a83728
 END:VCARD
 ```
 

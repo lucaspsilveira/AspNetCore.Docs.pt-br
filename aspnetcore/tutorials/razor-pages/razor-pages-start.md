@@ -1,16 +1,22 @@
 ---
-title: 'Tutorial: introdução ao Razor Pages no ASP.NET Core'
+title: 'Tutorial: introdução às Razor páginas no ASP.NET Core'
 author: rick-anderson
-description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Core. Saiba como criar um modelo, gerar código para Razor Pages, usar o Entity Framework Core e o SQL Server para acesso a dados, adicionar funcionalidade de pesquisa, adicionar validação de entrada e usar migrações para atualizar o modelo.
+description: Esta série de tutoriais mostra como usar Razor páginas no ASP.NET Core. Saiba como criar um modelo, gerar código para Razor páginas, usar Entity Framework Core e SQL Server para acesso a dados, adicionar funcionalidade de pesquisa, adicionar validação de entrada e usar migrações para atualizar o modelo.
 ms.author: riande
 ms.date: 11/12/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 8ed12b1778673962fe0b174e005bd6d8a7f54168
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78658539"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774867"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
@@ -62,7 +68,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 * Nomeie o projeto **RazorPagesMovie**. É importante nomear o projeto *RazorPagesMovie* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selecione **ASP.NET Núcleo 3.1** na estada, aplicativo **da Web**e selecione **Criar**.
+* Selecione **ASP.NET Core 3,1** no menu suspenso, **aplicativo Web**e, em seguida, selecione **criar**.
 
 ![novo Aplicativo Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
@@ -86,7 +92,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama OmniSharp da barra de status fica verde, uma caixa de diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'RazorPagesMovie'. Adicioná-los?** Selecione **Sim**.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
@@ -100,9 +106,9 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
-* Na **configuração da nova** caixa de diálogo do aplicativo da Web, defina o **Framework de destino** para **.NET Core 3.1**.
+* Na caixa de diálogo **configurar seu novo aplicativo Web** , defina a **estrutura de destino** como **.NET Core 3,1**.
 
-  ![seleção macOS .NET Core 3.1](razor-pages-start/_static/targetframework3.png)
+  ![seleção do macOS .NET Core 3,1](razor-pages-start/_static/targetframework3.png)
 
 * Nomeie o projeto **RazorPagesMovie** e, em seguida, selecione **Criar**.
 
@@ -231,7 +237,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama OmniSharp da barra de status fica verde, uma caixa de diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'RazorPagesMovie'. Adicioná-los?** Selecione **Sim**.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
@@ -245,7 +251,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
-* Na **configuração da nova caixa de diálogo ASP.NET Core API** da Web, defina o **Framework de destino** para **.NET Core 3.1**.
+* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** como **.NET Core 3,1**.
 
   ![Seleção do .NET Core 3.0 do macOS](razor-pages-start/_static/targetframework3.png)
 
@@ -281,7 +287,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Pressione **Ctrl-F5** para funcionar sem o depurador.
+* Pressione **Ctrl-F5** para executar sem o depurador.
 
   O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
 
@@ -323,9 +329,9 @@ Aqui está uma visão geral das pastas do projeto principal e os arquivos que vo
 
 ### <a name="pages-folder"></a>Pasta Páginas
 
-Contém as Razor Pages e os arquivos de suporte. Cada Razor Page é um par de arquivos:
+Contém Razor páginas e arquivos de suporte. Cada Razor página é um par de arquivos:
 
-* Um arquivo *.cshtml* que contém a marcação HTML com o código C# usando a sintaxe Razor.
+* Um arquivo *. cshtml* que contém marcação HTML com código C# usando Razor a sintaxe.
 * Um arquivo *.cshtml.cs* que contém o código C# que manipula os eventos de página.
 
 Arquivos de suporte têm nomes que começam com um sublinhado. Por exemplo, o arquivo *_Layout.cshtml* configura os elementos de interface do usuário comuns a todas as páginas. Esse arquivo define o menu de navegação na parte superior da página e a notificação de direitos autorais na parte inferior da página. Para obter mais informações, consulte <xref:mvc/views/layout>.
@@ -348,7 +354,7 @@ Contém o código que configura o comportamento do aplicativo, como se ele reque
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Versão do Youtube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Próximas etapas
 

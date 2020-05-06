@@ -1,18 +1,24 @@
 ---
-title: Visão geral do ASP.NET Core MVC
+title: Visão geral sobre o ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/overview
-ms.openlocfilehash: 2911399f6ed4e14345171c908c4306b9c3e33805
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c6c7fd1d0cb7a462b3a13d5e31a50c704a00c0ef
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78658427"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775460"
 ---
-# <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
+# <a name="overview-of-aspnet-core-mvc"></a>Visão geral sobre o ASP.NET Core MVC
 
 Por [Steve Smith](https://ardalis.com/)
 
@@ -37,11 +43,11 @@ O Modelo em um aplicativo MVC representa o estado do aplicativo e qualquer lógi
 
 ### <a name="view-responsibilities"></a>Responsabilidades da Exibição
 
-As exibições são responsáveis por apresentar o conteúdo por meio da interface do usuário. Elas usam o [mecanismo de exibição do Razor](#razor-view-engine) para inserir o código .NET em uma marcação HTML. Deve haver uma lógica mínima nas exibições e qualquer lógica contida nelas deve se relacionar à apresentação do conteúdo. Se você precisar executar uma grande quantidade de lógica em arquivos de exibição para exibir dados de um modelo complexo, considere o uso de um [Componente de Exibição](views/view-components.md), ViewModel ou um modelo de exibição para simplificar a exibição.
+As exibições são responsáveis por apresentar o conteúdo por meio da interface do usuário. Eles usam o [ Razor mecanismo de exibição](#razor-view-engine) para inserir o código .net na marcação HTML. Deve haver uma lógica mínima nas exibições e qualquer lógica contida nelas deve se relacionar à apresentação do conteúdo. Se você precisar executar uma grande quantidade de lógica em arquivos de exibição para exibir dados de um modelo complexo, considere o uso de um [Componente de Exibição](views/view-components.md), ViewModel ou um modelo de exibição para simplificar a exibição.
 
 ### <a name="controller-responsibilities"></a>Responsabilidades do Controlador
 
-Os controladores são os componentes que cuidam da interação do usuário, trabalham com o modelo e, em última análise, selecionam uma exibição a ser renderizada. Em um aplicativo MVC, a exibição só mostra informações; o controlador manipula e responde à entrada e à interação do usuário. No padrão MVC, o controlador é o ponto de entrada inicial e é responsável por selecionar quais tipos de modelo serão usados para o trabalho e qual exibição será renderizada (daí seu nome – ele controla como o aplicativo responde a determinada solicitação).
+Os controladores são os componentes que cuidam da interação do usuário, trabalham com o modelo e, em última análise, selecionam uma exibição a ser renderizada. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. No padrão MVC, o controlador é o ponto de entrada inicial e é responsável por selecionar quais tipos de modelo serão usados para o trabalho e qual exibição será renderizada (daí seu nome – ele controla como o aplicativo responde a determinada solicitação).
 
 > [!NOTE]
 > Os controladores não devem ser excessivamente complicados por muitas responsabilidades. Para evitar que a lógica do controlador se torne excessivamente complexa, efetue push da lógica de negócios para fora do controlador e insira-a no modelo de domínio.
@@ -67,10 +73,10 @@ ASP.NET Core MVC inclui o seguinte:
 * [Áreas](#areas)
 * [APIs da Web](#web-apis)
 * [Capacidade de teste](#testability)
-* [Mecanismo de exibição do Razor](#razor-view-engine)
-* [Exibições fortemente tipadas](#strongly-typed-views)
-* [Auxiliares de Marcas](#tag-helpers)
-* [Componentes da exibição](#view-components)
+* [RazorExibir mecanismo](#razor-view-engine)
+* [Exibições com rigidez de tipos](#strongly-typed-views)
+* [Auxiliares de Marca](#tag-helpers)
+* [Exibir componentes](#view-components)
 
 ### <a name="routing"></a>Roteamento
 
@@ -161,7 +167,7 @@ O aplicativo também pode usar a [injeção de dependência em arquivos no exibi
 </html>
 ```
 
-### <a name="filters"></a>Filtros.
+### <a name="filters"></a>Filtros
 
 Os [filtros](controllers/filters.md) ajudam os desenvolvedores a encapsular interesses paralelos, como tratamento de exceção ou autorização. Os filtros permitem a execução de uma lógica pré e pós-processamento personalizada para métodos de ação e podem ser configurados para execução em determinados pontos no pipeline de execução de uma solicitação específica. Os filtros podem ser aplicados a controladores ou ações como atributos (ou podem ser executados globalmente). Vários filtros (como `Authorize`) são incluídos na estrutura. `[Authorize]` é o atributo usado para criar filtros de autorização do MVC.
 
@@ -172,7 +178,7 @@ public class AccountController : Controller
 
 ### <a name="areas"></a>Áreas
 
-As [áreas](controllers/areas.md) fornecem uma maneira de particionar um aplicativo Web ASP.NET Core MVC grande em agrupamentos funcionais menores. Uma área é uma estrutura MVC dentro de um aplicativo. Em um projeto MVC, componentes lógicos como Modelo, Controlador e Exibição são mantidos em pastas diferentes e o MVC usa convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa etc. Cada uma dessas unidades tem suas próprias exibições, controladores e modelos de componentes lógicos.
+As [áreas](controllers/areas.md) fornecem uma maneira de particionar um grande aplicativo Web ASP.NET Core MVC em agrupamentos funcionais menores. Uma área é uma estrutura MVC dentro de um aplicativo. Em um projeto MVC, componentes lógicos como Modelo, Controlador e Exibição são mantidos em pastas diferentes e o MVC usa convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa etc. Cada uma dessas unidades tem suas próprias exibições, controladores e modelos de componentes lógicos.
 
 ### <a name="web-apis"></a>APIs da Web
 
@@ -186,9 +192,9 @@ Use a geração de links para habilitar o suporte para hipermídia. Habilite o s
 
 O uso pela estrutura da injeção de dependência e de interfaces a torna adequada para teste de unidade. Além disso, a estrutura inclui recursos (como um provedor TestHost e InMemory para o Entity Framework) que também agiliza e facilita a execução de [testes de integração](xref:test/integration-tests). Saiba mais sobre [como testar a lógica do controlador](controllers/testing.md).
 
-### <a name="razor-view-engine"></a>Mecanismo de exibição do Razor
+### <a name="razor-view-engine"></a>RazorExibir mecanismo
 
-As [exibições do ASP.NET Core MVC](views/overview.md) usam o [mecanismo de exibição do Razor](views/razor.md) para renderizar exibições. Razor é uma linguagem de marcação de modelo compacta, expressiva e fluida para definir exibições usando um código C# inserido. O Razor é usado para gerar o conteúdo da Web no servidor de forma dinâmica. Você pode combinar o código do servidor com o código e o conteúdo do lado cliente de maneira limpa.
+[ASP.NET Core exibições do MVC](views/overview.md) usam o [ Razor mecanismo de exibição](views/razor.md) para renderizar exibições. Razoré uma linguagem de marcação de modelo compacto, expressiva e fluida para definir exibições usando código C# inserido. Razoré usado para gerar dinamicamente o conteúdo da Web no servidor. Você pode combinar o código do servidor com o código e o conteúdo do lado cliente de maneira limpa.
 
 ```cshtml
 <ul>
@@ -198,11 +204,11 @@ As [exibições do ASP.NET Core MVC](views/overview.md) usam o [mecanismo de exi
 </ul>
 ```
 
-Usando o mecanismo de exibição do Razor, você pode definir [layouts](views/layout.md), [exibições parciais](views/partial.md) e seções substituíveis.
+Usando o Razor mecanismo de exibição, você pode definir [layouts](views/layout.md), [exibições parciais](views/partial.md) e seções substituíveis.
 
 ### <a name="strongly-typed-views"></a>Exibições fortemente tipadas
 
-As exibições do Razor no MVC podem ser fortemente tipadas com base no modelo. Os controladores podem passar um modelo fortemente tipado para as exibições, permitindo que elas tenham a verificação de tipo e o suporte do IntelliSense.
+Razoras exibições no MVC podem ser fortemente tipadas com base em seu modelo. Os controladores podem passar um modelo fortemente tipado para as exibições, permitindo que elas tenham a verificação de tipo e o suporte do IntelliSense.
 
 Por exemplo, a seguinte exibição renderiza um modelo do tipo `IEnumerable<Product>`:
 
@@ -218,7 +224,7 @@ Por exemplo, a seguinte exibição renderiza um modelo do tipo `IEnumerable<Prod
 
 ### <a name="tag-helpers"></a>Auxiliares de Marca
 
-Os [Auxiliares de Marca](views/tag-helpers/intro.md) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Use auxiliares de marca para definir marcas personalizadas (por exemplo, `<environment>`) ou para modificar o comportamento de marcas existentes (por exemplo, `<label>`). Os Auxiliares de Marca associam a elementos específicos com base no nome do elemento e seus atributos. Eles oferecem os benefícios da renderização do lado do servidor, enquanto preservam uma experiência de edição de HTML.
+Os [auxiliares de marcação](views/tag-helpers/intro.md) permitem que o código do lado do servidor participe da criação Razor e renderização de elementos HTML em arquivos. Use auxiliares de marca para definir marcas personalizadas (por exemplo, `<environment>`) ou para modificar o comportamento de marcas existentes (por exemplo, `<label>`). Os Auxiliares de Marca associam a elementos específicos com base no nome do elemento e seus atributos. Eles oferecem os benefícios da renderização do lado do servidor, enquanto preservam uma experiência de edição de HTML.
 
 Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o LinkTagHelper interno pode ser usado para criar um link para a ação `Login` do `AccountsController`:
 
@@ -243,7 +249,7 @@ O `EnvironmentTagHelper` pode ser usado para incluir scripts diferentes nas exib
 </environment>
 ```
 
-Os Auxiliares de Marca fornecem uma experiência de desenvolvimento amigável a HTML e um ambiente avançado do IntelliSense para a criação de HTML e marcação do Razor. A maioria dos Auxiliares de Marca internos é direcionada a elementos HTML existentes e fornece atributos do lado do servidor para o elemento.
+Os auxiliares de marcação fornecem uma experiência de desenvolvimento amigável em HTML e um ambiente sofisticado do IntelliSense Razor para criar HTML e marcação. A maioria dos Auxiliares de Marca internos é direcionada a elementos HTML existentes e fornece atributos do lado do servidor para o elemento.
 
 ### <a name="view-components"></a>Componentes da exibição
 
@@ -257,5 +263,5 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
+* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core biblioteca de](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; testes de unidade do MVC de tipo de alta segurança, fornecendo uma interface fluente para testar aplicativos de API Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.*)
 * <xref:blazor/integrate-components>

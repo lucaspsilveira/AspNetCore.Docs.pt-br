@@ -5,13 +5,19 @@ description: Descobrir links para recursos para saber mais sobre como hospedar a
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/docker/index
-ms.openlocfilehash: 78eb6f467c7e779e1bf998e8ac8e917a90895db9
-ms.sourcegitcommit: 6c8cff2d6753415c4f5d2ffda88159a7f6f7431a
+ms.openlocfilehash: 94996f279929f6e3837efb613c99927edbd9143e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81440721"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774581"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Hospedar o ASP.NET Core em contêineres do Docker
 
@@ -20,7 +26,7 @@ Os artigos a seguir estão disponíveis para saber mais sobre como hospedar apli
 [Introdução aos contêineres e ao Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index)  
 Veja como o uso de contêineres é uma abordagem de desenvolvimento de software na qual um aplicativo ou serviço, suas dependências e sua configuração são empacotados juntos como uma imagem de contêiner. A imagem pode ser testada e, em seguida, implantada em um host.
 
-[O que é Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-defined)  
+[O que é o Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-defined)  
 Descubra como o Docker é um projeto de software livre para automatizar a implantação de aplicativos como contêineres autossuficientes portáteis que podem ser executados na nuvem ou localmente.
 
 [Terminologia do Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/docker-terminology)  
@@ -40,4 +46,4 @@ Saiba como usar a extensão Ferramentas de Contêiner do Visual Studio para impl
 [Configurar o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga](xref:host-and-deploy/proxy-load-balancer)  
 Configuração adicional pode ser necessária para aplicativos hospedados atrás de servidores proxy e balanceadores de carga. Passar solicitações por meio de um proxy geralmente oculta informações sobre a solicitação original, como o esquema e o IP de cliente. Talvez seja necessário encaminhar manualmente algumas informações sobre a solicitação para o aplicativo.
 
-[GC usando Docker e pequenos recipientes](xref:performance/memory#sc) Discute a seleção de GC com pequenos recipientes.
+[GC usando o Docker e contêineres pequenos](xref:performance/memory#sc) Discute a seleção de GC com contêineres pequenos.

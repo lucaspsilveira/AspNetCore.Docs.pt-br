@@ -1,5 +1,5 @@
 ---
-title: Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
+title: Integre componentes Razor de ASP.NET Core Razor em páginas e aplicativos MVC
 author: guardrex
 description: Saiba mais sobre cenários de ligação de dados para componentes e Blazor elementos DOM em aplicativos.
 monikerRange: '>= aspnetcore-3.1'
@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/25/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: 4e2103b7e8b65478808093d7a31e8cfe29b04984
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558912"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82771768"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
 
@@ -144,7 +147,7 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos Razor Pages:
    });
    ```
 
-1. Adicione componentes roteáveis ao aplicativo. Por exemplo:
+1. Adicione componentes roteáveis ao aplicativo. Por exemplo: 
 
    ```razor
    @page "/counter"
@@ -227,7 +230,7 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos MVC:
    });
    ```
 
-1. Crie uma pasta de *páginas* e adicione componentes roteáveis ao aplicativo. Por exemplo:
+1. Crie uma pasta de *páginas* e adicione componentes roteáveis ao aplicativo. Por exemplo: 
 
    ```razor
    @page "/counter"
@@ -247,7 +250,7 @@ Para renderizar um componente de uma página ou exibição, use o [auxiliar de m
 
 ### <a name="render-stateful-interactive-components"></a>Renderizar componentes interativos com estado
 
-Os componentes interativos com estado podem ser adicionados a uma página ou exibição Razor.
+Componentes interativos com estado podem ser Razor adicionados a uma página ou exibição.
 
 Quando a página ou a exibição renderiza:
 
@@ -255,7 +258,7 @@ Quando a página ou a exibição renderiza:
 * O estado inicial do componente usado para o pré-processamento é perdido.
 * O novo estado do componente é criado SignalR quando a conexão é estabelecida.
 
-A seguinte página do Razor renderiza um `Counter` componente:
+A página Razor a seguir renderiza um `Counter` componente:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -273,7 +276,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/c
 
 ### <a name="render-noninteractive-components"></a>Renderizar componentes não interativos
 
-Na página Razor a seguir, o `Counter` componente é processado estaticamente com um valor inicial que é especificado usando um formulário. Como o componente é processado estaticamente, o componente não é interativo:
+Na página a Razor seguir, o `Counter` componente é processado estaticamente com um valor inicial que é especificado usando um formulário. Como o componente é processado estaticamente, o componente não é interativo:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -305,6 +308,6 @@ Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicio
 @using MyAppNamespace.Components
 ```
 
-O arquivo *_ViewImports. cshtml* está localizado na pasta *páginas* de um aplicativo Razor pages ou na pasta *views* de um aplicativo MVC.
+O arquivo *_ViewImports. cshtml* está localizado na pasta *páginas* de um Razor aplicativo de páginas ou na pasta *views* de um aplicativo MVC.
 
 Para obter mais informações, consulte <xref:blazor/components#import-components>.

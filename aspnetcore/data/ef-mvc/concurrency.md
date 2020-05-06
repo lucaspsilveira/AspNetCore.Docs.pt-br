@@ -1,20 +1,26 @@
 ---
-title: 'Tutorial: Lidar com a concorrência - ASP.NET MVC com EF Core'
+title: 'Tutorial: manipular o ASP.NET MVC de simultaneidade com EF Core'
 description: Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam a mesma entidade simultaneamente.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 6839e383093b993ff55095f26cf88cd68708f001
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: bbf04e3500b11a339dc59b6086d910b76eace735
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657391"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773595"
 ---
-# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Tutorial: Lidar com a concorrência - ASP.NET MVC com EF Core
+# <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Tutorial: manipular o ASP.NET MVC de simultaneidade com EF Core
 
 Nos tutoriais anteriores, você aprendeu a atualizar dados. Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam a mesma entidade simultaneamente.
 
@@ -75,11 +81,11 @@ Algumas das opções incluem o seguinte:
 
 * Você não pode deixar a alteração de Julio substituir a alteração de Alice.
 
-     Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 restaurado. Isso é chamado de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Como observado na introdução desta seção, se você não fizer qualquer codificação para o manuseio de moedas simultâneas, isso acontecerá automaticamente.
+     Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 restaurado. Isso é chamado de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Conforme observado na introdução a esta seção, se você não fizer qualquer codificação para manipulação de simultaneidade, isso ocorrerá automaticamente.
 
 * Você pode impedir que as alterações de Julio sejam atualizadas no banco de dados.
 
-     Normalmente, você exibirá uma mensagem de erro, mostrará a ele o estado atual dos dados e permitirá a ele aplicar as alterações novamente se ele ainda desejar fazê-las. Isso é chamado de um cenário *O armazenamento vence*. (Os valores do armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementará o cenário Store Wins neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado sobre o que está acontecendo.
+     Normalmente, você exibirá uma mensagem de erro, mostrará a ele o estado atual dos dados e permitirá a ele aplicar as alterações novamente se ele ainda desejar fazê-las. Isso é chamado de um cenário *O armazenamento vence*. (Os valores de armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementará o cenário armazenar vence neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado sobre o que está acontecendo.
 
 ### <a name="detecting-concurrency-conflicts"></a>Detectando conflitos de simultaneidade
 
@@ -240,7 +246,7 @@ Você alterou esse parâmetro para uma instância da entidade Departamento criad
 public async Task<IActionResult> Delete(Department department)
 ```
 
-Você também alterou o nome do método de ação de `DeleteConfirmed` para `Delete`. O código gerado por scaffolding usou o nome `DeleteConfirmed` para fornecer ao método HttpPost uma assinatura exclusiva. (A CLR requer métodos sobrecarregados para ter diferentes parâmetros de método.) Agora que as assinaturas são únicas, você pode ficar com a convenção MVC e usar o mesmo nome para os métodos httpPost e httpGet delete.
+Você também alterou o nome do método de ação de `DeleteConfirmed` para `Delete`. O código gerado por scaffolding usou o nome `DeleteConfirmed` para fornecer ao método HttpPost uma assinatura exclusiva. (O CLR requer métodos sobrecarregados para ter parâmetros de método diferentes.) Agora que as assinaturas são exclusivas, você pode manter a Convenção MVC e usar o mesmo nome para os métodos de exclusão HttpPost e HttpGet.
 
 Se o departamento já foi excluído, o método `AnyAsync` retorna falso e o aplicativo apenas volta para o método de Índice.
 
@@ -312,4 +318,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para aprender a implementar a herança de tabela por hierarquia para as entidades Instructor e Student.
 
 > [!div class="nextstepaction"]
-> [A seguir: Implementar herança de tabela por hierarquia](inheritance.md)
+> [Em seguida: implementar a herança de tabela por hierarquia](inheritance.md)

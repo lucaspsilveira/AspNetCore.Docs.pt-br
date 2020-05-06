@@ -1,21 +1,24 @@
 ---
 title: ASP.NET Core Blazor configuração do modelo de hospedagem
 author: guardrex
-description: Saiba mais Blazor sobre a configuração do modelo de hospedagem, incluindo como integrar componentes do Razor em aplicativos Razor Pages e MVC.
+description: Saiba mais Blazor sobre a configuração do modelo de hospedagem, Razor incluindo como Razor integrar componentes em páginas e aplicativos MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 05/04/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: c7e8d1f2dcba6432072a5cc11a6c5d78e50c2398
-ms.sourcegitcommit: c6f5ea6397af2dd202632cf2be66fc30f3357bcc
+ms.openlocfilehash: 17ed43a12643f067da73658bec72400acbe1be43
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159613"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772068"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core configuração de modelo de hospedagem mais incrivelmente
 
@@ -100,12 +103,12 @@ A `IWebAssemblyHostEnvironment.BaseAddress` propriedade pode ser usada durante a
 
 ### <a name="configuration"></a>Configuração
 
-Webassembly mais incrivelmente dá suporte à configuração de:
+Webassembly mais incrivelmente carrega a configuração de:
 
-* O [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider) para arquivos de configurações de aplicativo por padrão:
+* Arquivos de configurações do aplicativo por padrão:
   * *wwwroot/appSettings. JSON*
   * *wwwroot/appSettings. {ENVIRONMENT}. JSON*
-* Outros [provedores de configuração](xref:fundamentals/configuration/index) registrados pelo aplicativo.
+* Outros [provedores de configuração](xref:fundamentals/configuration/index) registrados pelo aplicativo. Nem todos os provedores são apropriados para aplicativos Webassembly mais poprestados. O esclarecimento sobre quais provedores têm suporte para Webassembly mais claro é acompanhado pelos [provedores de configuração do Clarify para o mais WASM (dotNet/AspNetCore. Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
 > A configuração em um aplicativo Webassembly mais incrivelmente é visível para os usuários. **Não armazene os segredos ou as credenciais do aplicativo na configuração.**
@@ -136,12 +139,12 @@ Injetar <xref:Microsoft.Extensions.Configuration.IConfiguration> uma instância 
 
 #### <a name="provider-configuration"></a>Configuração do provedor
 
-O exemplo a seguir usa <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> um e o [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider) para fornecer configuração adicional:
+O exemplo a seguir usa <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> um para fornecer configuração adicional:
 
 `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 
 ...
 
@@ -159,9 +162,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 ...
 
-builder.Configuration
-    .Add(memoryConfig)
-    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+builder.Configuration.Add(memoryConfig);
 ```
 
 Injetar <xref:Microsoft.Extensions.Configuration.IConfiguration> uma instância em um componente para acessar os dados de configuração:
@@ -176,10 +177,10 @@ Injetar <xref:Microsoft.Extensions.Configuration.IConfiguration> uma instância 
 <h2>Wheels</h2>
 
 <ul>
-    <li>Count: @Configuration["wheels:count"]</p>
-    <li>Brand: @Configuration["wheels:brand"]</p>
-    <li>Type: @Configuration["wheels:brand:type"]</p>
-    <li>Year: @Configuration["wheels:year"]</p>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
 </ul>
 
 @code {
@@ -187,6 +188,36 @@ Injetar <xref:Microsoft.Extensions.Configuration.IConfiguration> uma instância 
     
     ...
 }
+```
+
+Para ler outros arquivos de configuração da pasta *wwwroot* para a configuração, use `HttpClient` um para obter o conteúdo do arquivo. Ao usar essa abordagem, o registro `HttpClient` de serviço existente pode usar o cliente local criado para ler o arquivo, como mostra o exemplo a seguir:
+
+*wwwroot/Cars. JSON*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
 ```
 
 #### <a name="authentication-configuration"></a>Configuração de autenticação
@@ -303,7 +334,7 @@ Os aplicativos de servidor mais poseriais são configurados por padrão para Pre
 
 Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
 
-### <a name="configure-the-opno-locsignalr-client-for-opno-locblazor-server-apps"></a>Configurar o SignalR cliente para Blazor aplicativos de servidor
+### <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Configurar o SignalR cliente para Blazor aplicativos de servidor
 
 Às vezes, você precisa configurar o SignalR cliente usado por Blazor aplicativos de servidor. Por exemplo, talvez você queira configurar o SignalR registro em log no cliente para diagnosticar um problema de conexão.
 

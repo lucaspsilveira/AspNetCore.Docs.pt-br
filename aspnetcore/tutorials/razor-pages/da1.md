@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba como atualizar as páginas geradas em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 12/20/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d9ab20b7ed4b394c154141efe3a94481efaf063c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666211"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774542"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
@@ -40,7 +46,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo [Auxiliar de M
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do atributo `href` HTML da página Razor (a rota é relativa), o `asp-page` e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
+Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page`e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
 
 Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
@@ -56,7 +62,7 @@ Os links gerados dinamicamente passam a ID de filme com uma cadeia de consulta (
 
 ### <a name="add-route-template"></a>Adicionar modelo de rota
 
-Atualize as Páginas Editar, Detalhes e Excluir do Razor para que elas usem o modelo de rota “{id:int}”. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
+Atualize as páginas editar, detalhes e excluir Razor para usar o modelo de rota "{ID: int}". Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
 
 ```html
 <td>
@@ -106,7 +112,7 @@ Examine o arquivo *Pages/Movies/Edit.cshtml.cs*:
 Quando uma solicitação HTTP GET é feita para a página Movies/Edit (por exemplo, `http://localhost:5000/Movies/Edit/2`):
 
 * O método `OnGetAsync` busca o filme do banco de dados e retorna o método `Page`.
-* O método `Page` renderiza a página Razor *Pages/Movies/Edit.cshtml*. O arquivo *Pages/Movies/Edit.cshtml* contém a diretiva de modelo (`@model RazorPagesMovie.Pages.Movies.EditModel`), que disponibiliza o modelo de filme na página.
+* O `Page` método renderiza a página *pages/Movies/Edit. cshtml* Razor . O arquivo *Pages/Movies/Edit.cshtml* contém a diretiva de modelo (`@model RazorPagesMovie.Pages.Movies.EditModel`), que disponibiliza o modelo de filme na página.
 * O formulário Editar é exibido com os valores do filme.
 
 Quando a página Movies/Edit é postada:
@@ -121,13 +127,13 @@ Quando a página Movies/Edit é postada:
 * Se há erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertido em uma data), o formulário é exibido novamente com os valores enviados.
 * Se não houver erros do modelo, o filme será salvo.
 
-Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um padrão semelhante. O método `OnPostAsync` HTTP POST na página Criar do Razor segue um padrão semelhante ao método `OnPostAsync` na página Editar do Razor.
+Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP `OnPostAsync` post na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na página Editar. Razor
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -155,7 +161,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo [Auxiliar de M
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do atributo `href` HTML da página Razor (a rota é relativa), o `asp-page` e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
+Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page`e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
 
 Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
@@ -169,7 +175,7 @@ Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcaçã
 
 Os links gerados dinamicamente passam a ID de filme com uma cadeia de consulta (por exemplo, o `?id=1` em `https://localhost:5001/Movies/Details?id=1`).
 
-Atualize as Páginas Editar, Detalhes e Excluir do Razor para que elas usem o modelo de rota “{id:int}”. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
+Atualize as páginas editar, detalhes e excluir Razor para usar o modelo de rota "{ID: int}". Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
 
 ```html
 <td>
@@ -219,7 +225,7 @@ Examine o arquivo *Pages/Movies/Edit.cshtml.cs*:
 Quando uma solicitação HTTP GET é feita para a página Movies/Edit (por exemplo, `http://localhost:5000/Movies/Edit/2`):
 
 * O método `OnGetAsync` busca o filme do banco de dados e retorna o método `Page`. 
-* O método `Page` renderiza a página Razor *Pages/Movies/Edit.cshtml*. O arquivo *Pages/Movies/Edit.cshtml* contém a diretiva de modelo (`@model RazorPagesMovie.Pages.Movies.EditModel`), que disponibiliza o modelo de filme na página.
+* O `Page` método renderiza a página *pages/Movies/Edit. cshtml* Razor . O arquivo *Pages/Movies/Edit.cshtml* contém a diretiva de modelo (`@model RazorPagesMovie.Pages.Movies.EditModel`), que disponibiliza o modelo de filme na página.
 * O formulário Editar é exibido com os valores do filme.
 
 Quando a página Movies/Edit é postada:
@@ -234,7 +240,7 @@ Quando a página Movies/Edit é postada:
 * Se houver erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertido em uma data), o formulário será mostrado com os valores enviados.
 * Se não houver erros do modelo, o filme será salvo.
 
-Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um padrão semelhante. O método `OnPostAsync` HTTP POST na página Criar do Razor segue um padrão semelhante ao método `OnPostAsync` na página Editar do Razor.
+Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP `OnPostAsync` post na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na página Editar. Razor
 
 A pesquisa é adicionada no próximo tutorial.
 
@@ -243,7 +249,7 @@ A pesquisa é adicionada no próximo tutorial.
 * [Versão do YouTube deste tutorial](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

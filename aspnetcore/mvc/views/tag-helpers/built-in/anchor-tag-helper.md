@@ -5,13 +5,19 @@ description: Descubra os atributos do Auxiliar de Marca de Âncora do ASP.NET e 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 6bfbad39115c7823b5677d3c52ca64cfb0683037
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663999"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773959"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Âncora no ASP.NET Core
 
@@ -19,7 +25,7 @@ De [Peter Kellner](https://peterkellner.net) e [Scott Addie](https://github.com/
 
 O [Auxiliar de Marca de Âncora](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) aprimora a marca de âncora HTML padrão (`<a ... ></a>`) adicionando novos atributos. Por convenção, os nomes de atributos são prefixados com `asp-`. O valor do atributo `href` do elemento de âncora renderizado é determinado pelos valores dos atributos `asp-`.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -41,7 +47,7 @@ O HTML gerado:
 <a href="/Speaker">All Speakers</a>
 ```
 
-Se o atributo `asp-controller` for especificado e `asp-action` não for, o valor `asp-action` padrão é a ação do controlador associada ao modo de exibição em execução no momento. Se `asp-action` for omitido da marcação anterior e o Auxiliar de Marca de Âncora for usado no modo de exibição *Índice* ( */home*) do *HomeController*, o HTML gerado será:
+Se o atributo `asp-controller` for especificado e `asp-action` não for, o valor `asp-action` padrão é a ação do controlador associada ao modo de exibição em execução no momento. Se `asp-action` for omitido da marcação anterior e o Auxiliar de Marca de Âncora for usado no modo de exibição *Índice* (*/home*) do *HomeController*, o HTML gerado será:
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -139,7 +145,7 @@ Se `asp-controller` ou `asp-action` for especificado além de `asp-route`, a rot
 
 O atributo [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) oferece suporte à criação de um dicionário ou par chave-valor. A chave é o nome do parâmetro e o valor é o valor do parâmetro.
 
-No exemplo a seguir, um dicionário é inicializado e passado para um modo de exibição Razor. Como alternativa, os dados podem ser passado com seu modelo.
+No exemplo a seguir, um dicionário é inicializado e passado para Razor um modo de exibição. Como alternativa, os dados podem ser passado com seu modelo.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAllRouteData)]
 
@@ -173,9 +179,9 @@ As marcas de hash são úteis ao criar aplicativos do lado do cliente. Elas pode
 
 O atributo [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) define o nome de área usado para definir a rota apropriada. O exemplo a seguir ilustra como o atributo `asp-area` causa um remapeamento das rotas.
 
-#### <a name="usage-in-razor-pages"></a>Uso no Razor Pages
+#### <a name="usage-in-razor-pages"></a>Uso em Razor páginas
 
-As áreas do Razor Pages têm suporte no ASP.NET Core 2.1 ou posterior.
+RazorAs áreas de páginas têm suporte no ASP.NET Core 2,1 ou posterior.
 
 Considere a seguinte hierarquia de diretórios:
 
@@ -184,12 +190,12 @@ Considere a seguinte hierarquia de diretórios:
   * **Áreas**
     * **Sessões**
       * **Páginas**
-        * *\_ViewStart.cshtml*
-        * *Index.cshtml*
+        * *\_ViewStart. cshtml*
+        * *Index. cshtml*
         * *Index.cshtml.cs*
   * **Páginas**
 
-A marcação para fazer referência ao Razor Page de *Índice* da área *Sessões* é:
+A marcação para fazer referência à página de *índice* Razor da área de *sessões* é:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -200,7 +206,7 @@ O HTML gerado:
 ```
 
 > [!TIP]
-> para dar suporte a áreas em um aplicativo do Razor Pages, siga um destes procedimentos em `Startup.ConfigureServices`:
+> Para dar suporte a áreas Razor em um aplicativo de páginas, siga um destes `Startup.ConfigureServices`procedimentos em:
 >
 > * Defina a [versão de compatibilidade](xref:mvc/compatibility-version) para 2.1 ou posterior.
 > * Defina a propriedade [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) como `true`:
@@ -217,11 +223,11 @@ Considere a seguinte hierarquia de diretórios:
     * **Blogs**
       * **Controladores**
         * *HomeController.cs*
-      * **Exibições**
-        * **Página Inicial**
+      * **Modos de exibição**
+        * **Início**
           * *AboutBlog.cshtml*
-          * *Index.cshtml*
-        * *\_ViewStart.cshtml*
+          * *Index. cshtml*
+        * *\_ViewStart. cshtml*
   * **Controladores**
 
 Definir `asp-area` como "Blogs" faz com que o diretório *Áreas/Blogs* seja prefixado nas rotas dos controladores e exibições associados a essa marca de âncora. A marcação para fazer referência à exibição *AboutBlog* é:
@@ -235,13 +241,13 @@ O HTML gerado:
 ```
 
 > [!TIP]
-> Para dar suporte às áreas em um aplicativo MVC, o modelo de rota deverá incluir uma referência à área, se ela existir. Esse modelo é representado pelo segundo parâmetro da chamada do método `routes.MapRoute` em *Startup.Configure*:
+> Para dar suporte às áreas em um aplicativo MVC, o modelo de rota deverá incluir uma referência à área, se ela existir. Esse modelo é representado pelo segundo parâmetro da chamada do `routes.MapRoute` método na *inicialização. Configure*:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
 ### <a name="asp-protocol"></a>asp-protocol
 
-O atributo [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) é destinado a especificar um protocolo (como `https`) em sua URL. Por exemplo:
+O atributo [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) é destinado a especificar um protocolo (como `https`) em sua URL. Por exemplo: 
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspProtocol)]
 
@@ -255,7 +261,7 @@ O nome do host no exemplo é localhost. O Auxiliar de Marca de Âncora usa o dom
 
 ### <a name="asp-host"></a>asp-host
 
-O atributo [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) é para especificar um nome do host na sua URL. Por exemplo:
+O atributo [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) é para especificar um nome do host na sua URL. Por exemplo: 
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspHost)]
 
@@ -267,9 +273,9 @@ O HTML gerado:
 
 ### <a name="asp-page"></a>asp-page
 
-O atributo [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) é usado com as Páginas Razor. Use-o para definir um valor de atributo `href` da marca de âncora para uma página específica. Prefixar o nome de página com uma barra ("/") cria a URL.
+O atributo [asp-Page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) é usado com Razor páginas. Use-o para definir um valor de atributo `href` da marca de âncora para uma página específica. Prefixar o nome de página com uma barra ("/") cria a URL.
 
-O exemplo a seguir aponta para o participante da Página Razor:
+O exemplo a seguir aponta para a Razor página do participante:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspPage)]
 
@@ -291,7 +297,7 @@ O HTML gerado:
 
 ### <a name="asp-page-handler"></a>asp-page-handler
 
-O atributo [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) é usado com as Páginas Razor. Ele se destina à vinculação a manipuladores de página específicos.
+O atributo [asp-Page-Handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) é usado com Razor páginas. Ele se destina à vinculação a manipuladores de página específicos.
 
 Considere o seguinte manipulador de página:
 

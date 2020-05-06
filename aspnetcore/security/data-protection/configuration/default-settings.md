@@ -1,20 +1,26 @@
 ---
-title: Tempo de vida e gerenciamento de chaves de proteção de dados no ASP.NET Core
+title: Gerenciamento e tempo de vida de chaves da proteção de dados no ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre o gerenciamento de chaves de proteção de dados e o tempo de vida em ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: 2f022a4c7519485fe629ce47c27d214c8c27d5bc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1db5177230fd4076af080e208f094ce4d6537c62
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667961"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777443"
 ---
-# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Tempo de vida e gerenciamento de chaves de proteção de dados no ASP.NET Core
+# <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Gerenciamento e tempo de vida de chaves da proteção de dados no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="key-management"></a>Gerenciamento de chaves
 
@@ -38,7 +44,7 @@ O aplicativo tenta detectar seu ambiente operacional e manipular a configuraçã
 
 1. Se nenhuma dessas condições corresponder, as chaves não serão mantidas fora do processo atual. Quando o processo é desligado, todas as chaves geradas são perdidas.
 
-O desenvolvedor está sempre no controle total e pode substituir como e onde as chaves são armazenadas. As três primeiras opções acima devem fornecer bons padrões para a maioria dos aplicativos semelhantes a como o ASP.NET **\<machineKey >** rotinas de geração automática funcionaram no passado. A opção final, fallback é o único cenário que exige que o desenvolvedor especifique a [configuração](xref:security/data-protection/configuration/overview) antecipada se quiser a persistência da chave, mas esse fallback só ocorre em situações raras.
+O desenvolvedor está sempre no controle total e pode substituir como e onde as chaves são armazenadas. As três primeiras opções acima devem fornecer bons padrões para a maioria dos aplicativos semelhantes a como o ASP.NET ** \<machineKey>** as rotinas de geração automática funcionaram no passado. A opção final, fallback é o único cenário que exige que o desenvolvedor especifique a [configuração](xref:security/data-protection/configuration/overview) antecipada se quiser a persistência da chave, mas esse fallback só ocorre em situações raras.
 
 Ao hospedar em um contêiner do Docker, as chaves devem ser mantidas em uma pasta que seja um volume do Docker (um volume compartilhado ou um volume montado pelo host que persiste além do tempo de vida do contêiner) ou em um provedor externo, como [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) ou [Redis](https://redis.io/). Um provedor externo também será útil em cenários de web farm se os aplicativos não puderem acessar um volume de rede compartilhada (consulte [PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persistkeystofilesystem) para obter mais informações).
 

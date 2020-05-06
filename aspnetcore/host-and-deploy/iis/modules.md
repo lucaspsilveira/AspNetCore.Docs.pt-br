@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 0f13ef3eb1da03960ef1fa54d33532b6ebbdc128
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7262b9ea18e4cf6acd278d087fcc44262f8f9c80
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657902"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775941"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Módulos do IIS com o ASP.NET Core
 
@@ -24,35 +30,35 @@ A tabela indica os módulos IIS nativos que funcionam com aplicativos ASP.NET Co
 
 | Módulo | Funcional com os aplicativos do ASP.NET Core | Opção do ASP.NET Core |
 | --- | :---: | --- |
-| **Autenticação Anônima**<br>`AnonymousAuthenticationModule`                                  | Sim | |
-| **Autenticação Básica**<br>`BasicAuthenticationModule`                                          | Sim | |
+| **Autenticação anônima**<br>`AnonymousAuthenticationModule`                                  | Sim | |
+| **Autenticação básica**<br>`BasicAuthenticationModule`                                          | Sim | |
 | **Autenticação de mapeamento de certificação de cliente**<br>`CertificateMappingAuthenticationModule`      | Sim | |
 | **CGI**<br>`CgiModule`                                                                           | Não  | |
 | **Validação da configuração**<br>`ConfigurationValidationModule`                                  | Sim | |
 | **Erros de HTTP**<br>`CustomErrorModule`                                                           | Não  | [Middleware de páginas de código de status](xref:fundamentals/error-handling#usestatuscodepages) |
-| **Registro personalizado**<br>`CustomLoggingModule`                                                      | Sim | |
+| **Log personalizado**<br>`CustomLoggingModule`                                                      | Sim | |
 | **Documento padrão**<br>`DefaultDocumentModule`                                                  | Não  | [Middleware de arquivos padrão](xref:fundamentals/static-files#serve-a-default-document) |
-| **Autenticação Digest**<br>`DigestAuthenticationModule`                                        | Sim | |
-| **Navegação de diretório**<br>`DirectoryListingModule`                                               | Não  | [Middleware de navegação no diretório](xref:fundamentals/static-files#enable-directory-browsing) |
+| **Autenticação resumida**<br>`DigestAuthenticationModule`                                        | Sim | |
+| **Pesquisa no diretório**<br>`DirectoryListingModule`                                               | Não  | [Middleware de navegação no diretório](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Compactação dinâmica**<br>`DynamicCompressionModule`                                            | Sim | [Middleware de compactação de resposta](xref:performance/response-compression) |
-| **Rastreamento de solicitação com falha**<br>`FailedRequestsTracingModule`                                     | Sim | [registro do núcleo ASP.NET](xref:fundamentals/logging/index#tracesource-provider) |
-| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Cache de resposta Middleware](xref:performance/caching/middleware) |
-| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Cache de resposta Middleware](xref:performance/caching/middleware) |
-| **Log de HTTP**<br>`HttpLoggingModule`                                                          | Sim | [registro do núcleo ASP.NET](xref:fundamentals/logging/index) |
-| **REDIRECIONAMENTO HTTP**<br>`HttpRedirectionModule`                                                  | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
+| **Rastreamento de solicitação com falha**<br>`FailedRequestsTracingModule`                                     | Sim | [Log de ASP.NET Core](xref:fundamentals/logging/index#tracesource-provider) |
+| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
+| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
+| **Log HTTP**<br>`HttpLoggingModule`                                                          | Sim | [Log de ASP.NET Core](xref:fundamentals/logging/index) |
+| **Redirecionamento de HTTP**<br>`HttpRedirectionModule`                                                  | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
 | **Rastreamento HTTP**<br>`TracingModule`                                                              | Sim | |
-| **Autenticação de mapeamento de certificado do cliente IIS**<br>`IISCertificateMappingAuthenticationModule` | Sim | |
+| **Autenticação de mapeamento de certificado de cliente IIS**<br>`IISCertificateMappingAuthenticationModule` | Sim | |
 | **Restrições de IP e domínio**<br>`IpRestrictionModule`                                          | Sim | |
 | **Filtros ISAPI**<br>`IsapiFilterModule`                                                         | Sim | [Middleware](xref:fundamentals/middleware/index) |
 | **ISAPI**<br>`IsapiModule`                                                                       | Sim | [Middleware](xref:fundamentals/middleware/index) |
 | **Suporte de protocolo**<br>`ProtocolSupportModule`                                                  | Sim | |
-| **Filtragem de solicitação**<br>`RequestFilteringModule`                                                | Sim | [URL Rewriting Middleware`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
-| **Monitor de solicitação**<br>`RequestMonitorModule`                                                    | Sim | |
+| **Filtragem de solicitações**<br>`RequestFilteringModule`                                                | Sim | [Middleware de regravação de URL`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
+| **Monitor de solicitações**<br>`RequestMonitorModule`                                                    | Sim | |
 | **Regravação de URL**&#8224;<br>`RewriteModule`                                                      | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
-| **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | Não  | |
+| **Inclusões no lado do servidor**<br>`ServerSideIncludeModule`                                            | Não  | |
 | **Compactação estática**<br>`StaticCompressionModule`                                              | Não  | [Middleware de compactação de resposta](xref:performance/response-compression) |
 | **Conteúdo estático**<br>`StaticFileModule`                                                         | Não  | [Middleware de arquivos estáticos](xref:fundamentals/static-files) |
-| **Cache de Token**<br>`TokenCacheModule`                                                          | Sim | |
+| **Cache de token**<br>`TokenCacheModule`                                                          | Sim | |
 | **Cache de URI**<br>`UriCacheModule`                                                              | Sim | |
 | **Autorização de URL**<br>`UrlAuthorizationModule`                                                | Sim | [Identidade do ASP.NET Core](xref:security/authentication/identity) |
 | **Autenticação do Windows**<br>`WindowsAuthenticationModule`                                      | Sim | |
@@ -69,14 +75,14 @@ Os módulos gerenciados *não* funcionam com aplicativos do ASP.NET Core hospeda
 | DefaultAuthentication   | |
 | FileAuthorization       | |
 | FormsAuthentication     | [Middleware de autenticação de cookie](xref:security/authentication/cookie) |
-| OutputCache             | [Cache de resposta Middleware](xref:performance/caching/middleware) |
+| OutputCache             | [Middleware de cache de resposta](xref:performance/caching/middleware) |
 | Perfil                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |
 | Session                 | [Middleware de sessão](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [Identidade do ASP.NET Core](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET CoreIdentity](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
 ## <a name="iis-manager-application-changes"></a>Alterações de aplicativo do Gerenciador do IIS
@@ -107,9 +113,9 @@ Se optar pela remoção de um módulo com uma configuração em *web.config*, de
 
 1. Desbloqueie o módulo no nível do servidor. Selecione o servidor do IIS na barra lateral **Conexões** do Gerenciador do IIS. Abra os **Módulos** na área **IIS**. Selecione o módulo na lista. Na barra lateral **Ações** à direita, selecione **Desbloquear**. Se a entrada de ação para o módulo aparece como **Bloquear**, o módulo já está desbloqueado e nenhuma ação é necessária. Desbloqueie todos os módulos que você planeja remover de *web.config* posteriormente.
 
-2. Implante o aplicativo `<modules>` sem uma seção em *web.config*. Se um aplicativo for implantado com uma `<modules>` *web.config* contendo a seção sem ter desbloqueado a seção primeiro no Gerenciador IIS, o Gerenciador de configuração abrirá uma exceção ao tentar desbloquear a seção. Portanto, implante o aplicativo sem uma seção `<modules>`.
+2. Implante o aplicativo sem uma `<modules>` seção no *Web. config*. Se um aplicativo for implantado com um *Web. config* que contém a `<modules>` seção sem ter desbloqueado a seção primeiro no Gerenciador do IIS, o Configuration Manager gerará uma exceção ao tentar desbloquear a seção. Portanto, implante o aplicativo sem uma seção `<modules>`.
 
-3. Desbloquear `<modules>` a seção *web.config*. Na barra lateral **Conexões,** selecione o site em **Sites**. Na área **Gerenciamento**, abra o **Editor de Configuração**. Use os controles de navegação para selecionar a seção `system.webServer/modules`. Na barra lateral **Ações** à direita, selecione para **Desbloquear** a seção. Se a entrada de ação para a seção do módulo aparece como **Bloquear Seção**, a seção do módulo já está desbloqueada e nenhuma ação é necessária.
+3. Desbloqueie `<modules>` a seção de *Web. config*. Na barra lateral **conexões** , selecione o site em **sites**. Na área **Gerenciamento**, abra o **Editor de Configuração**. Use os controles de navegação para selecionar a seção `system.webServer/modules`. Na barra lateral **Ações** à direita, selecione para **Desbloquear** a seção. Se a entrada de ação para a seção do módulo aparece como **Bloquear Seção**, a seção do módulo já está desbloqueada e nenhuma ação é necessária.
 
 4. Adicione uma seção `<modules>` ao arquivo *web.config* local do aplicativo com um elemento `<remove>` para remover o módulo do aplicativo. Adicione vários elementos `<remove>` para remover vários módulos. Se alterações a *web.config* forem feitas no servidor, faça imediatamente as mesmas alterações no arquivo *web.config* do projeto localmente. Remover um módulo usando essa abordagem não afeta o uso do módulo com outros aplicativos no servidor.
 
@@ -168,4 +174,4 @@ O módulo de cache HTTP (`HttpCacheModule`) implementa o cache de saída do IIS 
 * [Introdução às arquiteturas do IIS: módulos no IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [Visão geral de módulos do IIS](/iis/get-started/introduction-to-iis/iis-modules-overview)
 * [Personalização de funções e módulos do IIS 7.0](https://technet.microsoft.com/library/cc627313.aspx)
-* [Sistema \<IIS.webServer>](/iis/configuration/system.webServer/)
+* [>\<de sistema do IIS. WebServer](/iis/configuration/system.webServer/)

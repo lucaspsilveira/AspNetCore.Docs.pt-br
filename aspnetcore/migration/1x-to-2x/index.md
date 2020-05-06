@@ -5,13 +5,19 @@ description: Este artigo descreve os pré-requisitos e as etapas mais comuns par
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: c46f50a418cf630980ac2ba94407e4370d36e7d5
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 1b7b89b130f66c851bf01d0eb6d643e4b3676a1e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667611"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774217"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Migrar do ASP.NET Core 1.x para 2.0
 
@@ -156,13 +162,13 @@ A partir do 2.0, é uma prática inadequada realizar qualquer ação no `BuildWe
 
 <a name="view-compilation"></a>
 
-## <a name="review-razor-view-compilation-setting"></a>Examinar a configuração de compilação do Modo de Exibição do Razor
+## <a name="review-razor-view-compilation-setting"></a>Examinar Razor exibir configuração de compilação
 
-Um tempo de inicialização mais rápido do aplicativo e pacotes publicados menores são de extrema importância para você. Por esses motivos, a opção [Compilação de exibição do Razor](xref:mvc/views/view-compilation) é habilitada por padrão no ASP.NET Core 2.0.
+Um tempo de inicialização mais rápido do aplicativo e pacotes publicados menores são de extrema importância para você. Por esses motivos, [ Razor a compilação de exibição](xref:mvc/views/view-compilation) é habilitada por padrão no ASP.NET Core 2,0.
 
 A configuração da propriedade `MvcRazorCompileOnPublish` como verdadeiro não é mais necessária. A menos que você esteja desabilitando a compilação de exibição, a propriedade poderá ser removida do arquivo *.csproj*.
 
-Ao direcionar o .NET Framework, você ainda precisa referenciar explicitamente o pacote NuGet [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) no arquivo *.csproj*:
+Ao direcionar .NET Framework, você ainda precisa referenciar explicitamente o [Microsoft. AspNetCore. MvcRazor.. ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) pacote NuGet em seu arquivo *. csproj* :
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=15)]
 
@@ -190,9 +196,9 @@ Se você estiver usando o SDK do Application Insights diretamente, continue faze
 
 <a name="auth-and-identity"></a>
 
-## <a name="adopt-authenticationidentity-improvements"></a>Adotar melhorias de autenticação/identidade
+## <a name="adopt-authenticationidentity-improvements"></a>Adote a autenticaçãoIdentity /aprimoramentos
 
-O ASP.NET Core 2.0 tem um novo modelo de autenticação e uma série de alterações significativas no ASP.NET Core Identity. Se você criar o projeto com a opção Contas de Usuário Individuais habilitada ou se adicionar manualmente a autenticação ou a identidade, consulte [Migrar a autenticação e a identidade para o ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2,0 tem um novo modelo de autenticação e várias alterações significativas para ASP.NET Core Identity. Se você criou seu projeto com as contas de usuário individuais habilitadas ou se tiver adicionado a autenticação Identitymanualmente ou, consulte [migrar autenticação e Identity para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -1,20 +1,26 @@
 ---
-title: 'Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core'
+title: 'Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core'
 description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 83d662659fb4bc7a2867be563e4e36927d2adafe
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
-ms.translationtype: MT
+ms.openlocfilehash: 54783ebbac26a10a92716b5e53ed6cd7cc8bb65d
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657139"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773491"
 ---
-# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core
 
 No tutorial anterior, você exibiu dados relacionados; neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 

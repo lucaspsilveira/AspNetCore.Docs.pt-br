@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/23/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/logging/index
-ms.openlocfilehash: 7be8cef3377132ed43efde209db67401d7bdb6dc
-ms.sourcegitcommit: 7bb14d005155a5044c7902a08694ee8ccb20c113
-ms.translationtype: MT
+ms.openlocfilehash: ca62e374c6031ca3c2d438df87f2d13636d9c612
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82110909"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776097"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -386,7 +392,7 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
   Para falhas que exigem atenção imediata. Exemplos: cenários de perda de dados, espaço em disco insuficiente.
 
-Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo:
+Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo: 
 
 * Em produção:
   * O `Trace` registro em log `Information` no por meio de níveis produz um alto volume de mensagens de log detalhadas. Para controlar os custos e não exceder os limites de `Trace` armazenamento `Information` de dados, faça logon por meio de mensagens de nível em um armazenamento de dados de alto volume e baixo custo.
@@ -578,7 +584,7 @@ Se você não definir explicitamente o nível mínimo, o valor padrão será `In
 
 ### <a name="filter-functions"></a>Funções de filtro
 
-Uma função de filtro é invocada para todos os provedores e categorias que não têm regras atribuídas a eles por configuração ou código. O código na função tem acesso ao tipo de provedor, à categoria e ao nível de log. Por exemplo:
+Uma função de filtro é invocada para todos os provedores e categorias que não têm regras atribuídas a eles por configuração ou código. O código na função tem acesso ao tipo de provedor, à categoria e ao nível de log. Por exemplo: 
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=3-11)]
 
@@ -586,7 +592,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Observações |
+| Categoria                            | Anotações |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -1162,7 +1168,7 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
   Para falhas que exigem atenção imediata. Exemplos: cenários de perda de dados, espaço em disco insuficiente.
 
-Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo:
+Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo: 
 
 * Em produção:
   * O `Trace` registro em log `Information` no por meio de níveis produz um alto volume de mensagens de log detalhadas. Para controlar os custos e não exceder os limites de `Trace` armazenamento `Information` de dados, faça logon por meio de mensagens de nível em um armazenamento de dados de alto volume e baixo custo.
@@ -1344,7 +1350,7 @@ Se você não definir explicitamente o nível mínimo, o valor padrão será `In
 
 ### <a name="filter-functions"></a>Funções de filtro
 
-Uma função de filtro é invocada para todos os provedores e categorias que não têm regras atribuídas a eles por configuração ou código. O código na função tem acesso ao tipo de provedor, à categoria e ao nível de log. Por exemplo:
+Uma função de filtro é invocada para todos os provedores e categorias que não têm regras atribuídas a eles por configuração ou código. O código na função tem acesso ao tipo de provedor, à categoria e ao nível de log. Por exemplo: 
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
@@ -1352,13 +1358,13 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Observações |
+| Categoria                            | Anotações |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
 | Microsoft.AspNetCore.HostFiltering  | Hosts permitidos. |
 | Microsoft.AspNetCore.Hosting        | Quanto tempo levou para que as solicitações de HTTP fossem concluídas e em que horário foram iniciadas. Quais assemblies de inicialização de hospedagem foram carregados. |
-| Microsoft.AspNetCore.Mvc            | Diagnóstico do MVC e Razor. Model binding, execução de filtro, compilação de exibição, seleção de ação. |
+| Microsoft.AspNetCore.Mvc            | MVC e Razor diagnóstico. Model binding, execução de filtro, compilação de exibição, seleção de ação. |
 | Microsoft.AspNetCore.Routing        | Informações de correspondência de rotas. |
 | Microsoft.AspNetCore.Server         | Respostas de início, parada e atividade da conexão. Informações sobre o certificado HTTPS. |
 | Microsoft.AspNetCore.StaticFiles    | Arquivos atendidos. |

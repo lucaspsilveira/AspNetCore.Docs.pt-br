@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78659365"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776351"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -61,9 +67,9 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 | Cenário | Depende de &hellip; |
 | -------- | ------------------- |
 | Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
-| Identidade | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Sessão e gestão estadual: Estado da sessão](xref:fundamentals/app-state#session-state). |
-| TempData | Proteção de dados (cookies <xref:security/data-protection/configuration/overview>criptografados) (ver ) ou Sessão (ver [Sessão e gerenciamento de estado: Estado da sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Sessão e gestão estadual: TempData](xref:fundamentals/app-state#tempdata). |
+| Identity | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
+| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). |
+| TempData | Proteção de dados (cookies criptografados) <xref:security/data-protection/configuration/overview>(consulte) ou sessão (consulte [Gerenciamento de sessão e estado: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solucionar problemas
@@ -74,10 +80,10 @@ Quando a proteção de dados ou cache não está configurada para um ambiente de
 
 Considere um usuário que entra no aplicativo usando a autenticação de cookie. O usuário entra no aplicativo em um nó do web farm. Se a sua próxima solicitação chegar ao mesmo nó no qual ele se conectou, o aplicativo consegue descriptografar o cookie de autenticação e permite o acesso ao recurso do aplicativo. Se a sua próxima solicitação chegar em um nó diferente, o aplicativo não consegue descriptografar o cookie de autenticação a partir do nó em que o usuário entrou e a autorização do recurso solicitado falhará.
 
-Quando qualquer um dos seguintes sintomas ocorre **intermitentemente,** o problema geralmente é rastreado para a configuração inadequada de Proteção de Dados ou cache para um ambiente de fazenda web:
+Quando qualquer um dos sintomas a seguir ocorre **intermitentemente**, o problema geralmente é rastreado para proteção de dados inadequada ou configuração de cache para um ambiente de Web farm:
 
 * Quebras de autenticação &ndash; o cookie de autenticação está configurado incorretamente ou não pode ser descriptografado. Falha de login OpenIdConnect ou OAuth (Facebook, Microsoft, Twitter) com o erro "Falha de correlação".
-* Quebras de autorização &ndash; a identidade foi perdida.
+* As quebras &ndash; Identity de autorização são perdidas.
 * O estado de sessão perde os dados.
 * Os itens em cache desaparecem.
 * O TempData falhará.
@@ -91,6 +97,6 @@ Se os aplicativos do web farm forem capazes de responder às solicitações, obt
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Extensão de script personalizada para Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads e executa scripts em máquinas virtuais Do Zure, o que é útil para a configuração pós-implantação e instalação de software.
+* [Extensão de script personalizado para downloads do Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; e executa scripts em máquinas virtuais do Azure, que é útil para configuração de pós-implantação e instalação de software.
 * <xref:host-and-deploy/proxy-load-balancer>
  
