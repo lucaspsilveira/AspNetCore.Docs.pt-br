@@ -5,17 +5,23 @@ ms.author: riande
 description: Descubra os atributos auxiliares de marca de link ASP.NET Core e a função que cada atributo desempenha na extensão do comportamento da marca de link HTML.
 ms.custom: mvc
 ms.date: 09/24/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: d7514433bee8a138cd7d75bfd15c9798d4fd31a3
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1efd7c1a63baea4312a4a01cd9cd9c7582375d97
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78662725"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777348"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Auxiliar de marca de link no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O [auxiliar de marca de link](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper) gera um link para um arquivo CSS primário ou de retorno. Normalmente, o arquivo CSS primário está em uma CDN ( [rede de distribuição de conteúdo](/office365/enterprise/content-delivery-networks#what-exactly-is-a-cdn) ).
 
@@ -23,7 +29,7 @@ O [auxiliar de marca de link](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHe
 
 O auxiliar de marca de link permite que você especifique uma CDN para o arquivo CSS e um fallback quando a CDN não estiver disponível. O auxiliar de marca de link fornece a vantagem de desempenho de uma CDN com a robustez da hospedagem local.
 
-A marcação Razor a seguir mostra o elemento `head` de um arquivo de layout criado com o modelo de aplicativo ASP.NET Core Web:
+A marcação Razor a seguir mostra `head` o elemento de um arquivo de layout criado com o modelo de aplicativo Web ASP.NET Core:
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
@@ -31,13 +37,13 @@ Este é um HTML renderizado do código anterior (em um ambiente que não é de d
 
 [!code-csharp[](link-tag-helper/sample/HtmlPage1.html)]
 
-No código anterior, o auxiliar de marca de link gerou o elemento `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` e o JavaScript a seguir, que é usado para verificar o arquivo *bootstrap. min. css* solicitado está disponível na CDN. Nesse caso, o arquivo CSS estava disponível para que o auxiliar de marca gerasse o elemento `<link />` com o arquivo CSS da CDN.
+No código anterior, o auxiliar de marca de link gerou `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` o elemento e o JavaScript a seguir, que é usado para verificar o arquivo *bootstrap. min. css* solicitado está disponível na CDN. Nesse caso, o arquivo CSS estava disponível para que o auxiliar de marca gerasse o `<link />` elemento com o arquivo CSS da CDN.
 
 ## <a name="commonly-used-link-tag-helper-attributes"></a>Atributos auxiliares de marca de link usados com frequência
 
 Consulte [auxiliar de marca de link](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper) para todos os atributos, propriedades e métodos auxiliares de marca de link.
 
-### <a name="href"></a>{1&gt;href&lt;1}
+### <a name="href"></a>href
 
 Endereço preferencial do recurso vinculado. O endereço é passado para o HTML gerado em todos os casos.
 

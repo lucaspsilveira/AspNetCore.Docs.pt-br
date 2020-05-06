@@ -4,13 +4,19 @@ author: rick-anderson
 description: Aprenda detalhes de implementação de cabeçalhos de contexto de proteção de dados ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 518423f5df93924d3df144994e4beb1755cd0bfc
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 381cc137d1de87e87f36c3b32a6a551a318ed3cf
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78666575"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776949"
 ---
 # <a name="context-headers-in-aspnet-core"></a>Cabeçalhos de contexto em ASP.NET Core
 
@@ -20,9 +26,9 @@ ms.locfileid: "78666575"
 
 No sistema de proteção de dados, uma "chave" significa um objeto que pode fornecer serviços de criptografia autenticados. Cada chave é identificada por uma ID exclusiva (um GUID) e contém informações de algoritmos de ti e material de Entropic. É pretendido que cada chave tenha uma entropia exclusiva, mas o sistema não possa impor isso e também precisamos considerar os desenvolvedores que podem alterar o anel de chave manualmente modificando as informações de algoritmo de uma chave existente no anel de chave. Para atingir nossos requisitos de segurança, considerando esses casos, o sistema de proteção de dados tem um conceito de [agilidade de criptografia](https://www.microsoft.com/en-us/research/publication/cryptographic-agility-and-its-relation-to-circular-encryption/), que permite usar com segurança um único valor de Entropic em vários algoritmos criptográficos.
 
-A maioria dos sistemas que dão suporte à agilidade de criptografia faz isso incluindo algumas informações de identificação sobre o algoritmo dentro da carga. O OID do algoritmo geralmente é um bom candidato para isso. No entanto, um problema que encontramos é que há várias maneiras de especificar o mesmo algoritmo: "AES" (CNG) e as classes AES, AesManaged, AesCryptoServiceProvider, AesCng e RijndaelManaged (dadas determinados parâmetros específicos) são realmente as mesmas e precisaremos manter um mapeamento de todos eles para o OID correto. Se um desenvolvedor quisesse fornecer um algoritmo personalizado (ou até mesmo outra implementação do AES!), ele teria que nos dizer seu OID. Essa etapa de registro extra torna a configuração do sistema particularmente difícil.
+A maioria dos sistemas que dão suporte à agilidade de criptografia faz isso incluindo algumas informações de identificação sobre o algoritmo dentro da carga. O OID do algoritmo geralmente é um bom candidato para isso. No entanto, um problema que encontramos é que há várias maneiras de especificar o mesmo algoritmo: "AES" (CNG) e as classes AES gerenciada, AesManaged, AesCryptoServiceProvider, AesCng e RijndaelManaged (dadas parâmetros específicos) são todas na verdade, e precisamos manter um mapeamento de todos eles para o OID correto. Se um desenvolvedor quisesse fornecer um algoritmo personalizado (ou até mesmo outra implementação do AES!), ele teria que nos dizer seu OID. Essa etapa de registro extra torna a configuração do sistema particularmente difícil.
 
-Voltando, decidimos que estamos se aproximando do problema da direção errada. Um OID informa o que é o algoritmo, mas não nos preocupamos com isso. Se precisarmos usar um único valor Entropic com segurança em dois algoritmos diferentes, não é necessário que possamos saber quais são os algoritmos realmente. O que realmente nos preocupamos é como eles se comportam. Qualquer algoritmo de codificação de bloco simétrico claro é também uma pseudoaleatória (PRP) de alta segurança: corrija as entradas (chave, modo de encadeamento, IV, texto não criptografado) e a saída de texto cifrado com probabilidade impressionante será diferente de qualquer outra codificação de bloco simétrico algoritmo de acordo com as mesmas entradas. Da mesma forma, qualquer função de hash com chave de certo é também uma função de pseudoaleatória forte (PRF) e, dada uma entrada fixa definida, sua saída será intensamente distinta de qualquer outra função de hash com chave.
+Voltando, decidimos que estamos se aproximando do problema da direção errada. Um OID informa o que é o algoritmo, mas não nos preocupamos com isso. Se precisarmos usar um único valor Entropic com segurança em dois algoritmos diferentes, não é necessário que possamos saber quais são os algoritmos realmente. O que realmente nos preocupamos é como eles se comportam. Qualquer algoritmo de codificação de bloco simétrico claro é também uma pseudoaleatória (PRP) de alta segurança: corrija as entradas (chave, modo de encadeamento, IV, texto não criptografado) e a saída de texto cifrado com probabilidade impressionante será distinta de qualquer outro algoritmo de codificação de bloco simétrico, dadas as mesmas entradas. Da mesma forma, qualquer função de hash com chave de certo é também uma função de pseudoaleatória forte (PRF) e, dada uma entrada fixa definida, sua saída será intensamente distinta de qualquer outra função de hash com chave.
 
 Usamos esse conceito de PRPs e PRFs fortes para criar um cabeçalho de contexto. Esse cabeçalho de contexto essencialmente atua como uma impressão digital estável nos algoritmos em uso para qualquer operação específica e fornece a agilidade criptográfica necessária para o sistema de proteção de dados. Esse cabeçalho é reproduzível e usado posteriormente como parte do processo de [derivação da subchave](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). Há duas maneiras diferentes de criar o cabeçalho de contexto dependendo dos modos de operação dos algoritmos subjacentes.
 
@@ -50,7 +56,7 @@ Idealmente, poderíamos passar todos os vetores de zero para K_E e K_H. No entan
 
 Em vez disso, usamos o NIST SP800-108 KDF no modo de contador (consulte [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5,1) com uma chave de comprimento zero, rótulo e contexto e HMACSHA512 como o PRF subjacente. Derivamos | K_E | + | K_H | bytes de saída e, em seguida, decompor o resultado em K_E e K_H em si. Matematicamente, isso é representado da seguinte maneira.
 
-( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")
+(K_E | | K_H) = SP800_108_CTR (PRF = HMACSHA512, chave = "", rótulo = "", contexto = "")
 
 ### <a name="example-aes-192-cbc--hmacsha256"></a>Exemplo: AES-192-CBC + HMACSHA256
 
@@ -67,11 +73,11 @@ B7 92 3D BF 59 90 00 A9
 
 Em seguida, COMPUTE Enc_CBC (K_E, IV, "") para AES-192-CBC dado IV = 0 * e K_E como acima.
 
-result := F474B1872B3B53E4721DE19C0841DB6F
+resultado: = F474B1872B3B53E4721DE19C0841DB6F
 
 Em seguida, COMPUTE MAC (K_H, "") para HMACSHA256 fornecido K_H como acima.
 
-result := D4791184B996092EE1202F36E8608FA8FBD98ABDFF5402F264B1D7211536220C
+resultado: = D4791184B996092EE1202F36E8608FA8FBD98ABDFF5402F264B1D7211536220C
 
 Isso produz o cabeçalho de contexto completo abaixo:
 
@@ -118,7 +124,7 @@ resultado: = ABB100F81E53E10E
 
 Em seguida, COMPUTE MAC (K_H, "") para HMACSHA1 fornecido K_H como acima.
 
-result := 76EB189B35CF03461DDF877CD9F4B1B4D63A7555
+resultado: = 76EB189B35CF03461DDF877CD9F4B1B4D63A7555
 
 Isso produz o cabeçalho de contexto completo, que é uma impressão digital do par de algoritmos de criptografia autenticado (3DES-192-CBC criptografia + validação de HMACSHA1), mostrado abaixo:
 
@@ -168,11 +174,11 @@ K_E = SP800_108_CTR (PRF = HMACSHA512, chave = "", rótulo = "", contexto = "")
 
 Primeiro, permita K_E = SP800_108_CTR (PRF = HMACSHA512, chave = "", rótulo = "", contexto = ""), em que | K_E | = 256 bits.
 
-K_E := 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8
+K_E: = 22BC6F1B171C08C4AE2F27444AF8FC8B3087A90006CAEA91FDCFB47C1B8733B8
 
 Em seguida, Compute a marca de autenticação de Enc_GCM (K_E, nonce, "") para AES-256-GCM dado nonce = 096 e K_E como acima.
 
-result := E7DCCE66DF855A323A6BB7BD7A59BE45
+resultado: = E7DCCE66DF855A323A6BB7BD7A59BE45
 
 Isso produz o cabeçalho de contexto completo abaixo:
 

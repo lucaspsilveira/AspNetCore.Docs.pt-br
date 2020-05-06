@@ -5,26 +5,32 @@ description: Saiba mais sobre os novos recursos no ASP.NET Core 2.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: 5ca43bab1496aa9fda65282cbb0b1177ad8689eb
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: b1fc486633ab7c7d7bee4f8981a978747b2890da
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667254"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775811"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novidades do ASP.NET Core 2.0
 
 Este artigo destaca as alterações mais significativas no ASP.NET Core 2.0, com links para a documentação relevante.
 
-## <a name="razor-pages"></a>Páginas do Razor
+## <a name="razor-pages"></a>RazorPages
 
-Páginas do Razor é um novo recurso do ASP.NET Core MVC que torna a codificação de cenários focados em página mais fácil e produtiva.
+RazorAs páginas são um novo recurso do ASP.NET Core MVC que torna os cenários voltados para a página de codificação mais fáceis e produtivos.
 
 Para obter mais informações, consulte a introdução e o tutorial:
 
-* [Introdução a Páginas do Razor](xref:razor-pages/index)
-* [Introdução a Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Introdução às Razor páginas](xref:razor-pages/index)
+* [Introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start)
 
 ## <a name="aspnet-core-metapackage"></a>Metapacote do ASP.NET Core
 
@@ -54,7 +60,7 @@ Para obter informações sobre o status da documentação planejada, consulte o 
 
 No ASP.NET Core 2.0, o log será incorporado no sistema de DI (injeção de dependência) por padrão. Você adiciona provedores e configura a filtragem no arquivo *Program.cs* em vez de usar o arquivo *Startup.cs*. E o `ILoggerFactory` padrão dá suporte à filtragem de forma que lhe permite usar uma abordagem flexível para filtragem entre provedores e filtragem específica do provedor.
 
-Para obter mais informações, consulte [Introdução ao Registro](xref:fundamentals/logging/index).
+Para obter mais informações, consulte [introdução ao registro em log](xref:fundamentals/logging/index).
 
 ## <a name="authentication-update"></a>Atualização de autenticação
 
@@ -64,15 +70,15 @@ Novos modelos estão disponíveis para configurar a autenticação para aplicati
 
 Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/3054).
 
-## <a name="identity-update"></a>Atualização de identidade
+## <a name="identity-update"></a>atualização de Identity
 
-Tornamos mais fácil criar APIs Web seguras usando a identidade do ASP.NET Core 2.0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+Tornamos mais fácil criar APIs Web seguras usando Identity o no ASP.NET Core 2,0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 Para obter mais informações sobre alterações de autenticação no 2.0, consulte os seguintes recursos:
 
 * [Confirmação de conta e de recuperação de senha no ASP.NET Core](xref:security/authentication/accconfirm)
 * [Habilitar a geração de código QR para aplicativos de autenticador no ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Migrar a autenticação e a identidade para o ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrar autenticação Identity e para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="spa-templates"></a>Modelos do SPA
 
@@ -104,7 +110,7 @@ var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
 
-O arquivo devolvido aos seus visitantes tem `ETag` os `LastModified` cabeçalhos HTTP apropriados para e valores.
+O arquivo retornado para os visitantes tem os cabeçalhos HTTP apropriados para os `ETag` valores `LastModified` e.
 
 Se um visitante do aplicativo solicitar o conteúdo com um cabeçalho de solicitação de intervalo, o ASP.NET Core reconhecerá a solicitação e lidará com o cabeçalho. Se parte do conteúdo solicitado puder ser entregue, o ASP.NET Core ignorará a parte em questão e retornará apenas o conjunto de bytes solicitado. Você não precisa gravar nenhum manipulador especial em seus métodos para adaptar ou manipular esse recurso; ele é manipulado automaticamente para você.
 
@@ -124,13 +130,13 @@ Para obter mais informações, confira [Impedir ataques de XSRF/CSRF (solicitaç
 
 ## <a name="automatic-precompilation"></a>Pré-compilação automática
 
-A pré-compilação da exibição do Razor é habilitada durante a publicação por padrão, reduzindo o tamanho da saída de publicação e o tempo de inicialização do aplicativo.
+Razora exibição de pré-compilação é habilitada durante a publicação por padrão, reduzindo o tamanho da saída de publicação e o tempo de inicialização do aplicativo.
 
-Para obter mais informações, confira [Compilação e pré-compilação de exibição Razor no ASP.NET Core](xref:mvc/views/view-compilation).
+Para obter mais informações, [ Razor consulte Exibir compilação e pré-compilação no ASP.NET Core](xref:mvc/views/view-compilation).
 
-## <a name="razor-support-for-c-71"></a>Suporte ao Razor para C# 7.1
+## <a name="razor-support-for-c-71"></a>Razorsuporte para C# 7,1
 
-O mecanismo de exibição Razor foi atualizado para funcionar com o novo compilador Roslyn. Isso inclui suporte para recursos do C# 7.1 como expressões padrão, nomes de tupla inferidos e correspondência de padrões com genéricos. Para usar o C# 7.1 em seu projeto, adicione a seguinte propriedade no arquivo de projeto e, em seguida, recarregue a solução:
+O Razor mecanismo de exibição foi atualizado para funcionar com o novo compilador Roslyn. Isso inclui suporte para recursos do C# 7.1 como expressões padrão, nomes de tupla inferidos e correspondência de padrões com genéricos. Para usar o C# 7.1 em seu projeto, adicione a seguinte propriedade no arquivo de projeto e, em seguida, recarregue a solução:
 
 ```xml
 <LangVersion>latest</LangVersion>
@@ -152,7 +158,7 @@ Para obter informações sobre o status dos recursos do C# 7.1, consulte [o repo
 Para obter diretrizes sobre como migrar aplicativos ASP.NET Core 1.x para o ASP.NET Core 2.0, consulte os seguintes recursos:
 
 * [Migrar do ASP.NET Core 1.x para o ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrar a autenticação e a identidade para o ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrar autenticação Identity e para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="additional-information"></a>Informações adicionais
 

@@ -1,20 +1,26 @@
 ---
-title: 'Tutorial: Crie um modelo de dados complexo - ASP.NET MVC com EF Core'
+title: 'Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core'
 description: Neste tutorial, você adiciona mais entidades e relações e personaliza o modelo de dados especificando formatação, validação e regras de mapeamento.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 91fd09874ecab8bfdb6a38a404faba04aeb73edc
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5e617a201cbd133e695bdadc08dc6c797f97b6be
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657426"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82773621"
 ---
-# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Crie um modelo de dados complexo - ASP.NET MVC com EF Core
+# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core
 
 Nos tutoriais anteriores, você trabalhou com um modelo de dados simples composto por três entidades. Neste tutorial, você adicionará mais entidades e relações e personalizará o modelo de dados especificando formatação, validação e regras de mapeamento de banco de dados.
 
@@ -72,7 +78,7 @@ Use Você pode usar o atributo `DisplayFormat` por si só, mas geralmente é uma
 
 * Por padrão, o navegador renderizará os dados usando o formato correto de acordo com a localidade.
 
-Para obter mais informações, consulte a [ \<entrada> documentação do ajudante de marca](../../mvc/views/working-with-forms.md#the-input-tag-helper).
+Para obter mais informações, consulte [ \<a documentação auxiliar da marca de> de entrada](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Execute o aplicativo, acesse a página Índice de Alunos e observe que as horas não são mais exibidas nas datas de registro. O mesmo será verdadeiro para qualquer exibição que usa o modelo Aluno.
 
@@ -106,7 +112,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado * \<timeStamp>_MaxLengthOnNames.cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
+O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado * \<timestamp>_MaxLengthOnNames. cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
 
 O carimbo de data/hora prefixado ao nome do arquivo de migrações é usado pelo Entity Framework para ordenar as migrações. Crie várias migrações antes de executar o comando de atualização de banco de dados e, em seguida, todas as migrações são aplicadas na ordem em que foram criadas.
 
@@ -533,4 +539,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para aprender a acessar dados relacionados.
 
 > [!div class="nextstepaction"]
-> [Próximo: Acesso de dados relacionados](read-related-data.md)
+> [Próximo: acessar dados relacionados](read-related-data.md)

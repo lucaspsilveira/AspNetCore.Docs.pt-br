@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: f87a1d8cf41248f14932908c0633f98a7198853f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: a6719b4f84b1bc60c7c2aea2aa3a97ef79f43e2e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78664041"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777014"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
@@ -24,7 +30,7 @@ Este artigo descreve o suporte do [Visual Studio](https://visualstudio.microsoft
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Estúdio Visual para Windows](https://visualstudio.microsoft.com/downloads/)
+* [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
 * Certificado de segurança X.509 (para o suporte a HTTPS)
@@ -68,7 +74,7 @@ Para um projeto que usa HTTP, o [Redirecionamento de HTTPS e o Middleware HSTS](
 
 Crie um novo perfil de inicialização para adicionar suporte ao IIS no tempo de desenvolvimento:
 
-1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Debug.**
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **depurar** .
 1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
 1. Para a configuração **Iniciar**, selecione **IIS** da lista.
 1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
@@ -117,7 +123,7 @@ Confirme se os pontos de extremidade `applicationUrl` e `launchUrl` correspondem
 Execute o Visual Studio como um administrador:
 
 * Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
-* Defina o [botão Iniciar depuração](/visualstudio/debugger/debugger-feature-tour) no perfil **IIS** e selecione o botão para iniciar o aplicativo.
+* Defina o [botão Iniciar Depuração](/visualstudio/debugger/debugger-feature-tour) para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 
@@ -139,7 +145,7 @@ Este artigo descreve o suporte do [Visual Studio](https://visualstudio.microsoft
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Estúdio Visual para Windows](https://visualstudio.microsoft.com/downloads/)
+* [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
 * Certificado de segurança X.509 (para o suporte a HTTPS)
@@ -183,7 +189,7 @@ Para um projeto que usa HTTP, o [Redirecionamento de HTTPS e o Middleware HSTS](
 
 Crie um novo perfil de inicialização para adicionar suporte ao IIS no tempo de desenvolvimento:
 
-1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Debug.**
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **depurar** .
 1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
 1. Para a configuração **Iniciar**, selecione **IIS** da lista.
 1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
@@ -232,7 +238,7 @@ Confirme se os pontos de extremidade `applicationUrl` e `launchUrl` correspondem
 Execute o Visual Studio como um administrador:
 
 * Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
-* Defina o [botão Iniciar depuração](/visualstudio/debugger/debugger-feature-tour) no perfil **IIS** e selecione o botão para iniciar o aplicativo.
+* Defina o [botão Iniciar Depuração](/visualstudio/debugger/debugger-feature-tour) para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 

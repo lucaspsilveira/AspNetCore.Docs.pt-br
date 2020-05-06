@@ -5,23 +5,29 @@ description: Saiba como os componentes de exibição são usados no ASP.NET Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 910fffbf360ed0f62f7fe20bc8bfdf5be8198876
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 28696d246c5e1e6874e0d9058813750ed1955003
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660646"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774646"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT)
+De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="view-components"></a>Componentes da exibição
 
-Os componentes de exibição são semelhantes às exibições parciais, mas são muito mais eficientes. Os componentes de exibição não usam o model binding e dependem apenas dos dados fornecidos durante uma chamada a eles. Este artigo foi elaborado com controladores e modos de exibição, mas os componentes da exibição também funcionam com o Razor Pages.
+Os componentes de exibição são semelhantes às exibições parciais, mas são muito mais eficientes. Os componentes de exibição não usam o model binding e dependem apenas dos dados fornecidos durante uma chamada a eles. Este artigo foi escrito usando controladores e exibições, mas os componentes de exibição Razor também funcionam com páginas.
 
 Um componente de exibição:
 
@@ -42,7 +48,7 @@ Os componentes de exibição destinam-se a qualquer momento em que há uma lógi
 
 Um componente de exibição consiste em duas partes: a classe (normalmente derivada de [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) e o resultado que ele retorna (normalmente, uma exibição). Assim como os controladores, um componente de exibição pode ser um POCO, mas a maioria dos desenvolvedores desejará aproveitar os métodos e as propriedades disponíveis com a derivação de `ViewComponent`.
 
-Ao considerar se os componentes de exibição atendem às especificações do aplicativo, reflita sobre o uso do Razor Components. O Razor Components também combina a marcação com o código C# para produzir unidades de interface do usuário reutilizáveis. O Razor Components foi projetado para a produtividade do desenvolvedor ao fornecer a composição e a lógica da interface do usuário do lado do cliente. Para obter mais informações, consulte <xref:blazor/components>.
+Ao considerar se os componentes de exibição atendem às especificações de um Razor aplicativo, considere usar componentes em vez disso. RazorOs componentes também combinam marcação com código C# para produzir unidades de interface do usuário reutilizáveis. RazorOs componentes são projetados para a produtividade do desenvolvedor ao fornecer a lógica e a composição da interface do usuário do lado do cliente. Para obter mais informações, consulte <xref:blazor/components>.
 
 ## <a name="creating-a-view-component"></a>Criando um componente de exibição
 
@@ -69,7 +75,7 @@ Uma classe de componente de exibição:
 Um componente de exibição define sua lógica em um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou em um método `Invoke` síncrono que retorna um `IViewComponentResult`. Os parâmetros são recebidos diretamente da invocação do componente de exibição, não do model binding. Um componente de exibição nunca manipula uma solicitação diretamente. Normalmente, um componente de exibição inicializa um modelo e passa-o para uma exibição chamando o método `View`. Em resumo, os métodos de componente de exibição:
 
 * Definem um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou um método `Invoke` síncrono que retorna um `IViewComponentResult`.
-* Normalmente Inicializa um modelo e o passa para uma exibição chamando o método `ViewComponent` `View`.
+* Normalmente Inicializa um modelo e o passa para um modo de exibição chamando `ViewComponent` `View` o método.
 * Os parâmetros são recebidos do método de chamada, não do HTTP. Não há nenhum model binding.
 * Não são acessíveis diretamente como um ponto de extremidade HTTP. Eles são invocados no código (normalmente, em uma exibição). Um componente de exibição nunca manipula uma solicitação.
 * São sobrecarregados na assinatura, em vez de nos detalhes da solicitação HTTP atual.
@@ -82,15 +88,15 @@ O runtime pesquisa a exibição nos seguintes caminhos:
 * /Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
 * /Pages/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
 
-O caminho de pesquisa se aplica a projetos usando controladores + exibições e Razor Pages.
+O caminho de pesquisa aplica-se a projetos que usam Razor controladores + exibições e páginas.
 
 O nome de exibição padrão de um componente de exibição é *Default*, o que significa que o arquivo de exibição geralmente será nomeado *Default.cshtml*. Especifique outro nome de exibição ao criar o resultado do componente de exibição ou ao chamar o método `View`.
 
-Recomendamos que você nomeie o arquivo de exibição *Default.cshtml* e use o caminho *Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}* . O componente de exibição `PriorityList` usado nesta amostra usa *Views/Shared/Components/PriorityList/Default.cshtml* como a exibição do componente de exibição.
+Recomendamos que você nomeie o arquivo de exibição *Default.cshtml* e use o caminho *Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}*. O componente de exibição `PriorityList` usado nesta amostra usa *Views/Shared/Components/PriorityList/Default.cshtml* como a exibição do componente de exibição.
 
 ### <a name="customize-the-view-search-path"></a>Personalizar o caminho de pesquisa de exibição
 
-Para personalizar o caminho de pesquisa de exibição, modifique a coleção de <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> do Razor. Por exemplo, para procurar exibições no caminho "nome do componente/Components/{View}/{View nome}", adicione um novo item à coleção:
+Para personalizar o caminho de pesquisa de exibição Razor, <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> modifique a coleção. Por exemplo, para procurar exibições no caminho "nome do componente/Components/{View}/{View nome}", adicione um novo item à coleção:
 
 [!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
 
@@ -181,18 +187,18 @@ Observações sobre o código:
 * `InvokeAsync` expõe um método que pode ser chamado em uma exibição e pode usar um número arbitrário de argumentos.
 * O método `InvokeAsync` retorna o conjunto de itens `ToDo` que atendem aos parâmetros `isDone` e `maxPriority`.
 
-### <a name="create-the-view-component-razor-view"></a>Criar a exibição do Razor do componente de exibição
+### <a name="create-the-view-component-razor-view"></a>Criar a exibição do Razor componente de exibição
 
 * Crie a pasta *Views/Shared/Components*. Essa pasta **deve** nomeada *Components*.
 
 * Crie a pasta *Views/Shared/Components/PriorityList*. Esse nome de pasta deve corresponder ao nome da classe do componente de exibição ou ao nome da classe menos o sufixo (se seguimos a convenção e usamos o sufixo *ViewComponent* no nome da classe). Se você usou o atributo `ViewComponent`, o nome da classe precisa corresponder à designação de atributo.
 
-* Crie uma exibição *Views/Shared/Components/PriorityList/Default.cshtml* do Razor:
+* Crie uma exibição views */Shared/Components/prioritylist/default. cshtml* Razor :
 
 
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   A exibição do Razor usa uma lista de `TodoItem` e exibe-os. Se o método `InvokeAsync` do componente de exibição não passar o nome da exibição (como em nossa amostra), *Default* será usado como o nome da exibição, por convenção. Mais adiante no tutorial, mostrarei como passar o nome da exibição. Para substituir o estilo padrão de um controlador específico, adicione uma exibição à pasta de exibição específica do controlador (por exemplo, *Views/ToDo/Components/PriorityList/Default.cshtml)* .
+   A Razor exibição usa uma lista `TodoItem` e as exibe. Se o método `InvokeAsync` do componente de exibição não passar o nome da exibição (como em nossa amostra), *Default* será usado como o nome da exibição, por convenção. Mais adiante no tutorial, mostrarei como passar o nome da exibição. Para substituir o estilo padrão de um controlador específico, adicione uma exibição à pasta de exibição específica do controlador (por exemplo, *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
     Se o componente de exibição for específico do controlador, adicione-o à pasta específica do controlador (*Views/ToDo/Components/PriorityList/Default.cshtml*).
 
@@ -260,7 +266,7 @@ Se deseja obter segurança em tempo de compilação, substitua o nome do compone
 
 [!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
-Adicione uma instrução `using` ao arquivo de exibição do Razor e use o operador `nameof`:
+Adicione uma `using` instrução ao arquivo Razor de exibição e use o `nameof` operador:
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
@@ -279,7 +285,7 @@ public class PriorityList : ViewComponent
 }
 ```
 
-O arquivo do Razor do componente de exibição lista as cadeias de caracteres passadas para o método `Invoke` (*Views/Home/Components/PriorityList/Default.cshtml*):
+O arquivo do Razor componente de exibição lista as cadeias de `Invoke` caracteres passadas para o método (*views/Home/Components/prioritylist/default. cshtml*):
 
 ```cshtml
 @model List<string>
@@ -295,7 +301,7 @@ O arquivo do Razor do componente de exibição lista as cadeias de caracteres pa
 
 ::: moniker range=">= aspnetcore-1.1"
 
-O componente de exibição é invocado em um arquivo do Razor (por exemplo, *Views/Home/Index.cshtml*) usando uma das seguintes abordagens:
+O componente de exibição é invocado Razor em um arquivo (por exemplo, *views/home/index. cshtml*) usando uma das seguintes abordagens:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
 * [Auxiliar de Marca](xref:mvc/views/tag-helpers/intro)
@@ -306,7 +312,7 @@ Para usar a abordagem <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>, cham
 
 ::: moniker range="< aspnetcore-1.1"
 
-O componente de exibição é invocado em um arquivo do Razor (por exemplo, *Views/Home/Index.cshtml*) com <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.
+O componente de exibição é invocado Razor em um arquivo (por exemplo, *views/home/index. cshtml*) com <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.
 
 Chame `Component.InvokeAsync`:
 
@@ -324,7 +330,7 @@ Para usar o Auxiliar de Marca, registre o assembly que contém o Componente de e
 @addTagHelper *, MyWebApp
 ```
 
-Use o componente de exibição Auxiliar de Marca no arquivo de marcação do Razor:
+Use o auxiliar de marca do componente de Razor exibição no arquivo de marcação:
 
 ```cshtml
 <vc:priority-list max-priority="999" is-done="false">
@@ -333,7 +339,7 @@ Use o componente de exibição Auxiliar de Marca no arquivo de marcação do Raz
 
 ::: moniker-end
 
-A assinatura do método de `PriorityList.Invoke` é síncrona, mas o Razor localiza e chama o método com `Component.InvokeAsync` no arquivo de marcação.
+A assinatura do método `PriorityList.Invoke` de é síncrona, Razor mas localiza e chama o método `Component.InvokeAsync` com no arquivo de marcação.
 
 ## <a name="all-view-component-parameters-are-required"></a>Todos os parâmetros do componente de exibição são obrigatórios
 

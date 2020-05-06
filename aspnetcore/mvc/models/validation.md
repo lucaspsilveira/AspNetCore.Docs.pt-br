@@ -1,25 +1,31 @@
 ---
 title: Validação de modelo no ASP.NET Core MVC
 author: rick-anderson
-description: Saiba mais sobre a validação de modelo no ASP.NET Core MVC e Razor Pages.
+description: Saiba mais sobre a validação de modelo em Razor ASP.NET Core MVC e páginas.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 0e3d4f4705dbfdae00943de2d85c603b6762a2f8
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: a0f7c070514de26ae007526a5587c13d26d1eb1b
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205885"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777170"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC Razor e páginas
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Por [Kirk Larkin](https://github.com/serpent5)
 
-Este artigo explica como validar a entrada do usuário em um aplicativo em ASP.NET Core MVC ou Razor Pages.
+Este artigo explica como validar a entrada do usuário em um aplicativo ASP.NET Core Razor MVC ou Pages.
 
 [Exiba ou baixe o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
@@ -27,7 +33,7 @@ Este artigo explica como validar a entrada do usuário em um aplicativo em ASP.N
 
 O estado do modelo representa erros que vêm de dois subsistemas: model binding e validação de modelo. Os erros originados na [Associação de modelo](model-binding.md) geralmente são erros de conversão de dados. Por exemplo, um "x" é inserido em um campo de número inteiro. A validação do modelo ocorre após a associação de modelo e relata erros em que os dados não estão em conformidade com as regras de negócio. Por exemplo, um 0 é inserido em um campo que espera uma classificação entre 1 e 5.
 
-A associação de modelo e a validação de modelo ocorrem antes da execução de uma ação de controlador ou um método de manipulador de Razor Pages. Nos aplicativos Web, é responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
+A associação de modelo e a validação de modelo ocorrem antes da execução de uma ação Razor de controlador ou um método de manipulador de páginas. Nos aplicativos Web, é responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
@@ -64,13 +70,13 @@ Uma lista completa de atributos de validação pode ser encontrada no namespace 
 
 ### <a name="error-messages"></a>Mensagens de erro
 
-Os atributos de validação permitem que você especifique a mensagem de erro a ser exibido para uma entrada inválida. Por exemplo:
+Os atributos de validação permitem que você especifique a mensagem de erro a ser exibido para uma entrada inválida. Por exemplo: 
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Internamente, a chamada de atributos `String.Format` com um espaço reservado para o nome do campo e, às vezes, espaços reservados adicionais. Por exemplo:
+Internamente, a chamada de atributos `String.Format` com um espaço reservado para o nome do campo e, às vezes, espaços reservados adicionais. Por exemplo: 
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -367,7 +373,7 @@ Esse método de renderização de atributos `data-` em HTML é usado pelo atribu
 
 ## <a name="disable-client-side-validation"></a>Desabilitar validação do lado do cliente
 
-O código a seguir desabilita a validação do cliente no Razor Pages:
+O código a seguir desabilita a validação do cliente Razor em páginas:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableClientValidation&highlight=2-5)]
 
@@ -376,7 +382,7 @@ Outras opções para desabilitar a validação do lado do cliente:
 * Comente a referência para `_ValidationScriptsPartial` em todos os arquivos *. cshtml* .
 * Remova o conteúdo do arquivo *Pages\Shared\_ValidationScriptsPartial. cshtml* .
 
-A abordagem anterior não impedirá a validação do lado do cliente da biblioteca de classes do Razor de identidade ASP.NET Core. Para obter mais informações, consulte <xref:security/authentication/scaffold-identity>.
+A abordagem anterior não impedirá a validação do Identity Razor lado do cliente de ASP.NET Core biblioteca de classes. Para obter mais informações, consulte <xref:security/authentication/scaffold-identity>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -387,7 +393,7 @@ A abordagem anterior não impedirá a validação do lado do cliente da bibliote
 
 ::: moniker range="< aspnetcore-3.0"
 
-Este artigo explica como validar a entrada do usuário em um aplicativo em ASP.NET Core MVC ou Razor Pages.
+Este artigo explica como validar a entrada do usuário em um aplicativo ASP.NET Core Razor MVC ou Pages.
 
 [Exiba ou baixe o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([como baixar](xref:index#how-to-download-a-sample)).
 
@@ -395,7 +401,7 @@ Este artigo explica como validar a entrada do usuário em um aplicativo em ASP.N
 
 O estado do modelo representa erros que vêm de dois subsistemas: model binding e validação de modelo. Erros que se originam de [model binding](model-binding.md) geralmente são erros de conversão de dados (por exemplo, um "x" é inserido em um campo que espera um inteiro). A validação do modelo ocorre após o model binding e relata os erros em que os dados não estão em conformidade com as regras de negócio (por exemplo, um 0 é inserido em um campo que espera uma classificação entre 1 e 5).
 
-O model binding e a validação ocorrem antes da execução de uma ação do controlador ou de um método de manipulador do Razor Pages. Nos aplicativos Web, é responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
+A associação de modelo e a validação ocorrem antes da execução de uma ação de Razor controlador ou um método de manipulador de páginas. Nos aplicativos Web, é responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
@@ -418,7 +424,7 @@ Os atributos de validação permitem que você especifique regras de validação
 Os atributos de validação internos incluem:
 
 * `[CreditCard]`: Valida que a propriedade tem um formato de cartão de crédito.
-* `[Compare]`: Valida que duas propriedades em um modelo correspondem. Por exemplo, o arquivo *Register.cshtml.cs* usa `[Compare]` para validar a correspondência de duas senhas inseridas. [Scaffold identidade](xref:security/authentication/scaffold-identity) para ver o código de registro.
+* `[Compare]`: Valida que duas propriedades em um modelo correspondem. Por exemplo, o arquivo *Register.cshtml.cs* usa `[Compare]` para validar a correspondência de duas senhas inseridas. [Scaffold Identity ](xref:security/authentication/scaffold-identity) para ver o código de registro.
 * `[EmailAddress]`: Valida que a propriedade tem um formato de email.
 * `[Phone]`: Valida que a propriedade tem um formato de número de telefone.
 * `[Range]`: Valida que o valor da propriedade cai em um intervalo especificado.
@@ -434,13 +440,13 @@ Uma lista completa de atributos de validação pode ser encontrada no namespace 
 
 ### <a name="error-messages"></a>Mensagens de erro
 
-Os atributos de validação permitem que você especifique a mensagem de erro a ser exibido para uma entrada inválida. Por exemplo:
+Os atributos de validação permitem que você especifique a mensagem de erro a ser exibido para uma entrada inválida. Por exemplo: 
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Internamente, a chamada de atributos `String.Format` com um espaço reservado para o nome do campo e, às vezes, espaços reservados adicionais. Por exemplo:
+Internamente, a chamada de atributos `String.Format` com um espaço reservado para o nome do campo e, às vezes, espaços reservados adicionais. Por exemplo: 
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -742,7 +748,7 @@ O código a seguir desabilita a validação de cliente nas exibições do MVC:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup2.cs?name=snippet_DisableClientValidation)]
 
-E em Razor Pages:
+E em Razor páginas:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 
