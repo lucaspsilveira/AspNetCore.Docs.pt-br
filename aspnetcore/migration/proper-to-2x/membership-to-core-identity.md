@@ -1,17 +1,23 @@
 ---
-title: Migrar da autenticação de associação do ASP.NET para a identidade do ASP.NET Core 2,0
+title: Migrar da autenticação de associação do ASP.NET para o ASP.NET Core 2,0Identity
 author: isaac2004
-description: Saiba como migrar aplicativos ASP.NET existentes usando a autenticação de associação para ASP.NET Core identidade 2,0.
+description: Saiba como migrar aplicativos ASP.NET existentes usando a autenticação de associação para Identityo ASP.NET Core 2,0.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: 3b708da13ff9f2887eee87ea17844312a4fe1b8d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b5205ef69943f3744bba8381701008369dd0843c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659239"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774503"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-identity"></a>Migrar da autenticação de associação do ASP.NET para a identidade do ASP.NET Core 2,0
 
@@ -36,16 +42,16 @@ ASP.NET Core 2,0 segue o princípio de [identidade](/aspnet/identity/index) intr
 
 A maneira mais rápida de exibir o esquema para ASP.NET Core identidade 2,0 é criar um novo aplicativo ASP.NET Core 2,0. Siga estas etapas no Visual Studio 2017:
 
-1. Selecione **Arquivo** > **Novo** > **Projeto**.
+1. Selecione **arquivo** > **novo** > **projeto**.
 1. Crie um novo projeto de **aplicativo Web ASP.NET Core** chamado *CoreIdentitySample*.
 1. Selecione **ASP.NET Core 2,0** na lista suspensa e, em seguida, selecione **aplicativo Web**. Este modelo produz um aplicativo [Razor Pages](xref:razor-pages/index) . Antes de clicar em **OK**, clique em **alterar autenticação**.
 1. Escolha **contas de usuário individuais** para os modelos de identidade. Por fim, clique em **OK**e em **OK**. O Visual Studio cria um projeto usando o modelo de identidade ASP.NET Core.
-1. Selecione **ferramentas** > **Gerenciador de pacotes NuGet** > **console do Gerenciador de pacotes** para abrir a janela do console do Gerenciador de **pacotes** (PMC).
-1. Navegue até a raiz do projeto no PMC e execute o comando `Update-Database` [Core do Entity Framework (EF)](/ef/core) .
+1. Selecione **ferramentas** > **Gerenciador** > de pacotes NuGet**console do Gerenciador de pacotes** para abrir a janela do console do Gerenciador de **pacotes** (PMC).
+1. Navegue até a raiz do projeto no PMC e execute o comando de `Update-Database` [núcleo Entity Framework (EF)](/ef/core) .
 
     ASP.NET Core identidade 2,0 usa EF Core para interagir com o banco de dados que está armazenando os dados de autenticação. Para que o aplicativo recém-criado funcione, é necessário haver um banco de dados para armazenar os mesmos. Depois de criar um novo aplicativo, a maneira mais rápida de inspecionar o esquema em um ambiente de banco de dados é criar o banco de dados usando [EF Core migrações](/ef/core/managing-schemas/migrations/). Esse processo cria um banco de dados, seja localmente ou em outro lugar, que imita esse esquema. Examine a documentação anterior para obter mais informações.
 
-    EF Core comandos usam a cadeia de conexão para o banco de dados especificado em *appSettings. JSON*. A cadeia de conexão a seguir destina-se a um banco de dados no *localhost* denominado *ASP-NET-Core-Identity*. Nessa configuração, EF Core é configurado para usar a cadeia de conexão `DefaultConnection`.
+    EF Core comandos usam a cadeia de conexão para o banco de dados especificado em *appSettings. JSON*. A cadeia de conexão a seguir destina-se a um banco de dados no *localhost* denominado *ASP-NET-Core-Identity*. Nessa configuração, EF Core é configurado para usar a cadeia `DefaultConnection` de conexão.
 
     ```json
     {
@@ -55,9 +61,9 @@ A maneira mais rápida de exibir o esquema para ASP.NET Core identidade 2,0 é c
     }
     ```
 
-1. Selecione **exibir** > **pesquisador de objetos do SQL Server**. Expanda o nó correspondente ao nome do banco de dados especificado na propriedade `ConnectionStrings:DefaultConnection` de *appSettings. JSON*.
+1. Selecione **Exibir** > **pesquisador de objetos do SQL Server**. Expanda o nó correspondente ao nome do banco de dados `ConnectionStrings:DefaultConnection` especificado na propriedade de *appSettings. JSON*.
 
-    O comando `Update-Database` criou o banco de dados especificado com o esquema e qualquer dado necessário para a inicialização do aplicativo. A imagem a seguir ilustra a estrutura de tabela criada com as etapas anteriores.
+    O `Update-Database` comando criou o banco de dados especificado com o esquema e qualquer dado necessário para a inicialização do aplicativo. A imagem a seguir ilustra a estrutura de tabela criada com as etapas anteriores.
 
     ![Tabelas de identidade](identity/_static/identity-tables.png)
 
@@ -67,15 +73,15 @@ Há diferenças sutis nas estruturas de tabela e nos campos para a associação 
 
 ### <a name="users"></a>Usuários
 
-|*<br>de identidade (dbo. AspNetUsers*        ||*<br>de associação (dbo. aspnet_Users/dbo. aspnet_Membership)*||
+|*Identity<br>(dbo. AspNetUsers*        ||*Membership<br>(dbo. aspnet_Users/dbo. aspnet_Membership)*||
 |----------------------------------------|-----------------------------------------------------------|
-|**Nome do Campo**                 |**Tipo**|**Nome do Campo**                                    |**Tipo**|
-|`Id`                           |string  |`aspnet_Users.UserId`                             |string  |
-|`UserName`                     |string  |`aspnet_Users.UserName`                           |string  |
-|`Email`                        |string  |`aspnet_Membership.Email`                         |string  |
-|`NormalizedUserName`           |string  |`aspnet_Users.LoweredUserName`                    |string  |
-|`NormalizedEmail`              |string  |`aspnet_Membership.LoweredEmail`                  |string  |
-|`PhoneNumber`                  |string  |`aspnet_Users.MobileAlias`                        |string  |
+|**Nome do campo**                 |**Tipo**|**Nome do campo**                                    |**Tipo**|
+|`Id`                           |cadeia de caracteres  |`aspnet_Users.UserId`                             |cadeia de caracteres  |
+|`UserName`                     |cadeia de caracteres  |`aspnet_Users.UserName`                           |cadeia de caracteres  |
+|`Email`                        |cadeia de caracteres  |`aspnet_Membership.Email`                         |cadeia de caracteres  |
+|`NormalizedUserName`           |cadeia de caracteres  |`aspnet_Users.LoweredUserName`                    |cadeia de caracteres  |
+|`NormalizedEmail`              |cadeia de caracteres  |`aspnet_Membership.LoweredEmail`                  |cadeia de caracteres  |
+|`PhoneNumber`                  |cadeia de caracteres  |`aspnet_Users.MobileAlias`                        |cadeia de caracteres  |
 |`LockoutEnabled`               |bit     |`aspnet_Membership.IsLockedOut`                   |bit     |
 
 > [!NOTE]
@@ -83,20 +89,20 @@ Há diferenças sutis nas estruturas de tabela e nos campos para a associação 
 
 ### <a name="roles"></a>Funções
 
-|*<br>de identidade (dbo. AspNetRoles)*        ||*<br>de associação (dbo. aspnet_Roles)*||
+|*Identity<br>(dbo. AspNetRoles)*        ||*Associação<br>(dbo. aspnet_Roles)*||
 |----------------------------------------|-----------------------------------|
-|**Nome do Campo**                 |**Tipo**|**Nome do Campo**   |**Tipo**         |
-|`Id`                           |string  |`RoleId`         | string          |
-|`Name`                         |string  |`RoleName`       | string          |
-|`NormalizedName`               |string  |`LoweredRoleName`| string          |
+|**Nome do campo**                 |**Tipo**|**Nome do campo**   |**Tipo**         |
+|`Id`                           |cadeia de caracteres  |`RoleId`         | cadeia de caracteres          |
+|`Name`                         |cadeia de caracteres  |`RoleName`       | cadeia de caracteres          |
+|`NormalizedName`               |cadeia de caracteres  |`LoweredRoleName`| cadeia de caracteres          |
 
-### <a name="user-roles"></a>Funções do usuário
+### <a name="user-roles"></a>Funções de usuário
 
-|*<br>de identidade (dbo. AspNetUserRoles*||*<br>de associação (dbo. aspnet_UsersInRoles)*||
+|*Identity<br>(dbo. AspNetUserRoles*||*Associação<br>(dbo. aspnet_UsersInRoles)*||
 |------------------------------------|------------------------------------------|
-|**Nome do Campo**           |**Tipo**  |**Nome do Campo**|**Tipo**                   |
-|`RoleId`                 |string    |`RoleId`      |string                     |
-|`UserId`                 |string    |`UserId`      |string                     |
+|**Nome do campo**           |**Tipo**  |**Nome do campo**|**Tipo**                   |
+|`RoleId`                 |cadeia de caracteres    |`RoleId`      |cadeia de caracteres                     |
+|`UserId`                 |cadeia de caracteres    |`UserId`      |cadeia de caracteres                     |
 
 Referencie as tabelas de mapeamento anteriores ao criar um script de migração para *usuários* e *funções*. O exemplo a seguir pressupõe que você tenha dois bancos de dados em um servidor de banco de dados. Um banco de dados contém o esquema de associação do ASP.NET existente. O outro banco de dados *CoreIdentitySample* foi criado usando as etapas descritas anteriormente. Os comentários são incluídos embutidos para obter mais detalhes.
 
@@ -187,15 +193,15 @@ IF @@ERROR <> 0
 COMMIT TRANSACTION MigrateUsersAndRoles
 ```
 
-Após a conclusão do script anterior, o aplicativo de identidade ASP.NET Core criado anteriormente é preenchido com usuários de associação. Os usuários precisam alterar suas senhas antes de fazer logon.
+Após a conclusão do script anterior, o aplicativo Identity ASP.NET Core criado anteriormente é populado com usuários de associação. Os usuários precisam alterar suas senhas antes de fazer logon.
 
 > [!NOTE]
-> Se o sistema de associação tiver usuários com nomes de usuário que não corresponderam a seu endereço de email, as alterações serão necessárias para o aplicativo criado anteriormente para acomodar isso. O modelo padrão espera que `UserName` e `Email` sejam iguais. Para situações em que elas são diferentes, o processo de logon precisa ser modificado para usar `UserName` em vez de `Email`.
+> Se o sistema de associação tiver usuários com nomes de usuário que não corresponderam a seu endereço de email, as alterações serão necessárias para o aplicativo criado anteriormente para acomodar isso. O modelo padrão espera `UserName` e `Email` deve ser o mesmo. Para situações em que elas são diferentes, o processo de logon precisa ser modificado para uso `UserName` em vez `Email`de.
 
-Na `PageModel` da página de logon, localizada em *Pages\Account\Login.cshtml.cs*, remova o atributo `[EmailAddress]` da propriedade *email* . Renomeie-o como *username*. Isso requer uma alteração sempre que `EmailAddress` for mencionado, na *exibição* e *PageModel*. O resultado se parece com o seguinte:
+No `PageModel` da página de logon, localizada em *Pages\Account\Login.cshtml.cs*, remova o `[EmailAddress]` atributo da propriedade *email* . Renomeie-o como *username*. Isso requer uma alteração sempre `EmailAddress` que for mencionado, na *exibição* e no *PageModel*. O resultado se parece com o seguinte:
 
  ![Logon fixo](identity/_static/fixed-login.png)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
-Neste tutorial, você aprendeu a portar os usuários da associação do SQL para ASP.NET Core identidade 2,0. Para obter mais informações sobre a identidade de ASP.NET Core, consulte [introdução à identidade](xref:security/authentication/identity).
+Neste tutorial, você aprendeu a portar os usuários da associação do SQL para o IdentityASP.NET Core 2,0. Para obter mais informações sobre IdentityASP.NET Core, consulte [Introduction Identityto ](xref:security/authentication/identity).

@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: 321d506760d057914136f77c15e85043fa9d9832
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1917a329a5dcbe60542541cfcdc746799307e3d5
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766531"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850403"
 ---
 # <a name="tools-and-downloads"></a>Ferramentas e downloads
 
@@ -27,7 +27,7 @@ O Azure tem várias interfaces para provisionar e gerenciar recursos, como o [po
 
 As seguintes assinaturas são necessárias:
 
-* Azure &mdash; se você não tiver uma conta, [obtenha uma avaliação gratuita](https://azure.microsoft.com/free/).
+* Azure &mdash; se você não tiver uma conta, [obtenha uma avaliação gratuita](https://azure.microsoft.com/free/dotnet/).
 * Azure DevOps Services &mdash; sua assinatura e organização do DevOps do Azure é criada no capítulo 4.
 * GitHub &mdash; se você não tiver uma conta, [Inscreva-se gratuitamente](https://github.com/join).
 

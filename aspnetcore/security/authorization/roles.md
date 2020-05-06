@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba como restringir o acesso ao controlador de ASP.NET Core e à ação passando funções para o atributo Authorize.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/roles
-ms.openlocfilehash: 28aa3df6aa661d0b762df78fe611cd827af43f75
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 01d4239377b128f711a110a821e1afea58ca14a7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78658392"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776533"
 ---
 # <a name="role-based-authorization-in-aspnet-core"></a>Autorização baseada em função no ASP.NET Core
 
@@ -20,9 +26,9 @@ Quando uma identidade é criada, ela pode pertencer a uma ou mais funções. Por
 
 ## <a name="adding-role-checks"></a>Adicionando verificações de função
 
-As verificações de autorização baseadas em função são declarativas&mdash;o desenvolvedor as incorpora em seu código, em um controlador ou em uma ação dentro de um controlador, especificando funções das quais o usuário atual deve ser membro para acessar o recurso solicitado.
+As verificações de autorização baseadas em função&mdash;são declarativas que o desenvolvedor as insere em seu código, em um controlador ou em uma ação dentro de um controlador, especificando funções das quais o usuário atual deve ser membro para acessar o recurso solicitado.
 
-Por exemplo, o código a seguir limita o acesso a qualquer ação no `AdministrationController` aos usuários que são membros da função `Administrator`:
+Por exemplo, o código a seguir limita o acesso a qualquer ação `AdministrationController` no para os usuários que são membros da `Administrator` função:
 
 ```csharp
 [Authorize(Roles = "Administrator")]
@@ -40,9 +46,9 @@ public class SalaryController : Controller
 }
 ```
 
-Esse controlador só pode ser acessado por usuários que são membros da função `HRManager` ou da função `Finance`.
+Esse controlador só poderá ser acessado por usuários que são membros `HRManager` da função ou `Finance` da função.
 
-Se você aplicar vários atributos, um usuário de acesso deverá ser um membro de todas as funções especificadas; o exemplo a seguir requer que um usuário seja membro da função `PowerUser` e `ControlPanelUser`.
+Se você aplicar vários atributos, um usuário de acesso deverá ser um membro de todas as funções especificadas; o exemplo a seguir requer que um usuário seja membro de ambas as `PowerUser` funções e `ControlPanelUser` .
 
 ```csharp
 [Authorize(Roles = "PowerUser")]
@@ -69,7 +75,7 @@ public class ControlPanelController : Controller
 }
 ```
 
-No trecho de código anterior, os membros da função `Administrator` ou a função `PowerUser` podem acessar o controlador e a ação `SetTime`, mas somente os membros da função `Administrator` podem acessar a ação `ShutDown`.
+No trecho de código anterior, os membros `Administrator` da função ou `PowerUser` a função podem acessar o controlador e `SetTime` a ação, mas somente os membros `Administrator` da função podem acessar `ShutDown` a ação.
 
 Você também pode bloquear um controlador, mas permitir acesso anônimo e não autenticado a ações individuais.
 
@@ -90,10 +96,10 @@ public class ControlPanelController : Controller
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Por Razor Pages, o `AuthorizeAttribute` pode ser aplicado por um dos dois:
+Para Razor páginas, o `AuthorizeAttribute` pode ser aplicado por um dos dois:
 
 * Usando uma [Convenção](xref:razor-pages/razor-pages-conventions#page-model-action-conventions)ou
-* Aplicando o `AuthorizeAttribute` à instância de `PageModel`:
+* Aplicando `AuthorizeAttribute` o à `PageModel` instância:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -106,7 +112,7 @@ public class UpdateModel : PageModel
 ```
 
 > [!IMPORTANT]
-> Os atributos de filtro, incluindo `AuthorizeAttribute`, só podem ser aplicados a PageModel e não podem ser aplicados a métodos de manipuladores de páginas específicos.
+> Os atributos de filtro `AuthorizeAttribute`, incluindo, só podem ser aplicados a PageModel e não podem ser aplicados a métodos de manipuladores de páginas específicos.
 ::: moniker-end
 
 <a name="security-authorization-role-policy"></a>
@@ -146,7 +152,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 ::: moniker-end
 
-As políticas são aplicadas usando a propriedade `Policy` no atributo `AuthorizeAttribute`:
+As políticas são aplicadas usando `Policy` a propriedade no `AuthorizeAttribute` atributo:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -156,16 +162,16 @@ public IActionResult Shutdown()
 }
 ```
 
-Se você quiser especificar várias funções permitidas em um requisito, poderá especificá-las como parâmetros para o método de `RequireRole`:
+Se você quiser especificar várias funções permitidas em um requisito, poderá especificá-las como parâmetros para `RequireRole` o método:
 
 ```csharp
 options.AddPolicy("ElevatedRights", policy =>
                   policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 ```
 
-Este exemplo autoriza os usuários que pertencem às funções `Administrator`, `PowerUser` ou `BackupAdministrator`.
+Este exemplo autoriza os usuários que pertencem às `Administrator`funções `PowerUser` ou. `BackupAdministrator`
 
-### <a name="add-role-services-to-identity"></a>Adicionar serviços de função à identidade
+### <a name="add-role-services-to-identity"></a>Adicionar serviços de função aIdentity
 
 Acrescente [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) para adicionar serviços de função:
 

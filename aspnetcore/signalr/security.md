@@ -7,14 +7,18 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 5a804425752a26cc5f3185f2b43dd9219dec312d
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: 2b049d9d8131c6c95b2f768620c984d0f67f92cc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558971"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775317"
 ---
 # <a name="security-considerations-in-aspnet-core-signalr"></a>Considerações de segurança no ASP.NET CoreSignalR
 
@@ -24,7 +28,7 @@ Este artigo fornece informações sobre como proteger SignalRo.
 
 ## <a name="cross-origin-resource-sharing"></a>Compartilhamento de recursos entre origens
 
-O [CORS (compartilhamento de recursos entre origens)](https://www.w3.org/TR/cors/) pode ser usado para permitir conexões entre SignalR origens no navegador. Se o código JavaScript estiver hospedado em um domínio diferente do SignalR aplicativo, o [middleware CORS](xref:security/cors) deverá ser habilitado para permitir que o JavaScript se conecte ao SignalR aplicativo. Permitir solicitações entre origens somente de domínios nos quais você confia ou controla. Por exemplo: 
+O [CORS (compartilhamento de recursos entre origens)](https://www.w3.org/TR/cors/) pode ser usado para permitir conexões entre SignalR origens no navegador. Se o código JavaScript estiver hospedado em um domínio diferente do SignalR aplicativo, o [middleware CORS](xref:security/cors) deverá ser habilitado para permitir que o JavaScript se conecte ao SignalR aplicativo. Permitir solicitações entre origens somente de domínios nos quais você confia ou controla. Por exemplo:
 
 * Seu site está hospedado em`http://www.example.com`
 * Seu SignalR aplicativo está hospedado em`http://signalr.example.com`
@@ -114,7 +118,7 @@ A exposição `ConnectionId` pode levar à representação mal-intencionada se a
 
 ## <a name="access-token-logging"></a>Log de token de acesso
 
-Ao usar Websockets ou eventos enviados pelo servidor, o cliente de navegador envia o token de acesso na cadeia de caracteres de consulta. O recebimento do token de acesso por meio da cadeia de caracteres de consulta `Authorization` é geralmente seguro com o uso do cabeçalho padrão. Sempre use HTTPS para garantir uma conexão segura de ponta a ponta entre o cliente e o servidor. Muitos servidores Web registram a URL para cada solicitação, incluindo a cadeia de caracteres de consulta. O registro em log das URLs pode registrar o token de acesso. O ASP.NET Core registra em log a URL para cada solicitação por padrão, o que incluirá a cadeia de caracteres de consulta. Por exemplo: 
+Ao usar Websockets ou eventos enviados pelo servidor, o cliente de navegador envia o token de acesso na cadeia de caracteres de consulta. O recebimento do token de acesso por meio da cadeia de caracteres de consulta `Authorization` é geralmente seguro com o uso do cabeçalho padrão. Sempre use HTTPS para garantir uma conexão segura de ponta a ponta entre o cliente e o servidor. Muitos servidores Web registram a URL para cada solicitação, incluindo a cadeia de caracteres de consulta. O registro em log das URLs pode registrar o token de acesso. O ASP.NET Core registra em log a URL para cada solicitação por padrão, o que incluirá a cadeia de caracteres de consulta. Por exemplo:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]

@@ -5,13 +5,19 @@ description: Receba diretrizes para migrar aplicativos existentes do ASP.NET MVC
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/mvc2
-ms.openlocfilehash: 5a2437f8dddee49d402bf7df67cb15aa895367b2
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: 98b93731d40b47be8d7d5050afc7c74d25a7e1dc
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511074"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776266"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core-20"></a>Migrar do ASP.NET para o ASP.NET Core 2.0
 
@@ -19,11 +25,11 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core 2.0.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 Instale **um** dos seguintes itens de [downloads do .net: Windows](https://dotnet.microsoft.com/download):
 
-* SDK do .NET Core
+* SDK do .Net Core
 * Visual Studio para Windows
   * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
   * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
@@ -66,7 +72,7 @@ Essa abordagem associa o aplicativo e o servidor no qual ele é implantado de um
 
 Isso configura as rotas padrão e usa XmlSerialization em Json por padrão. Adicione outro Middleware para este pipeline conforme necessário (carregamento de serviços, definições de configuração, arquivos estáticos, etc.).
 
-O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método de `Main` *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por aí.
+O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método *Program.cs* `Main` (semelhante aos aplicativos `Startup` de console) e é carregado por aí.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -121,7 +127,7 @@ Uma meta importante ao criar aplicativos escalonáveis e grandes é o acoplament
 
 Em aplicativos ASP.NET, os desenvolvedores contam com uma biblioteca de terceiros para implementar a injeção de dependência. Um biblioteca desse tipo é a [Unity](https://github.com/unitycontainer/unity), fornecida pelas Diretrizes da Microsoft.
 
-Um exemplo de configuração da injeção de dependência com o Unity é implementar `IDependencyResolver` que encapsula um `UnityContainer`:
+Um exemplo de configuração da injeção de dependência com o Unity `IDependencyResolver` é a implementação que `UnityContainer`encapsula um:
 
 [!code-csharp[](samples/sample8.cs)]
 
@@ -133,13 +139,13 @@ Injete `IProductRepository` quando necessário:
 
 [!code-csharp[](samples/sample5.cs)]
 
-Como a injeção de dependência faz parte do ASP.NET Core, você pode adicionar seu serviço no `Startup.ConfigureServices`:
+Como a injeção de dependência faz parte do ASP.NET Core, você pode adicionar seu serviço `Startup.ConfigureServices`no:
 
 [!code-csharp[](samples/configure-services.cs)]
 
 O repositório pode ser injetado em qualquer lugar, como ocorria com a Unity.
 
-Para obter mais informações sobre injeção de dependência em ASP.NET Core, consulte <xref:fundamentals/dependency-injection>.
+Para obter mais informações sobre injeção de dependência no ASP.NET Core <xref:fundamentals/dependency-injection>, consulte.
 
 ## <a name="serving-static-files"></a>Servindo arquivos estáticos
 
@@ -147,7 +153,7 @@ Uma parte importante do desenvolvimento da Web é a capacidade de servir ativos 
 
 No ASP.NET, arquivos estáticos são armazenados em vários diretórios e referenciados nas exibições.
 
-No ASP.NET Core, arquivos estáticos são armazenados na "raiz da Web" ( *&lt;raiz do conteúdo&gt;/wwwroot*), a menos que configurado de outra forma. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
+Em ASP.NET Core, os arquivos estáticos são armazenados na "raiz da Web" (*&lt;Content root&gt;/wwwroot*), a menos que seja configurado de outra forma. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -155,7 +161,7 @@ No ASP.NET Core, arquivos estáticos são armazenados na "raiz da Web" ( *&lt;ra
 
 Por exemplo, um ativo de imagem na pasta *wwwroot/imagens* está acessível para o navegador em um local como `http://<app>/images/<imageFileName>`.
 
-**Observação:** Para obter uma referência mais detalhada para o fornecimento de arquivos estáticos no ASP.NET Core, consulte <xref:fundamentals/static-files>.
+**Observação:** Para obter uma referência mais detalhada para o fornecimento de arquivos estáticos no ASP.NET Core <xref:fundamentals/static-files>, consulte.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

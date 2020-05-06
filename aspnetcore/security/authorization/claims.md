@@ -4,19 +4,25 @@ author: rick-anderson
 description: Saiba como adicionar verificações de declarações para autorização em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: e289851aafcbc7e3b3f60ab9fbe4b182a78bdf8a
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: de8ab915e6a8529c7401f89fad067ec33d5d0713
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661801"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774412"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Autorização baseada em declarações no ASP.NET Core
 
 <a name="security-authorization-claims-based"></a>
 
-Quando uma identidade é criada, ela pode ser atribuída a uma ou mais declarações emitidas por uma parte confiável. Uma declaração é um par de valor de nome que representa qual é o assunto, não o que o assunto pode fazer. Por exemplo, você pode ter uma licença de driver, emitida por uma autoridade de licença de condução local. A licença do seu driver tem sua data de nascimento. Nesse caso, o nome da declaração seria `DateOfBirth`, o valor da declaração seria a sua data de nascimento, por exemplo `8th June 1970` e o emissor seria a autoridade de licença de condução. A autorização baseada em declarações, em sua mais simples, verifica o valor de uma declaração e permite o acesso a um recurso com base no valor. Por exemplo, se você quiser acesso a um clube noturno, o processo de autorização poderá ser:
+Quando uma identidade é criada, ela pode ser atribuída a uma ou mais declarações emitidas por uma parte confiável. Uma declaração é um par de valor de nome que representa qual é o assunto, não o que o assunto pode fazer. Por exemplo, você pode ter uma licença de driver, emitida por uma autoridade de licença de condução local. A licença do seu driver tem sua data de nascimento. Nesse caso `DateOfBirth`, o nome da declaração seria, o valor da declaração seria a sua data de nascimento, por `8th June 1970` exemplo, e o emissor seria a autoridade de certificação de condução. A autorização baseada em declarações, em sua mais simples, verifica o valor de uma declaração e permite o acesso a um recurso com base no valor. Por exemplo, se você quiser acesso a um clube noturno, o processo de autorização poderá ser:
 
 O diretor de segurança de porta avaliaria o valor de sua declaração de data de nascimento e se confiará no emissor (a autoridade de licença de condução) antes de conceder acesso.
 
@@ -28,7 +34,7 @@ As verificações de autorização baseadas em declarações são declarativas-o
 
 O tipo mais simples de política de declaração procura a presença de uma declaração e não verifica o valor.
 
-Primeiro, você precisa criar e registrar a política. Isso ocorre como parte da configuração do serviço de autorização, que normalmente faz parte do `ConfigureServices()` no arquivo *Startup.cs* .
+Primeiro, você precisa criar e registrar a política. Isso ocorre como parte da configuração do serviço de autorização, que normalmente faz parte `ConfigureServices()` do seu arquivo *Startup.cs* .
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -63,9 +69,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-Nesse caso, a política de `EmployeeOnly` verifica a presença de uma declaração de `EmployeeNumber` na identidade atual.
+Nesse caso, a `EmployeeOnly` política verifica a presença de uma `EmployeeNumber` declaração na identidade atual.
 
-Em seguida, aplique a política usando a propriedade `Policy` no atributo `AuthorizeAttribute` para especificar o nome da política;
+Em seguida, aplique a política usando `Policy` a propriedade no `AuthorizeAttribute` atributo para especificar o nome da política;
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -75,7 +81,7 @@ public IActionResult VacationBalance()
 }
 ```
 
-O atributo `AuthorizeAttribute` pode ser aplicado a um controlador inteiro, nessa instância, somente as identidades correspondentes à política terão permissão para acessar qualquer ação no controlador.
+O `AuthorizeAttribute` atributo pode ser aplicado a um controlador inteiro, nessa instância, somente as identidades correspondentes à política terão permissão de acesso a qualquer ação no controlador.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -87,7 +93,7 @@ public class VacationController : Controller
 }
 ```
 
-Se você tiver um controlador protegido pelo atributo `AuthorizeAttribute`, mas quiser permitir acesso anônimo a determinadas ações, aplique o atributo `AllowAnonymousAttribute`.
+Se você tiver um controlador protegido pelo `AuthorizeAttribute` atributo, mas quiser permitir o acesso anônimo a determinadas ações, aplique o `AllowAnonymousAttribute` atributo.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -163,6 +169,6 @@ public class SalaryController : Controller
 }
 ```
 
-No exemplo acima, qualquer identidade que atenda à política de `EmployeeOnly` pode acessar a ação `Payslip`, pois essa política é imposta no controlador. No entanto, para chamar a ação de `UpdateSalary`, a identidade deve atender *tanto* à política de `EmployeeOnly` quanto à política de `HumanResources`.
+No exemplo acima, qualquer identidade que atenda à `EmployeeOnly` política pode acessar a `Payslip` ação, pois essa política é imposta no controlador. No entanto, para chamar `UpdateSalary` a ação, a identidade deve atender `EmployeeOnly` *tanto* à política `HumanResources` quanto à política.
 
 Se você quiser políticas mais complicadas, como a obtenção de uma declaração de data de nascimento, calcular uma idade a partir dela, verificando se a idade é 21 ou mais antiga, você precisa escrever [manipuladores de política personalizados](xref:security/authorization/policies).

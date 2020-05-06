@@ -6,25 +6,31 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 269be9ece674b39d03cb50720f4fb182c565a639
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: d3207969dfbeb9a81e0da88f38a38c6889bbfba9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659645"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775863"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Auxiliar de marca parcial no ASP.NET Core
 
 Por [Scott Addie](https://github.com/scottaddie)
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="overview"></a>Visão geral
 
-O auxiliar de marca parcial é usado para renderizar uma [exibição parcial](xref:mvc/views/partial) em Páginas Razor e em aplicativos MVC. Considere que ele:
+O auxiliar de marca parcial é usado para renderizar uma [exibição parcial](xref:mvc/views/partial) em Razor páginas e aplicativos MVC. Considere que ele:
 
 * Exige o ASP.NET Core 2.1 ou posterior.
 * É uma alternativa à [sintaxe do HTML Helper](xref:mvc/views/partial#reference-a-partial-view).
@@ -43,7 +49,7 @@ O modelo *Product* é usado nos exemplos ao longo deste documento:
 
 Segue um inventário dos atributos do auxiliar de marca parcial.
 
-## <a name="name"></a>{1&gt;name&lt;1}
+## <a name="name"></a>name
 
 O atributo `name` é necessário. Indica o nome ou o caminho da exibição parcial a ser renderizada. Quando é fornecido um nome de exibição parcial, o processo [descoberta de exibição](xref:mvc/views/overview#view-discovery) é iniciado. Esse processo é ignorado quando um caminho explícito é fornecido. Para todos os valores de `name` aceitáveis, consulte [Descoberta de exibição parcial](xref:mvc/views/partial#partial-view-discovery).
 
@@ -63,7 +69,7 @@ A exibição parcial é associada à propriedade `Product` do modelo de página 
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
-## <a name="model"></a>{1&gt;modelo&lt;1}
+## <a name="model"></a>modelo
 
 O atributo `model` atribui uma instância de modelo a ser passada para a exibição parcial. O atributo `model` não pode ser usado com o atributo [for](#for).
 
@@ -89,7 +95,7 @@ Considere o seguinte exemplo de auxiliar HTML assíncrono. Uma coleção de prod
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_HtmlHelper&highlight=3)]
 
-O auxiliar de marca parcial seguir alcança o mesmo comportamento de renderização assíncrona que o auxiliar HTML `PartialAsync`. Uma instância de modelo `model` é atribuída ao atributo `Product` para associação à exibição parcial.
+O auxiliar de marca parcial seguir alcança o mesmo comportamento de renderização assíncrona que o auxiliar HTML `PartialAsync`. Uma instância de modelo `Product` é atribuída ao atributo `model` para associação à exibição parcial.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_TagHelper&highlight=3)]
 

@@ -7,14 +7,17 @@ ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: index
-ms.openlocfilehash: d70998d0149a0cc7018946a93ab63b5e10b76b78
-ms.sourcegitcommit: f9a5069577e8f7c53f8bcec9e13e117950f4f033
+ms.openlocfilehash: 7f46051193681ecac59428b77ca1e36830c7bb63
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82558941"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776331"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -170,7 +173,7 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
    |Cenário  |Tutorial  |
    |----------|----------|
-   | Para novo desenvolvimento        |[Razor Pages com o Entity Framework Core](xref:data/ef-rp/intro) |
+   | Para novo desenvolvimento        |[RazorPáginas com Entity Framework Core](xref:data/ef-rp/intro) |
    | Para manter um aplicativo MVC |[MVC com o Entity Framework Core](xref:data/ef-mvc/intro) |
 
 1. Leia uma visão geral de ASP.NET Core [conceitos básicos](xref:fundamentals/index) que se aplicam a todos os tipos de aplicativos.

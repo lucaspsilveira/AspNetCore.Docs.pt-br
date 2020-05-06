@@ -4,13 +4,19 @@ author: ardalis
 description: Saiba como começar a migrar um projeto MVC do ASP.NET para ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: migration/mvc
-ms.openlocfilehash: 6c9449fb43960d05db8aa6dcba64d3d830834cdb
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 59a10c002958e5f719dbd59686f21df69da5f43e
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661164"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777040"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrar do ASP.NET MVC para o ASP.NET Core MVC
 
@@ -61,13 +67,13 @@ Crie um novo aplicativo Web *vazio* ASP.NET Core com o mesmo nome do projeto ant
 
 ::: moniker-end
 
-`Microsoft.AspNetCore.Mvc` é a estrutura MVC do ASP.NET Core. `Microsoft.AspNetCore.StaticFiles` é o manipulador de arquivo estático. O tempo de execução do ASP.NET Core é modular e você deve optar explicitamente por fornecer arquivos estáticos (consulte [arquivos estáticos](xref:fundamentals/static-files)).
+`Microsoft.AspNetCore.Mvc`é o ASP.NET Core MVC Framework. `Microsoft.AspNetCore.StaticFiles`é o manipulador de arquivo estático. O tempo de execução do ASP.NET Core é modular e você deve optar explicitamente por fornecer arquivos estáticos (consulte [arquivos estáticos](xref:fundamentals/static-files)).
 
 * Abra o arquivo *Startup.cs* e altere o código para corresponder ao seguinte:
 
   [!code-csharp[](mvc/sample/Startup.cs?highlight=13,26-31)]
 
-O método de extensão `UseStaticFiles` adiciona o manipulador de arquivo estático. Conforme mencionado anteriormente, o tempo de execução do ASP.NET é modular e você deve optar explicitamente por fornecer arquivos estáticos. O método de extensão `UseMvc` adiciona o roteamento. Para obter mais informações, consulte inicialização e [Roteamento](xref:fundamentals/routing)de [aplicativos](xref:fundamentals/startup) .
+O `UseStaticFiles` método de extensão adiciona o manipulador de arquivo estático. Conforme mencionado anteriormente, o tempo de execução do ASP.NET é modular e você deve optar explicitamente por fornecer arquivos estáticos. O `UseMvc` método de extensão adiciona o roteamento. Para obter mais informações, consulte inicialização e [Roteamento](xref:fundamentals/routing)de [aplicativos](xref:fundamentals/startup) .
 
 ## <a name="add-a-controller-and-view"></a>Adicionar um controlador e uma exibição
 
@@ -83,7 +89,7 @@ Nesta seção, você adicionará um controlador e uma exibição mínima para se
 
 * Adicione uma pasta *views/Home* .
 
-* Adicione uma **exibição do Razor** denominada *index. cshtml* à pasta *views/Home* .
+* Adicione uma ** Razor exibição** denominada *index. cshtml* à pasta *views/Home* .
 
 ![Caixa de diálogo Adicionar Novo Item](mvc/_static/view.png)
 
@@ -109,23 +115,23 @@ Agora que temos um projeto de ASP.NET Core de trabalho mínimo, podemos começar
 
 * controladores
 
-* exibições
+* Modos de exibição
 
 * modelos
 
-* Reagrupamento
+* reagrupamento
 
 * filtros
 
-* Logon/saída, identidade (isso é feito no próximo tutorial.)
+* Faça logon/out, Identity (isso é feito no próximo tutorial.)
 
 ## <a name="controllers-and-views"></a>Controladores e exibições
 
-* Copie cada um dos métodos do `HomeController` MVC ASP.NET para o novo `HomeController`. Observe que no ASP.NET MVC, o tipo de retorno do método de ação do controlador interno do modelo é [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); no ASP.NET Core MVC, os métodos de ação retornam `IActionResult` em vez disso. `ActionResult` implementa `IActionResult`, portanto, não é necessário alterar o tipo de retorno dos seus métodos de ação.
+* Copie cada um dos métodos do ASP.NET MVC `HomeController` para o novo. `HomeController` Observe que no ASP.NET MVC, o tipo de retorno do método de ação do controlador interno do modelo é [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); no ASP.NET Core MVC, os métodos de ação `IActionResult` retornam. `ActionResult`implementa `IActionResult`, portanto, não é necessário alterar o tipo de retorno de seus métodos de ação.
 
 * Copie os arquivos de exibição *about. cshtml*, *Contact. cshtml*e *index. cshtml* Razor do projeto ASP.NET MVC para o projeto ASP.NET Core.
 
-* Execute o aplicativo ASP.NET Core e teste cada método. Ainda não migramos o arquivo de layout ou os estilos, portanto, as exibições renderizadas contêm apenas o conteúdo nos arquivos de exibição. Você não terá os links gerados pelo arquivo de layout para as exibições `About` e `Contact`, portanto, você precisará chamá-los do navegador (substitua **4492** pelo número da porta usada em seu projeto).
+* Execute o aplicativo ASP.NET Core e teste cada método. Ainda não migramos o arquivo de layout ou os estilos, portanto, as exibições renderizadas contêm apenas o conteúdo nos arquivos de exibição. Você não terá os links gerados pelo arquivo de layout `About` para `Contact` as exibições e, portanto, precisará chamá-los do navegador (substitua **4492** pelo número da porta usada em seu projeto).
 
   * `http://localhost:4492/home/about`
 
@@ -155,15 +161,15 @@ O antigo projeto MVC ASP.NET usa a [inicialização](https://getbootstrap.com/) 
 
 Abra *_Layout arquivo. cshtml* e faça as seguintes alterações (o código completo é mostrado abaixo):
 
-* Substitua `@Styles.Render("~/Content/css")` por um elemento `<link>` para carregar *bootstrap. css* (veja abaixo).
+* Substituir `@Styles.Render("~/Content/css")` por um `<link>` elemento para carregar *bootstrap. css* (veja abaixo).
 
 * Remova `@Scripts.Render("~/bundles/modernizr")`.
 
-* Comente a linha de `@Html.Partial("_LoginPartial")` (circundando a linha com `@*...*@`). Para obter mais informações, consulte [migrar autenticação e identidade para ASP.NET Core](xref:migration/identity)
+* Comente a `@Html.Partial("_LoginPartial")` linha (circundando a linha com `@*...*@`). Para obter mais informações [, consulte migrar autenticação Identity e para ASP.NET Core](xref:migration/identity)
 
-* Substitua `@Scripts.Render("~/bundles/jquery")` por um elemento `<script>` (veja abaixo).
+* Substituir `@Scripts.Render("~/bundles/jquery")` por um `<script>` elemento (veja abaixo).
 
-* Substitua `@Scripts.Render("~/bundles/bootstrap")` por um elemento `<script>` (veja abaixo).
+* Substituir `@Scripts.Render("~/bundles/bootstrap")` por um `<script>` elemento (veja abaixo).
 
 A marcação de substituição para inclusão de CSS de Bootstrap:
 
@@ -196,7 +202,7 @@ Para obter informações sobre como configurar o agrupamento e o minificação, 
 
 ## <a name="solve-http-500-errors"></a>Resolver erros HTTP 500
 
-Há muitos problemas que podem causar uma mensagem de erro HTTP 500 que não contém informações sobre a origem do problema. Por exemplo, se o arquivo *views/_ViewImports. cshtml* contiver um namespace que não exista em seu projeto, você receberá um erro http 500. Por padrão, em aplicativos ASP.NET Core, a extensão `UseDeveloperExceptionPage` é adicionada à `IApplicationBuilder` e executada quando a configuração está em *desenvolvimento*. Isso é detalhado no código a seguir:
+Há muitos problemas que podem causar uma mensagem de erro HTTP 500 que não contém informações sobre a origem do problema. Por exemplo, se o arquivo *views/_ViewImports. cshtml* contiver um namespace que não exista em seu projeto, você receberá um erro http 500. Por padrão, em aplicativos ASP.NET Core, `UseDeveloperExceptionPage` a extensão é adicionada ao `IApplicationBuilder` e executada quando a configuração está em *desenvolvimento*. Isso é detalhado no código a seguir:
 
 [!code-csharp[](mvc/sample/Startup.cs?highlight=19-22)]
 

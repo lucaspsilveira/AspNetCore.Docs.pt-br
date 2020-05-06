@@ -4,19 +4,25 @@ author: rick-anderson
 description: Descubra artigos com base em projetos ASP.NET Core criados com contas de usuário individuais.
 ms.author: riande
 ms.date: 12/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 7ef0d5eabded61d04fb9fe7be384a663ad7ea5f4
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 26f53b6452e307bbd0816c1a3604f38b04c6af15
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659617"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768644"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Artigos baseados em projetos ASP.NET Core criados com contas de usuário individuais
 
 ASP.NET Core identidade está incluída nos modelos de projeto no Visual Studio com a opção "contas de usuário individuais".
 
-Os modelos de autenticação estão disponíveis em CLI do .NET Core com `-au Individual`:
+Os modelos de autenticação estão disponíveis no CLI do .NET Core `-au Individual`com:
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -42,7 +48,7 @@ Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 ## <a name="no-authentication"></a>Sem Autenticação
 
-A autenticação é especificada no CLI do .NET Core com a opção `-au`. No Visual Studio, a caixa de diálogo **alterar autenticação** está disponível para novos aplicativos Web. O padrão para novos aplicativos Web no Visual Studio **não é autenticação**.
+A autenticação é especificada no CLI do .NET Core com a `-au` opção. No Visual Studio, a caixa de diálogo **alterar autenticação** está disponível para novos aplicativos Web. O padrão para novos aplicativos Web no Visual Studio **não é autenticação**.
 
 Projetos criados sem autenticação:
 
@@ -53,7 +59,7 @@ Projetos criados sem autenticação:
 
 ## <a name="windows-authentication"></a>Autenticação do Windows
 
-A autenticação do Windows é especificada para novos aplicativos Web no CLI do .NET Core com a opção `-au Windows`. No Visual Studio, a caixa de diálogo **alterar autenticação** fornece as opções de **autenticação do Windows** .
+A autenticação do Windows é especificada para novos aplicativos Web no CLI do .NET Core com `-au Windows` a opção. No Visual Studio, a caixa de diálogo **alterar autenticação** fornece as opções de **autenticação do Windows** .
 
 Se a autenticação do Windows for selecionada, o aplicativo será configurado para usar o [módulo IIS de autenticação do Windows](xref:host-and-deploy/iis/modules). A autenticação do Windows destina-se a sites da intranet.
 
@@ -61,27 +67,27 @@ Se a autenticação do Windows for selecionada, o aplicativo será configurado p
 
 A tabela a seguir mostra as opções de autenticação disponíveis para novos aplicativos Web:
 
-| {1&gt;Opção&lt;1} | Tipo de autenticação | Link para obter mais informações |
+| Opção | Tipo de autenticação | Link para mais informações |
  | ----------------- | ------------ | ---------- |
 | Nenhum            |  Sem autenticação | | 
 | Individual      |  Autenticação individual | <xref:security/authentication/identity>
-| IndividualB2C   |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [B2C do AD do Azure](/azure/active-directory-b2c/) |
-| SingleOrg       |  Autenticação organizacional para um único locatário | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| MultiOrg        |  Autenticação organizacional para vários locatários | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Portal         |  Autenticação do Windows | [Autenticação do Windows](xref:security/authentication/windowsauth)
+| IndividualB2C   |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| SingleOrg       |  Autenticação organizacional para um único locatário | [AD do Azure](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| MultiOrg        |  Autenticação organizacional para vários locatários | [AD do Azure](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Autenticação do Windows | [Autenticação do Windows](xref:security/authentication/windowsauth)
 
 ## <a name="visual-studio-new-webapp-authentication-options"></a>Novas opções de autenticação webapp do Visual Studio
 
 A tabela a seguir mostra as opções de autenticação disponíveis ao criar um novo aplicativo Web com o Visual Studio:
 
-| {1&gt;Opção&lt;1} | Tipo de autenticação | Link para obter mais informações |
+| Opção | Tipo de autenticação | Link para mais informações |
  | ----------------- | ------------ | ---------- |
 | Nenhum            |  Sem autenticação | | 
 | Contas de usuário individuais/armazenar contas de usuário no aplicativo |  Autenticação individual | <xref:security/authentication/identity> |
-| Contas de usuário individuais/Conecte-se a um armazenamento de usuário existente na nuvem |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [B2C do AD do Azure](/azure/active-directory-b2c/) |
-| Nuvem corporativa ou de estudante/organização única  |  Autenticação organizacional para um único locatário | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Nuvem corporativa ou de estudante/várias org |  Autenticação organizacional para vários locatários | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Portal         |  Autenticação do Windows | [Autenticação do Windows](xref:security/authentication/windowsauth)
+| Contas de usuário individuais/Conecte-se a um armazenamento de usuário existente na nuvem |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| Nuvem corporativa ou de estudante/organização única  |  Autenticação organizacional para um único locatário | [AD do Azure](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Nuvem corporativa ou de estudante/várias org |  Autenticação organizacional para vários locatários | [AD do Azure](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Autenticação do Windows | [Autenticação do Windows](xref:security/authentication/windowsauth)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

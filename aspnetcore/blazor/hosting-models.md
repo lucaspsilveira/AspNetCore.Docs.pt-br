@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 03/31/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 48f5b09199091b2b55974010a2b0715c28eb1bae
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 524fd015278d1a5f784fa306f077d06b865201c4
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205963"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82772081"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos Blazor de hospedagem ASP.NET Core
 
@@ -94,9 +97,9 @@ O Blazor modelo de aplicativo do servidor dá suporte a [contêineres do Docker]
 
 ### <a name="comparison-to-server-rendered-ui"></a>Comparação com a interface do usuário renderizada pelo servidor
 
-Uma maneira de entender Blazor os aplicativos de servidor é entender como ele difere dos modelos tradicionais para renderizar a interface do usuário em aplicativos ASP.NET Core usando exibições do Razor ou Razor Pages. Ambos os modelos usam a linguagem Razor para descrever o conteúdo HTML, mas são significativamente diferentes na forma como a marcação é renderizada.
+Uma maneira de entender Blazor os aplicativos de servidor é entender como ele difere dos modelos tradicionais para renderizar a interface do Razor usuário em Razor aplicativos ASP.NET Core usando exibições ou páginas. Ambos os modelos usam Razor o idioma para descrever o conteúdo HTML, mas eles são significativamente diferentes na forma como a marcação é renderizada.
 
-Quando uma página Razor ou exibição é renderizada, cada linha do código do Razor emite HTML na forma de texto. Após a renderização, o servidor descarta a página ou a instância de exibição, incluindo qualquer estado produzido. Quando outra solicitação para a página ocorre, por exemplo, quando a validação do servidor falha e o resumo de validação é exibido:
+Quando uma Razor página ou exibição é renderizada, cada linha Razor de código emite HTML na forma de texto. Após a renderização, o servidor descarta a página ou a instância de exibição, incluindo qualquer estado produzido. Quando outra solicitação para a página ocorre, por exemplo, quando a validação do servidor falha e o resumo de validação é exibido:
 
 * A página inteira é reprocessada para o texto HTML novamente.
 * A página é enviada ao cliente.
@@ -106,7 +109,7 @@ Um Blazor aplicativo é composto por elementos reutilizáveis da interface do us
 * Transformado em texto HTML (durante o&dagger;pré-processamento).
 * Usado para atualizar a marcação com eficiência durante a renderização regular.
 
-&dagger;O pré-processamento do componente do Razor solicitado é compilado no servidor em HTML estático e enviado ao cliente, onde ele é renderizado para o usuário. *Prerendering* &ndash; Depois que a conexão é feita entre o cliente e o servidor, os elementos preprocessados estáticos do componente são substituídos por elementos interativos. O pré-processamento faz com que o aplicativo sinta-se mais responsivo para o usuário.
+&dagger;O pré-processamento do componente solicitado Razor é compilado no servidor em HTML estático e enviado ao cliente, onde ele é renderizado para o usuário. *Prerendering* &ndash; Depois que a conexão é feita entre o cliente e o servidor, os elementos preprocessados estáticos do componente são substituídos por elementos interativos. O pré-processamento faz com que o aplicativo sinta-se mais responsivo para o usuário.
 
 Uma atualização de interface Blazor do usuário no é disparada por:
 

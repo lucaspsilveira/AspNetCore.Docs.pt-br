@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 79a46cac4122728e84fa6f5acb3defa182092bec
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 2dd44a561debddac13250174a8e74dd912302d60
+ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206119"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82850507"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -348,7 +354,7 @@ Os detalhes de como a precedência funcionam são acoplados a como os modelos de
 * Um segmento com texto literal é considerado mais específico do que um segmento de parâmetro.
 * Um segmento de parâmetro com uma restrição é considerado mais específico que um sem.
 * Um segmento complexo é considerado específico como um segmento de parâmetro com uma restrição.
-* Capturar todos os parâmetros são os menos específicos.
+* Catch-todos os parâmetros são os menos específicos. Consulte **catch-all** na [referência do modelo de rota](#rtr) para obter informações importantes sobre as rotas catch-all.
 
 Consulte o [código-fonte no GitHub](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) para obter uma referência de valores exatos.
 
@@ -415,6 +421,8 @@ Asterisco `*` ou asterisco `**`duplo:
 * São chamados de parâmetros **catch-all** . Por exemplo `blog/{**slug}`:
   * Corresponde a qualquer URI que comece `/blog` com e tenha qualquer valor após ele.
   * O valor a `/blog` seguir é atribuído ao valor de rota de [espaçador](https://developer.mozilla.org/docs/Glossary/Slug) .
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 Os parâmetros catch-all também podem corresponder à cadeia de caracteres vazia.
 
@@ -574,7 +582,9 @@ Restrições de rotas personalizadas podem ser criadas com a <xref:Microsoft.Asp
 
 As restrições de rotas personalizadas raramente são necessárias. Antes de implementar uma restrição de rota personalizada, considere alternativas, como associação de modelo.
 
-Para usar um personalizado `IRouteConstraint`, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> aplicativo no contêiner de serviço. O `ConstraintMap` é um dicionário que mapeia as chaves de restrição de rota para implementações de `IRouteConstraint` que validam essas restrições. É possível atualizar o `ConstraintMap` do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo:
+A pasta [restrições](https://github.com/dotnet/aspnetcore/tree/master/src/Http/Routing/src/Constraints) de ASP.NET Core fornece bons exemplos de criação de restrições. Por exemplo, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
+
+Para usar um personalizado `IRouteConstraint`, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> aplicativo no contêiner de serviço. O `ConstraintMap` é um dicionário que mapeia as chaves de restrição de rota para implementações de `IRouteConstraint` que validam essas restrições. É possível atualizar o `ConstraintMap` do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo: 
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
@@ -1491,7 +1501,7 @@ Para restringir um parâmetro a um conjunto conhecido de valores possíveis, use
 
 Além das restrições de rota internas, é possível criar restrições de rota personalizadas com a implementação da interface do <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>. A interface do <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> contém um único método, `Match`, que retorna `true` quando a restrição é satisfeita. Caso contrário, retorna `false`.
 
-Para usar uma <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizada, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo, no contêiner de serviço do aplicativo. O <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> é um dicionário que mapeia as chaves de restrição de rota para implementações de <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> que validam essas restrições. É possível atualizar o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo:
+Para usar uma <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizada, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo, no contêiner de serviço do aplicativo. O <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> é um dicionário que mapeia as chaves de restrição de rota para implementações de <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> que validam essas restrições. É possível atualizar o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo: 
 
 ```csharp
 services.AddRouting(options =>
@@ -1500,7 +1510,7 @@ services.AddRouting(options =>
 });
 ```
 
-a restrição pode então ser aplicada às rotas da maneira usual, usando o nome especificado ao registrar o tipo de restrição. Por exemplo:
+a restrição pode então ser aplicada às rotas da maneira usual, usando o nome especificado ao registrar o tipo de restrição. Por exemplo: 
 
 ```csharp
 [HttpGet("{id:customName}")]
@@ -1935,7 +1945,7 @@ Para restringir um parâmetro a um conjunto conhecido de valores possíveis, use
 
 Além das restrições de rota internas, é possível criar restrições de rota personalizadas com a implementação da interface do <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>. A interface do <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> contém um único método, `Match`, que retorna `true` quando a restrição é satisfeita. Caso contrário, retorna `false`.
 
-Para usar uma <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizada, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo, no contêiner de serviço do aplicativo. O <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> é um dicionário que mapeia as chaves de restrição de rota para implementações de <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> que validam essas restrições. É possível atualizar o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo:
+Para usar uma <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> personalizada, o tipo de restrição de rota deve ser registrado com o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo, no contêiner de serviço do aplicativo. O <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> é um dicionário que mapeia as chaves de restrição de rota para implementações de <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> que validam essas restrições. É possível atualizar o <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> do aplicativo no `Startup.ConfigureServices` como parte de uma chamada [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) ou configurando <xref:Microsoft.AspNetCore.Routing.RouteOptions> diretamente com `services.Configure<RouteOptions>`. Por exemplo: 
 
 ```csharp
 services.AddRouting(options =>
@@ -1944,7 +1954,7 @@ services.AddRouting(options =>
 });
 ```
 
-a restrição pode então ser aplicada às rotas da maneira usual, usando o nome especificado ao registrar o tipo de restrição. Por exemplo:
+a restrição pode então ser aplicada às rotas da maneira usual, usando o nome especificado ao registrar o tipo de restrição. Por exemplo: 
 
 ```csharp
 [HttpGet("{id:customName}")]

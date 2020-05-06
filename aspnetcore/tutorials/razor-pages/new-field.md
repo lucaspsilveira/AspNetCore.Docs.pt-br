@@ -1,17 +1,23 @@
 ---
-title: Adicionar um novo campo em uma página Razor no ASP.NET Core
+title: Adicionar um novo campo a uma Razor página no ASP.NET Core
 author: rick-anderson
-description: Mostra como adicionar um novo campo a uma página Razor com o Entity Framework Core
+description: Mostra como adicionar um novo campo a uma Razor página com Entity Framework Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: d34b938dbd1b512ddb167cac0c035837889cd38f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78657811"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769728"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -28,7 +34,7 @@ Nesta seção, as Migrações do [Entity Framework](/ef/core/get-started/aspnetc
 
 Ao usar o Code First do EF para criar automaticamente um banco de dados, o Code First:
 
-* Adiciona `__EFMigrationsHistory` uma tabela ao banco de dados para rastrear se o esquema do banco de dados está em sincronia com as classes de modelo das que foram geradas.
+* Adiciona uma `__EFMigrationsHistory` tabela ao banco de dados para controlar se o esquema do banco de dados está em sincronia com as classes de modelo das quais ele foi gerado.
 * Se as classes de modelo não estiverem em sincronia com o banco de dados, o EF gerará uma exceção.
 
 Verificação automática de esquema/modelo em sincronia torna mais fácil encontrar problemas de código/banco de dados inconsistente.
@@ -53,11 +59,11 @@ Atualize as seguintes páginas:
 * Atualize [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) com um campo `Rating`.
 * Adicione o campo `Rating` à página Editar.
 
-O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem `SqlException`atualizar o banco de dados lança um:
+O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem Atualizar o banco de dados `SqlException`gera um:
 
 `SqlException: Invalid column name 'Rating'.`
 
-A `SqlException` exceção é causada pela classe de modelo movie atualizada ser diferente do esquema da tabela Filme do banco de dados. (Não há nenhuma coluna `Rating` na tabela de banco de dados.)
+A `SqlException` exceção é causada pela classe de modelo de filme atualizada que é diferente do esquema da tabela de filmes do banco de dados. (Não há nenhuma coluna `Rating` na tabela de banco de dados.)
 
 Existem algumas abordagens para resolver o erro:
 
@@ -98,7 +104,7 @@ O comando `Add-Migration` informa à estrutura:
 
 O nome “Classificação” é arbitrário e é usado para nomear o arquivo de migração. É útil usar um nome significativo para o arquivo de migração.
 
-O `Update-Database` comando informa a estrutura para aplicar as alterações do esquema no banco de dados e preservar os dados existentes.
+O `Update-Database` comando informa à estrutura para aplicar as alterações de esquema ao banco de dados e para preservar os existentes.
 
 <a name="ssox"></a>
 
@@ -108,9 +114,9 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
 
 * Selecione o banco de dados no SSOX.
 * Clique com o botão direito do mouse no banco de dados e selecione *Excluir*.
-* Verifique **as próximas conexões existentes**.
+* Marque **fechar conexões existentes**.
 * Selecione **OK**.
-* No [PMC,](xref:tutorials/razor-pages/new-field#pmc)atualize o banco de dados:
+* No [PMC](xref:tutorials/razor-pages/new-field#pmc), atualize o banco de dados:
 
   ```powershell
   Update-Database
@@ -139,8 +145,8 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionando pesquisa seguinte:](xref:tutorials/razor-pages/search)
-> [adicionando validação](xref:tutorials/razor-pages/validation)
+> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search)
+> [seguinte: adicionando validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -233,9 +239,9 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
 
 * Selecione o banco de dados no SSOX.
 * Clique com o botão direito do mouse no banco de dados e selecione *Excluir*.
-* Verifique **as próximas conexões existentes**.
+* Marque **fechar conexões existentes**.
 * Selecione **OK**.
-* No [PMC,](xref:tutorials/razor-pages/new-field#pmc)atualize o banco de dados:
+* No [PMC](xref:tutorials/razor-pages/new-field#pmc), atualize o banco de dados:
 
   ```powershell
   Update-Database
@@ -262,7 +268,7 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionando pesquisa seguinte:](xref:tutorials/razor-pages/search)
-> [adicionando validação](xref:tutorials/razor-pages/validation)
+> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search)
+> [seguinte: adicionando validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end

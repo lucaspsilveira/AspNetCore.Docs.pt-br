@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: b5c81e0cfa29cddeb1aeed1119a711fca4d91ae4
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: e329b8604b820818167a563b3a21f01f2ab2a6ca
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78659379"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776377"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configure o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga
 
@@ -258,38 +264,38 @@ if (string.Equals(
 
 ### <a name="azure"></a>Azure
 
-Para configurar o Azure App Service para encaminhamento de certificados, consulte [Configurar a autenticação mútua TLS para o Azure App Service](/azure/app-service/app-service-web-configure-tls-mutual-auth). As seguintes orientações dizem respeito à configuração do aplicativo ASP.NET Core.
+Para configurar o serviço de Azure App para encaminhamento de certificado, consulte [Configurar a autenticação mútua TLS para o serviço Azure app](/azure/app-service/app-service-web-configure-tls-mutual-auth). As diretrizes a seguir pertencem à configuração do aplicativo ASP.NET Core.
 
-Em `Startup.Configure`, adicione o seguinte `app.UseAuthentication();`código antes da chamada para:
+No `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
 
-Configure o Middleware de encaminhamento de certificados para especificar o nome de cabeçalho que o Azure usa. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho a partir do qual o middleware constrói um certificado:
+Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho que o Azure usa. No `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "X-ARR-ClientCert");
 ```
 
-### <a name="other-web-proxies"></a>Outros proxies da web
+### <a name="other-web-proxies"></a>Outros proxies da Web
 
-Se for usado um proxy que não seja o ARR (Application Request Routing, roteamento de solicitação de solicitação do aplicativo do Azure App Service) do IIS ou do Azure App Service, configure o proxy para encaminhar o certificado recebido em um cabeçalho HTTP. Em `Startup.Configure`, adicione o seguinte `app.UseAuthentication();`código antes da chamada para:
+Se for usado um proxy que não seja o Application Request Routing do IIS ou Azure App do serviço (ARR), configure o proxy para encaminhar o certificado que ele recebeu em um cabeçalho HTTP. No `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
 
 ```csharp
 app.UseCertificateForwarding();
 ```
 
-Configure o Middleware de encaminhamento de certificados para especificar o nome do cabeçalho. Em `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho a partir do qual o middleware constrói um certificado:
+Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho. No `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
 
 ```csharp
 services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
 ```
 
-Se o proxy não estiver codificando o certificado base64 (como é `HeaderConverter` o caso do Nginx), defina a opção. Considere o exemplo a seguir em `Startup.ConfigureServices`:
+Se o proxy não estiver codificando o certificado em Base64 (como é o caso com Nginx), `HeaderConverter` defina a opção. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>

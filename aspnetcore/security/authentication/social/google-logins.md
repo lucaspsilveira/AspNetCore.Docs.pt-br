@@ -1,17 +1,23 @@
 ---
 title: Configuração de logon externo do Google no ASP.NET Core
 author: rick-anderson
-description: Este tutorial demonstra a integração da autenticação de usuário de conta do Google em um aplicativo ASP.NET Core existente.
+description: Este tutorial demonstra a integração da autenticação do usuário da conta do Google em um aplicativo ASP.NET Core existente.
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: a114d23c25201c9fe31ad0397efaf99fe98a312a
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.openlocfilehash: 06a5cf77e47d9fc618fddf3a096001a4f31688be
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "79989764"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776988"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
@@ -33,7 +39,7 @@ Este tutorial mostra como permitir que os usuários entrem com sua conta do Goog
 Armazene configurações confidenciais, como os valores de ID do cliente do Google e segredo com o [Gerenciador de segredo](xref:security/app-secrets). Para este exemplo, use as seguintes etapas:
 
 1. Inicialize o projeto para o armazenamento secreto de acordo com as instruções em [habilitar armazenamento secreto](xref:security/app-secrets#enable-secret-storage).
-1. Armazene as configurações confidenciais no repositório de segredo local com as chaves secretas `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret`:
+1. Armazene as configurações confidenciais no repositório de segredo local com as chaves `Authentication:Google:ClientId` secretas e `Authentication:Google:ClientSecret`:
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
@@ -46,7 +52,7 @@ Você pode gerenciar suas credenciais de API e uso no [console de API](https://c
 
 ## <a name="configure-google-authentication"></a>Configurar a autenticação do Google
 
-Adicione o serviço do Google a `Startup.ConfigureServices`:
+Adicione o serviço do Google `Startup.ConfigureServices`a:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
 
@@ -62,20 +68,20 @@ Adicione o serviço do Google a `Startup.ConfigureServices`:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Consulte a referência da API <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> para obter mais informações sobre as opções de configuração com suporte pela autenticação do Google. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
+Consulte a <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> referência da API para obter mais informações sobre as opções de configuração com suporte pela autenticação do Google. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
 
 ## <a name="change-the-default-callback-uri"></a>Alterar o URI de retorno de chamada padrão
 
-O segmento de URI `/signin-google` é definido como o retorno de chamada padrão do provedor de autenticação do Google. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação do Google por meio da propriedade herdada [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) da classe [googleoptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
+O segmento `/signin-google` URI é definido como o retorno de chamada padrão do provedor de autenticação do Google. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação do Google por meio da propriedade herdada [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) da classe [googleoptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) .
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
 * Se a entrada não funcionar e você não estiver recebendo erros, mude para o modo de desenvolvimento para facilitar a depuração do problema.
-* Se a identidade não estiver configurada chamando `services.AddIdentity` no `ConfigureServices`, tentar autenticar os resultados em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
+* Se Identity não estiver configurado chamando `services.AddIdentity` em `ConfigureServices`, tentando autenticar resultados em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso seja feito.
 * Se o banco de dados do site não tiver sido criado aplicando a migração inicial, você obterá *uma operação de banco de dados com falha ao processar o erro de solicitação* . Selecione **aplicar migrações** para criar o banco de dados e atualize a página para continuar após o erro.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 * Este artigo mostrou como você pode autenticar com o Google. Você pode seguir uma abordagem semelhante para autenticar com outros provedores listados na [página anterior](xref:security/authentication/social/index).
-* Depois de publicar o aplicativo no Azure, redefina o `ClientSecret` no console de API do Google.
-* Defina o `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret` como configurações de aplicativo no portal do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.
+* Depois de publicar o aplicativo no Azure, redefina `ClientSecret` o no console de API do Google.
+* Defina `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret` como configurações de aplicativo no portal do Azure. O sistema de configuração é configurado para ler chaves de variáveis de ambiente.

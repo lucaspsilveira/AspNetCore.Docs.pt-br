@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 756d3d57122642ab10ab671c9accb75975c3799d
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: efce2caf37534823016c12b298afd277bab22030
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665455"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769930"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
@@ -21,7 +27,7 @@ ms.locfileid: "78665455"
 O padrão de opções usa classes para representar grupos de configurações relacionadas. Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:
 
 * O [ISP (Princípio de Segregação da Interface) ou Encapsulamento](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.
-* [Separação de preocupações](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; As configurações para diferentes partes do aplicativo não são dependentes ou acopladas umas às outras.
+* A [separação das](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; configurações de preocupações para diferentes partes do aplicativo não é dependente ou associada a uma outra.
 
 As opções também fornecem um mecanismo para validar os dados da configuração. Para obter mais configurações, consulte a seção [Validação de opções](#options-validation).
 
@@ -29,7 +35,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 ## <a name="package"></a>Pacote
 
-O pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) é implicitamente referenciado em ASP.NET aplicativos Core.
+O pacote [Microsoft. Extensions. Options. ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) é referenciado implicitamente em aplicativos ASP.NET Core.
 
 ## <a name="options-interfaces"></a>Interfaces de opções
 
@@ -106,7 +112,7 @@ No código a seguir, um segundo serviço <xref:Microsoft.Extensions.Options.ICon
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-*Index.cshtml.cs:*
+*Index.cshtml.cs*:
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
@@ -136,7 +142,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-O `GetSection` método <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> requer o namespace.
+O `GetSection` método requer o <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -162,14 +168,14 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 ## <a name="options-injection"></a>Injeção de opções
 
-A injeção de opções é demonstrada como Exemplo 4 no aplicativo de amostra.
+A injeção de opções é demonstrada como o exemplo 4 no aplicativo de exemplo.
 
-Injete <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
+Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* Uma página de navalha [`@inject`](xref:mvc/views/razor#inject) ou exibição de MVC com a diretiva Razor.
-* Uma página ou modelo de exibição.
+* Uma Razor exibição Page ou MVC com a [`@inject`](xref:mvc/views/razor#inject) Razor diretiva.
+* Um modelo de página ou de exibição.
 
-O exemplo a seguir do <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> aplicativo de amostra injeta em um modelo de página (*Pages/Index.cshtml.cs*):
+O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -187,14 +193,14 @@ Quando o aplicativo é executado, os valores de opções são mostrados na pági
 
 ## <a name="reload-configuration-data-with-ioptionssnapshot"></a>Recarregar dados de configuração com IOptionsSnapshot
 
-A recarga <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> de dados de configuração com é demonstrada no Exemplo 5 no aplicativo de amostra.
+O recarregamento de dados de <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> configuração com o é demonstrado no exemplo 5 no aplicativo de exemplo.
 
-Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são calculadas uma vez por solicitação quando acessadas e armazenadas em cache durante a vida útil da solicitação.
+Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são computadas uma vez por solicitação quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.
 
-A diferença `IOptionsMonitor` `IOptionsSnapshot` entre e é que:
+A diferença entre `IOptionsMonitor` e `IOptionsSnapshot` é que:
 
-* `IOptionsMonitor`é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores atuais da opção a qualquer momento, o que é especialmente útil em dependências de singleton.
-* `IOptionsSnapshot`é um [serviço escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo `IOptionsSnapshot<T>` das opções no momento em que o objeto é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e escopo.
+* `IOptionsMonitor`é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores de opção atuais a qualquer momento, o que é especialmente útil em dependências singleton.
+* `IOptionsSnapshot`é um [serviço com escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo das opções no momento em que o `IOptionsSnapshot<T>` objeto é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e com escopo definido.
 
 O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
 
@@ -210,7 +216,7 @@ A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salvar o arquivo *appsettings.json.* Atualize o navegador para ver se os valores de opções foram atualizados:
+Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o arquivo *appSettings. JSON* . Atualize o navegador para ver se os valores de opções foram atualizados:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -220,7 +226,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> é demonstrado como no Exemplo 6 no aplicativo de exemplo.
 
-O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions\<TOptions>. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas são sensíveis a maiúsculas e minúsculas.
+O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [\<> ConfigureNamedOptions TOptions. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -281,7 +287,7 @@ services.AddOptions<MyOptions>("optionalName")
 
 Você pode acessar outros serviços de injeção de dependência ao configurar as opções de duas maneiras:
 
-* Passar um delegado de configuração para [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) em [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>`fornece sobrecargas de [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) que permitem o uso de até cinco serviços para configurar opções:
+* Passar um delegado de configuração para [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) em [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>`fornece sobrecargas de [configuração](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) que permitem o uso de até cinco serviços para configurar opções:
 
   ```csharp
   services.AddOptions<MyOptions>("optionalName")
@@ -326,10 +332,10 @@ catch (OptionsValidationException e)
 
 O exemplo anterior define a instância de opções nomeadas como `optionalOptionsName`. A instância de opções padrão é `Options.DefaultName`.
 
-A validação é executada após a criação da instância de opções. Uma instância de opções é garantida para passar validação na primeira vez que é acessada.
+A validação é executada após a criação da instância de opções. É garantido que uma instância de opções passe a validação na primeira vez que é acessada.
 
 > [!IMPORTANT]
-> A validação de opções não protege contra modificações de opções após a criação da instância de opções. Por exemplo, `IOptionsSnapshot` as opções são criadas e validadas uma vez por solicitação quando as opções são acessadas pela primeira vez. As `IOptionsSnapshot` opções não são validadas novamente em tentativas de acesso subseqüentes *para a mesma solicitação*.
+> A validação de opções não protege contra modificações de opções depois que a instância de opções é criada. Por exemplo, `IOptionsSnapshot` as opções são criadas e validadas uma vez por solicitação quando as opções são acessadas pela primeira vez. As `IOptionsSnapshot` opções não são validadas novamente em tentativas de acesso subsequentes *para a mesma solicitação*.
 
 O método `Validate` aceita um `Func<TOptions, bool>`. Para personalizar totalmente a validação, implemente `IValidateOptions<TOptions>`, que permite:
 
@@ -350,7 +356,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations`é implicitamente referenciado em ASP.NET aplicativos Core.
+A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations`é referenciado implicitamente em aplicativos ASP.NET Core.
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -447,7 +453,7 @@ Não use <xref:Microsoft.Extensions.Options.IOptions%601> ou <xref:Microsoft.Ext
 O padrão de opções usa classes para representar grupos de configurações relacionadas. Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:
 
 * O [ISP (Princípio de Segregação da Interface) ou Encapsulamento](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.
-* [Separação de preocupações](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; As configurações para diferentes partes do aplicativo não são dependentes ou acopladas umas às outras.
+* A [separação das](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; configurações de preocupações para diferentes partes do aplicativo não é dependente ou associada a uma outra.
 
 As opções também fornecem um mecanismo para validar os dados da configuração. Para obter mais configurações, consulte a seção [Validação de opções](#options-validation).
 
@@ -532,7 +538,7 @@ No código a seguir, um segundo serviço <xref:Microsoft.Extensions.Options.ICon
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-*Index.cshtml.cs:*
+*Index.cshtml.cs*:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
@@ -562,7 +568,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-O `GetSection` método <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> requer o namespace.
+O `GetSection` método requer o <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -588,14 +594,14 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 ## <a name="options-injection"></a>Injeção de opções
 
-A injeção de opções é demonstrada como Exemplo 4 no aplicativo de amostra.
+A injeção de opções é demonstrada como o exemplo 4 no aplicativo de exemplo.
 
-Injete <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
+Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* Uma página de navalha [`@inject`](xref:mvc/views/razor#inject) ou exibição de MVC com a diretiva Razor.
-* Uma página ou modelo de exibição.
+* Uma Razor exibição Page ou MVC com a [`@inject`](xref:mvc/views/razor#inject) Razor diretiva.
+* Um modelo de página ou de exibição.
 
-O exemplo a seguir do <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> aplicativo de amostra injeta em um modelo de página (*Pages/Index.cshtml.cs*):
+O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -613,14 +619,14 @@ Quando o aplicativo é executado, os valores de opções são mostrados na pági
 
 ## <a name="reload-configuration-data-with-ioptionssnapshot"></a>Recarregar dados de configuração com IOptionsSnapshot
 
-A recarga <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> de dados de configuração com é demonstrada no Exemplo 5 no aplicativo de amostra.
+O recarregamento de dados de <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> configuração com o é demonstrado no exemplo 5 no aplicativo de exemplo.
 
-Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são calculadas uma vez por solicitação quando acessadas e armazenadas em cache durante a vida útil da solicitação.
+Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são computadas uma vez por solicitação quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.
 
-A diferença `IOptionsMonitor` `IOptionsSnapshot` entre e é que:
+A diferença entre `IOptionsMonitor` e `IOptionsSnapshot` é que:
 
-* `IOptionsMonitor`é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores atuais da opção a qualquer momento, o que é especialmente útil em dependências de singleton.
-* `IOptionsSnapshot`é um [serviço escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo `IOptionsSnapshot<T>` das opções no momento em que o objeto é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e escopo.
+* `IOptionsMonitor`é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores de opção atuais a qualquer momento, o que é especialmente útil em dependências singleton.
+* `IOptionsSnapshot`é um [serviço com escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo das opções no momento em que o `IOptionsSnapshot<T>` objeto é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e com escopo definido.
 
 O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
 
@@ -636,7 +642,7 @@ A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salvar o arquivo *appsettings.json.* Atualize o navegador para ver se os valores de opções foram atualizados:
+Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o arquivo *appSettings. JSON* . Atualize o navegador para ver se os valores de opções foram atualizados:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -646,7 +652,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> é demonstrado como no Exemplo 6 no aplicativo de exemplo.
 
-O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions\<TOptions>. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas são sensíveis a maiúsculas e minúsculas.
+O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [\<> ConfigureNamedOptions TOptions. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -750,10 +756,10 @@ catch (OptionsValidationException e)
 
 O exemplo anterior define a instância de opções nomeadas como `optionalOptionsName`. A instância de opções padrão é `Options.DefaultName`.
 
-A validação é executada após a criação da instância de opções. Uma instância de opções é garantida para passar validação na primeira vez que é acessada.
+A validação é executada após a criação da instância de opções. É garantido que uma instância de opções passe a validação na primeira vez que é acessada.
 
 > [!IMPORTANT]
-> A validação de opções não protege contra modificações de opções após a criação da instância de opções. Por exemplo, `IOptionsSnapshot` as opções são criadas e validadas uma vez por solicitação quando as opções são acessadas pela primeira vez. As `IOptionsSnapshot` opções não são validadas novamente em tentativas de acesso subseqüentes *para a mesma solicitação*.
+> A validação de opções não protege contra modificações de opções depois que a instância de opções é criada. Por exemplo, `IOptionsSnapshot` as opções são criadas e validadas uma vez por solicitação quando as opções são acessadas pela primeira vez. As `IOptionsSnapshot` opções não são validadas novamente em tentativas de acesso subsequentes *para a mesma solicitação*.
 
 O método `Validate` aceita um `Func<TOptions, bool>`. Para personalizar totalmente a validação, implemente `IValidateOptions<TOptions>`, que permite:
 
@@ -774,7 +780,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations`está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
+A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations`está incluído no [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -869,7 +875,7 @@ Não use <xref:Microsoft.Extensions.Options.IOptions%601> ou <xref:Microsoft.Ext
 O padrão de opções usa classes para representar grupos de configurações relacionadas. Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:
 
 * O [ISP (Princípio de Segregação da Interface) ou Encapsulamento](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.
-* [Separação de preocupações](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; As configurações para diferentes partes do aplicativo não são dependentes ou acopladas umas às outras.
+* A [separação das](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; configurações de preocupações para diferentes partes do aplicativo não é dependente ou associada a uma outra.
 
 As opções também fornecem um mecanismo para validar os dados da configuração. Para obter mais configurações, consulte a seção [Validação de opções](#options-validation).
 
@@ -954,7 +960,7 @@ No código a seguir, um segundo serviço <xref:Microsoft.Extensions.Options.ICon
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-*Index.cshtml.cs:*
+*Index.cshtml.cs*:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
@@ -984,7 +990,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-O `GetSection` método <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> requer o namespace.
+O `GetSection` método requer o <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -1030,7 +1036,7 @@ Quando o aplicativo é executado, os valores de opções são mostrados na pági
 
 ## <a name="reload-configuration-data-with-ioptionssnapshot"></a>Recarregar dados de configuração com IOptionsSnapshot
 
-A recarga <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> de dados de configuração com é demonstrada no Exemplo 5 no aplicativo de amostra.
+O recarregamento de dados de <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> configuração com o é demonstrado no exemplo 5 no aplicativo de exemplo.
 
 O <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> dá suporte a opções de recarregamento com sobrecarga mínima de processamento.
 
@@ -1050,7 +1056,7 @@ A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salvar o arquivo *appsettings.json.* Atualize o navegador para ver se os valores de opções foram atualizados:
+Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o arquivo *appSettings. JSON* . Atualize o navegador para ver se os valores de opções foram atualizados:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -1060,7 +1066,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> é demonstrado como no Exemplo 6 no aplicativo de exemplo.
 
-O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions\<TOptions>. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas são sensíveis a maiúsculas e minúsculas.
+O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [\<> ConfigureNamedOptions TOptions. Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 

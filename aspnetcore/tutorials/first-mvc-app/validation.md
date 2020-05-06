@@ -4,13 +4,19 @@ author: rick-anderson
 description: Como adicionar uma validação a um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 04/13/2017
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: ecf3d011b38347eb32020df00e44d93ca789443a
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 6e46a4ace7c99096f1a7d47946a21fd7a5c657e7
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80242530"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776188"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Adicionar a validação a um aplicativo ASP.NET Core MVC
 
@@ -55,7 +61,7 @@ O primeiro método de ação (HTTP GET) `Create` exibe o formulário Criar inici
 
 Defina um ponto de interrupção no método `[HttpPost] Create` e verifique se o método nunca é chamado; a validação do lado do cliente não enviará os dados de formulário quando forem detectados erros de validação. Se você desabilitar o JavaScript no navegador e, em seguida, enviar o formulário com erros, o ponto de interrupção será atingido. Você ainda pode obter uma validação completa sem o JavaScript. 
 
-A imagem a seguir mostra como desativar javaScript no navegador Firefox.
+A imagem a seguir mostra como desabilitar o JavaScript no navegador Firefox.
 
 ![Firefox: na guia Conteúdo de Opções, desmarque a caixa de seleção Habilitar JavaScript.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 
@@ -121,11 +127,11 @@ Na próxima parte da série, examinaremos o aplicativo e faremos algumas melhori
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Trabalhando com Formulários](xref:mvc/views/working-with-forms)
+* [Trabalhando com formulários](xref:mvc/views/working-with-forms)
 * [Globalização e localização](xref:fundamentals/localization)
 * [Introdução aos auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
 
 > [!div class="step-by-step"]
-> [Próximo](new-field.md)
-> [anterior](details.md)  
+> [Anterior](new-field.md)
+> [próximo](details.md)  

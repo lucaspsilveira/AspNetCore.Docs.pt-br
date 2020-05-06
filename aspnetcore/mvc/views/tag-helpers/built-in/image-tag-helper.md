@@ -5,13 +5,19 @@ description: Mostra como trabalhar com o Auxiliar de Marca de Imagem.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
-ms.openlocfilehash: 964072ad276f7e3e411ee41cb03a2efb9d05c585
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e1e3566f09c44d70650fa1f21e1921e76e46d384
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663992"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777404"
 ---
 # <a name="image-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Imagem no ASP.NET Core
 
@@ -26,7 +32,7 @@ Se a origem da imagem (`src`) for um arquivo estático no servidor Web de host:
 * Uma cadeia de caracteres exclusiva de extrapolação de cache será anexada como um parâmetro de consulta à origem da imagem.
 * Se o arquivo no servidor Web host for alterado, será gerada uma URL de solicitação exclusiva que inclua o parâmetro de solicitação atualizado.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 ## <a name="image-tag-helper-attributes"></a>Atributos de Auxiliar de Marca de Imagem
 
@@ -46,7 +52,7 @@ O exemplo a seguir usa um Auxiliar de Marca de Imagem:
 <img src="~/images/asplogo.png" asp-append-version="true">
 ```
 
-Se o arquivo estático existe no diretório */wwwroot/images/* , o HTML gerado é semelhante ao seguinte (o hash será diferente):
+Se o arquivo estático existe no diretório */wwwroot/images/*, o HTML gerado é semelhante ao seguinte (o hash será diferente):
 
 ```html
 <img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">

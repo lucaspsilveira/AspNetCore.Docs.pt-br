@@ -1,16 +1,22 @@
 ---
-title: Introdução à identidade no ASP.NET Core
+title: Introdução ao Identity no ASP.NET Core
 author: rick-anderson
-description: Use a identidade com um aplicativo ASP.NET Core. Saiba como definir os requisitos de senha (RequireDigit, RequiredLength, RequiredUniqueChars e mais).
+description: Use Identity com um aplicativo ASP.NET Core. Saiba como definir os requisitos de senha (RequireDigit, RequiredLength, RequiredUniqueChars e mais).
 ms.author: riande
 ms.date: 01/15/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 4bc5f206b3aee7c2d34055703acc5b6c5218f964
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: d596a8357c5c812b94950809eedf35718328747c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82205937"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777001"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade no ASP.NET Core
 
@@ -67,7 +73,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-O projeto gerado fornece [ASP.NET Core identidade](xref:security/authentication/identity) como uma [biblioteca de classes Razor](xref:razor-pages/ui-class). A biblioteca de classes de identidade Razor expõe pontos de extremidade `Identity` com a área. Por exemplo:
+O projeto gerado fornece [ASP.NET Core identidade](xref:security/authentication/identity) como uma [biblioteca de classes Razor](xref:razor-pages/ui-class). A biblioteca de classes de identidade Razor expõe pontos de extremidade `Identity` com a área. Por exemplo: 
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -287,7 +293,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-O projeto gerado fornece [ASP.NET Core identidade](xref:security/authentication/identity) como uma [biblioteca de classes Razor](xref:razor-pages/ui-class). A biblioteca de classes de identidade Razor expõe pontos de extremidade `Identity` com a área. Por exemplo:
+O projeto gerado fornece [ASP.NET Core identidade](xref:security/authentication/identity) como uma [biblioteca de classes Razor](xref:razor-pages/ui-class). A biblioteca de classes de identidade Razor expõe pontos de extremidade `Identity` com a área. Por exemplo: 
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -391,30 +397,30 @@ Post é especificado nas *páginas/Shared/_LoginPartial. cshtml*:
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-identity"></a>Identidade de teste
+## <a name="test-identity"></a>TestarIdentity
 
-Os modelos de projeto Web padrão permitem acesso anônimo às home pages. Para testar a identidade, [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) adicione à página de privacidade.
+Os modelos de projeto Web padrão permitem acesso anônimo às home pages. Para testar Identity, adicione [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) à página de privacidade.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
 Se você estiver conectado, saia. Execute o aplicativo e selecione o link de **privacidade** . Você é redirecionado à página de logon.
 
-### <a name="explore-identity"></a>Explorar identidade
+### <a name="explore-identity"></a>ApresentaIdentity
 
-Para explorar a identidade com mais detalhes:
+Para explorar Identity mais detalhadamente:
 
 * [Criar origem da interface do usuário de identidade completa](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * Examine a origem de cada página e percorra o depurador.
 
-## <a name="identity-components"></a>Componentes de identidade
+## <a name="identity-components"></a>IdentityQC
 
-Todos os pacotes NuGet dependentes de identidade estão incluídos no [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+Todos os Identity pacotes NuGet dependentes estão incluídos no [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
-O pacote principal para identidade é [Microsoft. AspNetCore. Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). Esse pacote contém o conjunto principal de interfaces para ASP.NET Core identidade e é incluído pelo `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+O pacote principal para Identity o é [Microsoft. AspNetCoreIdentity.](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). Esse pacote contém o conjunto principal de interfaces para ASP.NET Core Identitye é incluído pelo `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
-## <a name="migrating-to-aspnet-core-identity"></a>Migrando para a identidade do ASP.NET Core
+## <a name="migrating-to-aspnet-core-identity"></a>Migrando para o ASP.NET CoreIdentity
 
-Para obter mais informações e orientações sobre como migrar seu repositório de identidades existente, consulte [migrar autenticação e identidade](xref:migration/identity).
+Para obter mais informações e diretrizes sobre como migrar seu repositório existente Identity , consulte [migrar autenticação e Identity ](xref:migration/identity).
 
 ## <a name="setting-password-strength"></a>Definindo a força da senha
 
@@ -422,8 +428,8 @@ Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos
 
 ## <a name="next-steps"></a>Próximas etapas
 
-* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) para obter informações sobre como configurar a identidade usando o SQLite.
-* [Configurar o Identity](xref:security/authentication/identity-configuration)
+* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) para obter informações Identity sobre como configurar o uso do SQLite.
+* [ConfigurarIdentity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
 * <xref:security/authentication/identity-enable-qrcodes>

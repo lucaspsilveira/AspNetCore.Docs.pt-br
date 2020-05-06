@@ -5,22 +5,28 @@ description: Saiba mais sobre os serviços de gRPC com a pilha do ASP.NET Core e
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/20/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: grpc/index
-ms.openlocfilehash: d97eea1da28424680a3cfa38102637b1e20ff661
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 2d7d683051fd1eb97f3f57d75bd582109166a6cd
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78667310"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82768842"
 ---
 # <a name="introduction-to-grpc-on-net-core"></a>Introdução ao gRPC no .NET Core
 
-Por [John Luo](https://github.com/juntaoluo) e [James Newton-King](https://twitter.com/jamesnk)
+Por [John Luo](https://github.com/juntaoluo) e [James Newton – King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io/docs/guides/) é uma estrutura de RPC (Chamada de Procedimento Remoto) de linguagem independente de alto desempenho.
 
 Os principais benefícios de gRPC são:
-* Moderna, de alto desempenho, estrutura RPC leve.
+* Estrutura RPC leve, de alto desempenho e moderna.
 * Desenvolvimento da API de primeiro contrato, usando buffers de protocolo, por padrão, permitindo implementações independente de linguagem.
 * As ferramentas disponíveis para várias linguagens gerarem clientes e servidores fortemente tipados.
 * Dá suporte ao cliente, servidor e chamadas bi-direcionais de streaming.
@@ -31,9 +37,9 @@ Esses benefícios tornam o gRPC ideal para:
 * Sistemas poliglotas nos quais múltiplas linguagens são necessárias para o desenvolvimento.
 * Serviços ponto a ponto em tempo real que precisam lidar com solicitações ou respostas de streaming.
 
-## <a name="c-tooling-support-for-proto-files"></a>C# Suporte de ferramentas para arquivos .proto
+## <a name="c-tooling-support-for-proto-files"></a>Suporte de ferramentas C# para arquivos. proto
 
-o gRPC utiliza uma abordagem de contrato-primeiro para o desenvolvimento de API. Os serviços e as mensagens são definidos em * \*arquivos .proto:*
+o gRPC usa uma abordagem de primeiro contrato para o desenvolvimento de API. Serviços e mensagens são definidos em * \*arquivos. proto* :
 
 ```protobuf
 syntax = "proto3";
@@ -51,10 +57,10 @@ message HelloReply {
 }
 ```
 
-Os tipos .NET para serviços, clientes * \** e mensagens são gerados automaticamente incluindo arquivos .proto em um projeto:
+Os tipos .net para serviços, clientes e mensagens são gerados automaticamente com * \** a inclusão de arquivos. proto em um projeto:
 
-* Adicione uma referência de pacote ao pacote [Grpc.Tools.](https://www.nuget.org/packages/Grpc.Tools/)
-* Adicione * \*arquivos .proto* ao `<Protobuf>` grupo de itens.
+* Adicione uma referência de pacote ao pacote [Grpc. Tools](https://www.nuget.org/packages/Grpc.Tools/) .
+* Adicione * \*arquivos. proto* ao grupo `<Protobuf>` de itens.
 
 ```xml
 <ItemGroup>
@@ -62,11 +68,11 @@ Os tipos .NET para serviços, clientes * \** e mensagens são gerados automatica
 </ItemGroup>
 ```
 
-Para obter mais informações sobre o <xref:grpc/basics>suporte de ferramentas gRPC, consulte .
+Para obter mais informações sobre o suporte de ferramentas do <xref:grpc/basics>gRPC, consulte.
 
-## <a name="grpc-services-on-aspnet-core"></a>serviços gRPC no núcleo ASP.NET
+## <a name="grpc-services-on-aspnet-core"></a>serviços gRPCs no ASP.NET Core
 
-Os serviços gRPC podem ser hospedados no ASP.NET Core. Os serviços têm total integração com recursos populares ASP.NET Core, como registro, injeção de dependência (DI), autenticação e autorização.
+os serviços gRPCs podem ser hospedados em ASP.NET Core. Os serviços têm integração total com recursos populares de ASP.NET Core, como registro em log, injeção de dependência (DI), autenticação e autorização.
 
 O modelo de projeto de serviço gRPC fornece um serviço inicial:
 
@@ -92,7 +98,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-`GreeterService`herda do `GreeterBase` tipo, que é `Greeter` gerado a partir do serviço no * \*arquivo .proto.* O serviço é acessível aos clientes em *Startup.cs:*
+`GreeterService`herda do `GreeterBase` tipo, que é gerado a `Greeter` partir do serviço no arquivo * \*. proto* . O serviço torna-se acessível para clientes no *Startup.cs*:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -101,11 +107,11 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Para saber mais sobre os serviços <xref:grpc/aspnetcore>gRPC no ASP.NET Core, consulte .
+Para saber mais sobre os serviços gRPCs no ASP.NET Core <xref:grpc/aspnetcore>, consulte.
 
-## <a name="call-grpc-services-with-a-net-client"></a>Ligue para os serviços gRPC com um cliente .NET
+## <a name="call-grpc-services-with-a-net-client"></a>Chamar serviços gRPCs com um cliente .NET
 
-os clientes gRPC são tipos de clientes concretos gerados [a partir de * \*arquivos .proto* ](xref:grpc/basics#generated-c-assets). O cliente gRPC concreto tem métodos que se traduzem para o serviço gRPC no * \*arquivo .proto.*
+Os clientes gRPC são tipos de cliente concretos que são [gerados a partir de * \*arquivos. proto* ](xref:grpc/basics#generated-c-assets). O cliente gRPC concreto tem métodos que se convertem para o serviço gRPC no arquivo * \*. proto* .
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -117,9 +123,9 @@ var response = await client.SayHelloAsync(
 Console.WriteLine(response.Message);
 ```
 
-Um cliente gRPC é criado usando um canal, o que representa uma conexão de longa duração a um serviço gRPC. Um canal pode ser `GrpcChannel.ForAddress`criado usando .
+Um cliente gRPC é criado usando um canal, que representa uma conexão de vida longa para um serviço gRPC. Um canal pode ser criado usando `GrpcChannel.ForAddress`.
 
-Para obter mais informações sobre como criar clientes e chamar diferentes métodos de serviço, consulte <xref:grpc/client>.
+Para obter mais informações sobre a criação de clientes e a chamada de métodos <xref:grpc/client>de serviço diferentes, consulte.
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 

@@ -4,13 +4,19 @@ author: rick-anderson
 description: Aprenda detalhes de implementação da criptografia autenticada da proteção de dados do ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/data-protection/implementation/authenticated-encryption-details
-ms.openlocfilehash: 9def03e6b27e19fc34a839e923d6152e086889db
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 3066cd505781ed2ddad46626dda9d9ce35307877
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667758"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776962"
 ---
 # <a name="authenticated-encryption-details-in-aspnet-core"></a>Detalhes de criptografia autenticados no ASP.NET Core
 
@@ -55,4 +61,4 @@ Os próximos 128 bits ou 16 bytes é o identificador de chave (80 9C 81 0C 19 66
 O resto contém a carga e é específico do formato usado.
 
 > [!WARNING]
-> Todas as cargas protegidas a uma determinada chave começarão com o mesmo cabeçalho de 20 bytes (valor mágico, ID da chave). Os administradores podem usar esse fato para fins de diagnóstico aproximados quando uma carga foi gerada. Por exemplo, a carga acima corresponde à chave {0c819c80-6619-4019-9536-53f8aaffee57}. Se, depois de verificar o repositório de chaves, você descobrir que essa data de ativação da chave específica foi 2015-01-01 e sua data de expiração foi 2015-03-01, é razoável pressupor que a carga (se não violada) foi gerada dentro dessa janela, dar ou levar um pequeno adequações fator em ambos os lados.
+> Todas as cargas protegidas a uma determinada chave começarão com o mesmo cabeçalho de 20 bytes (valor mágico, ID da chave). Os administradores podem usar esse fato para fins de diagnóstico aproximados quando uma carga foi gerada. Por exemplo, a carga acima corresponde à chave {0c819c80-6619-4019-9536-53f8aaffee57}. Se, depois de verificar o repositório de chaves, você descobrir que essa data de ativação da chave específica foi 2015-01-01 e sua data de expiração foi 2015-03-01, é razoável pressupor que a carga (se não violada) foi gerada dentro dessa janela, dar ou pegar um pequeno fator adequações em ambos os lados.

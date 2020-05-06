@@ -1,26 +1,32 @@
 ---
-title: Visual Studio publica perfis (.pubxml) para implantação de aplicativos ASP.NET Core
+title: Perfis de publicação do Visual Studio (. pubxml) para implantação de aplicativo ASP.NET Core
 author: rick-anderson
 description: Saiba como criar perfis de publicação no Visual Studio e usá-los para gerenciar implantações de aplicativo ASP.NET Core para vários destinos.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 274dd2cd528d3766aa07f69aac3470a131c79ffe
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 0de20b93929162f79d4d15fc4731959e48bb3b6c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78659372"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776364"
 ---
-# <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Visual Studio publica perfis (.pubxml) para implantação de aplicativos ASP.NET Core
+# <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Perfis de publicação do Visual Studio (. pubxml) para implantação de aplicativo ASP.NET Core
 
 Por [Sayed Hashimi de Ibrahim](https://github.com/sayedihashimi) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Este documento se concentra no uso do Visual Studio 2019 ou posterior para criar e usar perfis de publicação. Os perfis de publicação criados com o Visual Studio podem ser usados com o MSBuild e o Visual Studio. Para obter instruções sobre a publicação no Azure, confira <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-O `dotnet new mvc` comando produz um arquivo de projeto contendo o [ \<seguinte elemento](/visualstudio/msbuild/project-element-msbuild)de> de projeto de nível raiz:
+O `dotnet new mvc` comando produz um arquivo de projeto que contém o seguinte projeto de nível [ \<de raiz> elemento](/visualstudio/msbuild/project-element-msbuild):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -61,7 +67,7 @@ Para adicionar explicitamente um arquivo à lista de publicação, adicione o ar
 Ao selecionar o botão **Publicar** no Visual Studio ou ao publicar da linha de comando:
 
 * Os itens/propriedades são calculados (os arquivos necessários para compilar).
-* **Somente visual studio**: Os pacotes NuGet são restaurados. (A restauração precisa ser explícita pelo usuário na CLI.)
+* **Somente Visual Studio**: os pacotes NuGet são restaurados. (A restauração precisa ser explícita pelo usuário na CLI.)
 * O projeto é compilado.
 * Os itens de publicação são computados (os arquivos necessários para a publicação).
 * O projeto é publicado (os arquivos computados são copiados para o destino de publicação).
@@ -70,7 +76,7 @@ Quando um projeto do ASP.NET Core faz referência a `Microsoft.NET.Sdk.Web` no a
 
 ## <a name="basic-command-line-publishing"></a>Publicação de linha de comando básica
 
-A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nos exemplos a seguir, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) da CLI do .NET Core é executado no diretório do projeto (que contém o arquivo *.csproj*). Se a pasta do projeto não for o diretório de trabalho atual, passe explicitamente no caminho do arquivo de projeto. Por exemplo:
+A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nos exemplos a seguir, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) da CLI do .NET Core é executado no diretório do projeto (que contém o arquivo *.csproj*). Se a pasta do projeto não for o diretório de trabalho atual, passe explicitamente no caminho do arquivo de projeto. Por exemplo: 
 
 ```dotnetcli
 dotnet publish C:\Webs\Web1
@@ -152,9 +158,9 @@ Ao publicar em um destino do Azure, o arquivo *.pubxml* contém o identificador 
 
 Informações confidenciais (como a senha de publicação) são criptografadas em um nível por usuário/computador. Elas são armazenadas no arquivo *Properties/PublishProfiles/{NOME DO PERFIL}.pubxml.user*. Já que esse arquivo pode armazenar informações confidenciais, o check-in dele não deve ser realizado no controle do código-fonte.
 
-Para obter uma visão geral de como publicar um aplicativo web ASP.NET Core, confira <xref:host-and-deploy/index>. As tarefas e os alvos do MSBuild necessários para publicar um ASP.NET aplicativo web Core são de código aberto no [repositório aspnet/websdk](https://github.com/aspnet/websdk).
+Para obter uma visão geral de como publicar um aplicativo web ASP.NET Core, confira <xref:host-and-deploy/index>. As tarefas e os destinos do MSBuild necessários para publicar um aplicativo Web ASP.NET Core são de código-fonte aberto no [repositório ASPNET/WebSDK](https://github.com/aspnet/websdk).
 
-Os seguintes comandos podem usar os perfis de publicação de pasta, MSDeploy e [Kudu.](https://github.com/projectkudu/kudu/wiki) Porque o MSDeploy não oferece suporte em plataforma cruzada, as seguintes opções de MSDeploy têm suporte apenas no Windows.
+Os comandos a seguir podem usar os perfis de publicação Folder, MSDeploy e [kudu](https://github.com/projectkudu/kudu/wiki) . Porque o MSDeploy não oferece suporte em plataforma cruzada, as seguintes opções de MSDeploy têm suporte apenas no Windows.
 
 **Pasta (funciona em plataforma cruzada):**
 
@@ -194,8 +200,8 @@ dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDe
 
 Nos exemplos anteriores:
 
-* `dotnet publish`e `dotnet build` apoiar apis kudu para publicar ao Azure a partir de qualquer plataforma. A publicação do Visual Studio dá suporte às APIs do Kudu, mas ela é compatível com o WebSDK para publicação multiplataforma para o Azure.
-* Não passe `DeployOnBuild` para `dotnet publish` o comando.
+* `dotnet publish`e `dotnet build` dar suporte a APIs kudu para publicar no Azure de qualquer plataforma. A publicação do Visual Studio dá suporte às APIs do Kudu, mas ela é compatível com o WebSDK para publicação multiplataforma para o Azure.
+* Não passe `DeployOnBuild` para o `dotnet publish` comando.
 
 Para obter mais informações, confira [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
@@ -214,7 +220,7 @@ Adicione um perfil de publicação à pasta *Properties/PublishProfiles* do proj
 
 ## <a name="folder-publish-example"></a>Exemplo de publicação de pasta
 
-Ao publicar com um perfil chamado *FolderProfile,* use qualquer um dos seguintes comandos:
+Ao publicar com um perfil chamado *FolderProfile*, use um dos seguintes comandos:
 
 <!--
 
@@ -307,8 +313,8 @@ msbuild {PATH}
 * {PERFIL} &ndash; Nome do perfil de publicação.
 * {NOME DE USUÁRIO} &ndash; Nome de usuário do MSDeploy. O {NOME DE USUÁRIO} pode ser encontrado no perfil de publicação.
 * {SENHA} &ndash; Senha do MSDeploy. Obtenha a {SENHA} do arquivo *{PERFIL}.PublishSettings*. Baixe o arquivo *.PublishSettings* de uma das seguintes opções:
-  * **Explorador de soluções**: Selecione **Ver** > **explorador de nuvem**. Conecte-se à sua assinatura do Azure. Abra **Serviços de Aplicativos**. Clique com o botão direito do mouse no aplicativo. Selecione **Baixar Perfil de Publicação**.
-  * Portal Azure: Selecione **Obter o perfil de publicação** no painel Visão **Geral** do aplicativo web.
+  * **Gerenciador de soluções**: selecione **Exibir** > **Gerenciador de nuvem**. Conecte-se à sua assinatura do Azure. Abra **Serviços de Aplicativos**. Clique com o botão direito do mouse no aplicativo. Selecione **Baixar Perfil de Publicação**.
+  * Portal do Azure: selecione **obter perfil de publicação** no painel **visão geral** do aplicativo Web.
 
 O exemplo a seguir usa um perfil de publicação denominado *AzureWebApp – Implantação da Web*:
 
@@ -365,7 +371,7 @@ O MSBuild dá suporte aos [padrões de recurso de curinga](https://gruntjs.com/c
 
 A marcação anterior pode ser adicionada a um perfil de publicação ou ao arquivo *.csproj*. Quando adicionada ao arquivo *.csproj*, a regra será adicionada a todos os perfis de publicação no projeto.
 
-O `<MsDeploySkipRules>` elemento a seguir exclui todos os arquivos da pasta *wwwroot\content:*
+O elemento `<MsDeploySkipRules>` a seguir exclui todos os arquivos da pasta *wwwroot\content* :
 
 ```xml
 <ItemGroup>
@@ -465,7 +471,7 @@ A marcação realçada no exemplo a seguir demonstra:
 
 [!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
 
-O exemplo anterior usa o item `ResolvedFileToPublish`, cujo comportamento padrão é sempre copiar os arquivos fornecidos no atributo `Include` para o site publicado. Substituir o comportamento padrão, incluindo um elemento filho `<CopyToPublishDirectory>` com o texto interno de um `Never` ou `PreserveNewest`. Por exemplo:
+O exemplo anterior usa o item `ResolvedFileToPublish`, cujo comportamento padrão é sempre copiar os arquivos fornecidos no atributo `Include` para o site publicado. Substituir o comportamento padrão, incluindo um elemento filho `<CopyToPublishDirectory>` com o texto interno de um `Never` ou `PreserveNewest`. Por exemplo: 
 
 ```xml
 <ResolvedFileToPublish Include="..\ReadMe2.md">
@@ -501,7 +507,7 @@ Adicione a propriedade `<AllowUntrustedCertificate>` com um valor `True` ao perf
 
 ## <a name="the-kudu-service"></a>O serviço Kudu
 
-Para exibir os arquivos em uma implantação de aplicativo Web do Serviço de Aplicativo do Azure, use o [serviço Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Acrescente o token `scm` ao nome do aplicativo Web. Por exemplo:
+Para exibir os arquivos em uma implantação de aplicativo Web do Serviço de Aplicativo do Azure, use o [serviço Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Acrescente o token `scm` ao nome do aplicativo Web. Por exemplo: 
 
 | URL                                    | Result       |
 | -------------------------------------- | ------------ |
@@ -513,6 +519,6 @@ Selecione o item de menu [Console de Depuração](https://github.com/projectkudu
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * A [Implantação da Web](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifica a implantação de aplicativos Web e sites da Web em servidores IIS.
-* [Repositório Web SDK GitHub](https://github.com/aspnet/websdk/issues): Problemas de arquivo e recursos de solicitação para implantação.
+* [Repositório GitHub do SDK da Web](https://github.com/aspnet/websdk/issues): problemas de arquivo e recursos de solicitação para implantação.
 * [Publicar um aplicativo Web ASP.NET para uma VM do Azure a partir do Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
 * <xref:host-and-deploy/iis/transform-webconfig>

@@ -5,19 +5,25 @@ description: Saiba como instalar ativos da biblioteca do lado do cliente em um p
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/14/2018
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/libman/index
-ms.openlocfilehash: 87987446b7f2c625da90951510e697e06569ba36
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 8dc94bd8dc15eaf3b778a8bd2905fcce08398a95
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78664664"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82770487"
 ---
 # <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a>Aquisição de biblioteca do lado do cliente no ASP.NET Core com LibMan
 
 Por [Scott Addie](https://twitter.com/Scott_Addie)
 
-O Gerenciador de Bibliotecas (LibMan) é uma ferramenta leve de aquisição de bibliotecas do lado do cliente. O LibMan baixa bibliotecas e estruturas populares do sistema de arquivos ou de uma [CDN (rede de distribuição de conteúdo)](https://wikipedia.org/wiki/Content_delivery_network). Os CDNs suportados incluem [CDNJS,](https://cdnjs.com/) [jsDelivr](https://www.jsdelivr.com/)e [unpkg](https://unpkg.com/#/). Os arquivos de biblioteca selecionados são buscados e colocados no local adequado dentro do projeto do ASP.NET Core.
+O Gerenciador de Bibliotecas (LibMan) é uma ferramenta leve de aquisição de bibliotecas do lado do cliente. O LibMan baixa bibliotecas e estruturas populares do sistema de arquivos ou de uma [CDN (rede de distribuição de conteúdo)](https://wikipedia.org/wiki/Content_delivery_network). Os CDNs com suporte incluem [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/)e [unpkg](https://unpkg.com/#/). Os arquivos de biblioteca selecionados são buscados e colocados no local adequado dentro do projeto do ASP.NET Core.
 
 ## <a name="libman-use-cases"></a>Casos de uso do LibMan
 

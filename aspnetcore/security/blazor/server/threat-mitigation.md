@@ -8,14 +8,17 @@ ms.custom: mvc
 ms.date: 04/27/2020
 no-loc:
 - Blazor
+- Identity
+- Let's Encrypt
+- Razor
 - SignalR
 uid: security/blazor/server/threat-mitigation
-ms.openlocfilehash: 9a5e313153e5c5c17fc723cc9768c49ffd828007
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
-ms.translationtype: MT
+ms.openlocfilehash: 2c87e6cef5a16b394b03dac1635f18d09593eb94
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206378"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774178"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Diretrizes de mitigação de ameaças para ASP.NET Core servidor mais incrivelmente
 
@@ -148,7 +151,7 @@ Não confie em chamadas de JavaScript para métodos .NET. Quando um método .NET
 
 Os eventos fornecem um ponto de entrada Blazor para um aplicativo de servidor. As mesmas regras para proteger pontos de extremidade em aplicativos Web se aplicam à manipulação de Blazor eventos em aplicativos de servidor. Um cliente mal-intencionado pode enviar todos os dados que deseja enviar como a carga de um evento.
 
-Por exemplo:
+Por exemplo: 
 
 * Um evento de alteração para `<select>` um pode enviar um valor que não está dentro das opções que o aplicativo apresentou ao cliente.
 * Um `<input>` pode enviar qualquer dado de texto para o servidor, ignorando a validação do lado do cliente.
@@ -342,9 +345,9 @@ Além das proteções que a estrutura implementa, o aplicativo deve ser codifica
 
 Para que uma vulnerabilidade de XSS exista, o aplicativo deve incorporar a entrada do usuário na página renderizada. BlazorOs componentes do servidor executam uma etapa de tempo de compilação em que a marcação em um arquivo *. Razor* é transformada em lógica C# de procedimento. Em tempo de execução, a lógica do C# cria uma *árvore de renderização* que descreve os elementos, o texto e os componentes filho. Isso é aplicado ao DOM do navegador por meio de uma sequência de instruções de JavaScript (ou é serializado para HTML no caso de pré-processamento):
 
-* A entrada do usuário processada por meio de sintaxe Razor `@someStringValue`normal (por exemplo,) não expõe uma vulnerabilidade de XSS porque a sintaxe Razor é adicionada ao dom por meio de comandos que só podem gravar texto. Mesmo se o valor incluir marcação HTML, o valor será exibido como texto estático. Ao renderizar, a saída é codificada em HTML, que também exibe o conteúdo como texto estático.
+* A entrada do usuário renderizada por meio da Razor sintaxe `@someStringValue`normal (por exemplo,) não expõe Razor uma vulnerabilidade de XSS porque a sintaxe é adicionada ao dom por meio de comandos que só podem gravar texto. Mesmo se o valor incluir marcação HTML, o valor será exibido como texto estático. Ao renderizar, a saída é codificada em HTML, que também exibe o conteúdo como texto estático.
 * Marcas de script não são permitidas e não devem ser incluídas na árvore de renderização de componente do aplicativo. Se uma marca de script for incluída na marcação de um componente, um erro de tempo de compilação será gerado.
-* Os autores de componentes podem criar componentes em C# sem usar o Razor. O autor do componente é responsável por usar as APIs corretas ao emitir a saída. Por exemplo, use `builder.AddContent(0, someUserSuppliedString)` e *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, pois o último pode criar uma vulnerabilidade de XSS.
+* Os autores de componentes podem criar componentes em C# Razorsem usar o. O autor do componente é responsável por usar as APIs corretas ao emitir a saída. Por exemplo, use `builder.AddContent(0, someUserSuppliedString)` e *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, pois o último pode criar uma vulnerabilidade de XSS.
 
 Como parte da proteção contra ataques XSS, considere a implementação de mitigações XSS, como a [política de segurança de conteúdo (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
 

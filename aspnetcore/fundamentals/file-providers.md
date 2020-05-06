@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: 25607bd534cae05a6c6b11fa6d8902faa3c0684c
-ms.sourcegitcommit: 72792e349458190b4158fcbacb87caf3fc605268
+ms.openlocfilehash: 2f1151d7854aeeb3e315d0de2b0be5267fe2e8f0
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80751096"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82776279"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
@@ -20,9 +26,9 @@ Por [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados em toda a estrutura do núcleo ASP.NET. Por exemplo:
+O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados em todo o ASP.NET Core Framework. Por exemplo: 
 
-* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>expõe a [raiz](xref:fundamentals/index#content-root) de conteúdo do `IFileProvider` aplicativo e a raiz da [Web](xref:fundamentals/index#web-root) como tipos.
+* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da Web](xref:fundamentals/index#web-root) como `IFileProvider` tipos.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
@@ -45,27 +51,27 @@ A interface principal é <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.Length> (em bytes)
 * Data de <xref:Microsoft.Extensions.FileProviders.IFileInfo.LastModified>
 
-Você pode ler a <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> partir do arquivo usando o método.
+Você pode ler o arquivo usando o <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> método.
 
-O aplicativo de amostra *FileProviderSample* demonstra como `Startup.ConfigureServices` configurar um provedor de arquivos para uso em todo o aplicativo via [injeção de dependência](xref:fundamentals/dependency-injection).
+O aplicativo de exemplo *FileProviderSample* demonstra como configurar um provedor de arquivos `Startup.ConfigureServices` no para uso em todo o aplicativo por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
 
 ## <a name="file-provider-implementations"></a>Implementações do provedor de arquivos
 
-A tabela a seguir `IFileProvider`lista implementações de .
+A tabela a seguir lista as `IFileProvider`implementações do.
 
 | Implementação | Descrição |
 | -------------- | ----------- |
 | [CompositeFileProvider](#compositefileprovider) | Usado para fornecer acesso combinado a arquivos e diretórios de um ou mais outros provedores. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Usado para acessar arquivos incorporados em conjuntos. |
+| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Usado para acessar arquivos inseridos em assemblies. |
 | [PhysicalFileProvider](#physicalfileprovider) | Usado para acessar os arquivos físicos do sistema. |
 
 ### <a name="physicalfileprovider"></a>PhysicalFileProvider
 
 O <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> fornece acesso ao sistema de arquivos físico. O `PhysicalFileProvider` usa o tipo <xref:System.IO.File?displayProperty=fullName> (para o provedor físico) e define o escopo de todos os caminhos para um diretório e seus filhos. Esse escopo impede o acesso ao sistema de arquivos fora do diretório especificado e seus filhos. O cenário mais comum para criar e usar um `PhysicalFileProvider` é solicitar um `IFileProvider` em um construtor por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
 
-Ao instanciar este provedor diretamente, um caminho de diretório absoluto é necessário e serve como o caminho base para todas as solicitações feitas usando o provedor. Padrões glob não são suportados no caminho do diretório.
+Ao instanciar esse provedor diretamente, um caminho de diretório absoluto é necessário e serve como o caminho base para todas as solicitações feitas usando o provedor. Não há suporte para padrões glob no caminho do diretório.
 
-O código a seguir `PhysicalFileProvider` mostra como usar para obter conteúdo do diretório e informações do arquivo:
+O código a seguir mostra como usar `PhysicalFileProvider` o para obter o conteúdo do diretório e as informações do arquivo:
 
 ```csharp
 var provider = new PhysicalFileProvider(applicationRoot);
@@ -80,9 +86,9 @@ Tipos no exemplo anterior:
 * `contents` é um `IDirectoryContents`.
 * `fileInfo` é um `IFileInfo`.
 
-O provedor de arquivos pode ser usado para percorrer o diretório especificado por `applicationRoot` ou chamar `GetFileInfo` para obter as informações de um arquivo. Padrões glob não podem `GetFileInfo` ser passados para o método. O provedor de arquivos não tem acesso fora do diretório `applicationRoot`.
+O provedor de arquivos pode ser usado para percorrer o diretório especificado por `applicationRoot` ou chamar `GetFileInfo` para obter as informações de um arquivo. Padrões de glob não podem ser passados `GetFileInfo` para o método. O provedor de arquivos não tem acesso fora do diretório `applicationRoot`.
 
-O aplicativo de amostra *FileProviderSample* cria o provedor no `Startup.ConfigureServices` método usando: <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider?displayProperty=nameWithType>
+O aplicativo de exemplo *FileProviderSample* cria o provedor no `Startup.ConfigureServices` método usando <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider?displayProperty=nameWithType>:
 
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
@@ -92,18 +98,18 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 O <xref:Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider> é usado para acessar arquivos inseridos em assemblies. O `ManifestEmbeddedFileProvider` usa um manifesto compilado no assembly para reconstruir os caminhos originais dos arquivos inseridos.
 
-Para gerar um manifesto dos arquivos incorporados:
+Para gerar um manifesto dos arquivos inseridos:
 
-1. Adicione o [pacote Microsoft.Extensions.FileProviders.Embedded](https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded) NuGet ao seu projeto.
-1. Defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem incorporados [ \<com o EmbeddedResource>: ](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects)
+1. Adicione o pacote NuGet [Microsoft. Extensions.](https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded) . Embedded ao seu projeto.
+1. Defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos com [ \<o EmbeddedResource>](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
     [!code-xml[](file-providers/samples/3.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
 
 Use [padrões glob](#glob-patterns) para especificar um ou mais arquivos a serem inseridos no assembly.
 
-O aplicativo de amostra `ManifestEmbeddedFileProvider` *FileProviderSample* cria um e passa o conjunto em execução no momento para seu construtor.
+O aplicativo de exemplo *FileProviderSample* cria `ManifestEmbeddedFileProvider` um e passa o assembly atualmente em execução para seu construtor.
 
-*Startup.cs:*
+*Startup.cs*:
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -126,7 +132,7 @@ Sobrecargas adicionais permitem:
 
 O <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> combina instâncias de `IFileProvider`, expondo uma interface única para trabalhar com arquivos de vários provedores. Ao criar o `CompositeFileProvider`, passe uma ou mais instâncias de `IFileProvider` para o construtor.
 
-No aplicativo de exemplo *FileProviderSample,* a `PhysicalFileProvider` e um `ManifestEmbeddedFileProvider` fornecer arquivos para um `CompositeFileProvider` registrado no contêiner de serviço do aplicativo. O seguinte código é encontrado `Startup.ConfigureServices` no método do projeto:
+No aplicativo de exemplo *FileProviderSample* , um `PhysicalFileProvider` e um `ManifestEmbeddedFileProvider` fornecem arquivos para um `CompositeFileProvider` registrado no contêiner de serviço do aplicativo. O código a seguir é encontrado no método do `Startup.ConfigureServices` projeto:
 
 [!code-csharp[](file-providers/samples/3.x/FileProviderSample/Startup.cs?name=snippet1)]
 
@@ -134,15 +140,15 @@ No aplicativo de exemplo *FileProviderSample,* a `PhysicalFileProvider` e um `Ma
 
 O <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayProperty=nameWithType> método fornece um cenário para assistir a um ou mais arquivos ou diretórios para alterações. O método `Watch`:
 
-* Aceita uma seqüência de caminho de arquivo, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos.
+* Aceita uma cadeia de caracteres de caminho de arquivo, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos.
 * Retorna um <xref:Microsoft.Extensions.Primitives.IChangeToken>.
 
 O token de alteração resultante expõe:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>&ndash;Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash;Chamado quando as alterações são detectadas na seqüência de caminho especificada. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash;Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
-O aplicativo de exemplo *WatchConsole* grava uma mensagem sempre que um arquivo *.txt* no diretório *TextFiles* é modificado:
+O aplicativo de exemplo *WatchConsole* grava uma mensagem sempre que um arquivo *. txt* no diretório *textfiles* é modificado:
 
 [!code-csharp[](file-providers/samples/3.x/WatchConsole/Program.cs?name=snippet1)]
 
@@ -164,8 +170,8 @@ A tabela a seguir fornece exemplos comuns de padrões de glob.
 |---------|---------|
 |`directory/file.txt`|Corresponde a um arquivo específico em um diretório específico.|
 |`directory/*.txt`|Corresponde a todos os arquivos com a extensão *.txt* em um diretório específico.|
-|`directory/*/appsettings.json`|Corresponde a todos os *arquivos appsettings.json* em diretórios exatamente um nível abaixo da pasta *de diretório.*|
-|`directory/**/*.txt`|Corresponde a todos os arquivos com uma extensão *.txt* encontrada em qualquer lugar da pasta *do diretório.*|
+|`directory/*/appsettings.json`|Corresponde a todos os arquivos *appSettings. JSON* em diretórios exatamente um nível abaixo da pasta do *diretório* .|
+|`directory/**/*.txt`|Corresponde a todos os arquivos com uma extensão *. txt* encontrado em qualquer lugar na pasta do *diretório* .|
 
 ::: moniker-end
 
@@ -173,7 +179,7 @@ A tabela a seguir fornece exemplos comuns de padrões de glob.
 
 O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados ​​em toda a estrutura do ASP.NET Core:
 
-* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>expõe a [raiz](xref:fundamentals/index#content-root) de conteúdo do `IFileProvider` aplicativo e a raiz da [Web](xref:fundamentals/index#web-root) como tipos.
+* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da Web](xref:fundamentals/index#web-root) como `IFileProvider` tipos.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
@@ -242,7 +248,7 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 O <xref:Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider> é usado para acessar arquivos inseridos em assemblies. O `ManifestEmbeddedFileProvider` usa um manifesto compilado no assembly para reconstruir os caminhos originais dos arquivos inseridos.
 
-Para gerar um manifesto dos arquivos inseridos, defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem incorporados [ &lt;com o&gt;EmbeddedResource:](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects)
+Para gerar um manifesto dos arquivos inseridos, defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos com [ &lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=6,14)]
 
@@ -250,7 +256,7 @@ Use [padrões glob](#glob-patterns) para especificar um ou mais arquivos a serem
 
 O aplicativo de amostra cria um `ManifestEmbeddedFileProvider` e passa o assembly atualmente em execução para seu construtor.
 
-*Startup.cs:*
+*Startup.cs*:
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -282,7 +288,7 @@ No aplicativo de amostra, um `PhysicalFileProvider` e um `ManifestEmbeddedFilePr
 O método [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) proporciona um cenário para monitorar um ou mais arquivos ou diretórios quanto a alterações. `Watch` aceita uma cadeia de caracteres de caminho, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos. `Watch` retorna um <xref:Microsoft.Extensions.Primitives.IChangeToken>. O token de alteração expõe:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>&ndash; Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash; Chamado quando as alterações são detectadas na seqüência de caminho especificada. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash; Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
 No aplicativo de amostra, o aplicativo de console *WatchConsole* é configurado para exibir uma mensagem sempre que um arquivo de texto é modificado:
 

@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: d5ce4a1dc3c00b2b12edc12e26f482caa97df6b3
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 4d1c2d915c646dd1c8fcadd25bcd420a0a749dc9
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511412"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774763"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
 
@@ -38,7 +44,7 @@ Neste tutorial, você aprenderá como:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * [SDK do .NET Core 3.0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a **carga de trabalho de ASP.NET e desenvolvimento web**
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a **ASP.net e** a carga de trabalho de desenvolvimento Web
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -58,7 +64,7 @@ Neste tutorial, você aprenderá como:
 
 ## <a name="configure-mongodb"></a>Configurar o MongoDB
 
-Se usar o Windows, o MongoDB será instalado em *C:\\Arquivos de Programas\\MongoDB* por padrão. Adicionar *C:\\\\Arquivos do\\programa\\MongoDB Server\<version_number>\\bin* para a `Path` variável ambiente. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
+Se usar o Windows, o MongoDB será instalado em *C:\\Arquivos de Programas\\MongoDB* por padrão. Adicione *C:\\\\arquivos de programas\\do\\\<servidor MongoDB \\version_number>compartimento* à variável de `Path` ambiente. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
 
 Use o Shell do mongo nas etapas a seguir para criar um banco de dados, fazer coleções e armazenar documentos. Para saber mais sobre os comandos de Shell do mongo, consulte [Como trabalhar com o Shell do mongo](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell).
 
@@ -149,11 +155,11 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Ir para **arquivo** > **novo** > **projeto**.
+1. Vá para **arquivo** > **novo** > **projeto**.
 1. Selecione o tipo de projeto **aplicativo Web ASP.NET Core** e, em seguida, **Avançar**.
 1. Nomeie o projeto como *BooksApi* e selecione **criar**.
 1. Selecione a estrutura de destino **.NET Core** e **ASP.NET Core 3.0**. Selecione o modelo de projeto **API** e, em seguida, **Criar**.
-1. Visite a [Galeria NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Na janela **Console do Gerenciador de Pacotes**, navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
+1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Na janela **Console do Gerenciador de Pacotes**, navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```powershell
    Install-Package MongoDB.Driver -Version {VERSION}
@@ -170,8 +176,8 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    Um novo projeto de API Web do ASP.NET Core direcionado ao .NET Core é gerado e aberto no Visual Studio Code.
 
-1. Depois que o ícone de chama OmniSharp da barra de status fica verde, um diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'BooksApi'. Adicioná-los?** Selecione **Sim**.
-1. Visite a [Galeria NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
+1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?**. Selecione **Sim** na barra superior.
+1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```dotnetcli
    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
@@ -221,10 +227,10 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
    Na classe anterior, a propriedade `Id`:
 
    * É necessária para mapear o objeto CLR (Common Language Runtime) para a coleção do MongoDB.
-   * É anotado com [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) o design ação desta propriedade como a chave principal do documento.
-   * É anotado com [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) para permitir passar o `string` parâmetro como tipo em vez de uma estrutura [ObjectId.](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) O Mongo processa a conversão de `string` para `ObjectId`.
+   * É anotada com [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) para designar essa propriedade como a chave primária do documento.
+   * É anotado com [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) para permitir a passagem do parâmetro como `string` tipo em vez de uma estrutura [ObjectID](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) . O Mongo processa a conversão de `string` para `ObjectId`.
 
-   A `BookName` propriedade é anotada [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) com o atributo. O valor do atributo de `Name` representa o nome da propriedade da coleção do MongoDB.
+   A `BookName` propriedade é anotada com o [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) atributo. O valor do atributo de `Name` representa o nome da propriedade da coleção do MongoDB.
 
 ## <a name="add-a-configuration-model"></a>Adicionar um modelo de configuração
 
@@ -264,7 +270,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    [!code-csharp[](first-mongo-app/samples_snapshot/3.x/SampleApp/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
-   No código anterior, a classe `BookService` é registrada com a DI para dar suporte à injeção de construtor nas classes consumidoras. O tempo de vida do serviço singleton é mais apropriado porque `BookService` usa uma dependência direta de `MongoClient`. De acordo com as diretrizes `MongoClient` oficiais [de reutilização do Cliente Mongo,](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use)deve ser registrado em DI com uma vida útil de singleton.
+   No código anterior, a classe `BookService` é registrada com a DI para dar suporte à injeção de construtor nas classes consumidoras. O tempo de vida do serviço singleton é mais apropriado porque `BookService` usa uma dependência direta de `MongoClient`. De acordo com as diretrizes oficiais de [reutilização do cliente mongo](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` o deve ser registrado em di com um tempo de vida do serviço singleton.
 
 1. Adicione o seguinte código na parte superior do *Startup.cs* para resolver a referências `BookService`:
 
@@ -354,7 +360,7 @@ Para cumprir os requisitos anteriores, faça as seguintes alterações:
 
    Com a alteração anterior, os nomes de propriedade na resposta JSON serializada da API Web correspondem aos respectivos nomes de propriedade no tipo de objeto CLR. Por exemplo, a propriedade `Author` da classe `Book` é serializada como `Author`.
 
-1. Em *Models/Book.cs,* anote `BookName` a propriedade [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) com o seguinte atributo:
+1. Em *Models/book. cs*, anote a `BookName` Propriedade com o seguinte [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) atributo:
 
    [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Models/Book.cs?name=snippet_BookNameProperty&highlight=2)]
 
@@ -388,7 +394,7 @@ Neste tutorial, você aprenderá como:
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a **carga de trabalho de ASP.NET e desenvolvimento web**
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a **ASP.net e** a carga de trabalho de desenvolvimento Web
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -408,7 +414,7 @@ Neste tutorial, você aprenderá como:
 
 ## <a name="configure-mongodb"></a>Configurar o MongoDB
 
-Se usar o Windows, o MongoDB será instalado em *C:\\Arquivos de Programas\\MongoDB* por padrão. Adicionar *C:\\\\Arquivos do\\programa\\MongoDB Server\<version_number>\\bin* para a `Path` variável ambiente. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
+Se usar o Windows, o MongoDB será instalado em *C:\\Arquivos de Programas\\MongoDB* por padrão. Adicione *C:\\\\arquivos de programas\\do\\\<servidor MongoDB \\version_number>compartimento* à variável de `Path` ambiente. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
 
 Use o Shell do mongo nas etapas a seguir para criar um banco de dados, fazer coleções e armazenar documentos. Para saber mais sobre os comandos de Shell do mongo, consulte [Como trabalhar com o Shell do mongo](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell).
 
@@ -499,11 +505,11 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Ir para **arquivo** > **novo** > **projeto**.
+1. Vá para **arquivo** > **novo** > **projeto**.
 1. Selecione o tipo de projeto **aplicativo Web ASP.NET Core** e, em seguida, **Avançar**.
 1. Nomeie o projeto como *BooksApi* e selecione **criar**.
 1. Selecione a estrutura de destino **.NET Core** e **ASP.NET Core 2.2**. Selecione o modelo de projeto **API** e, em seguida, **Criar**.
-1. Visite a [Galeria NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Na janela **Console do Gerenciador de Pacotes**, navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
+1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Na janela **Console do Gerenciador de Pacotes**, navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```powershell
    Install-Package MongoDB.Driver -Version {VERSION}
@@ -520,8 +526,8 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    Um novo projeto de API Web do ASP.NET Core direcionado ao .NET Core é gerado e aberto no Visual Studio Code.
 
-1. Depois que o ícone de chama OmniSharp da barra de status fica verde, um diálogo pede **que os ativos necessários para construir e depurar estão faltando em 'BooksApi'. Adicioná-los?** Selecione **Sim**.
-1. Visite a [Galeria NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
+1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?**. Selecione **Sim** na barra superior.
+1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```dotnetcli
    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
@@ -571,10 +577,10 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
    Na classe anterior, a propriedade `Id`:
 
    * É necessária para mapear o objeto CLR (Common Language Runtime) para a coleção do MongoDB.
-   * É anotado com [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) o design ação desta propriedade como a chave principal do documento.
-   * É anotado com [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) para permitir passar o `string` parâmetro como tipo em vez de uma estrutura [ObjectId.](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) O Mongo processa a conversão de `string` para `ObjectId`.
+   * É anotada com [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) para designar essa propriedade como a chave primária do documento.
+   * É anotado com [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) para permitir a passagem do parâmetro como `string` tipo em vez de uma estrutura [ObjectID](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) . O Mongo processa a conversão de `string` para `ObjectId`.
 
-   A `BookName` propriedade é anotada [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) com o atributo. O valor do atributo de `Name` representa o nome da propriedade da coleção do MongoDB.
+   A `BookName` propriedade é anotada com o [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) atributo. O valor do atributo de `Name` representa o nome da propriedade da coleção do MongoDB.
 
 ## <a name="add-a-configuration-model"></a>Adicionar um modelo de configuração
 
@@ -614,7 +620,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    [!code-csharp[](first-mongo-app/samples_snapshot/2.x/SampleApp/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
-   No código anterior, a classe `BookService` é registrada com a DI para dar suporte à injeção de construtor nas classes consumidoras. O tempo de vida do serviço singleton é mais apropriado porque `BookService` usa uma dependência direta de `MongoClient`. De acordo com as diretrizes `MongoClient` oficiais [de reutilização do Cliente Mongo,](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use)deve ser registrado em DI com uma vida útil de singleton.
+   No código anterior, a classe `BookService` é registrada com a DI para dar suporte à injeção de construtor nas classes consumidoras. O tempo de vida do serviço singleton é mais apropriado porque `BookService` usa uma dependência direta de `MongoClient`. De acordo com as diretrizes oficiais de [reutilização do cliente mongo](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` o deve ser registrado em di com um tempo de vida do serviço singleton.
 
 1. Adicione o seguinte código na parte superior do *Startup.cs* para resolver a referências `BookService`:
 
@@ -702,7 +708,7 @@ Para cumprir os requisitos anteriores, faça as seguintes alterações:
 
    Com a alteração anterior, os nomes de propriedade na resposta JSON serializada da API Web correspondem aos respectivos nomes de propriedade no tipo de objeto CLR. Por exemplo, a propriedade `Author` da classe `Book` é serializada como `Author`.
 
-1. Em *Models/Book.cs,* anote `BookName` a propriedade [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) com o seguinte atributo:
+1. Em *Models/book. cs*, anote a `BookName` Propriedade com o seguinte [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) atributo:
 
    [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Models/Book.cs?name=snippet_BookNameProperty&highlight=2)]
 
@@ -716,7 +722,7 @@ Para cumprir os requisitos anteriores, faça as seguintes alterações:
 
 ::: moniker-end
 
-## <a name="add-authentication-support-to-a-web-api"></a>Adicionar suporte à autenticação a uma API web
+## <a name="add-authentication-support-to-a-web-api"></a>Adicionar suporte de autenticação a uma API da Web
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 

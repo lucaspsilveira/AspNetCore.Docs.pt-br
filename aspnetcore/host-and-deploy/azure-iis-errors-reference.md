@@ -6,21 +6,27 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 635c4cf6f12e62ca7e795b3b3b47e9445b945551
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 7b3454fbd891ca26d44125810a10eb3b3c2c3933
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "79511594"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775200"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Este tópico descreve erros comuns e fornece conselhos de solução de problemas para erros específicos ao hospedar aplicativos ASP.NET Core no Azure Apps Service e no IIS.
+Este tópico descreve os erros comuns e fornece conselhos de solução de problemas para erros específicos ao hospedar ASP.NET Core aplicativos no serviço de aplicativos do Azure e no IIS.
 
-Para obter orientação <xref:test/troubleshoot-azure-iis>geral de solução de problemas, consulte .
+Para obter diretrizes gerais de solução de <xref:test/troubleshoot-azure-iis>problemas, consulte.
 
 Colete as seguintes informações:
 
@@ -46,19 +52,19 @@ A lista de erros neste tópico não é exaustiva. Se você encontrar um erro nã
 
 Solucionar problemas:
 
-Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Consulte [Instalar o pacote .NET Core Hosting .](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) Selecione **Reparar** ao executar o instalador.
+Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Confira [instalar o pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Selecione **Reparar** ao executar o instalador.
 
 ## <a name="missing-site-extension-32-bit-x86-and-64-bit-x64-site-extensions-installed-or-wrong-process-bitness-set"></a>Extensão de site ausente, extensões de site de 32 bits (x86) e 64 bits (x64) instaladas ou conjunto de bits incorreto do processo
 
 *Aplica-se aos aplicativos hospedados pelos Serviços de Aplicativo do Azure.*
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo DO ANCM
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo
 
-* **Registro de aplicativos:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada a partir da invocação do hostfxr: Não foi possível encontrar nenhuma versão de framework compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
+* **Log do aplicativo:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada de invocação de hostfxr: não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
+* **Log de stdout do módulo ASP.NET Core:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
 
-* **registro de depuração do módulo do ASP.NET:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. HRESULT falhou retornado: 0x8000ffff. Não foi possível localizar o manipulador de solicitação inprocess. Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
+* **Log de depuração do módulo ASP.NET Core:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Falha de HRESULT retornado: 0x8000ffff. Não foi possível localizar o manipulador de solicitação inprocess. Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
 
 Solucionar problemas:
 
@@ -79,13 +85,13 @@ Para obter mais informações, consulte <xref:host-and-deploy/azure-apps/index#i
 
 ## <a name="an-x86-app-is-deployed-but-the-app-pool-isnt-enabled-for-32-bit-apps"></a>Um aplicativo x86 é implantado, mas o pool de aplicativos não está habilitado para aplicativos de 32 bits
 
-* **Navegador:** Erro HTTP 500.30 - Falha inicial no processo do ANCM
+* **Navegador:** Erro HTTP 500,30-ANCM falha no início do processo
 
-* **Registro de aplicativos:** O aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' atingiu exceção gerenciada inesperada, código de exceção = '0xe0434352'. Verifique os logs de stderr para obter mais informações. Aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' falhou ao carregar o clr e o aplicativo gerenciado. O thread de trabalho do CLR foi encerrado prematuramente
+* **Log do aplicativo:** O aplicativo '/LM/W3SVC/5/ROOT ' com a raiz física ' {PATH} ' atingiu uma exceção gerenciada inesperada, código de exceção = ' 0xe0434352 '. Verifique os logs de stderr para obter mais informações. Aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' falhou ao carregar o clr e o aplicativo gerenciado. O thread de trabalho do CLR foi encerrado prematuramente
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro é criado, mas vazio.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
-* **registro de depuração do módulo do ASP.NET:** HRESULT com falha retornou: 0x8007023e
+* **Log de depuração do módulo ASP.NET Core:** HRESULT com falha retornado: 0x8007023e
 
 Esse cenário é interceptado pelo SDK ao publicar um aplicativo autocontido. O SDK produzirá um erro se o RID não coincidir com o destino da plataforma (por exemplo, RID `win10-x64` com `<PlatformTarget>x86</PlatformTarget>` no arquivo de projeto).
 
@@ -97,9 +103,9 @@ Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</Platfo
 
 * **Navegador:** 502.5 Erro HTTP – falha do processo
 
-* **Registro de aplicativos:** O aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com\{raiz\' física 'C: PATH} não\{conseguiu iniciar o processo com a linha de comando '"C: PATH}{ASSEMBLY}. {exe|dll}" ', ErrorCode = '0x80004005 : ff.
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} falhou ao iniciar o processo com a linha de\{comando ' "c: Path} {assembly}. {exe | dll} "', ErrorCode = ' 0x80004005: FF.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Exceção não tratada: System.BadImageFormatException: Não foi possível carregar arquivo ou montagem '{ASSEMBLY}.dll'. Foi feita uma tentativa de carregar um programa com um formato incorreto.
+* **Log de stdout do módulo ASP.NET Core:** Exceção sem tratamento: System. BadImageFormatException: não foi possível carregar o arquivo ou assembly ' {ASSEMBLY}. dll '. Foi feita uma tentativa de carregar um programa com um formato incorreto.
 
 Solucionar problemas:
 
@@ -109,13 +115,13 @@ Solucionar problemas:
 
 ## <a name="uri-endpoint-wrong-or-stopped-website"></a>Ponto de extremidade de URI incorreto ou site interrompido
 
-* **Navegador:** ERR_CONNECTION_REFUSED **--OR--** Incapaz de conectar
+* **Navegador:** ERR_CONNECTION_REFUSED **--ou--** não é possível se conectar
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **registro de depuração do módulo do ASP.NET:** O arquivo de registro não foi criado.
+* **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -137,9 +143,9 @@ Confirme que a função e os recursos apropriados estão habilitados. Consulte [
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **registro de depuração do módulo do ASP.NET:** O arquivo de registro não foi criado.
+* **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -151,9 +157,9 @@ Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo f
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **registro de depuração do módulo do ASP.NET:** O arquivo de registro não foi criado.
+* **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -165,7 +171,7 @@ Solucionar problemas:
 
   Para obter mais informações, confira [Instalar o pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verifique se o **Pool de aplicativos** > **Modelo de processo** > **Identidade** está definido como **ApplicationPoolIdentity** ou se a identidade personalizada tem as permissões corretas para acessar a pasta de implantação do aplicativo.
+* Verifique se o **modelo** > **Identity** de processo do **pool** > de aplicativos está definido como **ApplicationPoolIdentity** ou se a identidade personalizada tem as permissões corretas para acessar a pasta de implantação do aplicativo.
 
 * Se você desinstalou o Pacote de Hospedagem do ASP.NET Core e instalou uma versão anterior do pacote de hospedagem, o arquivo *applicationHost.config* não inclui uma seção para o Módulo do ASP.NET Core. Abra *applicationHost.config* em *%windir%/System32/inetsrv/config* e encontre o grupo de seção `<configuration><configSections><sectionGroup name="system.webServer">`. Se estiver faltando a seção do Módulo do ASP.NET Core no grupo de seções, adicione o elemento da seção:
 
@@ -177,13 +183,13 @@ Solucionar problemas:
 
 ## <a name="incorrect-processpath-missing-path-variable-hosting-bundle-not-installed-systemiis-not-restarted-vc-redistributable-not-installed-or-dotnetexe-access-violation"></a>processPath incorreto, variável de PATH ausente, pacote de hospedagem não instalado, sistema/IIS não reiniciado, Pacotes Redistribuíveis do VC++ não instalados ou violação de acesso de dotnet.exe
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo DO ANCM
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo
 
-* **Registro de aplicativos:** Aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com raiz\{física\' 'C: PATH} não conseguiu iniciar o processo com a linha de comando '{...}' ', ErrorCode = '0x80070002 : 0. Não foi possível iniciar o aplicativo '{PATH}'. O executável não foi encontrado em '{PATH}'. Falha ao iniciar o aplicativo '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} falhou ao iniciar o processo com linha de comando ' "{...}" ', ErrorCode = ' 0x80070002:0. Não foi possível iniciar o aplicativo '{PATH}'. O executável não foi encontrado em '{PATH}'. Falha ao iniciar o aplicativo '/LM/W3SVC/2/ROOT', ErrorCode '0x8007023e'.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **registro de depuração do módulo do ASP.NET:** Registro de eventos: 'Aplicativo '{PATH}' não foi capaz de iniciar. O executável não foi encontrado em '{PATH}'. HRESULT com falha retornou: 0x8007023e
+* **Log de depuração do módulo ASP.NET Core:** Log de eventos: ' o aplicativo ' {PATH} ' não pôde ser iniciado. O executável não foi encontrado em '{PATH}'. HRESULT com falha retornado: 0x8007023e
 
 Solucionar problemas:
 
@@ -207,13 +213,13 @@ Solucionar problemas:
 
 ## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argumentos incorretos do elemento \<aspNetCore>
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo DO ANCM
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo
 
-* **Registro de aplicativos:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada de invocar hostfxr: Você quis executar comandos SDK dotnet? Instale o Dotnet SDK de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 Falha ao iniciar o aplicativo '/LM/W3SVC/3/ROOT', ErrorCode '0x8000ffff'.
+* **Log do aplicativo:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada da invocação de hostfxr: você pretendia executar comandos do SDK dotnet? Instale o SDK dotNet de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 falha ao iniciar o aplicativo '/LM/W3SVC/3/root ', ErrorCode ' 0x8000ffff '.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Você quis executar comandos SDK dotnet? Instale o SDK do dotnet de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409
+* **Log de stdout do módulo ASP.NET Core:** Você quis dizer executar comandos do SDK dotnet? Instale o SDK do dotnet de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409
 
-* **registro de depuração do módulo do ASP.NET:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. HRESULT com falha retornou: 0x8000ff Não foi possível encontrar o manipulador de solicitação no processo. Saída capturada de invocar hostfxr: Você quis executar comandos SDK dotnet? Por favor, instale o https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 Dotnet SDK de: Falha HRESULT retornada: 0x8000ffff
+* **Log de depuração do módulo ASP.NET Core:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Falha de HRESULT retornado: 0x8000ffff não pôde localizar o manipulador de solicitação de inprocesso. Saída capturada da invocação de hostfxr: você pretendia executar comandos do SDK dotnet? Instale o SDK dotNet de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 falha de HRESULT retornado: 0x8000ffff
 
 Solucionar problemas:
 
@@ -223,15 +229,15 @@ Solucionar problemas:
 
 ## <a name="missing-net-core-shared-framework"></a>Estrutura compartilhada do .NET Core ausente
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo DO ANCM
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo
 
-* **Registro de aplicativos:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada a partir da invocação do hostfxr: Não foi possível encontrar nenhuma versão de framework compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}', não foi encontrada.
+* **Log do aplicativo:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada de invocação de hostfxr: não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}', não foi encontrada.
 
 Falha ao iniciar o aplicativo '/LM/W3SVC/5/ROOT', ErrorCode '0x8000ffff'.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}', não foi encontrada.
+* **Log de stdout do módulo ASP.NET Core:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}', não foi encontrada.
 
-* **registro de depuração do módulo do ASP.NET:** HRESULT falhado retornado: 0x8000ffff
+* **Log de depuração do módulo ASP.NET Core:** HRESULT com falha retornado: 0x8000ffff
 
 Solucionar problemas:
 
@@ -243,9 +249,9 @@ Para uma FDD (implantação dependente de estrutura), confirme se você tem o ru
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **registro de depuração do módulo do ASP.NET:** O arquivo de registro não foi criado.
+* **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -257,47 +263,47 @@ Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de log do aplicativo raiz é criado e mostra o funcionamento normal. O arquivo de log do subaplicativo não é criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log do aplicativo raiz é criado e mostra a operação normal. O arquivo de log do subaplicativo não é criado.
 
-* **registro de depuração do módulo do ASP.NET:** O arquivo de log do aplicativo raiz é criado e mostra o funcionamento normal. O arquivo de log do subaplicativo não é criado.
+* **Log de depuração do módulo ASP.NET Core:** O arquivo de log do aplicativo raiz é criado e mostra a operação normal. O arquivo de log do subaplicativo não é criado.
 
 Solucionar problemas:
 
 Confirme se o arquivo *web.config* do subaplicativo não inclui uma seção `<handlers>` ou que o subaplicativo não herda os manipuladores do aplicativo pai.
 
-A seção `<system.webServer>` do aplicativo pai de *web.config* é colocada dentro de um elemento `<location>`. A <xref:System.Configuration.SectionInformation.InheritInChildApplications*> propriedade está `false` definida para indicar que as configurações especificadas no [ \<local>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) elemento não são herdados por aplicativos que residem em um subdiretório do aplicativo pai. Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module>.
+A seção `<system.webServer>` do aplicativo pai de *web.config* é colocada dentro de um elemento `<location>`. A <xref:System.Configuration.SectionInformation.InheritInChildApplications*> propriedade é definida como `false` para indicar que as configurações especificadas no elemento [ \<>local](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) não são herdadas por aplicativos que residem em um subdiretório do aplicativo pai. Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module>.
 
 ## <a name="stdout-log-path-incorrect"></a>caminho do log de stdout incorreto
 
 * **Navegador:** o aplicativo responde normalmente.
 
-* **Registro de aplicativos:** Não foi possível iniciar o redirecionamento stdout em C:\Program Files\IIS\Asp\Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070005 retornado em {PATH}\aspnetcoremodulev2\commonlib\fileoutputmanager.cpp:84. Não foi possível parar o redirecionamento de stdout em C:\Arquivos de Programas\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070002 retornado em {PATH}. Não foi possível iniciar o redirecionamento de stdout em {PATH}\aspnetcorev2_inprocess.dll.
+* **Log do aplicativo:** Não foi possível iniciar o redirecionamento stdout em C:\Program Files\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070005 retornado em {PATH} \aspnetcoremodulev2\commonlib\fileoutputmanager.cpp: 84. Não foi possível parar o redirecionamento de stdout em C:\Arquivos de Programas\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070002 retornado em {PATH}. Não foi possível iniciar o redirecionamento de stdout em {PATH}\aspnetcorev2_inprocess.dll.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-* **Log de depuração do módulo do núcleo ASP.NET:** Não foi possível iniciar o redirecionamento stdout em C:\Program Files\IIS\Asp\Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070005 retornado em {PATH}\aspnetcoremodulev2\commonlib\fileoutputmanager.cpp:84. Não foi possível parar o redirecionamento de stdout em C:\Arquivos de Programas\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070002 retornado em {PATH}. Não foi possível iniciar o redirecionamento de stdout em {PATH}\aspnetcorev2_inprocess.dll.
+* **Log de depuração do módulo ASP.NET Core:** Não foi possível iniciar o redirecionamento stdout em C:\Program Files\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070005 retornado em {PATH} \aspnetcoremodulev2\commonlib\fileoutputmanager.cpp: 84. Não foi possível parar o redirecionamento de stdout em C:\Arquivos de Programas\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070002 retornado em {PATH}. Não foi possível iniciar o redirecionamento de stdout em {PATH}\aspnetcorev2_inprocess.dll.
 
 Solucionar problemas:
 
-* O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [ASP.NET Módulo Central: Criação e redirecionamento de troncos](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
+* O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [módulo ASP.NET Core: criação e redirecionamento de log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
 
 * O usuário do pool de aplicativos não tem acesso de gravação para o caminho do log de stdout.
 
 ## <a name="application-configuration-general-issue"></a>Problema geral de configuração do aplicativo
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo ANCM **--OR--** Erro HTTP 500.30 - Falha inicial do ANCM no processo
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo **--ou--** erro http 500,30-ANCM falha no processo de inicialização
 
-* **Registro de aplicativos:** Variável
+* **Log do aplicativo:** Ela
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de log é criado, mas vazio ou criado com entradas normais até o ponto de falha do aplicativo.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio ou criado com entradas normais até que o ponto do aplicativo falhe.
 
-* **registro de depuração do módulo do ASP.NET:** Variável
+* **Log de depuração do módulo ASP.NET Core:** Ela
 
 Solucionar problemas:
 
 O processo não pôde ser iniciado, provavelmente, devido a um problema de programação ou configuração do aplicativo.
 
-Para obter mais informações, consulte estes tópicos:
+Para mais informações, consulte os seguintes tópicos:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
@@ -306,9 +312,9 @@ Para obter mais informações, consulte estes tópicos:
 
 ::: moniker range="< aspnetcore-2.2"
 
-Este tópico descreve erros comuns e fornece conselhos de solução de problemas para erros específicos ao hospedar aplicativos ASP.NET Core no Azure Apps Service e no IIS.
+Este tópico descreve os erros comuns e fornece conselhos de solução de problemas para erros específicos ao hospedar ASP.NET Core aplicativos no serviço de aplicativos do Azure e no IIS.
 
-Para obter orientação <xref:test/troubleshoot-azure-iis>geral de solução de problemas, consulte .
+Para obter diretrizes gerais de solução de <xref:test/troubleshoot-azure-iis>problemas, consulte.
 
 Colete as seguintes informações:
 
@@ -334,17 +340,17 @@ A lista de erros neste tópico não é exaustiva. Se você encontrar um erro nã
 
 Solucionar problemas:
 
-Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Consulte [Instalar o pacote .NET Core Hosting .](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) Selecione **Reparar** ao executar o instalador.
+Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Confira [instalar o pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Selecione **Reparar** ao executar o instalador.
 
 ## <a name="missing-site-extension-32-bit-x86-and-64-bit-x64-site-extensions-installed-or-wrong-process-bitness-set"></a>Extensão de site ausente, extensões de site de 32 bits (x86) e 64 bits (x64) instaladas ou conjunto de bits incorreto do processo
 
 *Aplica-se aos aplicativos hospedados pelos Serviços de Aplicativo do Azure.*
 
-* **Navegador:** Erro HTTP 500.0 - Falha de carga do manipulador no processo DO ANCM
+* **Navegador:** Erro HTTP 500,0-ANCM falha no carregamento do manipulador em processo
 
-* **Registro de aplicativos:** A invocação do hostfxr para encontrar o manipulador de solicitações de inprocess falhou sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada a partir da invocação do hostfxr: Não foi possível encontrar nenhuma versão de framework compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
+* **Log do aplicativo:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada de invocação de hostfxr: não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
+* **Log de stdout do módulo ASP.NET Core:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
 
 Solucionar problemas:
 
@@ -365,11 +371,11 @@ Para obter mais informações, consulte <xref:host-and-deploy/azure-apps/index#i
 
 ## <a name="an-x86-app-is-deployed-but-the-app-pool-isnt-enabled-for-32-bit-apps"></a>Um aplicativo x86 é implantado, mas o pool de aplicativos não está habilitado para aplicativos de 32 bits
 
-* **Navegador:** Erro HTTP 500.30 - Falha inicial no processo do ANCM
+* **Navegador:** Erro HTTP 500,30-ANCM falha no início do processo
 
-* **Registro de aplicativos:** O aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' atingiu exceção gerenciada inesperada, código de exceção = '0xe0434352'. Verifique os logs de stderr para obter mais informações. Aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' falhou ao carregar o clr e o aplicativo gerenciado. O thread de trabalho do CLR foi encerrado prematuramente
+* **Log do aplicativo:** O aplicativo '/LM/W3SVC/5/ROOT ' com a raiz física ' {PATH} ' atingiu uma exceção gerenciada inesperada, código de exceção = ' 0xe0434352 '. Verifique os logs de stderr para obter mais informações. Aplicativo '/LM/W3SVC/5/ROOT' com raiz física '{PATH}' falhou ao carregar o clr e o aplicativo gerenciado. O thread de trabalho do CLR foi encerrado prematuramente
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro é criado, mas vazio.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
 Esse cenário é interceptado pelo SDK ao publicar um aplicativo autocontido. O SDK produzirá um erro se o RID não coincidir com o destino da plataforma (por exemplo, RID `win10-x64` com `<PlatformTarget>x86</PlatformTarget>` no arquivo de projeto).
 
@@ -381,9 +387,9 @@ Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</Platfo
 
 * **Navegador:** 502.5 Erro HTTP – falha do processo
 
-* **Registro de aplicativos:** O aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com\{raiz\' física 'C: PATH} não\{conseguiu iniciar o processo com a linha de comando '"C: PATH}{ASSEMBLY}. {exe|dll}" ', ErrorCode = '0x80004005 : ff.
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} falhou ao iniciar o processo com a linha de\{comando ' "c: Path} {assembly}. {exe | dll} "', ErrorCode = ' 0x80004005: FF.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** Exceção não tratada: System.BadImageFormatException: Não foi possível carregar arquivo ou montagem '{ASSEMBLY}.dll'. Foi feita uma tentativa de carregar um programa com um formato incorreto.
+* **Log de stdout do módulo ASP.NET Core:** Exceção sem tratamento: System. BadImageFormatException: não foi possível carregar o arquivo ou assembly ' {ASSEMBLY}. dll '. Foi feita uma tentativa de carregar um programa com um formato incorreto.
 
 Solucionar problemas:
 
@@ -393,11 +399,11 @@ Solucionar problemas:
 
 ## <a name="uri-endpoint-wrong-or-stopped-website"></a>Ponto de extremidade de URI incorreto ou site interrompido
 
-* **Navegador:** ERR_CONNECTION_REFUSED **--OR--** Incapaz de conectar
+* **Navegador:** ERR_CONNECTION_REFUSED **--ou--** não é possível se conectar
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -419,7 +425,7 @@ Confirme que a função e os recursos apropriados estão habilitados. Consulte [
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -431,7 +437,7 @@ Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo f
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -443,7 +449,7 @@ Solucionar problemas:
 
   Para obter mais informações, confira [Instalar o pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
-* Verifique se o **Pool de aplicativos** > **Modelo de processo** > **Identidade** está definido como **ApplicationPoolIdentity** ou se a identidade personalizada tem as permissões corretas para acessar a pasta de implantação do aplicativo.
+* Verifique se o **modelo** > **Identity** de processo do **pool** > de aplicativos está definido como **ApplicationPoolIdentity** ou se a identidade personalizada tem as permissões corretas para acessar a pasta de implantação do aplicativo.
 
 * Se você desinstalou o Pacote de Hospedagem do ASP.NET Core e instalou uma versão anterior do pacote de hospedagem, o arquivo *applicationHost.config* não inclui uma seção para o Módulo do ASP.NET Core. Abra *applicationHost.config* em *%windir%/System32/inetsrv/config* e encontre o grupo de seção `<configuration><configSections><sectionGroup name="system.webServer">`. Se estiver faltando a seção do Módulo do ASP.NET Core no grupo de seções, adicione o elemento da seção:
 
@@ -457,9 +463,9 @@ Solucionar problemas:
 
 * **Navegador:** 502.5 Erro HTTP – falha do processo
 
-* **Registro de aplicativos:** Aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com raiz\{física\' 'C: PATH} não conseguiu iniciar o processo com a linha de comando '{...}' ', ErrorCode = '0x80070002 : 0.
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} falhou ao iniciar o processo com linha de comando ' "{...}" ', ErrorCode = ' 0x80070002:0.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro é criado, mas vazio.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
 Solucionar problemas:
 
@@ -485,9 +491,9 @@ Solucionar problemas:
 
 * **Navegador:** 502.5 Erro HTTP – falha do processo
 
-* **Registro de aplicativos:** O aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com\{raiz\' física 'C: PATH} não conseguiu iniciar o processo com '"dotnet" de linha de comando . \{ASSEMBLY}.dll', ErrorCode = '0x80004005 : 80008081.
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} falhou ao iniciar o processo com a linha de comando ' "dotnet". \{Assembly}. dll ', ErrorCode = ' 0x80004005:80008081.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O aplicativo para executar não\{existe: 'PATH ASSEMBLY}.dll'
+* **Log de stdout do módulo ASP.NET Core:** O aplicativo a ser executado não existe: ' assembly\{de caminho}. dll '
 
 Solucionar problemas:
 
@@ -505,7 +511,7 @@ Para uma FDD (implantação dependente de estrutura), confirme se você tem o ru
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
@@ -517,7 +523,7 @@ Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
 * **Log do Aplicativo:** nenhuma entrada
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de log do aplicativo raiz é criado e mostra o funcionamento normal. O arquivo de log do subaplicativo não é criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log do aplicativo raiz é criado e mostra a operação normal. O arquivo de log do subaplicativo não é criado.
 
 Solucionar problemas:
 
@@ -527,13 +533,13 @@ Confirme se o arquivo *web.config* do subaplicativo não inclui uma seção `<ha
 
 * **Navegador:** o aplicativo responde normalmente.
 
-* **Registro de aplicativos:** Aviso: Não foi possível criar \\stdoutLogFile ? \{PATH}\path_doesnt_exist\stdout_{PROCESS ID}_{TIMESTAMP}.log, ErrorCode = -2147024893.
+* **Log do aplicativo:** Aviso: não foi possível criar \\o stdoutLogFile? \{Caminho} \ path_doesnt_exist \ STDOUT_ {ID do processo} _ {timestamp}. log, ErrorCode =-2147024893.
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro não foi criado.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
 Solucionar problemas:
 
-* O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [ASP.NET Módulo Central: Criação e redirecionamento de troncos](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
+* O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [módulo ASP.NET Core: criação e redirecionamento de log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
 
 * O usuário do pool de aplicativos não tem acesso de gravação para o caminho do log de stdout.
 
@@ -541,15 +547,15 @@ Solucionar problemas:
 
 * **Navegador:** 502.5 Erro HTTP – falha do processo
 
-* **Registro de aplicativos:** Aplicativo 'MACHINE/WEBROOT/APPHOST/{ASSEMBLY}' com raiz\{física\' 'C: PATH} criou processo\{com\{a linha de comando '"C: PATH} ASSEMBLY}. {exe|dll}" ' mas ou caiu ou não respondeu ou não ouviu na porta dada '{PORT}', ErrorCode = '{ERROR CODE}'
+* **Log do aplicativo:** O aplicativo ' MACHINE/WEBROOT/APPHOST/{ASSEMBLY} ' com a raiz física '\{C:\' Path} criou o processo com a linha de\{comando '\{"C: Path} assembly}. {exe | dll} "", mas travou ou não respondeu ou não escutau na porta determinada ' {PORT} ', ErrorCode = ' {código de erro} '
 
-* **ASP.NET núcleo de registro de stdout do módulo:** O arquivo de registro é criado, mas vazio.
+* **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
 Solucionar problemas:
 
 O processo não pôde ser iniciado, provavelmente, devido a um problema de programação ou configuração do aplicativo.
 
-Para obter mais informações, consulte estes tópicos:
+Para mais informações, consulte os seguintes tópicos:
 
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

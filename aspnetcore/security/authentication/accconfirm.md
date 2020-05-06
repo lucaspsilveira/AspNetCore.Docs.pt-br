@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba como criar um aplicativo ASP.NET Core com confirmação de email e redefinição de senha.
 ms.author: riande
 ms.date: 03/11/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 3a6b0501d507929c9929207a7bb871b3b81b7cb8
-ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
+ms.openlocfilehash: b7856a3004cfc76acfb485ff8f1fadf87f5aa904
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/18/2020
-ms.locfileid: "79511620"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82777105"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmação de conta e de recuperação de senha no ASP.NET Core
 
@@ -32,7 +38,7 @@ Consulte [este arquivo PDF](https://webpifeed.blob.core.windows.net/webpifeed/Pa
 
 ::: moniker range="> aspnetcore-2.2"
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 [SDK do .NET Core 3,0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -46,11 +52,11 @@ cd WebPWrecover
 dotnet run
 ```
 
-Execute o aplicativo, selecione o link **registrar** e registre um usuário. Depois de registrado, você será redirecionado para a página para `/Identity/Account/RegisterConfirmation` que contém um link para simular a confirmação de email:
+Execute o aplicativo, selecione o link **registrar** e registre um usuário. Depois de registrado, você será redirecionado para a `/Identity/Account/RegisterConfirmation` página para, que contém um link para simular a confirmação de email:
 
-* Selecione o link `Click here to confirm your account`.
+* Selecione o `Click here to confirm your account` link.
 * Selecione o link de **logon** e entre com as mesmas credenciais.
-* Selecione o link `Hello YourEmail@provider.com!`, que o redireciona para a página `/Identity/Account/Manage/PersonalData`.
+* Selecione o `Hello YourEmail@provider.com!` link, que o redireciona para a `/Identity/Account/Manage/PersonalData` página.
 * Selecione a guia **dados pessoais** à esquerda e, em seguida, selecione **excluir**.
 
 ### <a name="configure-an-email-provider"></a>Configurar um provedor de email
@@ -63,7 +69,7 @@ Crie uma classe para buscar a chave de email seguro. Para este exemplo, crie *Se
 
 #### <a name="configure-sendgrid-user-secrets"></a>Configurar segredos de usuário do SendGrid
 
-Defina o `SendGridUser` e `SendGridKey` com a [ferramenta Secret-Manager](xref:security/app-secrets). Por exemplo:
+Defina `SendGridUser` e `SendGridKey` com a [ferramenta Secret-Manager](xref:security/app-secrets). Por exemplo: 
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -72,9 +78,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-No Windows, o Gerenciador de segredo armazena pares de chaves/valores em um arquivo *segredos. JSON* no diretório `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>`.
+No Windows, o Gerenciador de segredo armazena pares de chaves/valores em um arquivo *segredos. JSON* no `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` diretório.
 
-O conteúdo do arquivo *segredos. JSON* não está criptografado. A marcação a seguir mostra o arquivo *Secrets. JSON* . O valor de `SendGridKey` foi removido.
+O conteúdo do arquivo *segredos. JSON* não está criptografado. A marcação a seguir mostra o arquivo *Secrets. JSON* . O `SendGridKey` valor foi removido.
 
 ```json
 {
@@ -113,16 +119,16 @@ Consulte Introdução ao [SendGrid gratuitamente](https://sendgrid.com/free/) pa
 
 ### <a name="implement-iemailsender"></a>Implementar IEmailSender
 
-Para implementar `IEmailSender`, crie *Services/EmailSender. cs* com um código semelhante ao seguinte:
+Para implementar `IEmailSender`, crie os *Serviços/EmailSender. cs* com um código semelhante ao seguinte:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
 
 ### <a name="configure-startup-to-support-email"></a>Configurar a inicialização para o email de suporte
 
-Adicione o seguinte código ao método `ConfigureServices` no arquivo *Startup.cs* :
+Adicione o seguinte código ao `ConfigureServices` método no arquivo *Startup.cs* :
 
-* Adicione `EmailSender` como um serviço transitório.
-* Registre a instância de configuração de `AuthMessageSenderOptions`.
+* Adicionar `EmailSender` como um serviço transitório.
+* Registre a `AuthMessageSenderOptions` instância de configuração.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
@@ -130,7 +136,7 @@ Adicione o seguinte código ao método `ConfigureServices` no arquivo *Startup.c
 
 Execute o aplicativo Web e teste a confirmação da conta e o fluxo de recuperação de senha.
 
-* Execute o aplicativo e registrar um novo usuário
+* Executar o aplicativo e registrar um novo usuário
 * Verifique seu email para o link de confirmação da conta. Consulte [depurar email](#debug) se você não receber o email.
 * Clique no link para confirmar seu email.
 * Entre com seu email e senha.
@@ -161,7 +167,7 @@ Os tokens de usuário de identidade interna (consulte [AspNetCore/src/Identity/E
 
 A vida útil do token padrão dos [tokens de usuário de identidade](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) é de [um dia](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Esta seção mostra como alterar o ciclo de vida do token de email.
 
-Adicione um [DataProtectorTokenProvider personalizado\<TUser >](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Adicione um [>TUser\<do DataProtectorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizado <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>e:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -179,20 +185,20 @@ Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 Se você não puder obter emails funcionando:
 
-* Defina um ponto de interrupção no `EmailSender.Execute` para verificar se `SendGridClient.SendEmailAsync` é chamado.
-* Crie um [aplicativo de console para enviar emails](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando código semelhante para `EmailSender.Execute`.
+* Defina um ponto de `EmailSender.Execute` interrupção em `SendGridClient.SendEmailAsync` para verificar é chamado.
+* Crie um [aplicativo de console para enviar emails](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando código `EmailSender.Execute`semelhante para.
 * Examine a página [atividade de email](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Verifique sua pasta de spam.
 * Experimente outro alias de email em um provedor de email diferente (Microsoft, Yahoo, Gmail, etc.)
 * Tente enviar para contas de email diferentes.
 
-**Uma prática recomendada de segurança** é **não** usar segredos de produção em teste e desenvolvimento. Se você publicar o aplicativo no Azure, defina os segredos do SendGrid como configurações de aplicativo no portal do aplicativo Web do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.
+**Uma prática recomendada de segurança** é **não** usar segredos de produção em teste e desenvolvimento. Se você publicar o aplicativo no Azure, defina os segredos do SendGrid como configurações de aplicativo no portal do aplicativo Web do Azure. O sistema de configuração é configurado para ler chaves de variáveis de ambiente.
 
 ## <a name="combine-social-and-local-login-accounts"></a>Combinar contas de logon sociais e locais
 
 Para concluir esta seção, primeiro você deve habilitar um provedor de autenticação externa. Consulte [Facebook, Google e autenticação de provedor externo](xref:security/authentication/social/index).
 
-Você pode combinar contas locais e sociais clicando no link de email. Na sequência a seguir, "RickAndMSFT@gmail.com" é criado primeiro como um logon local; no entanto, você pode criar a conta como um logon social primeiro e, em seguida, adicionar um logon local.
+Você pode combinar contas locais e sociais clicando no link de email. Na seguinte sequência, "RickAndMSFT@gmail.com" é criado primeiro como um logon local; no entanto, você pode criar a conta como um logon social primeiro e, em seguida, adicionar um logon local.
 
 ![Aplicativo Web: RickAndMSFT@gmail.com usuário autenticado](accconfirm/_static/rick.png)
 
@@ -217,7 +223,7 @@ Habilitar a confirmação de conta em um site com usuários bloqueia todos os us
 
 ::: moniker range="> aspnetcore-2.0 < aspnetcore-3.0"
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 [SDK do .NET Core 2,2 ou posterior](https://dotnet.microsoft.com/download/dotnet-core)
 
@@ -239,11 +245,11 @@ dotnet run
 
 ## <a name="test-new-user-registration"></a>Testar novo registro de usuário
 
-Execute o aplicativo, selecione o link **registrar** e registre um usuário. Neste ponto, a única validação no email é com o atributo [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) . Depois de enviar o registro, você está conectado ao aplicativo. Posteriormente no tutorial, o código será atualizado para que novos usuários não possam entrar até que seu email seja validado.
+Execute o aplicativo, selecione o link **registrar** e registre um usuário. Neste ponto, a única validação no email é com o [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) atributo. Depois de enviar o registro, você está conectado ao aplicativo. Posteriormente no tutorial, o código será atualizado para que novos usuários não possam entrar até que seu email seja validado.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
-Observe que o campo de `EmailConfirmed` da tabela é `False`.
+Observe que o campo `EmailConfirmed` da tabela `False`é.
 
 Você pode querer usar esse email novamente na próxima etapa quando o aplicativo enviar um email de confirmação. Clique com o botão direito do mouse na linha e selecione **excluir**. A exclusão do alias de email torna mais fácil as etapas a seguir.
 
@@ -251,19 +257,19 @@ Você pode querer usar esse email novamente na próxima etapa quando o aplicativ
 
 ## <a name="require-email-confirmation"></a>Exigir confirmação de email
 
-É uma prática recomendada confirmar o email de um novo registro de usuário. A confirmação por email ajuda a verificar se eles não estão representando outra pessoa (ou seja, se eles não se registraram no email de outra pessoa). Suponha que você tenha um fórum de discussão e queira impedir "yli@example.com" de se registrar como "nolivetto@contoso.com". Sem confirmação por email, "nolivetto@contoso.com" pode receber emails indesejados de seu aplicativo. Suponha que o usuário se registrou acidentalmente como "ylo@example.com" e não tenha notado a grafia incorreta de "Yli". Eles não poderão usar a recuperação de senha porque o aplicativo não tem seu email correto. A confirmação por email fornece proteção limitada de bots. A confirmação por email não fornece proteção contra usuários mal-intencionados com muitas contas de email.
+É uma prática recomendada confirmar o email de um novo registro de usuário. A confirmação por email ajuda a verificar se eles não estão representando outra pessoa (ou seja, se eles não se registraram no email de outra pessoa). Suponha que você tenha um fórum de discussão e queira impedir "yli@example.com" de se registrar como "nolivetto@contoso.com". Sem confirmação por email,nolivetto@contoso.com"" pode receber emails indesejados do seu aplicativo. Suponha que o usuário se registrouylo@example.comacidentalmente como "" e não tenha notado a grafia incorreta de "Yli". Eles não poderão usar a recuperação de senha porque o aplicativo não tem seu email correto. A confirmação por email fornece proteção limitada de bots. A confirmação por email não fornece proteção contra usuários mal-intencionados com muitas contas de email.
 
-Geralmente você deseja impedir que novos usuários incluam dados em seu site até que eles tenham um email confirmado.
+Em geral, você deseja impedir que novos usuários enviem dados para seu site antes de terem um email confirmado.
 
 Atualize `Startup.ConfigureServices` para exigir um email confirmado:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;` impede que os usuários registrados façam logon até que seu email seja confirmado.
+`config.SignIn.RequireConfirmedEmail = true;`impede que os usuários registrados façam logon até que seu email seja confirmado.
 
 ### <a name="configure-email-provider"></a>Configurar provedor de email
 
-Neste tutorial, [SendGrid](https://sendgrid.com) é usado para enviar email. Você precisa de uma conta e chave do SendGrid para enviar email. Você pode usar outros provedores de email. O ASP.NET Core 2. x inclui `System.Net.Mail`, que permite enviar emails do seu aplicativo. Recomendamos que você use o SendGrid ou outro serviço de email para enviar email. O SMTP é difícil de proteger e configurar corretamente.
+Neste tutorial, [SendGrid](https://sendgrid.com) é usado para enviar email. Você precisa de uma conta e chave do SendGrid para enviar email. Você pode usar outros provedores de email. O ASP.NET Core 2. x `System.Net.Mail`inclui, que permite enviar emails do seu aplicativo. Recomendamos que você use o SendGrid ou outro serviço de email para enviar email. O SMTP é difícil de proteger e configurar corretamente.
 
 Crie uma classe para buscar a chave de email seguro. Para este exemplo, crie *Services/AuthMessageSenderOptions. cs*:
 
@@ -271,16 +277,16 @@ Crie uma classe para buscar a chave de email seguro. Para este exemplo, crie *Se
 
 #### <a name="configure-sendgrid-user-secrets"></a>Configurar segredos de usuário do SendGrid
 
-Defina o `SendGridUser` e `SendGridKey` com a [ferramenta Secret-Manager](xref:security/app-secrets). Por exemplo:
+Defina `SendGridUser` e `SendGridKey` com a [ferramenta Secret-Manager](xref:security/app-secrets). Por exemplo: 
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-No Windows, o Gerenciador de segredo armazena pares de chaves/valores em um arquivo *segredos. JSON* no diretório `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>`.
+No Windows, o Gerenciador de segredo armazena pares de chaves/valores em um arquivo *segredos. JSON* no `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` diretório.
 
-O conteúdo do arquivo *segredos. JSON* não está criptografado. A marcação a seguir mostra o arquivo *Secrets. JSON* . O valor de `SendGridKey` foi removido.
+O conteúdo do arquivo *segredos. JSON* não está criptografado. A marcação a seguir mostra o arquivo *Secrets. JSON* . O `SendGridKey` valor foi removido.
 
 ```json
 {
@@ -319,22 +325,22 @@ Consulte Introdução ao [SendGrid gratuitamente](https://sendgrid.com/free/) pa
 
 ### <a name="implement-iemailsender"></a>Implementar IEmailSender
 
-Para implementar `IEmailSender`, crie *Services/EmailSender. cs* com um código semelhante ao seguinte:
+Para implementar `IEmailSender`, crie os *Serviços/EmailSender. cs* com um código semelhante ao seguinte:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/EmailSender.cs)]
 
 ### <a name="configure-startup-to-support-email"></a>Configurar a inicialização para o email de suporte
 
-Adicione o seguinte código ao método `ConfigureServices` no arquivo *Startup.cs* :
+Adicione o seguinte código ao `ConfigureServices` método no arquivo *Startup.cs* :
 
-* Adicione `EmailSender` como um serviço transitório.
-* Registre a instância de configuração de `AuthMessageSenderOptions`.
+* Adicionar `EmailSender` como um serviço transitório.
+* Registre a `AuthMessageSenderOptions` instância de configuração.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=15-99)]
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Habilitar confirmação de conta e recuperação de senha
 
-O modelo tem o código para confirmação de conta e recuperação de senha. Localize o método `OnPostAsync` em *áreas/identidade/páginas/conta/registro. cshtml. cs*.
+O modelo tem o código para confirmação de conta e recuperação de senha. Localize o `OnPostAsync` método em *áreas/Identity/Pages/Account/Register.cshtml.cs*.
 
 Impedir que usuários registrados recentemente façam logon automaticamente comentando a seguinte linha:
 
@@ -350,7 +356,7 @@ O método Complete é mostrado com a linha alterada realçada:
 
 Execute o aplicativo Web e teste a confirmação da conta e o fluxo de recuperação de senha.
 
-* Execute o aplicativo e registrar um novo usuário
+* Executar o aplicativo e registrar um novo usuário
 * Verifique seu email para o link de confirmação da conta. Consulte [depurar email](#debug) se você não receber o email.
 * Clique no link para confirmar seu email.
 * Entre com seu email e senha.
@@ -358,7 +364,7 @@ Execute o aplicativo Web e teste a confirmação da conta e o fluxo de recupera�
 
 ### <a name="view-the-manage-page"></a>Exibir a página Gerenciar
 
-Selecione seu nome de usuário no navegador: ![janela do navegador com o nome de usuário](accconfirm/_static/un.png)
+Selecione seu nome de usuário no navegador: ![janela do navegador com nome de usuário](accconfirm/_static/un.png)
 
 A página Gerenciar é exibida com a guia **perfil** selecionada. O **email** mostra uma caixa de seleção indicando que o email foi confirmado.
 
@@ -381,13 +387,13 @@ O código a seguir altera todos os tokens de proteção de dados período de tem
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-Os tokens de usuário de identidade interna (consulte [AspNetCore/src/Identity/Extensions. Core/src/tokenoptions. cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) têm um [tempo limite de um dia](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+Os tokens Identity de usuário internos (consulte [AspNetCore/srcIdentity//Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) têm um [tempo limite de um dia](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### <a name="change-the-email-token-lifespan"></a>Alterar o ciclo de vida do token de email
 
-A vida útil do token padrão dos [tokens de usuário de identidade](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) é de [um dia](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Esta seção mostra como alterar o ciclo de vida do token de email.
+A vida útil do token padrão dos [tokens de Identity usuário](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) é de [um dia](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Esta seção mostra como alterar o ciclo de vida do token de email.
 
-Adicione um [DataProtectorTokenProvider personalizado\<TUser >](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Adicione um [>TUser\<do DataProtectorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) personalizado <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>e:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -405,20 +411,20 @@ Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore/issues/5
 
 Se você não puder obter emails funcionando:
 
-* Defina um ponto de interrupção no `EmailSender.Execute` para verificar se `SendGridClient.SendEmailAsync` é chamado.
-* Crie um [aplicativo de console para enviar emails](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando código semelhante para `EmailSender.Execute`.
+* Defina um ponto de `EmailSender.Execute` interrupção em `SendGridClient.SendEmailAsync` para verificar é chamado.
+* Crie um [aplicativo de console para enviar emails](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html) usando código `EmailSender.Execute`semelhante para.
 * Examine a página [atividade de email](https://sendgrid.com/docs/User_Guide/email_activity.html) .
 * Verifique sua pasta de spam.
 * Experimente outro alias de email em um provedor de email diferente (Microsoft, Yahoo, Gmail, etc.)
 * Tente enviar para contas de email diferentes.
 
-**Uma prática recomendada de segurança** é **não** usar segredos de produção em teste e desenvolvimento. Se você publicar o aplicativo no Azure, poderá definir os segredos do SendGrid como configurações do aplicativo no portal do aplicativo Web do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.
+**Uma prática recomendada de segurança** é **não** usar segredos de produção em teste e desenvolvimento. Se você publicar o aplicativo no Azure, poderá definir os segredos do SendGrid como configurações do aplicativo no portal do aplicativo Web do Azure. O sistema de configuração é configurado para ler chaves de variáveis de ambiente.
 
 ## <a name="combine-social-and-local-login-accounts"></a>Combinar contas de logon sociais e locais
 
 Para concluir esta seção, primeiro você deve habilitar um provedor de autenticação externa. Consulte [Facebook, Google e autenticação de provedor externo](xref:security/authentication/social/index).
 
-Você pode combinar contas locais e sociais clicando no link de email. Na sequência a seguir, "RickAndMSFT@gmail.com" é criado primeiro como um logon local; no entanto, você pode criar a conta como um logon social primeiro e, em seguida, adicionar um logon local.
+Você pode combinar contas locais e sociais clicando no link de email. Na seguinte sequência, "RickAndMSFT@gmail.com" é criado primeiro como um logon local; no entanto, você pode criar a conta como um logon social primeiro e, em seguida, adicionar um logon local.
 
 ![Aplicativo Web: RickAndMSFT@gmail.com usuário autenticado](accconfirm/_static/rick.png)
 

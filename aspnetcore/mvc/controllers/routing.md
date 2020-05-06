@@ -4,13 +4,19 @@ author: rick-anderson
 description: Saiba como o ASP.NET Core MVC usa o middleware de roteamento para corresponder a URLs das solicitações de entrada e mapeá-las para ações.
 ms.author: riande
 ms.date: 3/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 974a5e7653f2b71b124a96650733ff460e60637a
-ms.sourcegitcommit: 56861af66bb364a5d60c3c72d133d854b4cf292d
+ms.openlocfilehash: 4208ef8fb7a9b10621f214f79679ff8d7fd83996
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82206106"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82775018"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Roteamento para ações do controlador no ASP.NET Core
 
@@ -195,7 +201,9 @@ O exemplo anterior:
 ### <a name="conventional-routing-order"></a>Ordem de roteamento convencional
 
 O roteamento convencional só corresponde a uma combinação de ação e controlador que são definidos pelo aplicativo. Isso se destina a simplificar os casos em que as rotas convencionais se sobrepõem.
-Adicionar rotas usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>e <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> atribuir automaticamente um valor de pedido a seus pontos de extremidade com base na ordem em que são invocados. As correspondências de uma rota que aparece anteriormente têm uma prioridade mais alta. O roteamento convencional é dependente da ordem. Em geral, as rotas com áreas devem ser posicionadas antes, pois são mais específicas do que as rotas sem uma área. [Rotas convencionais dedicadas](#dcr) com a captura de `{*article}` todos os parâmetros de rota como podem tornar uma [rota muito grande](xref:fundamentals/routing#greedy), o que significa que ela corresponde às URLs que você pretende corresponder a outras rotas. Coloque as rotas de ávido mais tarde na tabela de rotas para evitar correspondências de caminhada.
+Adicionar rotas usando <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>e <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> atribuir automaticamente um valor de pedido a seus pontos de extremidade com base na ordem em que são invocados. As correspondências de uma rota que aparece anteriormente têm uma prioridade mais alta. O roteamento convencional é dependente da ordem. Em geral, as rotas com áreas devem ser posicionadas antes, pois são mais específicas do que as rotas sem uma área. [Rotas convencionais dedicadas](#dcr) com parâmetros de rota Catch `{*article}` -All como podem tornar uma [rota muito grande](xref:fundamentals/routing#greedy), o que significa que ela corresponde às URLs que você pretende corresponder a outras rotas. Coloque as rotas de ávido mais tarde na tabela de rotas para evitar correspondências de caminhada.
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 <a name="best"></a>
 
@@ -463,7 +471,7 @@ Com o código anterior, `/home` executa o `HomeController.Index` ponto de extrem
 * O código anterior é um exemplo de design de roteamento insatisfatório. Ele foi usado para ilustrar `Order` a propriedade.
 * A `Order` Propriedade resolve apenas a ambiguidade, esse modelo não pode ser correspondido. Seria melhor remover o `[Route("Home")]` modelo.
 
-Consulte [Razor Pages rota e convenções de aplicativo: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order) para obter informações sobre a ordem de rota com Razor Pages.
+Consulte [ Razor as páginas rota e convenções de aplicativo: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order) para obter informações Razor sobre a ordem de rota com páginas.
 
 Em alguns casos, um erro HTTP 500 é retornado com rotas ambíguas. Use o [registro em log](xref:fundamentals/logging/index) para ver quais pontos de `AmbiguousMatchException`extremidade causaram o.
 
@@ -744,13 +752,13 @@ O código anterior demonstrou a geração de uma URL passando o nome do controla
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
 
-O seguinte arquivo Razor gera um link HTML para `Destination_Route`:
+O arquivo Razor a seguir gera um link HTML para `Destination_Route`:
 
 [!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-razor"></a>Gerar URLs em HTML e Razor
+### <a name="generate-urls-in-html-and-razor"></a>Gerar URLs em HTML eRazor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>fornece os <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> métodos [HTML. BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) e [HTML. ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) para gerar `<form>` e `<a>` elementos, respectivamente. Esses métodos usam o método [URL. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) para gerar uma URL e aceitam argumentos semelhantes. O complementos `Url.RouteUrl` para `HtmlHelper` são `Html.BeginRouteForm` e `Html.RouteLink`, que têm uma funcionalidade semelhante.
 
@@ -1212,7 +1220,7 @@ Rotas de atributos podem configurar uma ordem, usando a propriedade `Order` de t
 > [!TIP]
 > Evite depender de `Order`. Se o seu espaço de URL exigir valores de ordem explícita para fazer o roteamento corretamente, provavelmente ele também será confuso para os clientes. De modo geral, o roteamento de atributos selecionará a rota correta com a correspondência de URL. Se a ordem padrão usada para a geração de URL não estiver funcionando, usar o nome da rota como uma substituição geralmente será mais simples do que aplicar a propriedade `Order`.
 
-Roteamento do Razor Pages e do controlador do MVC compartilham uma implementação. Informações sobre a ordem de rota nos tópicos do Razor Pages estão disponíveis em [Convenções de rota e aplicativo do Razor Pages: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order).
+RazorO roteamento de páginas e o roteamento do controlador MVC compartilham uma implementação. As informações sobre a ordem de Razor rota nos tópicos de páginas estão disponíveis em [ Razor páginas rota e convenções de aplicativo: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order).
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 

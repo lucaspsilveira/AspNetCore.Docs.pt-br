@@ -6,13 +6,19 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 3e858a974d6a5c008969c3c51a507880cc25a7ff
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 5ff5eed1c8ad6f8863fe16e0c76ab104658ddc0c
+ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78666918"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82769865"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -88,14 +94,14 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pelo `Basic` [enum AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): , `Kerberos`, `Negotiate`, `None`e `NTLM`. | `None` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [Enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate` `None`, e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em toda a máquina<br>configuração) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
-| `RequestQueueMode` | Isso indica se o servidor é responsável pela criação e configuração da fila de solicitação ou se ele deve ser anexado a uma fila existente.<br>A maioria das opções de configuração existentes não se aplicam ao anexar a uma fila existente. | `RequestQueueMode.Create` |
-| `RequestQueueName` | O nome da fila de solicitação HTTP.sys. | `null`(Fila anônima) |
+| `RequestQueueMode` | Isso indica se o servidor é responsável por criar e configurar a fila de solicitações ou se deve ser anexado a uma fila existente.<br>A maioria das opções de configuração existentes não se aplicam ao anexar a uma fila existente. | `RequestQueueMode.Create` |
+| `RequestQueueName` | O nome da fila de solicitações de HTTP. sys. | `null`(Fila anônima) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Expor a configuração <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> do HTTP.sys, que também pode ser configurado no Registro. Siga os links de API para saber mais sobre cada configuração, inclusive os valores padrão:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) &ndash; O tempo permitido para que a API do servidor HTTP esvazie o corpo da entidade em uma conexão Keep-Alive.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) &ndash; O tempo permitido para a chegada do corpo da entidade de solicitação.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) &ndash; O tempo permitido para que a API do servidor HTTP analise o cabeçalho da solicitação.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) &ndash; O tempo permitido para uma conexão ociosa.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) &ndash; A taxa de envio mínima para a resposta.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) &ndash; O tempo permitido para que a solicitação permaneça na fila de solicitações até o aplicativo coletá-la.</li></ul> |  |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Especifique o <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> para registrar com o HTTP.sys. A mais útil é [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), que é usada para adicionar um prefixo à coleção. É possível modificá-las a qualquer momento antes de descartar o ouvinte. |  |
@@ -164,7 +170,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 1. Pré-registre os prefixos de URL no servidor.
 
@@ -176,7 +182,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add urlacl url=<URL> user=<USER>
    ```
 
-   * `<URL>`&ndash; O URL (Uniform Resource Locator, localizador de recursos uniforme) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
+   * `<URL>`&ndash; O Uniform Resource Locator (URL) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
    * `<USER>`&ndash; Especifica o nome do usuário ou do grupo de usuários.
 
    No exemplo a seguir, o endereço IP local do servidor é `10.0.0.4`:
@@ -201,9 +207,9 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
    ```
 
-   * `<IP>`&ndash; Especifica o endereço IP local para a vinculação. Não use uma associação de curinga. Use um endereço IP válido.
-   * `<PORT>`&ndash; Especifica a porta para a vinculação.
-   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X.509.
+   * `<IP>`&ndash; Especifica o endereço IP local para a associação. Não use uma associação de curinga. Use um endereço IP válido.
+   * `<PORT>`&ndash; Especifica a porta para a associação.
+   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X. 509.
    * `<GUID>`&ndash; Um GUID gerado pelo desenvolvedor para representar o aplicativo para fins informativos.
 
    Para fins de referência, armazene o GUID no aplicativo como uma marca de pacote:
@@ -244,7 +250,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
 
    Documentação de referência do *netsh.exe*:
 
-   * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Comandos Netsh para HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
    * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
 1. Execute o aplicativo.
@@ -341,10 +347,10 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pelo `Basic` [enum AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): , `Kerberos`, `Negotiate`, `None`e `NTLM`. | `None` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [Enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate` `None`, e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em toda a máquina<br>configuração) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
@@ -415,7 +421,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 1. Pré-registre os prefixos de URL no servidor.
 
@@ -427,7 +433,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add urlacl url=<URL> user=<USER>
    ```
 
-   * `<URL>`&ndash; O URL (Uniform Resource Locator, localizador de recursos uniforme) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
+   * `<URL>`&ndash; O Uniform Resource Locator (URL) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
    * `<USER>`&ndash; Especifica o nome do usuário ou do grupo de usuários.
 
    No exemplo a seguir, o endereço IP local do servidor é `10.0.0.4`:
@@ -452,9 +458,9 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
    ```
 
-   * `<IP>`&ndash; Especifica o endereço IP local para a vinculação. Não use uma associação de curinga. Use um endereço IP válido.
-   * `<PORT>`&ndash; Especifica a porta para a vinculação.
-   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X.509.
+   * `<IP>`&ndash; Especifica o endereço IP local para a associação. Não use uma associação de curinga. Use um endereço IP válido.
+   * `<PORT>`&ndash; Especifica a porta para a associação.
+   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X. 509.
    * `<GUID>`&ndash; Um GUID gerado pelo desenvolvedor para representar o aplicativo para fins informativos.
 
    Para fins de referência, armazene o GUID no aplicativo como uma marca de pacote:
@@ -495,7 +501,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
 
    Documentação de referência do *netsh.exe*:
 
-   * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Comandos Netsh para HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
    * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
 1. Execute o aplicativo.
@@ -580,7 +586,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
 ### <a name="configure-the-aspnet-core-app-to-use-httpsys"></a>Configurar o aplicativo ASP.NET Core para usar o HTTP.sys
 
-Uma referência de pacote no arquivo do projeto não é necessária ao usar o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) [(nuget.org).](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
+Uma referência de pacote no arquivo de projeto não é necessária ao usar o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)). Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
 Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessária. O exemplo a seguir define as opções para seus valores padrão:
 
@@ -594,10 +600,10 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pelo `Basic` [enum AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): , `Kerberos`, `Negotiate`, `None`e `NTLM`. | `None` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [Enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate` `None`, e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em toda a máquina<br>configuração) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
@@ -668,7 +674,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 1. Pré-registre os prefixos de URL no servidor.
 
@@ -680,7 +686,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add urlacl url=<URL> user=<USER>
    ```
 
-   * `<URL>`&ndash; O URL (Uniform Resource Locator, localizador de recursos uniforme) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
+   * `<URL>`&ndash; O Uniform Resource Locator (URL) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
    * `<USER>`&ndash; Especifica o nome do usuário ou do grupo de usuários.
 
    No exemplo a seguir, o endereço IP local do servidor é `10.0.0.4`:
@@ -705,9 +711,9 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
    ```
 
-   * `<IP>`&ndash; Especifica o endereço IP local para a vinculação. Não use uma associação de curinga. Use um endereço IP válido.
-   * `<PORT>`&ndash; Especifica a porta para a vinculação.
-   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X.509.
+   * `<IP>`&ndash; Especifica o endereço IP local para a associação. Não use uma associação de curinga. Use um endereço IP válido.
+   * `<PORT>`&ndash; Especifica a porta para a associação.
+   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X. 509.
    * `<GUID>`&ndash; Um GUID gerado pelo desenvolvedor para representar o aplicativo para fins informativos.
 
    Para fins de referência, armazene o GUID no aplicativo como uma marca de pacote:
@@ -748,7 +754,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
 
    Documentação de referência do *netsh.exe*:
 
-   * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Comandos Netsh para HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
    * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
 1. Execute o aplicativo.
@@ -833,7 +839,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
 ### <a name="configure-the-aspnet-core-app-to-use-httpsys"></a>Configurar o aplicativo ASP.NET Core para usar o HTTP.sys
 
-Uma referência de pacote no arquivo do projeto não é necessária ao usar o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) [(nuget.org).](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
+Uma referência de pacote no arquivo de projeto não é necessária ao usar o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)). Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
 Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessária. O exemplo a seguir define as opções para seus valores padrão:
 
@@ -847,10 +853,10 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pelo `Basic` [enum AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): , `Kerberos`, `Negotiate`, `None`e `NTLM`. | `None` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [Enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate` `None`, e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em toda a máquina<br>configuração) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
@@ -921,7 +927,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 1. Pré-registre os prefixos de URL no servidor.
 
@@ -933,7 +939,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add urlacl url=<URL> user=<USER>
    ```
 
-   * `<URL>`&ndash; O URL (Uniform Resource Locator, localizador de recursos uniforme) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
+   * `<URL>`&ndash; O Uniform Resource Locator (URL) totalmente qualificado. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
    * `<USER>`&ndash; Especifica o nome do usuário ou do grupo de usuários.
 
    No exemplo a seguir, o endereço IP local do servidor é `10.0.0.4`:
@@ -958,9 +964,9 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
    ```
 
-   * `<IP>`&ndash; Especifica o endereço IP local para a vinculação. Não use uma associação de curinga. Use um endereço IP válido.
-   * `<PORT>`&ndash; Especifica a porta para a vinculação.
-   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X.509.
+   * `<IP>`&ndash; Especifica o endereço IP local para a associação. Não use uma associação de curinga. Use um endereço IP válido.
+   * `<PORT>`&ndash; Especifica a porta para a associação.
+   * `<THUMBPRINT>`&ndash; A impressão digital do certificado X. 509.
    * `<GUID>`&ndash; Um GUID gerado pelo desenvolvedor para representar o aplicativo para fins informativos.
 
    Para fins de referência, armazene o GUID no aplicativo como uma marca de pacote:
@@ -1001,7 +1007,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
 
    Documentação de referência do *netsh.exe*:
 
-   * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Comandos Netsh para HTTP (Hypertext Transfer Protocol)](https://technet.microsoft.com/library/cc725882.aspx)
    * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
 1. Execute o aplicativo.
