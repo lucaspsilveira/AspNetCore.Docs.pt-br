@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/server/threat-mitigation
-ms.openlocfilehash: f43a46f53dc50cde43c88460b8bd3d6fb7a7076f
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
-ms.translationtype: HT
+ms.openlocfilehash: 7c71da690efc0a515b289fd575173f2d3093d1c1
+ms.sourcegitcommit: d4527df91f2c15bbe1cbf5a541adbea5747897aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850494"
+ms.locfileid: "82852397"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Diretrizes de mitigação de ameaças para ASP.NET Core servidor mais incrivelmente
 
@@ -34,6 +34,10 @@ Em ambientes restritos, como dentro de redes corporativas ou intranets, algumas 
 
 * Não se aplica ao ambiente restrito.
 * Não vale o custo para implementar porque o risco de segurança está baixo em um ambiente restrito.
+
+## <a name="blazor-and-shared-state"></a>Mais incrivelmente e um estado compartilhado
+
+[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
 
 ## <a name="resource-exhaustion"></a>Esgotamento de recursos
 
