@@ -26,7 +26,7 @@ ms.locfileid: "82774685"
 
 os serviços gRPCs são `AddGrpc` configurados com o no *Startup.cs*. A tabela a seguir descreve as opções para configurar os serviços gRPCs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | MaxSendMessageSize | `null` | O tamanho máximo da mensagem em bytes que pode ser enviado do servidor. A tentativa de enviar uma mensagem que exceda o tamanho máximo da mensagem configurada resultará em uma exceção. Quando definido como `null`, o tamanho da mensagem é ilimitado. |
 | MaxReceiveMessageSize | 4 MB | O tamanho máximo da mensagem em bytes que pode ser recebido pelo servidor. Se o servidor receber uma mensagem que exceda esse limite, ele lançará uma exceção. Aumentar esse valor permite que o servidor receba mensagens maiores, mas pode afetar negativamente o consumo de memória. Quando definido como `null`, o tamanho da mensagem é ilimitado. |
@@ -48,7 +48,7 @@ As opções para um único serviço substituem as opções globais `AddGrpc` for
 
 a configuração do cliente gRPC está `GrpcChannelOptions`definida em. A tabela a seguir descreve as opções para configurar os canais gRPC:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | HttpClient | Nova instância | O `HttpClient` usado para fazer chamadas gRPC. Um cliente pode ser definido para configurar um personalizado `HttpClientHandler`ou adicionar manipuladores adicionais ao pipeline http para chamadas gRPC. Se não `HttpClient` for especificado, uma nova `HttpClient` instância será criada para o canal. Ele será descartado automaticamente. |
 | DisposeHttpClient | `false` | Se `true`e um `HttpClient` for especificado, a `HttpClient` instância será descartada quando o `GrpcChannel` for descartado. |

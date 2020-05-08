@@ -1,4 +1,4 @@
-O `:` separador não funciona com teclas hierárquicas variáveis de ambiente em todas as plataformas. `__`, o sublinhado duplo, é:
+O `:` separador não funciona com chaves hierárquicas de variáveis de ambiente em todas as plataformas. `__`, o sublinhado duplo é:
 
-* Suportado por todas as plataformas. Por exemplo, `:` o separador não é `__` suportado por [Bash,](https://linuxhint.com/bash-environment-variables/)mas é.
-* Automaticamente substituído por um`:`
+* Compatível com todas as plataformas. Por exemplo, o `:` separador não tem suporte do [bash](https://linuxhint.com/bash-environment-variables/), mas sim `__` .
+* Substituído automaticamente por um`:`
