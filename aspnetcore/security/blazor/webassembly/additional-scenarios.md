@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: e69b598431027aa540227b87dedfd091057a1af4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e804c43ebea8f6a79443e24047a7be47587cbd8a
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768163"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967540"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>Cenários de segurança adicionais do Webassembly ASP.NET Core mais incrivelmente
 
@@ -35,6 +35,11 @@ O `AuthorizationMessageHandler` serviço pode ser usado com `HttpClient` para an
 No exemplo a seguir, `AuthorizationMessageHandler` configura um `HttpClient` in `Program.Main` (*Program.cs*):
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
@@ -47,9 +52,14 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-Para sua conveniência, `BaseAddressAuthorizationMessageHandler` é incluído um que é pré-configurado com o endereço base do aplicativo como uma URL autorizada. Os modelos Webassembly do mais alto-habilitado para autenticação agora usam [IHttpClientFactory](https://docs.microsoft.com/aspnet/core/fundamentals/http-requests) para configurar `HttpClient` um com `BaseAddressAuthorizationMessageHandler`o:
+Para sua conveniência, `BaseAddressAuthorizationMessageHandler` é incluído um que é pré-configurado com o endereço base do aplicativo como uma URL autorizada. Os modelos Webassembly do mais alto-habilitado para autenticação <xref:System.Net.Http.IHttpClientFactory> agora usam no projeto de API do servidor para <xref:System.Net.Http.HttpClient> configurar um `BaseAddressAuthorizationMessageHandler`com o:
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -58,11 +68,16 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
 ```
 
-Em que o cliente é criado `CreateClient` no exemplo anterior, as instâncias `HttpClient` do são fornecidas que incluem tokens de acesso ao fazer solicitações ao projeto do servidor.
+Em que o cliente é criado `CreateClient` no exemplo anterior, as instâncias <xref:System.Net.Http.HttpClient> do são fornecidas que incluem tokens de acesso ao fazer solicitações ao projeto do servidor.
 
-Em seguida `HttpClient` , o configurado é usado para fazer solicitações autorizadas `try-catch` usando um padrão simples. O componente `FetchData` a seguir solicita dados de previsão do tempo:
+Em seguida <xref:System.Net.Http.HttpClient> , o configurado é usado para fazer solicitações autorizadas `try-catch` usando um padrão simples. O componente `FetchData` a seguir solicita dados de previsão do tempo:
 
 ```csharp
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+
+...
+
 protected override async Task OnInitializedAsync()
 {
     try
@@ -82,6 +97,13 @@ Como alternativa, você pode definir um cliente tipado que lide com todas as que
 *WeatherClient.cs*:
 
 ```csharp
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using static {APP ASSEMBLY}.Data;
+
 public class WeatherClient
 {
     private readonly HttpClient httpClient;
@@ -99,6 +121,8 @@ public class WeatherClient
         {
             forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
+
+            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -113,6 +137,11 @@ public class WeatherClient
 *Program.cs*:
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddHttpClient<WeatherClient>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();

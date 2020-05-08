@@ -5,7 +5,7 @@ description: Saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 9bc1e3aaadb7310f6ea338eea2726bdc592aa06a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e136a401beffe9cc7e29906b3631ab3f068b30fd
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776403"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967591"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedar e implantar ASP.NET Core Webassembly de mais incrivelmente
 
@@ -79,6 +79,12 @@ Confira como implantar o Serviço de Aplicativo do Azure em <xref:tutorials/publ
 Uma *implantação autônoma* serve para o aplicativo Webassembly mais incrivelmente como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Qualquer servidor de arquivos estático é capaz de atender ao aplicativo Blazor.
 
 Os ativos de implantação autônomo são publicados na pasta */bin/Release/{Target Framework}/Publish/wwwroot*
+
+### <a name="azure-app-service"></a>Serviço de Aplicativo do Azure
+
+Os aplicativos Webassembly mais poseriais podem ser implantados em serviços Azure App no Windows, que hospedam o aplicativo no [IIS](#iis).
+
+Atualmente, não há suporte para a implantação de um aplicativo Webassembly autônomo para Azure App serviço para Linux. Uma imagem do servidor Linux para hospedar o aplicativo não está disponível no momento. O trabalho está em andamento para habilitar esse cenário.
 
 ### <a name="iis"></a>IIS
 

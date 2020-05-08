@@ -5,7 +5,7 @@ description: Saiba como chamar uma API da Web de um Blazor aplicativo Webassembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: d823db3688e05f6befefacc9f390e0dcdbf329a7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7476e9dce3fa26948d2091235747f893d805d7be
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767142"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967266"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API da Web de ASP.NET CoreBlazor
 
@@ -87,37 +87,37 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `GetFromJsonAsync`&ndash; Envia uma solicitação HTTP Get e analisa o corpo da resposta JSON para criar um objeto.
 
-  No código a seguir, os `_todoItems` são exibidos pelo componente. O `GetTodoItems` método é disparado quando o processamento do componente é concluído ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, os `todoItems` são exibidos pelo componente. O `GetTodoItems` método é disparado quando o processamento do componente é concluído ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
   @code {
-      private TodoItem[] _todoItems;
+      private TodoItem[] todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
+          todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
 * `PostAsJsonAsync`&ndash; Envia uma solicitação HTTP post, incluindo conteúdo codificado em JSON, e analisa o corpo da resposta JSON para criar um objeto.
 
-  No código a seguir, `_newItemName` é fornecido por um elemento associado do componente. O `AddItem` método é disparado selecionando um `<button>` elemento. Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, `newItemName` é fornecido por um elemento associado do componente. O `AddItem` método é disparado selecionando um `<button>` elemento. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
-  <input @bind="_newItemName" placeholder="New Todo Item" />
+  <input @bind="newItemName" placeholder="New Todo Item" />
   <button @onclick="@AddItem">Add</button>
 
   @code {
-      private string _newItemName;
+      private string newItemName;
 
       private async Task AddItem()
       {
-          var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
+          var addItem = new TodoItem { Name = newItemName, IsComplete = false };
           await Http.PostAsJsonAsync("api/TodoItems", addItem);
       }
   }
@@ -131,28 +131,28 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `PutAsJsonAsync`&ndash; Envia uma solicitação HTTP PUT, incluindo conteúdo codificado em JSON.
 
-  No código a seguir, `_editItem` os valores `Name` para `IsCompleted` e são fornecidos pelos elementos associados do componente. O item `Id` é definido quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O `SaveItem` método é disparado selecionando `<button>` o elemento Save. Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, `editItem` os valores `Name` para `IsCompleted` e são fornecidos pelos elementos associados do componente. O item `Id` é definido quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O `SaveItem` método é disparado selecionando `<button>` o elemento Save. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
-  <input type="checkbox" @bind="_editItem.IsComplete" />
-  <input @bind="_editItem.Name" />
+  <input type="checkbox" @bind="editItem.IsComplete" />
+  <input @bind="editItem.Name" />
   <button @onclick="@SaveItem">Save</button>
 
   @code {
-      private TodoItem _editItem = new TodoItem();
+      private TodoItem editItem = new TodoItem();
 
       private void EditItem(long id)
       {
-          var editItem = _todoItems.Single(i => i.Id == id);
-          _editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
+          var editItem = todoItems.Single(i => i.Id == id);
+          editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
               IsComplete = editItem.IsComplete };
       }
 
       private async Task SaveItem() =>
-          await Http.PutAsJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{editItem.Id}, editItem);
   }
   ```
   
@@ -170,16 +170,46 @@ No código a seguir, o elemento `<button>` Delete chama o `DeleteItem` método. 
 @using System.Net.Http
 @inject HttpClient Http
 
-<input @bind="_id" />
+<input @bind="id" />
 <button @onclick="@DeleteItem">Delete</button>
 
 @code {
-    private long _id;
+    private long id;
 
     private async Task DeleteItem() =>
-        await Http.DeleteAsync($"api/TodoItems/{_id}");
+        await Http.DeleteAsync($"api/TodoItems/{id}");
 }
 ```
+
+## <a name="handle-errors"></a>Tratar erros
+
+Quando ocorrem erros durante a interação com uma API da Web, eles podem ser manipulados pelo código do desenvolvedor. Por exemplo, `GetFromJsonAsync` espera uma resposta JSON da API do servidor com um `Content-Type` de `application/json`. Se a resposta não estiver no formato JSON, a validação de <xref:System.NotSupportedException>conteúdo lançará um.
+
+No exemplo a seguir, o ponto de extremidade do URI para a solicitação de dados previsão do tempo está incorreto. O URI deve ser para `WeatherForecast` , mas aparece na chamada como `WeatherForcast` ("e" ausente).
+
+A `GetFromJsonAsync` chamada espera que o JSON seja retornado, mas o servidor retorna HTML para uma exceção sem tratamento no servidor com um `Content-Type` de. `text/html` A exceção sem tratamento ocorre no servidor porque o caminho não é encontrado e o middleware não pode servir a uma página ou exibição para a solicitação.
+
+No `OnInitializedAsync` no cliente, <xref:System.NotSupportedException> é gerado quando o conteúdo da resposta é validado como não JSON. A exceção é capturada no `catch` bloco, em que a lógica personalizada pode registrar o erro ou apresentar uma mensagem de erro amigável ao usuário:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    try
+    {
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForcast");
+    }
+    catch (NotSupportedException exception)
+    {
+        ...
+    }
+}
+```
+
+> [!NOTE]
+> O exemplo anterior é para fins de demonstração. Um aplicativo de servidor de API Web pode ser configurado para retornar JSON mesmo quando um ponto de extremidade não existe ou um exceção sem tratamento no servidor ocorre.
+
+Para obter mais informações, consulte <xref:blazor/handle-errors>.
 
 ## <a name="cross-origin-resource-sharing-cors"></a>CORS (compartilhamento de recursos entre origens)
 

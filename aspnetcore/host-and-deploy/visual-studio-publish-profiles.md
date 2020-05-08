@@ -76,7 +76,7 @@ Quando um projeto do ASP.NET Core faz referência a `Microsoft.NET.Sdk.Web` no a
 
 ## <a name="basic-command-line-publishing"></a>Publicação de linha de comando básica
 
-A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nos exemplos a seguir, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) da CLI do .NET Core é executado no diretório do projeto (que contém o arquivo *.csproj*). Se a pasta do projeto não for o diretório de trabalho atual, passe explicitamente no caminho do arquivo de projeto. Por exemplo: 
+A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nos exemplos a seguir, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) da CLI do .NET Core é executado no diretório do projeto (que contém o arquivo *.csproj*). Se a pasta do projeto não for o diretório de trabalho atual, passe explicitamente no caminho do arquivo de projeto. Por exemplo:
 
 ```dotnetcli
 dotnet publish C:\Webs\Web1
@@ -136,7 +136,7 @@ Crie um perfil de publicação no Visual Studio escolhendo um dos seguintes cami
 
 A guia **Publicar** da página de capacidades do aplicativo é exibida. Se o projeto não tiver um perfil de publicação, a página **Escolher um destino de publicação** é exibida. Você deverá selecionar um dos seguintes destinos de publicação:
 
-* Serviço de aplicativo do Azure
+* Serviço de Aplicativo do Azure
 * Serviço de Aplicativo do Azure no Linux
 * Máquinas Virtuais do Azure
 * Pasta
@@ -471,7 +471,7 @@ A marcação realçada no exemplo a seguir demonstra:
 
 [!code-xml[](visual-studio-publish-profiles/samples/Web1.pubxml?highlight=18-23)]
 
-O exemplo anterior usa o item `ResolvedFileToPublish`, cujo comportamento padrão é sempre copiar os arquivos fornecidos no atributo `Include` para o site publicado. Substituir o comportamento padrão, incluindo um elemento filho `<CopyToPublishDirectory>` com o texto interno de um `Never` ou `PreserveNewest`. Por exemplo: 
+O exemplo anterior usa o item `ResolvedFileToPublish`, cujo comportamento padrão é sempre copiar os arquivos fornecidos no atributo `Include` para o site publicado. Substituir o comportamento padrão, incluindo um elemento filho `<CopyToPublishDirectory>` com o texto interno de um `Never` ou `PreserveNewest`. Por exemplo:
 
 ```xml
 <ResolvedFileToPublish Include="..\ReadMe2.md">
@@ -507,7 +507,7 @@ Adicione a propriedade `<AllowUntrustedCertificate>` com um valor `True` ao perf
 
 ## <a name="the-kudu-service"></a>O serviço Kudu
 
-Para exibir os arquivos em uma implantação de aplicativo Web do Serviço de Aplicativo do Azure, use o [serviço Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Acrescente o token `scm` ao nome do aplicativo Web. Por exemplo: 
+Para exibir os arquivos em uma implantação de aplicativo Web do Serviço de Aplicativo do Azure, use o [serviço Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Acrescente o token `scm` ao nome do aplicativo Web. Por exemplo:
 
 | URL                                    | Result       |
 | -------------------------------------- | ------------ |

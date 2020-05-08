@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/dependency-injection
-ms.openlocfilehash: 742f3c5ea26fab5e168f162a0e133da05fd74a74
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e96698bd0bd8f3f3b290ba24bc8169efb16f1d03
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767104"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967526"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -134,9 +134,9 @@ Os serviços podem ser configurados com os tempos de vida mostrados na tabela a 
 
 | Tempo de vida | Descrição |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | BlazorOs aplicativos Webassembly não têm atualmente um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto Blazor , o modelo de hospedagem `Scoped` do servidor dá suporte ao tempo de vida. Em Blazor aplicativos de servidor, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | BlazorOs aplicativos Webassembly não têm atualmente um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto Blazor , o modelo de hospedagem `Scoped` do servidor dá suporte ao tempo de vida. Em Blazor aplicativos de servidor, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 
 O sistema de DI é baseado no sistema de injeção de ASP.NET Core. Para obter mais informações, consulte <xref:fundamentals/dependency-injection>.
 
@@ -274,7 +274,7 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
     @inject DbContextOptions<AppDbContext> DbContextOptions
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -283,11 +283,11 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 
@@ -318,7 +318,7 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
     @inject IServiceProvider ServiceProvider
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -327,11 +327,11 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 

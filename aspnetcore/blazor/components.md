@@ -1,5 +1,5 @@
 ---
-title: Criar e usar componentes Razor de ASP.NET Core
+title: Criar e usar ASP.NET Core componentes do Razor
 author: guardrex
 description: Saiba como criar e usar Razor componentes, incluindo como associar dados, manipular eventos e gerenciar ciclos de vida do componente.
 monikerRange: '>= aspnetcore-3.1'
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: f8b1ffef1b8375337f66c93d9b4652ad3c5dd616
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9e36a3239e703e1279feafc65288a1f9ec82c277
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767741"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967175"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar componentes Razor de ASP.NET Core
 
@@ -40,15 +40,15 @@ Os membros da classe de componente são definidos em um bloco `@code`. No `@code
 
 Os membros do componente podem ser usados como parte da lógica de renderização do componente usando expressões C# que `@`começam com. Por exemplo, um campo C# é renderizado pela prefixação `@` para o nome do campo. O exemplo a seguir avalia e renderiza:
 
-* `_headingFontStyle`para o valor da propriedade de `font-style`CSS para.
-* `_headingText`para o conteúdo do `<h1>` elemento.
+* `headingFontStyle`para o valor da propriedade de `font-style`CSS para.
+* `headingText`para o conteúdo do `<h1>` elemento.
 
 ```razor
-<h1 style="font-style:@_headingFontStyle">@_headingText</h1>
+<h1 style="font-style:@headingFontStyle">@headingText</h1>
 
 @code {
-    private string _headingFontStyle = "italic";
-    private string _headingText = "Put on your new Blazor!";
+    private string headingFontStyle = "italic";
+    private string headingText = "Put on your new Blazor!";
 }
 ```
 
@@ -291,22 +291,22 @@ As `Show` referências de componente fornecem uma maneira de fazer referência a
 * Defina um campo com o mesmo tipo do componente filho.
 
 ```razor
-<MyLoginDialog @ref="_loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog _loginDialog;
+    private MyLoginDialog loginDialog;
 
     private void OnSomething()
     {
-        _loginDialog.Show();
+        loginDialog.Show();
     }
 }
 ```
 
-Quando o componente é renderizado, `_loginDialog` o campo é populado com a instância de `MyLoginDialog` componente filho. Em seguida, você pode invocar os métodos .NET na instância do componente.
+Quando o componente é renderizado, `loginDialog` o campo é populado com a instância de `MyLoginDialog` componente filho. Em seguida, você pode invocar os métodos .NET na instância do componente.
 
 > [!IMPORTANT]
-> A `_loginDialog` variável é populada apenas depois que o componente é renderizado e `MyLoginDialog` sua saída inclui o elemento. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> A `loginDialog` variável é populada apenas depois que o componente é renderizado e `MyLoginDialog` sua saída inclui o elemento. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 Para fazer referência a componentes em um loop, consulte [capturar referências para vários componentes filho semelhantes (dotNet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
@@ -358,10 +358,10 @@ Use o `NotifierService` para atualizar um componente:
 @inject NotifierService Notifier
 @implements IDisposable
 
-<p>Last update: @_lastNotification.key = @_lastNotification.value</p>
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
 
 @code {
-    private (string key, int value) _lastNotification;
+    private (string key, int value) lastNotification;
 
     protected override void OnInitialized()
     {
@@ -372,7 +372,7 @@ Use o `NotifierService` para atualizar um componente:
     {
         await InvokeAsync(() =>
         {
-            _lastNotification = (key, value);
+            lastNotification = (key, value);
             StateHasChanged();
         });
     }
@@ -519,14 +519,14 @@ Para manter o estado no cenário anterior, use um *campo particular* no `Expande
 O seguinte `Expander` componente:
 
 * Aceita o `Expanded` valor do parâmetro de componente do pai.
-* Atribui o valor do parâmetro de componente a um *campo privado* (`_expanded`) no [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
+* Atribui o valor do parâmetro de componente a um *campo privado* (`expanded`) no [evento OnInitialized](xref:blazor/lifecycle#component-initialization-methods).
 * Usa o campo particular para manter seu estado de alternância interno.
 
 ```razor
 <div @onclick="@Toggle">
-    Toggle (Expanded = @_expanded)
+    Toggle (Expanded = @expanded)
 
-    @if (_expanded)
+    @if (expanded)
     {
         @ChildContent
     }
@@ -539,16 +539,16 @@ O seguinte `Expander` componente:
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    private bool _expanded;
+    private bool expanded;
 
     protected override void OnInitialized()
     {
-        _expanded = Expanded;
+        expanded = Expanded;
     }
 
     private void Toggle()
     {
-        _expanded = !_expanded;
+        expanded = !expanded;
     }
 }
 ```
@@ -569,16 +569,16 @@ O exemplo a seguir mostra o `Counter` componente padrão com `@code` um bloco em
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -592,7 +592,7 @@ O `Counter` componente também pode ser criado usando um arquivo code-behind com
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
@@ -604,11 +604,11 @@ namespace BlazorApp.Pages
 {
     public partial class Counter
     {
-        private int _currentCount = 0;
+        private int currentCount = 0;
 
         void IncrementCount()
         {
-            _currentCount++;
+            currentCount++;
         }
     }
 }
@@ -741,10 +741,10 @@ Normalmente, as cadeias de caracteres são renderizadas usando nós de texto DOM
 O exemplo a seguir mostra como `MarkupString` usar o tipo para adicionar um bloco de conteúdo HTML estático à saída renderizada de um componente:
 
 ```html
-@((MarkupString)_myMarkup)
+@((MarkupString)myMarkup)
 
 @code {
-    private string _myMarkup = 
+    private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
@@ -782,7 +782,7 @@ Por exemplo, o aplicativo de exemplo especifica informações de`ThemeInfo`tema 
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="_theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -792,7 +792,7 @@ Por exemplo, o aplicativo de exemplo especifica informações de`ThemeInfo`tema 
 </div>
 
 @code {
-    private ThemeInfo _theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -809,7 +809,7 @@ No aplicativo de exemplo, o `CascadingValuesParametersTheme` componente associa 
 
 <h1>Cascading Values & Parameters</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <p>
     <button class="btn" @onclick="IncrementCount">
@@ -824,14 +824,14 @@ No aplicativo de exemplo, o `CascadingValuesParametersTheme` componente associa 
 </p>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -839,14 +839,14 @@ No aplicativo de exemplo, o `CascadingValuesParametersTheme` componente associa 
 Para propagar vários valores do mesmo tipo dentro da mesma subárvore, forneça uma cadeia `Name` de caracteres exclusiva `CascadingValue` para cada componente e `CascadingParameter`seu correspondente. No exemplo a seguir, dois `CascadingValue` componentes em cascata diferentes instâncias de `MyCascadingType` por nome:
 
 ```razor
-<CascadingValue Value=@_parentCascadeParameter1 Name="CascadeParam1">
+<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
     <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
 
 @code {
-    private MyCascadingType _parentCascadeParameter1;
+    private MyCascadingType parentCascadeParameter1;
 
     [Parameter]
     public MyCascadingType ParentCascadeParameter2 { get; set; }
@@ -926,13 +926,13 @@ Os fragmentos de renderização podem ser Razor definidos usando a sintaxe do mo
 O exemplo a seguir ilustra como especificar `RenderFragment` e `RenderFragment<T>` valores e renderizar modelos diretamente em um componente. Os fragmentos de renderização também podem ser passados como argumentos para [componentes de modelo](xref:blazor/templated-components).
 
 ```razor
-@_timeTemplate
+@timeTemplate
 
-@_petTemplate(new Pet { Name = "Rex" })
+@petTemplate(new Pet { Name = "Rex" })
 
 @code {
-    private RenderFragment _timeTemplate = @<p>The time is @DateTime.Now.</p>;
-    private RenderFragment<Pet> _petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
 
     private class Pet
     {

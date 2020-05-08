@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: a9b0d0efd4afd4941bd4d93f33adecdf3288992f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: aa338bbe61eec14bc1e1b3606e11e26bfb0e6a09
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767064"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967461"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core manipulação de eventos mais incrivelmente
 
@@ -89,7 +89,7 @@ Com `EventArgs` suporte, são mostrados na tabela a seguir.
 | Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
 | Ponteiro do mouse    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
 | Botão de rolagem do mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
-| Andamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Progresso         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Touch            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint`representa um único ponto de contato em um dispositivo sensível ao toque. |
 
 Para saber mais, consulte os recursos a seguir:
@@ -108,7 +108,7 @@ As [expressões lambda](/dotnet/csharp/programming-guide/statements-expressions-
 Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conjunto de elementos. O exemplo a seguir cria três botões, cada um dos `UpdateHeading` quais chamadas passando um argumento`MouseEventArgs`de evento () e seu`buttonNumber`número de botão () quando selecionado na interface do usuário:
 
 ```razor
-<h2>@_message</h2>
+<h2>@message</h2>
 
 @for (var i = 1; i < 4; i++)
 {
@@ -121,11 +121,11 @@ Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conju
 }
 
 @code {
-    private string _message = "Select a button to learn its position.";
+    private string message = "Select a button to learn its position.";
 
     private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
-        _message = $"You selected Button #{buttonNumber} at " +
+        message = $"You selected Button #{buttonNumber} at " +
             $"mouse position: {e.ClientX} X {e.ClientY}.";
     }
 }
@@ -157,28 +157,28 @@ O `ParentComponent` define o filho `EventCallback<T>` (`OnClickCallback`) para s
     by the parent component.
 </ChildComponent>
 
-<p><b>@_messageText</b></p>
+<p><b>@messageText</b></p>
 
 @code {
-    private string _messageText;
+    private string messageText;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        _messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
 ```
 
 Quando o botão estiver selecionado no `ChildComponent`:
 
-* O `ParentComponent` `ShowMessage` método é chamado. `_messageText`é atualizado e exibido no `ParentComponent`.
+* O `ParentComponent` `ShowMessage` método é chamado. `messageText`é atualizado e exibido no `ParentComponent`.
 * Uma chamada para [StateHasChanged](xref:blazor/lifecycle#state-changes) não é necessária no método do retorno de`ShowMessage`chamada (). `StateHasChanged`é chamado automaticamente para renderizar novamente `ParentComponent`o, assim como eventos filho, rerenderização de componente em manipuladores de eventos que são executados dentro do filho.
 
 `EventCallback`e `EventCallback<T>` permitir delegados assíncronos. `EventCallback<T>`é fortemente tipado e requer um tipo de argumento específico. `EventCallback`está com tipo fraco e permite qualquer tipo de argumento.
 
 ```razor
 <ChildComponent 
-    OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 ```
 
 Invocar `EventCallback` um `EventCallback<T>` ou `InvokeAsync` com e aguardar <xref:System.Threading.Tasks.Task>:
@@ -198,16 +198,16 @@ Use o [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) 
 Quando uma chave é selecionada em um dispositivo de entrada e o foco do elemento está em uma caixa de texto, um navegador normalmente exibe o caractere da chave na caixa de texto. No exemplo a seguir, o comportamento padrão é impedido pela especificação `@onkeypress:preventDefault` do atributo de diretiva. O contador é incrementado e a **+** chave não é capturada `<input>` no valor do elemento:
 
 ```razor
-<input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
+<input value="@count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 
 @code {
-    private int _count = 0;
+    private int count = 0;
 
     private void KeyHandler(KeyboardEventArgs e)
     {
         if (e.Key == "+")
         {
-            _count++;
+            count++;
         }
     }
 }
@@ -215,10 +215,10 @@ Quando uma chave é selecionada em um dispositivo de entrada e o foco do element
 
 Especificar o `@on{EVENT}:preventDefault` atributo sem um valor é equivalente a `@on{EVENT}:preventDefault="true"`.
 
-O valor do atributo também pode ser uma expressão. No exemplo a seguir, `_shouldPreventDefault` é um `bool` conjunto de campos como `true` ou `false`:
+O valor do atributo também pode ser uma expressão. No exemplo a seguir, `shouldPreventDefault` é um `bool` conjunto de campos como `true` ou `false`:
 
 ```razor
-<input @onkeypress:preventDefault="_shouldPreventDefault" />
+<input @onkeypress:preventDefault="shouldPreventDefault" />
 ```
 
 Um manipulador de eventos não é necessário para impedir a ação padrão. O manipulador de eventos e a prevenção de cenários de ação padrão podem ser usados de forma independente.
@@ -231,7 +231,7 @@ No exemplo a seguir, marcar a caixa de seleção impede que eventos de clique do
 
 ```razor
 <label>
-    <input @bind="_stopPropagation" type="checkbox" />
+    <input @bind="stopPropagation" type="checkbox" />
     Stop Propagation
 </label>
 
@@ -242,13 +242,13 @@ No exemplo a seguir, marcar a caixa de seleção impede que eventos de clique do
         Child div that doesn't stop propagation when selected.
     </div>
 
-    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="_stopPropagation">
+    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="stopPropagation">
         Child div that stops propagation when selected.
     </div>
 </div>
 
 @code {
-    private bool _stopPropagation = false;
+    private bool stopPropagation = false;
 
     private void OnSelectParentDiv() => 
         Console.WriteLine($"The parent div was selected. {DateTime.Now}");

@@ -62,7 +62,7 @@ O middleware analisa a cadeia de caracteres em uma matriz e procura o endereço 
 
 ## <a name="action-filter"></a>Filtro de ação
 
-Se você quiser o controle de acesso controlado por forma segura para controladores ou métodos de ação específicos do MVC, use um filtro de ação. Por exemplo: 
+Se você quiser o controle de acesso controlado por forma segura para controladores ou métodos de ação específicos do MVC, use um filtro de ação. Por exemplo:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -99,7 +99,7 @@ No aplicativo de exemplo, o filtro de ação é aplicado ao método de `Get` aç
 
 ## <a name="razor-pages-filter"></a>RazorFiltro de páginas
 
-Se você quiser o controle de acesso controlado por seguração para um Razor aplicativo de Razor páginas, use um filtro de páginas. Por exemplo: 
+Se você quiser o controle de acesso controlado por seguração para um Razor aplicativo de Razor páginas, use um filtro de páginas. Por exemplo:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 

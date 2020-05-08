@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 7eefc988da275c0efccd97958d04e76f04e7cad4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7601e448a52be5e1064326929281e72ad28a0e65
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772107"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967149"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Tratar erros em aplicativos Blazor ASP.NET Core
 
@@ -191,7 +191,7 @@ Se o código do usuário não interceptar e manipular a exceção, a estrutura r
 
 ### <a name="component-disposal"></a>Disposição do componente
 
-Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa <xref:System.IDisposable?displayProperty=fullName> o é removido da interface do usuário, a estrutura chama o <xref:System.IDisposable.Dispose*> método do componente.
+Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa <xref:System.IDisposable?displayProperty=fullName> o é removido da interface do usuário, a estrutura chama o <xref:System.IDisposable.Dispose%2A> método do componente.
 
 Se o método do `Dispose` componente lançar uma exceção sem tratamento, a exceção será fatal para um Blazor circuito de servidor. Se a lógica de descarte puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
 

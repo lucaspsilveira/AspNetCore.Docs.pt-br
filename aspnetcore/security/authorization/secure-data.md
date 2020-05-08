@@ -82,7 +82,7 @@ Este tutorial é avançado. Você deve estar familiarizado com:
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
 * [Autenticação](xref:security/authentication/identity)
 * [Confirmação de conta e recuperação de senha](xref:security/authentication/accconfirm)
-* [Nesse](xref:security/authorization/introduction)
+* [Autorização](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## <a name="the-starter-and-completed-app"></a>O aplicativo iniciador e concluído
@@ -418,7 +418,7 @@ Este tutorial é avançado. Você deve estar familiarizado com:
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
 * [Autenticação](xref:security/authentication/identity)
 * [Confirmação de conta e recuperação de senha](xref:security/authentication/accconfirm)
-* [Nesse](xref:security/authorization/introduction)
+* [Autorização](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## <a name="the-starter-and-completed-app"></a>O aplicativo iniciador e concluído

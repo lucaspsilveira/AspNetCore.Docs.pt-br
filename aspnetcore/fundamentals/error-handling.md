@@ -44,7 +44,7 @@ A página inclui as seguintes informações sobre a exceção e a solicitação:
 * Rastreamento de pilha
 * Parâmetros de cadeia de caracteres de consulta (se houver algum)
 * Cookies (se houver algum)
-* headers
+* Cabeçalhos
 
 Para ver a Página de exceção do desenvolvedor no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples), use a diretiva de pré-processador `DevEnvironment` e selecione **Disparar uma exceção** na página inicial.
 

@@ -52,7 +52,7 @@ Defina a raiz do conteúdo com o diretório atual invocando [UseContentRoot](/do
 Os arquivos estáticos podem ser acessados por meio de um caminho relativo à [raiz da Web](xref:fundamentals/index#web-root). Por exemplo, o modelo de projeto do **Aplicativo Web** contém várias pastas dentro da pasta *wwwroot*:
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 
@@ -95,7 +95,7 @@ No código anterior, o caractere `~/` til aponta para a [raiz da Web](xref:funda
 Considere uma hierarquia de diretório na qual os arquivos estáticos a serem servidos residem fora da [raiz da Web](xref:fundamentals/index#web-root):
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 * **MyStaticFiles**
@@ -195,7 +195,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 Considere a seguinte hierarquia de diretórios:
 
 * **wwwroot**
-  * **css**
+  * **CSS**
   * **images**
   * **JS**
 * **MyStaticFiles**

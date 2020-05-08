@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: c84d6415728bf56836d98cfa66d1b9d46d2eadc8
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 705fa32ee72221b3c18653e9f3495b9cd61e9ad1
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770895"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967422"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Modelos Blazor de ASP.NET Core
 
@@ -56,9 +56,9 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir Bla
 
 * *Startup.cs* (Blazor servidor) &ndash; contém a lógica de inicialização do aplicativo. A `Startup` classe define dois métodos:
 
-  * `ConfigureServices`&ndash; Configura os serviços de injeção de [dependência (di)](xref:fundamentals/dependency-injection) do aplicativo. Em Blazor aplicativos de servidor, os serviços são adicionados <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>chamando e o `WeatherForecastService` é adicionado ao contêiner de serviço para ser usado pelo componente `FetchData` de exemplo.
+  * `ConfigureServices`&ndash; Configura os serviços de injeção de [dependência (di)](xref:fundamentals/dependency-injection) do aplicativo. Em Blazor aplicativos de servidor, os serviços são adicionados <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>chamando e o `WeatherForecastService` é adicionado ao contêiner de serviço para ser usado pelo componente `FetchData` de exemplo.
   * `Configure`&ndash; Configura o pipeline de tratamento de solicitação do aplicativo:
-    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction), que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction), que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
     * [MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) é chamado para configurar a página raiz do aplicativo (*pages/_Host. cshtml*) e habilitar a navegação.
 
 * *wwwroot/index.html* (Blazor Webassembly) &ndash; a página raiz do aplicativo implementada como uma página HTML:

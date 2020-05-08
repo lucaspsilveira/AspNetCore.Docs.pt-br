@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: b73903eae2b289fd410599748c1f48bdb4601543
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8b62e27033bf0b7c05a70050807970fe0c74e2f8
+ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776123"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82967565"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Ferramentas do Visual Studio para Contêineres com ASP.NET Core
 
@@ -90,7 +90,11 @@ O *Dockerfile* precedente se baseia na imagem [microsoft/aspnetcore](https://hub
 
 As versões 15.7 ou posteriores do Visual Studio 2017 são compatíveis com o [Docker Compose](https://docs.docker.com/compose/overview/) como a única solução de orquestração de contêineres. Os artefatos Docker Compose são adicionados por meio de **Adicionar** > **suporte ao Docker**.
 
-As versões 15.8 ou posteriores do Visual Studio 2017 adicionam uma solução de orquestração apenas quando instruído. Clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Adicionar** > **Suporte do orquestrador de contêineres**. Duas opções diferentes são oferecidas: [Docker Compose](#docker-compose) e [Service Fabric](#service-fabric).
+As versões 15.8 ou posteriores do Visual Studio 2017 adicionam uma solução de orquestração apenas quando instruído. Clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Adicionar** > **Suporte do orquestrador de contêineres**. As seguintes opções estão disponíveis: 
+
+* [Docker Compose](#docker-compose)
+* [Service Fabric](#service-fabric)
+* [Kubernetes/Helm](https://helm.sh/)
 
 ### <a name="docker-compose"></a>Docker Compose
 
