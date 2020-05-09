@@ -5,7 +5,7 @@ description: Saiba como usar Razor métodos de ciclo de vida do Blazor component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/07/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 571f14247efe08ac6abbd6d1e2720656f94c213c
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: 81699158a161d0e9c9621235840979ebcd634a7e
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967448"
+ms.locfileid: "82976695"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>Ciclo Blazor de vida ASP.NET Core
 
@@ -277,3 +277,73 @@ Para obter mais informações sobre `RenderMode`o, <xref:blazor/hosting-model-co
 ## <a name="detect-when-the-app-is-prerendering"></a>Detectar quando o aplicativo está sendo renderizado
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## <a name="cancelable-background-work"></a>Trabalho em segundo plano cancelável
+
+Os componentes geralmente executam trabalho em segundo plano de longa execução, como fazer<xref:System.Net.Http.HttpClient>chamadas de rede () e interagir com bancos de dados. É desejável interromper o trabalho em segundo plano para conservar recursos do sistema em várias situações. Por exemplo, as operações assíncronas em segundo plano não são interrompidas automaticamente quando um usuário sai de um componente.
+
+Outros motivos pelos quais os itens de trabalho em segundo plano podem exigir cancelamento incluem:
+
+* Uma tarefa em execução em segundo plano foi iniciada com dados de entrada ou parâmetros de processamento com falha.
+* O conjunto atual de itens de trabalho em segundo plano em execução deve ser substituído por um novo conjunto de itens de trabalho.
+* A prioridade das tarefas em execução no momento deve ser alterada.
+* O aplicativo deve ser desligado para reimplantá-lo no servidor.
+* Os recursos do servidor se tornam limitados, exigindo o reagendamento de itens de trabalho do backgound.
+
+Para implementar um padrão de trabalho de segundo plano cancelável em um componente:
+
+* Use um <xref:System.Threading.CancellationTokenSource> e <xref:System.Threading.CancellationToken>.
+* Na [alienação do componente](#component-disposal-with-idisposable) e a qualquer cancelamento do ponto, é desejado cancelando manualmente o token, chamar [CancellationTokenSource. Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) para sinalizar que o trabalho em segundo plano deve ser cancelado.
+* Após a chamada assíncrona retornar, <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> chame no token.
+
+No exemplo a seguir:
+
+* `await Task.Delay(5000, cts.Token);`representa o trabalho em segundo plano assíncrono de execução longa.
+* `BackgroundResourceMethod`representa um método de plano de fundo de execução longa que não `Resource` deve iniciar se o for descartado antes de o método ser chamado.
+
+```razor
+@implements IDisposable
+@using System.Threading
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod();
+    }
+
+    public void Dispose()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}
+```

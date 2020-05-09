@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 0da9e124b884337c63dd91b06df60ef7ca89cf3e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b613ccd8df65e41b86793466a0ed5dc7bf7e8772
+ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774126"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82976747"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -234,7 +234,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de <
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 Ao carregar arquivos usando a associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>o método de ação pode aceitar:
@@ -405,7 +405,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carregar arquivos grandes com streaming
@@ -963,7 +963,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de <
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 Ao carregar arquivos usando a associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>o método de ação pode aceitar:
@@ -1134,7 +1134,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carregar arquivos grandes com streaming
@@ -1478,7 +1478,7 @@ Os exemplos neste tópico dependem <xref:System.IO.MemoryStream> de manter o con
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Descarga de solicitação de conexão HTTP](xref:fundamentals/servers/kestrel#http-connection-request-draining)
+* [Descarga de solicitação de conexão HTTP](xref:fundamentals/servers/kestrel#http11-request-draining)
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload) (Carregamento de arquivo irrestrito)
 * [Segurança do Azure: estrutura de segurança: validação de entrada | Mitigações](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Padrões de design de nuvem do Azure: padrão valet Key](/azure/architecture/patterns/valet-key)
