@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: a0f7c070514de26ae007526a5587c13d26d1eb1b
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 56c8d799b98cc09b8cfff12744c6eeb46af4f8e6
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777170"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003173"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC Razor e páginas
 
@@ -55,7 +55,7 @@ Os atributos de validação permitem que você especifique regras de validação
 
 Aqui estão alguns dos atributos de validação internos:
 
-* `[CreditCard]`: Valida que a propriedade tem um formato de cartão de crédito.
+* `[CreditCard]`: Valida que a propriedade tem um formato de cartão de crédito. Requer [métodos adicionais de validação jQuery](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
 * `[Compare]`: Valida que duas propriedades em um modelo correspondem.
 * `[EmailAddress]`: Valida que a propriedade tem um formato de email.
 * `[Phone]`: Valida que a propriedade tem um formato de número de telefone.
@@ -122,7 +122,7 @@ O atributo `[Remote]` implementa a validação do lado do cliente, exigindo a ch
 
 Para implementar a validação remota:
 
-1. Crie um método de ação para JavaScript para chamar.  O método [remoto](https://jqueryvalidation.org/remote-method/) do jQuery Validate espera uma resposta JSON:
+1. Crie um método de ação para JavaScript para chamar.  O método [remoto](https://jqueryvalidation.org/remote-method/) de validação do jQuery espera uma resposta JSON:
 
    * `true` significa que os dados de entrada são válidos.
    * `false`, `undefined` ou `null` significa que a entrada é inválida. Exiba a mensagem de erro padrão.
@@ -248,7 +248,7 @@ A validação do lado do cliente evita uma viagem de ida e volta desnecessária 
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml?name=snippet_Scripts)]
 
-O script do [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) é uma biblioteca de front-end personalizada da Microsoft que se baseia no popular plug-in [jQuery Validate](https://jqueryvalidation.org/). Sem o jQuery Unobtrusive Validation, você teria que codificar a mesma lógica de validação em dois locais: uma vez nos atributos de validação do lado do servidor nas propriedades do modelo e, em seguida, novamente nos scripts do lado do cliente. Em vez disso, os [Auxiliares de Marca](xref:mvc/views/tag-helpers/intro) e os [Auxiliares HTML](xref:mvc/views/overview) usam os atributos de validação e os metadados de tipo das propriedades do modelo para renderizar atributos `data-` de HTML 5 para os elementos de formulário que precisam de validação. O jQuery Unobtrusive Validation analisa os atributos `data-` e passa a lógica para o jQuery Validate, "copiando" efetivamente a lógica de validação do lado do servidor para o cliente. Você pode exibir erros de validação no cliente usando os auxiliares de marca conforme mostrado aqui:
+O script de [validação não invasiva da jQuery](https://github.com/aspnet/jquery-validation-unobtrusive) é uma biblioteca de front-end da Microsoft personalizada que se baseia no conhecido plug-in de [validação do jQuery](https://jqueryvalidation.org/) . Sem o jQuery Unobtrusive Validation, você teria que codificar a mesma lógica de validação em dois locais: uma vez nos atributos de validação do lado do servidor nas propriedades do modelo e, em seguida, novamente nos scripts do lado do cliente. Em vez disso, os [Auxiliares de Marca](xref:mvc/views/tag-helpers/intro) e os [Auxiliares HTML](xref:mvc/views/overview) usam os atributos de validação e os metadados de tipo das propriedades do modelo para renderizar atributos `data-` de HTML 5 para os elementos de formulário que precisam de validação. a validação não invasiva do jQuery `data-` analisa os atributos e passa a lógica para a validação do jQuery, efetivamente "copiando" a lógica de validação do lado do servidor para o cliente. Você pode exibir erros de validação no cliente usando os auxiliares de marca conforme mostrado aqui:
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=3-4)]
 
@@ -275,7 +275,7 @@ Para obter informações sobre a validação não invasiva, consulte [este probl
 
 ### <a name="add-validation-to-dynamic-forms"></a>Adicionar validação a formulários dinâmicos
 
-O jQuery Unobtrusive Validation passa parâmetros e a lógica de validação para o jQuery Validate quando a página é carregada pela primeira vez. Portanto, a validação não funciona automaticamente em formulários gerados dinamicamente. Para habilitar a validação é necessário instruir o jQuery Unobtrusive Validation a analisar o formulário dinâmico imediatamente depois de criá-lo. Por exemplo, o código a seguir define a validação do lado do cliente em um formulário adicionado por meio do AJAX.
+a validação não invasiva do jQuery passa a lógica de validação e parâmetros para validação do jQuery quando a página é carregada pela primeira vez. Portanto, a validação não funciona automaticamente em formulários gerados dinamicamente. Para habilitar a validação é necessário instruir o jQuery Unobtrusive Validation a analisar o formulário dinâmico imediatamente depois de criá-lo. Por exemplo, o código a seguir define a validação do lado do cliente em um formulário adicionado por meio do AJAX.
 
 ```javascript
 $.get({
@@ -294,7 +294,7 @@ $.get({
 })
 ```
 
-O método `$.validator.unobtrusive.parse()` aceita um seletor do jQuery para um argumento seu. Esse método instrui o jQuery Unobtrusive Validation a analisar os atributos `data-` de formulários nesse seletor. Depois, os valores desses atributos são passados para o plug-in do jQuery Validate.
+O método `$.validator.unobtrusive.parse()` aceita um seletor do jQuery para um argumento seu. Esse método instrui o jQuery Unobtrusive Validation a analisar os atributos `data-` de formulários nesse seletor. Os valores desses atributos são passados para o plug-in de validação jQuery.
 
 ### <a name="add-validation-to-dynamic-controls"></a>Adicionar validação a controles dinâmicos
 
@@ -310,7 +310,7 @@ $.get({
     success: function(newInputHTML) {
         var form = document.getElementById("my-form");
         form.insertAdjacentHTML("beforeend", newInputHTML);
-        $(form).removeData("validator")    // Added by jQuery Validate
+        $(form).removeData("validator")    // Added by jQuery Validation
                .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
         $.validator.unobtrusive.parse(form);
     }
@@ -319,11 +319,11 @@ $.get({
 
 ## <a name="custom-client-side-validation"></a>Validação personalizada do lado do cliente
 
-A validação personalizada do lado do cliente é feita por meio da geração de atributos de HTML `data-` que funcionam com um adaptador do jQuery Validate personalizado. O seguinte código do adaptador de exemplo foi escrito para os atributos `[ClassicMovie]` e `[ClassicMovieWithClientValidator]` que foram apresentados no início deste artigo:
+A validação personalizada do lado do cliente é feita `data-` pela geração de atributos HTML que funcionam com um adaptador de validação do jQuery personalizado. O seguinte código do adaptador de exemplo foi escrito para os atributos `[ClassicMovie]` e `[ClassicMovieWithClientValidator]` que foram apresentados no início deste artigo:
 
 [!code-javascript[](validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js)]
 
-Para obter informações sobre como escrever adaptadores, consulte a [documentação do jQuery Validate](https://jqueryvalidation.org/documentation/).
+Para obter informações sobre como escrever adaptadores, consulte a [documentação de validação do jQuery](https://jqueryvalidation.org/documentation/).
 
 O uso de um adaptador para um determinado campo é disparado por atributos `data-` que:
 

@@ -1,20 +1,26 @@
 ---
-title: Referência da sintaxe Razor para ASP.NET Core
+title: referência de sintaxe do Razor para ASP.NET Core
 author: rick-anderson
-description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
+description: Saiba mais Razor sobre a sintaxe de marcação para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: dd5c73be56ed0dafb759df2f5ff2eac1a3b5b09e
-ms.sourcegitcommit: d03905aadf5ceac39fff17706481af7f6c130411
+ms.openlocfilehash: 3e77b25e2660688d0040d47840e47dab8f260197
+ms.sourcegitcommit: 6c7a149168d2c4d747c36de210bfab3abd60809a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/29/2020
-ms.locfileid: "80381767"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "83003197"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
-Por [Rick Anderson,](https://twitter.com/RickAndMSFT) [Taylor Mullen](https://twitter.com/ntaylormullen)e Dan [Vicarel](https://github.com/Rabadash8820)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)e [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor é uma sintaxe de marcação para inserir código baseado em servidor em páginas da Web. A sintaxe Razor é composta pela marcação Razor, por C# e por HTML. Arquivos que contêm Razor geralmente têm a extensão de arquivo *.cshtml*. O Razor também é encontrado em arquivos de [Componentes do Razor](xref:blazor/components) (*.razor*).
 
@@ -229,7 +235,7 @@ A marca `<text>` é útil para controlar o espaço em branco ao renderizar conte
 
 ### <a name="explicit-line-transition"></a>Transição de linha explícita
 
-Para renderizar o resto de uma linha inteira `@:` como HTML dentro de um bloco de código, use sintaxe:
+Para renderizar o restante de uma linha inteira como HTML dentro de um bloco de `@:` código, use a sintaxe:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -467,7 +473,7 @@ O bloco `@code` permite que um [componente de Razor](xref:blazor/components) adi
 }
 ```
 
-Para componentes `@code` razor, é [`@functions`](#functions) um pseudônimo `@functions`de e recomendado mais . Mais de um bloco de `@code` é permitido.
+Para os componentes do `@code` Razor, é um [`@functions`](#functions) alias de e `@functions`é recomendado. Mais de um bloco de `@code` é permitido.
 
 ::: moniker-end
 
@@ -487,7 +493,7 @@ Em [Componentes de Razor](xref:blazor/components), use `@code` com `@functions` 
 
 ::: moniker-end
 
-Por exemplo:
+Por exemplo: 
 
 [!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
 
@@ -633,7 +639,7 @@ O Razor expõe uma propriedade `Model` para acessar o modelo passado para a exib
 <div>The Login Email: @Model.Email</div>
 ```
 
-A diretiva `@model` especifica o tipo da propriedade `Model`. A diretiva especifica o `T` em `RazorPage<T>` da classe gerada da qual a exibição deriva. Se a diretiva `@model` não for especificada, a propriedade `Model` será do tipo `dynamic`. Para obter mais informações, consulte [Modelos fortemente @model digitados e a palavra-chave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+A diretiva `@model` especifica o tipo da propriedade `Model`. A diretiva especifica o `T` em `RazorPage<T>` da classe gerada da qual a exibição deriva. Se a diretiva `@model` não for especificada, a propriedade `Model` será do tipo `dynamic`. Para obter mais informações, consulte [modelos fortemente tipados @model e a palavra-chave](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### <a name="namespace"></a>\@namespace
 
@@ -654,7 +660,7 @@ Para o exemplo de Razor Pages mostrado na tabela a seguir:
 
 | Página                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
-| *Páginas/Index.cshtml*                        | `Hello.World`                         |
+| *Páginas/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
 
@@ -666,7 +672,7 @@ Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações
 
 | Página                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
-| *Páginas/Index.cshtml*                        | `Hello.World`           |
+| *Páginas/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
@@ -676,7 +682,7 @@ Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações
 
 A diretiva `@page` tem efeitos diferentes dependendo do tipo do arquivo em que aparece. A diretiva:
 
-* Em um arquivo *.cshtml*, indica que o arquivo é uma página do Razor. Para obter mais informações, <xref:razor-pages/index>consulte [rotas personalizadas](xref:razor-pages/index#custom-routes) e .
+* Em um arquivo *.cshtml*, indica que o arquivo é uma página do Razor. Para obter mais informações, consulte [rotas personalizadas](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index>.
 * Especifica que um componente de Razor deve tratar as solicitações diretamente. Para obter mais informações, consulte <xref:blazor/routing>.
 
 ::: moniker-end
@@ -701,7 +707,7 @@ A diretiva `@using` adiciona a diretiva `using` de C# à exibição gerada:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nos [componentes Razor,](xref:blazor/components) `@using` também controla quais componentes estão no escopo.
+Nos [componentes](xref:blazor/components)do Razor `@using` , o também controla quais componentes estão no escopo.
 
 ::: moniker-end
 
@@ -721,7 +727,7 @@ Nos [componentes Razor,](xref:blazor/components) `@using` também controla quais
 
 A vinculação de dados nos componentes é realizada com o atributo `@bind`. Para obter mais informações, consulte <xref:blazor/data-binding>.
 
-### <a name="onevent"></a>\@em{EVENT}
+### <a name="onevent"></a>\@no {evento}
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
@@ -731,17 +737,17 @@ O Razor fornece recursos de manipulação de eventos para os componentes. Para o
 
 ::: moniker range=">= aspnetcore-3.1"
 
-### <a name="oneventpreventdefault"></a>\@em{EVENT}:preventDefault
+### <a name="oneventpreventdefault"></a>\@em {EVENT}:p reventDefault
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
 Impede a ação padrão para o evento.
 
-### <a name="oneventstoppropagation"></a>\@em{EVENT}:stopPropagation
+### <a name="oneventstoppropagation"></a>\@em {EVENT}: stopPropagation
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-Interrompe a propagação do evento para o evento.
+Interrompe a propagação do evento.
 
 ::: moniker-end
 
@@ -763,7 +769,7 @@ Referências de componente (`@ref`) proporcionam uma maneira de fazer referênci
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-A `@typeparam` diretiva declara um parâmetro de tipo genérico para a classe de componentes gerados. Para obter mais informações, consulte <xref:blazor/templated-components#generic-typed-components>.
+A `@typeparam` diretiva declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/templated-components#generic-typed-components>.
 
 ::: moniker-end
 
@@ -878,9 +884,9 @@ Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/ta
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Remove os Auxiliares de marca adicionados anteriormente de uma exibição. |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Especifica um prefixo de marca para habilitar o suporte do Auxiliar de marca e tornar explícito o uso do Auxiliar de marca. |
 
-## <a name="razor-reserved-keywords"></a>Palavras-chave reservadas ao Razor
+## <a name="razor-reserved-keywords"></a>RazorPalavras-chave reservadas
 
-### <a name="razor-keywords"></a>Palavras-chave do Razor
+### <a name="razor-keywords"></a>RazorPalavras-chave
 
 * page (exige o ASP.NET Core 2.1 ou posterior)
 * namespace
@@ -890,9 +896,9 @@ Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/ta
 * section
 * helper (atualmente sem suporte do ASP.NET Core)
 
-Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo, `@(functions)`).
+Razoras palavras-chave têm escape `@(Razor Keyword)` (por exemplo, `@(functions)`).
 
-### <a name="c-razor-keywords"></a>Palavras-chave do Razor em C#
+### <a name="c-razor-keywords"></a>Palavras Razor -chave do C#
 
 * case
 * do
@@ -901,7 +907,7 @@ Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo,
 * foreach
 * if
 * else
-* lock
+* bloqueio
 * switch
 * experimentar
 * catch
@@ -909,51 +915,51 @@ Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo,
 * using
 * while
 
-Palavras-chave do Razor em C# precisam ter o escape duplo com `@(@C# Razor Keyword)` (por exemplo, `@(@case)`). O primeiro `@` faz o escape do analisador Razor. O segundo `@` faz o escape do analisador C#.
+As Razor palavras-chave do C# devem ter um escape `@(@C# Razor Keyword)` duplo com (por `@(@case)`exemplo,). O primeiro `@` escapa o Razor analisador. O segundo `@` faz o escape do analisador C#.
 
-### <a name="reserved-keywords-not-used-by-razor"></a>Palavras-chave reservadas não usadas pelo Razor
+### <a name="reserved-keywords-not-used-by-razor"></a>Palavras-chave reservadas não usadas porRazor
 
 * classe
 
-## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspecionar a classe do Razor C# gerada para uma exibição
+## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspecionar Razor a classe C# gerada para uma exibição
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Com o SDK do .NET Core 2.1 ou posterior, o [SDK do Razor](xref:razor-pages/sdk) lida com a compilação de arquivos do Razor. Ao compilar um projeto, o SDK do Razor gera um diretório *obj/<configuração_de_build>/<moniker_da_estrutura_de_destino>/Razor* na raiz do projeto. A estrutura de diretórios dentro do diretório do *Razor* espelha a estrutura de diretórios do projeto.
+Com o SDK do .NET Core 2,1 ou posterior, o [ Razor SDK](xref:razor-pages/sdk) manipula a Razor compilação de arquivos. Ao criar um projeto, o Razor SDK gera um *obj/<build_configuration>/<target_framework_moniker>/Razor * Directory na raiz do projeto. A estrutura de diretório no *Razor* diretório espelha a estrutura de diretório do projeto.
 
-Considere a seguinte estrutura de diretórios em um projeto do Razor Pages ASP.NET Core 2.1 direcionado ao .NET Core 2.1:
+Considere a seguinte estrutura de diretório em um projeto Razor de páginas ASP.NET Core 2,1 direcionado ao .net Core 2,1:
 
-* **Áreas/**
-  * **Admin/**
-    * **Páginas/**
-      * *Index.cshtml*
+* **Área**
+  * **ADM**
+    * **Pages**
+      * *Index. cshtml*
       * *Index.cshtml.cs*
-* **Páginas/**
-  * **Compartilhado/**
+* **Pages**
+  * **Compartilhado**
     * *_Layout.cshtml.*
   * *_ViewImports.cshtml*
   * *_ViewStart.cshtml*
-  * *Index.cshtml*
+  * *Index. cshtml*
   * *Index.cshtml.cs*
 
 A criação do projeto na configuração de *Depuração* produz o seguinte diretório *obj*:
 
-* **obj/**
-  * **Depuração/**
+* **obj**
+  * **Verificação**
     * **netcoreapp2.1/**
-      * **Navalha/**
-        * **Áreas/**
-          * **Admin/**
-            * **Páginas/**
+      * **Razor/**
+        * **Área**
+          * **ADM**
+            * **Pages**
               * *Index.g.cshtml.cs*
-        * **Páginas/**
-          * **Compartilhado/**
+        * **Pages**
+          * **Compartilhado**
             * *_Layout.g.cshtml.cs*
           * *_ViewImports.g.cshtml.cs*
           * *_ViewStart.g.cshtml.cs*
           * *Index.g.cshtml.cs*
 
-Para exibir a classe gerada para *Pages/Index.cshtml*, abra *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+Para exibir a classe gerada para *pages/index. cshtml*, abra *obj/Debug/netcoreapp 2.1/Razor/pages/index.g.cshtml.cs*.
 
 ::: moniker-end
 
@@ -975,7 +981,7 @@ Defina o ponto de interrupção `CustomTemplateEngine` na instrução `return cs
 
 ## <a name="view-lookups-and-case-sensitivity"></a>Pesquisas de exibição e diferenciação de maiúsculas e minúsculas
 
-O mecanismo de exibição do Razor executa pesquisas que diferenciam maiúsculas de minúsculas para as exibições. No entanto, a pesquisa real é determinada pelo sistema de arquivos subjacente:
+O Razor mecanismo de exibição executa pesquisas que diferenciam maiúsculas de minúsculas para exibições. No entanto, a pesquisa real é determinada pelo sistema de arquivos subjacente:
 
 * Origem baseada em arquivo:
   * Em sistemas operacionais com sistemas de arquivos que não diferenciam maiúsculas e minúsculas (por exemplo, Windows), pesquisas no provedor de arquivos físico não diferenciam maiúsculas de minúsculas. Por exemplo, `return View("Test")` resulta em correspondências para */Views/Home/Test.cshtml*, */Views/home/test.cshtml* e qualquer outra variação de maiúsculas e minúsculas.
@@ -985,10 +991,10 @@ O mecanismo de exibição do Razor executa pesquisas que diferenciam maiúsculas
 Os desenvolvedores são incentivados a fazer a correspondência entre as maiúsculas e minúsculas dos nomes dos arquivos e de diretórios com o uso de maiúsculas e minúsculas em:
 
 * Nomes de área, controlador e ação.
-* Páginas do Razor.
+* RazorPages.
 
 Fazer essa correspondência garante que as implantações encontrem suas exibições, independentemente do sistema de arquivos subjacente.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-[Introdução à programação ASP.NET Web Usando a Sintaxe de Navalha](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornece muitas amostras de programação com sintaxe de navalha.
+[A introdução à programação da Web ASP.NET Razor usando a sintaxe](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) fornece muitos exemplos de Razor programação com sintaxe.
