@@ -1,5 +1,5 @@
 ---
-title: Criptografia de chave em repouso no ASP.NET Core
+title: Criptografia de chave em repouso no Windows e no Azure usando ASP.NET Core
 author: rick-anderson
 description: Aprenda detalhes de implementação de criptografia de chave de proteção de dados ASP.NET Core em repouso.
 ms.author: riande
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-encryption-at-rest
-ms.openlocfilehash: e68b8e09dbd876c6f0d37242ebaa415994b3b808
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c927c926212aeb1263d15fd3fdc753c377b2e305
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776923"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153564"
 ---
-# <a name="key-encryption-at-rest-in-aspnet-core"></a>Criptografia de chave em repouso no ASP.NET Core
+# <a name="key-encryption-at-rest-in-windows-and-azure-using-aspnet-core"></a>Criptografia de chave em repouso no Windows e no Azure usando ASP.NET Core
 
 O sistema de proteção de dados [emprega um mecanismo de descoberta por padrão](xref:security/data-protection/configuration/default-settings) para determinar como as chaves criptográficas devem ser criptografadas em repouso. O desenvolvedor pode substituir o mecanismo de descoberta e especificar manualmente como as chaves devem ser criptografadas em repouso.
 
@@ -106,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Também há uma sobrecarga sem parâmetros de `ProtectKeysWithDpapiNG`. Use este método de conveniência para especificar a regra "SID = {CURRENT_ACCOUNT_SID}", em que *CURRENT_ACCOUNT_SID* é o SID da conta de usuário atual do Windows:
+Também há uma sobrecarga sem parâmetros de `ProtectKeysWithDpapiNG` . Use este método de conveniência para especificar a regra "SID = {CURRENT_ACCOUNT_SID}", em que *CURRENT_ACCOUNT_SID* é o SID da conta de usuário atual do Windows:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

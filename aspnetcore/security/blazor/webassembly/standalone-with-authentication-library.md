@@ -1,11 +1,11 @@
 ---
-title: Proteger um aplicativo Blazor autônomo webassembly ASP.NET Core com a biblioteca de autenticação
+title: Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com a biblioteca de autenticação
 author: guardrex
 description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,14 +13,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 6907a1213a6a9089e2aed885093c2fd38f972ad0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 219364ef2e699ff1029536effd106a80ec02825c
+ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768046"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83153407"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteger um aplicativo Blazor autônomo webassembly ASP.NET Core com a biblioteca de autenticação
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com a biblioteca de autenticação
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
@@ -36,13 +36,13 @@ Para criar um Blazor aplicativo autônomo Webassembly que usa `Microsoft.AspNetC
 dotnet new blazorwasm -au Individual
 ```
 
-Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho ( `-o BlazorSample`por exemplo,). O nome da pasta também se torna parte do nome do projeto.
+Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ). O nome da pasta também se torna parte do nome do projeto.
 
 No Visual Studio, [crie um Blazor aplicativo Webassembly](xref:blazor/get-started). Defina a **autenticação** para **contas de usuário individuais** com a opção **armazenar contas de usuário no aplicativo** .
 
 ## <a name="authentication-package"></a>Pacote de autenticação
 
-Quando um aplicativo é criado para usar contas de usuário individuais, o aplicativo recebe automaticamente uma referência de pacote `Microsoft.AspNetCore.Components.WebAssembly.Authentication` para o pacote no arquivo de projeto do aplicativo. O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
+Quando um aplicativo é criado para usar contas de usuário individuais, o aplicativo recebe automaticamente uma referência de pacote para o `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacote no arquivo de projeto do aplicativo. O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
 
 Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
 
@@ -56,7 +56,7 @@ Substitua `{VERSION}` na referência do pacote anterior pela versão do `Microso
 
 ## <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
 
-O suporte para autenticação de usuários é registrado no contêiner de serviço `AddOidcAuthentication` com o método de extensão `Microsoft.AspNetCore.Components.WebAssembly.Authentication` fornecido pelo pacote. Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
+O suporte para autenticação de usuários é registrado no contêiner de serviço com o `AddOidcAuthentication` método de extensão fornecido pelo `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacote. Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
 
 *Program.cs*:
 
@@ -82,7 +82,7 @@ O suporte de autenticação para aplicativos autônomos é oferecido usando o Op
 
 ## <a name="access-token-scopes"></a>Escopos de token de acesso
 
-O Blazor modelo Webassembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura. Para provisionar um token de acesso como parte do fluxo de entrada, adicione o escopo aos escopos de token padrão `OidcProviderOptions`do:
+O Blazor modelo Webassembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura. Para provisionar um token de acesso como parte do fluxo de entrada, adicione o escopo aos escopos de token padrão do `OidcProviderOptions` :
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -139,3 +139,4 @@ Para obter mais informações, consulte as seguintes seções do artigo *cenári
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* [Solicitações de API Web não autenticadas ou não autorizadas em um aplicativo com um cliente padrão seguro](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
