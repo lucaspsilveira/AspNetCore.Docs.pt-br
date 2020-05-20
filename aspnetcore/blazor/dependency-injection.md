@@ -1,34 +1,20 @@
 ---
-title: Injeção Blazor de dependência de ASP.NET Core
-author: guardrex
-description: Veja como Blazor os aplicativos podem injetar serviços em componentes.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/04/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/dependency-injection
-ms.openlocfilehash: e96698bd0bd8f3f3b290ba24bc8169efb16f1d03
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967526"
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
-# <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
+# <a name="aspnet-core-blazor-dependency-injection"></a>Injeção de dependência de ASP.NET Core Blazor
 
 Por [Rainer Stropek](https://www.timecockpit.com) e [Mike Rousos](https://github.com/mjrousos)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+Blazordá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
 
-O mais incrivelmente dá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
-
-DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos mais incrivelmente para:
+DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em Blazor aplicativos para:
 
 * Compartilhe uma única instância de uma classe de serviço em vários componentes, conhecido como um serviço *singleton* .
 * Dissociar componentes de classes de serviço concretas usando abstrações de referência. Por exemplo, considere uma interface `IDataAccess` para acessar dados no aplicativo. A interface é implementada por uma `DataAccess` classe concreta e registrada como um serviço no contêiner de serviço do aplicativo. Quando um componente usa DI para receber uma `IDataAccess` implementação, o componente não é acoplado ao tipo concreto. A implementação pode ser trocada, talvez para uma implementação fictícia em testes de unidade.
@@ -38,18 +24,67 @@ DI é uma técnica para acessar os serviços configurados em um local central. I
 Os serviços padrão são adicionados automaticamente à coleção de serviços do aplicativo.
 
 | Serviço | Tempo de vida | Descrição |
-| ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Transitório | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI.<br><br>A instância do `HttpClient` em um aplicativo Webassembly mais incrivelmente usa o navegador para manipular o tráfego HTTP em segundo plano.<br><br>Aplicativos de servidor mais incrivelmente não incluem `HttpClient` um configurado como um serviço por padrão. Forneça um `HttpClient` para um aplicativo de servidor mais incrivelmente.<br><br>Para obter mais informações, consulte <xref:blazor/call-web-api>. |
-| `IJSRuntime` | Singleton (Webassembly de mais incrivelmente)<br>Com escopo (servidor mais incrivelmente) | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/call-javascript-from-dotnet>. |
-| `NavigationManager` | Singleton (Webassembly de mais incrivelmente)<br>Com escopo (servidor mais incrivelmente) | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| ---
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | <xref:System.Net.Http.HttpClient> | Transitório | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI.<br><br>A instância do `HttpClient` em um Blazor aplicativo Webassembly usa o navegador para manipular o tráfego HTTP em segundo plano.<br><br>BlazorOs aplicativos de servidor não incluem um `HttpClient` configurado como um serviço por padrão. Forneça um `HttpClient` para um Blazor aplicativo de servidor.<br><br>Para obter mais informações, consulte <xref:blazor/call-web-api>. | | `IJSRuntime` | Singleton ( Blazor Webassembly)<br>Com escopo ( Blazor servidor) | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/call-javascript-from-dotnet>. | | `NavigationManager` | Singleton ( Blazor Webassembly)<br>Com escopo ( Blazor servidor) | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Um provedor de serviços personalizado não fornece automaticamente os serviços padrão listados na tabela. Se você usar um provedor de serviços personalizado e precisar de qualquer um dos serviços mostrados na tabela, adicione os serviços necessários ao novo provedor de serviços.
 
 ## <a name="add-services-to-an-app"></a>Adicionar serviços a um aplicativo
 
-### <a name="blazor-webassembly"></a>WebAssembly Blazor
+### <a name="blazor-webassembly"></a>BlazorWebassembly
 
-Configure os serviços para a coleção de serviços do aplicativo `Main` no método de *Program.cs*. No exemplo a seguir, a `MyDependency` implementação está registrada `IMyDependency`para:
+Configure os serviços para a coleção de serviços do aplicativo no `Main` método de *Program.cs*. No exemplo a seguir, a `MyDependency` implementação está registrada para `IMyDependency` :
 
 ```csharp
 public class Program
@@ -86,7 +121,7 @@ public class Program
 }
 ```
 
-O host também fornece uma instância de configuração central para o aplicativo. Com base no exemplo anterior, a URL do serviço meteorológico é passada de uma fonte de configuração padrão (por exemplo, *appSettings. JSON*) `InitializeWeatherAsync`para:
+O host também fornece uma instância de configuração central para o aplicativo. Com base no exemplo anterior, a URL do serviço meteorológico é passada de uma fonte de configuração padrão (por exemplo, *appSettings. JSON*) para `InitializeWeatherAsync` :
 
 ```csharp
 public class Program
@@ -108,9 +143,9 @@ public class Program
 }
 ```
 
-### <a name="blazor-server"></a>Servidor Blazor
+### <a name="blazor-server"></a>BlazorServidor
 
-Depois de criar um novo aplicativo, examine `Startup.ConfigureServices` o método:
+Depois de criar um novo aplicativo, examine o `Startup.ConfigureServices` método:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -119,7 +154,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-O `ConfigureServices` método é passado um <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, que é uma lista de objetos do descritor<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>de serviço (). Os serviços são adicionados fornecendo descritores de serviço à coleção de serviços. O exemplo a seguir demonstra o conceito com `IDataAccess` a interface e sua implementação `DataAccess`concreta:
+O `ConfigureServices` método é passado um <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> , que é uma lista de objetos do descritor de serviço ( <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> ). Os serviços são adicionados fornecendo descritores de serviço à coleção de serviços. O exemplo a seguir demonstra o conceito com a `IDataAccess` interface e sua implementação concreta `DataAccess` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -133,16 +168,57 @@ public void ConfigureServices(IServiceCollection services)
 Os serviços podem ser configurados com os tempos de vida mostrados na tabela a seguir.
 
 | Tempo de vida | Descrição |
-| -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | BlazorOs aplicativos Webassembly não têm atualmente um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto Blazor , o modelo de hospedagem `Scoped` do servidor dá suporte ao tempo de vida. Em Blazor aplicativos de servidor, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
+| ---
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core Blazor injeção de dependência ' autor: Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor Os aplicativos Webassembly não têm atualmente um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o Blazor modelo de hospedagem do servidor dá suporte ao `Scoped` tempo de vida. Em Blazor aplicativos de servidor, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI cria uma *única instância* do serviço. Todos os componentes que exigem um `Singleton` serviço recebem uma instância do mesmo serviço. | | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 
 O sistema de DI é baseado no sistema de injeção de ASP.NET Core. Para obter mais informações, consulte <xref:fundamentals/dependency-injection>.
 
 ## <a name="request-a-service-in-a-component"></a>Solicitar um serviço em um componente
 
-Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a diretiva de [ \@inserção.](xref:mvc/views/razor#inject) Razor `@inject`tem dois parâmetros:
+Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a diretiva de [ \@ inserção](xref:mvc/views/razor#inject) Razor . `@inject`tem dois parâmetros:
 
 * Digite &ndash; o tipo do serviço a injetar.
 * Propriedade &ndash; o nome da propriedade que recebe o serviço de aplicativo injetado. A propriedade não requer criação manual. O compilador cria a propriedade.
@@ -151,11 +227,11 @@ Para obter mais informações, consulte <xref:mvc/views/dependency-injection>.
 
 Use várias `@inject` instruções para injetar serviços diferentes.
 
-O exemplo a seguir mostra como usar `@inject`. A implementação `Services.IDataAccess` do serviço é injetada na propriedade `DataRepository`do componente. Observe como o código está usando apenas a `IDataAccess` abstração:
+O exemplo a seguir mostra como usar `@inject`. A implementação do serviço `Services.IDataAccess` é injetada na Propriedade do componente `DataRepository` . Observe como o código está usando apenas a `IDataAccess` abstração:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
+[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
 
-Internamente, a propriedade gerada (`DataRepository`) usa o `InjectAttribute` atributo. Normalmente, esse atributo não é usado diretamente. Se uma classe base for necessária para componentes e propriedades injetadas também forem necessárias para a classe base, adicione manualmente `InjectAttribute`:
+Internamente, a propriedade gerada ( `DataRepository` ) usa o `InjectAttribute` atributo. Normalmente, esse atributo não é usado diretamente. Se uma classe base for necessária para componentes e propriedades injetadas também forem necessárias para a classe base, adicione manualmente `InjectAttribute` :
 
 ```csharp
 public class ComponentBase : IComponent
@@ -178,7 +254,7 @@ Em componentes derivados da classe base, a `@inject` diretiva não é necessári
 
 ## <a name="use-di-in-services"></a>Usar DI em serviços
 
-Serviços complexos podem exigir serviços adicionais. No exemplo anterior, `DataAccess` pode exigir o `HttpClient` serviço padrão. `@inject`(ou o `InjectAttribute`) não está disponível para uso em serviços. A *injeção de Construtor* deve ser usada em seu lugar. Os serviços necessários são adicionados adicionando parâmetros ao construtor do serviço. Quando DI cria o serviço, ele reconhece os serviços que ele requer no construtor e os fornece de acordo.
+Serviços complexos podem exigir serviços adicionais. No exemplo anterior, `DataAccess` pode exigir o `HttpClient` serviço padrão. `@inject`(ou o `InjectAttribute` ) Não está disponível para uso em serviços. A *injeção de Construtor* deve ser usada em seu lugar. Os serviços necessários são adicionados adicionando parâmetros ao construtor do serviço. Quando DI cria o serviço, ele reconhece os serviços que ele requer no construtor e os fornece de acordo.
 
 ```csharp
 public class DataAccess : IDataAccess
@@ -202,16 +278,16 @@ Pré-requisitos para injeção de construtor:
 
 Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em Blazor aplicativos de servidor, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado. Em Blazor aplicativos Webassembly, os serviços registrados com um tempo de vida no escopo são tratados como singletons, portanto, eles vivem mais do que os serviços com escopo em aplicativos ASP.NET Core típicos.
 
-Uma abordagem que limita um tempo de vida Blazor do serviço em aplicativos é `OwningComponentBase` o uso do tipo. `OwningComponentBase`é um tipo abstrato derivado de `ComponentBase` que cria um escopo de di correspondente ao tempo de vida do componente. Usando esse escopo, é possível usar os serviços de DI com um tempo de vida de escopo e tê-los ativos, desde que o componente. Quando o componente é destruído, os serviços do provedor de serviço no escopo do componente também são descartados. Isso pode ser útil para serviços que:
+Uma abordagem que limita um tempo de vida do serviço em Blazor aplicativos é o uso do `OwningComponentBase` tipo. `OwningComponentBase`é um tipo abstrato derivado de `ComponentBase` que cria um escopo de di correspondente ao tempo de vida do componente. Usando esse escopo, é possível usar os serviços de DI com um tempo de vida de escopo e tê-los ativos, desde que o componente. Quando o componente é destruído, os serviços do provedor de serviço no escopo do componente também são descartados. Isso pode ser útil para serviços que:
 
 * Deve ser reutilizado dentro de um componente, pois o tempo de vida transitório é inadequado.
 * Não devem ser compartilhados entre componentes, pois o tempo de vida singleton é inadequado.
 
 Duas versões do `OwningComponentBase` tipo estão disponíveis:
 
-* `OwningComponentBase`é um filho abstrato e descartável do `ComponentBase` tipo com uma propriedade `ScopedServices` protegida do tipo `IServiceProvider`. Esse provedor pode ser usado para resolver serviços que têm o escopo definido para o tempo de vida do componente.
+* `OwningComponentBase`é um filho abstrato e descartável do `ComponentBase` tipo com uma `ScopedServices` propriedade protegida do tipo `IServiceProvider` . Esse provedor pode ser usado para resolver serviços que têm o escopo definido para o tempo de vida do componente.
 
-  Os serviços de di injetados no componente `@inject` usando o `InjectAttribute` ou`[Inject]`o () não são criados no escopo do componente. Para usar o escopo do componente, os serviços devem ser `ScopedServices.GetRequiredService` resolvidos `ScopedServices.GetService`usando o ou o. Todos os serviços resolvidos `ScopedServices` usando o provedor têm suas dependências fornecidas do mesmo escopo.
+  Os serviços de DI injetados no componente usando `@inject` o ou o `InjectAttribute` ( `[Inject]` ) não são criados no escopo do componente. Para usar o escopo do componente, os serviços devem ser resolvidos usando o `ScopedServices.GetRequiredService` ou o `ScopedServices.GetService` . Todos os serviços resolvidos usando o `ScopedServices` provedor têm suas dependências fornecidas do mesmo escopo.
 
   ```razor
   @page "/preferences"
@@ -239,7 +315,7 @@ Duas versões do `OwningComponentBase` tipo estão disponíveis:
   }
   ```
 
-* `OwningComponentBase<T>`deriva de `OwningComponentBase` e adiciona uma propriedade `Service` que retorna uma instância do `T` do provedor de injeção de escopo. Esse tipo é uma maneira conveniente de acessar serviços com escopo sem usar uma instância do `IServiceProvider` quando há um serviço primário que o aplicativo requer do contêiner di usando o escopo do componente. A `ScopedServices` Propriedade está disponível, portanto, o aplicativo pode obter serviços de outros tipos, se necessário.
+* `OwningComponentBase<T>`deriva de `OwningComponentBase` e adiciona uma propriedade `Service` que retorna uma instância do do `T` provedor de injeção de escopo. Esse tipo é uma maneira conveniente de acessar serviços com escopo sem usar uma instância do `IServiceProvider` quando há um serviço primário que o aplicativo requer do contêiner di usando o escopo do componente. A `ScopedServices` propriedade está disponível, portanto, o aplicativo pode obter serviços de outros tipos, se necessário.
 
   ```razor
   @page "/users"
@@ -258,16 +334,16 @@ Duas versões do `OwningComponentBase` tipo estão disponíveis:
 
 ## <a name="use-of-entity-framework-dbcontext-from-di"></a>Uso de Entity Framework DbContext de DI
 
-Um tipo de serviço comum a ser recuperado de DI em aplicativos Web é Entity Framework ( `DbContext` EF) objetos. O registro de serviços do `IServiceCollection.AddDbContext` EF usando `DbContext` o adiciona o como um serviço com escopo por padrão. O registro como um serviço com escopo pode levar a problemas em Blazor aplicativos porque faz com `DbContext` que as instâncias sejam de longa duração e compartilhadas entre o aplicativo. `DbContext`Não é thread-safe e não deve ser usado simultaneamente.
+Um tipo de serviço comum a ser recuperado de DI em aplicativos Web é Entity Framework (EF) `DbContext` objetos. O registro de serviços do EF usando `IServiceCollection.AddDbContext` o adiciona o `DbContext` como um serviço com escopo por padrão. O registro como um serviço com escopo pode levar a problemas em Blazor aplicativos porque faz com que as `DbContext` instâncias sejam de longa duração e compartilhadas entre o aplicativo. `DbContext`Não é thread-safe e não deve ser usado simultaneamente.
 
-Dependendo do aplicativo, o uso `OwningComponentBase` do para limitar o escopo de um `DbContext` a um único componente *pode* resolver o problema. Se um componente não usa um `DbContext` em paralelo, derivar o componente de `OwningComponentBase` e recuperar o `DbContext` de `ScopedServices` é suficiente porque garante que:
+Dependendo do aplicativo, o uso do `OwningComponentBase` para limitar o escopo de um `DbContext` a um único componente *pode* resolver o problema. Se um componente não usa um `DbContext` em paralelo, derivar o componente de `OwningComponentBase` e recuperar o `DbContext` de `ScopedServices` é suficiente porque garante que:
 
-* Componentes separados não compartilham um `DbContext`.
+* Componentes separados não compartilham um `DbContext` .
 * O `DbContext` reside apenas desde que o componente dependa dele.
 
-Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, sempre que um usuário seleciona um botão), mesmo usando `OwningComponentBase` o não evita problemas com operações simultâneas do EF. Nesse caso, use outro `DbContext` para cada operação lógica do EF. Use uma das seguintes abordagens:
+Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, sempre que um usuário seleciona um botão), mesmo usando o `OwningComponentBase` não evita problemas com operações simultâneas do EF. Nesse caso, use outro `DbContext` para cada operação lógica do EF. Use uma das seguintes abordagens:
 
-* Crie o `DbContext` usando `DbContextOptions<TContext>` diretamente como um argumento, que pode ser recuperado de di e é thread-safe.
+* Crie o `DbContext` usando diretamente `DbContextOptions<TContext>` como um argumento, que pode ser recuperado de di e é thread-safe.
 
     ```razor
     @page "/example"
@@ -302,7 +378,7 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
     ```
 
 * Registre o `DbContext` no contêiner de serviço com um tempo de vida transitório:
-  * Ao registrar o contexto, use `ServiceLifetime.Transient`. O `AddDbContext` método de extensão usa dois parâmetros opcionais `ServiceLifetime`do tipo. Para usar essa abordagem, somente o `contextLifetime` parâmetro precisa ser `ServiceLifetime.Transient`. `optionsLifetime`pode manter seu valor padrão de `ServiceLifetime.Scoped`.
+  * Ao registrar o contexto, use `ServiceLifetime.Transient` . O `AddDbContext` método de extensão usa dois parâmetros opcionais do tipo `ServiceLifetime` . Para usar essa abordagem, somente o `contextLifetime` parâmetro precisa ser `ServiceLifetime.Transient` . `optionsLifetime`pode manter seu valor padrão de `ServiceLifetime.Scoped` .
 
     ```csharp
     services.AddDbContext<AppDbContext>(options =>
@@ -310,7 +386,7 @@ Se um único componente pode usar um `DbContext` simultaneamente (por exemplo, s
          ServiceLifetime.Transient);
     ```  
 
-  * O transitório `DbContext` pode ser injetado como normal (usando `@inject`) em componentes que não executarão várias operações de EF em paralelo. Os que podem executar várias operações de EF simultaneamente podem solicitar `DbContext` objetos separados para cada operação em `IServiceProvider.GetRequiredService`paralelo usando.
+  * O transitório `DbContext` pode ser injetado como normal (usando `@inject` ) em componentes que não executarão várias operações de EF em paralelo. Os que podem executar várias operações de EF simultaneamente podem solicitar `DbContext` objetos separados para cada operação em paralelo usando `IServiceProvider.GetRequiredService` .
 
     ```razor
     @page "/example"

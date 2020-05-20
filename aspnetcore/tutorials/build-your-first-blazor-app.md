@@ -1,32 +1,26 @@
 ---
-title: Crie seu primeiro Blazor aplicativo
-author: guardrex
-description: Crie um Blazor aplicativo passo a passo.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/20/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: tutorials/first-blazor-app
-ms.openlocfilehash: 5a5a56ee646cba21a883df2cf686cb1ccb18d7f9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776598"
+Título: ' criar seu primeiro Blazor aplicativo ' autor: Descrição: ' compilar um Blazor aplicativo passo a passo '.
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="build-your-first-blazor-app"></a>Crie seu primeiro Blazor aplicativo
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+Este tutorial mostra como criar e modificar um Blazor aplicativo. Você aprenderá como:
 
-Este tutorial mostra como criar e modificar um Blazor aplicativo.
+> [!div class="checklist"]
+> * Criar um projeto de aplicativo de lista de tarefas Blazor
+> * Modificar Razor componentes
+> * Usar manipulação de eventos e vinculação de dados em componentes
+> * Usar injeção de dependência (DI) e roteamento em um Blazor aplicativo
+
+No final deste tutorial, você terá um aplicativo de chat em funcionamento.
 
 ## <a name="build-components"></a>Componentes do build
 
@@ -34,7 +28,7 @@ Este tutorial mostra como criar e modificar um Blazor aplicativo.
 
 1. Navegue até cada uma das três páginas do aplicativo na pasta *páginas* : Home, Counter e FETCH Data. Essas páginas são implementadas pelos Razor arquivos de componente *index. Razor*, *Counter. Razor*e *FetchData. Razor*.
 
-1. Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. Incrementar um contador em uma página da Web normalmente requer a escrita de JavaScript. Com Blazoro, você pode escrever C# em vez disso.
+1. Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. Incrementar um contador em uma página da Web normalmente requer a escrita de JavaScript. Com o Blazor , você pode escrever C# em vez disso.
 
 1. Examine a implementação do componente `Counter` no arquivo *Counter.razor*.
 
@@ -42,7 +36,7 @@ Este tutorial mostra como criar e modificar um Blazor aplicativo.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
 
-   A interface do usuário do componente `Counter` é definida usando HTML. A lógica de renderização dinâmica (por exemplo, loops, condicionais, expressões) é adicionada usando uma sintaxe C# [Razor](xref:mvc/views/razor)inserida chamada. A marcação HTML e a lógica de renderização de C# são convertidas em uma classe de componente no momento da compilação. O nome da classe .NET gerada corresponde ao nome do arquivo.
+   A interface do usuário do componente `Counter` é definida usando HTML. A lógica de renderização dinâmica (por exemplo, loops, condicionais, expressões) é adicionada usando uma sintaxe C# inserida chamada [Razor](xref:mvc/views/razor) . A marcação HTML e a lógica de renderização de C# são convertidas em uma classe de componente no momento da compilação. O nome da classe .NET gerada corresponde ao nome do arquivo.
 
    Os membros da classe de componente são definidos em um bloco `@code`. No bloco `@code`, o estado do componente (propriedades, campos) e os métodos são especificados para manipulação de eventos ou para definição de outra lógica de componente. Assim, esses membros são usados como parte da lógica de renderização do componente e para manipulação de eventos.
 
@@ -65,7 +59,7 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 1. Adicione o componente `Counter` no componente `Index` do aplicativo adicionando um elemento `<Counter />` ao componente `Index` (*Index.razor*).
 
-   Se você estiver usando Blazor o `Index` Webassembly para essa experiência, `SurveyPrompt` um componente será usado pelo componente. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um Blazor aplicativo de servidor para essa experiência, adicione `<Counter />` o elemento ao `Index` componente:
+   Se você estiver usando Blazor o Webassembly para essa experiência, um `SurveyPrompt` componente será usado pelo `Index` componente. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um Blazor aplicativo de servidor para essa experiência, adicione o `<Counter />` elemento ao `Index` componente:
 
    *Pages/Index.razor*:
 
@@ -75,12 +69,12 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 ## <a name="component-parameters"></a>Parâmetros do componente
 
-Componentes também podem ter parâmetros. Os parâmetros de componente são definidos usando propriedades públicas na classe de componente `[Parameter]` com o atributo. Use atributos para especificar argumentos para um componente na marcação.
+Componentes também podem ter parâmetros. Os parâmetros de componente são definidos usando propriedades públicas na classe de componente com o `[Parameter]` atributo. Use atributos para especificar argumentos para um componente na marcação.
 
-1. Atualize o código C# `@code` do componente da seguinte maneira:
+1. Atualize o código C# do componente da `@code` seguinte maneira:
 
-   * Adicione uma propriedade `IncrementAmount` pública com o `[Parameter]` atributo.
-   * Altere o `IncrementCount` método para usar a `IncrementAmount` Propriedade ao aumentar o valor de `currentCount`.
+   * Adicione uma `IncrementAmount` propriedade pública com o `[Parameter]` atributo.
+   * Altere o `IncrementCount` método para usar a `IncrementAmount` propriedade ao aumentar o valor de `currentCount` .
 
    *Pages/Counter.razor*:
 
@@ -107,7 +101,7 @@ A diretiva `@page` no início do arquivo *Counter.razor* especifica que esse com
 
 ### <a name="blazor-server-experience"></a>BlazorExperiência do servidor
 
-Se estiver trabalhando com Blazor um aplicativo de servidor `WeatherForecastService` , o serviço será registrado como um `Startup.ConfigureServices` [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no. Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
+Se estiver trabalhando com um Blazor aplicativo de servidor, o `WeatherForecastService` serviço será registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no `Startup.ConfigureServices` . Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -123,11 +117,11 @@ O componente `FetchData` usa o serviço injetado, como `ForecastService`, para r
 
 ### <a name="blazor-webassembly-experience"></a>BlazorExperiência de Webassembly
 
-Se estiver trabalhando com Blazor um aplicativo Webassembly `HttpClient` , será injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* .
+Se estiver trabalhando com um Blazor aplicativo Webassembly, `HttpClient` será injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* .
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 Um [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop é usado para renderizar cada instância de previsão como uma linha na tabela de dados meteorológicos:
 
@@ -137,7 +131,7 @@ Um [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop é u
 
 Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pendentes simples.
 
-1. Adicione um novo `Todo` Razor componente ao aplicativo na pasta *páginas* . No Visual Studio, clique com o botão direito do mouse na pasta **páginas** e selecione **Adicionar** > **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente *todo. Razor*. Em outros ambientes de desenvolvimento, adicione um arquivo em branco à pasta **páginas** chamada *todo. Razor*.
+1. Adicione um novo `Todo` Razor componente ao aplicativo na pasta *páginas* . No Visual Studio, clique com o botão direito do mouse na pasta **páginas** e selecione **Adicionar**  >  **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente *todo. Razor*. Em outros ambientes de desenvolvimento, adicione um arquivo em branco à pasta **páginas** chamada *todo. Razor*.
 
 1. Forneça a marcação inicial do componente:
 
@@ -213,6 +207,18 @@ Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pe
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Recompile e execute o aplicativo. Adicione itens de tarefa pendente para testar o novo código.
+
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você aprendeu a:
+
+> [!div class="checklist"]
+> * Criar um projeto de aplicativo de lista de tarefas Blazor
+> * Modificar Razor componentes
+> * Usar manipulação de eventos e vinculação de dados em componentes
+> * Usar injeção de dependência (DI) e roteamento em um Blazor aplicativo
+
+Saiba como criar e usar componentes:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>

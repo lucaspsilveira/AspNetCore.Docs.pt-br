@@ -1,32 +1,15 @@
 ---
-title: Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory
-author: guardrex
-description: ''
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/11/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 6ff95f0c5c925cbafef2b997a6cb23aeb15ff1aa
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153970"
+Título: ' proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory ' autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 Este artigo descreve como criar um [ Blazor aplicativo hospedado Webassembly](xref:blazor/hosting-models#blazor-webassembly) que usa [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) para autenticação.
 
@@ -38,16 +21,22 @@ Siga as orientações em [início rápido: configurar um locatário](/azure/acti
 
 ### <a name="register-a-server-api-app"></a>Registrar um aplicativo de API do servidor
 
-Siga as orientações em [início rápido: registrar um aplicativo com a plataforma de identidade da Microsoft e os](/azure/active-directory/develop/quickstart-register-app) tópicos subsequentes do Azure AAD para registrar um aplicativo do AAD para o *aplicativo de API do servidor* na área **Azure Active Directory**  >  **registros de aplicativo** do portal do Azure:
+Siga as orientações em [início rápido: registrar um aplicativo com a plataforma de identidade da Microsoft e os](/azure/active-directory/develop/quickstart-register-app) tópicos subsequentes do Azure AAD para registrar um aplicativo do AAD para o *aplicativo de API do servidor*:
 
-1. Selecione **Novo registro**.
+1. Em **Azure Active Directory**  >  **registros de aplicativo**, selecione **novo registro**.
 1. Forneça um **nome** para o aplicativo (por exemplo, ** Blazor servidor AAD**).
 1. Escolha um **tipo de conta com suporte**. Você pode selecionar **contas neste diretório organizacional somente** (locatário único) para essa experiência.
 1. O *aplicativo de API do servidor* não requer um **URI de redirecionamento** nesse cenário, portanto, deixe a lista suspensa definida como **Web** e não insira um URI de redirecionamento.
 1. Desabilite a caixa de seleção **permissões**  >  **conceder administrador concento para OpenID e offline_access** .
 1. Selecione **Registrar**.
 
-Em **permissões de API**, remova a permissão **Microsoft Graph**  >  **User. Read** , pois o aplicativo não requer acesso ao perfil de entrada ou UER.
+Registre as seguintes informações:
+
+* *Aplicativo de API do servidor* ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111` )
+* ID do diretório (ID do locatário) (por exemplo, `222222222-2222-2222-2222-222222222222` )
+* Domínio de locatário do AAD (por exemplo, `contoso.onmicrosoft.com` ) &ndash; o domínio está disponível como o **domínio do Publicador** na folha de **identidade visual** do portal do Azure para o aplicativo registrado.
+
+Em **permissões de API**, remova a permissão **Microsoft Graph**  >  **User. Read** , pois o aplicativo não requer acesso de entrada ou perfil de usuário.
 
 No **expor uma API**:
 
@@ -61,26 +50,25 @@ No **expor uma API**:
 
 Registre as seguintes informações:
 
-* *Aplicativo de API do servidor* ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111` )
 * URI da ID do aplicativo (por exemplo,, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111` `api://11111111-1111-1111-1111-111111111111` ou o valor personalizado que você forneceu)
-* ID do diretório (ID do locatário) (por exemplo, `222222222-2222-2222-2222-222222222222` )
-* Domínio de locatário do AAD (por exemplo, `contoso.onmicrosoft.com` )
 * Escopo padrão (por exemplo, `API.Access` )
 
 ### <a name="register-a-client-app"></a>Registrar um aplicativo cliente
 
-Siga as orientações em [início rápido: registrar um aplicativo com a plataforma de identidade da Microsoft e os](/azure/active-directory/develop/quickstart-register-app) tópicos subsequentes do Azure AAD para registrar um aplicativo do AAD para o *aplicativo cliente* na área **Azure Active Directory**  >  **registros de aplicativo** do portal do Azure:
+Siga as orientações em [início rápido: registrar um aplicativo com a plataforma de identidade da Microsoft e os](/azure/active-directory/develop/quickstart-register-app) tópicos subsequentes do Azure AAD para registrar um aplicativo do AAD para o *aplicativo cliente*:
 
-1. Selecione **Novo registro**.
+1. Em **Azure Active Directory**  >  **registros de aplicativo**, selecione **novo registro**.
 1. Forneça um **nome** para o aplicativo (por exemplo, ** Blazor cliente AAD**).
 1. Escolha um **tipo de conta com suporte**. Você pode selecionar **contas neste diretório organizacional somente** (locatário único) para essa experiência.
-1. Deixe a lista suspensa **URI de redirecionamento** definida como **Web**e forneça um URI de redirecionamento de `https://localhost:5001/authentication/login-callback` .
+1. Deixe a lista suspensa **URI de redirecionamento** definida como **Web**e forneça o seguinte URI de redirecionamento: `https://localhost:{PORT}/authentication/login-callback` . A porta padrão para um aplicativo em execução no Kestrel é 5001. Por IIS Express, a porta gerada aleatoriamente pode ser encontrada nas propriedades do aplicativo do servidor no painel de **depuração** .
 1. Desabilite a caixa de seleção **permissões**  >  **conceder administrador concento para OpenID e offline_access** .
 1. Selecione **Registrar**.
 
+Registre a ID do aplicativo de aplicativo *cliente* (ID do cliente) (por exemplo, `33333333-3333-3333-3333-333333333333` ).
+
 Em **Authentication**  >  **configurações da plataforma**de autenticação  >  **Web**:
 
-1. Confirme se o **URI de redirecionamento** do `https://localhost:5001/authentication/login-callback` está presente.
+1. Confirme se o **URI de redirecionamento** do `https://localhost:{PORT}/authentication/login-callback` está presente.
 1. Para **concessão implícita**, marque as caixas de seleção para **tokens de acesso** e **tokens de ID**.
 1. Os padrões restantes para o aplicativo são aceitáveis para essa experiência.
 1. Selecione o botão **Salvar**.
@@ -95,14 +83,12 @@ Em **permissões de API**:
 1. Escolha **Adicionar permissões**.
 1. Selecione o botão **conceder conteúdo do administrador para {nome do locatário}** . Selecione **Sim** para confirmar.
 
-Registre a ID do aplicativo de aplicativo *cliente* (ID do cliente) (por exemplo, `33333333-3333-3333-3333-333333333333` ).
-
 ### <a name="create-the-app"></a>Criar o aplicativo
 
 Substitua os espaços reservados no comando a seguir pelas informações registradas anteriormente e execute o comando em um shell de comando:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho --tenant-id "{TENANT ID}"
 ```
 
 Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ). O nome da pasta também se torna parte do nome do projeto.
@@ -120,7 +106,7 @@ O suporte para autenticar e autorizar chamadas para ASP.NET Core APIs Web é for
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
 
 ### <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
@@ -149,6 +135,10 @@ Por padrão, a API do aplicativo de servidor popula `User.Identity.Name` com o v
 Para configurar o aplicativo para receber o valor do `name` tipo de declaração, configure o [TokenValidationParameters. NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) do <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> no `Startup.ConfigureServices` :
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 services.Configure<JwtBearerOptions>(
     AzureADDefaults.JwtBearerAuthenticationScheme, options =>
     {
@@ -158,7 +148,7 @@ services.Configure<JwtBearerOptions>(
 
 ### <a name="app-settings"></a>Configurações de aplicativo
 
-O arquivo *appSettings. JSON* contém as opções para configurar o manipulador de portador JWT usado para validar tokens de acesso.
+O arquivo *appSettings. JSON* contém as opções para configurar o manipulador de portador JWT usado para validar tokens de acesso:
 
 ```json
 {
@@ -217,10 +207,8 @@ Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pa
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
-
-Substitua `{VERSION}` na referência do pacote anterior pela versão do `Microsoft.AspNetCore.Blazor.Templates` pacote mostrado no <xref:blazor/get-started> artigo.
 
 O `Microsoft.Authentication.WebAssembly.Msal` pacote adiciona transitivamente o `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacote ao aplicativo.
 
@@ -239,7 +227,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-O suporte para autenticação de usuários é registrado no contêiner de serviço com o `AddMsalAuthentication` método de extensão fornecido pelo `Microsoft.Authentication.WebAssembly.Msal` pacote. Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
+O suporte para autenticação de usuários é registrado no contêiner de serviço com o `AddMsalAuthentication` método de extensão fornecido pelo `Microsoft.Authentication.WebAssembly.Msal` pacote. Esse método configura os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
 
 *Program.cs*:
 
@@ -294,18 +282,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> Se o portal do Azure fornecer um URI de escopo e **o aplicativo lançar uma exceção sem tratamento** quando receber uma resposta de *401 não autorizado* da API, tente usar um URI de escopo que não inclua o esquema e o host. Por exemplo, a portal do Azure pode fornecer um dos seguintes formatos de URI de escopo:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Forneça o URI do escopo sem o esquema e o host:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 Para obter mais informações, consulte as seguintes seções do artigo *cenários adicionais* :
 
@@ -343,7 +320,10 @@ Para obter mais informações, consulte as seguintes seções do artigo *cenári
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-Execute o aplicativo no projeto do servidor. Ao usar o Visual Studio, selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .
+Execute o aplicativo no projeto do servidor. Ao usar o Visual Studio, seja:
+
+* Defina a lista suspensa **projetos de inicialização** na barra de ferramentas para o aplicativo de *API do servidor* e selecione o botão **executar** .
+* Selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]

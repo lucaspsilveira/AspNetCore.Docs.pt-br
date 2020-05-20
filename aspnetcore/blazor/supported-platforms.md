@@ -1,54 +1,361 @@
 ---
-title: ASP.NET Core Blazor plataformas com suporte
-author: guardrex
-description: Saiba mais sobre as plataformas com suporte Blazorpara ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 12/18/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/supported-platforms
-ms.openlocfilehash: 1c78803e6468f924bf8c8e9403a34565b114006f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771110"
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
-# <a name="aspnet-core-blazor-supported-platforms"></a>ASP.NET Core plataformas suportadas com suporte
+# <a name="aspnet-core-blazor-supported-platforms"></a>ASP.NET Core Blazor plataformas com suporte
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 ## <a name="browser-requirements"></a>Requisitos de navegador
 
-### <a name="blazor-webassembly"></a>WebAssembly Blazor
+### <a name="blazor-webassembly"></a>BlazorWebassembly
 
 | Navegador                          | Versão               |
-| -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Current               |
-| Mozilla Firefox                  | Current               |
-| Google Chrome, incluindo Android | Current               |
-| Safari, incluindo iOS            | Current               |
-| Microsoft Internet Explorer      | Sem suporte&dagger; |
+| ---
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---------------- | :---Título: ' ASP.NET Core Blazor plataformas com suporte ' autor: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+----------: | | Microsoft Edge | Atual | | Mozilla Firefox | Atual | | Google Chrome, incluindo Android | Atual | | Safari, incluindo iOS | Atual | | Microsoft Internet Explorer | Sem suporte&dagger; |
 
 &dagger;O Microsoft Internet Explorer não dá suporte ao [Webassembly](https://webassembly.org).
 
-### <a name="blazor-server"></a>Servidor Blazor
+### <a name="blazor-server"></a>BlazorServidor
 
 | Navegador                          | Versão    |
-| -------------------------------- | :--------: |
-| Microsoft Edge                   | Current    |
-| Mozilla Firefox                  | Current    |
-| Google Chrome, incluindo Android | Current    |
-| Safari, incluindo iOS            | Current    |
-| Microsoft Internet Explorer      | 11&dagger; |
+| ---
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---------------- | :---Título: ' ASP.NET Core Blazor plataformas com suporte ' autor: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' ASP.NET Core o Blazor autor das plataformas com suporte: Descrição: ' saiba mais sobre as plataformas com suporte para ASP.NET Core Blazor . '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+----: | | Microsoft Edge | Atual | | Mozilla Firefox | Atual | | Google Chrome, incluindo Android | Atual | | Safari, incluindo iOS | Atual | | Microsoft Internet Explorer | 11&dagger; |
 
 &dagger;Os suportes retroativos adicionais são necessários (por exemplo, as promessas podem ser adicionadas por meio de um pacote [polyfill.Io](https://polyfill.io/v3/) ).
 

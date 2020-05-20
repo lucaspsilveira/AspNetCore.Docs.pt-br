@@ -1,7 +1,7 @@
 ---
-title: Tratar erros em aplicativos Blazor ASP.NET Core
+title: Tratar erros em Blazor aplicativos ASP.NET Core
 author: guardrex
-description: Descubra como ASP.NET Core Blazor como Blazor o gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
+description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -13,27 +13,27 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 7601e448a52be5e1064326929281e72ad28a0e65
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
+ms.openlocfilehash: cca4d8ce0c783f26f33cb7b2b1535a4bc53384d6
+ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967149"
+ms.lasthandoff: 05/15/2020
+ms.locfileid: "83424336"
 ---
-# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Tratar erros em aplicativos Blazor ASP.NET Core
+# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Tratar erros em Blazor aplicativos ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Este artigo descreve como Blazor o gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
+Este artigo descreve como o Blazor gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
 
 ## <a name="detailed-errors-during-development"></a>Erros detalhados durante o desenvolvimento
 
-Quando um Blazor aplicativo não está funcionando corretamente durante o desenvolvimento, receber informações detalhadas de erro do aplicativo ajuda a solucionar problemas e corrigir o problema. Quando ocorre um erro, Blazor os aplicativos exibem uma barra de ouro na parte inferior da tela:
+Quando um Blazor aplicativo não está funcionando corretamente durante o desenvolvimento, receber informações detalhadas de erro do aplicativo ajuda a solucionar problemas e corrigir o problema. Quando ocorre um erro, os Blazor aplicativos exibem uma barra de ouro na parte inferior da tela:
 
 * Durante o desenvolvimento, a barra de ouro direciona você para o console do navegador, onde você pode ver a exceção.
 * Em produção, a barra de ouro notifica o usuário de que ocorreu um erro e recomenda a atualização do navegador.
 
-A interface do usuário para essa experiência de tratamento de erros Blazor faz parte dos modelos de projeto.
+A interface do usuário para essa experiência de tratamento de erros faz parte dos Blazor modelos de projeto.
 
 Em um Blazor aplicativo Webassembly, personalize a experiência no arquivo *wwwroot/index.html* :
 
@@ -45,7 +45,7 @@ Em um Blazor aplicativo Webassembly, personalize a experiência no arquivo *wwwr
 </div>
 ```
 
-Em um Blazor aplicativo de servidor, personalize a experiência no arquivo *pages/_Host. cshtml* :
+Em um Blazor aplicativo de servidor, personalize a experiência no arquivo *Pages/_Host. cshtml* :
 
 ```cshtml
 <div id="blazor-error-ui">
@@ -92,7 +92,7 @@ BlazorO servidor é uma estrutura com estado. Enquanto os usuários interagem co
 
 Se um usuário abrir o aplicativo em várias guias do navegador, ele terá vários circuitos independentes.
 
-Blazortrata a maioria das exceções sem tratamento como fatal para o circuito onde elas ocorrem. Se um circuito for encerrado devido a uma exceção sem tratamento, o usuário só poderá continuar a interagir com o aplicativo recarregando a página para criar um novo circuito. Os circuitos fora do que foi encerrado, que são circuitos para outros usuários ou outras guias do navegador, não são afetados. Esse cenário é semelhante a um aplicativo de área de&mdash;trabalho que falha no aplicativo com falha deve ser reiniciado, mas outros aplicativos não são afetados.
+Blazortrata a maioria das exceções sem tratamento como fatal para o circuito onde elas ocorrem. Se um circuito for encerrado devido a uma exceção sem tratamento, o usuário só poderá continuar a interagir com o aplicativo recarregando a página para criar um novo circuito. Os circuitos fora do que foi encerrado, que são circuitos para outros usuários ou outras guias do navegador, não são afetados. Esse cenário é semelhante a um aplicativo de área de trabalho que falha. O aplicativo com falha deve ser reiniciado, mas outros aplicativos não são afetados.
 
 Um circuito é encerrado quando ocorre uma exceção sem tratamento pelos seguintes motivos:
 
@@ -113,9 +113,9 @@ Em produção, não processe mensagens de exceção de estrutura ou rastreamento
 
 Se ocorrer uma exceção sem tratamento, a exceção será registrada em <xref:Microsoft.Extensions.Logging.ILogger> instâncias configuradas no contêiner de serviço. Por padrão, Blazor os aplicativos registram em log a saída do console com o provedor de log do console. Considere fazer logon em um local mais permanente com um provedor que gerencia o tamanho do log e a rotação do log. Para obter mais informações, consulte <xref:fundamentals/logging/index>.
 
-Durante o desenvolvimento Blazor , o geralmente envia os detalhes completos das exceções para o console do navegador para auxiliar na depuração. Na produção, os erros detalhados no console do navegador são desabilitados por padrão, o que significa que os erros não são enviados aos clientes, mas os detalhes completos da exceção ainda são registrados no lado do servidor. Para obter mais informações, consulte <xref:fundamentals/error-handling>.
+Durante o desenvolvimento, Blazor o geralmente envia os detalhes completos das exceções para o console do navegador para auxiliar na depuração. Na produção, os erros detalhados no console do navegador são desabilitados por padrão, o que significa que os erros não são enviados aos clientes, mas os detalhes completos da exceção ainda são registrados no lado do servidor. Para obter mais informações, consulte <xref:fundamentals/error-handling>.
 
-Você deve decidir quais incidentes registrar e o nível de gravidade dos incidentes registrados. Usuários hostis podem ser capazes de disparar erros deliberadamente. Por exemplo, não registre um incidente de um erro em que um `ProductId` desconhecido é fornecido na URL de um componente que exibe detalhes do produto. Nem todos os erros devem ser tratados como incidentes de alta severidade para registro em log.
+Você deve decidir quais incidentes registrar e o nível de gravidade dos incidentes registrados. Usuários hostis podem ser capazes de disparar erros deliberadamente. Por exemplo, não registre um incidente de um erro em que um desconhecido `ProductId` é fornecido na URL de um componente que exibe detalhes do produto. Nem todos os erros devem ser tratados como incidentes de alta severidade para registro em log.
 
 Para obter mais informações, consulte <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
@@ -135,44 +135,44 @@ As exceções sem tratamento anteriores são descritas nas seções a seguir des
 
 ### <a name="component-instantiation"></a>Instanciação de componente
 
-Quando Blazor o cria uma instância de um componente:
+Quando o Blazor cria uma instância de um componente:
 
 * O construtor do componente é invocado.
 * Os construtores de quaisquer serviços não singleton de DI fornecidos ao construtor do componente por meio da [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) diretiva ou do [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) atributo são invocados.
 
-Um Blazor circuito de servidor falha quando qualquer Construtor executado ou um setter para `[Inject]` qualquer propriedade gera uma exceção sem tratamento. A exceção é fatal porque a estrutura não pode instanciar o componente. Se a lógica do Construtor puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
+Um Blazor circuito de servidor falha quando qualquer Construtor executado ou um setter para qualquer `[Inject]` propriedade gera uma exceção sem tratamento. A exceção é fatal porque a estrutura não pode instanciar o componente. Se a lógica do Construtor puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
 
 ### <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
-Durante o tempo de vida de um Blazor componente, o invoca os seguintes [métodos de ciclo de vida](xref:blazor/lifecycle):
+Durante o tempo de vida de um componente, Blazor o invoca os seguintes [métodos de ciclo de vida](xref:blazor/lifecycle):
 
 * `OnInitialized` / `OnInitializedAsync`
 * `OnParametersSet` / `OnParametersSetAsync`
 * `ShouldRender` / `ShouldRenderAsync`
 * `OnAfterRender` / `OnAfterRenderAsync`
 
-Se qualquer método de ciclo de vida lançar uma exceção, de forma síncrona ou assíncrona, Blazor a exceção será fatal para um circuito de servidor. Para componentes que lidam com erros em métodos de ciclo de vida, adicione a lógica de tratamento de erros.
+Se qualquer método de ciclo de vida lançar uma exceção, de forma síncrona ou assíncrona, a exceção será fatal para um Blazor circuito de servidor. Para componentes que lidam com erros em métodos de ciclo de vida, adicione a lógica de tratamento de erros.
 
-No exemplo a seguir, `OnParametersSetAsync` onde chama um método para obter um produto:
+No exemplo a seguir, onde `OnParametersSetAsync` chama um método para obter um produto:
 
 * Uma exceção gerada no `ProductRepository.GetProductByIdAsync` método é manipulada por uma `try-catch` instrução.
 * Quando o `catch` bloco é executado:
-  * `loadFailed`é definido como `true`, que é usado para exibir uma mensagem de erro para o usuário.
+  * `loadFailed`é definido como `true` , que é usado para exibir uma mensagem de erro para o usuário.
   * O erro é registrado.
 
 [!code-razor[](handle-errors/samples_snapshot/3.x/product-details.razor?highlight=11,27-39)]
 
 ### <a name="rendering-logic"></a>Lógica de renderização
 
-A marcação declarativa em um `.razor` arquivo de componente é compilada em um método `BuildRenderTree`C# chamado. Quando um componente renderiza, `BuildRenderTree` o executa e cria uma estrutura de dados que descreve os elementos, o texto e os componentes filho do componente renderizado.
+A marcação declarativa em um `.razor` arquivo de componente é compilada em um método C# chamado `BuildRenderTree` . Quando um componente renderiza, `BuildRenderTree` o executa e cria uma estrutura de dados que descreve os elementos, o texto e os componentes filho do componente renderizado.
 
-A lógica de renderização pode gerar uma exceção. Um exemplo desse cenário ocorre quando `@someObject.PropertyName` o é avaliado, `@someObject` mas `null`é. Uma exceção sem tratamento gerada pela lógica de renderização é fatal para um Blazor circuito de servidor.
+A lógica de renderização pode gerar uma exceção. Um exemplo desse cenário ocorre quando o `@someObject.PropertyName` é avaliado, mas `@someObject` é `null` . Uma exceção sem tratamento gerada pela lógica de renderização é fatal para um Blazor circuito de servidor.
 
-Para evitar uma exceção de referência nula na lógica de renderização, verifique `null` se há um objeto antes de acessar seus membros. No exemplo a seguir, `person.Address` as propriedades não são `person.Address` acessadas se for `null`:
+Para evitar uma exceção de referência nula na lógica de renderização, verifique se há um `null` objeto antes de acessar seus membros. No exemplo a seguir, `person.Address` as propriedades não são acessadas se `person.Address` for `null` :
 
 [!code-razor[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
 
-O código anterior pressupõe que `person` não `null`é. Geralmente, a estrutura do código garante que um objeto exista no momento em que o componente é renderizado. Nesses casos, não é necessário verificar na lógica de `null` renderização. No exemplo anterior, `person` talvez seja garantido que exista porque `person` é criado quando o componente é instanciado.
+O código anterior pressupõe que `person` não é `null` . Geralmente, a estrutura do código garante que um objeto exista no momento em que o componente é renderizado. Nesses casos, não é necessário verificar `null` na lógica de renderização. No exemplo anterior, `person` talvez seja garantido que exista porque `person` é criado quando o componente é instanciado.
 
 ### <a name="event-handlers"></a>Manipuladores de eventos
 
@@ -185,32 +185,32 @@ O código do lado do cliente dispara invocações de código C# quando manipulad
 
 O código do manipulador de eventos pode gerar uma exceção sem tratamento nesses cenários.
 
-Se um manipulador de eventos lançar uma exceção sem tratamento (por exemplo, uma consulta de banco de dados falhar), a exceção será Blazor fatal para um circuito de servidor. Se o aplicativo chamar o código que poderia falhar por motivos externos, intercepte as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
+Se um manipulador de eventos lançar uma exceção sem tratamento (por exemplo, uma consulta de banco de dados falhar), a exceção será fatal para um Blazor circuito de servidor. Se o aplicativo chamar o código que poderia falhar por motivos externos, intercepte as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
 
 Se o código do usuário não interceptar e manipular a exceção, a estrutura registrará a exceção e encerrará o circuito.
 
 ### <a name="component-disposal"></a>Disposição do componente
 
-Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa <xref:System.IDisposable?displayProperty=fullName> o é removido da interface do usuário, a estrutura chama o <xref:System.IDisposable.Dispose%2A> método do componente.
+Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa o <xref:System.IDisposable?displayProperty=fullName> é removido da interface do usuário, a estrutura chama o <xref:System.IDisposable.Dispose%2A> método do componente.
 
-Se o método do `Dispose` componente lançar uma exceção sem tratamento, a exceção será fatal para um Blazor circuito de servidor. Se a lógica de descarte puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
+Se o método do componente `Dispose` lançar uma exceção sem tratamento, a exceção será fatal para um Blazor circuito de servidor. Se a lógica de descarte puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
 
-Para obter mais informações sobre a disposição de <xref:blazor/lifecycle#component-disposal-with-idisposable>componentes, consulte.
+Para obter mais informações sobre a disposição de componentes, consulte <xref:blazor/lifecycle#component-disposal-with-idisposable> .
 
 ### <a name="javascript-interop"></a>Interoperabilidade do JavaScript
 
 `IJSRuntime.InvokeAsync<T>`permite que o código .NET faça chamadas assíncronas para o tempo de execução do JavaScript no navegador do usuário.
 
-As seguintes condições se aplicam ao tratamento `InvokeAsync<T>`de erros com:
+As seguintes condições se aplicam ao tratamento de erros com `InvokeAsync<T>` :
 
-* Se uma chamada para `InvokeAsync<T>` falhar de forma síncrona, ocorrerá uma exceção do .net. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque os argumentos fornecidos não podem ser serializados. O código do desenvolvedor deve capturar a exceção. Se o código do aplicativo em um manipulador de eventos ou método de ciclo de vida de componente não tratar uma exceção, Blazor a exceção resultante será fatal para um circuito de servidor.
-* Se uma chamada para `InvokeAsync<T>` falhar de forma assíncrona <xref:System.Threading.Tasks.Task> , o .net falhará. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque o código do lado do JavaScript gera uma exceção ou retorna `Promise` um que foi `rejected`concluído como. O código do desenvolvedor deve capturar a exceção. Se estiver usando o operador [Await](/dotnet/csharp/language-reference/keywords/await) , considere encapsular a chamada de método em uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Caso contrário, o código com falha resultará em uma exceção sem tratamento que é fatal Blazor para um circuito de servidor.
-* Por padrão, as chamadas `InvokeAsync<T>` para devem ser concluídas em um determinado período ou a chamada atinge o tempo limite. O período de tempo limite padrão é de um minuto. O tempo limite protege o código contra uma perda na conectividade de rede ou no código JavaScript que nunca envia uma mensagem de conclusão. Se a chamada atingir o tempo limite, `Task` o resultado falhará com um <xref:System.OperationCanceledException>. Interceptar e processar a exceção com registro em log.
+* Se uma chamada para `InvokeAsync<T>` falhar de forma síncrona, ocorrerá uma exceção do .net. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque os argumentos fornecidos não podem ser serializados. O código do desenvolvedor deve capturar a exceção. Se o código do aplicativo em um manipulador de eventos ou método de ciclo de vida de componente não tratar uma exceção, a exceção resultante será fatal para um Blazor circuito de servidor.
+* Se uma chamada para `InvokeAsync<T>` falhar de forma assíncrona, o .NET <xref:System.Threading.Tasks.Task> falhará. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque o código do lado do JavaScript gera uma exceção ou retorna um `Promise` que foi concluído como `rejected` . O código do desenvolvedor deve capturar a exceção. Se estiver usando o operador [Await](/dotnet/csharp/language-reference/keywords/await) , considere encapsular a chamada de método em uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Caso contrário, o código com falha resultará em uma exceção sem tratamento que é fatal para um Blazor circuito de servidor.
+* Por padrão, as chamadas para `InvokeAsync<T>` devem ser concluídas em um determinado período ou a chamada atinge o tempo limite. O período de tempo limite padrão é de um minuto. O tempo limite protege o código contra uma perda na conectividade de rede ou no código JavaScript que nunca envia uma mensagem de conclusão. Se a chamada atingir o tempo limite, o resultado `Task` falhará com um <xref:System.OperationCanceledException> . Interceptar e processar a exceção com registro em log.
 
-Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) indicados pelo atributo. Se esses métodos .NET lançarem uma exceção sem tratamento:
+Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET indicados pelo [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) atributo. Se esses métodos .NET lançarem uma exceção sem tratamento:
 
-* A exceção não é tratada como fatal para Blazor um circuito de servidor.
-* O lado `Promise` do JavaScript é rejeitado.
+* A exceção não é tratada como fatal para um Blazor circuito de servidor.
+* O lado do JavaScript `Promise` é rejeitado.
 
 Você tem a opção de usar o código de tratamento de erros no lado do .NET ou no lado do JavaScript da chamada do método.
 
@@ -230,17 +230,17 @@ Blazoros componentes podem ser renderizados usando o [auxiliar de marca do compo
 Se qualquer componente lançar uma exceção sem tratamento durante o pré-processamento, por exemplo, durante um método de ciclo de vida ou na lógica de renderização:
 
 * A exceção é fatal para o circuito.
-* A exceção é gerada na pilha de chamadas a partir `Component` do auxiliar de marca. Portanto, toda a solicitação HTTP falha, a menos que a exceção seja explicitamente detectada pelo código do desenvolvedor.
+* A exceção é gerada na pilha de chamadas a partir do `Component` auxiliar de marca. Portanto, toda a solicitação HTTP falha, a menos que a exceção seja explicitamente detectada pelo código do desenvolvedor.
 
 Em circunstâncias normais, quando o pré-processamento falha, continuar a criar e renderizar o componente não faz sentido porque um componente de trabalho não pode ser renderizado.
 
-Para tolerar erros que podem ocorrer durante o pré-processamento, a lógica de tratamento de erro deve ser colocada dentro de um componente que pode gerar exceções. Use instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Em vez de encapsular o `Component` auxiliar de `try-catch` marca em uma instrução, coloque a lógica de tratamento de erro `Component` no componente renderizado pelo auxiliar de marca.
+Para tolerar erros que podem ocorrer durante o pré-processamento, a lógica de tratamento de erro deve ser colocada dentro de um componente que pode gerar exceções. Use instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Em vez de encapsular o `Component` auxiliar de marca em uma `try-catch` instrução, coloque a lógica de tratamento de erro no componente renderizado pelo `Component` auxiliar de marca.
 
 ## <a name="advanced-scenarios"></a>Cenários avançados
 
 ### <a name="recursive-rendering"></a>Renderização recursiva
 
-Os componentes podem ser aninhados recursivamente. Isso é útil para representar estruturas de dados recursivas. Por exemplo, um `TreeNode` componente pode renderizar `TreeNode` mais componentes para cada um dos filhos do nó.
+Os componentes podem ser aninhados recursivamente. Isso é útil para representar estruturas de dados recursivas. Por exemplo, um `TreeNode` componente pode renderizar mais `TreeNode` componentes para cada um dos filhos do nó.
 
 Ao renderizar recursivamente, evite codificar padrões que resultam em recursão infinita:
 
@@ -262,7 +262,7 @@ Para evitar padrões de recursão infinitos, verifique se o código de renderiza
 
 ### <a name="custom-render-tree-logic"></a>Lógica de árvore de renderização personalizada
 
-A Blazor maioria dos componentes são implementados como arquivos *. Razor* e são compilados para produzir lógica `RenderTreeBuilder` que opera em um para renderizar sua saída. Um desenvolvedor pode implementar `RenderTreeBuilder` A lógica manualmente usando o código C# de procedimento. Para obter mais informações, consulte <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
+A maioria dos Blazor componentes são implementados como arquivos *. Razor* e são compilados para produzir lógica que opera em um `RenderTreeBuilder` para renderizar sua saída. Um desenvolvedor pode implementar A `RenderTreeBuilder` lógica manualmente usando o código C# de procedimento. Para obter mais informações, consulte <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > O uso da lógica do construtor de árvore de renderização manual é considerado um cenário avançado e não seguro, não recomendado para o desenvolvimento geral de componentes.
