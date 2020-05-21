@@ -30,5 +30,5 @@ Uma abordagem para impedir que cookies persistentes e dados do site interfira no
 Ao testar e solucionar problemas de um aplicativo com mais de um e mais, verifique se você está executando o aplicativo do projeto do **servidor** . Por exemplo, no Visual Studio, confirme se o projeto do servidor está realçado em **Gerenciador de soluções** antes de iniciar o aplicativo com qualquer uma das seguintes abordagens:
 
 * Selecione o botão **Executar**.
-* Use **depurar** > **Iniciar Depuração** no menu.
+* Use **depurar**  >  **Iniciar Depuração** no menu.
 * Pressione <kbd>F5</kbd>.
