@@ -147,7 +147,7 @@ Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
 
 ### <a name="save-and-load-data-within-a-component"></a>Salvar e carregar dados dentro de um componente
 
-Em qualquer componente que exija carregar ou salvar dados no armazenamento de navegador, use [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) para injetar uma instância de um dos seguintes:
+Em qualquer componente que exija carregar ou salvar dados no armazenamento de navegador, use [`@inject`](xref:mvc/views/razor#inject) para injetar uma instância de um dos seguintes:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -184,7 +184,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em `OnParametersSetAsync` , não `OnInitializedAsync` . `OnInitializedAsync`é chamado apenas uma vez quando o componente é instanciado primeiro. `OnInitializedAsync`Não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página. Para obter mais informações, consulte <xref:blazor/lifecycle>.
+Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , não <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>é chamado apenas uma vez quando o componente é instanciado primeiro. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>Não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página. Para obter mais informações, consulte <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > Os exemplos nesta seção só funcionarão se o servidor não tiver o pré-processamento habilitado. Com o pré-processamento habilitado, um erro é gerado semelhante a:
@@ -314,7 +314,7 @@ else
 
 O `CounterStateProvider` componente manipula a fase de carregamento não processando seu conteúdo filho até que o carregamento seja concluído.
 
-Para usar o `CounterStateProvider` componente, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote o `CounterStateProvider` componente em volta do `Router` no `App` componente (*app. Razor*):
+Para usar o `CounterStateProvider` componente, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote o `CounterStateProvider` componente em volta do <xref:Microsoft.AspNetCore.Components.Routing.Router> no `App` componente (*app. Razor*):
 
 ```razor
 <CounterStateProvider>

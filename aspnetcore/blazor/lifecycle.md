@@ -1,24 +1,12 @@
 ---
-title: BlazorCiclo de vida ASP.NET Core
-author: guardrex
-description: Saiba como usar Razor métodos de ciclo de vida do componente em ASP.NET Core Blazor aplicativos.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/lifecycle
-ms.openlocfilehash: e4fcd86b6e6a84d9e34a83688f9fb80c6907e5f3
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83438909"
+Título: ' ASP.NET Core Blazor ciclo de vida ' autor: Descrição: ' saiba como usar Razor métodos de ciclo de vida de componente em Blazor aplicativos ASP.NET Core. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>BlazorCiclo de vida ASP.NET Core
 
@@ -30,9 +18,9 @@ A Blazor estrutura inclui métodos de ciclo de vida síncronos e assíncronos. S
 
 ### <a name="component-initialization-methods"></a>Métodos de inicialização de componente
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> são invocados quando o componente é inicializado após ter recebido seus parâmetros iniciais de seu componente pai. Use `OnInitializedAsync` quando o componente executa uma operação assíncrona e deve ser atualizado quando a operação é concluída.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> são invocados quando o componente é inicializado após ter recebido seus parâmetros iniciais de seu componente pai. Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> quando o componente executa uma operação assíncrona e deve ser atualizado quando a operação é concluída.
 
-Para uma operação síncrona, substitua `OnInitialized` :
+Para uma operação síncrona, substitua <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> :
 
 ```csharp
 protected override void OnInitialized()
@@ -41,7 +29,7 @@ protected override void OnInitialized()
 }
 ```
 
-Para executar uma operação assíncrona, substitua `OnInitializedAsync` e use a `await` palavra-chave na operação:
+Para executar uma operação assíncrona, substitua <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> e use o operador [Await](/dotnet/csharp/language-reference/operators/await) na operação:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -50,12 +38,12 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-BlazorAplicativos de servidor que preparam [sua chamada de conteúdo](xref:blazor/hosting-model-configuration#render-mode) `OnInitializedAsync` **_duas vezes_**:
+BlazorAplicativos de servidor que preparam [sua chamada de conteúdo](xref:blazor/hosting-model-configuration#render-mode) <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_duas vezes_**:
 
 * Uma vez quando o componente é inicialmente renderizado estaticamente como parte da página.
 * Uma segunda vez quando o navegador estabelece uma conexão de volta para o servidor.
 
-Para impedir que o código `OnInitializedAsync` do desenvolvedor seja executado duas vezes, consulte a seção [reconexão com estado após o pré-processamento](#stateful-reconnection-after-prerendering) .
+Para impedir que o código <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> do desenvolvedor seja executado duas vezes, consulte a seção [reconexão com estado após o pré-processamento](#stateful-reconnection-after-prerendering) .
 
 Enquanto um Blazor aplicativo de servidor está sendo renderizado, determinadas ações, como chamar em JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados. Para obter mais informações, consulte a seção [detectar quando o aplicativo está sendo processado](#detect-when-the-app-is-prerendering) .
 
@@ -74,11 +62,11 @@ public override async Task SetParametersAsync(ParameterView parameters)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ParameterView>contém o conjunto inteiro de valores de parâmetro a cada vez que `SetParametersAsync` é chamado.
+<xref:Microsoft.AspNetCore.Components.ParameterView>contém o conjunto inteiro de valores de parâmetro a cada vez que <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> é chamado.
 
-A implementação padrão de `SetParametersAsync` define o valor de cada propriedade com o `[Parameter]` `[CascadingParameter]` atributo ou que tem um valor correspondente no `ParameterView` . Os parâmetros que não têm um valor correspondente em `ParameterView` são deixados inalterados.
+A implementação padrão de <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> define o valor de cada propriedade com o [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) atributo ou que tem um valor correspondente no <xref:Microsoft.AspNetCore.Components.ParameterView> . Os parâmetros que não têm um valor correspondente em <xref:Microsoft.AspNetCore.Components.ParameterView> são deixados inalterados.
 
-Se `base.SetParametersAync` não for invocado, o código personalizado poderá interpretar o valor dos parâmetros de entrada de qualquer forma necessária. Por exemplo, não há nenhum requisito para atribuir os parâmetros de entrada às propriedades na classe.
+Se [base. SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) não é invocado, o código personalizado pode interpretar o valor dos parâmetros de entrada de qualquer forma necessária. Por exemplo, não há nenhum requisito para atribuir os parâmetros de entrada às propriedades na classe.
 
 Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte de componentes com IDisposable](#component-disposal-with-idisposable) .
 
@@ -99,7 +87,7 @@ protected override async Task OnParametersSetAsync()
 ```
 
 > [!NOTE]
-> O trabalho assíncrono ao aplicar parâmetros e valores de propriedade deve ocorrer durante o `OnParametersSetAsync` evento de ciclo de vida.
+> O trabalho assíncrono ao aplicar parâmetros e valores de propriedade deve ocorrer durante o <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> evento de ciclo de vida.
 
 ```csharp
 protected override void OnParametersSet()
@@ -114,7 +102,7 @@ Se algum manipulador de eventos estiver configurado, desvincule-os na alienaçã
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> são chamados após a conclusão da renderização de um componente. Referências de elemento e componente são preenchidas neste ponto. Use este estágio para executar etapas de inicialização adicionais usando o conteúdo renderizado, como a ativação de bibliotecas JavaScript de terceiros que operam nos elementos DOM renderizados.
 
-O `firstRender` parâmetro para `OnAfterRenderAsync` e `OnAfterRender` :
+O `firstRender` parâmetro para <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> :
 
 * É definido como `true` a primeira vez que a instância do componente é renderizada.
 * Pode ser usado para garantir que o trabalho de inicialização seja executado apenas uma vez.
@@ -130,9 +118,9 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 ```
 
 > [!NOTE]
-> O trabalho assíncrono imediatamente após a renderização deve ocorrer durante o `OnAfterRenderAsync` evento do ciclo de vida.
+> O trabalho assíncrono imediatamente após a renderização deve ocorrer durante o <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> evento do ciclo de vida.
 >
-> Mesmo que você retorne um <xref:System.Threading.Tasks.Task> do `OnAfterRenderAsync` , a estrutura não agendará um ciclo de processamento adicional para o componente depois que a tarefa for concluída. Isso é para evitar um loop de renderização infinito. Ele é diferente dos outros métodos de ciclo de vida, que agendam um ciclo de processamento adicional depois que a tarefa retornada é concluída.
+> Mesmo que você retorne um <xref:System.Threading.Tasks.Task> do <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> , a estrutura não agendará um ciclo de processamento adicional para o componente depois que a tarefa for concluída. Isso é para evitar um loop de renderização infinito. Ele é diferente dos outros métodos de ciclo de vida, que agendam um ciclo de processamento adicional depois que a tarefa retornada é concluída.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
@@ -144,7 +132,7 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-`OnAfterRender`e `OnAfterRenderAsync` *não são chamados durante o pré-processamento no servidor.*
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *não são chamados durante o pré-processamento no servidor.*
 
 Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte de componentes com IDisposable](#component-disposal-with-idisposable) .
 
@@ -161,21 +149,21 @@ protected override bool ShouldRender()
 }
 ```
 
-`ShouldRender`é chamado cada vez que o componente é renderizado.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>é chamado cada vez que o componente é renderizado.
 
-Mesmo se `ShouldRender` for substituído, o componente sempre será renderizado inicialmente.
+Mesmo se <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> for substituído, o componente sempre será renderizado inicialmente.
 
 Para obter mais informações, consulte <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>.
 
 ## <a name="state-changes"></a>Alterações de estado
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>Notifica o componente de que seu estado foi alterado. Quando aplicável, `StateHasChanged` a chamada faz com que o componente seja rerenderizado.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>Notifica o componente de que seu estado foi alterado. Quando aplicável, <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> a chamada faz com que o componente seja rerenderizado.
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>Tratar ações assíncronas incompletas no processamento
 
 Ações assíncronas executadas em eventos de ciclo de vida podem não ter sido concluídas antes de o componente ser renderizado. Os objetos podem ser `null` ou preenchidos incompletamente com dados enquanto o método de ciclo de vida está em execução. Forneça a lógica de renderização para confirmar que os objetos são inicializados. Renderizar elementos de interface do usuário de espaço reservado (por exemplo, uma mensagem de carregamento) enquanto objetos são `null` .
 
-No `FetchData` componente dos Blazor modelos, `OnInitializedAsync` é substituído para Asychronously receber dados de previsão ( `forecasts` ). Quando `forecasts` é `null` , uma mensagem de carregamento é exibida para o usuário. Depois que o `Task` retornado por `OnInitializedAsync` for concluído, o componente será rerenderizado com o estado atualizado.
+No `FetchData` componente dos Blazor modelos, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> é substituído para Asychronously receber dados de previsão ( `forecasts` ). Quando `forecasts` é `null` , uma mensagem de carregamento é exibida para o usuário. Depois que o `Task` retornado por <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> for concluído, o componente será rerenderizado com o estado atualizado.
 
 *Páginas/FetchData. Razor* no Blazor modelo de servidor:
 
@@ -200,7 +188,7 @@ Se um componente implementa <xref:System.IDisposable> , o [método Dispose](/dot
 ```
 
 > [!NOTE]
-> A chamada <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> no `Dispose` não tem suporte. `StateHasChanged`pode ser invocado como parte da subdivisão do renderizador, portanto, não há suporte para a solicitação de atualizações da interface do usuário nesse ponto.
+> A chamada <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> no `Dispose` não tem suporte. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>pode ser invocado como parte da subdivisão do renderizador, portanto, não há suporte para a solicitação de atualizações da interface do usuário nesse ponto.
 
 Cancele a assinatura de manipuladores de eventos de eventos .NET. Os exemplos de [ Blazor formulário](xref:blazor/forms-validation) a seguir mostram como desvincular um manipulador de eventos no `Dispose` método:
 
@@ -218,7 +206,7 @@ Para obter informações sobre como lidar com erros durante a execução do mét
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Reconexão com estado após o pré-processamento
 
-Em um Blazor aplicativo de servidor quando `RenderMode` é `ServerPrerendered` , o componente é inicialmente renderizado estaticamente como parte da página. Depois que o navegador estabelece uma conexão de volta com o servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o método de ciclo de vida de [{Async} OnInitialized](#component-initialization-methods) para inicializar o componente estiver presente, o método será executado *duas vezes*:
+Em um Blazor aplicativo de servidor quando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> é <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> , o componente é inicialmente renderizado estaticamente como parte da página. Depois que o navegador estabelece uma conexão de volta com o servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o método de ciclo de vida de [{Async} OnInitialized](#component-initialization-methods) para inicializar o componente estiver presente, o método será executado *duas vezes*:
 
 * Quando o componente é renderizado estaticamente.
 * Depois que a conexão do servidor tiver sido estabelecida.
@@ -274,7 +262,7 @@ public class WeatherForecastService
 }
 ```
 
-Para obter mais informações sobre o `RenderMode` , consulte <xref:blazor/hosting-model-configuration#render-mode> .
+Para obter mais informações sobre o <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> , consulte <xref:blazor/hosting-model-configuration#render-mode> .
 
 ## <a name="detect-when-the-app-is-prerendering"></a>Detectar quando o aplicativo está sendo renderizado
 
@@ -290,7 +278,7 @@ Outros motivos pelos quais os itens de trabalho em segundo plano podem exigir ca
 * O conjunto atual de itens de trabalho em segundo plano em execução deve ser substituído por um novo conjunto de itens de trabalho.
 * A prioridade das tarefas em execução no momento deve ser alterada.
 * O aplicativo deve ser desligado para reimplantá-lo no servidor.
-* Os recursos do servidor se tornam limitados, exigindo o reagendamento de itens de trabalho do backgound.
+* Os recursos do servidor se tornam limitados, exigindo o reagendamento de itens de trabalho em segundo plano.
 
 Para implementar um padrão de trabalho de segundo plano cancelável em um componente:
 

@@ -15,7 +15,7 @@ Uma abordagem para impedir que cookies persistentes e dados do site interfira no
   * Certifique-se de que o navegador seja fechado manualmente ou pelo IDE entre qualquer alteração no aplicativo, no usuário de teste ou na configuração do provedor.
 * Use um comando personalizado para abrir um navegador no modo Incognito ou privado no Visual Studio:
   * Abra a caixa de diálogo **procurar com** no botão **executar** do Visual Studio.
-  * Selecione o botão **Adicionar** .
+  * Selecione o botão **Adicionar**.
   * Forneça o caminho para o seu navegador no campo **programa** .
   * No campo **argumentos** , forneça a opção de linha de comando que o navegador usa para abrir no modo Incognito ou privado e a URL do aplicativo. Por exemplo:
     * Google Chrome &ndash;`--incognito --new-window https://localhost:5001`
@@ -32,3 +32,7 @@ Ao testar e solucionar problemas de um aplicativo com mais de um e mais, verifiq
 * Selecione o botão **Executar**.
 * Use **depurar**  >  **Iniciar Depuração** no menu.
 * Pressione <kbd>F5</kbd>.
+
+### <a name="inspect-the-content-of-a-json-web-token-jwt"></a>Inspecionar o conteúdo de um token Web JSON (JWT)
+
+Para decodificar um JSON Web token (JWT), use a ferramenta [JWT.ms](https://jwt.ms/) da Microsoft. Os valores na interface do usuário nunca deixam seu navegador.

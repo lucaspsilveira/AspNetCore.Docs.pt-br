@@ -25,13 +25,8 @@ Os cenários disponíveis incluem:
 
 Por enquanto, você *não pode*:
 
-* Inspecione as matrizes.
-* Focalize para inspecionar Membros.
-* Depuração de etapa dentro ou fora de código gerenciado.
-* Ter suporte completo para inspecionar tipos de valor.
 * Interromper em exceções sem tratamento.
 * Pontos de interrupção de acesso durante a inicialização do aplicativo.
-* Depurar um aplicativo com um trabalho de serviço.
 
 Continuaremos a melhorar a experiência de depuração em versões futuras.
 
@@ -78,7 +73,7 @@ Para depurar um Blazor aplicativo Webassembly no Visual Studio:
 
 Ao depurar seu Blazor aplicativo Webassembly, você também pode depurar o código do servidor:
 
-1. Defina um ponto de interrupção na página *FetchData. Razor* no `OnInitializedAsync` .
+1. Defina um ponto de interrupção na página *FetchData. Razor* no <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
 1. Defina um ponto de interrupção no `WeatherForecastController` `Get` Método Action.
 1. Navegue até a guia **buscar dados** para atingir o primeiro ponto de interrupção no `FetchData` componente logo antes de emitir uma solicitação HTTP para o servidor:
 

@@ -24,7 +24,7 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
 }
 ```
 
-Para o código de exemplo anterior, forneça `setElementText` uma função JavaScript dentro `<head>` do elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com `IJSRuntime.InvokeVoidAsync` e não retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
 
 ```html
 <script>
@@ -35,11 +35,11 @@ Para o código de exemplo anterior, forneça `setElementText` uma função JavaS
 > [!WARNING]
 > O exemplo anterior modifica o Modelo de Objeto do Documento (DOM) diretamente para fins de demonstração. A modificação direta do DOM com o JavaScript não é recomendada na maioria dos cenários porque o JavaScript pode interferir no controle de alterações de mais grande.
 
-O componente a seguir demonstra como usar a interoperabilidade do JavaScript como parte da lógica de inicialização de um componente de forma que seja compatível com o pré-processamento. O componente mostra que é possível disparar uma atualização de renderização de dentro `OnAfterRenderAsync`do. O desenvolvedor deve evitar a criação de um loop infinito nesse cenário.
+O componente a seguir demonstra como usar a interoperabilidade do JavaScript como parte da lógica de inicialização de um componente de forma que seja compatível com o pré-processamento. O componente mostra que é possível disparar uma atualização de renderização de dentro do <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> . O desenvolvedor deve evitar a criação de um loop infinito nesse cenário.
 
-Em `JSRuntime.InvokeAsync` que é chamado `ElementRef` , é usado apenas `OnAfterRenderAsync` em e não em nenhum método de ciclo de vida anterior porque não há nenhum elemento JavaScript até que o componente seja renderizado.
+Em que <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> é chamado, `ElementRef` é usado apenas em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> e não em nenhum método de ciclo de vida anterior porque não há nenhum elemento JavaScript até que o componente seja renderizado.
 
-[StateHasChanged](xref:blazor/lifecycle#state-changes) é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null`.
+[StateHasChanged](xref:blazor/lifecycle#state-changes) é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null` .
 
 ```cshtml
 @page "/prerendered-interop"
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-Para o código de exemplo anterior, forneça `setElementText` uma função JavaScript dentro `<head>` do elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com `IJSRuntime.InvokeAsync` e retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e retorna um valor:
 
 ```html
 <script>

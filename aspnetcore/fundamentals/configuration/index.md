@@ -1,24 +1,11 @@
 ---
-title: Configuração no ASP.NET Core
-author: rick-anderson
-description: Saiba como usar a API de configuração para configurar um aplicativo do ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 3/29/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/configuration/index
-ms.openlocfilehash: c2a7ef9c1523bc179524f328905f3a4b1460a1a5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774490"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -52,13 +39,13 @@ ASP.NET Core aplicativos Web criados com [dotnet novo](/dotnet/core/tools/dotnet
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : Adiciona um existente `IConfiguration` como uma origem. No caso de configuração padrão, o adiciona a configuração do [host](#hvac) e a define como a primeira origem para a configuração do _aplicativo_ .
 1. [appSettings. JSON](#appsettingsjson) usando o [provedor de configuração JSON](#file-configuration-provider).
 1. *appSettings.* `Environment` *. JSON* usando o [provedor de configuração JSON](#file-configuration-provider). Por exemplo, *appSettings*. ***Produção***. *JSON* e *appSettings*. ***Desenvolvimento***. *JSON*.
-1. [Segredos do aplicativo](xref:security/app-secrets) quando o aplicativo é executado `Development` no ambiente.
+1. [Segredos do aplicativo](xref:security/app-secrets) quando o aplicativo é executado no `Development` ambiente.
 1. Variáveis de ambiente usando o [provedor de configuração de variáveis de ambiente](#evcp).
 1. Argumentos de linha de comando usando o [provedor de configuração de linha de comando](#command-line).
 
 Os provedores de configuração adicionados posteriormente substituem as configurações de chave anteriores. Por exemplo, se `MyKey` for definido em *appSettings. JSON* e no ambiente, o valor de ambiente será usado. Usando os provedores de configuração padrão, o [provedor de configuração de linha de comando](#command-line-configuration-provider) substitui todos os outros provedores.
 
-Para obter mais informações `CreateDefaultBuilder`sobre o, consulte [configurações padrão do Construtor](xref:fundamentals/host/generic-host#default-builder-settings).
+Para obter mais informações sobre o `CreateDefaultBuilder` , consulte [configurações padrão do Construtor](xref:fundamentals/host/generic-host#default-builder-settings).
 
 O código a seguir exibe os provedores de configuração habilitados na ordem em que foram adicionados:
 
@@ -79,50 +66,18 @@ O padrão <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvide
 1. *appsettings.json*
 1. *appSettings.* `Environment` *. JSON* : por exemplo, *appSettings*. ***Produção***. *JSON* e *appSettings*. ***Desenvolvimento***. arquivos *JSON* . A versão de ambiente do arquivo é carregada com base no [IHostingEnvironment. environmentname](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). Para obter mais informações, consulte <xref:fundamentals/environments>.
 
-*appSettings*. `Environment`. valores *JSON* substituem chaves em *appSettings. JSON*. Por exemplo, por padrão:
+*appSettings*. `Environment` . valores *JSON* substituem chaves em *appSettings. JSON*. Por exemplo, por padrão:
 
 * Em desenvolvimento, *appSettings*. ***Desenvolvimento***. a configuração *JSON* substitui os valores encontrados em *appSettings. JSON*.
 * Em produção, *appSettings*. ***Produção***. a configuração *JSON* substitui os valores encontrados em *appSettings. JSON*. Por exemplo, ao implantar o aplicativo no Azure.
 
 <a name="optpat"></a>
 
-#### <a name="bind-hierarchical-configuration-data-using-the-options-pattern"></a>Associar dados de configuração hierárquica usando o padrão de opções
+### <a name="bind-hierarchical-configuration-data-using-the-options-pattern"></a>Associar dados de configuração hierárquica usando o padrão de opções
 
-A maneira preferida de ler valores de configuração relacionados é usar o [padrão de opções](xref:fundamentals/configuration/options). Por exemplo, para ler os seguintes valores de configuração:
+[!INCLUDE[](~/includes/bind.md)]
 
-```json
-  "Position": {
-    "Title": "Editor",
-    "Name": "Joe Smith"
-  }
-```
-
-Crie a seguinte `PositionOptions` classe:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Options/PositionOptions.cs?name=snippet)]
-
-Todas as propriedades públicas de leitura/gravação do tipo estão associadas. Os campos ***não*** estão associados.
-
-O seguinte código:
-
-* Chama [ConfigurationBinder. bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) para associar a `PositionOptions` classe à `Position` seção.
-* Exibe os `Position` dados de configuração.
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
-
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*)associa e retorna o tipo especificado. `ConfigurationBinder.Get<T>`pode ser mais conveniente do que `ConfigurationBinder.Bind`usar o. O código a seguir mostra como usar `ConfigurationBinder.Get<T>` com a `PositionOptions` classe:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test21.cshtml.cs?name=snippet)]
-
-Uma abordagem alternativa ao usar o ***padrão de opções*** é associar a `Position` seção e adicioná-la ao [contêiner de serviço de injeção de dependência](xref:fundamentals/dependency-injection). No código a seguir, `PositionOptions` é adicionado ao contêiner de serviço com <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> e associado à configuração:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
-
-Usando o código anterior, o código a seguir lê as opções de posição:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
-
-Usando a configuração [padrão](#default) , *appSettings. JSON* e *appSettings.* `Environment`os arquivos *. JSON* são habilitados com [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). As alterações feitas em *appSettings. JSON* e *appSettings.* `Environment`o arquivo *. JSON* ***após*** o início do aplicativo é lido pelo [provedor de configuração JSON](#jcp).
+Usando a configuração [padrão](#default) , *appSettings. JSON* e *appSettings.* `Environment` os arquivos *. JSON* são habilitados com [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). As alterações feitas em *appSettings. JSON* e *appSettings.* `Environment` o arquivo *. JSON* ***após*** o início do aplicativo é lido pelo [provedor de configuração JSON](#jcp).
 
 Consulte [provedor de configuração JSON](#jcp) neste documento para obter informações sobre como adicionar arquivos de configuração JSON adicionais.
 
@@ -170,7 +125,7 @@ As configurações de ambiente anteriores:
 * São definidos apenas em processos iniciados na janela de comando em que foram definidos.
 * Não serão lidos por navegadores iniciados com o Visual Studio.
 
-Os comandos [setx](/windows-server/administration/windows-commands/setx) a seguir podem ser usados para definir as chaves de ambiente e os valores no Windows. Ao `set`contrário `setx` de, as configurações são persistidas. `/M`define a variável no ambiente do sistema. Se a `/M` opção não for usada, uma variável de ambiente do usuário será definida.
+Os comandos [setx](/windows-server/administration/windows-commands/setx) a seguir podem ser usados para definir as chaves de ambiente e os valores no Windows. Ao contrário `set` de, `setx` as configurações são persistidas. `/M`define a variável no ambiente do sistema. Se a `/M` opção não for usada, uma variável de ambiente do usuário será definida.
 
 ```cmd
 setx MyKey "My key from setx Environment" /M
@@ -181,16 +136,16 @@ setx Position__Name Environment_Rick /M
 Para testar se os comandos anteriores substituem *appSettings. JSON* e *appSettings.* `Environment` *. JSON*:
 
 * Com o Visual Studio: saia e reinicie o Visual Studio.
-* Com a CLI: iniciar uma nova janela de comando e `dotnet run`Enter.
+* Com a CLI: iniciar uma nova janela de comando e Enter `dotnet run` .
 
 Chame <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> com uma cadeia de caracteres para especificar um prefixo para variáveis de ambiente:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
 
 No código anterior:
 
 * `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")`é adicionado após os [provedores de configuração padrão](#default). Para obter um exemplo de como ordenar os provedores de configuração, consulte [provedor de configuração JSON](#jcp).
-* Variáveis de ambiente definidas com `MyCustomPrefix_` o prefixo substituem os [provedores de configuração padrão](#default). Isso inclui variáveis de ambiente sem o prefixo.
+* Variáveis de ambiente definidas com o `MyCustomPrefix_` prefixo substituem os [provedores de configuração padrão](#default). Isso inclui variáveis de ambiente sem o prefixo.
 
 O prefixo é eliminado quando os pares chave-valor de configuração são lidos.
 
@@ -203,7 +158,7 @@ set MyCustomPrefix_Position__Name=Environment_Rick_cp
 dotnet run
 ```
 
-A [configuração padrão](#default) carrega variáveis de ambiente e argumentos de linha de comando `DOTNET_` prefixados com and `ASPNETCORE_`. Os `DOTNET_` prefixos e `ASPNETCORE_` são usados por ASP.NET Core para [configuração de host e aplicativo](xref:fundamentals/host/generic-host#host-configuration), mas não para a configuração do usuário. Para obter mais informações sobre a configuração de host e aplicativo, consulte [host genérico .net](xref:fundamentals/host/generic-host).
+A [configuração padrão](#default) carrega variáveis de ambiente e argumentos de linha de comando prefixados com `DOTNET_` and `ASPNETCORE_` . Os `DOTNET_` `ASPNETCORE_` prefixos e são usados por ASP.NET Core para [configuração de host e aplicativo](xref:fundamentals/host/generic-host#host-configuration), mas não para a configuração do usuário. Para obter mais informações sobre a configuração de host e aplicativo, consulte [host genérico .net](xref:fundamentals/host/generic-host).
 
 Em [Azure app serviço](https://azure.microsoft.com/services/app-service/), selecione **nova configuração de aplicativo** na página **configurações > configuração** . Azure App configurações do aplicativo de serviço são:
 
@@ -220,7 +175,7 @@ Consulte [prefixos de cadeia de conexão](#constr) para obter informações sobr
 
 Usando a configuração [padrão](#default) , o <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> carrega a configuração de pares de chave-valor de argumento de linha de comando após as seguintes fontes de configuração:
 
-* *appSettings. JSON* e *appSettings*. `Environment`. arquivos *JSON* .
+* *appSettings. JSON* e *appSettings*. `Environment` . arquivos *JSON* .
 * [Segredos do aplicativo (Gerenciador de segredo)](xref:security/app-secrets) no ambiente de desenvolvimento.
 * Variáveis de ambiente.
 
@@ -228,19 +183,19 @@ Por [padrão](#default), os valores de configuração definidos nos valores de c
 
 ### <a name="command-line-arguments"></a>Argumentos de linha de comando
 
-O comando a seguir define chaves e valores `=`usando:
+O comando a seguir define chaves e valores usando `=` :
 
 ```dotnetcli
 dotnet run MyKey="My key from command line" Position:Title=Cmd Position:Name=Cmd_Rick
 ```
 
-O comando a seguir define chaves e valores `/`usando:
+O comando a seguir define chaves e valores usando `/` :
 
 ```dotnetcli
 dotnet run /MyKey "Using /" /Position:Title=Cmd_ /Position:Name=Cmd_Rick
 ```
 
-O comando a seguir define chaves e valores `--`usando:
+O comando a seguir define chaves e valores usando `--` :
 
 ```dotnetcli
 dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
@@ -248,10 +203,10 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 
 O valor da chave:
 
-* Deve seguir `=`, ou a chave deve ter um prefixo `--` ou `/` quando o valor segue um espaço.
-* Não será necessário `=` se for usado. Por exemplo, `MySetting=`.
+* Deve seguir `=` , ou a chave deve ter um prefixo `--` ou `/` quando o valor segue um espaço.
+* Não será necessário se `=` for usado. Por exemplo, `MySetting=`.
 
-No mesmo comando, não misture pares de chave-valor de argumento de linha de comando `=` que usam com pares de chave-valor que usam um espaço.
+No mesmo comando, não misture pares de chave-valor de argumento de linha de comando que usam `=` com pares de chave-valor que usam um espaço.
 
 ### <a name="switch-mappings"></a>Mapeamentos de comutador
 
@@ -261,10 +216,10 @@ Ao ser usado, o dicionário de mapeamentos de comutador é verificado para ofere
 
 Regras de chave do dicionário de mapeamentos de comutador:
 
-* Os comutadores devem `-` começar `--`com ou.
+* Os comutadores devem começar com `-` ou `--` .
 * O dicionário de mapeamentos de comutador chave não deve conter chaves duplicadas.
 
-Para usar um dicionário de mapeamentos de opção, passe-o para `AddCommandLine`a chamada para:
+Para usar um dicionário de mapeamentos de opção, passe-o para a chamada para `AddCommandLine` :
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramSwitch.cs?name=snippet&highlight=10-18,23)]
 
@@ -278,7 +233,7 @@ Execute o seguinte comando para testar a chave substituta:
 dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
-Observação: no momento `=` , não pode ser usado para definir valores de substituição de chave com `-`um único traço. Consulte [este problema do GitHub](https://github.com/dotnet/extensions/issues/3059).
+Observação: no momento, `=` não pode ser usado para definir valores de substituição de chave com um único traço `-` . Consulte [este problema do GitHub](https://github.com/dotnet/extensions/issues/3059).
 
 O comando a seguir funciona para testar a substituição da chave:
 
@@ -286,7 +241,7 @@ O comando a seguir funciona para testar a substituição da chave:
 dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
-Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilder` para não deve passar argumentos. A `CreateDefaultBuilder` chamada do `AddCommandLine` método não inclui opções mapeadas e não há como passar o dicionário de mapeamento de opção para `CreateDefaultBuilder`. A solução não é passar os argumentos para `CreateDefaultBuilder` , mas sim permitir que `ConfigurationBuilder` o método `AddCommandLine` do método processe os argumentos e o dicionário de mapeamento de opções.
+Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilder` para não deve passar argumentos. A `CreateDefaultBuilder` chamada do método `AddCommandLine` não inclui opções mapeadas e não há como passar o dicionário de mapeamento de opção para `CreateDefaultBuilder` . A solução não é passar os argumentos para `CreateDefaultBuilder` , mas sim permitir que o `ConfigurationBuilder` método do método `AddCommandLine` processe os argumentos e o dicionário de mapeamento de opções.
 
 ## <a name="hierarchical-configuration-data"></a>Dados de configuração hierárquica
 
@@ -316,8 +271,8 @@ Chaves de configuração:
 * Se uma chave e um valor for definido em mais de um provedor de configuração, o valor do último provedor adicionado será usado. Para obter mais informações, consulte [configuração padrão](#default).
 * Chaves hierárquicas
   * Ao interagir com a API de configuração, um separador de dois-pontos (`:`) funciona em todas as plataformas.
-  * Nas variáveis de ambiente, talvez um separador de dois-pontos não funcione em todas as plataformas. Um sublinhado duplo `__`,, tem suporte em todas as plataformas e é automaticamente convertido em `:`dois-pontos.
-  * Em Azure Key Vault, as chaves hierárquicas usam `--` como um separador. O [provedor de configuração Azure Key Vault](xref:security/key-vault-configuration) substitui `--` automaticamente por `:` um quando os segredos são carregados na configuração do aplicativo.
+  * Nas variáveis de ambiente, talvez um separador de dois-pontos não funcione em todas as plataformas. Um sublinhado duplo, `__` , tem suporte em todas as plataformas e é automaticamente convertido em dois-pontos `:` .
+  * Em Azure Key Vault, as chaves hierárquicas usam `--` como um separador. O [provedor de configuração Azure Key Vault](xref:security/key-vault-configuration) substitui automaticamente `--` por um `:` quando os segredos são carregados na configuração do aplicativo.
 * O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> dá suporte a matrizes de associação para objetos usando os índices em chaves de configuração. A associação de matriz está descrita na seção [Associar uma matriz a uma classe](#boa).
 
 Valores de configuração:
@@ -332,23 +287,149 @@ Valores de configuração:
 A tabela a seguir mostra os provedores de configuração disponíveis para aplicativos ASP.NET Core.
 
 | Provedor | Fornece a configuração de  |
-| -------- | ----------------------------------- |
-| [Provedor de configuração de Azure Key Vault](xref:security/key-vault-configuration) | Cofre de Chave do Azure |
-| [Provedor de configuração de Azure App](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Configuração de Aplicativo do Azure |
-| [Provedor de configuração de linha de comando](#clcp) | Parâmetros da linha de comando |
-| [Provedor de Configuração personalizado](#custom-configuration-provider) | Fonte personalizada |
-| [Provedor de configuração de variáveis de ambiente](#evcp) | Variáveis de ambiente |
-| [Provedor de configuração de arquivo](#file-configuration-provider) | Arquivos INI, JSON e XML |
-| [Provedor de configuração de chave por arquivo](#key-per-file-configuration-provider) | Arquivos de diretório |
-| [Provedor de configuração de memória](#memory-configuration-provider) | Coleções na memória |
-| [Gerenciador de segredo](xref:security/app-secrets)  | Arquivo no diretório de perfil do usuário |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------------ | | [Provedor de configuração de Azure Key Vault](xref:security/key-vault-configuration) | Azure Key Vault | | [Provedor de configuração de Azure app](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Configuração de Azure App | | [Provedor de configuração de linha de comando](#clcp) | Parâmetros de linha de comando | | [Provedor de configuração personalizada](#custom-configuration-provider) | Fonte personalizada | | [Provedor de configuração de variáveis de ambiente](#evcp) | Variáveis de ambiente | | [Provedor de configuração de arquivo](#file-configuration-provider) | Arquivos INI, JSON e XML | | [Provedor de configuração de chave por arquivo](#key-per-file-configuration-provider) | Arquivos de diretório | | [Provedor de configuração de memória](#memory-configuration-provider) | Coleções na memória | | [Gerenciador de segredo](xref:security/app-secrets) | Arquivo no diretório de perfil do usuário |
 
 As fontes de configuração são lidas na ordem em que seus provedores de configuração são especificados. Solicite provedores de configuração no código para se adequar às prioridades das fontes de configuração subjacentes que o aplicativo requer.
 
 Uma sequência comum de provedores de configuração é:
 
 1. *appsettings.json*
-1. *appSettings*. `Environment`. *JSON*
+1. *appSettings*. `Environment` . *JSON*
 1. [Gerenciador de segredo](xref:security/app-secrets)
 1. Variáveis de ambiente usando o [provedor de configuração de variáveis de ambiente](#evcp).
 1. Argumentos de linha de comando usando o [provedor de configuração de linha de comando](#command-line-configuration-provider).
@@ -361,14 +442,107 @@ A sequência anterior de provedores é usada na [configuração padrão](#defaul
 
 ### <a name="connection-string-prefixes"></a>Prefixos de cadeia de conexão
 
-A API de configuração tem regras de processamento especiais para quatro variáveis de ambiente de cadeia de conexão. Essas cadeias de conexão estão envolvidas na configuração de cadeias de conexão do Azure para o ambiente de aplicativo. As variáveis de ambiente com os prefixos mostrados na tabela são carregadas no aplicativo com a [configuração padrão](#default) ou quando nenhum prefixo `AddEnvironmentVariables`é fornecido para.
+A API de configuração tem regras de processamento especiais para quatro variáveis de ambiente de cadeia de conexão. Essas cadeias de conexão estão envolvidas na configuração de cadeias de conexão do Azure para o ambiente de aplicativo. As variáveis de ambiente com os prefixos mostrados na tabela são carregadas no aplicativo com a [configuração padrão](#default) ou quando nenhum prefixo é fornecido para `AddEnvironmentVariables` .
 
 | Prefixo da cadeia de conexão | Provedor |
-| ------------------------ | -------- |
-| `CUSTOMCONNSTR_` | Provedor personalizado |
-| `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
-| `SQLAZURECONNSTR_` | [Banco de Dados SQL do Azure](https://azure.microsoft.com/services/sql-database/) |
-| `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/) |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | | `CUSTOMCONNSTR_` | Provedor personalizado | | `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
+ MySQL | `SQLAZURECONNSTR_` | [SQL Server do banco de dados SQL do Azure](https://azure.microsoft.com/services/sql-database/) |
+ | `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/)|
 
 Quando uma variável de ambiente for descoberta e carregada na configuração com qualquer um dos quatro prefixos mostrados na tabela:
 
@@ -376,11 +550,469 @@ Quando uma variável de ambiente for descoberta e carregada na configuração co
 * Um novo par chave-valor de configuração é criado para representar o provedor de conexão de banco de dados (exceto para `CUSTOMCONNSTR_`, que não tem um provedor indicado).
 
 | Chave de variável de ambiente | Chave de configuração convertida | Entrada de configuração do provedor                                                    |
-| ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Entrada de configuração não criada.                                                |
-| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `System.Data.SqlClient`  |
-| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `System.Data.SqlClient`  |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---------------------------------------- | | `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Entrada de configuração não criada.                                                | | `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor: `MySql.Data.MySqlClient` | | `SQLAZURECONNSTR_{KEY}`   |  `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor: `System.Data.SqlClient` | | `SQLCONNSTR_{KEY}`        |  `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor`System.Data.SqlClient`  |
 
 <a name="jcp"></a>
 
@@ -410,9 +1042,9 @@ O código a seguir limpa todos os provedores de configuração e adiciona vário
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-No código anterior, as configurações em *myconfig. JSON* e *myconfig*. `Environment`. arquivos *JSON* :
+No código anterior, as configurações em *myconfig. JSON* e *myconfig*. `Environment` . arquivos *JSON* :
 
-* Substitua as configurações em *appSettings. JSON* e *appSettings*. `Environment`. arquivos *JSON* .
+* Substitua as configurações em *appSettings. JSON* e *appSettings*. `Environment` . arquivos *JSON* .
 * São substituídos por configurações no [provedor de configuração de variáveis de ambiente](#evcp) e no [provedor de configuração de linha de comando](#clcp).
 
 O [download de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contém o seguinte arquivo *myconfig. JSON* :
@@ -427,7 +1059,7 @@ O código a seguir do [download de exemplo](https://github.com/dotnet/AspNetCore
 
 ## <a name="file-configuration-provider"></a>Provedor de configuração de arquivo
 
-<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> é a classe base para carregamento da configuração do sistema de arquivos. Os seguintes provedores de configuração derivam de `FileConfigurationProvider`:
+<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> é a classe base para carregamento da configuração do sistema de arquivos. Os seguintes provedores de configuração derivam de `FileConfigurationProvider` :
 
 * [Provedor de configuração INI](#ini-configuration-provider)
 * [Provedor de configuração JSON](#jcp)
@@ -441,7 +1073,7 @@ O código a seguir limpa todos os provedores de configuração e adiciona vário
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
 
-No código anterior, as configurações no *MyIniConfig. ini* e no *MyIniConfig*. `Environment`. os arquivos *ini* são substituídos pelas configurações no:
+No código anterior, as configurações no *MyIniConfig. ini* e no *MyIniConfig*. `Environment` . os arquivos *ini* são substituídos pelas configurações no:
 
 * [Provedor de configuração de variáveis de ambiente](#evcp)
 * [Provedor de configuração de linha de comando](#clcp).
@@ -462,7 +1094,7 @@ O código a seguir limpa todos os provedores de configuração e adiciona vário
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
 
-No código anterior, as configurações em *MyXMLFile. xml* e *MyXMLFile*. `Environment`. os arquivos *XML* são substituídos pelas configurações no:
+No código anterior, as configurações em *MyXMLFile. xml* e *MyXMLFile*. `Environment` . os arquivos *XML* são substituídos pelas configurações no:
 
 * [Provedor de configuração de variáveis de ambiente](#evcp)
 * [Provedor de configuração de linha de comando](#clcp).
@@ -538,9 +1170,9 @@ O código a seguir do [download de exemplo](https://github.com/dotnet/AspNetCore
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
-No código anterior, `config.AddInMemoryCollection(Dict)` é adicionado após os provedores de [configuração padrão](#default). Para obter um exemplo de como ordenar os provedores de configuração, consulte [provedor de configuração JSON](#jcp).
+No código anterior, `config.AddInMemoryCollection(Dict)` é adicionado após os [provedores de configuração padrão](#default). Para obter um exemplo de como ordenar os provedores de configuração, consulte [provedor de configuração JSON](#jcp).
 
-Consulte [associar uma matriz](#boa) para outro exemplo usando `MemoryConfigurationProvider`.
+Consulte [associar uma matriz](#boa) para outro exemplo usando `MemoryConfigurationProvider` .
 
 ## <a name="getvalue"></a>GetValue
 
@@ -564,11 +1196,11 @@ O código a seguir adiciona *MySubsection. JSON* aos provedores de configuraçã
 
 [IConfiguration. GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) retorna uma subseção de configuração com a chave de subseção especificada.
 
-O código a seguir retorna valores `section1`para:
+O código a seguir retorna valores para `section1` :
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
 
-O código a seguir retorna valores `section2:subsection0`para:
+O código a seguir retorna valores para `section2:subsection0` :
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
@@ -578,7 +1210,7 @@ Quando `GetSection` retorna uma seção correspondente, <xref:Microsoft.Extensio
 
 ### <a name="getchildren-and-exists"></a>GetChildren e existe
 
-O código a seguir chama [IConfiguration. GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) e retorna valores `section2:subsection0`para:
+O código a seguir chama [IConfiguration. GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) e retorna valores para `section2:subsection0` :
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
@@ -612,9 +1244,9 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-Na saída anterior, o índice 3 tem valor `value40`, correspondente a `"4": "value40",` em *myArray. JSON*. Os índices de matriz associados são contínuos e não associados ao índice de chave de configuração. O associador de configuração não é capaz de ligar valores nulos ou criar entradas nulas em objetos associados
+Na saída anterior, o índice 3 tem valor `value40` , correspondente a `"4": "value40",` em *myArray. JSON*. Os índices de matriz associados são contínuos e não associados ao índice de chave de configuração. O associador de configuração não é capaz de ligar valores nulos ou criar entradas nulas em objetos associados
 
-O código a seguir carrega `array:entries` a configuração com <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> o método de extensão:
+O código a seguir carrega a `array:entries` configuração com o <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> método de extensão:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 
@@ -634,11 +1266,11 @@ Index: 4  Value: value5
 
 O índice &num;3 no objeto associado contém os dados de configuração para a chave de configuração `array:4` e seu valor de `value4`. Quando os dados de configuração que contêm uma matriz são associados, os índices de matriz nas chaves de configuração são usados para iterar os dados de configuração ao criar o objeto. Um valor nulo não pode ser mantido nos dados de configuração, e uma entrada de valor nulo não será criada em um objeto de associação quando uma matriz nas chaves de configuração ignorar um ou mais índices.
 
-O item de configuração ausente para &num;o `ArrayExample` índice 3 pode ser fornecido antes da associação à instância por qualquer provedor de configuração que &num;Leia o par chave/valor do índice 3. Considere o seguinte arquivo *Value3. JSON* do download de exemplo:
+O item de configuração ausente para &num; o índice 3 pode ser fornecido antes da associação à `ArrayExample` instância por qualquer provedor de configuração que leia o &num; par chave/valor do índice 3. Considere o seguinte arquivo *Value3. JSON* do download de exemplo:
 
 [!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
 
-O código a seguir inclui a configuração para *Value3. JSON* e o `arrayDict` `Dictionary`:
+O código a seguir inclui a configuração para *Value3. JSON* e o `arrayDict` `Dictionary` :
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
 
@@ -707,23 +1339,47 @@ O código a seguir mostra como usar o `EFConfigurationProvider` personalizado em
 
 ## <a name="access-configuration-in-startup"></a>Configuração de acesso na inicialização
 
-O código a seguir exibe dados de `Startup` configuração em métodos:
+O código a seguir exibe dados de configuração em `Startup` métodos:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
 
 Para obter um exemplo de como acessar a configuração usando os métodos de conveniência de inicialização, consulte [Inicialização do aplicativo: métodos de conveniência](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-razor-pages"></a>Configuração de acesso no Razor Pages
+## <a name="access-configuration-in-razor-pages"></a>Configuração de acesso em Razor páginas
 
-O código a seguir exibe os dados de configuração em uma página Razor:
+O código a seguir exibe os dados de configuração em uma Razor página:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
+
+No código a seguir, `MyOptions` é adicionado ao contêiner de serviço com <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> e associado à configuração:
+
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+
+A marcação a seguir usa a [`@inject`](xref:mvc/views/razor#inject) Razor diretiva para resolver e exibir os valores de opções:
+
+[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml)]
 
 ## <a name="access-configuration-in-a-mvc-view-file"></a>Acessar a configuração em um arquivo de exibição do MVC
 
 O código a seguir exibe os dados de configuração em uma exibição do MVC:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
+
+## <a name="configure-options-with-a-delegate"></a>Configurar opções com um delegado
+
+As opções configuradas em um delegado substituem valores definidos nos provedores de configuração.
+
+A configuração de opções com um delegado é demonstrada como o exemplo 2 no aplicativo de exemplo.
+
+No código a seguir, um <xref:Microsoft.Extensions.Options.IConfigureOptions%601> serviço é adicionado ao contêiner de serviço. Ele usa um delegado para configurar valores para `MyOptions` :
+
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup2.cs?name=snippet_Example2)]
+
+O código a seguir exibe os valores de opções:
+
+[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+
+No exemplo anterior, os valores de `Option1` e `Option2` são especificados em *appSettings. JSON* e, em seguida, substituídos pelo delegado configurado.
 
 <a name="hvac"></a>
 
@@ -738,7 +1394,7 @@ Antes do aplicativo ser configurado e iniciado, um *host* é configurado e inici
 Para obter detalhes sobre a configuração padrão ao usar o [host da Web](xref:fundamentals/host/web-host), confira a [versão do ASP.NET Core 2.2 deste tópico](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * A configuração do host é fornecida de:
-  * Variáveis de ambiente prefixadas com `DOTNET_` (por `DOTNET_ENVIRONMENT`exemplo,) usando o [provedor de configuração de variáveis de ambiente](#environment-variables-configuration-provider). O prefixo (`DOTNET_`) é removido durante o carregamento dos pares chave-valor de configuração.
+  * Variáveis de ambiente prefixadas com `DOTNET_` (por exemplo, `DOTNET_ENVIRONMENT` ) usando o [provedor de configuração de variáveis de ambiente](#environment-variables-configuration-provider). O prefixo (`DOTNET_`) é removido durante o carregamento dos pares chave-valor de configuração.
   * Argumentos de linha de comando usando o [provedor de configuração de linha de comando](#command-line-configuration-provider).
 * A configuração padrão do host da Web foi estabelecida (`ConfigureWebHostDefaults`):
   * O Kestrel é usado como o servidor Web e configurado usando provedores de configuração do aplicativo.
@@ -750,14 +1406,14 @@ Para obter detalhes sobre a configuração padrão ao usar o [host da Web](xref:
 
 Este tópico pertence apenas à *configuração do aplicativo*. Outros aspectos da execução e Hospedagem de aplicativos ASP.NET Core são configurados usando arquivos de configuração não abordados neste tópico:
 
-* *Launch. JSON*/*launchSettings. JSON* são arquivos de configuração de ferramentas para o ambiente de desenvolvimento, descritos:
-  * Em <xref:fundamentals/environments#development>.
+* *Iniciar. JSON* / *launchSettings. JSON* são arquivos de configuração de ferramentas para o ambiente de desenvolvimento, descritos:
+  * Em <xref:fundamentals/environments#development> .
   * No conjunto de documentação, onde os arquivos são usados para configurar aplicativos ASP.NET Core para cenários de desenvolvimento.
 * o *Web. config* é um arquivo de configuração de servidor, descrito nos seguintes tópicos:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
-Para obter mais informações sobre como migrar a configuração de aplicativo de versões <xref:migration/proper-to-2x/index#store-configurations>anteriores do ASP.net, consulte.
+Para obter mais informações sobre como migrar a configuração de aplicativo de versões anteriores do ASP.NET, consulte <xref:migration/proper-to-2x/index#store-configurations> .
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Adicionar configuração de um assembly externo
 
@@ -803,14 +1459,14 @@ Antes do aplicativo ser configurado e iniciado, um *host* é configurado e inici
 
 Este tópico pertence apenas à *configuração do aplicativo*. Outros aspectos da execução e Hospedagem de aplicativos ASP.NET Core são configurados usando arquivos de configuração não abordados neste tópico:
 
-* *Launch. JSON*/*launchSettings. JSON* são arquivos de configuração de ferramentas para o ambiente de desenvolvimento, descritos:
-  * Em <xref:fundamentals/environments#development>.
+* *Iniciar. JSON* / *launchSettings. JSON* são arquivos de configuração de ferramentas para o ambiente de desenvolvimento, descritos:
+  * Em <xref:fundamentals/environments#development> .
   * No conjunto de documentação, onde os arquivos são usados para configurar aplicativos ASP.NET Core para cenários de desenvolvimento.
 * o *Web. config* é um arquivo de configuração de servidor, descrito nos seguintes tópicos:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
-Para obter mais informações sobre como migrar a configuração de aplicativo de versões <xref:migration/proper-to-2x/index#store-configurations>anteriores do ASP.net, consulte.
+Para obter mais informações sobre como migrar a configuração de aplicativo de versões anteriores do ASP.NET, consulte <xref:migration/proper-to-2x/index#store-configurations> .
 
 ## <a name="default-configuration"></a>Configuração padrão
 
@@ -836,10 +1492,10 @@ Adote as seguintes práticas para proteger dados de configuração confidenciais
 * Não use segredos de produção em ambientes de teste ou de desenvolvimento.
 * Especifique segredos fora do projeto para que eles não sejam acidentalmente comprometidos com um repositório de código-fonte.
 
-Para mais informações, consulte os seguintes tópicos:
+Para obter mais informações, consulte estes tópicos:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>&ndash; Inclui conselhos sobre como usar variáveis de ambiente para armazenar dados confidenciais. O Gerenciador de Segredo usa o Provedor de Configuração de Arquivo para armazenar segredos do usuário em um arquivo JSON no sistema local. O Provedor de Configuração de Arquivo será descrito mais adiante neste tópico.
+* <xref:security/app-secrets>&ndash;Inclui conselhos sobre como usar variáveis de ambiente para armazenar dados confidenciais. O Gerenciador de Segredo usa o Provedor de Configuração de Arquivo para armazenar segredos do usuário em um arquivo JSON no sistema local. O Provedor de Configuração de Arquivo será descrito mais adiante neste tópico.
 
 O [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) armazena os segredos do aplicativo com segurança para aplicativos ASP.NET Core. Para obter mais informações, consulte <xref:security/key-vault-configuration>.
 
@@ -879,7 +1535,7 @@ Na inicialização do aplicativo, as fontes de configuração são lidas na orde
 
 Os provedores de configuração que implementam a detecção de alteração podem recarregar a configuração quando uma configuração subjacente for alterada. Por exemplo, o Provedor de configuração do arquivo (descrito mais adiante neste tópico) e o [Provedor de configuração do Azure Key Vault](xref:security/key-vault-configuration) implementam a detecção de alteração.
 
-<xref:Microsoft.Extensions.Configuration.IConfiguration> está disponível no contêiner [DI (injeção de dependência)](xref:fundamentals/dependency-injection) do aplicativo. <xref:Microsoft.Extensions.Configuration.IConfiguration>pode ser injetado em um Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> ou MVC <xref:Microsoft.AspNetCore.Mvc.Controller> para obter a configuração da classe.
+<xref:Microsoft.Extensions.Configuration.IConfiguration> está disponível no contêiner [DI (injeção de dependência)](xref:fundamentals/dependency-injection) do aplicativo. <xref:Microsoft.Extensions.Configuration.IConfiguration>pode ser injetado em uma Razor página <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> ou MVC <xref:Microsoft.AspNetCore.Mvc.Controller> para obter a configuração da classe.
 
 Nos exemplos a seguir, o `_config` campo é usado para acessar os valores de configuração:
 
@@ -933,22 +1589,148 @@ Os valores de configuração adotam as convenções a seguir:
 A tabela a seguir mostra os provedores de configuração disponíveis para aplicativos ASP.NET Core.
 
 | Provedor | Fornece a configuração de &hellip; |
-| -------- | ----------------------------------- |
-| [Provedor de Configuração do Azure Key Vault](xref:security/key-vault-configuration) (tópicos de *Segurança*) | Cofre de Chave do Azure |
-| [Provedor da Configuração de Aplicativos do Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) (documentação do Azure) | Configuração de Aplicativo do Azure |
-| [Provedor de Configuração de Linha de Comando](#command-line-configuration-provider) | Parâmetros da linha de comando |
-| [Provedor de Configuração personalizado](#custom-configuration-provider) | Fonte personalizada |
-| [Provedor de Configuração de Variáveis de Ambiente](#environment-variables-configuration-provider) | Variáveis de ambiente |
-| [Provedor de Configuração de Arquivo](#file-configuration-provider) | Arquivos (INI, JSON, XML) |
-| [Provedor de Configuração de Chave por Arquivo](#key-per-file-configuration-provider) | Arquivos de diretório |
-| [Provedor de Configuração de Memória](#memory-configuration-provider) | Coleções na memória |
-| [Segredos do usuário (Gerenciador de Segredo)](xref:security/app-secrets) (tópicos de *Segurança*) | Arquivo no diretório de perfil do usuário |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------------ | | [Provedor de configuração do Azure Key Vault](xref:security/key-vault-configuration) (tópicos de*segurança* ) | Azure Key Vault | | [Provedor de configuração do Azure app](/azure/azure-app-configuration/quickstart-aspnet-core-app) (documentação do Azure) | Configuração de Azure App | | [Provedor de configuração de linha de comando](#command-line-configuration-provider) | Parâmetros de linha de comando | | [Provedor de configuração personalizada](#custom-configuration-provider) | Fonte personalizada | | [Provedor de configuração de variáveis de ambiente](#environment-variables-configuration-provider) | Variáveis de ambiente | | [Provedor de configuração de arquivo](#file-configuration-provider) | Arquivos (INI, JSON, XML) | | [Provedor de configuração de chave por arquivo](#key-per-file-configuration-provider) | Arquivos de diretório | | [Provedor de configuração de memória](#memory-configuration-provider) | Coleções na memória | | [Segredos do usuário (Gerenciador de segredo)](xref:security/app-secrets) (tópicos de*segurança* ) | Arquivo no diretório de perfil do usuário |
 
 Na inicialização, as fontes de configuração são lidas na ordem especificada pelos provedores de configuração. Os provedores de configuração descritos neste tópico são descritos em ordem alfabética, não na ordem em que o código os organiza. Solicite provedores de configuração no código para se adequar às prioridades das fontes de configuração subjacentes que o aplicativo requer.
 
 Uma sequência comum de provedores de configuração é:
 
-1. Arquivos (*appSettings. JSON*, *appSettings. { Ambiente}. JSON*, em `{Environment}` que é o ambiente de hospedagem atual do aplicativo)
+1. Arquivos (*appSettings. JSON*, *appSettings. { Ambiente}. JSON*, em que `{Environment}` é o ambiente de hospedagem atual do aplicativo)
 1. [Cofre da Chave do Azure](xref:security/key-vault-configuration)
 1. [Segredos do usuário (Gerenciador de Segredo)](xref:security/app-secrets) (apenas no ambiente de desenvolvimento)
 1. Variáveis de ambiente
@@ -956,7 +1738,7 @@ Uma sequência comum de provedores de configuração é:
 
 Uma prática comum é posicionar o Provedor de Configuração de Linha de Comando por último em uma série de provedores, a fim de permitir que os argumentos de linha de comando substituam a configuração definida por outros provedores.
 
-A sequência anterior de provedores é usada quando um novo Construtor de hosts é `CreateDefaultBuilder`inicializado com o. Para obter mais informações, confira a seção [Configuração padrão](#default-configuration).
+A sequência anterior de provedores é usada quando um novo Construtor de hosts é inicializado com o `CreateDefaultBuilder` . Para obter mais informações, confira a seção [Configuração padrão](#default-configuration).
 
 ## <a name="configure-the-host-builder-with-useconfiguration"></a>Configurar o construtor de host com UseConfiguration
 
@@ -1001,7 +1783,7 @@ Para fornecer a configuração de aplicativos que pode ser substituída por argu
 
 ### <a name="remove-providers-added-by-createdefaultbuilder"></a>Remover provedores adicionados por CreateDefaultBuilder
 
-Para remover os provedores adicionados pelo `CreateDefaultBuilder`, chame [Clear](/dotnet/api/system.collections.generic.icollection-1.clear) no [IConfigurationBuilder. Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) primeiro:
+Para remover os provedores adicionados pelo `CreateDefaultBuilder` , chame [Clear](/dotnet/api/system.collections.generic.icollection-1.clear) no [IConfigurationBuilder. Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) primeiro:
 
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -1057,10 +1839,288 @@ O aplicativo de exemplo aproveita o método de conveniência estático `CreateDe
 O valor deve vir após um sinal de igual (`=`), ou a chave deve ter um prefixo (`--` ou `/`) quando o valor vier após um espaço. O valor não é necessário se um sinal de igual é usado (por exemplo, `CommandLineKey=`).
 
 | Prefixo da chave               | Exemplo                                                |
-| ------------------------ | ------------------------------------------------------ |
-| Nenhum prefixo                | `CommandLineKey1=value1`                               |
-| Dois traços (`--`)        | `--CommandLineKey2=value2`, `--CommandLineKey2 value2` |
-| Barra (`/`)      | `/CommandLineKey3=value3`, `/CommandLineKey3 value3`   |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--------------------------- | | Nenhum prefixo | `CommandLineKey1=value1`                               |
+| Dois traços ( `--` ) | `--CommandLineKey2=value2` , `--CommandLineKey2 value2` |
+ | Barra ( `/` ) | `/CommandLineKey3=value3` ,`/CommandLineKey3 value3`   |
 
 No mesmo comando, não combine pares chave-valor do argumento de linha de comando que usam um sinal de igual com pares chave-valor que usam um espaço.
 
@@ -1074,7 +2134,7 @@ dotnet run CommandLineKey1= CommandLineKey2=value2
 
 ### <a name="switch-mappings"></a>Mapeamentos de comutador
 
-Os mapeamentos de comutador permitem fornecer a lógica de substituição do nome da chave. Ao criar manualmente a configuração com <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>um, forneça um dicionário de substituições de switch para <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> o método.
+Os mapeamentos de comutador permitem fornecer a lógica de substituição do nome da chave. Ao criar manualmente a configuração com um <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> , forneça um dicionário de substituições de switch para o <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> método.
 
 Ao ser usado, o dicionário de mapeamentos de comutador é verificado para oferecer uma chave que corresponda à chave fornecida por um argumento de linha de comando. Se a chave de linha de comando for encontrada no dicionário, o valor do dicionário (a substituição da chave) será passado de volta para definir o par chave-valor na configuração do aplicativo. Um mapeamento de comutador é necessário para qualquer chave de linha de comando prefixada com um traço único (`-`).
 
@@ -1108,8 +2168,70 @@ Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilde
 Depois que o dicionário de mapeamentos de comutador for criado, ele conterá os dados mostrados na tabela a seguir.
 
 | Chave       | Valor             |
-| --------- | ----------------- |
-| `-CLKey1` | `CommandLineKey1` |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+----- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--------- | | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
 
 Se as chaves mapeadas para opção forem usadas ao iniciar o aplicativo, a configuração receberá o valor de configuração na chave fornecida pelo dicionário:
@@ -1121,8 +2243,70 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 Após a execução do comando anterior, a configuração conterá os valores mostrados na tabela a seguir.
 
 | Chave               | Valor    |
-| ----------------- | -------- |
-| `CommandLineKey1` | `value1` |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--------- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
 
 ## <a name="environment-variables-configuration-provider"></a>Provedor de Configuração de Variáveis de Ambiente
@@ -1146,7 +2330,7 @@ Para ativar a configuração das variáveis de ambiente, chame o método de exte
 
 O Provedor de Configuração de Variáveis de Ambiente é chamado depois que a configuração é estabelecida por meio dos segredos do usuário e dos arquivos *appsettings*. Chamar o provedor nessa posição permite que as variáveis de ambiente sejam lidas em runtime para substituir a configuração definida por segredos do usuário e arquivos *appsettings*.
 
-Para fornecer a configuração de aplicativo de variáveis de ambiente adicionais, chame os provedores adicionais `ConfigureAppConfiguration` do aplicativo `AddEnvironmentVariables` no e chame com o prefixo:
+Para fornecer a configuração de aplicativo de variáveis de ambiente adicionais, chame os provedores adicionais do aplicativo no `ConfigureAppConfiguration` e chame `AddEnvironmentVariables` com o prefixo:
 
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -1174,7 +2358,7 @@ FilteredConfiguration = _config.AsEnumerable();
 
 ### <a name="prefixes"></a>Prefixos
 
-As variáveis de ambiente carregadas na configuração do aplicativo são filtradas ao fornecer um prefixo `AddEnvironmentVariables` para o método. Por exemplo, para filtrar as variáveis de ambiente no prefixo `CUSTOM_`, forneça o prefixo para o provedor de configuração:
+As variáveis de ambiente carregadas na configuração do aplicativo são filtradas ao fornecer um prefixo para o `AddEnvironmentVariables` método. Por exemplo, para filtrar as variáveis de ambiente no prefixo `CUSTOM_`, forneça o prefixo para o provedor de configuração:
 
 ```csharp
 var config = new ConfigurationBuilder()
@@ -1191,11 +2375,104 @@ Quando o construtor de host é criado, a configuração do host é fornecida por
 A API de configuração tem regras de processamento especiais para quatro variáveis de ambiente de cadeia de conexão envolvidas na configuração de cadeias de conexão do Azure para o ambiente de aplicativo. As variáveis de ambiente com os prefixos mostrados na tabela são carregadas no aplicativo se nenhum prefixo for fornecido para `AddEnvironmentVariables`.
 
 | Prefixo da cadeia de conexão | Provedor |
-| ------------------------ | -------- |
-| `CUSTOMCONNSTR_` | Provedor personalizado |
-| `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
-| `SQLAZURECONNSTR_` | [Banco de Dados SQL do Azure](https://azure.microsoft.com/services/sql-database/) |
-| `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/) |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | | `CUSTOMCONNSTR_` | Provedor personalizado | | `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
+ MySQL | `SQLAZURECONNSTR_` | [SQL Server do banco de dados SQL do Azure](https://azure.microsoft.com/services/sql-database/) |
+ | `SQLCONNSTR_` | [SQL Server](https://www.microsoft.com/sql-server/)|
 
 Quando uma variável de ambiente for descoberta e carregada na configuração com qualquer um dos quatro prefixos mostrados na tabela:
 
@@ -1203,11 +2480,469 @@ Quando uma variável de ambiente for descoberta e carregada na configuração co
 * Um novo par chave-valor de configuração é criado para representar o provedor de conexão de banco de dados (exceto para `CUSTOMCONNSTR_`, que não tem um provedor indicado).
 
 | Chave de variável de ambiente | Chave de configuração convertida | Entrada de configuração do provedor                                                    |
-| ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Entrada de configuração não criada.                                                |
-| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `System.Data.SqlClient`  |
-| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName`:<br>Valor: `System.Data.SqlClient`  |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---------------------------------------- | | `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Entrada de configuração não criada.                                                | | `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor: `MySql.Data.MySqlClient` | | `SQLAZURECONNSTR_{KEY}`   |  `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor: `System.Data.SqlClient` | | `SQLCONNSTR_{KEY}`        |  `ConnectionStrings:{KEY}`   | Chave: `ConnectionStrings:{KEY}_ProviderName` :<br>Valor`System.Data.SqlClient`  |
 
 **Exemplo**
 
@@ -1216,7 +2951,7 @@ Uma variável de ambiente de cadeia de conexão personalizada é criada no servi
 * Nome &ndash; do`CUSTOMCONNSTR_ReleaseDB`
 * Valor &ndash; do`Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
 
-Se `IConfiguration` for injetado e atribuído a um campo chamado `_config`, leia o valor:
+Se `IConfiguration` for injetado e atribuído a um campo chamado `_config` , leia o valor:
 
 ```csharp
 _config["ConnectionStrings:ReleaseDB"]
@@ -1291,7 +3026,7 @@ As sobrecargas permitem especificar:
 * Se a configuração será recarregada caso o arquivo seja alterado.
 * O <xref:Microsoft.Extensions.FileProviders.IFileProvider> usado para acessar o arquivo.
 
-`AddJsonFile`é chamado automaticamente duas vezes quando um novo Construtor de hosts `CreateDefaultBuilder`é inicializado com o. O método é chamado para carregar a configuração de:
+`AddJsonFile`é chamado automaticamente duas vezes quando um novo Construtor de hosts é inicializado com o `CreateDefaultBuilder` . O método é chamado para carregar a configuração de:
 
 * *appsettings.json* &ndash; Esse arquivo é lido primeiro. A versão do ambiente do arquivo pode substituir os valores fornecidos pelo arquivo *appsettings.json*.
 * *appSettings. {Environment}. JSON* &ndash; a versão do ambiente do arquivo é carregada com base no [IHostingEnvironment. environmentname](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
@@ -1318,7 +3053,7 @@ Chame `ConfigureAppConfiguration` ao criar o host para especificar a configuraç
 
 **Exemplo**
 
-O aplicativo de exemplo aproveita o método `CreateDefaultBuilder` de conveniência estática para criar o host, que inclui duas chamadas para `AddJsonFile`:
+O aplicativo de exemplo aproveita o método de conveniência estática `CreateDefaultBuilder` para criar o host, que inclui duas chamadas para `AddJsonFile` :
 
 * A primeira chamada para `AddJsonFile` carrega a configuração de *appSettings. JSON*:
 
@@ -1329,12 +3064,12 @@ O aplicativo de exemplo aproveita o método `CreateDefaultBuilder` de conveniên
   [!code-json[](index/samples/2.x/ConfigurationSample/appsettings.Development.json)]
 
 1. Execute o aplicativo de exemplo. Abra um navegador para o aplicativo em `http://localhost:5000`.
-1. A saída contém pares chave-valor para a configuração com base no ambiente do aplicativo. O nível de log para a `Logging:LogLevel:Default` chave `Debug` é ao executar o aplicativo no ambiente de desenvolvimento.
+1. A saída contém pares chave-valor para a configuração com base no ambiente do aplicativo. O nível de log para a chave `Logging:LogLevel:Default` é `Debug` ao executar o aplicativo no ambiente de desenvolvimento.
 1. Execute o aplicativo de exemplo novamente no ambiente de produção:
    1. Abra o arquivo *Properties/launchSettings. JSON* .
-   1. No `ConfigurationSample` perfil, altere o valor da variável de `ASPNETCORE_ENVIRONMENT` ambiente para `Production`.
-   1. Salve o arquivo e execute o aplicativo com `dotnet run` o em um shell de comando.
-1. As configurações em *appSettings. O Development. JSON* não substitui mais as configurações em *appSettings. JSON*. O nível de log para a `Logging:LogLevel:Default` chave `Warning`é.
+   1. No `ConfigurationSample` perfil, altere o valor da variável de `ASPNETCORE_ENVIRONMENT` ambiente para `Production` .
+   1. Salve o arquivo e execute o aplicativo com o `dotnet run` em um shell de comando.
+1. As configurações em *appSettings. O Development. JSON* não substitui mais as configurações em *appSettings. JSON*. O nível de log para a chave `Logging:LogLevel:Default` é `Warning` .
 
 ### <a name="xml-configuration-provider"></a>Provedor de Configuração XML
 
@@ -1615,7 +3350,7 @@ TvShow = tvShow;
 
 *O aplicativo de exemplo demonstra os conceitos explicados nesta seção.*
 
-O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> dá suporte a matrizes de associação para objetos usando os índices em chaves de configuração. Qualquer formato de matriz que expõe um segmento de chave`:0:`numérico `:1:`( &hellip; `:{n}:`,,) é capaz de associar a matriz a uma matriz de classe poco.
+O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> dá suporte a matrizes de associação para objetos usando os índices em chaves de configuração. Qualquer formato de matriz que expõe um segmento de chave numérico ( `:0:` , `:1:` , &hellip; `:{n}:` ) é capaz de associar a matriz a uma matriz de classe poco.
 
 > [!NOTE]
 > A associação é fornecida por convenção. Provedores de configuração personalizados não são necessários para implementar a associação de matriz.
@@ -1625,12 +3360,39 @@ O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> dá suport
 Considere as chaves de configuração e os valores mostrados na tabela a seguir.
 
 | Chave             | Valor  |
-| :-------------: | :----: |
-| array:entries:0 | value0 |
-| array:entries:1 | value1 |
-| array:entries:2 | value2 |
-| array:entries:4 | value4 |
-| array:entries:5 | value5 |
+| :---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------: | :----: | | matriz: entradas: 0 | value0 | | matriz: entradas: 1 | value1 | | matriz: entradas: 2 | value2 | | matriz: entradas: 4 | Value4 | | matriz: entradas: 5 | value5 |
 
 Essas chaves e valores são carregados no aplicativo de exemplo usando o Provedor de Configuração de Memória:
 
@@ -1656,12 +3418,182 @@ _config.GetSection("array").Bind(arrayExample);
 O objeto associado, uma instância de `ArrayExample`, recebe os dados da matriz de configuração.
 
 | Índice `ArrayExample.Entries` | `ArrayExample.Entries` Valor |
-| :--------------------------: | :--------------------------: |
-| 0                            | value0                       |
-| 1                            | value1                       |
-| 2                            | value2                       |
-| 3                            | value4                       |
-| 4                            | value5                       |
+| :---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------: | :---Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------: | | 0 | value0 | | 1 | value1 | | 2 | value2 | | 3 | Value4 | | 4 | value5 |
 
 O índice &num;3 no objeto associado contém os dados de configuração para a chave de configuração `array:4` e seu valor de `value4`. Quando os dados de configuração que contêm uma matriz são associados, os índices da matriz nas chaves de configuração são simplesmente usados para iterar os dados de configuração ao criar o objeto. Um valor nulo não pode ser mantido nos dados de configuração, e uma entrada de valor nulo não será criada em um objeto de associação quando uma matriz nas chaves de configuração ignorar um ou mais índices.
 
@@ -1685,19 +3617,219 @@ config.AddJsonFile(
 O par chave-valor mostrado na tabela é carregado na configuração.
 
 | Chave             | Valor  |
-| :-------------: | :----: |
-| array:entries:3 | value3 |
+| :---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------: | :----: | | matriz: entradas: 3 | Value3 |
 
 Se a instância da classe `ArrayExample` for associada após o Provedor de Configuração JSON incluir a entrada para o índice &num;3, a matriz `ArrayExample.Entries` incluirá o valor.
 
 | Índice `ArrayExample.Entries` | `ArrayExample.Entries` Valor |
-| :--------------------------: | :--------------------------: |
-| 0                            | value0                       |
-| 1                            | value1                       |
-| 2                            | value2                       |
-| 3                            | value3                       |
-| 4                            | value4                       |
-| 5                            | value5                       |
+| :---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------: | :---Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------------: | | 0 | value0 | | 1 | value1 | | 2 | value2 | | 3 | Value3 | | 4 | Value4 | | 5 | value5 |
 
 **Processamento de matriz JSON**
 
@@ -1708,11 +3840,79 @@ Se um arquivo JSON contiver uma matriz, as chaves de configuração serão criad
 O Provedor de Configuração JSON lê os dados de configuração para os seguintes pares chave-valor:
 
 | Chave                     | Valor  |
-| ----------------------- | :----: |
-| json_array:key          | valueA |
-| json_array:subsection:0 | valueB |
-| json_array:subsection:1 | valueC |
-| json_array:subsection:2 | valueD |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------ | :----: | | json_array: chave | valor de | | json_array: subseção: 0 | valorB | | json_array: subseção: 1 | valueC | | json_array: subseção: 2 | Valor |
 
 No aplicativo de exemplo, a seguinte classe POCO está disponível para associar os pares chave-valor de configuração:
 
@@ -1721,10 +3921,230 @@ No aplicativo de exemplo, a seguinte classe POCO está disponível para associar
 Após a associação, `JsonArrayExample.Key` contém o valor `valueA`. Os valores de subseção são armazenados na propriedade matriz POCO, `Subsection`.
 
 | Índice `JsonArrayExample.Subsection` | `JsonArrayExample.Subsection` Valor |
-| :---------------------------------: | :---------------------------------: |
-| 0                                   | valueB                              |
-| 1                                   | valueC                              |
-| 2                                   | valueD                              |
+| :---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-----------------: | :---Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-----------------: | | 0 | valorB | | 1 | valueC | | 2 | Valor |
 
 ## <a name="custom-configuration-provider"></a>Provedor de Configuração personalizado
 
@@ -1798,9 +4218,9 @@ public class Startup
 
 Para obter um exemplo de como acessar a configuração usando os métodos de conveniência de inicialização, consulte [Inicialização do aplicativo: métodos de conveniência](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Acessar a configuração em Razor uma página de páginas ou exibição do MVC
+## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Acessar a configuração em uma Razor página de páginas ou exibição do MVC
 
-Para acessar as definições de configuração Razor em uma página de páginas ou em uma exibição do MVC, adicione uma [diretiva using](xref:mvc/views/razor#using) ([referência C#: usando a diretiva](/dotnet/csharp/language-reference/keywords/using-directive)) para o [namespace Microsoft. Extensions. Configuration](xref:Microsoft.Extensions.Configuration) e insira <xref:Microsoft.Extensions.Configuration.IConfiguration> na página ou exibição.
+Para acessar as definições de configuração em uma Razor página de páginas ou em uma exibição do MVC, adicione uma [diretiva using](xref:mvc/views/razor#using) ([referência C#: usando a diretiva](/dotnet/csharp/language-reference/keywords/using-directive)) para o [namespace Microsoft. Extensions. Configuration](xref:Microsoft.Extensions.Configuration) e insira <xref:Microsoft.Extensions.Configuration.IConfiguration> na página ou exibição.
 
 Em uma Razor página de páginas:
 

@@ -109,7 +109,7 @@ Para especificar o local de saída, que cria uma pasta de projeto, se ela não e
 
 ### <a name="authentication-package"></a>Pacote de autenticação
 
-O suporte para autenticar e autorizar chamadas para ASP.NET Core APIs Web é fornecido pelo `Microsoft.AspNetCore.Authentication.AzureAD.UI` :
+O suporte para autenticar e autorizar chamadas para ASP.NET Core APIs Web é fornecido pelo pacote [Microsoft. AspNetCore. Authentication. AzureAD. UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI/) :
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
@@ -118,14 +118,14 @@ O suporte para autenticar e autorizar chamadas para ASP.NET Core APIs Web é for
 
 ### <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
 
-O `AddAuthentication` método configura os serviços de autenticação no aplicativo e configura o manipulador de portador JWT como o método de autenticação padrão. O `AddAzureADBearer` método configura os parâmetros específicos no manipulador de portador JWT necessários para validar tokens emitidos pelo Azure Active Directory:
+O `AddAuthentication` método configura os serviços de autenticação no aplicativo e configura o manipulador de portador JWT como o método de autenticação padrão. O <xref:Microsoft.AspNetCore.Authentication.AzureADAuthenticationBuilderExtensions.AddAzureADBearer%2A> método configura os parâmetros específicos no manipulador de portador JWT necessários para validar tokens emitidos pelo Azure Active Directory:
 
 ```csharp
 services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
     .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 ```
 
-`UseAuthentication`e `UseAuthorization` Verifique se:
+<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>e <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> Verifique se:
 
 * O aplicativo tenta analisar e validar tokens em solicitações de entrada.
 * Qualquer solicitação que tente acessar um recurso protegido sem credenciais adequadas falhará.
@@ -183,10 +183,10 @@ Exemplo:
 
 ### <a name="weatherforecast-controller"></a>Controlador WeatherForecast
 
-O controlador WeatherForecast (*Controllers/WeatherForecastController. cs*) expõe uma API protegida com o `[Authorize]` atributo aplicado ao controlador. É **importante** entender que:
+O controlador WeatherForecast (*Controllers/WeatherForecastController. cs*) expõe uma API protegida com o [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo aplicado ao controlador. É **importante** entender que:
 
-* O `[Authorize]` atributo nesse controlador de API é a única coisa que protege essa API contra o acesso não autorizado.
-* O `[Authorize]` atributo usado no Blazor aplicativo Webassembly serve apenas como uma dica para o aplicativo que o usuário deve estar autorizado para que o aplicativo funcione corretamente.
+* O [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo nesse controlador de API é a única coisa que protege essa API contra o acesso não autorizado.
+* O [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo usado no Blazor aplicativo Webassembly serve apenas como uma dica para o aplicativo que o usuário deve estar autorizado para que o aplicativo funcione corretamente.
 
 ```csharp
 [Authorize]
@@ -208,7 +208,7 @@ public class WeatherForecastController : ControllerBase
 
 ### <a name="authentication-package"></a>Pacote de autenticação
 
-Quando um aplicativo é criado para usar contas corporativas ou de estudante ( `SingleOrg` ), o aplicativo recebe automaticamente uma referência de pacote para a [biblioteca de autenticação da Microsoft](/azure/active-directory/develop/msal-overview) ( `Microsoft.Authentication.WebAssembly.Msal` ). O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
+Quando um aplicativo é criado para usar contas corporativas ou de estudante ( `SingleOrg` ), o aplicativo recebe automaticamente uma referência de pacote para a [biblioteca de autenticação da Microsoft](/azure/active-directory/develop/msal-overview) ([Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.
 
 Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:
 
@@ -217,11 +217,11 @@ Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pa
   Version="3.2.0" />
 ```
 
-O `Microsoft.Authentication.WebAssembly.Msal` pacote adiciona transitivamente o `Microsoft.AspNetCore.Components.WebAssembly.Authentication` pacote ao aplicativo.
+O pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) transitivamente adiciona o pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ao aplicativo.
 
 ### <a name="authentication-service-support"></a>Suporte ao serviço de autenticação
 
-O suporte para `HttpClient` instâncias é adicionado que inclui tokens de acesso ao fazer solicitações ao projeto do servidor.
+O suporte para <xref:System.Net.Http.HttpClient> instâncias é adicionado que inclui tokens de acesso ao fazer solicitações ao projeto do servidor.
 
 *Program.cs*:
 
@@ -234,7 +234,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-O suporte para autenticação de usuários é registrado no contêiner de serviço com o `AddMsalAuthentication` método de extensão fornecido pelo `Microsoft.Authentication.WebAssembly.Msal` pacote. Esse método configura os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
+O suporte para autenticação de usuários é registrado no contêiner de serviço com o <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método de extensão fornecido pelo pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) . Esse método configura os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
 
 *Program.cs*:
 
@@ -246,7 +246,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-O `AddMsalAuthentication` método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo. Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD do portal do Azure quando você registra o aplicativo.
+O <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo. Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD do portal do Azure quando você registra o aplicativo.
 
 A configuração é fornecida pelo arquivo *wwwroot/appSettings. JSON* :
 

@@ -143,7 +143,7 @@ A configuração do host Web pode ser criada independentemente das classes de te
 
    O contexto do banco de dados do SUT é registrado em seu `Startup.ConfigureServices` método. O retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *depois* que o código do aplicativo `Startup.ConfigureServices` é executado. A ordem de execução é uma alteração significativa para o [host genérico](xref:fundamentals/host/generic-host) com o lançamento do ASP.NET Core 3,0. Para usar um banco de dados diferente para os testes do que o banco de dados do aplicativo, o contexto do banco de dados do aplicativo deve ser substituído em `builder.ConfigureServices` .
 
-   Para SUTs que ainda usam o [host Web} (xref: Fundamentals/host/Web-host), o retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *antes* do código do SUT `Startup.ConfigureServices` . O retorno de chamada do aplicativo de teste `builder.ConfigureTestServices` é executado *após*.
+   Para SUTs que ainda usam o [host da Web](xref:fundamentals/host/web-host), o retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *antes* do código do SUT `Startup.ConfigureServices` . O retorno de chamada do aplicativo de teste `builder.ConfigureTestServices` é executado *após*.
 
    O aplicativo de exemplo localiza o descritor de serviço para o contexto do banco de dados e usa o descritor para remover o registro do serviço. Em seguida, a fábrica adiciona um novo `ApplicationDbContext` que usa um banco de dados na memória para os testes.
 
@@ -573,7 +573,7 @@ O aplicativo de exemplo propaga o banco de dados com três mensagens no *Utiliti
 
 O contexto do banco de dados do SUT é registrado em seu `Startup.ConfigureServices` método. O retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *depois* que o código do aplicativo `Startup.ConfigureServices` é executado. Para usar um banco de dados diferente para os testes, o contexto do banco de dados do aplicativo deve ser substituído em `builder.ConfigureServices` . Para obter mais informações, consulte a seção [Personalizar WebApplicationFactory](#customize-webapplicationfactory) .
 
-Para SUTs que ainda usam o [host Web} (xref: Fundamentals/host/Web-host), o retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *antes* do código do SUT `Startup.ConfigureServices` . O retorno de chamada do aplicativo de teste `builder.ConfigureTestServices` é executado *após*.
+Para SUTs que ainda usam o [host da Web](xref:fundamentals/host/web-host), o retorno de chamada do aplicativo de teste `builder.ConfigureServices` é executado *antes* do código do SUT `Startup.ConfigureServices` . O retorno de chamada do aplicativo de teste `builder.ConfigureTestServices` é executado *após*.
 
 ::: moniker-end
 

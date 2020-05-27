@@ -54,7 +54,7 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir de 
     * Baixa o tempo de execução do .NET, o aplicativo e as dependências do aplicativo.
     * Inicializa o tempo de execução para executar o aplicativo.
 
-* *App. Razor* &ndash; o componente raiz do aplicativo que configura o roteamento do lado do cliente usando o <xref:Microsoft.AspNetCore.Components.Routing.Router> componente. O `Router` componente intercepta a navegação do navegador e renderiza a página que corresponde ao endereço solicitado.
+* *App. Razor* &ndash; o componente raiz do aplicativo que configura o roteamento do lado do cliente usando o <xref:Microsoft.AspNetCore.Components.Routing.Router> componente. O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente intercepta a navegação do navegador e renderiza a página que corresponde ao endereço solicitado.
 
 * A pasta *páginas* &ndash; contém os componentes/páginas roteáveis (*. Razor*) que compõem o Blazor aplicativo e a Razor página raiz de um Blazor aplicativo de servidor. A rota para cada página é especificada usando a [`@page`](xref:mvc/views/razor#page) diretiva. O modelo inclui o seguinte:
   * *_Host. cshtml* ( Blazor servidor) &ndash; a página raiz do aplicativo implementada como uma Razor página:
@@ -68,7 +68,7 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir de 
 
 * A pasta *compartilhada* &ndash; contém outros componentes de interface do usuário (*. Razor*) usados pelo aplicativo:
   * `MainLayout`(*MainLayout. Razor*) &ndash; o componente de layout do aplicativo.
-  * `NavMenu`(*NavMenu. Razor*) &ndash; implementa a navegação na barra lateral. Inclui o [componente NavLink](xref:blazor/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), que renderiza links de navegação para outros Razor componentes. O `NavLink` componente indica automaticamente um estado selecionado quando seu componente é carregado, o que ajuda o usuário a entender qual componente está sendo exibido no momento.
+  * `NavMenu`(*NavMenu. Razor*) &ndash; implementa a navegação na barra lateral. Inclui o [componente NavLink](xref:blazor/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), que renderiza links de navegação para outros Razor componentes. O <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente um estado selecionado quando seu componente é carregado, o que ajuda o usuário a entender qual componente está sendo exibido no momento.
 
 * *_Imports. Razor* &ndash; Inclui Razor diretivas comuns para incluir nos componentes do aplicativo (*. Razor*), como [`@using`](xref:mvc/views/razor#using) diretivas para namespaces.
 

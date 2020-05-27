@@ -1,22 +1,11 @@
 ---
-title: Globalização e localização no ASP.NET Core
-author: rick-anderson
-description: Saiba como o ASP.NET Core fornece serviços e middleware para localização de conteúdo em diferentes idiomas e culturas.
-ms.author: riande
-ms.date: 11/30/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/localization
-ms.openlocfilehash: 6a6179baedbb6e737335886457e9012ad463a2ba
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153950"
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
@@ -40,7 +29,7 @@ A localização de aplicativos envolve o seguinte:
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> foram projetadas para melhorar a produtividade ao desenvolver aplicativos localizados. `IStringLocalizer` usa o [ResourceManager](/dotnet/api/system.resources.resourcemanager) e o [ResourceReader](/dotnet/api/system.resources.resourcereader) para fornecer recursos específicos a uma cultura em tempo de execução. A interface tem um indexador e um `IEnumerable` para retornar cadeias de caracteres localizadas. `IStringLocalizer`Não requer o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' não exige o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -72,7 +61,7 @@ O serviço `IViewLocalizer` fornece cadeias de caracteres localizadas para uma [
 
 [!code-cshtml[](localization/sample/Localization/Views/Home/About.cshtml)]
 
-A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer` implementa o localizador usando `IHtmlLocalizer` e, portanto, o Razor não codifica em HTML a cadeia de caracteres localizada. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte marcação do Razor:
+A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer`implementa o localizador usando `IHtmlLocalizer` , portanto, Razor não codifica a cadeia de caracteres localizada em HTML. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte Razor marcação:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -81,8 +70,15 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
@@ -155,12 +151,72 @@ Os recursos são nomeados com o nome completo do tipo de sua classe menos o nome
 No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` como "Resources", de modo que o caminho relativo do projeto para o arquivo de recurso em francês do controlador principal seja *Resources/Controllers.HomeController.fr.resx*. Como alternativa, você pode usar pastas para organizar arquivos de recurso. Para o controlador principal, o caminho será *Resources/Controllers/HomeController.fr.resx*. Se você não usar a opção `ResourcesPath`, o arquivo *.resx* entrará no diretório base do projeto. O arquivo de recurso para `HomeController` será nomeado *Controllers.HomeController.fr.resx*. A opção de usar a convenção de nomenclatura de ponto ou caminho depende de como você deseja organizar os arquivos de recurso.
 
 | Nome do recurso | Nomenclatura de ponto ou caminho |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Ponto  |
-| Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
+| ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
 
-Os arquivos de recurso que usam `@inject IViewLocalizer` em exibições do Razor seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Os arquivos de recurso da exibição do Razor simulam o caminho de seu arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------   | título do---: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------- | | Recursos/controladores. HomeController. fr. resx | Ponto | | Recursos/controladores/HomeController. fr. resx | Caminho | |    |     |
+
+Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -326,7 +382,7 @@ O método `SetLanguage` define o cookie de cultura.
 
 [!code-csharp[](localization/sample/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Não é possível conectar o *_SelectLanguagePartial.cshtml* ao código de exemplo para este projeto. O projeto **Localization.StarterWeb** no [GitHub](https://github.com/aspnet/entropy) contém o código para o fluxo do `RequestLocalizationOptions` para uma parcial do Razor por meio do contêiner de [Injeção de Dependência](dependency-injection.md).
+Não é possível conectar o *_SelectLanguagePartial.cshtml* ao código de exemplo para este projeto. O projeto **Localization. StarterWeb** no [GitHub](https://github.com/aspnet/entropy) tem código para fluir `RequestLocalizationOptions` para um Razor parcial por meio do contêiner de [injeção de dependência](dependency-injection.md) .
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Dados de rota de associação de modelo e cadeias de caracteres de consulta
 
@@ -388,7 +444,7 @@ A localização de aplicativos envolve o seguinte:
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> foram projetadas para melhorar a produtividade ao desenvolver aplicativos localizados. `IStringLocalizer` usa o [ResourceManager](/dotnet/api/system.resources.resourcemanager) e o [ResourceReader](/dotnet/api/system.resources.resourcereader) para fornecer recursos específicos a uma cultura em tempo de execução. A interface tem um indexador e um `IEnumerable` para retornar cadeias de caracteres localizadas. `IStringLocalizer`Não requer o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' não exige o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -420,7 +476,7 @@ O serviço `IViewLocalizer` fornece cadeias de caracteres localizadas para uma [
 
 [!code-cshtml[](localization/sample/Localization/Views/Home/About.cshtml)]
 
-A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer` implementa o localizador usando `IHtmlLocalizer` e, portanto, o Razor não codifica em HTML a cadeia de caracteres localizada. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte marcação do Razor:
+A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer`implementa o localizador usando `IHtmlLocalizer` , portanto, Razor não codifica a cadeia de caracteres localizada em HTML. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte Razor marcação:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -429,8 +485,15 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
@@ -503,12 +566,72 @@ Os recursos são nomeados com o nome completo do tipo de sua classe menos o nome
 No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` como "Resources", de modo que o caminho relativo do projeto para o arquivo de recurso em francês do controlador principal seja *Resources/Controllers.HomeController.fr.resx*. Como alternativa, você pode usar pastas para organizar arquivos de recurso. Para o controlador principal, o caminho será *Resources/Controllers/HomeController.fr.resx*. Se você não usar a opção `ResourcesPath`, o arquivo *.resx* entrará no diretório base do projeto. O arquivo de recurso para `HomeController` será nomeado *Controllers.HomeController.fr.resx*. A opção de usar a convenção de nomenclatura de ponto ou caminho depende de como você deseja organizar os arquivos de recurso.
 
 | Nome do recurso | Nomenclatura de ponto ou caminho |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Ponto  |
-| Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
+| ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
 
-Os arquivos de recurso que usam `@inject IViewLocalizer` em exibições do Razor seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Os arquivos de recurso da exibição do Razor simulam o caminho de seu arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------   | título do---: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------- | | Recursos/controladores. HomeController. fr. resx | Ponto | | Recursos/controladores/HomeController. fr. resx | Caminho | |    |     |
+
+Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -674,7 +797,7 @@ O método `SetLanguage` define o cookie de cultura.
 
 [!code-csharp[](localization/sample/Localization/Controllers/HomeController.cs?range=57-67)]
 
-Não é possível conectar o *_SelectLanguagePartial.cshtml* ao código de exemplo para este projeto. O projeto **Localization.StarterWeb** no [GitHub](https://github.com/aspnet/entropy) contém o código para o fluxo do `RequestLocalizationOptions` para uma parcial do Razor por meio do contêiner de [Injeção de Dependência](dependency-injection.md).
+Não é possível conectar o *_SelectLanguagePartial.cshtml* ao código de exemplo para este projeto. O projeto **Localization. StarterWeb** no [GitHub](https://github.com/aspnet/entropy) tem código para fluir `RequestLocalizationOptions` para um Razor parcial por meio do contêiner de [injeção de dependência](dependency-injection.md) .
 
 ## <a name="model-binding-route-data-and-query-strings"></a>Dados de rota de associação de modelo e cadeias de caracteres de consulta
 
@@ -735,7 +858,7 @@ A localização de aplicativos envolve o seguinte:
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> foram projetadas para melhorar a produtividade ao desenvolver aplicativos localizados. `IStringLocalizer` usa o [ResourceManager](/dotnet/api/system.resources.resourcemanager) e o [ResourceReader](/dotnet/api/system.resources.resourcereader) para fornecer recursos específicos a uma cultura em tempo de execução. A interface tem um indexador e um `IEnumerable` para retornar cadeias de caracteres localizadas. `IStringLocalizer`Não requer o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer>` and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer ` uses the [ResourceManager](/dotnet/api/system.resources.resourcemanager) and [ResourceReader](/dotnet/api/system.resources.resourcereader) to provide culture-specific resources at run time. The interface has an indexer and an ` IEnumerable ` for returning localized strings. ` IStringLocalizer ' não exige o armazenamento das cadeias de caracteres de idioma padrão em um arquivo de recurso. Você pode desenvolver um aplicativo direcionado à localização e não precisa criar arquivos de recurso no início do desenvolvimento. O código abaixo mostra como encapsular a cadeia de caracteres "About Title" para localização.
 
 [!code-csharp[](localization/sample/Localization/Controllers/AboutController.cs)]
 
@@ -767,7 +890,7 @@ O serviço `IViewLocalizer` fornece cadeias de caracteres localizadas para uma [
 
 [!code-cshtml[](localization/sample/Localization/Views/Home/About.cshtml)]
 
-A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer` implementa o localizador usando `IHtmlLocalizer` e, portanto, o Razor não codifica em HTML a cadeia de caracteres localizada. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte marcação do Razor:
+A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com base no nome de arquivo da exibição. Não há nenhuma opção para usar um arquivo de recurso compartilhado global. `ViewLocalizer`implementa o localizador usando `IHtmlLocalizer` , portanto, Razor não codifica a cadeia de caracteres localizada em HTML. Parametrize cadeias de recurso e o `IViewLocalizer` codificará em HTML os parâmetros, mas não a cadeia de caracteres de recurso. Considere a seguinte Razor marcação:
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -776,8 +899,15 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
+| ----- | ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--- | | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
@@ -850,10 +980,70 @@ Os recursos são nomeados com o nome completo do tipo de sua classe menos o nome
 No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` como "Resources", de modo que o caminho relativo do projeto para o arquivo de recurso em francês do controlador principal seja *Resources/Controllers.HomeController.fr.resx*. Como alternativa, você pode usar pastas para organizar arquivos de recurso. Para o controlador principal, o caminho será *Resources/Controllers/HomeController.fr.resx*. Se você não usar a opção `ResourcesPath`, o arquivo *.resx* entrará no diretório base do projeto. O arquivo de recurso para `HomeController` será nomeado *Controllers.HomeController.fr.resx*. A opção de usar a convenção de nomenclatura de ponto ou caminho depende de como você deseja organizar os arquivos de recurso.
 
 | Nome do recurso | Nomenclatura de ponto ou caminho |
-| ------------   | ------------- |
-| Resources/Controllers.HomeController.fr.resx | Ponto  |
-| Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
+| ---
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------   | título do---: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------- | | Recursos/controladores. HomeController. fr. resx | Ponto | | Recursos/controladores/HomeController. fr. resx | Caminho | |    |     |
 
 Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 

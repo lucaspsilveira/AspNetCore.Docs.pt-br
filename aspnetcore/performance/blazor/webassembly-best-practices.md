@@ -1,24 +1,12 @@
 ---
-title: BlazorPráticas recomendadas de desempenho do Webassembly ASP.NET Core
-author: pranavkm
-description: Dicas para aumentar o desempenho em ASP.NET Core Blazor aplicativos Webassembly e evitar problemas comuns de desempenho.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 05/13/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: performance/blazor/webassembly-best-practices
-ms.openlocfilehash: 9e9b166cb9ce9870a8ff275b72bb12f04b84751b
-ms.sourcegitcommit: e20653091c30e0768c4f960343e2c3dd658bba13
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83439433"
+Título: ' ASP.NET Core Blazor práticas recomendadas de desempenho do Webassembly ' autor: Descrição: ' dicas para aumentar o desempenho em ASP.NET Core Blazor aplicativos Webassembly e evitar problemas comuns de desempenho. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>BlazorPráticas recomendadas de desempenho do Webassembly ASP.NET Core
 
@@ -28,9 +16,9 @@ Este artigo fornece diretrizes para ASP.NET Core Blazor práticas recomendadas d
 
 ## <a name="avoid-unnecessary-component-renders"></a>Evitar renderizações de componente desnecessárias
 
-Blazoro algoritmo de diferenciação do evita a rerenderização de um componente quando o algoritmo percebe que o componente não foi alterado. Substitua [ComponentBase. ShouldRender](xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A) pelo controle refinado sobre a renderização do componente.
+Blazoro algoritmo de diferenciação do evita a rerenderização de um componente quando o algoritmo percebe que o componente não foi alterado. Substitua o <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> controle refinado sobre a renderização do componente.
 
-Se criar um componente somente de interface do usuário que nunca é alterado após a renderização inicial, configure `ShouldRender` para retornar `false` :
+Se criar um componente somente de interface do usuário que nunca é alterado após a renderização inicial, configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> para retornar `false` :
 
 ```razor
 @code {
@@ -42,9 +30,9 @@ A maioria dos aplicativos não requer controle refinado, mas <xref:Microsoft.Asp
 
 No exemplo a seguir:
 
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>é substituído e definido como o valor do `shouldRender` campo, que é inicialmente `false` quando o componente é carregado.
-* Quando o botão é selecionado, `shouldRender` é definido como `true` , o que força o componente a renderizar novamente com o atualizado `currentCount` .
-* Imediatamente após o reprocessamento, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> o define o valor de `shouldRender` voltar para `false` para evitar a rerenderização posterior até a próxima vez que o botão for selecionado.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>é substituído e definido como o valor do <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> campo, que é inicialmente `false` quando o componente é carregado.
+* Quando o botão é selecionado, <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> é definido como `true` , o que força o componente a renderizar novamente com o atualizado `currentCount` .
+* Imediatamente após o reprocessamento, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> o define o valor de <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> voltar para `false` para evitar a rerenderização posterior até a próxima vez que o botão for selecionado.
 
 ```razor
 <p>Current count: @currentCount</p>

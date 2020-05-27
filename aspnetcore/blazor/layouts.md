@@ -1,24 +1,12 @@
 ---
-title: BlazorLayouts de ASP.NET Core
-author: guardrex
-description: Saiba como criar componentes de layout reutilizáveis para Blazor aplicativos.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/layouts
-ms.openlocfilehash: 09cca9c4af23c35fdbc2ee92169913c960b0a68d
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424330"
+Título: ' ASP.NET Core Blazor layouts ' autor: Descrição: ' saiba como criar componentes de layout reutilizáveis para Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="aspnet-core-blazor-layouts"></a>BlazorLayouts de ASP.NET Core
 
@@ -30,10 +18,10 @@ Tecnicamente, um layout é apenas outro componente. Um layout é definido em um 
 
 Para transformar um *componente* em um *layout*, o componente:
 
-* Herda de `LayoutComponentBase` , que define uma `Body` propriedade para o conteúdo renderizado dentro do layout.
+* Herda de <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> , que define uma <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> propriedade para o conteúdo renderizado dentro do layout.
 * Usa a Razor sintaxe `@Body` para especificar o local na marcação de layout onde o conteúdo é renderizado.
 
-O exemplo de código a seguir mostra o Razor modelo de um componente de layout, *MainLayout. Razor*. O layout herda `LayoutComponentBase` e define o `@Body` entre a barra de navegação e o rodapé:
+O exemplo de código a seguir mostra o Razor modelo de um componente de layout, *MainLayout. Razor*. O layout herda <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> e define o `@Body` entre a barra de navegação e o rodapé:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
@@ -41,21 +29,21 @@ Em um aplicativo baseado em um dos Blazor modelos de aplicativo, o `MainLayout` 
 
 ## <a name="default-layout"></a>Layout padrão
 
-Especifique o layout do aplicativo padrão no `Router` componente no arquivo *app. Razor* do aplicativo. O componente a seguir `Router` , que é fornecido pelos Blazor modelos padrão, define o layout padrão para o `MainLayout` componente:
+Especifique o layout do aplicativo padrão no <xref:Microsoft.AspNetCore.Components.Routing.Router> componente no arquivo *app. Razor* do aplicativo. O componente a seguir <xref:Microsoft.AspNetCore.Components.Routing.Router> , que é fornecido pelos Blazor modelos padrão, define o layout padrão para o `MainLayout` componente:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
-Para fornecer um layout padrão para `NotFound` conteúdo, especifique um `LayoutView` para o `NotFound` conteúdo:
+Para fornecer um layout padrão para <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> conteúdo, especifique um <xref:Microsoft.AspNetCore.Components.LayoutView> para o <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> conteúdo:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-Para obter mais informações sobre o `Router` componente, consulte <xref:blazor/routing> .
+Para obter mais informações sobre o <xref:Microsoft.AspNetCore.Components.Routing.Router> componente, consulte <xref:blazor/routing> .
 
 A especificação do layout como um layout padrão no roteador é uma prática útil, pois pode ser substituída por componente ou por pasta. Prefira usar o roteador para definir o layout padrão do aplicativo porque ele é a técnica mais geral.
 
 ## <a name="specify-a-layout-in-a-component"></a>Especificar um layout em um componente
 
-Use a Razor diretiva `@layout` para aplicar um layout a um componente. O compilador converte `@layout` em um `LayoutAttribute` , que é aplicado à classe de componente.
+Use a Razor diretiva `@layout` para aplicar um layout a um componente. O compilador converte `@layout` em um <xref:Microsoft.AspNetCore.Components.LayoutAttribute> , que é aplicado à classe de componente.
 
 O conteúdo do componente a seguir `MasterList` é inserido no `MasterLayout` na posição de `@Body` :
 

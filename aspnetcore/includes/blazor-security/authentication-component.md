@@ -1,6 +1,6 @@
 A página produzida pelo `Authentication` componente (*páginas/autenticação. Razor*) define as rotas necessárias para lidar com estágios de autenticação diferentes.
 
-O `RemoteAuthenticatorView` componente:
+O <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> componente:
 
 * É fornecido pelo pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) .
 * Gerencia a execução das ações apropriadas em cada estágio de autenticação.

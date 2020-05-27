@@ -1,24 +1,11 @@
 ---
-title: ASP.NET Core Blazor componentes modelados
-author: guardrex
-description: Saiba como os componentes modelados podem aceitar um ou mais modelos de interface do usuário como parâmetros, que podem ser usados como parte da lógica de renderização do componente.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/18/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/templated-components
-ms.openlocfilehash: de603d3520c124b278312e5167a2f8bad14cf6e9
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771061"
+Título: ' ASP.NET Core Blazor componentes modelo ' autor: Descrição: monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="aspnet-core-blazor-templated-components"></a>ASP.NET Core Blazor componentes modelados
 
@@ -31,13 +18,13 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 
 ## <a name="template-parameters"></a>Parâmetros de modelo
 
-Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou. `RenderFragment<T>` Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>`usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
+Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo <xref:Microsoft.AspNetCore.Components.RenderFragment> ou <xref:Microsoft.AspNetCore.Components.RenderFragment%601> . Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. <xref:Microsoft.AspNetCore.Components.RenderFragment%601>usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
 `TableTemplate`componente
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
-Ao usar um componente modelo, os parâmetros do modelo podem ser especificados usando elementos filho que correspondem aos nomes dos parâmetros (`TableHeader` e `RowTemplate` no exemplo a seguir):
+Ao usar um componente modelo, os parâmetros do modelo podem ser especificados usando elementos filho que correspondem aos nomes dos parâmetros ( `TableHeader` e `RowTemplate` no exemplo a seguir):
 
 ```razor
 <TableTemplate Items="pets">
@@ -57,7 +44,7 @@ Ao usar um componente modelo, os parâmetros do modelo podem ser especificados u
 
 ## <a name="template-context-parameters"></a>Parâmetros de contexto de modelo
 
-Argumentos de componente do `RenderFragment<T>` tipo passado como elementos têm um parâmetro implícito `context` chamado (por exemplo, do exemplo de código `@context.PetId`anterior,), mas você pode alterar o nome do `Context` parâmetro usando o atributo no elemento filho. No exemplo a seguir, o `RowTemplate` atributo do `Context` elemento Especifica o `pet` parâmetro:
+Argumentos de componente do tipo <xref:Microsoft.AspNetCore.Components.RenderFragment%601> passado como elementos têm um parâmetro implícito chamado `context` (por exemplo, do exemplo de código anterior, `@context.PetId` ), mas você pode alterar o nome do parâmetro usando o `Context` atributo no elemento filho. No exemplo a seguir, o `RowTemplate` atributo do elemento `Context` especifica o `pet` parâmetro:
 
 ```razor
 <TableTemplate Items="pets">
@@ -72,7 +59,7 @@ Argumentos de componente do `RenderFragment<T>` tipo passado como elementos têm
 </TableTemplate>
 ```
 
-Como alternativa, você pode especificar o `Context` atributo no elemento Component. O atributo `Context` especificado se aplica a todos os parâmetros de modelo especificados. Isso pode ser útil quando você deseja especificar o nome do parâmetro de conteúdo para conteúdo filho implícito (sem qualquer elemento filho de disposição). No exemplo a seguir, o `Context` atributo aparece no `TableTemplate` elemento e se aplica a todos os parâmetros de modelo:
+Como alternativa, você pode especificar o `Context` atributo no elemento Component. O `Context` atributo especificado se aplica a todos os parâmetros de modelo especificados. Isso pode ser útil quando você deseja especificar o nome do parâmetro de conteúdo para conteúdo filho implícito (sem qualquer elemento filho de disposição). No exemplo a seguir, o `Context` atributo aparece no `TableTemplate` elemento e se aplica a todos os parâmetros de modelo:
 
 ```razor
 <TableTemplate Items="pets" Context="pet">
@@ -89,7 +76,7 @@ Como alternativa, você pode especificar o `Context` atributo no elemento Compon
 
 ## <a name="generic-typed-components"></a>Componentes de tipo genérico
 
-Os componentes modelo são geralmente digitados genericamente. Por exemplo, um componente `ListViewTemplate` genérico pode ser usado para renderizar `IEnumerable<T>` valores. Para definir um componente genérico, use a [`@typeparam`](xref:mvc/views/razor#typeparam) diretiva para especificar parâmetros de tipo:
+Os componentes modelo são geralmente digitados genericamente. Por exemplo, um `ListViewTemplate` componente genérico pode ser usado para renderizar `IEnumerable<T>` valores. Para definir um componente genérico, use a [`@typeparam`](xref:mvc/views/razor#typeparam) diretiva para especificar parâmetros de tipo:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 

@@ -16,7 +16,7 @@ BlazorOs aplicativos Webassembly são protegidos da mesma maneira que os aplicat
 
 ## <a name="authentication-library"></a>Biblioteca de autenticação
 
-BlazorO Webassembly dá suporte à autenticação e à autorização de aplicativos usando o OIDC por meio da `Microsoft.AspNetCore.Components.WebAssembly.Authentication` biblioteca. A biblioteca fornece um conjunto de primitivos para autenticação direta contra back-ends ASP.NET Core. A biblioteca integra ASP.NET Core Identity com suporte à autorização de API criado na parte superior do [ Identity servidor](https://identityserver.io/). A biblioteca pode se autenticar em qualquer provedor de terceiros Identity (IP) que ofereça suporte a OIDC, que são chamadas de provedores de OpenID (op).
+BlazorO Webassembly dá suporte à autenticação e à autorização de aplicativos usando o OIDC por meio da biblioteca [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) . A biblioteca fornece um conjunto de primitivos para autenticação direta contra back-ends ASP.NET Core. A biblioteca integra ASP.NET Core Identity com suporte à autorização de API criado na parte superior do [ Identity servidor](https://identityserver.io/). A biblioteca pode se autenticar em qualquer provedor de terceiros Identity (IP) que ofereça suporte a OIDC, que são chamadas de provedores de OpenID (op).
 
 O suporte de autenticação no Blazor Webassembly é criado sobre a biblioteca *oidc-Client. js* , que é usada para lidar com os detalhes do protocolo de autenticação subjacente.
 
@@ -32,7 +32,7 @@ Existem outras opções para autenticar SPAs, como o uso de cookies SameSite. No
 
 ## <a name="authentication-process-with-oidc"></a>Processo de autenticação com OIDC
 
-A `Microsoft.AspNetCore.Components.WebAssembly.Authentication` biblioteca oferece vários primitivos para implementar a autenticação e a autorização usando o OIDC. Em termos gerais, a autenticação funciona da seguinte maneira:
+A biblioteca [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) oferece vários primitivos para implementar a autenticação e a autorização usando o OIDC. Em termos gerais, a autenticação funciona da seguinte maneira:
 
 * Quando um usuário anônimo seleciona o botão de logon ou solicita uma página com o [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo aplicado, o usuário é redirecionado para a página de logon do aplicativo ( `/authentication/login` ).
 * Na página de logon, a biblioteca de autenticação se prepara para um redirecionamento para o ponto de extremidade de autorização. O ponto de extremidade de autorização está fora do Blazor aplicativo Webassembly e pode ser hospedado em uma origem separada. O ponto de extremidade é responsável por determinar se o usuário está autenticado e para emitir um ou mais tokens em resposta. A biblioteca de autenticação fornece um retorno de chamada de logon para receber a resposta de autenticação.
