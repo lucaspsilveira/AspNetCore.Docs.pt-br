@@ -1,24 +1,11 @@
 ---
-title: Solucionar problemas do gRPC no .NET Core
-author: jamesnk
-description: Solucionar erros ao usar o gRPC no .NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.custom: mvc
-ms.date: 10/16/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/troubleshoot
-ms.openlocfilehash: 6f496b71c86762b35bdb3de33405a5aea6d8f8a5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775369"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Solucionar problemas do gRPC no .NET Core
 
@@ -52,7 +39,7 @@ static async Task Main(string[] args)
 }
 ```
 
-Todas as implementações de cliente do gRPC dão suporte a TLS. Os clientes gRPC de outras linguagens normalmente exigem o canal `SslCredentials`configurado com o. `SslCredentials`Especifica o certificado que o cliente usará e deve ser usado em vez de credenciais não seguras. Para obter exemplos de como configurar as diferentes implementações de cliente gRPC para usar o TLS, consulte [autenticação do gRPC](https://www.grpc.io/docs/guides/auth/).
+Todas as implementações de cliente do gRPC dão suporte a TLS. Os clientes gRPC de outras linguagens normalmente exigem o canal configurado com o `SslCredentials` . `SslCredentials`Especifica o certificado que o cliente usará e deve ser usado em vez de credenciais não seguras. Para obter exemplos de como configurar as diferentes implementações de cliente gRPC para usar o TLS, consulte [autenticação do gRPC](https://www.grpc.io/docs/guides/auth/).
 
 ## <a name="call-a-grpc-service-with-an-untrustedinvalid-certificate"></a>Chamar um serviço gRPC com um certificado não confiável/inválido
 
@@ -66,14 +53,13 @@ Você poderá ver esse erro se estiver testando seu aplicativo localmente e o AS
 Se você estiver chamando um serviço gRPC em outro computador e não puder confiar no certificado, o cliente gRPC poderá ser configurado para ignorar o certificado inválido. O código a seguir usa [HttpClientHandler. ServerCertificateCustomValidationCallback](/dotnet/api/system.net.http.httpclienthandler.servercertificatecustomvalidationcallback) para permitir chamadas sem um certificado confiável:
 
 ```csharp
-var httpClientHandler = new HttpClientHandler();
+var httpHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = 
+httpHandler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-var httpClient = new HttpClient(httpClientHandler);
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpClient = httpClient });
+    new GrpcChannelOptions { HttpHandler = httpHandler });
 var client = new Greet.GreeterClient(channel);
 ```
 
@@ -82,7 +68,7 @@ var client = new Greet.GreeterClient(channel);
 
 ## <a name="call-insecure-grpc-services-with-net-core-client"></a>Chamar serviços gRPCs inseguros com o cliente .NET Core
 
-A configuração adicional é necessária para chamar serviços gRPCs inseguros com o cliente .NET Core. O cliente gRPC deve definir o `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` comutador `true` para e `http` usar no endereço do servidor:
+A configuração adicional é necessária para chamar serviços gRPCs inseguros com o cliente .NET Core. O cliente gRPC deve definir o `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` comutador para `true` e usar `http` no endereço do servidor:
 
 ```csharp
 // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -98,7 +84,7 @@ var client = new Greet.GreeterClient(channel);
 
 O Kestrel não dá suporte a HTTP/2 com TLS no macOS e versões mais antigas do Windows, como o Windows 7. O modelo ASP.NET Core gRPC e os exemplos usam TLS por padrão. Você verá a seguinte mensagem de erro ao tentar iniciar o servidor gRPC:
 
-> Não é possível associar https://localhost:5001 ao na interface de loopback IPv4: ' http/2 sobre TLS não tem suporte no MacOS devido ao suporte de ALPN ausente. '.
+> Não é possível associar ao https://localhost:5001 na interface de loopback IPv4: ' http/2 sobre TLS não tem suporte no MacOS devido ao suporte de ALPN ausente. '.
 
 Para contornar esse problema, configure o Kestrel e o cliente gRPC para usar HTTP/2 *sem* TLS. Você só deve fazer isso durante o desenvolvimento. Não usar o TLS fará com que as mensagens gRPC sejam enviadas sem criptografia.
 
@@ -119,7 +105,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-Quando um ponto de extremidade HTTP/2 é configurado sem TLS, o [ListenerOptions](xref:fundamentals/servers/kestrel#listenoptionsprotocols) do ponto de extremidade deve ser `HttpProtocols.Http2`definido como. `HttpProtocols.Http1AndHttp2`Não pode ser usado porque o TLS é necessário para negociar HTTP/2. Sem o TLS, todas as conexões com o ponto de extremidade padrão para HTTP/1.1 e chamadas gRPC falham.
+Quando um ponto de extremidade HTTP/2 é configurado sem TLS, o [ListenerOptions](xref:fundamentals/servers/kestrel#listenoptionsprotocols) do ponto de extremidade deve ser definido como `HttpProtocols.Http2` . `HttpProtocols.Http1AndHttp2`Não pode ser usado porque o TLS é necessário para negociar HTTP/2. Sem o TLS, todas as conexões com o ponto de extremidade padrão para HTTP/1.1 e chamadas gRPC falham.
 
 O cliente gRPC também deve ser configurado para não usar o TLS. Para obter mais informações, consulte [chamar serviços gRPCs inseguros com o cliente .NET Core](#call-insecure-grpc-services-with-net-core-client).
 
@@ -130,12 +116,12 @@ O cliente gRPC também deve ser configurado para não usar o TLS. Para obter mai
 
 a geração de código gRPC de clientes concretos e classes base de serviço requer que os arquivos e as ferramentas do protobuf sejam referenciados de um projeto. Você deve incluir:
 
-* arquivos *. proto* que você deseja usar no grupo `<Protobuf>` de itens. [Arquivos *. proto* importados](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) devem ser referenciados pelo projeto.
+* arquivos *. proto* que você deseja usar no `<Protobuf>` grupo de itens. [Arquivos *. proto* importados](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) devem ser referenciados pelo projeto.
 * Referência de pacote para o pacote de ferramentas do gRPC [gRPC. Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-Para obter mais informações sobre como gerar ativos do gRPC <xref:grpc/basics>C#, consulte.
+Para obter mais informações sobre como gerar ativos do gRPC C#, consulte <xref:grpc/basics> .
 
-Por padrão, uma `<Protobuf>` referência gera um cliente concreto e uma classe base de serviço. O atributo do `GrpcServices` elemento Reference pode ser usado para limitar a geração de ativos C#. As `GrpcServices` opções válidas são:
+Por padrão, uma `<Protobuf>` referência gera um cliente concreto e uma classe base de serviço. O atributo do elemento Reference `GrpcServices` pode ser usado para limitar a geração de ativos C#. `GrpcServices`As opções válidas são:
 
 * `Both`(padrão quando não presente)
 * `Server`
@@ -160,16 +146,16 @@ Um aplicativo cliente gRPC que faz chamadas gRPC precisa apenas do cliente concr
 
 ## <a name="wpf-projects-unable-to-generate-grpc-c-assets-from-proto-files"></a>Projetos do WPF não podem gerar ativos gRPC C# a partir de arquivos. proto
 
-Os projetos do WPF têm um [problema conhecido](https://github.com/dotnet/wpf/issues/810) que impede a geração de código gRPC de funcionar corretamente. Quaisquer tipos de gRPC gerados em um projeto do WPF `Grpc.Tools` referenciando e *. proto* arquivos criarão erros de compilação quando usados:
+Os projetos do WPF têm um [problema conhecido](https://github.com/dotnet/wpf/issues/810) que impede a geração de código gRPC de funcionar corretamente. Quaisquer tipos de gRPC gerados em um projeto do WPF referenciando `Grpc.Tools` e *. proto* arquivos criarão erros de compilação quando usados:
 
 > erro CS0246: não foi possível encontrar o nome do namespace ou tipo ' MyGrpcServices ' (está faltando uma diretiva using ou uma referência de assembly?)
 
 Você pode solucionar esse problema:
 
 1. Crie um novo projeto de biblioteca de classes do .NET Core.
-2. No novo projeto, adicione referências para habilitar a [geração de código C# a partir de * \*arquivos. proto* ](xref:grpc/basics#generated-c-assets):
+2. No novo projeto, adicione referências para habilitar a [geração de código C# a partir de arquivos * \* . proto* ](xref:grpc/basics#generated-c-assets):
     * Adicione uma referência de pacote ao pacote [Grpc. Tools](https://www.nuget.org/packages/Grpc.Tools/) .
-    * Adicione * \*arquivos. proto* ao grupo `<Protobuf>` de itens.
+    * Adicione arquivos * \* . proto* ao `<Protobuf>` grupo de itens.
 3. No aplicativo do WPF, adicione uma referência ao novo projeto.
 
 O aplicativo WPF pode usar os tipos gerados gRPC do novo projeto de biblioteca de classes.

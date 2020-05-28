@@ -56,9 +56,9 @@ O endereço base do cliente é definido como o endereço do servidor de origem. 
 
 Nos exemplos a seguir, uma API Web todo processa as operações CRUD (criar, ler, atualizar e excluir). Os exemplos são baseados em uma `TodoItem` classe que armazena:
 
-* ID ( `Id` , `long` ) &ndash; ID exclusiva do item.
-* Nome ( `Name` , `string` ) &ndash; nome do item.
-* `IsComplete`Indicação de status (, `bool` ) &ndash; se o item de tarefas pendentes for concluído.
+* ID ( `Id` , `long` ): ID exclusiva do item.
+* Nome ( `Name` , `string` ): o nome do item.
+* Status ( `IsComplete` , `bool` ): indica se o item de tarefas pendentes foi concluído.
 
 ```csharp
 private class TodoItem
@@ -71,7 +71,7 @@ private class TodoItem
 
 Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos exemplos a seguir) e processam a resposta:
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>&ndash;Envia uma solicitação HTTP Get e analisa o corpo da resposta JSON para criar um objeto.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Envia uma solicitação HTTP GET e analisa o corpo da resposta JSON para criar um objeto.
 
   No código a seguir, os `todoItems` são exibidos pelo componente. O `GetTodoItems` método é disparado quando o processamento do componente é concluído ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
 
@@ -87,7 +87,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
   }
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>&ndash;Envia uma solicitação HTTP post, incluindo conteúdo codificado em JSON, e analisa o corpo da resposta JSON para criar um objeto.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>: Envia uma solicitação HTTP POST, incluindo conteúdo codificado em JSON, e analisa o corpo da resposta JSON para criar um objeto.
 
   No código a seguir, `newItemName` é fornecido por um elemento associado do componente. O `AddItem` método é disparado selecionando um `<button>` elemento. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
@@ -115,7 +115,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
   var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>&ndash;Envia uma solicitação HTTP PUT, incluindo conteúdo codificado em JSON.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>: Envia uma solicitação HTTP PUT, incluindo conteúdo codificado em JSON.
 
   No código a seguir, `editItem` os valores para `Name` e `IsCompleted` são fornecidos pelos elementos associados do componente. O item `Id` é definido quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O `SaveItem` método é disparado selecionando o `<button>` elemento Save. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
@@ -301,7 +301,7 @@ Para permitir que outros sites façam solicitações de compartilhamento de recu
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* <xref:security/blazor/webassembly/additional-scenarios>&ndash;Inclui cobertura no uso <xref:System.Net.Http.HttpClient> para fazer solicitações de API da Web seguras.
+* <xref:security/blazor/webassembly/additional-scenarios>: Inclui cobertura no uso do <xref:System.Net.Http.HttpClient> para fazer solicitações de API da Web seguras.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Configuração de ponto de extremidade HTTPS Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration)

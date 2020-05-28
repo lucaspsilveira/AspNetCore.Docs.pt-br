@@ -1,24 +1,11 @@
 ---
-title: Hospedar o ASP.NET Core em um serviço Windows
-author: rick-anderson
-description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windows.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/windows-service
-ms.openlocfilehash: 4ad9086c60e58f89bdde4962d7487036df251cc1
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776338"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -52,8 +39,8 @@ O aplicativo requer uma referência de pacote para [Microsoft. Extensions. host.
 * Define a [raiz do conteúdo](xref:fundamentals/index#content-root) como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Para saber mais, consulte a seção [Diretório atual e a raiz do conteúdo](#current-directory-and-content-root).
 * Habilita o registro em log no log de eventos:
   * O nome do aplicativo é usado como o nome de origem padrão.
-  * O nível de log padrão é *aviso* ou superior para um aplicativo com base em um modelo de `CreateDefaultBuilder` ASP.NET Core que chama para criar o host.
-  * Substitua o nível de log padrão pela `Logging:EventLog:LogLevel:Default` chave em *appSettings. JSON*/*appSettings. { Ambiente}. JSON* ou outro provedor de configuração.
+  * O nível de log padrão é *aviso* ou superior para um aplicativo com base em um modelo de ASP.NET Core que chama `CreateDefaultBuilder` para criar o host.
+  * Substitua o nível de log padrão pela `Logging:EventLog:LogLevel:Default` chave em *appSettings. JSON* / *appSettings. { Ambiente}. JSON* ou outro provedor de configuração.
   * Somente administradores podem criar novas fontes de evento. Quando uma fonte de evento não puder ser criada usando o nome do aplicativo, um aviso será registrado em log como a fonte do *Aplicativo* e os logs de eventos serão desabilitados.
 
 Em `CreateHostBuilder` *Program.cs*:
@@ -66,10 +53,10 @@ Host.CreateDefaultBuilder(args)
 
 Os aplicativos de exemplo a seguir acompanham este tópico:
 
-* O serviço de trabalho &ndash; em segundo plano amostra um aplicativo não Web de exemplo baseado no [modelo de serviço de trabalho](#worker-service-template) que usa [serviços hospedados](xref:fundamentals/host/hosted-services) para tarefas em segundo plano.
-* Exemplo &ndash; de serviço de aplicativo Razor Web um exemplo de aplicativo Web de páginas que é executado como um serviço do Windows com [serviços hospedados](xref:fundamentals/host/hosted-services) para tarefas em segundo plano.
+* Exemplo de serviço de trabalho em segundo plano: um aplicativo não Web de exemplo baseado no [modelo de serviço de trabalho](#worker-service-template) que usa [serviços hospedados](xref:fundamentals/host/hosted-services) para tarefas em segundo plano.
+* Exemplo de serviço de aplicativo Web: um Razor exemplo de aplicativo Web de páginas que é executado como um serviço do Windows com [serviços hospedados](xref:fundamentals/host/hosted-services) para tarefas em segundo plano.
 
-Para obter diretrizes do MVC, consulte os <xref:mvc/overview> artigos <xref:migration/22-to-30>em e.
+Para obter diretrizes do MVC, consulte os artigos em <xref:mvc/overview> e <xref:migration/22-to-30> .
 
 ## <a name="deployment-type"></a>Tipo de implantação
 
@@ -77,7 +64,7 @@ Para saber mais e obter conselhos sobre cenários de implantação, consulte [Im
 
 ### <a name="sdk"></a>.
 
-Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, ESPECIFIQUE o SDK da Web no arquivo de projeto:
+Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, especifique o SDK da Web no arquivo de projeto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -115,7 +102,7 @@ Um [RID (Identificador do Runtime do Windows)](/dotnet/core/rid-catalog) está i
 Para publicar para vários RIDs:
 
 * Forneça os RIDs em uma lista delimitada por ponto e vírgula.
-* Use o nome [ \<da propriedade RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
+* Use o nome da propriedade [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para obter mais informações, consulte [Catálogo de RID do .NET Core](/dotnet/core/rid-catalog).
 
@@ -172,12 +159,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice`). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Conta de usuário de serviço (por `Contoso\ServiceUser`exemplo,).
-* `{SERVICE NAME}`&ndash; Nome do serviço (por exemplo `MyService`,).
-* `{EXE FILE PATH}`&ndash; O caminho do executável do aplicativo (por exemplo `d:\myservice\myservice.exe`,). Inclua nome do arquivo do executável com a extensão.
-* `{DESCRIPTION}`&ndash; Descrição do serviço (por exemplo `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome de exibição do serviço (por `My Service`exemplo,).
+* `{EXE PATH}`: Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice` ). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Conta de usuário de serviço (por exemplo, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome do serviço (por exemplo, `MyService` ).
+* `{EXE FILE PATH}`: O caminho do executável do aplicativo (por exemplo, `d:\myservice\myservice.exe` ). Inclua nome do arquivo do executável com a extensão.
+* `{DESCRIPTION}`: Descrição do serviço (por exemplo, `My sample service` ).
+* `{DISPLAY NAME}`: Nome de exibição do serviço (por exemplo, `My Service` ).
 
 ### <a name="start-a-service"></a>Iniciar um serviço
 
@@ -246,15 +233,15 @@ O diretório de trabalho atual retornado ao chamar <xref:System.IO.Directory.Get
 
 Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) ou <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> para localizar os recursos do aplicativo.
 
-Quando o aplicativo é executado como um serviço <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> , o <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> define como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
+Quando o aplicativo é executado como um serviço, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> o define <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
 
 Os arquivos de configurações padrão do aplicativo, *appSettings. JSON* e *appSettings. { Environment}. JSON*, são carregados a partir da raiz do conteúdo do aplicativo chamando [CreateDefaultBuilder durante a construção do host](xref:fundamentals/host/generic-host#set-up-a-host).
 
-Para outros arquivos de configurações carregados pelo código do <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>desenvolvedor no, não há necessidade de <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>chamar. No exemplo a seguir, o arquivo *custom_settings. JSON* existe na raiz do conteúdo do aplicativo e é carregado sem definir explicitamente um caminho base:
+Para outros arquivos de configurações carregados pelo código do desenvolvedor no <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> , não há necessidade de chamar <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> . No exemplo a seguir, o arquivo *custom_settings. JSON* existe na raiz do conteúdo do aplicativo e é carregado sem definir explicitamente um caminho base:
 
 [!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
 
-Não tente usar <xref:System.IO.Directory.GetCurrentDirectory*> para obter um caminho de recurso porque um aplicativo de serviço do Windows retorna a pasta *C\\: Windows\\system32* como seu diretório atual.
+Não tente usar <xref:System.IO.Directory.GetCurrentDirectory*> para obter um caminho de recurso porque um aplicativo de serviço do Windows retorna a pasta *C: \\ Windows \\ System32* como seu diretório atual.
 
 ### <a name="store-a-services-files-in-a-suitable-location-on-disk"></a>Armazenar os arquivos do serviço em um local adequado no disco
 
@@ -262,7 +249,7 @@ Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.Fil
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
-Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço do Windows, consulte.
+Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Erros comuns
 
@@ -271,9 +258,9 @@ Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço d
   * FDD do *compartimento/versão/{estrutura de destino}* (a)
   * *bin/Release/{Framework de destino} identificador de/{Runtime}/Publish* (SCD)
 * O serviço não está em estado de execução.
-* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c\\:\\Windows system32*.
+* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c: \\ Windows \\ System32*.
 * O usuário não tem direitos de *logon como um serviço* .
-* A senha do usuário expirou ou foi passada incorretamente ao executar o comando `New-Service` do PowerShell.
+* A senha do usuário expirou ou foi passada incorretamente ao executar o `New-Service` comando do PowerShell.
 * O aplicativo requer autenticação ASP.NET Core, mas não está configurado para conexões seguras (HTTPS).
 * A porta da URL da solicitação está incorreta ou não está configurada corretamente no aplicativo.
 
@@ -297,7 +284,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -379,7 +366,7 @@ Para saber mais e obter conselhos sobre cenários de implantação, consulte [Im
 
 ### <a name="sdk"></a>.
 
-Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, ESPECIFIQUE o SDK da Web no arquivo de projeto:
+Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, especifique o SDK da Web no arquivo de projeto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -395,7 +382,7 @@ Se o serviço executar apenas tarefas em segundo plano (por exemplo, [serviços 
 
 A FDD (Implantação Dependente de Estrutura) se baseia na presença de uma versão compartilhada em todo o sistema do .NET Core no sistema de destino. Quando o cenário FDD é adotado após a orientação deste artigo, o SDK produz um executável (*.exe*), chamado de *executável dependente de estrutura*.
 
-O Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
+O [RID (identificador de tempo de execução](/dotnet/core/rid-catalog) do Windows) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
 
 O arquivo *web.config*, que normalmente é gerado durante a publicação de um aplicativo ASP.NET Core, é desnecessário para um aplicativo de serviços do Windows. Para desabilitar a criação de um arquivo *web.config*, adicione a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
 
@@ -421,7 +408,7 @@ Um [RID (Identificador do Runtime do Windows)](/dotnet/core/rid-catalog) está i
 Para publicar para vários RIDs:
 
 * Forneça os RIDs em uma lista delimitada por ponto e vírgula.
-* Use o nome [ \<da propriedade RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
+* Use o nome da propriedade [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para obter mais informações, consulte [Catálogo de RID do .NET Core](/dotnet/core/rid-catalog).
 
@@ -484,12 +471,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice`). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Conta de usuário de serviço (por `Contoso\ServiceUser`exemplo,).
-* `{SERVICE NAME}`&ndash; Nome do serviço (por exemplo `MyService`,).
-* `{EXE FILE PATH}`&ndash; O caminho do executável do aplicativo (por exemplo `d:\myservice\myservice.exe`,). Inclua nome do arquivo do executável com a extensão.
-* `{DESCRIPTION}`&ndash; Descrição do serviço (por exemplo `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome de exibição do serviço (por `My Service`exemplo,).
+* `{EXE PATH}`: Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice` ). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Conta de usuário de serviço (por exemplo, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome do serviço (por exemplo, `MyService` ).
+* `{EXE FILE PATH}`: O caminho do executável do aplicativo (por exemplo, `d:\myservice\myservice.exe` ). Inclua nome do arquivo do executável com a extensão.
+* `{DESCRIPTION}`: Descrição do serviço (por exemplo, `My sample service` ).
+* `{DISPLAY NAME}`: Nome de exibição do serviço (por exemplo, `My Service` ).
 
 ### <a name="start-a-service"></a>Iniciar um serviço
 
@@ -576,7 +563,7 @@ O diretório de trabalho atual retornado ao chamar <xref:System.IO.Directory.Get
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Defina o caminho da raiz do conteúdo para a pasta do aplicativo
 
-O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de `GetCurrentDirectory` chamar para criar caminhos para arquivos de configurações <xref:System.IO.Directory.SetCurrentDirectory*> , chame o caminho para a [raiz do conteúdo](xref:fundamentals/index#content-root)do aplicativo.
+O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de chamar `GetCurrentDirectory` para criar caminhos para arquivos de configurações, chame <xref:System.IO.Directory.SetCurrentDirectory*> o caminho para a [raiz do conteúdo](xref:fundamentals/index#content-root)do aplicativo.
 
 No `Program.Main`, determine o caminho para a pasta do executável do serviço e use o caminho para estabelecer a raiz do conteúdo do aplicativo:
 
@@ -596,7 +583,7 @@ Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.Fil
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
-Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço do Windows, consulte.
+Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Erros comuns
 
@@ -605,9 +592,9 @@ Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço d
   * FDD do *compartimento/versão/{estrutura de destino}* (a)
   * *bin/Release/{Framework de destino} identificador de/{Runtime}/Publish* (SCD)
 * O serviço não está em estado de execução.
-* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c\\:\\Windows system32*.
+* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c: \\ Windows \\ System32*.
 * O usuário não tem direitos de *logon como um serviço* .
-* A senha do usuário expirou ou foi passada incorretamente ao executar o comando `New-Service` do PowerShell.
+* A senha do usuário expirou ou foi passada incorretamente ao executar o `New-Service` comando do PowerShell.
 * O aplicativo requer autenticação ASP.NET Core, mas não está configurado para conexões seguras (HTTPS).
 * A porta da URL da solicitação está incorreta ou não está configurada corretamente no aplicativo.
 
@@ -631,7 +618,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -713,7 +700,7 @@ Para saber mais e obter conselhos sobre cenários de implantação, consulte [Im
 
 ### <a name="sdk"></a>.
 
-Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, ESPECIFIQUE o SDK da Web no arquivo de projeto:
+Para um serviço baseado em aplicativo Web que usa as Razor páginas ou as estruturas MVC, especifique o SDK da Web no arquivo de projeto:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -729,7 +716,7 @@ Se o serviço executar apenas tarefas em segundo plano (por exemplo, [serviços 
 
 A FDD (Implantação Dependente de Estrutura) se baseia na presença de uma versão compartilhada em todo o sistema do .NET Core no sistema de destino. Quando o cenário FDD é adotado após a orientação deste artigo, o SDK produz um executável (*.exe*), chamado de *executável dependente de estrutura*.
 
-O Windows [Runtime Identifier (RID)](/dotnet/core/rid-catalog) ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
+O [RID (identificador de tempo de execução](/dotnet/core/rid-catalog) do Windows) ( [\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier) ) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
 
 A propriedade `<UseAppHost>` é definida como `true`. Essa propriedade fornece o serviço com um caminho de ativação (um arquivo executável *.exe*) para FDD.
 
@@ -758,7 +745,7 @@ Um [RID (Identificador do Runtime do Windows)](/dotnet/core/rid-catalog) está i
 Para publicar para vários RIDs:
 
 * Forneça os RIDs em uma lista delimitada por ponto e vírgula.
-* Use o nome [ \<da propriedade RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
+* Use o nome da propriedade [\<RuntimeIdentifiers>](/dotnet/core/tools/csproj#runtimeidentifiers) (plural).
 
 Para obter mais informações, consulte [Catálogo de RID do .NET Core](/dotnet/core/rid-catalog).
 
@@ -821,12 +808,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`&ndash; Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice`). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
-* `{DOMAIN OR COMPUTER NAME\USER}`&ndash; Conta de usuário de serviço (por `Contoso\ServiceUser`exemplo,).
-* `{SERVICE NAME}`&ndash; Nome do serviço (por exemplo `MyService`,).
-* `{EXE FILE PATH}`&ndash; O caminho do executável do aplicativo (por exemplo `d:\myservice\myservice.exe`,). Inclua nome do arquivo do executável com a extensão.
-* `{DESCRIPTION}`&ndash; Descrição do serviço (por exemplo `My sample service`,).
-* `{DISPLAY NAME}`&ndash; Nome de exibição do serviço (por `My Service`exemplo,).
+* `{EXE PATH}`: Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice` ). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Conta de usuário de serviço (por exemplo, `Contoso\ServiceUser` ).
+* `{SERVICE NAME}`: Nome do serviço (por exemplo, `MyService` ).
+* `{EXE FILE PATH}`: O caminho do executável do aplicativo (por exemplo, `d:\myservice\myservice.exe` ). Inclua nome do arquivo do executável com a extensão.
+* `{DESCRIPTION}`: Descrição do serviço (por exemplo, `My sample service` ).
+* `{DISPLAY NAME}`: Nome de exibição do serviço (por exemplo, `My Service` ).
 
 ### <a name="start-a-service"></a>Iniciar um serviço
 
@@ -913,7 +900,7 @@ O diretório de trabalho atual retornado ao chamar <xref:System.IO.Directory.Get
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Defina o caminho da raiz do conteúdo para a pasta do aplicativo
 
-O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de `GetCurrentDirectory` chamar para criar caminhos para arquivos de configurações <xref:System.IO.Directory.SetCurrentDirectory*> , chame o caminho para a [raiz do conteúdo](xref:fundamentals/index#content-root)do aplicativo.
+O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de chamar `GetCurrentDirectory` para criar caminhos para arquivos de configurações, chame <xref:System.IO.Directory.SetCurrentDirectory*> o caminho para a [raiz do conteúdo](xref:fundamentals/index#content-root)do aplicativo.
 
 No `Program.Main`, determine o caminho para a pasta do executável do serviço e use o caminho para estabelecer a raiz do conteúdo do aplicativo:
 
@@ -933,7 +920,7 @@ Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.Fil
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
-Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço do Windows, consulte.
+Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot> .
 
 ### <a name="common-errors"></a>Erros comuns
 
@@ -942,9 +929,9 @@ Para solucionar problemas de um aplicativo de <xref:test/troubleshoot>serviço d
   * FDD do *compartimento/versão/{estrutura de destino}* (a)
   * *bin/Release/{Framework de destino} identificador de/{Runtime}/Publish* (SCD)
 * O serviço não está em estado de execução.
-* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c\\:\\Windows system32*.
+* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c: \\ Windows \\ System32*.
 * O usuário não tem direitos de *logon como um serviço* .
-* A senha do usuário expirou ou foi passada incorretamente ao executar o comando `New-Service` do PowerShell.
+* A senha do usuário expirou ou foi passada incorretamente ao executar o `New-Service` comando do PowerShell.
 * O aplicativo requer autenticação ASP.NET Core, mas não está configurado para conexões seguras (HTTPS).
 * A porta da URL da solicitação está incorreta ou não está configurada corretamente no aplicativo.
 
@@ -968,7 +955,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.

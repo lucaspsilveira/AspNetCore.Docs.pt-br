@@ -92,7 +92,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 > O roteamento é configurado usando o <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> e o <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> middleware. Para usar controladores:
 >
 > * Chame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> dentro `UseEndpoints` para mapear controladores [roteados de atributo](#ar) .
-> * Chame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> ou <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> , para mapear controladores [roteados de Convenção](#cr) .
+> * Chame <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> ou <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> , para mapear controladores roteados por [Convenção](#cr) e controladores [roteados por atributo](#ar) .
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
@@ -257,7 +257,7 @@ As APIs REST devem usar o roteamento de atributos para modelar a funcionalidade 
 
 O roteamento de atributo usa um conjunto de atributos para mapear ações diretamente para modelos de rota. O código a seguir `StartUp.Configure` é típico para uma API REST e é usado no próximo exemplo:
 
-[!code-csharp[](routing/samples/3.x/main/StartupApi.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
 
 No código anterior, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> é chamado dentro `UseEndpoints` para mapear controladores roteados de atributo.
 
@@ -272,10 +272,7 @@ A `HomeController.Index` ação é executada para qualquer um dos caminhos de UR
 
 Este exemplo realça uma importante diferença de programação entre roteamento de atributo e [Roteamento convencional](#cr). O roteamento de atributos requer mais entrada para especificar uma rota. A rota padrão convencional lida com as rotas mais sucintamente. No entanto, o roteamento de atributos permite e exige um controle preciso de quais modelos de rota se aplicam a cada [ação](#action).
 
-No seguinte código:
-
-* O nome do controlador e os nomes de ação não desempenham **nenhuma** função na qual a ação seja correspondida.
-* Corresponde às mesmas URLs do exemplo anterior:
+Com o roteamento de atributos, os nomes do controlador e da ação não desempenham nenhuma parte na qual a ação seja correspondida, a menos que a [substituição do token](#routing-token-replacement-templates-ref-label) seja usada. O exemplo a seguir corresponde às mesmas URLs do exemplo anterior:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
@@ -655,8 +652,6 @@ Rotas de atributo dão suporte à mesma sintaxe embutida que as rotas convencion
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
 No código anterior, o `[HttpPost("product/{id:int}")]` aplica uma restrição de rota. A `ProductsController.ShowProduct` ação é correspondida somente por caminhos de URL como `/product/3` . A parte do modelo de rota `{id:int}` restringe esse segmento a apenas inteiros.
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
 Consulte [Referência de modelo de rota](xref:fundamentals/routing#route-template-reference) para obter uma descrição detalhada da sintaxe do modelo de rota.
 

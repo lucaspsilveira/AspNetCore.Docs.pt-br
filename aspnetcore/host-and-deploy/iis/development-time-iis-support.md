@@ -1,24 +1,11 @@
 ---
-title: Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
-author: rick-anderson
-description: Descubra o suporte para depuração de aplicativos do ASP.NET Core durante a execução com IIS no Windows Server.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 02/07/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: a6719b4f84b1bc60c7c2aea2aa3a97ef79f43e2e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777014"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
@@ -46,7 +33,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* **Nome do host**: normalmente, o **site padrão** é usado com um **nome de host** de `localhost` . No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
 * **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
@@ -161,7 +148,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* **Nome do host**: normalmente, o **site padrão** é usado com um **nome de host** de `localhost` . No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
 * **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.

@@ -1,24 +1,11 @@
 ---
-title: Provedores de arquivos no ASP.NET Core
-author: rick-anderson
-description: Saiba como o ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/06/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/file-providers
-ms.openlocfilehash: 2f1151d7854aeeb3e315d0de2b0be5267fe2e8f0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776279"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
@@ -26,11 +13,11 @@ Por [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados em todo o ASP.NET Core Framework. Por exemplo: 
+O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados em todo o ASP.NET Core Framework. Por exemplo:
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da Web](xref:fundamentals/index#web-root) como `IFileProvider` tipos.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
-* [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
+* [Razor](xref:mvc/views/razor)usa provedores de arquivos para localizar páginas e exibições.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
@@ -53,17 +40,77 @@ A interface principal é <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 
 Você pode ler o arquivo usando o <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> método.
 
-O aplicativo de exemplo *FileProviderSample* demonstra como configurar um provedor de arquivos `Startup.ConfigureServices` no para uso em todo o aplicativo por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
+O aplicativo de exemplo *FileProviderSample* demonstra como configurar um provedor de arquivos no `Startup.ConfigureServices` para uso em todo o aplicativo por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
 
 ## <a name="file-provider-implementations"></a>Implementações do provedor de arquivos
 
-A tabela a seguir lista as `IFileProvider`implementações do.
+A tabela a seguir lista as implementações do `IFileProvider` .
 
 | Implementação | Descrição |
-| -------------- | ----------- |
-| [CompositeFileProvider](#compositefileprovider) | Usado para fornecer acesso combinado a arquivos e diretórios de um ou mais outros provedores. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Usado para acessar arquivos inseridos em assemblies. |
-| [PhysicalFileProvider](#physicalfileprovider) | Usado para acessar os arquivos físicos do sistema. |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | [CompositeFileProvider](#compositefileprovider) | Usado para fornecer acesso combinado a arquivos e diretórios de um ou mais outros provedores. | | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Usado para acessar arquivos inseridos em assemblies. | | [PhysicalFileProvider](#physicalfileprovider) | Usado para acessar os arquivos físicos do sistema. |
 
 ### <a name="physicalfileprovider"></a>PhysicalFileProvider
 
@@ -71,7 +118,7 @@ O <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> fornece acesso 
 
 Ao instanciar esse provedor diretamente, um caminho de diretório absoluto é necessário e serve como o caminho base para todas as solicitações feitas usando o provedor. Não há suporte para padrões glob no caminho do diretório.
 
-O código a seguir mostra como usar `PhysicalFileProvider` o para obter o conteúdo do diretório e as informações do arquivo:
+O código a seguir mostra como usar o `PhysicalFileProvider` para obter o conteúdo do diretório e as informações do arquivo:
 
 ```csharp
 var provider = new PhysicalFileProvider(applicationRoot);
@@ -86,9 +133,9 @@ Tipos no exemplo anterior:
 * `contents` é um `IDirectoryContents`.
 * `fileInfo` é um `IFileInfo`.
 
-O provedor de arquivos pode ser usado para percorrer o diretório especificado por `applicationRoot` ou chamar `GetFileInfo` para obter as informações de um arquivo. Padrões de glob não podem ser passados `GetFileInfo` para o método. O provedor de arquivos não tem acesso fora do diretório `applicationRoot`.
+O provedor de arquivos pode ser usado para percorrer o diretório especificado por `applicationRoot` ou chamar `GetFileInfo` para obter as informações de um arquivo. Padrões de glob não podem ser passados para o `GetFileInfo` método. O provedor de arquivos não tem acesso fora do diretório `applicationRoot`.
 
-O aplicativo de exemplo *FileProviderSample* cria o provedor no `Startup.ConfigureServices` método usando <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider?displayProperty=nameWithType>:
+O aplicativo de exemplo *FileProviderSample* cria o provedor no `Startup.ConfigureServices` método usando <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider?displayProperty=nameWithType> :
 
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
@@ -101,13 +148,13 @@ O <xref:Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider> é usad
 Para gerar um manifesto dos arquivos inseridos:
 
 1. Adicione o pacote NuGet [Microsoft. Extensions.](https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded) . Embedded ao seu projeto.
-1. Defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos com [ \<o EmbeddedResource>](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
+1. Defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos [\<EmbeddedResource>](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects) :
 
     [!code-xml[](file-providers/samples/3.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
 
 Use [padrões glob](#glob-patterns) para especificar um ou mais arquivos a serem inseridos no assembly.
 
-O aplicativo de exemplo *FileProviderSample* cria `ManifestEmbeddedFileProvider` um e passa o assembly atualmente em execução para seu construtor.
+O aplicativo de exemplo *FileProviderSample* cria um `ManifestEmbeddedFileProvider` e passa o assembly atualmente em execução para seu construtor.
 
 *Startup.cs*:
 
@@ -123,16 +170,52 @@ Sobrecargas adicionais permitem:
 * Nomear o recurso inserido que contém o manifesto do arquivo inserido.
 
 | Sobrecarga | Descrição |
-| -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um parâmetro de caminho relativo `root` opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. |
-| `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um parâmetro de caminho relativo `root` opcional e um parâmetro de data `lastModified` (<xref:System.DateTimeOffset>). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
-| `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Aceita um caminho relativo `root` opcional, data de `lastModified` e parâmetros `manifestName`. O `manifestName` representa o nome do recurso inserido que contém o manifesto. |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um `root` parâmetro de caminho relativo opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. | | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um `root` parâmetro de caminho relativo opcional e `lastModified` um parâmetro date ( <xref:System.DateTimeOffset> ). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. | | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Aceita um `root` caminho relativo opcional, uma `lastModified` data e `manifestName` parâmetros. O `manifestName` representa o nome do recurso inserido que contém o manifesto. |
 
 ### <a name="compositefileprovider"></a>CompositeFileProvider
 
 O <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> combina instâncias de `IFileProvider`, expondo uma interface única para trabalhar com arquivos de vários provedores. Ao criar o `CompositeFileProvider`, passe uma ou mais instâncias de `IFileProvider` para o construtor.
 
-No aplicativo de exemplo *FileProviderSample* , um `PhysicalFileProvider` e um `ManifestEmbeddedFileProvider` fornecem arquivos para um `CompositeFileProvider` registrado no contêiner de serviço do aplicativo. O código a seguir é encontrado no método do `Startup.ConfigureServices` projeto:
+No aplicativo de exemplo *FileProviderSample* , um `PhysicalFileProvider` e um `ManifestEmbeddedFileProvider` fornecem arquivos para um `CompositeFileProvider` registrado no contêiner de serviço do aplicativo. O código a seguir é encontrado no método do projeto `Startup.ConfigureServices` :
 
 [!code-csharp[](file-providers/samples/3.x/FileProviderSample/Startup.cs?name=snippet1)]
 
@@ -145,8 +228,8 @@ O <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayProperty=
 
 O token de alteração resultante expõe:
 
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>&ndash;Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash;Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
 O aplicativo de exemplo *WatchConsole* grava uma mensagem sempre que um arquivo *. txt* no diretório *textfiles* é modificado:
 
@@ -167,11 +250,40 @@ Coincide a qualquer coisa em vários níveis de diretório. Pode ser usada para 
 A tabela a seguir fornece exemplos comuns de padrões de glob.
 
 |Padrão  |Descrição  |
-|---------|---------|
-|`directory/file.txt`|Corresponde a um arquivo específico em um diretório específico.|
-|`directory/*.txt`|Corresponde a todos os arquivos com a extensão *.txt* em um diretório específico.|
-|`directory/*/appsettings.json`|Corresponde a todos os arquivos *appSettings. JSON* em diretórios exatamente um nível abaixo da pasta do *diretório* .|
-|`directory/**/*.txt`|Corresponde a todos os arquivos com uma extensão *. txt* encontrado em qualquer lugar na pasta do *diretório* .|
+|---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-----|---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-----|
+|`directory/file.txt`| Corresponde a um arquivo específico em um diretório específico. | |`directory/*.txt`| Corresponde a todos os arquivos com a extensão *. txt* em um diretório específico. | |`directory/*/appsettings.json`| Corresponde a todos os arquivos *appSettings. JSON* em diretórios exatamente um nível abaixo da pasta do *diretório* . | |`directory/**/*.txt`| Corresponde a todos os arquivos com uma extensão *. txt* encontrado em qualquer lugar na pasta do *diretório* . |
 
 ::: moniker-end
 
@@ -181,7 +293,7 @@ O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de proved
 
 * <xref:Microsoft.Extensions.Hosting.IHostingEnvironment>expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da Web](xref:fundamentals/index#web-root) como `IFileProvider` tipos.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
-* [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
+* [Razor](xref:mvc/views/razor)usa provedores de arquivos para localizar páginas e exibições.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
@@ -211,10 +323,70 @@ O aplicativo de amostra demonstra como configurar um provedor de arquivos em `St
 Três implementações de `IFileProvider` estão disponíveis.
 
 | Implementação | Descrição |
-| -------------- | ----------- |
-| [PhysicalFileProvider](#physicalfileprovider) | O provedor físico é usado para acessar os arquivos físicos do sistema. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | O provedor inserido de manifesto é usado para acessar arquivos incorporados em assemblies. |
-| [CompositeFileProvider](#compositefileprovider) | O provedor composto é usado para fornecer acesso combinado a arquivos e diretórios de um ou mais provedores. |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | [PhysicalFileProvider](#physicalfileprovider) | O provedor físico é usado para acessar os arquivos físicos do sistema. | | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | O provedor inserido do manifesto é usado para acessar arquivos inseridos em assemblies. | | [CompositeFileProvider](#compositefileprovider) | O provedor composto é usado para fornecer acesso combinado a arquivos e diretórios de um ou mais outros provedores. |
 
 ### <a name="physicalfileprovider"></a>PhysicalFileProvider
 
@@ -248,7 +420,7 @@ var physicalProvider = _env.ContentRootFileProvider;
 
 O <xref:Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider> é usado para acessar arquivos inseridos em assemblies. O `ManifestEmbeddedFileProvider` usa um manifesto compilado no assembly para reconstruir os caminhos originais dos arquivos inseridos.
 
-Para gerar um manifesto dos arquivos inseridos, defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos com [ &lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
+Para gerar um manifesto dos arquivos inseridos, defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos a serem inseridos com [ &lt; EmbeddedResource &gt; ](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=6,14)]
 
@@ -270,10 +442,46 @@ Sobrecargas adicionais permitem:
 * Nomear o recurso inserido que contém o manifesto do arquivo inserido.
 
 | Sobrecarga | Descrição |
-| -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um parâmetro de caminho relativo `root` opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. |
-| `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um parâmetro de caminho relativo `root` opcional e um parâmetro de data `lastModified` (<xref:System.DateTimeOffset>). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
-| `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Aceita um caminho relativo `root` opcional, data de `lastModified` e parâmetros `manifestName`. O `manifestName` representa o nome do recurso inserido que contém o manifesto. |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um `root` parâmetro de caminho relativo opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. | | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um `root` parâmetro de caminho relativo opcional e `lastModified` um parâmetro date ( <xref:System.DateTimeOffset> ). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. | | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Aceita um `root` caminho relativo opcional, uma `lastModified` data e `manifestName` parâmetros. O `manifestName` representa o nome do recurso inserido que contém o manifesto. |
 
 ### <a name="compositefileprovider"></a>CompositeFileProvider
 
@@ -287,8 +495,8 @@ No aplicativo de amostra, um `PhysicalFileProvider` e um `ManifestEmbeddedFilePr
 
 O método [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) proporciona um cenário para monitorar um ou mais arquivos ou diretórios quanto a alterações. `Watch` aceita uma cadeia de caracteres de caminho, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos. `Watch` retorna um <xref:Microsoft.Extensions.Primitives.IChangeToken>. O token de alteração expõe:
 
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>&ndash; Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>&ndash; Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: Uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
 No aplicativo de amostra, o aplicativo de console *WatchConsole* é configurado para exibir uma mensagem sempre que um arquivo de texto é modificado:
 

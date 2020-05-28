@@ -11,16 +11,6 @@ Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
 
 Por [James Newton – King](https://twitter.com/jamesnk)
 
-> [!IMPORTANT]
-> **gRPC-o suporte da Web no .NET é experimental**
->
-> gRPC-Web para .NET é um projeto experimental, não um produto confirmado. Queremos:
->
-> * Teste a nossa abordagem para implementar o gRPC-Web Works.
-> * Obtenha comentários sobre se essa abordagem é útil para os desenvolvedores do .NET em comparação com a maneira tradicional de configurar o gRPC-Web por meio de um proxy.
->
-> Deixe comentários em [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) para garantir que criamos algo que os desenvolvedores gostam e que são produtivos com o.
-
 Não é possível chamar um serviço gRPC HTTP/2 de um aplicativo baseado em navegador. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) é um protocolo que permite que aplicativos e JavaScript do navegador Blazor chamem serviços gRPCs. Este artigo explica como usar o gRPC-Web no .NET Core.
 
 ## <a name="grpc-web-in-aspnet-core-vs-envoy"></a>gRPC-Web em ASP.NET Core vs. Envoy

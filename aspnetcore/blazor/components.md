@@ -69,8 +69,8 @@ Razoros componentes em Blazor aplicativos usam extensivamente a Razor sintaxe. S
 
 Ao acessar o conteúdo em Razor sintaxe, preste atenção especial às seguintes seções:
 
-* [Diretivas](xref:mvc/views/razor#directives) &ndash; do `@`-palavras-chave reservadas prefixadas que normalmente alteram a maneira como a marcação de componente é analisada ou funciona.
-* [Atributos](xref:mvc/views/razor#directive-attributes) &ndash; de diretiva `@`-palavras-chave reservadas prefixadas que normalmente alteram a maneira como os elementos de componente são analisados ou funcionam.
+* [Diretivas](xref:mvc/views/razor#directives): `@` -palavras-chave reservadas prefixadas que normalmente alteram a maneira como a marcação de componente é analisada ou funciona.
+* [Atributos de diretiva](xref:mvc/views/razor#directive-attributes): `@` -palavras-chave reservadas prefixadas que normalmente alteram a maneira como os elementos de componente são analisados ou funcionam.
 
 ## <a name="static-assets"></a>Ativos estáticos
 
@@ -136,7 +136,7 @@ A sintaxe de parâmetro *catch-all* ( `*` / `**` ), que captura o caminho entre 
 
 ### <a name="component-parameters"></a>Parâmetros do componente
 
-Os componentes podem ter *parâmetros de componente*, que são definidos usando propriedades públicas na classe de componente com o [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) atributo] (xref: Microsoft. AspNetCore. Components. ParameterAttribute). Use atributos para especificar argumentos para um componente na marcação.
+Os componentes podem ter *parâmetros de componente*, que são definidos usando propriedades públicas na classe de componente com o [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) atributo. Use atributos para especificar argumentos para um componente na marcação.
 
 *Componentes/ChildComponent. Razor*:
 
@@ -974,7 +974,7 @@ No entanto, a marcação SVG embutida não tem suporte em todos os cenários. Se
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* <xref:security/blazor/server/threat-mitigation>&ndash;Inclui diretrizes sobre a criação Blazor Aplicativos de servidor que devem competir com esgotamento de recursos.
+* <xref:security/blazor/server/threat-mitigation>: Inclui diretrizes sobre a criação de Blazor aplicativos de servidor que devem combater o esgotamento de recursos.
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

@@ -55,7 +55,7 @@ O <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvide
 
 O <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> é o serviço subjacente usado pelos componentes <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> e <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> para obter o estado de autenticação.
 
-Normalmente, você não usa o <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> diretamente. Use o [componente AuthorizeView](#authorizeview-component) ou a [tarefa \< authenticationstate>](#expose-the-authentication-state-as-a-cascading-parameter) abordagens descritas posteriormente neste artigo. A principal desvantagem de usar o <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> diretamente é que o componente não será notificado automaticamente se os dados subjacentes do estado de autenticação forem alterados.
+Normalmente, você não usa o <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> diretamente. Use as abordagens do [componente AuthorizeView](#authorizeview-component) ou [Task\<AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) descritas mais adiante neste artigo. A principal desvantagem de usar o <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> diretamente é que o componente não será notificado automaticamente se os dados subjacentes do estado de autenticação forem alterados.
 
 O serviço <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> pode fornecer os dados de <xref:System.Security.Claims.ClaimsPrincipal> do usuário atual, conforme mostrado no seguinte exemplo:
 
@@ -76,7 +76,7 @@ O serviço <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationSta
     <ul>
         @foreach (var claim in _claims)
         {
-            <li>@claim.Type &ndash; @claim.Value</li>
+            <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
@@ -467,7 +467,7 @@ Para obter mais informações, consulte os artigos em <xref:security/blazor/weba
 
 Erros comuns:
 
-* **A autorização requer um parâmetro em cascata do tipo Task \< authenticationstate>. Considere o uso de CascadingAuthenticationState para fornecer isso.**
+* **A autorização requer um parâmetro em cascata do tipo Task \<AuthenticationState> . Considere o uso de CascadingAuthenticationState para fornecer isso.**
 
 * **`null`o valor é recebido para`authenticationStateTask`**
 

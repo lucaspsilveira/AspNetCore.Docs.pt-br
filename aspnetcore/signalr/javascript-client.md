@@ -141,10 +141,10 @@ Encadear um `catch` método ao final do `start` método para manipular erros do 
 
 Configure o rastreamento de log no lado do cliente passando um agente e um tipo de evento para registrar quando a conexão é feita. As mensagens são registradas com o nível de log especificado e superior. Os níveis de log disponíveis são os seguintes:
 
-* `signalR.LogLevel.Error`&ndash;Mensagens de erro. Registra `Error` somente mensagens.
-* `signalR.LogLevel.Warning`&ndash;Mensagens de aviso sobre possíveis erros. Logs `Warning` e `Error` mensagens.
-* `signalR.LogLevel.Information`&ndash;Mensagens de status sem erros. Logs `Information` , `Warning` e `Error` mensagens.
-* `signalR.LogLevel.Trace`&ndash;Mensagens de rastreamento. Registra tudo, incluindo dados transportados entre o Hub e o cliente.
+* `signalR.LogLevel.Error`: Mensagens de erro. Registra `Error` somente mensagens.
+* `signalR.LogLevel.Warning`: Mensagens de aviso sobre erros potenciais. Logs `Warning` e `Error` mensagens.
+* `signalR.LogLevel.Information`: Mensagens de status sem erros. Logs `Information` , `Warning` e `Error` mensagens.
+* `signalR.LogLevel.Trace`: Rastrear mensagens. Registra tudo, incluindo dados transportados entre o Hub e o cliente.
 
 Use o método [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) no [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) para configurar o nível de log. As mensagens são registradas no console do navegador.
 

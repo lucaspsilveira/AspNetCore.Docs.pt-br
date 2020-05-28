@@ -267,7 +267,7 @@ monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
 Para saber mais, consulte os recursos a seguir:
 
 * [Classes EventArgs no ASP.NET Core fonte de referência (dotNet/aspnetcore versão/3.1 Branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
-* [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; Inclui informações sobre quais elementos HTML oferecem suporte a cada evento DOM.
+* [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): inclui informações sobre quais elementos HTML oferecem suporte a cada evento dom.
 
 ## <a name="lambda-expressions"></a>Expressões lambda
 

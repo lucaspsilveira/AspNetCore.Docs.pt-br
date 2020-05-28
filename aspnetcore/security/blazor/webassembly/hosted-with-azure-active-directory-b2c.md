@@ -39,7 +39,7 @@ Registre as seguintes informações:
 
 * *Aplicativo de API do servidor* ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111` )
 * ID do diretório (ID do locatário) (por exemplo, `222222222-2222-2222-2222-222222222222` )
-* Domínio de locatário do AAD (por exemplo, `contoso.onmicrosoft.com` ) &ndash; o domínio está disponível como o **domínio do Publicador** na folha de **identidade visual** do portal do Azure para o aplicativo registrado.
+* Domínio de locatário do AAD (por exemplo, `contoso.onmicrosoft.com` ): o domínio está disponível como o **domínio do Publicador** na folha de **identidade visual** do portal do Azure para o aplicativo registrado.
 
 No **expor uma API**:
 

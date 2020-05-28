@@ -1,23 +1,11 @@
 ---
-title: Comparar serviços gRPC com APIs HTTP
-author: jamesnk
-description: Saiba como o gRPC se compara com as APIs HTTP e o que são cenários recomendadas.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 12/05/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: grpc/comparison
-ms.openlocfilehash: ab103adc20c5332f71d5f6e3348d0b14c69fce34
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774698"
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparar serviços gRPC com APIs HTTP
 
@@ -30,15 +18,333 @@ Este artigo explica como os [Serviços gRPCs](https://grpc.io/docs/guides/) se c
 A tabela a seguir oferece uma comparação de alto nível dos recursos entre as APIs gRPC e HTTP com JSON.
 
 | Recurso          | gRPC                                               | APIs HTTP com JSON           |
-| ---------------- | -------------------------------------------------- | ----------------------------- |
-| Contrato         | Necessário (*. proto*)                                | Opcional (OpenAPI)            |
-| Protocolo         | HTTP/2                                             | HTTP                          |
-| Carga útil          | [Protobuf (pequeno, binário)](#performance)           | JSON (grande, legível por humanos)  |
-| Prescriptiveness | [Especificação estrita](#strict-specification)      | Cancelar. Qualquer HTTP é válido.     |
-| Streaming        | [Cliente, servidor, bidirecional](#streaming)       | Cliente, servidor                |
-| Suporte ao navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Sim                           |
-| Segurança         | Transporte (TLS)                                    | Transporte (TLS)               |
-| Geração de código de cliente | [Sim](#code-generation)                      | OpenAPI + ferramentas de terceiros |
+| ---
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-------- | título do---: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------------------------- | título do---: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+--------------- | | Contrato | Necessário (*. proto*) | Opcional (OpenAPI) | | Protocolo | HTTP/2 | HTTP | | Carga | [Protobuf (pequeno, binário)](#performance) | JSON (grande, legível por humanos) | | Prescriptiveness | [Especificação estrita](#strict-specification) | Cancelar. Qualquer HTTP é válido.     | | Streaming | [Cliente, servidor, bidirecional](#streaming) | Cliente, servidor | | Suporte a navegador | [Não (requer grpc-Web)](#limited-browser-support) | Sim | | Segurança | Transporte (TLS) | Transporte (TLS) | | Geração de código de cliente | [Sim](#code-generation) | OpenAPI + ferramentas de terceiros |
 
 ## <a name="grpc-strengths"></a>forças gRPCs
 
@@ -86,10 +392,10 @@ Propagar o prazo e o cancelamento por meio de chamadas gRPC filho ajuda a impor 
 
 o gRPC é bem adequado para os seguintes cenários:
 
-* Os **microserviços** &ndash; gRPC são projetados para comunicação de baixa latência e alta taxa de transferência. o gRPC é ótimo para microserviços leves em que a eficiência é fundamental.
-* A gRPC de &ndash; **comunicação em tempo real de ponto a ponto** tem um excelente suporte para streaming bidirecional. os serviços gRPCs podem enviar mensagens por push em tempo real sem sondagem.
-* As ferramentas de gRPC de **ambientes** &ndash; poliglota dão suporte a todas as linguagens de desenvolvimento populares, tornando o gRPC uma boa opção para ambientes com vários idiomas.
-* Os **ambientes** &ndash; com restrição de rede gRPC mensagens são serializadas com Protobuf, um formato de mensagem leve. Uma mensagem gRPC é sempre menor do que uma mensagem JSON equivalente.
+* **Microserviços**: o gRPC foi projetado para comunicação de baixa latência e alta taxa de transferência. o gRPC é ótimo para microserviços leves em que a eficiência é fundamental.
+* **Comunicação ponto a ponto em tempo real**: o gRPC tem excelente suporte para streaming bidirecional. os serviços gRPCs podem enviar mensagens por push em tempo real sem sondagem.
+* **Ambientes poliglota**: as ferramentas de gRPC dão suporte a todas as linguagens de desenvolvimento populares, tornando o gRPC uma boa opção para ambientes com vários idiomas.
+* **Ambientes com restrição de rede**: as mensagens gRPC são serializadas com Protobuf, um formato de mensagem leve. Uma mensagem gRPC é sempre menor do que uma mensagem JSON equivalente.
 
 ## <a name="grpc-weaknesses"></a>gRPC fracos
 
@@ -116,9 +422,9 @@ Recursos como [reflexão de servidor](https://github.com/grpc/grpc/blob/master/d
 
 Outras estruturas são recomendadas em relação ao gRPC nos seguintes cenários:
 
-* **APIs** &ndash; acessíveis ao navegador gRPC não tem suporte total no navegador. o gRPC-Web pode oferecer suporte a navegador, mas tem limitações e introduz um proxy de servidor.
-* A **transmissão em tempo real de comunicação** &ndash; gRPC dá suporte à comunicação em tempo real via streaming, mas o conceito de difusão de uma mensagem para conexões registradas não existe. Por exemplo, em um cenário de sala de chat em que novas mensagens de chat devem ser enviadas a todos os clientes na sala de chat, cada chamada de gRPC é necessária para transmitir individualmente novas mensagens de chat para o cliente. [SignalR](xref:signalr/introduction)é uma estrutura útil para esse cenário. SignalRtem o conceito de conexões persistentes e suporte interno para mensagens de difusão.
-* **Comunicação** &ndash; entre processos um processo deve hospedar um servidor http/2 para aceitar chamadas gRPC de entrada. Para o Windows, os [pipes](/dotnet/standard/io/pipe-operations) de comunicação entre processos são um método rápido e leve de comunicação.
+* **APIs acessíveis ao navegador**: o gRPC não tem suporte total no navegador. o gRPC-Web pode oferecer suporte a navegador, mas tem limitações e introduz um proxy de servidor.
+* **Transmitir comunicação em tempo real**: o gRPC dá suporte à comunicação em tempo real via streaming, mas o conceito de difusão de uma mensagem para conexões registradas não existe. Por exemplo, em um cenário de sala de chat em que novas mensagens de chat devem ser enviadas a todos os clientes na sala de chat, cada chamada de gRPC é necessária para transmitir individualmente novas mensagens de chat para o cliente. [SignalR](xref:signalr/introduction)é uma estrutura útil para esse cenário. SignalRtem o conceito de conexões persistentes e suporte interno para mensagens de difusão.
+* **Comunicação entre processos**: um processo deve hospedar um servidor http/2 para aceitar chamadas gRPC de entrada. Para o Windows, os [pipes](/dotnet/standard/io/pipe-operations) de comunicação entre processos são um método rápido e leve de comunicação.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

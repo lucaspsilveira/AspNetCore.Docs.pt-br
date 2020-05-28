@@ -220,8 +220,8 @@ O sistema de DI é baseado no sistema de injeção de ASP.NET Core. Para obter m
 
 Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a diretiva de [ \@ inserção](xref:mvc/views/razor#inject) Razor . [`@inject`](xref:mvc/views/razor#inject)tem dois parâmetros:
 
-* Digite &ndash; o tipo do serviço a injetar.
-* Propriedade &ndash; o nome da propriedade que recebe o serviço de aplicativo injetado. A propriedade não requer criação manual. O compilador cria a propriedade.
+* Tipo: o tipo do serviço a injetar.
+* Propriedade: o nome da propriedade que recebe o serviço de aplicativo injetado. A propriedade não requer criação manual. O compilador cria a propriedade.
 
 Para obter mais informações, consulte <xref:mvc/views/dependency-injection>.
 

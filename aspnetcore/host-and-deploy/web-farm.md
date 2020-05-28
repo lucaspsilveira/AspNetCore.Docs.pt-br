@@ -1,24 +1,11 @@
 ---
-title: Hospedar o ASP.NET Core em um web farm
-author: rick-anderson
-description: Saiba como hospedar várias instâncias de um aplicativo ASP.NET Core com recursos compartilhados em um ambiente de web farm.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 01/13/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/web-farm
-ms.openlocfilehash: 3474b6b1d85774a15a912efcb37ec8f206695eaf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776351"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -26,10 +13,10 @@ Por [Chris Ross](https://github.com/Tratcher)
 
 Um *web farm* é um grupo de dois ou mais servidores web (ou *nós*) que hospedam várias instâncias de um aplicativo. Quando as solicitações de usuários chegam a um web farm, um *balanceador de carga* distribui as solicitações para os nós de farm da web. Os web farms melhoram:
 
-* **Disponibilidade/confiabilidade** &ndash; quando um ou mais nós falham, o balanceador de carga pode rotear solicitações para outros nós em funcionamento para continuar a processar solicitações.
-* **Capacidade e desempenho** &ndash; vários nós podem processar mais solicitações que um único servidor. O balanceador de carga equilibra a carga de trabalho ao distribuir as solicitações para os nós.
-* **Escalabilidade** &ndash; quando a necessidade da capacidade for maior ou menor, o número de nós ativos pode ser aumentado ou diminuído para corresponder à carga de trabalho. Tecnologias de plataforma de web farm, como o [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), podem adicionar ou remover nós por solicitação do administrador do sistema ou automaticamente sem a intervenção humana.
-* **Facilidade de manutenção** &ndash; os nós de um web farm podem contar com um conjunto de serviços compartilhados, o que resulta em um gerenciamento mais fácil do sistema. Por exemplo, os nós de um web farm podem contar com um servidor de banco de dados individual e um local de rede comum para recursos estáticos, como imagens e arquivos para download.
+* **Confiabilidade/disponibilidade**: quando um ou mais nós falham, o balanceador de carga pode rotear solicitações para outros nós de funcionamento para continuar processando solicitações.
+* **Capacidade/desempenho**: vários nós podem processar mais solicitações do que um único servidor. O balanceador de carga equilibra a carga de trabalho ao distribuir as solicitações para os nós.
+* **Escalabilidade**: quando é necessária mais ou menos capacidade, o número de nós ativos pode ser aumentado ou diminuído para corresponder à carga de trabalho. Tecnologias de plataforma de web farm, como o [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), podem adicionar ou remover nós por solicitação do administrador do sistema ou automaticamente sem a intervenção humana.
+* **Manutenção**: os nós de um Web farm podem contar com um conjunto de serviços compartilhados, o que resulta em um gerenciamento de sistema mais fácil. Por exemplo, os nós de um web farm podem contar com um servidor de banco de dados individual e um local de rede comum para recursos estáticos, como imagens e arquivos para download.
 
 Este tópico descreve as configurações e dependências para aplicativos ASP.NET Core hospedados em um web farm que conta com recursos compartilhados.
 
@@ -65,12 +52,78 @@ Em um ambiente de web farm, o mecanismo de cache deve compartilhar os itens em c
 Os cenários a seguir não exigem configuração adicional, mas dependem de tecnologias que exigem configurações para web farms.
 
 | Cenário | Depende de &hellip; |
-| -------- | ------------------- |
-| Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
-| Identity | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). |
-| TempData | Proteção de dados (cookies criptografados) <xref:security/data-protection/configuration/overview>(consulte) ou sessão (consulte [Gerenciamento de sessão e estado: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: TempData](xref:fundamentals/app-state#tempdata). |
-| Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
+| ---
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+---------- | | Autenticação | Proteção de dados (consulte <xref:security/data-protection/configuration/overview> ).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. | | Identity | Autenticação e configuração do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. | | Sessão | Proteção de dados (cookies criptografados) (consulte <xref:security/data-protection/configuration/overview> ) e caching (consulte <xref:performance/caching/distributed> ).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). | | TempData | Proteção de dados (cookies criptografados) (consulte <xref:security/data-protection/configuration/overview> ) ou sessão (consulte [Gerenciamento de sessão e estado: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: TempData](xref:fundamentals/app-state#tempdata). | | Antifalsificação | Proteção de dados (consulte <xref:security/data-protection/configuration/overview> ).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
@@ -82,12 +135,12 @@ Considere um usuário que entra no aplicativo usando a autenticação de cookie.
 
 Quando qualquer um dos sintomas a seguir ocorre **intermitentemente**, o problema geralmente é rastreado para proteção de dados inadequada ou configuração de cache para um ambiente de Web farm:
 
-* Quebras de autenticação &ndash; o cookie de autenticação está configurado incorretamente ou não pode ser descriptografado. Falha de login OpenIdConnect ou OAuth (Facebook, Microsoft, Twitter) com o erro "Falha de correlação".
-* As quebras &ndash; Identity de autorização são perdidas.
+* Quebras de autenticação: o cookie de autenticação está configurado incorretamente ou não pode ser descriptografado. Falha de login OpenIdConnect ou OAuth (Facebook, Microsoft, Twitter) com o erro "Falha de correlação".
+* Quebras de autorização: Identity são perdidas.
 * O estado de sessão perde os dados.
 * Os itens em cache desaparecem.
 * O TempData falhará.
-* Os POSTs falham &ndash; a verificação antifalsificação falhará.
+* As postagens falham: a verificação antifalsificação falha.
 
 Para saber mais sobre a configuração de Proteção de dados para implantações de web farm, confira <xref:security/data-protection/configuration/overview>. Para saber mais sobre a configuração de cache para implantações de web farm, confira <xref:performance/caching/distributed>.
 
@@ -97,6 +150,6 @@ Se os aplicativos do web farm forem capazes de responder às solicitações, obt
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Extensão de script personalizado para downloads do Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; e executa scripts em máquinas virtuais do Azure, que é útil para configuração de pós-implantação e instalação de software.
+* [Extensão de script personalizado para Windows](/azure/virtual-machines/extensions/custom-script-windows): baixa e executa scripts em máquinas virtuais do Azure, que é útil para configuração de pós-implantação e instalação de software.
 * <xref:host-and-deploy/proxy-load-balancer>
  

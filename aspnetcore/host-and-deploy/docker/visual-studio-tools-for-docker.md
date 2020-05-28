@@ -1,23 +1,11 @@
 ---
-title: Ferramentas do Visual Studio para Contêineres com ASP.NET Core
-author: spboyer
-description: Saiba como usar as ferramentas do Visual Studio e o Docker for Windows para colocar um aplicativo ASP.NET Core em um contêiner.
-ms.author: scaddie
-ms.custom: mvc
-ms.date: 09/12/2018
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: 8b62e27033bf0b7c05a70050807970fe0c74e2f8
-ms.sourcegitcommit: 84b46594f57608f6ac4f0570172c7051df507520
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82967565"
+Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Ferramentas do Visual Studio para Contêineres com ASP.NET Core
 
@@ -60,7 +48,7 @@ Se a estrutura de destino for o .NET Core, a lista suspensa **SO** permitirá a 
 Para projetos do ASP.NET Core direcionados ao .NET Core, há duas opções para adicionar o suporte do Docker por meio das ferramentas. Abra o projeto no Visual Studio e escolha uma das seguintes opções:
 
 * Selecione **Suporte do Docker** no menu **Projeto**.
-* Clique com o botão direito do mouse no projeto no **Gerenciador de soluções** e selecione **Adicionar** > **suporte ao Docker**.
+* Clique com o botão direito do mouse no projeto no **Gerenciador de soluções** e selecione **Adicionar**  >  **suporte ao Docker**.
 
 As Ferramentas de Contêiner do Visual Studio não são compatíveis com a adição do Docker a um projeto ASP.NET Core existente direcionado ao .NET Framework.
 
@@ -88,7 +76,7 @@ O *Dockerfile* precedente se baseia na imagem [microsoft/aspnetcore](https://hub
 
 ## <a name="add-container-orchestrator-support-to-an-app"></a>Adicionar o suporte de orquestrador de contêineres a um aplicativo
 
-As versões 15.7 ou posteriores do Visual Studio 2017 são compatíveis com o [Docker Compose](https://docs.docker.com/compose/overview/) como a única solução de orquestração de contêineres. Os artefatos Docker Compose são adicionados por meio de **Adicionar** > **suporte ao Docker**.
+As versões 15.7 ou posteriores do Visual Studio 2017 são compatíveis com o [Docker Compose](https://docs.docker.com/compose/overview/) como a única solução de orquestração de contêineres. Os artefatos Docker Compose são adicionados por meio de **Adicionar**  >  **suporte ao Docker**.
 
 As versões 15.8 ou posteriores do Visual Studio 2017 adicionam uma solução de orquestração apenas quando instruído. Clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Adicionar** > **Suporte do orquestrador de contêineres**. As seguintes opções estão disponíveis: 
 
@@ -100,10 +88,10 @@ As versões 15.8 ou posteriores do Visual Studio 2017 adicionam uma solução de
 
 As Ferramentas de Contêiner do Visual Studio adicionam um projeto *docker-compose* à solução com os seguintes arquivos:
 
-* *docker-compose.dcproj* &ndash; O arquivo que representa o projeto. Inclui um elemento `<DockerTargetOS>` que especifica o sistema operacional a ser utilizado.
-* *.dockerignore* &ndash; Lista os padrões de arquivo e diretório a serem excluídos ao gerar um contexto de build.
-* *docker-compose.yml* &ndash; O arquivo base do [Docker Compose](https://docs.docker.com/compose/overview/) usado para definir a coleção de imagens compiladas e executadas com o `docker-compose build` e `docker-compose run`, respectivamente.
-* *docker-compose.override.yml* &ndash; Um arquivo opcional, lido pelo Docker Compose, com substituições de configuração para os serviços. O Visual Studio executa `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` para mesclar esses arquivos.
+* *Docker-Compose. dcproj*: o arquivo que representa o projeto. Inclui um elemento `<DockerTargetOS>` que especifica o sistema operacional a ser utilizado.
+* *. dockerignore*: lista os padrões de arquivo e diretório a serem excluídos ao gerar um contexto de compilação.
+* *Docker-Compose. yml*: o arquivo de [Docker Compose](https://docs.docker.com/compose/overview/) base usado para definir a coleção de imagens compiladas e executadas com `docker-compose build` e `docker-compose run` , respectivamente.
+* *Docker-Compose. Override. yml*: um arquivo opcional, lido por Docker Compose, com substituições de configuração para serviços. O Visual Studio executa `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` para mesclar esses arquivos.
 
 O arquivo *docker-compose.yml* faz referência ao nome da imagem que é criada quando o projeto é executado:
 
@@ -130,7 +118,7 @@ O Service Fabric não é compatível com a execução de contêineres do Linux n
 
 As Ferramentas de Contêiner do Visual Studio realizam as seguintes tarefas:
 
-* Adiciona um * &lt;aplicativo&gt;Project_Name* Service Fabric projeto de **aplicativo** à solução.
+* Adiciona um * &lt; &gt; aplicativo Project_Name* Service Fabric projeto de **aplicativo** à solução.
 * Adiciona um *Dockerfile* e um arquivo *.dockerignore* ao projeto ASP.NET Core. Se um *Dockerfile* já existir no projeto do ASP.NET Core, ele já terá sido renomeado para *Dockerfile.original*. Um novo *Dockerfile*, semelhante ao seguinte, foi criado:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
@@ -237,7 +225,7 @@ As imagens `microsoft/aspnetcore-build` e `microsoft/aspnetcore` listadas na sa�
 ::: moniker-end
 
 > [!NOTE]
-> O `docker images` comando retorna imagens intermediárias com nomes de repositório e marcas identificadas como * \<nenhum>* (não listado acima). Essas imagens sem nome são produzidas pelo *Dockerfile*de [compilação de vários estágios](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) . Elas melhoram a eficiência da compilação da imagem final &mdash; apenas as camadas necessárias são recompiladas quando ocorrem alterações. Quando você não precisar mais das imagens intermediárias, exclua-as usando o comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
+> O `docker images` comando retorna imagens intermediárias com nomes de repositório e marcas identificadas como *\<none>* (não listadas acima). Essas imagens sem nome são produzidas pelo *Dockerfile*de [compilação de vários estágios](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) . Elas melhoram a eficiência da compilação da imagem final &mdash; apenas as camadas necessárias são recompiladas quando ocorrem alterações. Quando você não precisar mais das imagens intermediárias, exclua-as usando o comando [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
 
 Pode haver uma expectativa de que a imagem de produção ou versão seja menor em comparação com a imagem *dev*. Devido ao mapeamento do volume, o depurador e o aplicativo estavam em execução no computador local e não dentro do contêiner. A *última* imagem empacotou o código do aplicativo necessário para executar o aplicativo em um computador host. Portanto, o delta é o tamanho do código do aplicativo.
 

@@ -32,8 +32,8 @@ Para a configuração de compactação *Web. config* do IIS, consulte a seção 
 
 O roteamento de solicitações para componentes de página em um Blazor aplicativo Webassembly não é tão simples quanto o roteamento de solicitações em um Blazor servidor, aplicativo hospedado. Considere um Blazor aplicativo Webassembly com dois componentes:
 
-* *Main.razor* &ndash; É carregado na raiz do aplicativo e contém um link para o componente `About` (`href="About"`).
-* *About.Razor componente * &ndash; `About`.
+* *Main. Razor*: carrega na raiz do aplicativo e contém um link para o `About` componente ( `href="About"` ).
+* *Sobre o. Razor*: `About` componente.
 
 Quando o documento padrão do aplicativo é solicitado usando a barra de endereços do navegador (por exemplo, `https://www.contoso.com/`):
 
@@ -83,11 +83,11 @@ Os ativos publicados são criados na pasta */bin/Release/{TARGET FRAMEWORK}/publ
 Quando um Blazor projeto é publicado, um arquivo *Web. config* é criado com a seguinte configuração do IIS:
 
 * Os tipos MIME são definidos para as seguintes extensões de arquivo:
-  * *. dll* &ndash;`application/octet-stream`
-  * *. JSON* &ndash;`application/json`
-  * *.wasm* &ndash; `application/wasm`
-  * *.woff* &ndash; `application/font-woff`
-  * *.woff2* &ndash; `application/font-woff`
+  * *. dll*:`application/octet-stream`
+  * *. JSON*:`application/json`
+  * *. WASM*:`application/wasm`
+  * *. WOFF*:`application/font-woff`
+  * *. woff2*:`application/font-woff`
 * A compactação HTTP está habilitada para os seguintes tipos MIME:
   * `application/octet-stream`
   * `application/wasm`

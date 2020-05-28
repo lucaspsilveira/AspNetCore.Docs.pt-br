@@ -1,27 +1,15 @@
 ---
-title: Configurar a autenticação de certificado no ASP.NET Core
-author: blowdart
-description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e HTTP. sys.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: bdorrans
-ms.date: 01/02/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: security/authentication/certauth
-ms.openlocfilehash: 2cee719014d57fa01b5e8b14edd703c192cfbe18
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776637"
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
-`Microsoft.AspNetCore.Authentication.Certificate`contém uma implementação semelhante à [autenticação de certificado](https://tools.ietf.org/html/rfc5246#section-7.4.4) para ASP.NET Core. A autenticação de certificado ocorre no nível de TLS, muito antes que ele chegue a ASP.NET Core. Mais precisamente, esse é um manipulador de autenticação que valida o certificado e, em seguida, fornece um evento no qual você pode resolver esse certificado `ClaimsPrincipal`para um. 
+`Microsoft.AspNetCore.Authentication.Certificate`contém uma implementação semelhante à [autenticação de certificado](https://tools.ietf.org/html/rfc5246#section-7.4.4) para ASP.NET Core. A autenticação de certificado ocorre no nível de TLS, muito antes que ele chegue a ASP.NET Core. Mais precisamente, esse é um manipulador de autenticação que valida o certificado e, em seguida, fornece um evento no qual você pode resolver esse certificado para um `ClaimsPrincipal` . 
 
 [Configure seu host](#configure-your-host-to-require-certificates) para autenticação de certificado, seja ele IIS, Kestrel, aplicativos Web do Azure ou qualquer outra coisa que você esteja usando.
 
@@ -38,11 +26,11 @@ Uma alternativa à autenticação de certificado em ambientes em que proxies e b
 
 Adquira um certificado HTTPS, aplique-o e [configure seu host](#configure-your-host-to-require-certificates) para exigir certificados.
 
-Em seu aplicativo Web, adicione uma referência ao `Microsoft.AspNetCore.Authentication.Certificate` pacote. Em seguida, `Startup.ConfigureServices` no método, `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` chame com suas opções, fornecendo um delegado `OnCertificateValidated` para fazer qualquer validação suplementar no certificado do cliente enviado com solicitações. Transforme essas informações em `ClaimsPrincipal` um e defina-as `context.Principal` na propriedade.
+Em seu aplicativo Web, adicione uma referência ao `Microsoft.AspNetCore.Authentication.Certificate` pacote. Em seguida `Startup.ConfigureServices` , no método, chame `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` com suas opções, fornecendo um delegado para `OnCertificateValidated` fazer qualquer validação suplementar no certificado do cliente enviado com solicitações. Transforme essas informações em um `ClaimsPrincipal` e defina-as na `context.Principal` propriedade.
 
-Se a autenticação falhar, esse manipulador retornará `403 (Forbidden)` uma resposta em `401 (Unauthorized)`vez de a, como você pode esperar. O raciocínio é que a autenticação deve ocorrer durante a conexão de TLS inicial. No momento em que atinge o manipulador, é tarde demais. Não há como atualizar a conexão de uma conexão anônima para uma com um certificado.
+Se a autenticação falhar, esse manipulador retornará uma `403 (Forbidden)` resposta em vez de a `401 (Unauthorized)` , como você pode esperar. O raciocínio é que a autenticação deve ocorrer durante a conexão de TLS inicial. No momento em que atinge o manipulador, é tarde demais. Não há como atualizar a conexão de uma conexão anônima para uma com um certificado.
 
-Além disso `app.UseAuthentication();` , adicione `Startup.Configure` o método. Caso contrário, `HttpContext.User` o não será definido como `ClaimsPrincipal` criado a partir do certificado. Por exemplo: 
+Além disso, adicione `app.UseAuthentication();` o `Startup.Configure` método. Caso contrário, o `HttpContext.User` não será definido como `ClaimsPrincipal` criado a partir do certificado. Por exemplo:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -71,7 +59,7 @@ O `CertificateAuthenticationOptions` manipulador tem algumas validações intern
 
 Valor padrão: `CertificateTypes.Chained`
 
-Essa verificação valida que apenas o tipo de certificado apropriado é permitido. Se o aplicativo estiver usando certificados autoassinados, essa opção precisará ser definida como `CertificateTypes.All` ou `CertificateTypes.SelfSigned`.
+Essa verificação valida que apenas o tipo de certificado apropriado é permitido. Se o aplicativo estiver usando certificados autoassinados, essa opção precisará ser definida como `CertificateTypes.All` ou `CertificateTypes.SelfSigned` .
 
 ### <a name="validatecertificateuse"></a>ValidateCertificateUse
 
@@ -111,8 +99,8 @@ Isso não é possível. Lembre-se de que a troca de certificado faz com que o in
 
 O manipulador tem dois eventos:
 
-* `OnAuthenticationFailed`&ndash; Chamado se ocorrer uma exceção durante a autenticação e permitir que você reaja.
-* `OnCertificateValidated`&ndash; Chamado depois que o certificado foi validado, passou na validação e uma entidade de segurança padrão foi criada. Esse evento permite que você execute sua própria validação e aumente ou substitua a entidade de segurança. Para obter exemplos, inclua:
+* `OnAuthenticationFailed`: Chamado se uma exceção ocorrer durante a autenticação e permitir que você reaja.
+* `OnCertificateValidated`: Chamado depois que o certificado foi validado, passou na validação e uma entidade de segurança padrão foi criada. Esse evento permite que você execute sua própria validação e aumente ou substitua a entidade de segurança. Para obter exemplos, inclua:
   * Determinando se o certificado é conhecido por seus serviços.
   * Construindo sua própria entidade de segurança. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
@@ -148,7 +136,7 @@ services.AddAuthentication(
     });
 ```
 
-Se você achar que o certificado de entrada não atende à sua validação extra `context.Fail("failure reason")` , chame com um motivo de falha.
+Se você achar que o certificado de entrada não atende à sua validação extra, chame `context.Fail("failure reason")` com um motivo de falha.
 
 Para a funcionalidade real, você provavelmente desejará chamar um serviço registrado na injeção de dependência que se conecta a um banco de dados ou a outro tipo de armazenamento de usuário. Acesse seu serviço usando o contexto passado para seu representante. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
@@ -193,7 +181,7 @@ services.AddAuthentication(
     });
 ```
 
-Conceitualmente, a validação do certificado é um problema de autorização. A adição de um check-in, por exemplo, um emissor ou uma impressão digital em uma política de `OnCertificateValidated`autorização, em vez de dentro, é perfeitamente aceitável.
+Conceitualmente, a validação do certificado é um problema de autorização. A adição de um check-in, por exemplo, um emissor ou uma impressão digital em uma política de autorização, em vez de dentro `OnCertificateValidated` , é perfeitamente aceitável.
 
 ## <a name="configure-your-host-to-require-certificates"></a>Configurar o host para exigir certificados
 
@@ -224,7 +212,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 ```
 
 > [!NOTE]
-> Os pontos de extremidade criados <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> chamando **antes** de <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> chamar não terão os padrões aplicados.
+> Os pontos de extremidade criados chamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **antes** <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> de chamar não terão os padrões aplicados.
 
 ### <a name="iis"></a>IIS
 
@@ -254,7 +242,7 @@ O `AddCertificateForwarding` método é usado para especificar:
 * O nome do cabeçalho do cliente.
 * Como o certificado deve ser carregado (usando a `HeaderConverter` Propriedade).
 
-Em proxies da Web personalizados, o certificado é passado como um cabeçalho de solicitação personalizado, `X-SSL-CERT`por exemplo. Para usá-lo, configure o encaminhamento `Startup.ConfigureServices`de certificado no:
+Em proxies da Web personalizados, o certificado é passado como um cabeçalho de solicitação personalizado, por exemplo `X-SSL-CERT` . Para usá-lo, configure o encaminhamento de certificado no `Startup.ConfigureServices` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -291,7 +279,7 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
-O `Startup.Configure` método, em seguida, adiciona o middleware. `UseCertificateForwarding`é chamado antes das chamadas para `UseAuthentication` e `UseAuthorization`:
+O `Startup.Configure` método, em seguida, adiciona o middleware. `UseCertificateForwarding`é chamado antes das chamadas para `UseAuthentication` e `UseAuthorization` :
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

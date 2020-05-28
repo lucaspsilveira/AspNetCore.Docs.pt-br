@@ -1,23 +1,11 @@
 ---
-title: Detectar alterações com tokens de alteração no ASP.NET Core
-author: rick-anderson
-description: Saiba como usar tokens de alteração para controlar alterações.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.date: 10/07/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/change-tokens
-ms.openlocfilehash: 40868c57507989e1d3040df2cbe2feb4871d4394
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774789"
+Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Detectar alterações com tokens de alteração no ASP.NET Core
 
@@ -36,18 +24,18 @@ Um *token de alteração* é um bloco de construção de uso geral e de baixo n�
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks> indica se o token de forma proativa gera retornos de chamada. Se `ActiveChangedCallbacks` é definido como `false`, um retorno de chamada nunca é chamado e o aplicativo precisa sondar `HasChanged` em busca de alterações. Também é possível que um token nunca seja cancelado se não ocorrerem alterações ou o ouvinte de alteração subjacente for removido ou desabilitado.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> recebe um valor que indica se uma alteração ocorreu.
 
-A interface `IChangeToken` inclui o método [RegisterChangeCallback(Action\<Object>, Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*), que registra um retorno de chamada que é invocado quando o token é alterado. `HasChanged` precisa ser definido antes de o retorno de chamada ser invocado.
+A `IChangeToken` interface inclui o método [RegisterChangeCallback (Action \<Object> , Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*) , que registra um retorno de chamada que é invocado quando o token é alterado. `HasChanged` precisa ser definido antes de o retorno de chamada ser invocado.
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
 <xref:Microsoft.Extensions.Primitives.ChangeToken> é uma classe estática usada para propagar notificações de que ocorreu uma alteração. `ChangeToken` reside no namespace <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. O pacote NuGet [Microsoft. Extensions. primitivas](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) é fornecido implicitamente para os aplicativos ASP.NET Core.
 
-O método [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra um `Action` para chamar sempre que o token é alterado:
+O método [changeToken. OnChange (Func \<IChangeToken> , Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra um `Action` para chamar sempre que o token for alterado:
 
 * `Func<IChangeToken>` produz o token.
 * `Action` é chamado quando o token é alterado.
 
-A sobrecarga [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) usa um parâmetro `TState` adicional que é passado para o consumidor de token `Action`.
+A sobrecarga [changeToken. OnChange \<TState> (Func \<IChangeToken> , Action \<TState> , TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) usa um `TState` parâmetro adicional que é passado para o consumidor do token `Action` .
 
 `OnChange` retorna um <xref:System.IDisposable>. A chamada <xref:System.IDisposable.Dispose*> interrompe a escuta do token de outras alterações e libera os recursos do token.
 
@@ -119,8 +107,8 @@ O construtor da classe implementada, `ConfigurationMonitor`, registra um retorno
 
 `config.GetReloadToken()` fornece o token. `InvokeChanged` é o método de retorno de chamada. O `state` nesta instância é uma referência à instância `IConfigurationMonitor` que é usada para acessar o estado de monitoramento. Duas propriedades são usadas:
 
-* `MonitoringEnabled`&ndash; Indica se o retorno de chamada deve executar seu código personalizado.
-* `CurrentState`&ndash; Descreve o estado de monitoramento atual para uso na interface do usuário.
+* `MonitoringEnabled`: Indica se o retorno de chamada deve executar seu código personalizado.
+* `CurrentState`: Descreve o estado de monitoramento atual para uso na interface do usuário.
 
 O método `InvokeChanged` é semelhante à abordagem anterior, exceto que ele:
 
@@ -176,7 +164,7 @@ Se o conteúdo armazenado em cache não é encontrado com a chave de cache, as s
 1. Um token de alteração é obtido do provedor de arquivo com [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). O retorno de chamada do token é disparado quando o arquivo é modificado.
 1. O conteúdo do arquivo é armazenado em cache com um período de [expiração deslizante](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). O token de alteração é anexado com [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) para remover a entrada do cache se o arquivo é alterado enquanto ele é armazenado em cache.
 
-No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fundamentals/index#content-root)do aplicativo. `IWebHostEnvironment.ContentRootFileProvider`é usado para obter um <xref:Microsoft.Extensions.FileProviders.IFileProvider> apontador para o aplicativo `IWebHostEnvironment.ContentRootPath`. O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fundamentals/index#content-root)do aplicativo. `IWebHostEnvironment.ContentRootFileProvider`é usado para obter um <xref:Microsoft.Extensions.FileProviders.IFileProvider> apontador para o aplicativo `IWebHostEnvironment.ContentRootPath` . O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -234,18 +222,18 @@ Um *token de alteração* é um bloco de construção de uso geral e de baixo n�
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.ActiveChangeCallbacks> indica se o token de forma proativa gera retornos de chamada. Se `ActiveChangedCallbacks` é definido como `false`, um retorno de chamada nunca é chamado e o aplicativo precisa sondar `HasChanged` em busca de alterações. Também é possível que um token nunca seja cancelado se não ocorrerem alterações ou o ouvinte de alteração subjacente for removido ou desabilitado.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> recebe um valor que indica se uma alteração ocorreu.
 
-A interface `IChangeToken` inclui o método [RegisterChangeCallback(Action\<Object>, Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*), que registra um retorno de chamada que é invocado quando o token é alterado. `HasChanged` precisa ser definido antes de o retorno de chamada ser invocado.
+A `IChangeToken` interface inclui o método [RegisterChangeCallback (Action \<Object> , Object)](xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*) , que registra um retorno de chamada que é invocado quando o token é alterado. `HasChanged` precisa ser definido antes de o retorno de chamada ser invocado.
 
 ## <a name="changetoken-class"></a>Classe ChangeToken
 
 <xref:Microsoft.Extensions.Primitives.ChangeToken> é uma classe estática usada para propagar notificações de que ocorreu uma alteração. `ChangeToken` reside no namespace <xref:Microsoft.Extensions.Primitives?displayProperty=fullName>. Para aplicativos que não usam o [metapacote Microsoft.AspNetCore.All](xref:fundamentals/metapackage-app), crie uma referência de pacote para o pacote NuGet [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/).
 
-O método [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra um `Action` para chamar sempre que o token é alterado:
+O método [changeToken. OnChange (Func \<IChangeToken> , Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) registra um `Action` para chamar sempre que o token for alterado:
 
 * `Func<IChangeToken>` produz o token.
 * `Action` é chamado quando o token é alterado.
 
-A sobrecarga [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TState>, TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) usa um parâmetro `TState` adicional que é passado para o consumidor de token `Action`.
+A sobrecarga [changeToken. OnChange \<TState> (Func \<IChangeToken> , Action \<TState> , TState)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) usa um `TState` parâmetro adicional que é passado para o consumidor do token `Action` .
 
 `OnChange` retorna um <xref:System.IDisposable>. A chamada <xref:System.IDisposable.Dispose*> interrompe a escuta do token de outras alterações e libera os recursos do token.
 
@@ -317,8 +305,8 @@ O construtor da classe implementada, `ConfigurationMonitor`, registra um retorno
 
 `config.GetReloadToken()` fornece o token. `InvokeChanged` é o método de retorno de chamada. O `state` nesta instância é uma referência à instância `IConfigurationMonitor` que é usada para acessar o estado de monitoramento. Duas propriedades são usadas:
 
-* `MonitoringEnabled`&ndash; Indica se o retorno de chamada deve executar seu código personalizado.
-* `CurrentState`&ndash; Descreve o estado de monitoramento atual para uso na interface do usuário.
+* `MonitoringEnabled`: Indica se o retorno de chamada deve executar seu código personalizado.
+* `CurrentState`: Descreve o estado de monitoramento atual para uso na interface do usuário.
 
 O método `InvokeChanged` é semelhante à abordagem anterior, exceto que ele:
 

@@ -95,7 +95,7 @@ Um Blazor aplicativo é composto por elementos reutilizáveis da interface do us
 * Transformado em texto HTML (durante o pré-processamento &dagger; ).
 * Usado para atualizar a marcação com eficiência durante a renderização regular.
 
-&dagger;*Prerenderizando* &ndash; O Razor componente solicitado é compilado no servidor em HTML estático e enviado ao cliente, onde ele é renderizado para o usuário. Depois que a conexão é feita entre o cliente e o servidor, os elementos preprocessados estáticos do componente são substituídos por elementos interativos. O pré-processamento faz com que o aplicativo sinta-se mais responsivo para o usuário.
+&dagger;*Pré-processamento*: o Razor componente solicitado é compilado no servidor em HTML estático e enviado ao cliente, onde ele é renderizado para o usuário. Depois que a conexão é feita entre o cliente e o servidor, os elementos preprocessados estáticos do componente são substituídos por elementos interativos. O pré-processamento faz com que o aplicativo sinta-se mais responsivo para o usuário.
 
 Uma atualização de interface do usuário no Blazor é disparada por:
 

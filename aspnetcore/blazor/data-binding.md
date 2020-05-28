@@ -72,7 +72,10 @@ Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` sintaxe para associar atr
 }
 ```
 
-A associação de atributo diferencia maiúsculas de minúsculas. Por exemplo, [`@bind`](xref:mvc/views/razor#bind) é válido e [`@bind`](xref:mvc/views/razor#bind) é inválido.
+A associação de atributo diferencia maiúsculas de minúsculas:
+
+* `@bind`é válido.
+* `@Bind`e `@BIND` são inválidos.
 
 ## <a name="unparsable-values"></a>Valores não analisáveis
 

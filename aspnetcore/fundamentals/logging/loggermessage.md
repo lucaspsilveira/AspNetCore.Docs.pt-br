@@ -1,24 +1,11 @@
 ---
-title: Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
-author: rick-anderson
-description: Saiba como usar o LoggerMessage para criar representantes que podem ser armazenados em cache e exigem menos alocações de objeto para cenários de registro em log de alto desempenho.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 08/26/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: 67281b99f1ed8955ee29eb68b446d71a0c5c7838
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768358"
+Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
 
@@ -89,7 +76,7 @@ O método de extensão estático para adicionar aspas, `QuoteAdded`, recebe o va
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-No modelo de página da página de índice (*pages/index. cshtml. cs*) `QuoteAdded` , é chamado para registrar a mensagem:
+No modelo de página da página de índice (*pages/index. cshtml. cs*), `QuoteAdded` é chamado para registrar a mensagem:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -102,7 +89,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-O aplicativo de exemplo implementa um padrão [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) para a exclusão de aspas. Uma mensagem informativa é registrada em log para uma operação de exclusão bem-sucedida. Uma mensagem de erro é registrada em log para uma operação de exclusão quando uma exceção é gerada. A mensagem de log para a operação de exclusão sem êxito inclui o rastreamento de pilha da exceção (*Internal/LoggerExtensions.cs*):
+O aplicativo de exemplo implementa um padrão [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para exclusão de cotação. Uma mensagem informativa é registrada em log para uma operação de exclusão bem-sucedida. Uma mensagem de erro é registrada em log para uma operação de exclusão quando uma exceção é gerada. A mensagem de log para a operação de exclusão sem êxito inclui o rastreamento de pilha da exceção (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -112,7 +99,7 @@ Observe como a exceção é passada para o delegado em `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-No modelo da página de Índice, uma exclusão de aspas bem-sucedida chama o método `QuoteDeleted` no agente. Quando as aspas não são encontradas para exclusão, uma <xref:System.ArgumentNullException> é gerada. A exceção é interceptada pela instrução [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrada em log com uma chamada ao método `QuoteDeleteFailed` no agente no bloco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+No modelo da página de Índice, uma exclusão de aspas bem-sucedida chama o método `QuoteDeleted` no agente. Quando as aspas não são encontradas para exclusão, uma <xref:System.ArgumentNullException> é gerada. A exceção é interceptada pela instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrada chamando o `QuoteDeleteFailed` método no agente de log no bloco [Catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -255,7 +242,7 @@ O método de extensão estático para adicionar aspas, `QuoteAdded`, recebe o va
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-No modelo de página da página de índice (*pages/index. cshtml. cs*) `QuoteAdded` , é chamado para registrar a mensagem:
+No modelo de página da página de índice (*pages/index. cshtml. cs*), `QuoteAdded` é chamado para registrar a mensagem:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -268,7 +255,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-O aplicativo de exemplo implementa um padrão [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) para a exclusão de aspas. Uma mensagem informativa é registrada em log para uma operação de exclusão bem-sucedida. Uma mensagem de erro é registrada em log para uma operação de exclusão quando uma exceção é gerada. A mensagem de log para a operação de exclusão sem êxito inclui o rastreamento de pilha da exceção (*Internal/LoggerExtensions.cs*):
+O aplicativo de exemplo implementa um padrão [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para exclusão de cotação. Uma mensagem informativa é registrada em log para uma operação de exclusão bem-sucedida. Uma mensagem de erro é registrada em log para uma operação de exclusão quando uma exceção é gerada. A mensagem de log para a operação de exclusão sem êxito inclui o rastreamento de pilha da exceção (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -278,7 +265,7 @@ Observe como a exceção é passada para o delegado em `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-No modelo da página de Índice, uma exclusão de aspas bem-sucedida chama o método `QuoteDeleted` no agente. Quando as aspas não são encontradas para exclusão, uma <xref:System.ArgumentNullException> é gerada. A exceção é interceptada pela instrução [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrada em log com uma chamada ao método `QuoteDeleteFailed` no agente no bloco [catch](/dotnet/csharp/language-reference/keywords/try-catch) (*Pages/Index.cshtml.cs*):
+No modelo da página de Índice, uma exclusão de aspas bem-sucedida chama o método `QuoteDeleted` no agente. Quando as aspas não são encontradas para exclusão, uma <xref:System.ArgumentNullException> é gerada. A exceção é interceptada pela instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) e registrada chamando o `QuoteDeleteFailed` método no agente de log no bloco [Catch](/dotnet/csharp/language-reference/keywords/try-catch) (*pages/index. cshtml. cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 

@@ -70,8 +70,8 @@ Para usar a <xref:Microsoft.JSInterop.IJSRuntime> abstração, adote qualquer um
 
 No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas funções JavaScript estão disponíveis para o aplicativo que interagem com o DOM para receber a entrada do usuário e exibir uma mensagem de boas-vindas:
 
-* `showPrompt`&ndash;Produz uma solicitação para aceitar a entrada do usuário (o nome do usuário) e retorna o nome para o chamador.
-* `displayWelcome`&ndash;Atribui uma mensagem de boas-vindas do chamador a um objeto DOM com um `id` de `welcome` .
+* `showPrompt`: Produz uma solicitação para aceitar a entrada do usuário (o nome do usuário) e retorna o nome para o chamador.
+* `displayWelcome`: Atribui uma mensagem de boas-vindas do chamador a um objeto DOM com um `id` de `welcome` .
 
 *wwwroot/exampleJsInterop. js*:
 

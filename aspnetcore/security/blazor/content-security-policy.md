@@ -28,14 +28,14 @@ O CSP tem suporte na maioria dos navegadores de desktop e móvel modernos, inclu
 
 No mínimo, especifique as seguintes diretivas e fontes para Blazor aplicativos. Adicione outras diretivas e fontes conforme necessário. As seguintes diretivas são usadas na seção [aplicar a política](#apply-the-policy) deste artigo, em que são fornecidas as políticas de segurança de exemplo para Blazor Webassembly e Blazor servidor:
 
-* [URI](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri) &ndash; de base Restringe as URLs para a marca de uma página `<base>` . Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
-* [bloco-tudo-misto-conteúdo](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content) &ndash; Impede o carregamento de conteúdo HTTP e HTTPS mistos.
-* [padrão-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src) &ndash; Indica um fallback para as diretivas de origem que não são explicitamente especificadas pela política. Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
-* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src) &ndash; Indica fontes válidas para imagens.
+* [base-URI](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): restringe as URLs para a marca de uma página `<base>` . Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
+* [bloquear-tudo-conteúdo misto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): impede o carregamento de conteúdo http e HTTPS mistos.
+* [Default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): indica um fallback para diretivas de origem que não são explicitamente especificadas pela política. Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
+* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): indica fontes válidas para imagens.
   * Especifique `data:` para permitir o carregamento de imagens de `data:` URLs.
   * Especifique `https:` para permitir o carregamento de imagens de pontos de extremidade HTTPS.
-* [objeto-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src) &ndash; Indica fontes válidas para `<object>` as `<embed>` marcas, e `<applet>` . Especifique `none` para impedir todas as fontes de URL.
-* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) &ndash; Indica fontes válidas para scripts.
+* [objeto-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): indica fontes válidas para `<object>` as `<embed>` marcas, e `<applet>` . Especifique `none` para impedir todas as fontes de URL.
+* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): indica fontes válidas para scripts.
   * Especifique a `https://stackpath.bootstrapcdn.com/` origem do host para scripts de bootstrap.
   * Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
   * Em um Blazor aplicativo Webassembly:
@@ -45,11 +45,11 @@ No mínimo, especifique as seguintes diretivas e fontes para Blazor aplicativos.
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
     * Especifique `unsafe-eval` para usar os `eval()` métodos e para a criação de código a partir de cadeias de caracteres.
   * Em um Blazor aplicativo de servidor, especifique o `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash para o script embutido que executa a detecção de fallback para folhas de estilo.
-* [estilo-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src) &ndash; Indica fontes válidas para folhas de estilo.
+* [Style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): indica fontes válidas para folhas de estilo.
   * Especifique a `https://stackpath.bootstrapcdn.com/` origem do host para as folhas de estilo de inicialização.
   * Especifique `self` para indicar que a origem do aplicativo, incluindo o esquema e o número da porta, é uma origem válida.
   * Especifique `unsafe-inline` para permitir o uso de estilos embutidos. A declaração embutida é necessária para a interface do usuário em Blazor aplicativos de servidor para reconectar o cliente e o servidor após a solicitação inicial. Em uma versão futura, o estilo embutido pode ser removido para que `unsafe-inline` não seja mais necessário.
-* [atualização-inseguro – solicitações](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests) &ndash; Indica que as URLs de conteúdo de fontes inseguras (HTTP) devem ser adquiridas com segurança via HTTPS.
+* [atualização-inseguro – solicitações](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): indica que as URLs de conteúdo de fontes inseguras (http) devem ser adquiridas com segurança via HTTPS.
 
 As diretivas anteriores têm suporte de todos os navegadores, exceto o Microsoft Internet Explorer.
 

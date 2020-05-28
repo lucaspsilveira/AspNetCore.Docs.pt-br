@@ -1,41 +1,29 @@
 ---
-title: Integre componentes Razor de ASP.NET Core Razor em páginas e aplicativos MVC
-author: guardrex
-description: Saiba mais sobre cenários de ligação de dados para componentes e Blazor elementos DOM em aplicativos.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/25/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: blazor/integrate-components
-ms.openlocfilehash: eb4378223c40594ac52f50b7b890785067515555
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82771768"
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
-# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
+# <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre Razor componentes de ASP.NET Core em Razor páginas e aplicativos MVC
 
 De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-Os componentes do Razor podem ser integrados em aplicativos Razor Pages e MVC. Quando a página ou a exibição é renderizada, os componentes podem ser renderizados ao mesmo tempo.
+Razoros componentes podem ser integrados em Razor páginas e aplicativos MVC. Quando a página ou a exibição é renderizada, os componentes podem ser renderizados ao mesmo tempo.
 
 Depois de [preparar o aplicativo](#prepare-the-app), use as diretrizes nas seções a seguir, dependendo dos requisitos do aplicativo:
 
-* Componentes &ndash; roteáveis para componentes que são roteáveis diretamente das solicitações do usuário. Siga estas diretrizes para que os visitantes possam fazer uma solicitação HTTP em seu navegador para um componente com uma [`@page`](xref:mvc/views/razor#page) diretiva.
-  * [Usar componentes roteáveis em um aplicativo Razor Pages](#use-routable-components-in-a-razor-pages-app)
+* Componentes roteáveis: para componentes que são roteáveis diretamente das solicitações do usuário. Siga estas diretrizes para que os visitantes possam fazer uma solicitação HTTP em seu navegador para um componente com uma [`@page`](xref:mvc/views/razor#page) diretiva.
+  * [Usar componentes roteáveis em um Razor aplicativo de páginas](#use-routable-components-in-a-razor-pages-app)
   * [Usar componentes roteáveis em um aplicativo MVC](#use-routable-components-in-an-mvc-app)
-* [Renderizar componentes de uma página ou exibição](#render-components-from-a-page-or-view) &ndash; para componentes que não são roteáveis diretamente das solicitações do usuário. Siga estas diretrizes quando o aplicativo inserir componentes em páginas e exibições existentes com o [auxiliar de marca de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Renderizar componentes de uma página ou exibição](#render-components-from-a-page-or-view): para componentes que não são roteáveis diretamente das solicitações do usuário. Siga estas diretrizes quando o aplicativo inserir componentes em páginas e exibições existentes com o [auxiliar de marca de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## <a name="prepare-the-app"></a>Preparar o aplicativo
 
-Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em páginas e exibições:
+Uma Razor página existente ou um aplicativo MVC pode integrar Razor componentes em páginas e exibições:
 
 1. No arquivo de layout do aplicativo (*_Layout. cshtml*):
 
@@ -45,11 +33,11 @@ Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em p�
      <base href="~/" />
      ```
 
-     O `href` valor (o *caminho base do aplicativo*) no exemplo anterior pressupõe que o aplicativo reside no caminho da URL raiz (`/`). Se o aplicativo for um subaplicativo, siga as orientações na seção *caminho base do aplicativo* do <xref:host-and-deploy/blazor/index#app-base-path> artigo.
+     O `href` valor (o *caminho base do aplicativo*) no exemplo anterior pressupõe que o aplicativo reside no caminho da URL raiz ( `/` ). Se o aplicativo for um subaplicativo, siga as orientações na seção *caminho base do aplicativo* do <xref:host-and-deploy/blazor/index#app-base-path> artigo.
 
-     O arquivo *_Layout. cshtml* está localizado na pasta *páginas/compartilhada* em um aplicativo Razor pages ou *exibições/pastas compartilhadas* em um aplicativo MVC.
+     O arquivo *_Layout. cshtml* está localizado na pasta *páginas/compartilhada* em um Razor aplicativo de páginas ou em *exibições/pastas compartilhadas* em um aplicativo MVC.
 
-   * Adicione uma `<script>` marca para o script mais *incrivelmente. Server. js* imediatamente antes da marca de `</body>` fechamento:
+   * Adicione uma `<script>` marca para o script mais *incrivelmente. Server. js* imediatamente antes da marca de fechamento `</body>` :
 
      ```html
      <script src="_framework/blazor.server.js"></script>
@@ -57,7 +45,7 @@ Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em p�
 
      A estrutura adiciona o mais de um script mais *. Server. js* ao aplicativo. Não é necessário adicionar manualmente o script ao aplicativo.
 
-1. Adicione um arquivo *_Imports. Razor* à pasta raiz do projeto com o seguinte conteúdo (altere o último namespace, `MyAppNamespace`, para o namespace do aplicativo):
+1. Adicione um arquivo *_Imports. Razor* à pasta raiz do projeto com o seguinte conteúdo (altere o último namespace, `MyAppNamespace` , para o namespace do aplicativo):
 
    ```razor
    @using System.Net.Http
@@ -70,13 +58,13 @@ Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em p�
    @using MyAppNamespace
    ```
 
-1. No `Startup.ConfigureServices`, registre o serviço de servidor mais incrivelmente:
+1. No `Startup.ConfigureServices` , registre o Blazor serviço do servidor:
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. No `Startup.Configure`, adicione o ponto de extremidade do Hub `app.UseEndpoints`mais incrivelmente a:
+1. No `Startup.Configure` , adicione o Blazor ponto de extremidade do hub a `app.UseEndpoints` :
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -84,11 +72,11 @@ Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em p�
 
 1. Integre componentes em qualquer página ou exibição. Para obter mais informações, consulte a seção [renderizar componentes de uma página ou exibição](#render-components-from-a-page-or-view) .
 
-## <a name="use-routable-components-in-a-razor-pages-app"></a>Usar componentes roteáveis em um aplicativo Razor Pages
+## <a name="use-routable-components-in-a-razor-pages-app"></a>Usar componentes roteáveis em um Razor aplicativo de páginas
 
 *Esta seção refere-se à adição de componentes que são roteáveis diretamente das solicitações do usuário.*
 
-Para dar suporte a componentes roteáveis do Razor em aplicativos Razor Pages:
+Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
 
 1. Siga as orientações na seção [preparar o aplicativo](#prepare-the-app) .
 
@@ -126,17 +114,67 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos Razor Pages:
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se o `App` componente:
 
    * É renderizado na página.
-   * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
+   * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
    | Modo de renderização | Descrição |
-   | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um aplicativo de servidor mais incrivelmente. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo mais incrivelmente. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um aplicativo de servidor mais incrivelmente. A `App` saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo mais incrivelmente. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+   | ---
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
 
-   Para obter mais informações sobre o auxiliar de marca de <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>componente, consulte.
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
 
-1. Adicione uma rota de baixa prioridade para a página *_Host. cshtml* à configuração do ponto `Startup.Configure`de extremidade no:
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | título do---: ' integrar ASP.NET Core Razor componentes em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+
+   Para obter mais informações sobre o auxiliar de marca de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
+
+1. Adicione uma rota de baixa prioridade para a página *_Host. cshtml* à configuração do ponto de extremidade no `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -147,7 +185,7 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos Razor Pages:
    });
    ```
 
-1. Adicione componentes roteáveis ao aplicativo. Por exemplo: 
+1. Adicione componentes roteáveis ao aplicativo. Por exemplo:
 
    ```razor
    @page "/counter"
@@ -163,7 +201,7 @@ Para obter mais informações sobre namespaces, consulte a seção [namespaces d
 
 *Esta seção refere-se à adição de componentes que são roteáveis diretamente das solicitações do usuário.*
 
-Para dar suporte a componentes roteáveis do Razor em aplicativos MVC:
+Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
 
 1. Siga as orientações na seção [preparar o aplicativo](#prepare-the-app) .
 
@@ -200,15 +238,65 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos MVC:
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se o `App` componente:
 
    * É renderizado na página.
-   * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
+   * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
    | Modo de renderização | Descrição |
-   | ----------- | ----------- |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar Blazor um aplicativo. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A `App` saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar Blazor um aplicativo. |
-   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+   | ---
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
 
-   Para obter mais informações sobre o auxiliar de marca de <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>componente, consulte.
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | título do---: ' integrar ASP.NET Core Razor componentes em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+-
+Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
+monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
+------ | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+
+   Para obter mais informações sobre o auxiliar de marca de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
 1. Adicione uma ação ao controlador Home:
 
@@ -219,7 +307,7 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos MVC:
    }
    ```
 
-1. Adicione uma rota de baixa prioridade para a ação do controlador que retorna a exibição *_Host. cshtml* para a configuração do `Startup.Configure`ponto de extremidade no:
+1. Adicione uma rota de baixa prioridade para a ação do controlador que retorna a exibição *_Host. cshtml* para a configuração do ponto de extremidade no `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -230,7 +318,7 @@ Para dar suporte a componentes roteáveis do Razor em aplicativos MVC:
    });
    ```
 
-1. Crie uma pasta de *páginas* e adicione componentes roteáveis ao aplicativo. Por exemplo: 
+1. Crie uma pasta de *páginas* e adicione componentes roteáveis ao aplicativo. Por exemplo:
 
    ```razor
    @page "/counter"
@@ -250,15 +338,15 @@ Para renderizar um componente de uma página ou exibição, use o [auxiliar de m
 
 ### <a name="render-stateful-interactive-components"></a>Renderizar componentes interativos com estado
 
-Componentes interativos com estado podem ser Razor adicionados a uma página ou exibição.
+Componentes interativos com estado podem ser adicionados a uma Razor página ou exibição.
 
 Quando a página ou a exibição renderiza:
 
 * O componente é renderizado com a página ou exibição.
 * O estado inicial do componente usado para o pré-processamento é perdido.
-* O novo estado do componente é criado SignalR quando a conexão é estabelecida.
+* O novo estado do componente é criado quando a SignalR conexão é estabelecida.
 
-A página Razor a seguir renderiza um `Counter` componente:
+A página a seguir Razor renderiza um `Counter` componente:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -276,7 +364,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/c
 
 ### <a name="render-noninteractive-components"></a>Renderizar componentes não interativos
 
-Na página a Razor seguir, o `Counter` componente é processado estaticamente com um valor inicial que é especificado usando um formulário. Como o componente é processado estaticamente, o componente não é interativo:
+Na página a seguir Razor , o `Counter` componente é processado estaticamente com um valor inicial que é especificado usando um formulário. Como o componente é processado estaticamente, o componente não é interativo:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -302,7 +390,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/c
 Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicione o namespace que representa a pasta à página/exibição ou ao arquivo *_ViewImports. cshtml* . No exemplo a seguir:
 
 * Altere `MyAppNamespace` para o namespace do aplicativo.
-* Se uma pasta chamada *Components* não for usada para manter os componentes `Components` , altere para a pasta onde residem os componentes.
+* Se uma pasta chamada *Components* não for usada para manter os componentes, altere `Components` para a pasta onde residem os componentes.
 
 ```cshtml
 @using MyAppNamespace.Components

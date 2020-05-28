@@ -46,8 +46,8 @@ Para preservar o estado além de um único circuito, *não armazene apenas os da
 
 A persistência de dados normalmente é necessária apenas para o estado de alto valor que os usuários gastaram esforços para criar. Nos exemplos a seguir, o estado de persistência economiza tempo ou ajuda em atividades comerciais:
 
-* Formulário da webstep &ndash; é demorado para um usuário reinserir dados para várias etapas concluídas de um processo com vários passos, caso seu estado seja perdido. Um usuário perde o estado nesse cenário se ele navega para fora do formulário com várias etapas e retorna para o formulário mais tarde.
-* Carrinho &ndash; de compras qualquer componente comercialmente importante de um aplicativo que representa a possível receita pode ser mantido. Um usuário que perde seu estado e, portanto, seu carrinho de compras, pode comprar menos produtos ou serviços quando eles retornam para o site mais tarde.
+* Formulário da webstep: é muito demorado para um usuário reinserir dados para várias etapas concluídas de um processo multietapa se seu estado for perdido. Um usuário perde o estado nesse cenário se ele navega para fora do formulário com várias etapas e retorna para o formulário mais tarde.
+* Carrinho de compras: qualquer componente comercialmente importante de um aplicativo que representa a possível receita pode ser mantido. Um usuário que perde seu estado e, portanto, seu carrinho de compras, pode comprar menos produtos ou serviços quando eles retornam para o site mais tarde.
 
 Normalmente, não é necessário preservar o estado de recriação fácil, como o nome de usuário inserido em uma caixa de diálogo de entrada que não foi enviada.
 

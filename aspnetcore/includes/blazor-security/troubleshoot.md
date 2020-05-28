@@ -18,8 +18,8 @@ Uma abordagem para impedir que cookies persistentes e dados do site interfira no
   * Selecione o botão **Adicionar**.
   * Forneça o caminho para o seu navegador no campo **programa** .
   * No campo **argumentos** , forneça a opção de linha de comando que o navegador usa para abrir no modo Incognito ou privado e a URL do aplicativo. Por exemplo:
-    * Google Chrome &ndash;`--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox &ndash;`-private -url https://localhost:5001`
+    * Google Chrome:`--incognito --new-window https://localhost:5001`
+    * Mozilla Firefox:`-private -url https://localhost:5001`
   * Forneça um nome no campo **nome amigável** . Por exemplo, `Firefox Auth Testing`.
   * Selecione o botão **OK** .
   * Para evitar ter que selecionar o perfil de navegador para cada iteração de teste com um aplicativo, defina o perfil como o padrão com o botão **definir como padrão** .

@@ -1495,7 +1495,7 @@ Adote as seguintes práticas para proteger dados de configuração confidenciais
 Para obter mais informações, consulte estes tópicos:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>&ndash;Inclui conselhos sobre como usar variáveis de ambiente para armazenar dados confidenciais. O Gerenciador de Segredo usa o Provedor de Configuração de Arquivo para armazenar segredos do usuário em um arquivo JSON no sistema local. O Provedor de Configuração de Arquivo será descrito mais adiante neste tópico.
+* <xref:security/app-secrets>: Inclui conselhos sobre como usar variáveis de ambiente para armazenar dados confidenciais. O Gerenciador de Segredo usa o Provedor de Configuração de Arquivo para armazenar segredos do usuário em um arquivo JSON no sistema local. O Provedor de Configuração de Arquivo será descrito mais adiante neste tópico.
 
 O [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) armazena os segredos do aplicativo com segurança para aplicativos ASP.NET Core. Para obter mais informações, consulte <xref:security/key-vault-configuration>.
 
@@ -2948,8 +2948,8 @@ Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-l
 
 Uma variável de ambiente de cadeia de conexão personalizada é criada no servidor:
 
-* Nome &ndash; do`CUSTOMCONNSTR_ReleaseDB`
-* Valor &ndash; do`Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+* Nome: `CUSTOMCONNSTR_ReleaseDB`
+* Valor: `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
 
 Se `IConfiguration` for injetado e atribuído a um campo chamado `_config` , leia o valor:
 
@@ -3028,8 +3028,8 @@ As sobrecargas permitem especificar:
 
 `AddJsonFile`é chamado automaticamente duas vezes quando um novo Construtor de hosts é inicializado com o `CreateDefaultBuilder` . O método é chamado para carregar a configuração de:
 
-* *appsettings.json* &ndash; Esse arquivo é lido primeiro. A versão do ambiente do arquivo pode substituir os valores fornecidos pelo arquivo *appsettings.json*.
-* *appSettings. {Environment}. JSON* &ndash; a versão do ambiente do arquivo é carregada com base no [IHostingEnvironment. environmentname](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+* *appSettings. JSON*: este arquivo é lido primeiro. A versão do ambiente do arquivo pode substituir os valores fornecidos pelo arquivo *appsettings.json*.
+* *appSettings. {Environment}. JSON*: a versão do ambiente do arquivo é carregada com base no [IHostingEnvironment. environmentname](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 Para obter mais informações, confira a seção [Configuração padrão](#default-configuration).
 

@@ -1,22 +1,11 @@
 ---
-title: Visão geral sobre o ASP.NET Core MVC
-author: ardalis
-description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
-ms.author: riande
-ms.date: 02/12/2020
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: mvc/overview
-ms.openlocfilehash: c6c7fd1d0cb7a462b3a13d5e31a50c704a00c0ef
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775460"
+Título: autor: Descrição: MS. autor: MS. Date: no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRuid ' ': 
+
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral sobre o ASP.NET Core MVC
 
@@ -224,7 +213,7 @@ Por exemplo, a seguinte exibição renderiza um modelo do tipo `IEnumerable<Prod
 
 ### <a name="tag-helpers"></a>Auxiliares de Marca
 
-Os [auxiliares de marcação](views/tag-helpers/intro.md) permitem que o código do lado do servidor participe da criação Razor e renderização de elementos HTML em arquivos. Use auxiliares de marca para definir marcas personalizadas (por exemplo, `<environment>`) ou para modificar o comportamento de marcas existentes (por exemplo, `<label>`). Os Auxiliares de Marca associam a elementos específicos com base no nome do elemento e seus atributos. Eles oferecem os benefícios da renderização do lado do servidor, enquanto preservam uma experiência de edição de HTML.
+Os [auxiliares de marcação](views/tag-helpers/intro.md) permitem que o código do lado do servidor participe da criação e renderização de elementos HTML em Razor arquivos. Use auxiliares de marca para definir marcas personalizadas (por exemplo, `<environment>`) ou para modificar o comportamento de marcas existentes (por exemplo, `<label>`). Os Auxiliares de Marca associam a elementos específicos com base no nome do elemento e seus atributos. Eles oferecem os benefícios da renderização do lado do servidor, enquanto preservam uma experiência de edição de HTML.
 
 Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o LinkTagHelper interno pode ser usado para criar um link para a ação `Login` do `AccountsController`:
 
@@ -249,7 +238,7 @@ O `EnvironmentTagHelper` pode ser usado para incluir scripts diferentes nas exib
 </environment>
 ```
 
-Os auxiliares de marcação fornecem uma experiência de desenvolvimento amigável em HTML e um ambiente sofisticado do IntelliSense Razor para criar HTML e marcação. A maioria dos Auxiliares de Marca internos é direcionada a elementos HTML existentes e fornece atributos do lado do servidor para o elemento.
+Os auxiliares de marcação fornecem uma experiência de desenvolvimento amigável em HTML e um ambiente sofisticado do IntelliSense para criar HTML e Razor marcação. A maioria dos Auxiliares de Marca internos é direcionada a elementos HTML existentes e fornece atributos do lado do servidor para o elemento.
 
 ### <a name="view-components"></a>Componentes da exibição
 
@@ -263,5 +252,5 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core biblioteca de](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; testes de unidade do MVC de tipo de alta segurança, fornecendo uma interface fluente para testar aplicativos de API Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.*)
+* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar MVC e aplicativos de API Web. (*Não é mantido ou não tem suporte da Microsoft.*)
 * <xref:blazor/integrate-components>
