@@ -164,6 +164,16 @@ Quando o serviço de blob está habilitado para hospedagem de site estático em 
 * Defina o **Nome do documento de índice** como `index.html`.
 * Defina o **Caminho do documento de erro** como `index.html`. Razoros componentes e outros pontos de extremidade que não são de arquivo não residem em caminhos físicos no conteúdo estático armazenado pelo serviço BLOB. Quando uma solicitação para um desses recursos é recebida e o Blazor roteador deve lidar, o erro *404-não encontrado* gerado pelo serviço blob roteia a solicitação para o caminho do **documento de erro**. O blob *index. html* é retornado e o Blazor roteador carrega e processa o caminho.
 
+Se os arquivos não forem carregados no tempo de execução devido a tipos MIME inadequados nos cabeçalhos dos arquivos `Content-Type` , execute uma das seguintes ações:
+
+* Configure suas ferramentas para definir os tipos MIME corretos ( `Content-Type` cabeçalhos) quando os arquivos são implantados.
+* Altere os tipos MIME ( `Content-Type` cabeçalhos) para os arquivos depois que o aplicativo for implantado.
+
+  Em Gerenciador de Armazenamento (portal do Azure) para cada arquivo:
+  
+  1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades**.
+  1. Defina o **ContentType** e selecione o botão **salvar** .
+
 Para mais informações, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
