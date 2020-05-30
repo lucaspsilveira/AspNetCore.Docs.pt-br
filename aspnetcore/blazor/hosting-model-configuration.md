@@ -1,30 +1,30 @@
 ---
-<span data-ttu-id="94bb3-101">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-101">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-102">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-102">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-103">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-103">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-104">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-104">'Identity'</span></span>
-- <span data-ttu-id="94bb3-105">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-105">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-106">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-106">'Razor'</span></span>
-- <span data-ttu-id="94bb3-107">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-107">'SignalR' uid:</span></span> 
+<span data-ttu-id="55724-101">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: guardrex Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="55724-101">title: 'ASP.NET Core Blazor hosting model configuration' author: guardrex description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
+<span data-ttu-id="55724-102">monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/28/2020 no-loc:</span><span class="sxs-lookup"><span data-stu-id="55724-102">monikerRange: '>= aspnetcore-3.1' ms.author: riande ms.custom: mvc ms.date: 05/28/2020 no-loc:</span></span>
+- <span data-ttu-id="55724-103">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="55724-103">'Blazor'</span></span>
+- <span data-ttu-id="55724-104">'Identity'</span><span class="sxs-lookup"><span data-stu-id="55724-104">'Identity'</span></span>
+- <span data-ttu-id="55724-105">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="55724-105">'Let's Encrypt'</span></span>
+- <span data-ttu-id="55724-106">'Razor'</span><span class="sxs-lookup"><span data-stu-id="55724-106">'Razor'</span></span>
+- <span data-ttu-id="55724-107">' SignalR ' UID: mais incrivelmente/de hospedagem-modelo-configuração</span><span class="sxs-lookup"><span data-stu-id="55724-107">'SignalR' uid: blazor/hosting-model-configuration</span></span>
 
 ---
-# <a name="aspnet-core-blazor-hosting-model-configuration"></a><span data-ttu-id="94bb3-108">ASP.NET Core Blazor configuração do modelo de hospedagem</span><span class="sxs-lookup"><span data-stu-id="94bb3-108">ASP.NET Core Blazor hosting model configuration</span></span>
+# <a name="aspnet-core-blazor-hosting-model-configuration"></a><span data-ttu-id="55724-108">ASP.NET Core Blazor configuração do modelo de hospedagem</span><span class="sxs-lookup"><span data-stu-id="55724-108">ASP.NET Core Blazor hosting model configuration</span></span>
 
-<span data-ttu-id="94bb3-109">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="94bb3-109">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="55724-109">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="55724-109">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="94bb3-110">Este artigo aborda a configuração do modelo de hospedagem.</span><span class="sxs-lookup"><span data-stu-id="94bb3-110">This article covers hosting model configuration.</span></span>
+<span data-ttu-id="55724-110">Este artigo aborda a configuração do modelo de hospedagem.</span><span class="sxs-lookup"><span data-stu-id="55724-110">This article covers hosting model configuration.</span></span>
 
-## <a name="blazor-webassembly"></a>Blazor<span data-ttu-id="94bb3-111">Webassembly</span><span class="sxs-lookup"><span data-stu-id="94bb3-111"> WebAssembly</span></span>
+## <a name="blazor-webassembly"></a>Blazor<span data-ttu-id="55724-111">Webassembly</span><span class="sxs-lookup"><span data-stu-id="55724-111"> WebAssembly</span></span>
 
-### <a name="environment"></a><span data-ttu-id="94bb3-112">Ambiente</span><span class="sxs-lookup"><span data-stu-id="94bb3-112">Environment</span></span>
+### <a name="environment"></a><span data-ttu-id="55724-112">Ambiente</span><span class="sxs-lookup"><span data-stu-id="55724-112">Environment</span></span>
 
-<span data-ttu-id="94bb3-113">Ao executar um aplicativo localmente, o ambiente assume como padrão o desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="94bb3-113">When running an app locally, the environment defaults to Development.</span></span> <span data-ttu-id="94bb3-114">Quando o aplicativo é publicado, o ambiente assume como padrão a produção.</span><span class="sxs-lookup"><span data-stu-id="94bb3-114">When the app is published, the environment defaults to Production.</span></span>
+<span data-ttu-id="55724-113">Ao executar um aplicativo localmente, o ambiente assume como padrão o desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="55724-113">When running an app locally, the environment defaults to Development.</span></span> <span data-ttu-id="55724-114">Quando o aplicativo é publicado, o ambiente assume como padrão a produção.</span><span class="sxs-lookup"><span data-stu-id="55724-114">When the app is published, the environment defaults to Production.</span></span>
 
-<span data-ttu-id="94bb3-115">Um Blazor aplicativo Webassembly hospedado pega o ambiente do servidor por meio de um middleware que comunica o ambiente ao navegador adicionando o `blazor-environment` cabeçalho.</span><span class="sxs-lookup"><span data-stu-id="94bb3-115">A hosted Blazor WebAssembly app picks up the environment from the server via a middleware that communicates the environment to the browser by adding the `blazor-environment` header.</span></span> <span data-ttu-id="94bb3-116">O valor do cabeçalho é o ambiente.</span><span class="sxs-lookup"><span data-stu-id="94bb3-116">The value of the header is the environment.</span></span> <span data-ttu-id="94bb3-117">O Blazor aplicativo hospedado e o aplicativo de servidor compartilham o mesmo ambiente.</span><span class="sxs-lookup"><span data-stu-id="94bb3-117">The hosted Blazor app and the server app share the same environment.</span></span> <span data-ttu-id="94bb3-118">Para obter mais informações, incluindo como configurar o ambiente, consulte <xref:fundamentals/environments> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-118">For more information, including how to configure the environment, see <xref:fundamentals/environments>.</span></span>
+<span data-ttu-id="55724-115">Um Blazor aplicativo Webassembly hospedado pega o ambiente do servidor por meio de um middleware que comunica o ambiente ao navegador adicionando o `blazor-environment` cabeçalho.</span><span class="sxs-lookup"><span data-stu-id="55724-115">A hosted Blazor WebAssembly app picks up the environment from the server via a middleware that communicates the environment to the browser by adding the `blazor-environment` header.</span></span> <span data-ttu-id="55724-116">O valor do cabeçalho é o ambiente.</span><span class="sxs-lookup"><span data-stu-id="55724-116">The value of the header is the environment.</span></span> <span data-ttu-id="55724-117">O Blazor aplicativo hospedado e o aplicativo de servidor compartilham o mesmo ambiente.</span><span class="sxs-lookup"><span data-stu-id="55724-117">The hosted Blazor app and the server app share the same environment.</span></span> <span data-ttu-id="55724-118">Para obter mais informações, incluindo como configurar o ambiente, consulte <xref:fundamentals/environments> .</span><span class="sxs-lookup"><span data-stu-id="55724-118">For more information, including how to configure the environment, see <xref:fundamentals/environments>.</span></span>
 
-<span data-ttu-id="94bb3-119">Para um aplicativo autônomo em execução localmente, o servidor de desenvolvimento adiciona o `blazor-environment` cabeçalho para especificar o ambiente de desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="94bb3-119">For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment.</span></span> <span data-ttu-id="94bb3-120">Para especificar o ambiente para outros ambientes de hospedagem, adicione o `blazor-environment` cabeçalho.</span><span class="sxs-lookup"><span data-stu-id="94bb3-120">To specify the environment for other hosting environments, add the `blazor-environment` header.</span></span>
+<span data-ttu-id="55724-119">Para um aplicativo autônomo em execução localmente, o servidor de desenvolvimento adiciona o `blazor-environment` cabeçalho para especificar o ambiente de desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="55724-119">For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment.</span></span> <span data-ttu-id="55724-120">Para especificar o ambiente para outros ambientes de hospedagem, adicione o `blazor-environment` cabeçalho.</span><span class="sxs-lookup"><span data-stu-id="55724-120">To specify the environment for other hosting environments, add the `blazor-environment` header.</span></span>
 
-<span data-ttu-id="94bb3-121">No exemplo a seguir para o IIS, adicione o cabeçalho personalizado ao arquivo *Web. config* publicado.</span><span class="sxs-lookup"><span data-stu-id="94bb3-121">In the following example for IIS, add the custom header to the published *web.config* file.</span></span> <span data-ttu-id="94bb3-122">O arquivo *Web. config* está localizado na pasta */versão/{Target Framework}/Publish* :</span><span class="sxs-lookup"><span data-stu-id="94bb3-122">The *web.config* file is located in the *bin/Release/{TARGET FRAMEWORK}/publish* folder:</span></span>
+<span data-ttu-id="55724-121">No exemplo a seguir para o IIS, adicione o cabeçalho personalizado ao arquivo *Web. config* publicado.</span><span class="sxs-lookup"><span data-stu-id="55724-121">In the following example for IIS, add the custom header to the published *web.config* file.</span></span> <span data-ttu-id="55724-122">O arquivo *Web. config* está localizado na pasta */versão/{Target Framework}/Publish* :</span><span class="sxs-lookup"><span data-stu-id="55724-122">The *web.config* file is located in the *bin/Release/{TARGET FRAMEWORK}/publish* folder:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,9 +43,9 @@
 ```
 
 > [!NOTE]
-> <span data-ttu-id="94bb3-123">Para usar um arquivo *Web. config* personalizado para o IIS que não é substituído quando o aplicativo é publicado na pasta de *publicação* , consulte <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-123">To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.</span></span>
+> <span data-ttu-id="55724-123">Para usar um arquivo *Web. config* personalizado para o IIS que não é substituído quando o aplicativo é publicado na pasta de *publicação* , consulte <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig> .</span><span class="sxs-lookup"><span data-stu-id="55724-123">To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.</span></span>
 
-<span data-ttu-id="94bb3-124">Obtenha o ambiente do aplicativo em um componente injetando <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> e lendo a <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> Propriedade:</span><span class="sxs-lookup"><span data-stu-id="94bb3-124">Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property:</span></span>
+<span data-ttu-id="55724-124">Obtenha o ambiente do aplicativo em um componente injetando <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> e lendo a <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> Propriedade:</span><span class="sxs-lookup"><span data-stu-id="55724-124">Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property:</span></span>
 
 ```razor
 @page "/"
@@ -57,7 +57,7 @@
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
-<span data-ttu-id="94bb3-125">Durante a inicialização, o <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> expõe o <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> por meio da <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> propriedade, o que permite aos desenvolvedores ter lógica específica do ambiente em seu código:</span><span class="sxs-lookup"><span data-stu-id="94bb3-125">During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables developers to have environment-specific logic in their code:</span></span>
+<span data-ttu-id="55724-125">Durante a inicialização, o <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> expõe o <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> por meio da <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> propriedade, o que permite aos desenvolvedores ter lógica específica do ambiente em seu código:</span><span class="sxs-lookup"><span data-stu-id="55724-125">During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables developers to have environment-specific logic in their code:</span></span>
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -66,7 +66,7 @@ if (builder.HostEnvironment.Environment == "Custom")
 };
 ```
 
-<span data-ttu-id="94bb3-126">Os métodos de extensão de conveniência a seguir permitem verificar o ambiente atual quanto a desenvolvimento, produção, preparação e nomes de ambiente personalizados:</span><span class="sxs-lookup"><span data-stu-id="94bb3-126">The following convenience extension methods permit checking the current environment for Development, Production, Staging, and custom environment names:</span></span>
+<span data-ttu-id="55724-126">Os métodos de extensão de conveniência a seguir permitem verificar o ambiente atual quanto a desenvolvimento, produção, preparação e nomes de ambiente personalizados:</span><span class="sxs-lookup"><span data-stu-id="55724-126">The following convenience extension methods permit checking the current environment for Development, Production, Staging, and custom environment names:</span></span>
 
 * `IsDevelopment()`
 * `IsProduction()`
@@ -85,25 +85,25 @@ if (builder.HostEnvironment.IsEnvironment("Custom"))
 };
 ```
 
-<span data-ttu-id="94bb3-127">A <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> propriedade pode ser usada durante a inicialização quando o <xref:Microsoft.AspNetCore.Components.NavigationManager> serviço não está disponível.</span><span class="sxs-lookup"><span data-stu-id="94bb3-127">The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> property can be used during startup when the <xref:Microsoft.AspNetCore.Components.NavigationManager> service isn't available.</span></span>
+<span data-ttu-id="55724-127">A <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> propriedade pode ser usada durante a inicialização quando o <xref:Microsoft.AspNetCore.Components.NavigationManager> serviço não está disponível.</span><span class="sxs-lookup"><span data-stu-id="55724-127">The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> property can be used during startup when the <xref:Microsoft.AspNetCore.Components.NavigationManager> service isn't available.</span></span>
 
-### <a name="configuration"></a><span data-ttu-id="94bb3-128">Configuração</span><span class="sxs-lookup"><span data-stu-id="94bb3-128">Configuration</span></span>
+### <a name="configuration"></a><span data-ttu-id="55724-128">Configuração</span><span class="sxs-lookup"><span data-stu-id="55724-128">Configuration</span></span>
 
-Blazor<span data-ttu-id="94bb3-129">O Webassembly carrega a configuração de:</span><span class="sxs-lookup"><span data-stu-id="94bb3-129"> WebAssembly loads configuration from:</span></span>
+Blazor<span data-ttu-id="55724-129">O Webassembly carrega a configuração de:</span><span class="sxs-lookup"><span data-stu-id="55724-129"> WebAssembly loads configuration from:</span></span>
 
-* <span data-ttu-id="94bb3-130">Arquivos de configurações do aplicativo por padrão:</span><span class="sxs-lookup"><span data-stu-id="94bb3-130">App settings files by default:</span></span>
-  * <span data-ttu-id="94bb3-131">*wwwroot/appSettings. JSON*</span><span class="sxs-lookup"><span data-stu-id="94bb3-131">*wwwroot/appsettings.json*</span></span>
-  * <span data-ttu-id="94bb3-132">*wwwroot/appSettings. {ENVIRONMENT}. JSON*</span><span class="sxs-lookup"><span data-stu-id="94bb3-132">*wwwroot/appsettings.{ENVIRONMENT}.json*</span></span>
-* <span data-ttu-id="94bb3-133">Outros [provedores de configuração](xref:fundamentals/configuration/index) registrados pelo aplicativo.</span><span class="sxs-lookup"><span data-stu-id="94bb3-133">Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.</span></span> <span data-ttu-id="94bb3-134">Nem todos os provedores são apropriados para Blazor aplicativos Webassembly.</span><span class="sxs-lookup"><span data-stu-id="94bb3-134">Not all providers are appropriate for Blazor WebAssembly apps.</span></span> <span data-ttu-id="94bb3-135">O esclarecimento sobre quais provedores têm suporte para o Blazor Webassembly é acompanhado pelos [provedores de configuração do Clarify para Blazor WASM (dotNet/AspNetCore. docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).</span><span class="sxs-lookup"><span data-stu-id="94bb3-135">Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).</span></span>
+* <span data-ttu-id="55724-130">Arquivos de configurações do aplicativo por padrão:</span><span class="sxs-lookup"><span data-stu-id="55724-130">App settings files by default:</span></span>
+  * <span data-ttu-id="55724-131">*wwwroot/appSettings. JSON*</span><span class="sxs-lookup"><span data-stu-id="55724-131">*wwwroot/appsettings.json*</span></span>
+  * <span data-ttu-id="55724-132">*wwwroot/appSettings. {ENVIRONMENT}. JSON*</span><span class="sxs-lookup"><span data-stu-id="55724-132">*wwwroot/appsettings.{ENVIRONMENT}.json*</span></span>
+* <span data-ttu-id="55724-133">Outros [provedores de configuração](xref:fundamentals/configuration/index) registrados pelo aplicativo.</span><span class="sxs-lookup"><span data-stu-id="55724-133">Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.</span></span> <span data-ttu-id="55724-134">Nem todos os provedores são apropriados para Blazor aplicativos Webassembly.</span><span class="sxs-lookup"><span data-stu-id="55724-134">Not all providers are appropriate for Blazor WebAssembly apps.</span></span> <span data-ttu-id="55724-135">O esclarecimento sobre quais provedores têm suporte para o Blazor Webassembly é acompanhado pelos [provedores de configuração do Clarify para Blazor WASM (dotNet/AspNetCore. docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).</span><span class="sxs-lookup"><span data-stu-id="55724-135">Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="94bb3-136">A configuração em um Blazor aplicativo Webassembly é visível para os usuários.</span><span class="sxs-lookup"><span data-stu-id="94bb3-136">Configuration in a Blazor WebAssembly app is visible to users.</span></span> <span data-ttu-id="94bb3-137">**Não armazene os segredos ou as credenciais do aplicativo na configuração.**</span><span class="sxs-lookup"><span data-stu-id="94bb3-137">**Don't store app secrets or credentials in configuration.**</span></span>
+> <span data-ttu-id="55724-136">A configuração em um Blazor aplicativo Webassembly é visível para os usuários.</span><span class="sxs-lookup"><span data-stu-id="55724-136">Configuration in a Blazor WebAssembly app is visible to users.</span></span> <span data-ttu-id="55724-137">**Não armazene os segredos ou as credenciais do aplicativo na configuração.**</span><span class="sxs-lookup"><span data-stu-id="55724-137">**Don't store app secrets or credentials in configuration.**</span></span>
 
-<span data-ttu-id="94bb3-138">Para obter mais informações sobre provedores de configuração, consulte <xref:fundamentals/configuration/index> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-138">For more information on configuration providers, see <xref:fundamentals/configuration/index>.</span></span>
+<span data-ttu-id="55724-138">Para obter mais informações sobre provedores de configuração, consulte <xref:fundamentals/configuration/index> .</span><span class="sxs-lookup"><span data-stu-id="55724-138">For more information on configuration providers, see <xref:fundamentals/configuration/index>.</span></span>
 
-#### <a name="app-settings-configuration"></a><span data-ttu-id="94bb3-139">Configuração de configurações do aplicativo</span><span class="sxs-lookup"><span data-stu-id="94bb3-139">App settings configuration</span></span>
+#### <a name="app-settings-configuration"></a><span data-ttu-id="55724-139">Configuração de configurações do aplicativo</span><span class="sxs-lookup"><span data-stu-id="55724-139">App settings configuration</span></span>
 
-<span data-ttu-id="94bb3-140">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="94bb3-140">*wwwroot/appsettings.json*:</span></span>
+<span data-ttu-id="55724-140">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="55724-140">*wwwroot/appsettings.json*:</span></span>
 
 ```json
 {
@@ -111,7 +111,7 @@ Blazor<span data-ttu-id="94bb3-129">O Webassembly carrega a configuração de:</
 }
 ```
 
-<span data-ttu-id="94bb3-141">Injetar uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância em um componente para acessar os dados de configuração:</span><span class="sxs-lookup"><span data-stu-id="94bb3-141">Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:</span></span>
+<span data-ttu-id="55724-141">Injetar uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância em um componente para acessar os dados de configuração:</span><span class="sxs-lookup"><span data-stu-id="55724-141">Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:</span></span>
 
 ```razor
 @page "/"
@@ -123,11 +123,11 @@ Blazor<span data-ttu-id="94bb3-129">O Webassembly carrega a configuração de:</
 <p>Message: @Configuration["message"]</p>
 ```
 
-#### <a name="provider-configuration"></a><span data-ttu-id="94bb3-142">Configuração do provedor</span><span class="sxs-lookup"><span data-stu-id="94bb3-142">Provider configuration</span></span>
+#### <a name="provider-configuration"></a><span data-ttu-id="55724-142">Configuração do provedor</span><span class="sxs-lookup"><span data-stu-id="55724-142">Provider configuration</span></span>
 
-<span data-ttu-id="94bb3-143">O exemplo a seguir usa um <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> para fornecer configuração adicional:</span><span class="sxs-lookup"><span data-stu-id="94bb3-143">The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> to supply additional configuration:</span></span>
+<span data-ttu-id="55724-143">O exemplo a seguir usa um <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> para fornecer configuração adicional:</span><span class="sxs-lookup"><span data-stu-id="55724-143">The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> to supply additional configuration:</span></span>
 
-<span data-ttu-id="94bb3-144">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="94bb3-144">`Program.Main`:</span></span>
+<span data-ttu-id="55724-144">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="55724-144">`Program.Main`:</span></span>
 
 ```csharp
 using Microsoft.Extensions.Configuration.Memory;
@@ -151,7 +151,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 builder.Configuration.Add(memoryConfig);
 ```
 
-<span data-ttu-id="94bb3-145">Injetar uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância em um componente para acessar os dados de configuração:</span><span class="sxs-lookup"><span data-stu-id="94bb3-145">Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:</span></span>
+<span data-ttu-id="55724-145">Injetar uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância em um componente para acessar os dados de configuração:</span><span class="sxs-lookup"><span data-stu-id="55724-145">Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:</span></span>
 
 ```razor
 @page "/"
@@ -176,9 +176,9 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-<span data-ttu-id="94bb3-146">Para ler outros arquivos de configuração da pasta *wwwroot* para a configuração, use um <xref:System.Net.Http.HttpClient> para obter o conteúdo do arquivo.</span><span class="sxs-lookup"><span data-stu-id="94bb3-146">To read other configuration files from the *wwwroot* folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content.</span></span> <span data-ttu-id="94bb3-147">Ao usar essa abordagem, o <xref:System.Net.Http.HttpClient> registro de serviço existente pode usar o cliente local criado para ler o arquivo, como mostra o exemplo a seguir:</span><span class="sxs-lookup"><span data-stu-id="94bb3-147">When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file, as the following example shows:</span></span>
+<span data-ttu-id="55724-146">Para ler outros arquivos de configuração da pasta *wwwroot* para a configuração, use um <xref:System.Net.Http.HttpClient> para obter o conteúdo do arquivo.</span><span class="sxs-lookup"><span data-stu-id="55724-146">To read other configuration files from the *wwwroot* folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content.</span></span> <span data-ttu-id="55724-147">Ao usar essa abordagem, o <xref:System.Net.Http.HttpClient> registro de serviço existente pode usar o cliente local criado para ler o arquivo, como mostra o exemplo a seguir:</span><span class="sxs-lookup"><span data-stu-id="55724-147">When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file, as the following example shows:</span></span>
 
-<span data-ttu-id="94bb3-148">*wwwroot/Cars. JSON*:</span><span class="sxs-lookup"><span data-stu-id="94bb3-148">*wwwroot/cars.json*:</span></span>
+<span data-ttu-id="55724-148">*wwwroot/Cars. JSON*:</span><span class="sxs-lookup"><span data-stu-id="55724-148">*wwwroot/cars.json*:</span></span>
 
 ```json
 {
@@ -186,7 +186,7 @@ builder.Configuration.Add(memoryConfig);
 }
 ```
 
-<span data-ttu-id="94bb3-149">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="94bb3-149">`Program.Main`:</span></span>
+<span data-ttu-id="55724-149">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="55724-149">`Program.Main`:</span></span>
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -206,9 +206,9 @@ using var stream = await response.Content.ReadAsStreamAsync();
 builder.Configuration.AddJsonStream(stream);
 ```
 
-#### <a name="authentication-configuration"></a><span data-ttu-id="94bb3-150">Configuração de autenticação</span><span class="sxs-lookup"><span data-stu-id="94bb3-150">Authentication configuration</span></span>
+#### <a name="authentication-configuration"></a><span data-ttu-id="55724-150">Configuração de autenticação</span><span class="sxs-lookup"><span data-stu-id="55724-150">Authentication configuration</span></span>
 
-<span data-ttu-id="94bb3-151">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="94bb3-151">*wwwroot/appsettings.json*:</span></span>
+<span data-ttu-id="55724-151">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="55724-151">*wwwroot/appsettings.json*:</span></span>
 
 ```json
 {
@@ -219,16 +219,22 @@ builder.Configuration.AddJsonStream(stream);
 }
 ```
 
-<span data-ttu-id="94bb3-152">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="94bb3-152">`Program.Main`:</span></span>
+<span data-ttu-id="55724-152">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="55724-152">`Program.Main`:</span></span>
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
     builder.Configuration.Bind("Local", options.ProviderOptions);
 ```
 
-#### <a name="logging-configuration"></a><span data-ttu-id="94bb3-153">Configuração de log</span><span class="sxs-lookup"><span data-stu-id="94bb3-153">Logging configuration</span></span>
+#### <a name="logging-configuration"></a><span data-ttu-id="55724-153">Configuração de log</span><span class="sxs-lookup"><span data-stu-id="55724-153">Logging configuration</span></span>
 
-<span data-ttu-id="94bb3-154">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="94bb3-154">*wwwroot/appsettings.json*:</span></span>
+<span data-ttu-id="55724-154">Adicione uma referência de pacote para [Microsoft. Extensions. log. Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):</span><span class="sxs-lookup"><span data-stu-id="55724-154">Add a package reference for [Microsoft.Extensions.Logging.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):</span></span>
+
+```xml
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
+```
+
+<span data-ttu-id="55724-155">*wwwroot/appSettings. JSON*:</span><span class="sxs-lookup"><span data-stu-id="55724-155">*wwwroot/appsettings.json*:</span></span>
 
 ```json
 {
@@ -242,41 +248,45 @@ builder.Services.AddOidcAuthentication(options =>
 }
 ```
 
-<span data-ttu-id="94bb3-155">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="94bb3-155">`Program.Main`:</span></span>
+<span data-ttu-id="55724-156">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="55724-156">`Program.Main`:</span></span>
 
 ```csharp
+using Microsoft.Extensions.Logging;
+
+...
+
 builder.Logging.AddConfiguration(
     builder.Configuration.GetSection("Logging"));
 ```
 
-#### <a name="host-builder-configuration"></a><span data-ttu-id="94bb3-156">Configuração do host Builder</span><span class="sxs-lookup"><span data-stu-id="94bb3-156">Host builder configuration</span></span>
+#### <a name="host-builder-configuration"></a><span data-ttu-id="55724-157">Configuração do host Builder</span><span class="sxs-lookup"><span data-stu-id="55724-157">Host builder configuration</span></span>
 
-<span data-ttu-id="94bb3-157">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="94bb3-157">`Program.Main`:</span></span>
+<span data-ttu-id="55724-158">`Program.Main`:</span><span class="sxs-lookup"><span data-stu-id="55724-158">`Program.Main`:</span></span>
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
 ```
 
-#### <a name="cached-configuration"></a><span data-ttu-id="94bb3-158">Configuração armazenada em cache</span><span class="sxs-lookup"><span data-stu-id="94bb3-158">Cached configuration</span></span>
+#### <a name="cached-configuration"></a><span data-ttu-id="55724-159">Configuração armazenada em cache</span><span class="sxs-lookup"><span data-stu-id="55724-159">Cached configuration</span></span>
 
-<span data-ttu-id="94bb3-159">Os arquivos de configuração são armazenados em cache para uso offline.</span><span class="sxs-lookup"><span data-stu-id="94bb3-159">Configuration files are cached for offline use.</span></span> <span data-ttu-id="94bb3-160">Com [PWAs (aplicativos Web progressivos)](xref:blazor/progressive-web-app), você só pode atualizar arquivos de configuração ao criar uma nova implantação.</span><span class="sxs-lookup"><span data-stu-id="94bb3-160">With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment.</span></span> <span data-ttu-id="94bb3-161">A edição de arquivos de configuração entre implantações não tem efeito porque:</span><span class="sxs-lookup"><span data-stu-id="94bb3-161">Editing configuration files between deployments has no effect because:</span></span>
+<span data-ttu-id="55724-160">Os arquivos de configuração são armazenados em cache para uso offline.</span><span class="sxs-lookup"><span data-stu-id="55724-160">Configuration files are cached for offline use.</span></span> <span data-ttu-id="55724-161">Com [PWAs (aplicativos Web progressivos)](xref:blazor/progressive-web-app), você só pode atualizar arquivos de configuração ao criar uma nova implantação.</span><span class="sxs-lookup"><span data-stu-id="55724-161">With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment.</span></span> <span data-ttu-id="55724-162">A edição de arquivos de configuração entre implantações não tem efeito porque:</span><span class="sxs-lookup"><span data-stu-id="55724-162">Editing configuration files between deployments has no effect because:</span></span>
 
-* <span data-ttu-id="94bb3-162">Os usuários têm versões em cache dos arquivos que eles continuam a usar.</span><span class="sxs-lookup"><span data-stu-id="94bb3-162">Users have cached versions of the files that they continue to use.</span></span>
-* <span data-ttu-id="94bb3-163">Os arquivos *Service-Worker. js* e *Service-Worker-assets. js* do PWA devem ser recriados na compilação, que sinaliza ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.</span><span class="sxs-lookup"><span data-stu-id="94bb3-163">The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.</span></span>
+* <span data-ttu-id="55724-163">Os usuários têm versões em cache dos arquivos que eles continuam a usar.</span><span class="sxs-lookup"><span data-stu-id="55724-163">Users have cached versions of the files that they continue to use.</span></span>
+* <span data-ttu-id="55724-164">Os arquivos *Service-Worker. js* e *Service-Worker-assets. js* do PWA devem ser recriados na compilação, que sinaliza ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.</span><span class="sxs-lookup"><span data-stu-id="55724-164">The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.</span></span>
 
-<span data-ttu-id="94bb3-164">Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-164">For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.</span></span>
+<span data-ttu-id="55724-165">Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates> .</span><span class="sxs-lookup"><span data-stu-id="55724-165">For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.</span></span>
 
-### <a name="logging"></a><span data-ttu-id="94bb3-165">Registro em log</span><span class="sxs-lookup"><span data-stu-id="94bb3-165">Logging</span></span>
+### <a name="logging"></a><span data-ttu-id="55724-166">Registro em log</span><span class="sxs-lookup"><span data-stu-id="55724-166">Logging</span></span>
 
-<span data-ttu-id="94bb3-166">Para obter informações sobre o Blazor suporte a logs de Webassembly, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-166">For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.</span></span>
+<span data-ttu-id="55724-167">Para obter informações sobre o Blazor suporte a logs de Webassembly, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .</span><span class="sxs-lookup"><span data-stu-id="55724-167">For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.</span></span>
 
-## <a name="blazor-server"></a>Blazor<span data-ttu-id="94bb3-167">Servidor</span><span class="sxs-lookup"><span data-stu-id="94bb3-167"> Server</span></span>
+## <a name="blazor-server"></a>Blazor<span data-ttu-id="55724-168">Servidor</span><span class="sxs-lookup"><span data-stu-id="55724-168"> Server</span></span>
 
-### <a name="reflect-the-connection-state-in-the-ui"></a><span data-ttu-id="94bb3-168">Refletir o estado da conexão na interface do usuário</span><span class="sxs-lookup"><span data-stu-id="94bb3-168">Reflect the connection state in the UI</span></span>
+### <a name="reflect-the-connection-state-in-the-ui"></a><span data-ttu-id="55724-169">Refletir o estado da conexão na interface do usuário</span><span class="sxs-lookup"><span data-stu-id="55724-169">Reflect the connection state in the UI</span></span>
 
-<span data-ttu-id="94bb3-169">Quando o cliente detecta que a conexão foi perdida, uma interface de usuário padrão é exibida para o usuário enquanto o cliente tenta se reconectar.</span><span class="sxs-lookup"><span data-stu-id="94bb3-169">When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect.</span></span> <span data-ttu-id="94bb3-170">Se a reconexão falhar, o usuário receberá a opção de tentar novamente.</span><span class="sxs-lookup"><span data-stu-id="94bb3-170">If reconnection fails, the user is provided the option to retry.</span></span>
+<span data-ttu-id="55724-170">Quando o cliente detecta que a conexão foi perdida, uma interface de usuário padrão é exibida para o usuário enquanto o cliente tenta se reconectar.</span><span class="sxs-lookup"><span data-stu-id="55724-170">When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect.</span></span> <span data-ttu-id="55724-171">Se a reconexão falhar, o usuário receberá a opção de tentar novamente.</span><span class="sxs-lookup"><span data-stu-id="55724-171">If reconnection fails, the user is provided the option to retry.</span></span>
 
-<span data-ttu-id="94bb3-171">Para personalizar a interface do usuário, defina um elemento com um `id` de `components-reconnect-modal` no `<body>` da página *_Host. cshtml* Razor :</span><span class="sxs-lookup"><span data-stu-id="94bb3-171">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the *_Host.cshtml* Razor page:</span></span>
+<span data-ttu-id="55724-172">Para personalizar a interface do usuário, defina um elemento com um `id` de `components-reconnect-modal` no `<body>` da página *_Host. cshtml* Razor :</span><span class="sxs-lookup"><span data-stu-id="55724-172">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the *_Host.cshtml* Razor page:</span></span>
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -284,184 +294,18 @@ var hostname = builder.Configuration["HostName"];
 </div>
 ```
 
-<span data-ttu-id="94bb3-172">A tabela a seguir descreve as classes CSS aplicadas ao `components-reconnect-modal` elemento.</span><span class="sxs-lookup"><span data-stu-id="94bb3-172">The following table describes the CSS classes applied to the `components-reconnect-modal` element.</span></span>
+<span data-ttu-id="55724-173">A tabela a seguir descreve as classes CSS aplicadas ao `components-reconnect-modal` elemento.</span><span class="sxs-lookup"><span data-stu-id="55724-173">The following table describes the CSS classes applied to the `components-reconnect-modal` element.</span></span>
 
-| <span data-ttu-id="94bb3-173">Classe CSS</span><span class="sxs-lookup"><span data-stu-id="94bb3-173">CSS class</span></span>                       | <span data-ttu-id="94bb3-174">Indicando&hellip;</span><span class="sxs-lookup"><span data-stu-id="94bb3-174">Indicates&hellip;</span></span> |
-| ---
-<span data-ttu-id="94bb3-175">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-175">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-176">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-176">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-177">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-177">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-178">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-178">'Identity'</span></span>
-- <span data-ttu-id="94bb3-179">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-179">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-180">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-180">'Razor'</span></span>
-- <span data-ttu-id="94bb3-181">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-181">'SignalR' uid:</span></span> 
+| <span data-ttu-id="55724-174">Classe CSS</span><span class="sxs-lookup"><span data-stu-id="55724-174">CSS class</span></span>                       | <span data-ttu-id="55724-175">Indicando&hellip;</span><span class="sxs-lookup"><span data-stu-id="55724-175">Indicates&hellip;</span></span> |
+| ------------------------------- | ----------------- |
+| `components-reconnect-show`     | <span data-ttu-id="55724-176">Uma conexão perdida.</span><span class="sxs-lookup"><span data-stu-id="55724-176">A lost connection.</span></span> <span data-ttu-id="55724-177">O cliente está tentando se reconectar.</span><span class="sxs-lookup"><span data-stu-id="55724-177">The client is attempting to reconnect.</span></span> <span data-ttu-id="55724-178">Mostrar o modal.</span><span class="sxs-lookup"><span data-stu-id="55724-178">Show the modal.</span></span> |
+| `components-reconnect-hide`     | <span data-ttu-id="55724-179">Uma conexão ativa é restabelecida com o servidor.</span><span class="sxs-lookup"><span data-stu-id="55724-179">An active connection is re-established to the server.</span></span> <span data-ttu-id="55724-180">Ocultar a janela restrita.</span><span class="sxs-lookup"><span data-stu-id="55724-180">Hide the modal.</span></span> |
+| `components-reconnect-failed`   | <span data-ttu-id="55724-181">Falha na reconexão, provavelmente devido a uma falha de rede.</span><span class="sxs-lookup"><span data-stu-id="55724-181">Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="55724-182">Para tentar a reconexão, chame `window.Blazor.reconnect()` .</span><span class="sxs-lookup"><span data-stu-id="55724-182">To attempt reconnection, call `window.Blazor.reconnect()`.</span></span> |
+| `components-reconnect-rejected` | <span data-ttu-id="55724-183">Reconexão rejeitada.</span><span class="sxs-lookup"><span data-stu-id="55724-183">Reconnection rejected.</span></span> <span data-ttu-id="55724-184">O servidor foi atingido, mas recusou a conexão, e o estado do usuário no servidor foi perdido.</span><span class="sxs-lookup"><span data-stu-id="55724-184">The server was reached but refused the connection, and the user's state on the server is lost.</span></span> <span data-ttu-id="55724-185">Para recarregar o aplicativo, chame `location.reload()` .</span><span class="sxs-lookup"><span data-stu-id="55724-185">To reload the app, call `location.reload()`.</span></span> <span data-ttu-id="55724-186">Esse estado de conexão pode resultar quando:</span><span class="sxs-lookup"><span data-stu-id="55724-186">This connection state may result when:</span></span><ul><li><span data-ttu-id="55724-187">Ocorre uma falha no circuito do lado do servidor.</span><span class="sxs-lookup"><span data-stu-id="55724-187">A crash in the server-side circuit occurs.</span></span></li><li><span data-ttu-id="55724-188">O cliente é desconectado por tempo suficiente para o servidor descartar o estado do usuário.</span><span class="sxs-lookup"><span data-stu-id="55724-188">The client is disconnected long enough for the server to drop the user's state.</span></span> <span data-ttu-id="55724-189">As instâncias dos componentes com os quais o usuário está interagindo são descartadas.</span><span class="sxs-lookup"><span data-stu-id="55724-189">Instances of the components that the user is interacting with are disposed.</span></span></li><li><span data-ttu-id="55724-190">O servidor é reiniciado ou o processo de trabalho do aplicativo é reciclado.</span><span class="sxs-lookup"><span data-stu-id="55724-190">The server is restarted, or the app's worker process is recycled.</span></span></li></ul> |
 
--
-<span data-ttu-id="94bb3-182">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-182">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-183">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-183">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-184">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-184">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-185">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-185">'Identity'</span></span>
-- <span data-ttu-id="94bb3-186">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-186">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-187">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-187">'Razor'</span></span>
-- <span data-ttu-id="94bb3-188">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-188">'SignalR' uid:</span></span> 
+### <a name="render-mode"></a><span data-ttu-id="55724-191">Modo de renderização</span><span class="sxs-lookup"><span data-stu-id="55724-191">Render mode</span></span>
 
--
-<span data-ttu-id="94bb3-189">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-189">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-190">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-190">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-191">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-191">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-192">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-192">'Identity'</span></span>
-- <span data-ttu-id="94bb3-193">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-193">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-194">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-194">'Razor'</span></span>
-- <span data-ttu-id="94bb3-195">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-195">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-196">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-196">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-197">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-197">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-198">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-198">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-199">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-199">'Identity'</span></span>
-- <span data-ttu-id="94bb3-200">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-200">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-201">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-201">'Razor'</span></span>
-- <span data-ttu-id="94bb3-202">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-202">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-203">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-203">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-204">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-204">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-205">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-205">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-206">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-206">'Identity'</span></span>
-- <span data-ttu-id="94bb3-207">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-207">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-208">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-208">'Razor'</span></span>
-- <span data-ttu-id="94bb3-209">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-209">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-210">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-210">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-211">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-211">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-212">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-212">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-213">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-213">'Identity'</span></span>
-- <span data-ttu-id="94bb3-214">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-214">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-215">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-215">'Razor'</span></span>
-- <span data-ttu-id="94bb3-216">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-216">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-217">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-217">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-218">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-218">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-219">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-219">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-220">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-220">'Identity'</span></span>
-- <span data-ttu-id="94bb3-221">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-221">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-222">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-222">'Razor'</span></span>
-- <span data-ttu-id="94bb3-223">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-223">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-224">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-224">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-225">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-225">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-226">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-226">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-227">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-227">'Identity'</span></span>
-- <span data-ttu-id="94bb3-228">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-228">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-229">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-229">'Razor'</span></span>
-- <span data-ttu-id="94bb3-230">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-230">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-231">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-231">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-232">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-232">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-233">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-233">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-234">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-234">'Identity'</span></span>
-- <span data-ttu-id="94bb3-235">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-235">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-236">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-236">'Razor'</span></span>
-- <span data-ttu-id="94bb3-237">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-237">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-238">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-238">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-239">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-239">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-240">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-240">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-241">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-241">'Identity'</span></span>
-- <span data-ttu-id="94bb3-242">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-242">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-243">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-243">'Razor'</span></span>
-- <span data-ttu-id="94bb3-244">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-244">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-245">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-245">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-246">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-246">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-247">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-247">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-248">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-248">'Identity'</span></span>
-- <span data-ttu-id="94bb3-249">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-249">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-250">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-250">'Razor'</span></span>
-- <span data-ttu-id="94bb3-251">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-251">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-252">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-252">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-253">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-253">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-254">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-254">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-255">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-255">'Identity'</span></span>
-- <span data-ttu-id="94bb3-256">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-256">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-257">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-257">'Razor'</span></span>
-- <span data-ttu-id="94bb3-258">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-258">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-259">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-259">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-260">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-260">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-261">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-261">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-262">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-262">'Identity'</span></span>
-- <span data-ttu-id="94bb3-263">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-263">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-264">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-264">'Razor'</span></span>
-- <span data-ttu-id="94bb3-265">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-265">'SignalR' uid:</span></span> 
-
-<span data-ttu-id="94bb3-266">---------------- | título do---: ' ASP.NET Core Blazor configuração do modelo de hospedagem ' ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-266">---------------- | --- title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-267">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-267">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-268">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-268">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-269">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-269">'Identity'</span></span>
-- <span data-ttu-id="94bb3-270">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-270">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-271">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-271">'Razor'</span></span>
-- <span data-ttu-id="94bb3-272">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-272">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-273">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-273">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-274">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-274">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-275">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-275">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-276">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-276">'Identity'</span></span>
-- <span data-ttu-id="94bb3-277">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-277">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-278">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-278">'Razor'</span></span>
-- <span data-ttu-id="94bb3-279">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-279">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-280">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-280">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-281">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-281">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-282">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-282">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-283">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-283">'Identity'</span></span>
-- <span data-ttu-id="94bb3-284">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-284">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-285">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-285">'Razor'</span></span>
-- <span data-ttu-id="94bb3-286">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-286">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-287">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-287">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-288">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-288">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-289">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-289">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-290">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-290">'Identity'</span></span>
-- <span data-ttu-id="94bb3-291">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-291">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-292">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-292">'Razor'</span></span>
-- <span data-ttu-id="94bb3-293">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-293">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-294">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-294">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-295">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-295">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-296">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-296">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-297">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-297">'Identity'</span></span>
-- <span data-ttu-id="94bb3-298">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-298">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-299">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-299">'Razor'</span></span>
-- <span data-ttu-id="94bb3-300">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-300">'SignalR' uid:</span></span> 
-
--
-<span data-ttu-id="94bb3-301">Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '</span><span class="sxs-lookup"><span data-stu-id="94bb3-301">title: 'ASP.NET Core Blazor hosting model configuration' author: description: 'Learn about Blazor hosting model configuration, including how to integrate Razor components into Razor Pages and MVC apps.'</span></span>
-<span data-ttu-id="94bb3-302">monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:</span><span class="sxs-lookup"><span data-stu-id="94bb3-302">monikerRange: ms.author: ms.custom: ms.date: no-loc:</span></span>
-- <span data-ttu-id="94bb3-303">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-303">'Blazor'</span></span>
-- <span data-ttu-id="94bb3-304">'Identity'</span><span class="sxs-lookup"><span data-stu-id="94bb3-304">'Identity'</span></span>
-- <span data-ttu-id="94bb3-305">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="94bb3-305">'Let's Encrypt'</span></span>
-- <span data-ttu-id="94bb3-306">'Razor'</span><span class="sxs-lookup"><span data-stu-id="94bb3-306">'Razor'</span></span>
-- <span data-ttu-id="94bb3-307">SignalRuid ' ':</span><span class="sxs-lookup"><span data-stu-id="94bb3-307">'SignalR' uid:</span></span> 
-
-<span data-ttu-id="94bb3-308">--------- | | `components-reconnect-show`     | Uma conexão perdida.</span><span class="sxs-lookup"><span data-stu-id="94bb3-308">--------- | | `components-reconnect-show`     | A lost connection.</span></span> <span data-ttu-id="94bb3-309">O cliente está tentando se reconectar.</span><span class="sxs-lookup"><span data-stu-id="94bb3-309">The client is attempting to reconnect.</span></span> <span data-ttu-id="94bb3-310">Mostrar o modal.</span><span class="sxs-lookup"><span data-stu-id="94bb3-310">Show the modal.</span></span> <span data-ttu-id="94bb3-311">| | `components-reconnect-hide`     | Uma conexão ativa é restabelecida com o servidor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-311">| | `components-reconnect-hide`     | An active connection is re-established to the server.</span></span> <span data-ttu-id="94bb3-312">Ocultar a janela restrita.</span><span class="sxs-lookup"><span data-stu-id="94bb3-312">Hide the modal.</span></span> <span data-ttu-id="94bb3-313">| | `components-reconnect-failed`   | Falha na reconexão, provavelmente devido a uma falha de rede.</span><span class="sxs-lookup"><span data-stu-id="94bb3-313">| | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="94bb3-314">Para tentar a reconexão, chame `window.Blazor.reconnect()` .</span><span class="sxs-lookup"><span data-stu-id="94bb3-314">To attempt reconnection, call `window.Blazor.reconnect()`.</span></span> <span data-ttu-id="94bb3-315">| | `components-reconnect-rejected` | Reconexão rejeitada.</span><span class="sxs-lookup"><span data-stu-id="94bb3-315">| | `components-reconnect-rejected` | Reconnection rejected.</span></span> <span data-ttu-id="94bb3-316">O servidor foi atingido, mas recusou a conexão, e o estado do usuário no servidor foi perdido.</span><span class="sxs-lookup"><span data-stu-id="94bb3-316">The server was reached but refused the connection, and the user's state on the server is lost.</span></span> <span data-ttu-id="94bb3-317">Para recarregar o aplicativo, chame `location.reload()` .</span><span class="sxs-lookup"><span data-stu-id="94bb3-317">To reload the app, call `location.reload()`.</span></span> <span data-ttu-id="94bb3-318">Esse estado de conexão pode resultar quando:</span><span class="sxs-lookup"><span data-stu-id="94bb3-318">This connection state may result when:</span></span><ul><li><span data-ttu-id="94bb3-319">Ocorre uma falha no circuito do lado do servidor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-319">A crash in the server-side circuit occurs.</span></span></li><li><span data-ttu-id="94bb3-320">O cliente é desconectado por tempo suficiente para o servidor descartar o estado do usuário.</span><span class="sxs-lookup"><span data-stu-id="94bb3-320">The client is disconnected long enough for the server to drop the user's state.</span></span> <span data-ttu-id="94bb3-321">As instâncias dos componentes com os quais o usuário está interagindo são descartadas.</span><span class="sxs-lookup"><span data-stu-id="94bb3-321">Instances of the components that the user is interacting with are disposed.</span></span></li><li><span data-ttu-id="94bb3-322">O servidor é reiniciado ou o processo de trabalho do aplicativo é reciclado.</span><span class="sxs-lookup"><span data-stu-id="94bb3-322">The server is restarted, or the app's worker process is recycled.</span></span></li></ul> |
-
-### <a name="render-mode"></a><span data-ttu-id="94bb3-323">Modo de renderização</span><span class="sxs-lookup"><span data-stu-id="94bb3-323">Render mode</span></span>
-
-Blazor<span data-ttu-id="94bb3-324">Os aplicativos de servidor são configurados por padrão para PreRender a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida.</span><span class="sxs-lookup"><span data-stu-id="94bb3-324"> Server apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="94bb3-325">Isso é configurado na página *_Host. cshtml* Razor :</span><span class="sxs-lookup"><span data-stu-id="94bb3-325">This is set up in the *_Host.cshtml* Razor page:</span></span>
+Blazor<span data-ttu-id="55724-192">Os aplicativos de servidor são configurados por padrão para PreRender a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida.</span><span class="sxs-lookup"><span data-stu-id="55724-192"> Server apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="55724-193">Isso é configurado na página *_Host. cshtml* Razor :</span><span class="sxs-lookup"><span data-stu-id="55724-193">This is set up in the *_Host.cshtml* Razor page:</span></span>
 
 ```cshtml
 <body>
@@ -473,27 +317,27 @@ Blazor<span data-ttu-id="94bb3-324">Os aplicativos de servidor são configurados
 </body>
 ```
 
-<span data-ttu-id="94bb3-326"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>configura se o componente:</span><span class="sxs-lookup"><span data-stu-id="94bb3-326"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configures whether the component:</span></span>
+<span data-ttu-id="55724-194"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>configura se o componente:</span><span class="sxs-lookup"><span data-stu-id="55724-194"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configures whether the component:</span></span>
 
-* <span data-ttu-id="94bb3-327">É renderizado na página.</span><span class="sxs-lookup"><span data-stu-id="94bb3-327">Is prerendered into the page.</span></span>
-* <span data-ttu-id="94bb3-328">É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.</span><span class="sxs-lookup"><span data-stu-id="94bb3-328">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
+* <span data-ttu-id="55724-195">É renderizado na página.</span><span class="sxs-lookup"><span data-stu-id="55724-195">Is prerendered into the page.</span></span>
+* <span data-ttu-id="55724-196">É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.</span><span class="sxs-lookup"><span data-stu-id="55724-196">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
 
-| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | <span data-ttu-id="94bb3-329">Descrição</span><span class="sxs-lookup"><span data-stu-id="94bb3-329">Description</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | <span data-ttu-id="55724-197">Descrição</span><span class="sxs-lookup"><span data-stu-id="55724-197">Description</span></span> |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="94bb3-330">Renderiza o componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-330">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="94bb3-331">Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo.</span><span class="sxs-lookup"><span data-stu-id="94bb3-331">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="94bb3-332">Renderiza um marcador para um Blazor aplicativo de servidor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-332">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="94bb3-333">A saída do componente não está incluída.</span><span class="sxs-lookup"><span data-stu-id="94bb3-333">Output from the component isn't included.</span></span> <span data-ttu-id="94bb3-334">Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo.</span><span class="sxs-lookup"><span data-stu-id="94bb3-334">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="94bb3-335">Renderiza o componente em HTML estático.</span><span class="sxs-lookup"><span data-stu-id="94bb3-335">Renders the component into static HTML.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="55724-198">Renderiza o componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor.</span><span class="sxs-lookup"><span data-stu-id="55724-198">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="55724-199">Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo.</span><span class="sxs-lookup"><span data-stu-id="55724-199">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="55724-200">Renderiza um marcador para um Blazor aplicativo de servidor.</span><span class="sxs-lookup"><span data-stu-id="55724-200">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="55724-201">A saída do componente não está incluída.</span><span class="sxs-lookup"><span data-stu-id="55724-201">Output from the component isn't included.</span></span> <span data-ttu-id="55724-202">Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo.</span><span class="sxs-lookup"><span data-stu-id="55724-202">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="55724-203">Renderiza o componente em HTML estático.</span><span class="sxs-lookup"><span data-stu-id="55724-203">Renders the component into static HTML.</span></span> |
 
-<span data-ttu-id="94bb3-336">Não há suporte para a renderização de componentes de servidor de uma página HTML estática.</span><span class="sxs-lookup"><span data-stu-id="94bb3-336">Rendering server components from a static HTML page isn't supported.</span></span>
+<span data-ttu-id="55724-204">Não há suporte para a renderização de componentes de servidor de uma página HTML estática.</span><span class="sxs-lookup"><span data-stu-id="55724-204">Rendering server components from a static HTML page isn't supported.</span></span>
 
-### <a name="configure-the-signalr-client-for-blazor-server-apps"></a><span data-ttu-id="94bb3-337">Configurar o SignalR cliente para Blazor aplicativos de servidor</span><span class="sxs-lookup"><span data-stu-id="94bb3-337">Configure the SignalR client for Blazor Server apps</span></span>
+### <a name="configure-the-signalr-client-for-blazor-server-apps"></a><span data-ttu-id="55724-205">Configurar o SignalR cliente para Blazor aplicativos de servidor</span><span class="sxs-lookup"><span data-stu-id="55724-205">Configure the SignalR client for Blazor Server apps</span></span>
 
-<span data-ttu-id="94bb3-338">Às vezes, você precisa configurar o SignalR cliente usado por Blazor aplicativos de servidor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-338">Sometimes, you need to configure the SignalR client used by Blazor Server apps.</span></span> <span data-ttu-id="94bb3-339">Por exemplo, talvez você queira configurar o registro em log no SignalR cliente para diagnosticar um problema de conexão.</span><span class="sxs-lookup"><span data-stu-id="94bb3-339">For example, you might want to configure logging on the SignalR client to diagnose a connection issue.</span></span>
+<span data-ttu-id="55724-206">Às vezes, você precisa configurar o SignalR cliente usado por Blazor aplicativos de servidor.</span><span class="sxs-lookup"><span data-stu-id="55724-206">Sometimes, you need to configure the SignalR client used by Blazor Server apps.</span></span> <span data-ttu-id="55724-207">Por exemplo, talvez você queira configurar o registro em log no SignalR cliente para diagnosticar um problema de conexão.</span><span class="sxs-lookup"><span data-stu-id="55724-207">For example, you might want to configure logging on the SignalR client to diagnose a connection issue.</span></span>
 
-<span data-ttu-id="94bb3-340">Para configurar o SignalR cliente no arquivo *Pages/_Host. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="94bb3-340">To configure the SignalR client in the *Pages/_Host.cshtml* file:</span></span>
+<span data-ttu-id="55724-208">Para configurar o SignalR cliente no arquivo *Pages/_Host. cshtml* :</span><span class="sxs-lookup"><span data-stu-id="55724-208">To configure the SignalR client in the *Pages/_Host.cshtml* file:</span></span>
 
-* <span data-ttu-id="94bb3-341">Adicione um `autostart="false"` atributo à `<script>` marca para o `blazor.server.js` script.</span><span class="sxs-lookup"><span data-stu-id="94bb3-341">Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.</span></span>
-* <span data-ttu-id="94bb3-342">Chame `Blazor.start` e passe um objeto de configuração que especifica o SignalR Construtor.</span><span class="sxs-lookup"><span data-stu-id="94bb3-342">Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.</span></span>
+* <span data-ttu-id="55724-209">Adicione um `autostart="false"` atributo à `<script>` marca para o `blazor.server.js` script.</span><span class="sxs-lookup"><span data-stu-id="55724-209">Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.</span></span>
+* <span data-ttu-id="55724-210">Chame `Blazor.start` e passe um objeto de configuração que especifica o SignalR Construtor.</span><span class="sxs-lookup"><span data-stu-id="55724-210">Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.</span></span>
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
@@ -506,6 +350,6 @@ Blazor<span data-ttu-id="94bb3-324">Os aplicativos de servidor são configurados
 </script>
 ```
 
-### <a name="logging"></a><span data-ttu-id="94bb3-343">Registro em log</span><span class="sxs-lookup"><span data-stu-id="94bb3-343">Logging</span></span>
+### <a name="logging"></a><span data-ttu-id="55724-211">Registro em log</span><span class="sxs-lookup"><span data-stu-id="55724-211">Logging</span></span>
 
-<span data-ttu-id="94bb3-344">Para obter informações sobre o Blazor suporte a logs de servidor, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .</span><span class="sxs-lookup"><span data-stu-id="94bb3-344">For information on Blazor Server logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.</span></span>
+<span data-ttu-id="55724-212">Para obter informações sobre o Blazor suporte a logs de servidor, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .</span><span class="sxs-lookup"><span data-stu-id="55724-212">For information on Blazor Server logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.</span></span>
