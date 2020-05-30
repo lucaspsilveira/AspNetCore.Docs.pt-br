@@ -1,18 +1,18 @@
 ---
-Título: ' Debug ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como depurar Blazor aplicativos '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: ' Debug ASP.NET Core Blazor Webassembly ' autor: guardrex Descrição: ' saiba como depurar Blazor aplicativos '.
+monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/29/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- SignalRUID: mais incrivelmente/depurar
 
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Depurar ASP.NET Core Blazor Webassembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-BlazorOs aplicativos Webassembly podem ser depurados usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (borda/Chrome).  Como alternativa, você pode depurar seu aplicativo usando o Visual Studio ou Visual Studio Code.
+BlazorOs aplicativos Webassembly podem ser depurados usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (borda/Chrome). Como alternativa, você pode depurar seu aplicativo usando o Visual Studio ou Visual Studio Code.
 
 Os cenários disponíveis incluem:
 
@@ -53,6 +53,8 @@ A `inspectUri` Propriedade:
 
 * Permite que o IDE detecte que o aplicativo é um Blazor aplicativo Webassembly.
 * Instrui a infraestrutura de depuração de script para se conectar ao navegador por meio Blazor do proxy de depuração.
+
+Os valores de espaço reservado para o protocolo WebSockets ( `wsProtocol` ), host ( `url.hostname` ), porta ( `url.port` ) e URI do Inspetor no navegador iniciado ( `browserInspectUri` ) são fornecidos pela estrutura.
 
 ## <a name="visual-studio"></a>Visual Studio
 
@@ -135,6 +137,7 @@ Os mapas de origem do navegador permitem que o navegador mapeie arquivos compila
 
 ## <a name="troubleshoot"></a>Solucionar problemas
 
-Se você estiver executando erros, a dica a seguir pode ajudar:
+Se você estiver executando erros, as dicas a seguir podem ajudar:
 
-Na guia **depurador** , abra as ferramentas de desenvolvedor em seu navegador. No console do, execute `localStorage.clear()` para remover qualquer ponto de interrupção.
+* Na guia **depurador** , abra as ferramentas de desenvolvedor em seu navegador. No console do, execute `localStorage.clear()` para remover qualquer ponto de interrupção.
+* Confirme que você instalou e confia no certificado de desenvolvimento ASP.NET Core HTTPS. Para obter mais informações, consulte <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.

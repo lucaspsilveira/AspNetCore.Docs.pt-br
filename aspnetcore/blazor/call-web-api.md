@@ -1,11 +1,11 @@
 ---
-title: ' chamar uma API Web de ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como chamar uma API da Web de um Blazor aplicativo Webassembly usando auxiliares JSON, incluindo a criação de solicitações de CORS (compartilhamento de recursos entre origens). '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+title: ' chamar uma API Web de ASP.NET Core Blazor Webassembly ' autor: guardrex Descrição: ' saiba como chamar uma API Web de um Blazor aplicativo Webassembly usando auxiliares JSON, incluindo a criação de solicitações de CORS (compartilhamento de recursos entre origens). '
+monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/28/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- ' SignalR ' UID: mais incrivelmente/Call-Web-API
 
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API da Web de ASP.NET CoreBlazor
@@ -168,6 +168,8 @@ No código a seguir, o `<button>` elemento delete chama o `DeleteItem` método. 
 ## <a name="named-httpclient-with-ihttpclientfactory"></a>Chamado HttpClient com IHttpClientFactory
 
 <xref:System.Net.Http.IHttpClientFactory>Há suporte para serviços e para a configuração de um nome <xref:System.Net.Http.HttpClient> .
+
+Referencie o pacote NuGet [Microsoft. Extensions. http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) no arquivo de projeto.
 
 `Program.Main`(*Program.cs*):
 

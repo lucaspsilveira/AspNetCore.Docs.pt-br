@@ -1,11 +1,11 @@
 ---
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: guardrex Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
+monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/28/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- SignalRUID: host-and-Deploy/mais incrivelmente/Webassembly
 
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedar e implantar ASP.NET Core Blazor Webassembly
@@ -22,9 +22,20 @@ Há suporte para as seguintes estratégias de implantação:
 * O Blazor aplicativo é servido por um aplicativo ASP.NET Core. Esta estratégia é abordada na seção [Implantação hospedada com o ASP.NET Core](#hosted-deployment-with-aspnet-core).
 * O Blazor aplicativo é colocado em um servidor Web ou serviço de hospedagem estática, em que o .net não é usado para servir o Blazor aplicativo. Essa estratégia é abordada na seção [implantação autônoma](#standalone-deployment) , que inclui informações sobre como hospedar um Blazor aplicativo Webassembly como um subaplicativo do IIS.
 
-## <a name="brotli-precompression"></a>Precompactação Brotli
+## <a name="precompression"></a>Precompactação
 
-Quando um Blazor aplicativo Webassembly é publicado, a saída é precompactada usando o [algoritmo de compactação Brotli](https://tools.ietf.org/html/rfc7932) no nível mais alto para reduzir o tamanho do aplicativo e remover a necessidade de compactação de tempo de execução.
+Quando um Blazor aplicativo Webassembly é publicado, a saída é precompactada para reduzir o tamanho do aplicativo e remover a necessidade de compactação de tempo de execução. Os seguintes algoritmos de compactação são usados:
+
+* [Brotli](https://tools.ietf.org/html/rfc7932) (nível mais alto)
+* [Gzip](https://tools.ietf.org/html/rfc1952))
+
+Para desabilitar a compactação, adicione a `BlazorEnableCompression` Propriedade MSBuild ao arquivo de projeto do aplicativo e defina o valor como `false` :
+
+```xml
+<PropertyGroup>
+  <BlazorEnableCompression>false</BlazorEnableCompression>
+</PropertyGroup>
+```
 
 Para a configuração de compactação *Web. config* do IIS, consulte a seção [IIS: Brotli e a compactação Gzip](#brotli-and-gzip-compression) .
 
@@ -350,69 +361,11 @@ Um Blazor aplicativo Webassembly pode ser inicializado com a `loadBootResource` 
 `loadBootResource`os parâmetros aparecem na tabela a seguir.
 
 | Parâmetro    | Descrição |
-| ---
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | título do---: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' hospedar e implantar ASP.NET Core Blazor Webassembly ' autor: Descrição: ' saiba como hospedar e implantar um Blazor aplicativo usando ASP.NET Core, CDN (redes de distribuição de conteúdo), servidores de arquivos e páginas do github. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | | `type`       | O tipo do recurso. Tipos permissiváveis: `assembly` , `pdb` ,, `dotnetjs` `dotnetwasm` , `timezonedata` | | `name`       | O nome do recurso. | | `defaultUri` | O URI relativo ou absoluto do recurso. | | `integrity`  | A cadeia de caracteres de integridade que representa o conteúdo esperado na resposta. |
+| ------------ | ----------- |
+| `type`       | Tipo do recurso. Tipos permissiváveis: `assembly` ,, `pdb` , `dotnetjs` `dotnetwasm` ,`timezonedata` |
+| `name`       | O nome do recurso. |
+| `defaultUri` | O URI relativo ou absoluto do recurso. |
+| `integrity`  | A cadeia de caracteres de integridade que representa o conteúdo esperado na resposta. |
 
 `loadBootResource`retorna qualquer um dos seguintes para substituir o processo de carregamento:
 
