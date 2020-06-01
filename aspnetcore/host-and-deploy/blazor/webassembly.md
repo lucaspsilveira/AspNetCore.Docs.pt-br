@@ -27,7 +27,7 @@ Há suporte para as seguintes estratégias de implantação:
 Quando um Blazor aplicativo Webassembly é publicado, a saída é precompactada para reduzir o tamanho do aplicativo e remover a necessidade de compactação de tempo de execução. Os seguintes algoritmos de compactação são usados:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (nível mais alto)
-* [Gzip](https://tools.ietf.org/html/rfc1952))
+* [Gzip](https://tools.ietf.org/html/rfc1952)
 
 Para desabilitar a compactação, adicione a `BlazorEnableCompression` Propriedade MSBuild ao arquivo de projeto do aplicativo e defina o valor como `false` :
 
