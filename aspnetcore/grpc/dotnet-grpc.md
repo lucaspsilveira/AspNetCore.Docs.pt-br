@@ -47,7 +47,7 @@ As referências de Protobuf são usadas para gerar os ativos do cliente C# e/ou 
 * Crie uma referência de Protobuf de um arquivo remoto especificado por uma URL.
 * Verifique se as dependências do pacote gRPC corretas foram adicionadas ao projeto.
 
-Por exemplo, o `Grpc.AspNetCore` pacote é adicionado a um aplicativo Web. `Grpc.AspNetCore`contém bibliotecas de cliente e de servidor gRPC e suporte a ferramentas. Como alternativa, os `Grpc.Net.Client`pacotes `Grpc.Tools` e `Google.Protobuf` , que contêm apenas as bibliotecas de cliente gRPC e o suporte de ferramentas, são adicionados a um aplicativo de console.
+Por exemplo, o `Grpc.AspNetCore` pacote é adicionado a um aplicativo Web. `Grpc.AspNetCore`contém bibliotecas de cliente e de servidor gRPC e suporte a ferramentas. Como alternativa, os `Grpc.Net.Client` `Grpc.Tools` pacotes e `Google.Protobuf` , que contêm apenas as bibliotecas de cliente gRPC e o suporte de ferramentas, são adicionados a um aplicativo de console.
 
 ### <a name="add-file"></a>Adicionar arquivo
 
@@ -56,7 +56,7 @@ O `add-file` comando é usado para adicionar arquivos locais no disco como refer
 * Pode ser relativo ao diretório atual ou aos caminhos absolutos.
 * Pode conter curingas para o [mascaramento](https://wikipedia.org/wiki/Glob_(programming))de arquivo baseado em padrão.
 
-Se algum arquivo estiver fora do diretório do projeto, `Link` um elemento será adicionado para exibir o arquivo na pasta `Protos` no Visual Studio.
+Se algum arquivo estiver fora do diretório do projeto, um `Link` elemento será adicionado para exibir o arquivo na pasta `Protos` no Visual Studio.
 
 ### <a name="usage"></a>Uso
 
@@ -75,13 +75,13 @@ dotnet grpc add-file [options] <files>...
 | Opção curta | Opção Long | Descrição |
 |-|-|-|
 | -p | --projeto | O caminho para o arquivo de projeto no qual operar. Se um arquivo não for especificado, o comando pesquisará o diretório atual em busca de um.
-| -S | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os `Both`valores aceitos `Client`são `Default`, `None`, `Server`,,.
+| -S | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são,,, `Both` `Client` `Default` `None` , `Server` .
 | -i | --Additional-importar-dirs | Diretórios adicionais a serem usados ao resolver importações para os arquivos protobuf. Esta é uma lista de caminhos separados por ponto e vírgula.
 | | --acesso | O modificador de acesso a ser usado para as classes C# geradas. O valor padrão é `Public`. Os valores aceitos são `Internal` e `Public`.
 
 ### <a name="add-url"></a>Adicionar URL
 
-O `add-url` comando é usado para adicionar um arquivo remoto especificado por uma URL de origem como referência de Protobuf. Um caminho de arquivo deve ser fornecido para especificar onde baixar o arquivo remoto. O caminho do arquivo pode ser relativo ao diretório atual ou a um caminho absoluto. Se o caminho do arquivo estiver fora do diretório do projeto `Link` , um elemento será adicionado para exibir o arquivo na pasta `Protos` virtual no Visual Studio.
+O `add-url` comando é usado para adicionar um arquivo remoto especificado por uma URL de origem como referência de Protobuf. Um caminho de arquivo deve ser fornecido para especificar onde baixar o arquivo remoto. O caminho do arquivo pode ser relativo ao diretório atual ou a um caminho absoluto. Se o caminho do arquivo estiver fora do diretório do projeto, um `Link` elemento será adicionado para exibir o arquivo na pasta virtual `Protos` no Visual Studio.
 
 ### <a name="usage"></a>Uso
 
@@ -101,7 +101,7 @@ dotnet-grpc add-url [options] <url>
 |-|-|-|
 | -o | --output | Especifica o caminho de download para o arquivo protobuf remoto. Trata-se de uma opção obrigatória.
 | -p | --projeto | O caminho para o arquivo de projeto no qual operar. Se um arquivo não for especificado, o comando pesquisará o diretório atual em busca de um.
-| -S | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os `Both`valores aceitos `Client`são `Default`, `None`, `Server`,,.
+| -S | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são,,, `Both` `Client` `Default` `None` , `Server` .
 | -i | --Additional-importar-dirs | Diretórios adicionais a serem usados ao resolver importações para os arquivos protobuf. Esta é uma lista de caminhos separados por ponto e vírgula.
 | | --acesso | O modificador de acesso a ser usado para as classes C# geradas. O valor padrão é `Public`. Os valores aceitos são `Internal` e `Public`.
 

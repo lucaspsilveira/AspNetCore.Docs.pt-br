@@ -133,7 +133,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 Muitos ASP.NET Core mecanismos de autenticação com suporte funcionam com o gRPC:
 
-* Azure Active Directory
+* Active Directory do Azure
 * Certificado do cliente
 * IdentityServer
 * JWT Token

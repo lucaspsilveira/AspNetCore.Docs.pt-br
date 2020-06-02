@@ -1,31 +1,21 @@
 ---
-title: Migre de Microsoft. Extensions. Logging 2,1 para 2,2 ou 3,0
-author: pakrym
-description: Saiba como migrar um aplicativo non-ASP.NET Core que usa Microsoft. Extensions. Logging de 2,1 para 2,2 ou 3,0.
-ms.author: pakrym
-ms.custom: mvc
-ms.date: 01/04/2019
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: migration/logging-nonaspnetcore
-ms.openlocfilehash: 3a84d53cb925a518f6c3e244dd342a3228a1fe17
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777053"
+Título: migrar de Microsoft. Extensions. Logging 2,1 para 2,2 ou 3,0 Author: pakrym Descrição: saiba como migrar um aplicativo non-ASP.NET Core que usa Microsoft. Extensions. Logging de 2,1 para 2,2 ou 3,0.
+MS. Author: pakrym MS. Custom: MVC MS. Date: 01/04/2019 no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- SignalRUID: migração/registro em log – nonaspnetcore
+
 ---
+
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Migre de Microsoft. Extensions. Logging 2,1 para 2,2 ou 3,0
 
 Este artigo descreve as etapas comuns para migrar um aplicativo non-ASP.NET Core que usa `Microsoft.Extensions.Logging` de 2,1 para 2,2 ou 3,0.
 
 ## <a name="21-to-22"></a>2.1 a 2.2
 
-Criar `ServiceCollection` e chamar `AddLogging`manualmente.
+Criar `ServiceCollection` e chamar manualmente `AddLogging` .
 
 2,1 exemplo:
 
@@ -53,7 +43,7 @@ using (var loggerFactory = serviceProvider.GetService<ILoggerFactory>())
 
 ## <a name="21-to-30"></a>2,1 a 3,0
 
-Em 3,0, use `LoggingFactory.Create`.
+Em 3,0, use `LoggingFactory.Create` .
 
 2,1 exemplo:
 
@@ -77,4 +67,5 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-<xref:fundamentals/logging/index>
+* [Pacote NuGet Microsoft. Extensions. Logging. console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
+* <xref:fundamentals/logging/index>

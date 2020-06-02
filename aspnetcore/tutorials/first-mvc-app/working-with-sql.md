@@ -128,8 +128,8 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55.png)
 
 > [!div class="step-by-step"]
-> [Anterior](adding-model.md)
-> [próximo](controller-methods-views.md)
+> [Anterior](adding-model.md) 
+>  [Avançar](controller-methods-views.md)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -240,7 +240,7 @@ O aplicativo mostra os dados propagados.
 ![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
-> [Anterior](adding-model.md)
-> [próximo](controller-methods-views.md)
+> [Anterior](adding-model.md) 
+>  [Avançar](controller-methods-views.md)
 
 ::: moniker-end

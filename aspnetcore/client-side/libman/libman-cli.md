@@ -113,7 +113,7 @@ As opções a seguir estão disponíveis para o comando `libman init`:
 
 * `-d|--default-destination <PATH>`
 
-  Um caminho relativo à pasta atual. Os arquivos de biblioteca serão instalados nesse local se `destination` nenhuma propriedade for definida para uma biblioteca em *Libman. JSON*. O `<PATH>` valor é gravado na `defaultDestination` propriedade de *Libman. JSON*.
+  Um caminho relativo à pasta atual. Os arquivos de biblioteca serão instalados nesse local se nenhuma `destination` propriedade for definida para uma biblioteca em *Libman. JSON*. O `<PATH>` valor é gravado na `defaultDestination` propriedade de *Libman. JSON*.
 
 * `-p|--default-provider <PROVIDER>`
 
@@ -165,7 +165,7 @@ libman install [-h|--help]
 
 `LIBRARY`
 
-O nome da biblioteca a ser instalada. Esse nome pode incluir a notação de número de versão `@1.2.0`(por exemplo,).
+O nome da biblioteca a ser instalada. Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0` ).
 
 ### <a name="options"></a>Opções
 
@@ -185,7 +185,7 @@ As opções a seguir estão disponíveis para o comando `libman install`:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  Se não for especificado, `defaultProvider` a propriedade em *Libman. JSON* será usada. Se nenhuma `defaultProvider` propriedade for especificada em *Libman. JSON*, essa opção será necessária.
+  Se não for especificado, a `defaultProvider` propriedade em *Libman. JSON* será usada. Se nenhuma `defaultProvider` propriedade for especificada em *Libman. JSON*, essa opção será necessária.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
@@ -225,7 +225,7 @@ O arquivo *Libman. JSON* é semelhante ao seguinte:
 }
 ```
 
-Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C:\\temp\\contosoCalendar\\ * usando o provedor do sistema de arquivos:
+Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C: \\ temp \\ contosoCalendar \\ * usando o provedor do sistema de arquivos:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
@@ -270,8 +270,8 @@ Depois de aceitar o destino padrão, o arquivo *Libman. JSON* é semelhante ao s
 O `libman restore` comando instala os arquivos de biblioteca definidos em *Libman. JSON*. As seguintes regras se aplicam:
 
 * Se nenhum arquivo *Libman. JSON* existir na raiz do projeto, um erro será retornado.
-* Se uma biblioteca especificar um provedor, a `defaultProvider` Propriedade em *Libman. JSON* será ignorada.
-* Se uma biblioteca especificar um destino, a `defaultDestination` Propriedade em *Libman. JSON* será ignorada.
+* Se uma biblioteca especificar um provedor, a `defaultProvider` propriedade em *Libman. JSON* será ignorada.
+* Se uma biblioteca especificar um destino, a `defaultDestination` propriedade em *Libman. JSON* será ignorada.
 
 ### <a name="synopsis"></a>Sinopse
 
@@ -344,7 +344,7 @@ libman uninstall [-h|--help]
 
 `LIBRARY`
 
-O nome da biblioteca a ser desinstalada. Esse nome pode incluir a notação de número de versão `@1.2.0`(por exemplo,).
+O nome da biblioteca a ser desinstalada. Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0` ).
 
 ### <a name="options"></a>Opções
 
@@ -368,7 +368,7 @@ Considere o seguinte arquivo *Libman. JSON* :
   libman uninstall jquery@3.3.1
   ```
 
-* Para desinstalar os arquivos do Lodash instalados por `filesystem` meio do provedor:
+* Para desinstalar os arquivos do Lodash instalados por meio do `filesystem` provedor:
 
   ```console
   libman uninstall C:\temp\lodash\
@@ -552,7 +552,7 @@ As opções a seguir estão disponíveis para o comando `libman cache`:
   libman cache clean cdnjs
   ```
 
-  Depois de esvaziar o cache do provedor `libman cache list` de CDNJS, o comando exibe o seguinte:
+  Depois de esvaziar o cache do provedor de CDNJS, o `libman cache list` comando exibe o seguinte:
 
   ```console
   Cache contents:
@@ -571,7 +571,7 @@ As opções a seguir estão disponíveis para o comando `libman cache`:
   libman cache clean
   ```
 
-  Depois de esvaziar todos os caches `libman cache list` do provedor, o comando exibe o seguinte:
+  Depois de esvaziar todos os caches do provedor, o `libman cache list` comando exibe o seguinte:
 
   ```console
   Cache contents:

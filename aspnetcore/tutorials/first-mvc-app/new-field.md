@@ -139,9 +139,9 @@ dotnet ef database update
 
 Execute o aplicativo e verifique se você pode criar, editar e exibir filmes com um `Rating` campo. Atualize o aplicativo:
 
-* Adicione o `Rating` campo aos modelos `Edit`de `Details`exibição, `Delete` e.
-* Atualize a associação no método editar ação do `MoviesController`.
+* Adicione o `Rating` campo aos `Edit` modelos de `Details` exibição, e `Delete` .
+* Atualize a associação no método editar ação do `MoviesController` .
 
 > [!div class="step-by-step"]
-> [Anterior](search.md)
-> [próximo](validation.md)
+> [Anterior](search.md) 
+>  [Avançar](validation.md)

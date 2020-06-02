@@ -13,5 +13,5 @@
 >
 > * [Limitações do Provedor de Banco de Dados EF Core do SQLite](/ef/core/providers/sqlite/limitations)
 > * [Personalizar o código de migração](/ef/core/managing-schemas/migrations/#customize-migration-code)
-> * [Semeamento de dados](/ef/core/modeling/data-seeding)
+> * [Propagação de dados](/ef/core/modeling/data-seeding)
   * [Instrução SQLite ALTER TABLE](https://sqlite.org/lang_altertable.html)

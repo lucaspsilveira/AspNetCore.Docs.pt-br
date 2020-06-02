@@ -1,10 +1,11 @@
 ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
+Título: tarefas em segundo plano com serviços hospedados em ASP.NET Core autor: Rick – descrição de Anderson: saiba como implementar tarefas em segundo plano com serviços hospedados no ASP.NET Core.
+monikerRange: ' >= aspnetcore-2,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 02/10/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- ' SignalR ' UID: conceitos básicos/host/Hosted-Services
 
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
@@ -134,7 +135,7 @@ Os serviços são registrados em `IHostBuilder.ConfigureServices` (*Program.cs*)
 
 ## <a name="queued-background-tasks"></a>Tarefas em segundo plano na fila
 
-Uma fila de tarefas em segundo plano é baseada no .NET 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([provisoriamente agendado para ser interno para ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+Uma fila de tarefas em segundo plano é baseada no .NET 4. x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> :
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 

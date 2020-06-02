@@ -1,11 +1,11 @@
 ---
-Título: ' ASP.NET Core Blazor autenticação e autorização ' autor: Descrição: ' saiba mais sobre Blazor cenários de autenticação e autorização '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: ' ASP.NET Core Blazor autenticação e autorização ' autor: guardrex Descrição: ' saiba mais sobre Blazor cenários de autenticação e autorização '.
+monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- SignalRUID: segurança/mais muito mais/índice
 
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>BlazorAutenticação e autorização do ASP.NET Core
@@ -454,14 +454,6 @@ Se o aplicativo for necessário para verificar as regras de autorização como p
 > ```
 >
 > Esses namespaces podem ser fornecidos globalmente adicionando-os ao arquivo *_Imports. Razor* do aplicativo.
-
-## <a name="authorization-in-blazor-webassembly-apps"></a>Autorização em Blazor aplicativos Webassembly
-
-Em Blazor aplicativos Webassembly, as verificações de autorização podem ser ignoradas porque todo o código do lado do cliente pode ser modificado por usuários. Isso também ocorre com todas as tecnologias de aplicativo do lado do cliente, incluindo estruturas de SPA do JavaScript ou aplicativos nativos em qualquer sistema operacional.
-
-**Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
-
-Para obter mais informações, consulte os artigos em <xref:security/blazor/webassembly/index> .
 
 ## <a name="troubleshoot-errors"></a>Solucionar problemas de erros
 

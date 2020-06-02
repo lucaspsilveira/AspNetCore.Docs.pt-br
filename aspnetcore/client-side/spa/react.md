@@ -67,7 +67,7 @@ Há pequenas diferenças entre o aplicativo do React criado por este modelo e um
 
 ## <a name="install-npm-packages"></a>Instalar pacotes npm
 
-Para instalar pacotes npm de terceiros, use um prompt de comando no subdiretório *ClientApp*. Por exemplo: 
+Para instalar pacotes npm de terceiros, use um prompt de comando no subdiretório *ClientApp*. Por exemplo:
 
 ```console
 cd ClientApp

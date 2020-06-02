@@ -75,7 +75,7 @@ Para trabalhar com o SpaServices, instale o seguinte:
     node -v && npm -v
     ```
 
-  * Se estiver implantando em um site do Azure, nenhuma ação&mdash;será necessária, o Node. js será instalado e estará disponível nos ambientes de servidor.
+  * Se estiver implantando em um site do Azure, nenhuma ação será necessária, o &mdash; node. js será instalado e estará disponível nos ambientes de servidor.
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
@@ -109,31 +109,31 @@ Esses auxiliares de marcas abstrairam a complexidade da comunicação direta com
 
 ### <a name="asp-prerender-module-tag-helper"></a>Auxiliar de marca do ASP-PreRender-Module
 
-O `asp-prerender-module` auxiliar de marca, usado no exemplo de código anterior, executa *ClientApp/dist/Main-Server. js* no servidor por meio do node. js. Para fins de clareza, o arquivo *Main-Server. js* é um artefato da tarefa Transpilação do TypeScript para JavaScript no processo de Build do [webpack](https://webpack.github.io/) . O webpack define um alias de ponto `main-server`de entrada de; e, a passagem do grafo de dependência para esse alias começa no arquivo *ClientApp/boot-Server. TS* :
+O `asp-prerender-module` auxiliar de marca, usado no exemplo de código anterior, executa *ClientApp/dist/Main-Server. js* no servidor por meio do node. js. Para fins de clareza, o arquivo *Main-Server. js* é um artefato da tarefa Transpilação do TypeScript para JavaScript no processo de Build do [webpack](https://webpack.github.io/) . O webpack define um alias de ponto de entrada de `main-server` ; e a passagem do grafo de dependência para esse alias começa no arquivo *ClientApp/boot-Server. TS* :
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
-No exemplo angular a seguir, o arquivo *ClientApp/boot-Server. TS* utiliza a função `createServerRenderer` e `RenderResult` o `aspnet-prerendering` tipo do pacote NPM para configurar a renderização do servidor por meio do node. js. A marcação HTML destinada à renderização do lado do servidor é passada para uma chamada de função de resolução, que é encapsulada `Promise` em um objeto JavaScript fortemente tipado. O `Promise` significado do objeto é que ele fornece de forma assíncrona a marcação HTML para a página para injeção no elemento PlaceHolder do dom.
+No exemplo angular a seguir, o arquivo *ClientApp/boot-Server. TS* utiliza a `createServerRenderer` função e `RenderResult` o tipo do `aspnet-prerendering` pacote NPM para configurar a renderização do servidor por meio do node. js. A marcação HTML destinada à renderização do lado do servidor é passada para uma chamada de função de resolução, que é encapsulada em um objeto JavaScript fortemente tipado `Promise` . O `Promise` significado do objeto é que ele fornece de forma assíncrona a marcação HTML para a página para injeção no elemento PlaceHolder do dom.
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
 ### <a name="asp-prerender-data-tag-helper"></a>ASP-PreRender-auxiliar de marca de dados
 
-Quando combinado com o `asp-prerender-module` auxiliar de marca, o `asp-prerender-data` auxiliar de marca pode ser usado para passar informações contextuais da exibição do Razor para o JavaScript do lado do servidor. Por exemplo, a marcação a seguir passa dados do usuário `main-server` para o módulo:
+Quando combinado com o `asp-prerender-module` auxiliar de marca, o `asp-prerender-data` auxiliar de marca pode ser usado para passar informações contextuais da exibição do Razor para o JavaScript do lado do servidor. Por exemplo, a marcação a seguir passa dados do usuário para o `main-server` módulo:
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 
-O argumento `UserName` recebido é serializado usando o serializador JSON interno e é armazenado no `params.data` objeto. No exemplo angular a seguir, os dados são usados para construir uma saudação personalizada dentro `h1` de um elemento:
+O `UserName` argumento recebido é serializado usando o serializador JSON interno e é armazenado no `params.data` objeto. No exemplo angular a seguir, os dados são usados para construir uma saudação personalizada dentro de um `h1` elemento:
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
 Os nomes de propriedade passados em auxiliares de marca são representados com notação de **PascalCase** . Compare com JavaScript, em que os mesmos nomes de propriedade são representados com **CamelCase**. A configuração de serialização JSON padrão é responsável por essa diferença.
 
-Para expandir o exemplo de código anterior, os dados podem ser passados do servidor para a exibição por HYDRATING a `globals` Propriedade fornecida para a `resolve` função:
+Para expandir o exemplo de código anterior, os dados podem ser passados do servidor para a exibição por HYDRATING a `globals` propriedade fornecida para a `resolve` função:
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,57-77,79-)]
 
-A `postList` matriz definida dentro do `globals` objeto é anexada ao objeto global `window` do navegador. Essa variável que eleva o escopo global elimina a duplicação do esforço, principalmente, pois ela se refere ao carregamento dos mesmos dados uma vez no servidor e novamente no cliente.
+A `postList` matriz definida dentro do `globals` objeto é anexada ao objeto global do navegador `window` . Essa variável que eleva o escopo global elimina a duplicação do esforço, principalmente, pois ela se refere ao carregamento dos mesmos dados uma vez no servidor e novamente no cliente.
 
 ![variável de lista de islist global anexada ao objeto Window](spa-services/_static/global_variable.png)
 
@@ -155,13 +155,13 @@ npm i -D aspnet-webpack
 
 ### <a name="webpack-dev-middleware-configuration"></a>Configuração de middleware de dev do webpack
 
-O middleware de dev do webpack é registrado no pipeline de solicitação HTTP por meio do seguinte *Startup.cs* código no método `Configure` do arquivo Startup.cs:
+O middleware de dev do webpack é registrado no pipeline de solicitação HTTP por meio do seguinte código no método do arquivo *Startup.cs* `Configure` :
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
-O `UseWebpackDevMiddleware` método de extensão deve ser chamado antes de [registrar a hospedagem de arquivo estático](xref:fundamentals/static-files) por meio do método de `UseStaticFiles` extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
+O `UseWebpackDevMiddleware` método de extensão deve ser chamado antes de [registrar a hospedagem de arquivo estático](xref:fundamentals/static-files) por meio do `UseStaticFiles` método de extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
 
-A propriedade do `output.publicPath` arquivo *webpack. config. js* informa ao middleware para observar a `dist` pasta em busca de alterações:
+A propriedade do arquivo *webpack. config. js* `output.publicPath` informa ao middleware para observar a `dist` pasta em busca de alterações:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -187,7 +187,7 @@ app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
 });
 ```
 
-Assim como acontece com o [middleware de dev do webpack](#webpack-dev-middleware), o método de `UseWebpackDevMiddleware` extensão deve ser `UseStaticFiles` chamado antes do método de extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
+Assim como acontece com o [middleware de dev do webpack](#webpack-dev-middleware), o `UseWebpackDevMiddleware` método de extensão deve ser chamado antes do `UseStaticFiles` método de extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
 
 O arquivo *webpack. config. js* deve definir uma `plugins` matriz, mesmo que ela seja deixada vazia:
 
@@ -201,7 +201,7 @@ Depois de carregar o aplicativo no navegador, a guia Console das ferramentas de 
 
 Na maioria dos SPAs baseados em ASP.NET Core, o roteamento do lado do cliente geralmente é desejado, além do roteamento do lado do servidor. Os sistemas de roteamento SPA e MVC podem trabalhar independentemente sem interferência. Há, no entanto, um caso de borda apresentando desafios: identificar respostas HTTP 404.
 
-Considere o cenário no qual uma rota de extensão do `/some/page` é usada. Suponha que a solicitação não corresponda por padrão a uma rota do lado do servidor, mas seu padrão corresponde a uma rota do lado do cliente. Agora, considere uma solicitação de `/images/user-512.png`entrada para, que geralmente espera encontrar um arquivo de imagem no servidor. Se esse caminho de recurso solicitado não corresponder a uma rota no lado do servidor ou a um arquivo estático, é improvável que o aplicativo do lado&mdash;do cliente trate normalmente de um código de status http 404.
+Considere o cenário no qual uma rota de extensão do `/some/page` é usada. Suponha que a solicitação não corresponda por padrão a uma rota do lado do servidor, mas seu padrão corresponde a uma rota do lado do cliente. Agora, considere uma solicitação de entrada para `/images/user-512.png` , que geralmente espera encontrar um arquivo de imagem no servidor. Se esse caminho de recurso solicitado não corresponder a uma rota no lado do servidor ou a um arquivo estático, é improvável que o aplicativo do lado do cliente trate &mdash; normalmente de um código de status HTTP 404.
 
 ### <a name="routing-helpers-prerequisites"></a>Pré-requisitos de auxiliares de roteamento
 
@@ -213,11 +213,11 @@ npm i -S @angular/router
 
 ### <a name="routing-helpers-configuration"></a>Configuração de auxiliares de roteamento
 
-Um método de extensão `MapSpaFallbackRoute` chamado é usado no `Configure` método:
+Um método de extensão chamado `MapSpaFallbackRoute` é usado no `Configure` método:
 
 [!code-csharp[](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=snippet_MvcRoutingTable&highlight=7-9)]
 
-As rotas são avaliadas na ordem em que estão configuradas. Consequentemente, `default` a rota no exemplo de código anterior é usada primeiro para correspondência de padrões.
+As rotas são avaliadas na ordem em que estão configuradas. Consequentemente, a `default` rota no exemplo de código anterior é usada primeiro para correspondência de padrões.
 
 ## <a name="create-a-new-project"></a>Criar um novo projeto
 
@@ -254,7 +254,7 @@ Existem dois modos de configuração de tempo de execução primários:
   * Exclui mapas de origem.
   * Otimiza o código do lado do cliente por meio de agrupamento e minificação.
 
-ASP.NET Core usa uma variável de ambiente `ASPNETCORE_ENVIRONMENT` chamada para armazenar o modo de configuração. Para obter mais informações, consulte [definir o ambiente](xref:fundamentals/environments#set-the-environment).
+ASP.NET Core usa uma variável de ambiente chamada `ASPNETCORE_ENVIRONMENT` para armazenar o modo de configuração. Para obter mais informações, consulte [definir o ambiente](xref:fundamentals/environments#set-the-environment).
 
 ### <a name="run-with-net-core-cli"></a>Executar com CLI do .NET Core
 
@@ -274,13 +274,13 @@ O aplicativo é iniciado no localhost de acordo com o [modo de configuração de
 
 ### <a name="run-with-visual-studio-2017"></a>Executar com o Visual Studio 2017
 
-Abra o arquivo *. csproj* gerado pelo comando [dotnet New](/dotnet/core/tools/dotnet-new) . Os pacotes NuGet e NPM necessários são restaurados automaticamente após a abertura do projeto. Esse processo de restauração pode levar alguns minutos e o aplicativo estará pronto para ser executado quando for concluído. Clique no botão de execução verde ou `Ctrl + F5`pressione e o navegador será aberto na página de aterrissagem do aplicativo. O aplicativo é executado no localhost de acordo com o [modo de configuração de tempo de execução](#set-the-runtime-configuration-mode).
+Abra o arquivo *. csproj* gerado pelo comando [dotnet New](/dotnet/core/tools/dotnet-new) . Os pacotes NuGet e NPM necessários são restaurados automaticamente após a abertura do projeto. Esse processo de restauração pode levar alguns minutos e o aplicativo estará pronto para ser executado quando for concluído. Clique no botão de execução verde ou pressione `Ctrl + F5` e o navegador será aberto na página de aterrissagem do aplicativo. O aplicativo é executado no localhost de acordo com o [modo de configuração de tempo de execução](#set-the-runtime-configuration-mode).
 
 ## <a name="test-the-app"></a>Testar o aplicativo
 
 Os modelos SpaServices são pré-configurados para executar testes no lado do cliente usando [Karma](https://karma-runner.github.io/1.0/index.html) e [Jasmine](https://jasmine.github.io/). O Jasmine é uma estrutura de teste de unidade popular para JavaScript, enquanto karma é um executor de teste para esses testes. O karma é configurado para trabalhar com o [middleware de dev do webpack](#webpack-dev-middleware) , de modo que o desenvolvedor não precise parar e executar o teste sempre que forem feitas alterações. Seja o código em execução no caso de teste ou no próprio caso de teste, o teste é executado automaticamente.
 
-Usando o aplicativo angular como um exemplo, dois casos de teste Jasmine já são fornecidos para `CounterComponent` o no arquivo *Counter. Component. spec. TS* :
+Usando o aplicativo angular como um exemplo, dois casos de teste Jasmine já são fornecidos para o `CounterComponent` no arquivo *Counter. Component. spec. TS* :
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
@@ -290,7 +290,7 @@ Abra o prompt de comando no diretório *ClientApp* Execute o comando a seguir:
 npm test
 ```
 
-O script inicia o executor de teste do karma, que lê as configurações definidas no arquivo *karma. conf. js* . Entre outras configurações, o *karma. conf. js* identifica os arquivos de teste a serem executados por `files` meio de sua matriz:
+O script inicia o executor de teste do karma, que lê as configurações definidas no arquivo *karma. conf. js* . Entre outras configurações, o *karma. conf. js* identifica os arquivos de teste a serem executados por meio de sua `files` matriz:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 
@@ -298,7 +298,7 @@ O script inicia o executor de teste do karma, que lê as configurações definid
 
 Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/12474) para obter mais informações sobre como publicar no Azure.
 
-Combinar os ativos gerados do lado do cliente e os artefatos ASP.NET Core publicados em um pacote pronto para implantação pode ser trabalhoso. Felizmente, o SpaServices orquestra todo o processo de publicação com um destino do MSBuild personalizado `RunWebpack`chamado:
+Combinar os ativos gerados do lado do cliente e os artefatos ASP.NET Core publicados em um pacote pronto para implantação pode ser trabalhoso. Felizmente, o SpaServices orquestra todo o processo de publicação com um destino do MSBuild personalizado chamado `RunWebpack` :
 
 [!code-xml[](../client-side/spa-services/sample/SpaServicesSampleApp/SpaServicesSampleApp.csproj?range=31-45)]
 

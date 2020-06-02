@@ -75,7 +75,7 @@ A ferramenta de observador de arquivo `dotnet watch` está incluída com a vers�
 
 ## <a name="run-net-core-cli-commands-using-dotnet-watch"></a>Executar os comandos da CLI do .NET Core usando `dotnet watch`
 
-Qualquer [comando da CLI do .NET Core](/dotnet/core/tools#cli-commands) pode ser executado com `dotnet watch`. Por exemplo: 
+Qualquer [comando da CLI do .NET Core](/dotnet/core/tools#cli-commands) pode ser executado com `dotnet watch`. Por exemplo:
 
 | Comando | Comando com inspeção |
 | ---- | ----- |
