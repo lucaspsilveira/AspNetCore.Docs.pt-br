@@ -1,11 +1,11 @@
 ---
-Título: ' gerenciar usuários e grupos em SignalR ' autor: Descrição: ' visão geral de ASP.NET Core SignalR Gerenciamento de usuário e grupo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: ' gerenciar usuários e grupos em SignalR ' autor: bradygaster Descrição: ' visão geral de ASP.NET Core SignalR Gerenciamento de usuário e grupo. '
+monikerRange: ' >= aspnetcore-2,1 ' MS. Author: bradyg MS. Custom: MVC MS. Date: 05/17/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- SignalRUID: signalr/groups
 
 ---
 
