@@ -223,7 +223,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("Local", options.ProviderOptions);
+    builder.Configuration.Bind("Local", options.ProviderOptions));
 ```
 
 #### <a name="logging-configuration"></a>Configuração de log
@@ -276,7 +276,7 @@ Os arquivos de configuração são armazenados em cache para uso offline. Com [P
 
 Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates> .
 
-### <a name="logging"></a>Registro em log
+### <a name="logging"></a>Registrando em log
 
 Para obter informações sobre o Blazor suporte a logs de Webassembly, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .
 
@@ -350,6 +350,6 @@ Para configurar o SignalR cliente no arquivo *Pages/_Host. cshtml* :
 </script>
 ```
 
-### <a name="logging"></a>Registro em log
+### <a name="logging"></a>Registrando em log
 
 Para obter informações sobre o Blazor suporte a logs de servidor, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .

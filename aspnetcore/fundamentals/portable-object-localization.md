@@ -1,22 +1,12 @@
 ---
-title: Configurar a localização de objeto portátil no ASP.NET Core
-author: sebastienros
-description: Este artigo apresenta arquivos de Objeto Portátil e descreve as etapas para usá-los em um aplicativo ASP.NET Core com a estrutura Orchard Core.
-ms.author: scaddie
-ms.date: 09/26/2017
-no-loc:
-- Blazor
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
-uid: fundamentals/portable-object-localization
-ms.openlocfilehash: 1e544b0f504c2776c678c51bff598cf011b52610
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776045"
+Título: configurar a localização de objeto portátil no ASP.NET Core autor: sebastienros Descrição: Este artigo apresenta arquivos de objeto portátil e descreve as etapas para usá-los em um aplicativo ASP.NET Core com a estrutura principal do Orchard.
+MS. Author: scaddie MS. Date: 09/26/2017 no-loc:
+- 'Blazor'
+- 'Identity'
+- 'Let's Encrypt'
+- 'Razor'
+- ' SignalR ' UID: fundamentos/Portable-Object-Localization
+
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurar a localização de objeto portátil no ASP.NET Core
 
@@ -77,29 +67,29 @@ Adicione uma referência ao pacote NuGet `OrchardCore.Localization.Core`. Ele es
 
 O arquivo *.csproj* agora contém uma linha semelhante à seguinte (o número de versão pode variar):
 
-[!code-xml[](localization/sample/POLocalization/POLocalization.csproj?range=9)]
+[!code-xml[](localization/sample/2.x/POLocalization/POLocalization.csproj?range=9)]
 
 ### <a name="registering-the-service"></a>Registrando o serviço
 
 Adicione os serviços necessários ao método `ConfigureServices` de *Startup.cs*:
 
-[!code-csharp[](localization/sample/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
+[!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
 Adicione o middleware necessário ao método `Configure` de *Startup.cs*:
 
-[!code-csharp[](localization/sample/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
+[!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Adicione o código a seguir à Razor sua exibição de escolha. *About.cshtml* é usado neste exemplo.
+Adicione o código a seguir à sua Razor exibição de escolha. *About.cshtml* é usado neste exemplo.
 
-[!code-cshtml[](localization/sample/POLocalization/Views/Home/About.cshtml)]
+[!code-cshtml[](localization/sample/2.x/POLocalization/Views/Home/About.cshtml)]
 
 Uma instância `IViewLocalizer` é injetada e usada para traduzir o texto “Olá, Mundo!”.
 
 ### <a name="creating-a-po-file"></a>Criando um arquivo PO
 
-Crie um arquivo chamado * \<código de cultura>. po* na pasta raiz do aplicativo. Neste exemplo, o nome do arquivo é *fr.po* porque o idioma francês é usado:
+Crie um arquivo chamado * \<culture code> . po* na pasta raiz do aplicativo. Neste exemplo, o nome do arquivo é *fr.po* porque o idioma francês é usado:
 
-[!code-text[](localization/sample/POLocalization/fr.po)]
+[!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 
 Esse arquivo armazena a cadeia de caracteres a ser traduzida e a cadeia de caracteres traduzida do francês. As traduções são revertidas para a cultura pai, se necessário. Neste exemplo, o arquivo *fr.po* é usado se a cultura solicitada é `fr-FR` ou `fr-CA`.
 
@@ -136,7 +126,7 @@ Nem todos os idiomas compartilham as mesmas regras. Isso é ilustrado com o idio
 
 Crie o arquivo `cs.po` da seguinte maneira e observe como a pluralização precisa de três traduções diferentes:
 
-[!code-text[](localization/sample/POLocalization/cs.po)]
+[!code-text[](localization/sample/2.x/POLocalization/cs.po)]
 
 Para aceitar localizações para o tcheco, adicione `"cs"` à lista de culturas com suporte no método `ConfigureServices`:
 
@@ -193,11 +183,11 @@ Observe que, para a cultura do tcheco, as três traduções são diferentes. As 
 
 ### <a name="contextualizing-strings"></a>Contextualizando cadeias de caracteres
 
-Os aplicativos costumam conter as cadeias de caracteres a serem traduzidas em vários locais. A mesma cadeia de caracteres pode ter uma tradução diferente em determinados locais dentro deRazor um aplicativo (exibições ou arquivos de classe). Um arquivo PO dá suporte à noção de um contexto de arquivo, que pode ser usado para categorizar a cadeia de caracteres que está sendo representada. Usando um contexto de arquivo, uma cadeia de caracteres pode ser traduzida de forma diferente, dependendo do contexto de arquivo (ou de sua ausência).
+Os aplicativos costumam conter as cadeias de caracteres a serem traduzidas em vários locais. A mesma cadeia de caracteres pode ter uma tradução diferente em determinados locais dentro de um aplicativo ( Razor exibições ou arquivos de classe). Um arquivo PO dá suporte à noção de um contexto de arquivo, que pode ser usado para categorizar a cadeia de caracteres que está sendo representada. Usando um contexto de arquivo, uma cadeia de caracteres pode ser traduzida de forma diferente, dependendo do contexto de arquivo (ou de sua ausência).
 
 Os serviços de localização de PO usam o nome da classe completa ou da exibição que é usado ao traduzir uma cadeia de caracteres. Isso é feito definindo o valor na entrada `msgctxt`.
 
-Considere uma adição mínima ao exemplo anterior de *fr.po*. Uma Razor exibição localizada em *views/Home/about. cshtml* pode ser definida como o contexto do arquivo, definindo `msgctxt` o valor da entrada reservada:
+Considere uma adição mínima ao exemplo anterior de *fr.po*. Uma Razor exibição localizada em *views/Home/about. cshtml* pode ser definida como o contexto do arquivo, definindo o `msgctxt` valor da entrada reservada:
 
 ```text
 msgctxt "Views.Home.About"
@@ -209,7 +199,7 @@ Com o `msgctxt` definido assim, a tradução de texto ocorre durante a navegaç�
 
 Quando não é encontrada a correspondência de nenhuma entrada específica com um contexto de arquivo fornecido, o mecanismo de fallback do Orchard Core procura um arquivo PO apropriado sem contexto. Supondo que não haja nenhum contexto de arquivo específico definido para *Views/Home/Contact.cshtml*, a navegação para `/Home/Contact?culture=fr-FR` carrega um arquivo PO, como:
 
-[!code-text[](localization/sample/POLocalization/fr.po)]
+[!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 
 ### <a name="changing-the-location-of-po-files"></a>Alterando o local dos arquivos PO
 

@@ -1,11 +1,11 @@
 ---
-Título: ' criar seu primeiro Blazor aplicativo ' autor: Descrição: ' compilar um Blazor aplicativo passo a passo '.
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: "criar seu primeiro Blazor aplicativo" autor: guardrex Descrição: "compilar um Blazor aplicativo passo a passo".
+monikerRange: ' >= aspnetcore-3,0 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- ' SignalR ' UID: Tutorials/First-mais incrivelmente-aplicativo
 
 ---
 # <a name="build-your-first-blazor-app"></a>Crie seu primeiro Blazor aplicativo
@@ -131,7 +131,7 @@ Um [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop é u
 
 Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pendentes simples.
 
-1. Adicione um novo `Todo` Razor componente ao aplicativo na pasta *páginas* . No Visual Studio, clique com o botão direito do mouse na pasta **páginas** e selecione **Adicionar**  >  **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente *todo. Razor*. Em outros ambientes de desenvolvimento, adicione um arquivo em branco à pasta **páginas** chamada *todo. Razor*.
+1. Adicione um novo `Todo` Razor componente ao aplicativo na pasta *páginas* . Se você estiver usando o Visual Studio, clique com o botão direito do mouse na pasta **páginas** e selecione **Adicionar**  >  **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente *todo. Razor*. Em outros ambientes de desenvolvimento, adicione um arquivo em branco à pasta **páginas** chamada *todo. Razor*.
 
 1. Forneça a marcação inicial do componente:
 
