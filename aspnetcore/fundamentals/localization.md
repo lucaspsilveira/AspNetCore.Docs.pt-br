@@ -26,7 +26,7 @@ A localização de aplicativos envolve o seguinte:
 1. Fornecer recursos localizados para as culturas e os idiomas aos quais você dá suporte
 1. Implementar uma estratégia para selecionar o idioma e a cultura para cada solicitação
 
-[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 
@@ -721,7 +721,7 @@ A localização de aplicativos envolve o seguinte:
 1. Fornecer recursos localizados para as culturas e os idiomas aos quais você dá suporte
 1. Implementar uma estratégia para selecionar o idioma e a cultura para cada solicitação
 
-[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 

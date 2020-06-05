@@ -1,11 +1,11 @@
 ---
-Título: ' ASP.NET Core Blazor globalização e localização ' autor: Descrição: ' saiba como tornar Razor os componentes acessíveis para os usuários em várias culturas e idiomas. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
+Título: ' ASP.NET Core Blazor globalização e localização ' autor: guardrex Descrição: ' saiba como tornar Razor os componentes acessíveis para os usuários em várias culturas e idiomas. '
+monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 06/04/2020 no-loc:
 - 'Blazor'
 - 'Identity'
 - 'Let's Encrypt'
 - 'Razor'
-- SignalRuid ' ': 
+- SignalRUID: mais incrivelmente/globalização-localização
 
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>ASP.NET Core Blazor globalização e localização
@@ -74,34 +74,39 @@ Para obter mais informações e exemplos, consulte <xref:fundamentals/localizati
 
 #### <a name="cookies"></a>Cookies
 
-Um cookie de cultura de localização pode persistir a cultura do usuário. O cookie é criado pelo `OnGet` método da página host do aplicativo (*pages/host. cshtml. cs*). O middleware de localização lê o cookie em solicitações subsequentes para definir a cultura do usuário. 
+Um cookie de cultura de localização pode persistir a cultura do usuário. O middleware de localização lê o cookie em solicitações subsequentes para definir a cultura do usuário. 
 
 O uso de um cookie garante que a conexão WebSocket possa propagar corretamente a cultura. Se os esquemas de localização forem baseados no caminho da URL ou na cadeia de caracteres de consulta, o esquema pode não ser capaz de trabalhar com WebSockets, portanto, falha ao persistir a cultura. Portanto, o uso de um cookie de cultura de localização é a abordagem recomendada.
 
 Qualquer técnica pode ser usada para atribuir uma cultura se a cultura persistir em um cookie de localização. Se o aplicativo já tiver um esquema de localização estabelecido para ASP.NET Core do lado do servidor, continue a usar a infraestrutura de localização existente do aplicativo e defina o cookie de cultura de localização no esquema do aplicativo.
 
-O exemplo a seguir mostra como definir a cultura atual em um cookie que pode ser lido pelo middleware de localização. Crie um arquivo *pages/_Host. cshtml. cs* com o seguinte conteúdo no Blazor aplicativo do servidor:
+O exemplo a seguir mostra como definir a cultura atual em um cookie que pode ser lido pelo middleware de localização. Crie uma Razor expressão no arquivo *Pages/_Host. cshtml* imediatamente dentro da marca de abertura `<body>` :
 
-```csharp
-public class HostModel : PageModel
-{
-    public void OnGet()
-    {
-        HttpContext.Response.Cookies.Append(
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+<body>
+    @{
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
                     CultureInfo.CurrentCulture,
                     CultureInfo.CurrentUICulture)));
     }
-}
+
+    ...
+</body>
 ```
 
 A localização é manipulada pelo aplicativo na seguinte sequência de eventos:
 
 1. O navegador envia uma solicitação HTTP inicial para o aplicativo.
 1. A cultura é atribuída pelo middleware de localização.
-1. O `OnGet` método em *_Host. cshtml. cs* persiste a cultura em um cookie como parte da resposta.
+1. A Razor expressão na `_Host` página (*_Host. cshtml*) persiste a cultura em um cookie como parte da resposta.
 1. O navegador abre uma conexão WebSocket para criar uma Blazor sessão de servidor interativa.
 1. O middleware de localização lê o cookie e atribui a cultura.
 1. A Blazor sessão de servidor começa com a cultura correta.
@@ -135,6 +140,25 @@ public class CultureController : Controller
 
 > [!WARNING]
 > Use o <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> resultado da ação para evitar ataques de redirecionamento abertos. Para obter mais informações, consulte <xref:security/preventing-open-redirects>.
+
+Se o aplicativo não estiver configurado para processar ações do controlador:
+
+* Adicionar serviços MVC à coleção de serviços em `Startup.ConfigureServices` :
+
+  ```csharp
+  services.AddControllers();
+  ```
+
+* Adicionar roteamento de ponto de extremidade do controlador em `Startup.Configure` :
+
+  ```csharp
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapBlazorHub();
+      endpoints.MapFallbackToPage("/_Host");
+  });
+  ```
 
 O componente a seguir mostra um exemplo de como executar o redirecionamento inicial quando o usuário seleciona uma cultura:
 
