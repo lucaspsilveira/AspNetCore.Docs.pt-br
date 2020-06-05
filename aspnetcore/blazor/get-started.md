@@ -5,7 +5,7 @@ description: Comece com Blazor a criação de um Blazor aplicativo com as ferram
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 05/31/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,158 +13,103 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 052a787fbe6411dbaa953f10fcd982dfbd41f1af
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 08229283882928c4cc733de19840d25872846c97
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769449"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452025"
 ---
-# <a name="get-started-with-aspnet-core-blazor"></a><span data-ttu-id="273d4-103">Introdução ao ASP.NET Core mais incrivelmente</span><span class="sxs-lookup"><span data-stu-id="273d4-103">Get started with ASP.NET Core Blazor</span></span>
+# <a name="get-started-with-aspnet-core-blazor"></a><span data-ttu-id="d78a9-103">Introdução ao ASP.NET CoreBlazor</span><span class="sxs-lookup"><span data-stu-id="d78a9-103">Get started with ASP.NET Core Blazor</span></span>
 
-<span data-ttu-id="273d4-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="273d4-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="d78a9-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="d78a9-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+<span data-ttu-id="d78a9-105">Para começar a usar Blazor o, siga as orientações para sua escolha de ferramentas:</span><span class="sxs-lookup"><span data-stu-id="d78a9-105">To get started with Blazor, follow the guidance for your choice of tooling:</span></span>
 
-<span data-ttu-id="273d4-105">Para começar com o mais claro, siga as orientações para sua escolha de ferramentas:</span><span class="sxs-lookup"><span data-stu-id="273d4-105">To get started with Blazor, follow the guidance for your choice of tooling:</span></span>
+# <a name="visual-studio"></a>[<span data-ttu-id="d78a9-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d78a9-106">Visual Studio</span></span>](#tab/visual-studio)
 
-# <a name="visual-studio"></a>[<span data-ttu-id="273d4-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="273d4-106">Visual Studio</span></span>](#tab/visual-studio)
+1. <span data-ttu-id="d78a9-107">Instale a versão mais recente do [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) com a ASP.net e a carga de trabalho de **desenvolvimento Web** .</span><span class="sxs-lookup"><span data-stu-id="d78a9-107">Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.</span></span>
 
-1. <span data-ttu-id="273d4-107">Para criar aplicativos de servidor mais novos, instale a versão mais recente do [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) com a ASP.net e a carga de trabalho de **desenvolvimento na Web** .</span><span class="sxs-lookup"><span data-stu-id="273d4-107">To create Blazor Server apps, install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.</span></span>
+1. <span data-ttu-id="d78a9-108">Criar um novo projeto.</span><span class="sxs-lookup"><span data-stu-id="d78a9-108">Create a new project.</span></span>
 
-   <span data-ttu-id="273d4-108">Para criar aplicativos de Webassembly mais novos e de servidor de última edição, instale a versão mais recente do [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) com a **ASP.net e** a carga de trabalho de desenvolvimento para a Web.</span><span class="sxs-lookup"><span data-stu-id="273d4-108">To create Blazor Server and Blazor WebAssembly apps, install the latest preview of [Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.</span></span>
+1. <span data-ttu-id="d78a9-109">Selecione \*\* Blazor aplicativo\*\*.</span><span class="sxs-lookup"><span data-stu-id="d78a9-109">Select **Blazor App**.</span></span> <span data-ttu-id="d78a9-110">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-110">Select **Next**.</span></span>
 
-   <span data-ttu-id="273d4-109">Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.</span><span class="sxs-lookup"><span data-stu-id="273d4-109">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
+1. <span data-ttu-id="d78a9-111">Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão.</span><span class="sxs-lookup"><span data-stu-id="d78a9-111">Provide a project name in the **Project name** field or accept the default project name.</span></span> <span data-ttu-id="d78a9-112">Confirme se a entrada de **local** está correta ou forneça um local para o projeto.</span><span class="sxs-lookup"><span data-stu-id="d78a9-112">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="d78a9-113">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-113">Select **Create**.</span></span>
 
-1. <span data-ttu-id="273d4-110">Instale o modelo de visualização do Webassembly mais incrivelmente executando o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-110">Install the Blazor WebAssembly Preview template by running the following command:</span></span>
+1. <span data-ttu-id="d78a9-114">Para uma Blazor experiência de Webassembly, escolha o modelo de \*\* Blazor aplicativo Webassembly\*\* .</span><span class="sxs-lookup"><span data-stu-id="d78a9-114">For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template.</span></span> <span data-ttu-id="d78a9-115">Para uma Blazor experiência de servidor, escolha o modelo de \*\* Blazor aplicativo de servidor\*\* .</span><span class="sxs-lookup"><span data-stu-id="d78a9-115">For a Blazor Server experience, choose the **Blazor Server App** template.</span></span> <span data-ttu-id="d78a9-116">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-116">Select **Create**.</span></span>
 
-   ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
-   ```
+   <span data-ttu-id="d78a9-117">Para obter informações sobre os dois Blazor modelos de hospedagem, \* Blazor Webassembly\* e \* Blazor Server\*, consulte <xref:blazor/hosting-models> .</span><span class="sxs-lookup"><span data-stu-id="d78a9-117">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
 
-1. <span data-ttu-id="273d4-111">Criar um novo projeto.</span><span class="sxs-lookup"><span data-stu-id="273d4-111">Create a new project.</span></span>
+1. <span data-ttu-id="d78a9-118">Pressione <kbd>Ctrl</kbd> + <kbd>F5</kbd> para executar o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-118">Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.</span></span>
 
-1. <span data-ttu-id="273d4-112">Selecione **aplicativo mais incrivelmente**.</span><span class="sxs-lookup"><span data-stu-id="273d4-112">Select **Blazor App**.</span></span> <span data-ttu-id="273d4-113">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-113">Select **Next**.</span></span>
+# <a name="visual-studio-code"></a>[<span data-ttu-id="d78a9-119">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="d78a9-119">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-1. <span data-ttu-id="273d4-114">Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão.</span><span class="sxs-lookup"><span data-stu-id="273d4-114">Provide a project name in the **Project name** field or accept the default project name.</span></span> <span data-ttu-id="273d4-115">Confirme se a entrada de **local** está correta ou forneça um local para o projeto.</span><span class="sxs-lookup"><span data-stu-id="273d4-115">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="273d4-116">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-116">Select **Create**.</span></span>
-
-1. <span data-ttu-id="273d4-117">Para obter uma experiência de Webassembly mais experiente (Visual Studio 16,6 Preview 2 ou posterior), escolha o modelo de **aplicativo Webassembly** mais experiente.</span><span class="sxs-lookup"><span data-stu-id="273d4-117">For a Blazor WebAssembly experience (Visual Studio 16.6 Preview 2 or later), choose the **Blazor WebAssembly App** template.</span></span> <span data-ttu-id="273d4-118">Para uma experiência de servidor mais incrivelmente (Visual Studio 16,4 ou posterior), escolha o modelo de **aplicativo de servidor** mais experiente.</span><span class="sxs-lookup"><span data-stu-id="273d4-118">For a Blazor Server experience (Visual Studio 16.4 or later), choose the **Blazor Server App** template.</span></span> <span data-ttu-id="273d4-119">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-119">Select **Create**.</span></span>
-
-1. <span data-ttu-id="273d4-120">Pressione <kbd>Ctrl</kbd>+<kbd>F5</kbd> para executar o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="273d4-120">Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.</span></span>
-
-# <a name="visual-studio-code"></a>[<span data-ttu-id="273d4-121">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="273d4-121">Visual Studio Code</span></span>](#tab/visual-studio-code)
-
-1. <span data-ttu-id="273d4-122">Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span><span class="sxs-lookup"><span data-stu-id="273d4-122">Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span></span>
-
-1. <span data-ttu-id="273d4-123">Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-123">Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) preview template by running the following command:</span></span>
+1. <span data-ttu-id="d78a9-120">Instale a versão mais recente do [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span><span class="sxs-lookup"><span data-stu-id="d78a9-120">Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span></span> <span data-ttu-id="d78a9-121">Se você já instalou o SDK, poderá determinar a versão instalada executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-121">If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:</span></span>
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
-   ```
-   
-   <span data-ttu-id="273d4-124">Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.</span><span class="sxs-lookup"><span data-stu-id="273d4-124">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
-
-   > [!NOTE]
-   > <span data-ttu-id="273d4-125">O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview mais recente.</span><span class="sxs-lookup"><span data-stu-id="273d4-125">The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview Blazor WebAssembly template.</span></span> <span data-ttu-id="273d4-126">Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.</span><span class="sxs-lookup"><span data-stu-id="273d4-126">Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.</span></span>
-
-1. <span data-ttu-id="273d4-127">Instale o [Visual Studio Code](https://code.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="273d4-127">Install [Visual Studio Code](https://code.visualstudio.com/).</span></span>
-
-1. <span data-ttu-id="273d4-128">Instale a extensão mais recente [do C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true`.</span><span class="sxs-lookup"><span data-stu-id="273d4-128">Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.</span></span>
-
-1. <span data-ttu-id="273d4-129">Para uma experiência de servidor mais incrivelmente, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-129">For a Blazor Server experience, execute the following command in a command shell:</span></span>
-
-   ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
+   dotnet --version
    ```
 
-   <span data-ttu-id="273d4-130">Para uma experiência de Webassembly mais experiente, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-130">For a Blazor WebAssembly experience, execute the following command in a command shell:</span></span>
+1. <span data-ttu-id="d78a9-122">Instale a versão mais recente do [Visual Studio Code](https://code.visualstudio.com/).</span><span class="sxs-lookup"><span data-stu-id="d78a9-122">Install the latest version of [Visual Studio Code](https://code.visualstudio.com/).</span></span>
+
+1. <span data-ttu-id="d78a9-123">Instale a extensão mais recente [do C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true` .</span><span class="sxs-lookup"><span data-stu-id="d78a9-123">Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.</span></span>
+
+  <span data-ttu-id="d78a9-124">Para definir `debug.javascript.usePreview` como `true` usar a interface do usuário do **File**vs Code, abra  >  **Preferences**  >  **configurações** de preferências de arquivo e pesquise por `debug javascript use preview` .</span><span class="sxs-lookup"><span data-stu-id="d78a9-124">To set `debug.javascript.usePreview` to `true` using the VS Code UI, open **File** > **Preferences** > **Settings** and search for `debug javascript use preview`.</span></span> <span data-ttu-id="d78a9-125">Marque a caixa de seleção para **usar o novo depurador de JavaScript em visualização para node. js e Chrome**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-125">Select the check box for **Use the new in-preview JavaScript debugger for Node.js and Chrome**.</span></span>
+
+1. <span data-ttu-id="d78a9-126">Para uma Blazor experiência de Webassembly, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-126">For a Blazor WebAssembly experience, execute the following command in a command shell:</span></span>
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
    ```
 
-1. <span data-ttu-id="273d4-131">Abra a pasta *WebApplication1* em Visual Studio Code.</span><span class="sxs-lookup"><span data-stu-id="273d4-131">Open the *WebApplication1* folder in Visual Studio Code.</span></span>
-
-1. <span data-ttu-id="273d4-132">O IDE solicita que você adicione ativos para compilar e depurar o projeto.</span><span class="sxs-lookup"><span data-stu-id="273d4-132">The IDE requests that you add assets to build and debug the project.</span></span> <span data-ttu-id="273d4-133">Selecione **Sim** na barra superior.</span><span class="sxs-lookup"><span data-stu-id="273d4-133">Select **Yes**.</span></span>
-
-1. <span data-ttu-id="273d4-134">Com o servidor de mais incrivelmente, execute o aplicativo usando o depurador de Visual Studio Code.</span><span class="sxs-lookup"><span data-stu-id="273d4-134">With Blazor Server, run the app using the Visual Studio Code debugger.</span></span>
-
-   <span data-ttu-id="273d4-135">Com o Webassembly de mais potentes, inicie o aplicativo usando a configuração de inicialização do **.NET Core (mais ecostandalone)** e inicie o navegador usando o **assembly da Web de depuração do .NET Core na configuração de** inicialização do Chrome (requer o Chrome).</span><span class="sxs-lookup"><span data-stu-id="273d4-135">With Blazor WebAssembly, start the app using the **.NET Core Launch (Blazor Standalone)** launch configuration and then start the browser using the **.NET Core Debug Blazor Web Assembly in Chrome** launch configuration (requires Chrome).</span></span> <span data-ttu-id="273d4-136">Para obter mais informações, consulte <xref:blazor/debug#visual-studio-code>.</span><span class="sxs-lookup"><span data-stu-id="273d4-136">For more information, see <xref:blazor/debug#visual-studio-code>.</span></span>
-
-1. <span data-ttu-id="273d4-137">Em um navegador, navegue até `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="273d4-137">In a browser, navigate to `https://localhost:5001`.</span></span>
-
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="273d4-138">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="273d4-138">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
-
-<span data-ttu-id="273d4-139">Há suporte para o servidor mais incrivelmente no Visual Studio para Mac.</span><span class="sxs-lookup"><span data-stu-id="273d4-139">Blazor Server is supported in Visual Studio for Mac.</span></span> <span data-ttu-id="273d4-140">Não há suporte para Webassembly mais incrivelmente no momento.</span><span class="sxs-lookup"><span data-stu-id="273d4-140">Blazor WebAssembly isn't supported at this time.</span></span> <span data-ttu-id="273d4-141">Para criar aplicativos Webassembly mais incrivelmente no macOS, siga as orientações na guia **CLI do .NET Core** . Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.</span><span class="sxs-lookup"><span data-stu-id="273d4-141">To create Blazor WebAssembly apps on macOS, follow the guidance on the **.NET Core CLI** tab. For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
-
-1. <span data-ttu-id="273d4-142">Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).</span><span class="sxs-lookup"><span data-stu-id="273d4-142">Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).</span></span>
-
-1. <span data-ttu-id="273d4-143">Selecione **arquivo** > **nova solução** ou crie um **novo** projeto na **janela iniciar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-143">Select **File** > **New Solution** or create a **New** project from the **Start Window**.</span></span>
-
-1. <span data-ttu-id="273d4-144">Na barra lateral, selecione**aplicativo** **.NET Core** > .</span><span class="sxs-lookup"><span data-stu-id="273d4-144">In the sidebar, select **.NET Core** > **App**.</span></span>
-
-1. <span data-ttu-id="273d4-145">Selecione o modelo de **aplicativo de servidor mais incrivelmente** .</span><span class="sxs-lookup"><span data-stu-id="273d4-145">Select the **Blazor Server App** template.</span></span> <span data-ttu-id="273d4-146">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-146">Select **Next**.</span></span>
-
-1. <span data-ttu-id="273d4-147">Confirme as seguintes configurações:</span><span class="sxs-lookup"><span data-stu-id="273d4-147">Confirm the following configurations:</span></span>
-
-   * <span data-ttu-id="273d4-148">**Estrutura de destino** definida como **.NET Core 3,1**.</span><span class="sxs-lookup"><span data-stu-id="273d4-148">**Target Framework** set to **.NET Core 3.1**.</span></span>
-   * <span data-ttu-id="273d4-149">**Autenticação** definida como **sem autenticação**.</span><span class="sxs-lookup"><span data-stu-id="273d4-149">**Authentication** set to **No Authentication**.</span></span>
-   
-   <span data-ttu-id="273d4-150">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-150">Select **Next**.</span></span>
-
-1. <span data-ttu-id="273d4-151">No campo **nome do projeto** , nomeie o aplicativo `WebApplication1`.</span><span class="sxs-lookup"><span data-stu-id="273d4-151">In the **Project Name** field, name the app `WebApplication1`.</span></span> <span data-ttu-id="273d4-152">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="273d4-152">Select **Create**.</span></span>
-
-1. <span data-ttu-id="273d4-153">Selecione **executar** > **Iniciar sem depuração** para executar o aplicativo *sem o depurador*.</span><span class="sxs-lookup"><span data-stu-id="273d4-153">Select **Run** > **Start Without Debugging** to run the app *without the debugger*.</span></span> <span data-ttu-id="273d4-154">Não há suporte para a depuração no momento.</span><span class="sxs-lookup"><span data-stu-id="273d4-154">Debugging isn't supported at this time.</span></span>
-
-<!-- HOLD FOR 8.6 GA
-
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
-
-1. In the sidebar, select **Web and Console** > **App**.
-
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
-
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
-
-1. Confirm the following configurations:
-
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
-   
-   Select **Next**.
-
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
-
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
-
--->
-
-<span data-ttu-id="273d4-155">Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.</span><span class="sxs-lookup"><span data-stu-id="273d4-155">If a prompt appears to trust the development certificate, trust the certificate and continue.</span></span> <span data-ttu-id="273d4-156">As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado.</span><span class="sxs-lookup"><span data-stu-id="273d4-156">The user and keychain passwords are required to trust the certificate.</span></span>
-
-# <a name="net-core-cli"></a>[<span data-ttu-id="273d4-157">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="273d4-157">.NET Core CLI</span></span>](#tab/netcore-cli/)
-
-1. <span data-ttu-id="273d4-158">Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span><span class="sxs-lookup"><span data-stu-id="273d4-158">Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span></span>
-
-1. <span data-ttu-id="273d4-159">Opcionalmente, instale o modelo de visualização do Webassembly mais incrivelmente executando o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-159">Optionally install the Blazor WebAssembly preview template by running the following command:</span></span>
-
-   ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
-   ```
-   
-   <span data-ttu-id="273d4-160">Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*de mais incrivelmente, <xref:blazor/hosting-models>consulte.</span><span class="sxs-lookup"><span data-stu-id="273d4-160">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
-
-   > [!NOTE]
-   > <span data-ttu-id="273d4-161">O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview mais recente.</span><span class="sxs-lookup"><span data-stu-id="273d4-161">The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview Blazor WebAssembly template.</span></span> <span data-ttu-id="273d4-162">Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.</span><span class="sxs-lookup"><span data-stu-id="273d4-162">Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.</span></span>
-
-1. <span data-ttu-id="273d4-163">Para uma experiência de servidor mais incrivelmente, execute os seguintes comandos em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-163">For a Blazor Server experience, execute the following commands in a command shell:</span></span>
+   <span data-ttu-id="d78a9-127">Para uma Blazor experiência de servidor, execute o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-127">For a Blazor Server experience, execute the following command in a command shell:</span></span>
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
-   cd WebApplication1
-   dotnet run
    ```
 
-   <span data-ttu-id="273d4-164">Para uma experiência de Webassembly mais experiente, execute os seguintes comandos em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="273d4-164">For a Blazor WebAssembly experience, execute the following commands in a command shell:</span></span>
+   <span data-ttu-id="d78a9-128">Para obter informações sobre os dois Blazor modelos de hospedagem, \* Blazor Webassembly\* e \* Blazor Server\*, consulte <xref:blazor/hosting-models> .</span><span class="sxs-lookup"><span data-stu-id="d78a9-128">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
+
+1. <span data-ttu-id="d78a9-129">Abra a pasta *WebApplication1* em Visual Studio Code.</span><span class="sxs-lookup"><span data-stu-id="d78a9-129">Open the *WebApplication1* folder in Visual Studio Code.</span></span>
+
+1. <span data-ttu-id="d78a9-130">O IDE solicita que você adicione ativos para compilar e depurar o projeto.</span><span class="sxs-lookup"><span data-stu-id="d78a9-130">The IDE requests that you add assets to build and debug the project.</span></span> <span data-ttu-id="d78a9-131">Selecione **Sim** na barra superior.</span><span class="sxs-lookup"><span data-stu-id="d78a9-131">Select **Yes**.</span></span>
+
+1. <span data-ttu-id="d78a9-132">Pressione <kbd>Ctrl</kbd> + <kbd>F5</kbd> para executar o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-132">Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.</span></span>
+
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="d78a9-133">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="d78a9-133">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+
+1. <span data-ttu-id="d78a9-134">Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).</span><span class="sxs-lookup"><span data-stu-id="d78a9-134">Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).</span></span>
+
+1. <span data-ttu-id="d78a9-135">Selecione **arquivo**  >  **nova solução** ou crie um **novo** projeto na **janela iniciar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-135">Select **File** > **New Solution** or create a **New** project from the **Start Window**.</span></span>
+
+1. <span data-ttu-id="d78a9-136">Na barra lateral, selecione **aplicativo Web e de console**  >  **App**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-136">In the sidebar, select **Web and Console** > **App**.</span></span>
+
+   <span data-ttu-id="d78a9-137">Para uma Blazor experiência de Webassembly, escolha o modelo de \*\* Blazor aplicativo Webassembly\*\* .</span><span class="sxs-lookup"><span data-stu-id="d78a9-137">For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template.</span></span> <span data-ttu-id="d78a9-138">Para uma Blazor experiência de servidor, escolha o modelo de \*\* Blazor aplicativo de servidor\*\* .</span><span class="sxs-lookup"><span data-stu-id="d78a9-138">For a Blazor Server experience, choose the **Blazor Server App** template.</span></span> <span data-ttu-id="d78a9-139">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-139">Select **Next**.</span></span>
+
+   <span data-ttu-id="d78a9-140">Para obter informações sobre os dois Blazor modelos de hospedagem, \* Blazor Webassembly\* e \* Blazor Server\*, consulte <xref:blazor/hosting-models> .</span><span class="sxs-lookup"><span data-stu-id="d78a9-140">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
+
+1. <span data-ttu-id="d78a9-141">Confirme as seguintes configurações:</span><span class="sxs-lookup"><span data-stu-id="d78a9-141">Confirm the following configurations:</span></span>
+
+   * <span data-ttu-id="d78a9-142">**Estrutura de destino** definida como **.NET Core 3,1**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-142">**Target Framework** set to **.NET Core 3.1**.</span></span>
+   * <span data-ttu-id="d78a9-143">**Autenticação** definida como **sem autenticação**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-143">**Authentication** set to **No Authentication**.</span></span>
+   
+   <span data-ttu-id="d78a9-144">Selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-144">Select **Next**.</span></span>
+
+1. <span data-ttu-id="d78a9-145">No campo **nome do projeto** , nomeie o aplicativo `WebApplication1` .</span><span class="sxs-lookup"><span data-stu-id="d78a9-145">In the **Project Name** field, name the app `WebApplication1`.</span></span> <span data-ttu-id="d78a9-146">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="d78a9-146">Select **Create**.</span></span>
+
+1. <span data-ttu-id="d78a9-147">Selecione **executar**  >  **Iniciar sem depuração** para executar o aplicativo *sem o depurador*.</span><span class="sxs-lookup"><span data-stu-id="d78a9-147">Select **Run** > **Start Without Debugging** to run the app *without the debugger*.</span></span> <span data-ttu-id="d78a9-148">Execute o aplicativo com **executar**  >  **Iniciar Depuração** ou o botão Executar (&#9654;) para executar o aplicativo *com o depurador*.</span><span class="sxs-lookup"><span data-stu-id="d78a9-148">Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.</span></span>
+
+<span data-ttu-id="d78a9-149">Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.</span><span class="sxs-lookup"><span data-stu-id="d78a9-149">If a prompt appears to trust the development certificate, trust the certificate and continue.</span></span> <span data-ttu-id="d78a9-150">As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado.</span><span class="sxs-lookup"><span data-stu-id="d78a9-150">The user and keychain passwords are required to trust the certificate.</span></span>
+
+# <a name="net-core-cli"></a>[<span data-ttu-id="d78a9-151">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="d78a9-151">.NET Core CLI</span></span>](#tab/netcore-cli/)
+
+1. <span data-ttu-id="d78a9-152">Instale a versão mais recente do [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span><span class="sxs-lookup"><span data-stu-id="d78a9-152">Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).</span></span> <span data-ttu-id="d78a9-153">Se você já instalou o SDK, poderá determinar a versão instalada executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-153">If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:</span></span>
+
+   ```dotnetcli
+   dotnet --version
+   ```
+
+1. <span data-ttu-id="d78a9-154">Para uma Blazor experiência de Webassembly, execute os seguintes comandos em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-154">For a Blazor WebAssembly experience, execute the following commands in a command shell:</span></span>
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -172,63 +117,76 @@ ms.locfileid: "82769449"
    dotnet run
    ```
 
-1. <span data-ttu-id="273d4-165">Em um navegador, navegue até `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="273d4-165">In a browser, navigate to `https://localhost:5001`.</span></span>
+   <span data-ttu-id="d78a9-155">Para uma Blazor experiência de servidor, execute os seguintes comandos em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="d78a9-155">For a Blazor Server experience, execute the following commands in a command shell:</span></span>
+
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
+
+   <span data-ttu-id="d78a9-156">Para obter informações sobre os dois Blazor modelos de hospedagem, \* Blazor Webassembly\* e \* Blazor Server\*, consulte <xref:blazor/hosting-models> .</span><span class="sxs-lookup"><span data-stu-id="d78a9-156">For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.</span></span>
+
+1. <span data-ttu-id="d78a9-157">Em um navegador, navegue até `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="d78a9-157">In a browser, navigate to `https://localhost:5001`.</span></span>
 
 ---
 
-<span data-ttu-id="273d4-166">Várias páginas estão disponíveis em guias na barra lateral:</span><span class="sxs-lookup"><span data-stu-id="273d4-166">Multiple pages are available from tabs in the sidebar:</span></span>
+<span data-ttu-id="d78a9-158">Várias páginas estão disponíveis em guias na barra lateral:</span><span class="sxs-lookup"><span data-stu-id="d78a9-158">Multiple pages are available from tabs in the sidebar:</span></span>
 
-* <span data-ttu-id="273d4-167">Início</span><span class="sxs-lookup"><span data-stu-id="273d4-167">Home</span></span>
-* <span data-ttu-id="273d4-168">Contador</span><span class="sxs-lookup"><span data-stu-id="273d4-168">Counter</span></span>
-* <span data-ttu-id="273d4-169">Buscar dados</span><span class="sxs-lookup"><span data-stu-id="273d4-169">Fetch data</span></span>
+* <span data-ttu-id="d78a9-159">Início</span><span class="sxs-lookup"><span data-stu-id="d78a9-159">Home</span></span>
+* <span data-ttu-id="d78a9-160">Contador</span><span class="sxs-lookup"><span data-stu-id="d78a9-160">Counter</span></span>
+* <span data-ttu-id="d78a9-161">Buscar dados</span><span class="sxs-lookup"><span data-stu-id="d78a9-161">Fetch data</span></span>
 
-<span data-ttu-id="273d4-170">Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página.</span><span class="sxs-lookup"><span data-stu-id="273d4-170">On the Counter page, select the **Click me** button to increment the counter without a page refresh.</span></span> <span data-ttu-id="273d4-171">Incrementar um contador em uma página da Web normalmente requer a escrita de JavaScript Blazor , mas com você pode usar C#.</span><span class="sxs-lookup"><span data-stu-id="273d4-171">Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.</span></span>
+<span data-ttu-id="d78a9-162">Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página.</span><span class="sxs-lookup"><span data-stu-id="d78a9-162">On the Counter page, select the **Click me** button to increment the counter without a page refresh.</span></span> <span data-ttu-id="d78a9-163">Incrementar um contador em uma página da Web normalmente requer a escrita de JavaScript, mas com Blazor você pode usar C#.</span><span class="sxs-lookup"><span data-stu-id="d78a9-163">Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.</span></span>
 
-<span data-ttu-id="273d4-172">*Pages/Counter.razor*:</span><span class="sxs-lookup"><span data-stu-id="273d4-172">*Pages/Counter.razor*:</span></span>
+<span data-ttu-id="d78a9-164">*Pages/Counter.razor*:</span><span class="sxs-lookup"><span data-stu-id="d78a9-164">*Pages/Counter.razor*:</span></span>
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
-<span data-ttu-id="273d4-173">Uma solicitação para `/counter` no navegador, conforme especificado pela `@page` diretiva na parte superior, faz com que o `Counter` componente processe seu conteúdo.</span><span class="sxs-lookup"><span data-stu-id="273d4-173">A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content.</span></span> <span data-ttu-id="273d4-174">Os componentes são renderizados em uma representação na memória da árvore de renderização que pode ser usada para atualizar a interface do usuário de maneira flexível e eficiente.</span><span class="sxs-lookup"><span data-stu-id="273d4-174">Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.</span></span>
+<span data-ttu-id="d78a9-165">Uma solicitação para `/counter` no navegador, conforme especificado pela `@page` diretiva na parte superior, faz com que o `Counter` componente processe seu conteúdo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-165">A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content.</span></span> <span data-ttu-id="d78a9-166">Os componentes são renderizados em uma representação na memória da árvore de renderização que pode ser usada para atualizar a interface do usuário de maneira flexível e eficiente.</span><span class="sxs-lookup"><span data-stu-id="d78a9-166">Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.</span></span>
 
-<span data-ttu-id="273d4-175">Sempre que o botão **clicar em mim** estiver selecionado:</span><span class="sxs-lookup"><span data-stu-id="273d4-175">Each time the **Click me** button is selected:</span></span>
+<span data-ttu-id="d78a9-167">Sempre que o botão **clicar em mim** estiver selecionado:</span><span class="sxs-lookup"><span data-stu-id="d78a9-167">Each time the **Click me** button is selected:</span></span>
 
-* <span data-ttu-id="273d4-176">O `onclick` evento é acionado.</span><span class="sxs-lookup"><span data-stu-id="273d4-176">The `onclick` event is fired.</span></span>
-* <span data-ttu-id="273d4-177">O método `IncrementCount` é chamado.</span><span class="sxs-lookup"><span data-stu-id="273d4-177">The `IncrementCount` method is called.</span></span>
-* <span data-ttu-id="273d4-178">O `currentCount` é incrementado.</span><span class="sxs-lookup"><span data-stu-id="273d4-178">The `currentCount` is incremented.</span></span>
-* <span data-ttu-id="273d4-179">O componente é renderizado novamente.</span><span class="sxs-lookup"><span data-stu-id="273d4-179">The component is rendered again.</span></span>
+* <span data-ttu-id="d78a9-168">O `onclick` evento é acionado.</span><span class="sxs-lookup"><span data-stu-id="d78a9-168">The `onclick` event is fired.</span></span>
+* <span data-ttu-id="d78a9-169">O método `IncrementCount` é chamado.</span><span class="sxs-lookup"><span data-stu-id="d78a9-169">The `IncrementCount` method is called.</span></span>
+* <span data-ttu-id="d78a9-170">O `currentCount` é incrementado.</span><span class="sxs-lookup"><span data-stu-id="d78a9-170">The `currentCount` is incremented.</span></span>
+* <span data-ttu-id="d78a9-171">O componente é renderizado novamente.</span><span class="sxs-lookup"><span data-stu-id="d78a9-171">The component is rendered again.</span></span>
 
-<span data-ttu-id="273d4-180">O tempo de execução compara o novo conteúdo com o conteúdo anterior e aplica apenas o conteúdo alterado para o Modelo de Objeto do Documento (DOM).</span><span class="sxs-lookup"><span data-stu-id="273d4-180">The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).</span></span>
+<span data-ttu-id="d78a9-172">O tempo de execução compara o novo conteúdo com o conteúdo anterior e aplica apenas o conteúdo alterado para o Modelo de Objeto do Documento (DOM).</span><span class="sxs-lookup"><span data-stu-id="d78a9-172">The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).</span></span>
 
-<span data-ttu-id="273d4-181">Adicione um componente a outro componente usando a sintaxe HTML.</span><span class="sxs-lookup"><span data-stu-id="273d4-181">Add a component to another component using HTML syntax.</span></span> <span data-ttu-id="273d4-182">Por exemplo, adicione o `Counter` componente à página inicial do aplicativo adicionando um `<Counter />` elemento ao `Index` componente.</span><span class="sxs-lookup"><span data-stu-id="273d4-182">For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.</span></span>
+<span data-ttu-id="d78a9-173">Adicione um componente a outro componente usando a sintaxe HTML.</span><span class="sxs-lookup"><span data-stu-id="d78a9-173">Add a component to another component using HTML syntax.</span></span> <span data-ttu-id="d78a9-174">Por exemplo, adicione o `Counter` componente à página inicial do aplicativo adicionando um `<Counter />` elemento ao `Index` componente.</span><span class="sxs-lookup"><span data-stu-id="d78a9-174">For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.</span></span>
 
-<span data-ttu-id="273d4-183">*Pages/Index.razor*:</span><span class="sxs-lookup"><span data-stu-id="273d4-183">*Pages/Index.razor*:</span></span>
+<span data-ttu-id="d78a9-175">*Pages/Index.razor*:</span><span class="sxs-lookup"><span data-stu-id="d78a9-175">*Pages/Index.razor*:</span></span>
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
-<span data-ttu-id="273d4-184">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="273d4-184">Run the app.</span></span> <span data-ttu-id="273d4-185">A Home Page tem seu próprio contador fornecido pelo `Counter` componente.</span><span class="sxs-lookup"><span data-stu-id="273d4-185">The homepage has its own counter provided by the `Counter` component.</span></span>
+<span data-ttu-id="d78a9-176">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-176">Run the app.</span></span> <span data-ttu-id="d78a9-177">A Home Page tem seu próprio contador fornecido pelo `Counter` componente.</span><span class="sxs-lookup"><span data-stu-id="d78a9-177">The homepage has its own counter provided by the `Counter` component.</span></span>
 
-<span data-ttu-id="273d4-186">Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components#child-content), que permitem definir propriedades no componente filho.</span><span class="sxs-lookup"><span data-stu-id="273d4-186">Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component.</span></span> <span data-ttu-id="273d4-187">Para adicionar um parâmetro ao `Counter` componente, atualize o bloco do `@code` componente:</span><span class="sxs-lookup"><span data-stu-id="273d4-187">To add a parameter to the `Counter` component, update the component's `@code` block:</span></span>
+<span data-ttu-id="d78a9-178">Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components#child-content), que permitem definir propriedades no componente filho.</span><span class="sxs-lookup"><span data-stu-id="d78a9-178">Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component.</span></span> <span data-ttu-id="d78a9-179">Para adicionar um parâmetro ao `Counter` componente, atualize o bloco do componente `@code` :</span><span class="sxs-lookup"><span data-stu-id="d78a9-179">To add a parameter to the `Counter` component, update the component's `@code` block:</span></span>
 
-* <span data-ttu-id="273d4-188">Adicione uma propriedade pública para `IncrementAmount` com um `[Parameter]` atributo.</span><span class="sxs-lookup"><span data-stu-id="273d4-188">Add a public property for `IncrementAmount` with a `[Parameter]` attribute.</span></span>
-* <span data-ttu-id="273d4-189">Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.</span><span class="sxs-lookup"><span data-stu-id="273d4-189">Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.</span></span>
+* <span data-ttu-id="d78a9-180">Adicione uma propriedade pública para `IncrementAmount` com um [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) atributo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-180">Add a public property for `IncrementAmount` with a [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.</span></span>
+* <span data-ttu-id="d78a9-181">Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.</span><span class="sxs-lookup"><span data-stu-id="d78a9-181">Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.</span></span>
 
-<span data-ttu-id="273d4-190">*Pages/Counter.razor*:</span><span class="sxs-lookup"><span data-stu-id="273d4-190">*Pages/Counter.razor*:</span></span>
+<span data-ttu-id="d78a9-182">*Pages/Counter.razor*:</span><span class="sxs-lookup"><span data-stu-id="d78a9-182">*Pages/Counter.razor*:</span></span>
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
-<span data-ttu-id="273d4-191">Especifique o `IncrementAmount` no elemento `Index` do `<Counter>` componente usando um atributo.</span><span class="sxs-lookup"><span data-stu-id="273d4-191">Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.</span></span>
+<span data-ttu-id="d78a9-183">Especifique o `IncrementAmount` no `Index` elemento do componente `<Counter>` usando um atributo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-183">Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.</span></span>
 
-<span data-ttu-id="273d4-192">*Pages/Index.razor*:</span><span class="sxs-lookup"><span data-stu-id="273d4-192">*Pages/Index.razor*:</span></span>
+<span data-ttu-id="d78a9-184">*Pages/Index.razor*:</span><span class="sxs-lookup"><span data-stu-id="d78a9-184">*Pages/Index.razor*:</span></span>
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-<span data-ttu-id="273d4-193">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="273d4-193">Run the app.</span></span> <span data-ttu-id="273d4-194">O `Index` componente tem seu próprio contador que é incrementado em dez cada vez que o botão **Click me** está selecionado.</span><span class="sxs-lookup"><span data-stu-id="273d4-194">The `Index` component has its own counter that increments by ten each time the **Click me** button is selected.</span></span> <span data-ttu-id="273d4-195">O `Counter` componente (*Counter. Razor*) em `/counter` continua a incrementar um.</span><span class="sxs-lookup"><span data-stu-id="273d4-195">The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.</span></span>
+<span data-ttu-id="d78a9-185">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="d78a9-185">Run the app.</span></span> <span data-ttu-id="d78a9-186">O `Index` componente tem seu próprio contador que é incrementado em dez cada vez que o botão **Click me** está selecionado.</span><span class="sxs-lookup"><span data-stu-id="d78a9-186">The `Index` component has its own counter that increments by ten each time the **Click me** button is selected.</span></span> <span data-ttu-id="d78a9-187">O `Counter` componente (*Counter. Razor*) em `/counter` continua a incrementar um.</span><span class="sxs-lookup"><span data-stu-id="d78a9-187">The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="273d4-196">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="273d4-196">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d78a9-188">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="d78a9-188">Next steps</span></span>
 
-<xref:tutorials/first-blazor-app>
+<span data-ttu-id="d78a9-189">Compilar um Blazor aplicativo passo a passo:</span><span class="sxs-lookup"><span data-stu-id="d78a9-189">Build a Blazor app step-by-step:</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="273d4-197">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="273d4-197">Additional resources</span></span>
+> [!div class="nextstepaction"]
+> <xref:tutorials/first-blazor-app>
+
+## <a name="additional-resources"></a><span data-ttu-id="d78a9-190">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="d78a9-190">Additional resources</span></span>
 
 * <xref:blazor/templates>
 * <xref:signalr/introduction>
