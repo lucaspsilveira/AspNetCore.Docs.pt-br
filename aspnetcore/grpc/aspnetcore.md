@@ -12,16 +12,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: c14ae1fb3c2e046ae577c63824eebb4411a6e804
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: fa38ec9f9cf882b1a62f74879b7d49706ee150ce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776214"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452376"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Serviços do gRPC com o ASP.NET Core
 
 Este documento mostra como começar a usar os serviços gRPCs usando ASP.NET Core.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -62,7 +64,7 @@ gRPC requer o pacote [gRPC. AspNetCore](https://www.nuget.org/packages/Grpc.AspN
 Em *Startup.cs*:
 
 * gRPC é habilitado com o `AddGrpc` método.
-* Cada serviço gRPC é adicionado ao pipeline de roteamento por meio `MapGrpcService` do método.
+* Cada serviço gRPC é adicionado ao pipeline de roteamento por meio do `MapGrpcService` método.
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
@@ -78,13 +80,13 @@ Kestrel pontos de extremidade gRPC:
 
 #### <a name="http2"></a>HTTP/2
 
-gRPC requer HTTP/2. gRPC para ASP.NET Core valida [HttpRequest. Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) é `HTTP/2`.
+gRPC requer HTTP/2. gRPC para ASP.NET Core valida [HttpRequest. Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) é `HTTP/2` .
 
 O Kestrel [dá suporte a http/2](xref:fundamentals/servers/kestrel#http2-support) na maioria dos sistemas operacionais modernos. Os pontos de extremidade Kestrel são configurados para dar suporte a conexões HTTP/1.1 e HTTP/2 por padrão.
 
 #### <a name="tls"></a>TLS
 
-Os pontos de extremidade Kestrel usados para gRPC devem ser protegidos com TLS. No desenvolvimento, um ponto de extremidade protegido com TLS é criado `https://localhost:5001` automaticamente quando o certificado de desenvolvimento de ASP.NET Core está presente. Nenhuma configuração é necessária. Um `https` prefixo verifica se o ponto de extremidade Kestrel está usando TLS.
+Os pontos de extremidade Kestrel usados para gRPC devem ser protegidos com TLS. No desenvolvimento, um ponto de extremidade protegido com TLS é criado automaticamente `https://localhost:5001` quando o certificado de desenvolvimento de ASP.NET Core está presente. Nenhuma configuração é necessária. Um `https` prefixo verifica se o ponto de extremidade Kestrel está usando TLS.
 
 Em produção, o TLS deve ser configurado explicitamente. No exemplo de *appSettings. JSON* a seguir, um ponto de extremidade http/2 protegido com TLS é fornecido:
 
@@ -98,7 +100,7 @@ Como alternativa, os pontos de extremidade Kestrel podem ser configurados no *Pr
 
 O TLS é usado para mais do que proteger a comunicação. O handshake [ALPN (negociação do protocolo de camada de aplicativo)](https://tools.ietf.org/html/rfc7301#section-3) TLS é usado para negociar o protocolo de conexão entre o cliente e o servidor quando um ponto de extremidade dá suporte a vários protocolos. Essa negociação determina se a conexão usa HTTP/1.1 ou HTTP/2.
 
-Se um ponto de extremidade HTTP/2 estiver configurado sem TLS, os [protocolos de escuta](xref:fundamentals/servers/kestrel#listenoptionsprotocols) do ponto de extremidade deverão `HttpProtocols.Http2`ser definidos como. Um ponto de extremidade com vários protocolos (por `HttpProtocols.Http1AndHttp2`exemplo,) não pode ser usado sem TLS porque não há negociação. Todas as conexões com o ponto de extremidade não seguro padrão para HTTP/1.1 e chamadas gRPC falham.
+Se um ponto de extremidade HTTP/2 estiver configurado sem TLS, os [protocolos de escuta](xref:fundamentals/servers/kestrel#listenoptionsprotocols) do ponto de extremidade deverão ser definidos como `HttpProtocols.Http2` . Um ponto de extremidade com vários protocolos (por exemplo, `HttpProtocols.Http1AndHttp2` ) não pode ser usado sem TLS porque não há negociação. Todas as conexões com o ponto de extremidade não seguro padrão para HTTP/1.1 e chamadas gRPC falham.
 
 Para obter mais informações sobre como habilitar HTTP/2 e TLS com Kestrel, consulte [configuração de ponto de extremidade Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
@@ -122,7 +124,7 @@ Por padrão, a implementação do serviço gRPC pode resolver outros serviços d
 
 ### <a name="resolve-httpcontext-in-grpc-methods"></a>Resolver HttpContext em métodos gRPC
 
-A API gRPC fornece acesso a alguns dados de mensagem HTTP/2, como o método, o host, o cabeçalho e os trailers. O acesso é por `ServerCallContext` meio do argumento passado para cada método gRPC:
+A API gRPC fornece acesso a alguns dados de mensagem HTTP/2, como o método, o host, o cabeçalho e os trailers. O acesso é por meio do `ServerCallContext` argumento passado para cada método gRPC:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService.cs?highlight=3-4&name=snippet)]
 
@@ -130,7 +132,6 @@ A API gRPC fornece acesso a alguns dados de mensagem HTTP/2, como o método, o h
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

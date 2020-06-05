@@ -1,17 +1,29 @@
 ---
-Título: autor: Descrição: monikerRange: MS. Author: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: Configurar a autenticação de certificado no ASP.NET Core
+author: blowdart
+description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e HTTP. sys.
+monikerRange: '>= aspnetcore-3.0'
+ms.author: bdorrans
+ms.date: 01/02/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/authentication/certauth
+ms.openlocfilehash: 4511e253ea9487c5739162b9b0180e39eb3a1b9c
+ms.sourcegitcommit: 67eadd7bf28eae0b8786d85e90a7df811ffe5904
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454604"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
 `Microsoft.AspNetCore.Authentication.Certificate`contém uma implementação semelhante à [autenticação de certificado](https://tools.ietf.org/html/rfc5246#section-7.4.4) para ASP.NET Core. A autenticação de certificado ocorre no nível de TLS, muito antes que ele chegue a ASP.NET Core. Mais precisamente, esse é um manipulador de autenticação que valida o certificado e, em seguida, fornece um evento no qual você pode resolver esse certificado para um `ClaimsPrincipal` . 
 
-[Configure seu host](#configure-your-host-to-require-certificates) para autenticação de certificado, seja ele IIS, Kestrel, aplicativos Web do Azure ou qualquer outra coisa que você esteja usando.
+[Configure seu servidor](#configure-your-server-to-require-certificates) para autenticação de certificado, seja ele IIS, Kestrel, aplicativos Web do Azure ou qualquer outra coisa que você esteja usando.
 
 ## <a name="proxy-and-load-balancer-scenarios"></a>Cenários de balanceador de carga e proxy
 
@@ -24,7 +36,7 @@ Uma alternativa à autenticação de certificado em ambientes em que proxies e b
 
 ## <a name="get-started"></a>Introdução
 
-Adquira um certificado HTTPS, aplique-o e [configure seu host](#configure-your-host-to-require-certificates) para exigir certificados.
+Adquira um certificado HTTPS, aplique-o e [Configure o servidor](#configure-your-server-to-require-certificates) para exigir certificados.
 
 Em seu aplicativo Web, adicione uma referência ao `Microsoft.AspNetCore.Authentication.Certificate` pacote. Em seguida `Startup.ConfigureServices` , no método, chame `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` com suas opções, fornecendo um delegado para `OnCertificateValidated` fazer qualquer validação suplementar no certificado do cliente enviado com solicitações. Transforme essas informações em um `ClaimsPrincipal` e defina-as na `context.Principal` propriedade.
 
@@ -183,7 +195,7 @@ services.AddAuthentication(
 
 Conceitualmente, a validação do certificado é um problema de autorização. A adição de um check-in, por exemplo, um emissor ou uma impressão digital em uma política de autorização, em vez de dentro `OnCertificateValidated` , é perfeitamente aceitável.
 
-## <a name="configure-your-host-to-require-certificates"></a>Configurar o host para exigir certificados
+## <a name="configure-your-server-to-require-certificates"></a>Configurar o servidor para exigir certificados
 
 ### <a name="kestrel"></a>Kestrel
 

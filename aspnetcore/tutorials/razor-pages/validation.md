@@ -1,5 +1,5 @@
 ---
-title: Adicionar validação a uma página Razor de ASP.NET Core
+title: Adicionar validação a uma página de ASP.NET Core Razor
 author: rick-anderson
 description: Descubra como adicionar validação a uma Razor página no ASP.NET Core.
 ms.author: riande
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 91f0ac5fcd607f2423f9fc4647413b2bbb2336fc
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7aeb77e836ce0546766d88f2c52f37aaf75c12c4
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773769"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452038"
 ---
-# <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
+# <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma página de ASP.NET Core Razor
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -27,12 +27,12 @@ Nesta seção, a lógica de validação é adicionada para o modelo `Movie`. As 
 
 ## <a name="validation"></a>Validação
 
-Um princípio-chave do desenvolvimento de software é chamado [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (“**D**on't **R**epeat **Y**ourself”). As Páginas Razor incentivam o desenvolvimento quando a funcionalidade é especificada uma vez e ela é refletida em todo o aplicativo. O DRY pode ajudar a:
+Um princípio-chave do desenvolvimento de software é chamado [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (“**D**on't **R**epeat **Y**ourself”). RazorAs páginas incentivam o desenvolvimento onde a funcionalidade é especificada uma vez e é refletida em todo o aplicativo. O DRY pode ajudar a:
 
 * Reduzir a quantidade de código em um aplicativo.
 * Fazer com que o código seja menos propenso a erros e mais fácil de ser testado e mantido.
 
-O suporte de validação fornecido pelas Páginas Razor e pelo Entity Framework é um bom exemplo do princípio DRY. As regras de validação são especificadas de forma declarativa em um único lugar (na classe de modelo) e as regras são impostas em qualquer lugar no aplicativo.
+O suporte de validação fornecido por Razor páginas e Entity Framework é um bom exemplo do princípio seco. As regras de validação são especificadas de forma declarativa em um único lugar (na classe de modelo) e as regras são impostas em qualquer lugar no aplicativo.
 
 ## <a name="add-validation-rules-to-the-movie-model"></a>Adicionar regras de validação ao modelo de filme
 
@@ -61,7 +61,7 @@ Os atributos de validação especificam o comportamento que você deseja impor n
 
 Ter as regras de validação automaticamente impostas pelo ASP.NET Core ajuda a tornar seu aplicativo mais robusto. Também garante que você não se esqueça de validar algo e inadvertidamente permita dados incorretos no banco de dados.
 
-### <a name="validation-error-ui-in-razor-pages"></a>Interface do usuário do erro de validação nas Páginas Razor
+### <a name="validation-error-ui-in-razor-pages"></a>IU de erro de validação em Razor páginas
 
 Execute o aplicativo e navegue para Pages/Movies.
 
@@ -73,7 +73,7 @@ Selecione o link **Criar Novo**. Preencha o formulário com alguns valores invá
 
 Observe como o formulário renderizou automaticamente uma mensagem de erro de validação em cada campo que contém um valor inválido. Os erros são impostos no lado do cliente (usando o JavaScript e o jQuery) e no lado do servidor (quando um usuário tem o JavaScript desabilitado).
 
-Uma vantagem significativa é que **nenhuma** alteração de código foi necessária nas páginas Criar ou Editar. Depois que DataAnnotations foi aplicado ao modelo, a interface do usuário de validação foi habilitada. As Páginas Razor criadas neste tutorial selecionaram automaticamente as regras de validação (usando os atributos de validação nas propriedades da classe do modelo `Movie`). Validação do teste usando a página Editar: a mesma validação é aplicada.
+Uma vantagem significativa é que **nenhuma** alteração de código foi necessária nas páginas Criar ou Editar. Depois que DataAnnotations foi aplicado ao modelo, a interface do usuário de validação foi habilitada. As Razor páginas criadas neste tutorial captam automaticamente as regras de validação (usando atributos de validação nas propriedades da `Movie` classe de modelo). Validação do teste usando a página Editar: a mesma validação é aplicada.
 
 Os dados de formulário não serão postados no servidor enquanto houver erros de validação do lado do cliente. Verifique se os dados de formulário não são postados por uma ou mais das seguintes abordagens:
 
@@ -107,7 +107,7 @@ O código a seguir mostra uma parte da página *Create.cshtml* gerada anteriorme
 
 O [Auxiliar de Marcação de Entrada](xref:mvc/views/working-with-forms) usa os atributos de [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz os atributos HTML necessários para a Validação do jQuery no lado do cliente. O [Auxiliar de Marcação de Validação](xref:mvc/views/working-with-forms#the-validation-tag-helpers) exibe erros de validação. Consulte [Validação](xref:mvc/models/validation) para obter mais informações.
 
-As páginas Criar e Editar não têm nenhuma regra de validação. As regras de validação e as cadeias de caracteres de erro são especificadas somente na classe `Movie`. Essas regras de validação são aplicadas automaticamente às Páginas Razor que editam o modelo `Movie`.
+As páginas Criar e Editar não têm nenhuma regra de validação. As regras de validação e as cadeias de caracteres de erro são especificadas somente na classe `Movie`. Essas regras de validação são aplicadas automaticamente a Razor páginas que editam o `Movie` modelo.
 
 Quando a lógica de validação precisa ser alterada, ela é feita apenas no modelo. A validação é aplicada de forma consistente em todo o aplicativo (a lógica de validação é definida em um único lugar). A validação em um único lugar ajuda a manter o código limpo e facilita sua manutenção e atualização.
 
@@ -152,11 +152,11 @@ O seguinte código mostra como combinar atributos em uma linha:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-[Comece com o Razor Pages e o EF Core](xref:data/ef-rp/intro) mostra operações mais avançadas do EF Core com o Razor Pages.
+[Introdução ao Razor As páginas e EF Core](xref:data/ef-rp/intro) mostram as operações de EF Core avançadas com Razor páginas.
 
 ### <a name="apply-migrations"></a>Aplicar migrações
 
-As DataAnnotations aplicadas à classe alteram o esquema. Por exemplo, as DataAnnotations aplicadas ao campo `Title`:
+As anotações de aplicadas à classe alteram o esquema. Por exemplo, as DataAnnotations aplicadas ao campo `Title`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
@@ -217,7 +217,7 @@ As migrações não são necessárias para o SQLite.
 
 Para obter informações sobre como implantar no Azure, consulte [tutorial: criar um aplicativo ASP.NET Core no Azure com o banco de dados SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
-Obrigado por concluir esta introdução às Razor páginas. Comece a usar as [ Razor páginas e EF Core](xref:data/ef-rp/intro) é um excelente acompanhamento deste tutorial.
+Obrigado por concluir esta introdução às Razor páginas. [Introdução ao Razor As páginas e EF Core](xref:data/ef-rp/intro) são um excelente acompanhamento deste tutorial.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

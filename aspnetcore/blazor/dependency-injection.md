@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core Blazor injeção de dependência ' autor: guardrex Descrição: ' Veja como os Blazor aplicativos podem injetar serviços em componentes. '
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: mais incrivelmente/dependência-injeção
-
+title: Injeção de dependência de ASP.NET Core Blazor
+author: guardrex
+description: Veja como os Blazor aplicativos podem injetar serviços em componentes.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/dependency-injection
+ms.openlocfilehash: d5b0747fb0505499197d1751511600bd91fed41d
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84271777"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>Injeção de dependência de ASP.NET Core Blazor
 

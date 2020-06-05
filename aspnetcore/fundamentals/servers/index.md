@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 74affbb7d18d80e2e55714df100d820aed2ce427
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d57fcd5883a869c5421b88321d4a279f3f938c9
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776175"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452142"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementações de servidor Web em ASP.NET Core
 
@@ -40,7 +40,7 @@ Use o Kestrel:
 
   ![O Kestrel se comunica indiretamente com a Internet através de um servidor proxy reverso, tal como o IIS, o Nginx ou o Apache](kestrel/_static/kestrel-to-internet.png)
 
-Há suporte para&mdash;hospedar a configuração com ou sem um&mdash;servidor proxy reverso.
+&mdash;Há suporte para hospedar a configuração com ou sem um servidor proxy reverso &mdash; .
 
 Para obter diretrizes de configuração do Kestrel e informações sobre quando usar o Kestrel em uma configuração de proxy reverso, confira <xref:fundamentals/servers/kestrel>.
 
@@ -103,7 +103,7 @@ O diagrama a seguir ilustra a relação entre o IIS, o Módulo do ASP.NET Core e
 
 As solicitações chegam da Web para o driver do HTTP.sys no modo kernel. O driver roteia as solicitações ao IIS na porta configurada do site, normalmente, a 80 (HTTP) ou a 443 (HTTPS). O módulo encaminha as solicitações ao Kestrel em uma porta aleatória do aplicativo, que não seja a porta 80 ou 443.
 
-O módulo Especifica a porta por meio de uma variável de ambiente na inicialização, e o [middleware de integração do IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura o servidor a `http://localhost:{port}`ser escutado. Outras verificações são executadas e as solicitações que não se originam do módulo são rejeitadas. O módulo não é compatível com encaminhamento de HTTPS, portanto, as solicitações são encaminhadas por HTTP, mesmo se recebidas pelo IIS por HTTPS.
+O módulo Especifica a porta por meio de uma variável de ambiente na inicialização, e o [middleware de integração do IIS](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configura o servidor a ser escutado `http://localhost:{port}` . Outras verificações são executadas e as solicitações que não se originam do módulo são rejeitadas. O módulo não é compatível com encaminhamento de HTTPS, portanto, as solicitações são encaminhadas por HTTP, mesmo se recebidas pelo IIS por HTTPS.
 
 Depois que o Kestrel coleta a solicitação do módulo, a solicitação é enviada por push ao pipeline do middleware do ASP.NET Core. O pipeline do middleware manipula a solicitação e a passa como uma instância de `HttpContext` para a lógica do aplicativo. O middleware adicionado pela integração do IIS atualiza o esquema, o IP remoto e pathbase para encaminhar a solicitação para o Kestrel. A resposta do aplicativo é retornada ao IIS, que a retorna por push para o cliente HTTP que iniciou a solicitação.
 
@@ -158,13 +158,13 @@ Se os servidores internos não atenderem aos requisitos do aplicativo, um servid
 
 O servidor é iniciado quando o IDE (Ambiente de Desenvolvimento Integrado) ou o editor inicia o aplicativo:
 
-* [Visual Studio](https://visualstudio.microsoft.com) &ndash; os perfis de inicialização podem ser usados para iniciar o aplicativo e o servidor com o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) ou o console.
-* [Visual Studio Code](https://code.visualstudio.com/) &ndash; o aplicativo e o servidor são iniciados pelo [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), que ativa o depurador CoreCLR.
-* [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) &ndash; o aplicativo e o servidor são iniciados pelo [Depurador de modo suave Mono](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
+* [Visual Studio](https://visualstudio.microsoft.com): os perfis de inicialização podem ser usados para iniciar o aplicativo e o servidor com o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) / [ASP.NET Core módulo](xref:host-and-deploy/aspnet-core-module) ou o console do.
+* [Visual Studio Code](https://code.visualstudio.com/): o aplicativo e o servidor são iniciados pelo [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), que ativa o depurador CoreCLR.
+* [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/): o aplicativo e o servidor são iniciados pelo [depurador do modo Soft-mono](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
 Ao iniciar o aplicativo usando um prompt de comando na pasta do projeto, o [dotnet run](/dotnet/core/tools/dotnet-run) inicia o aplicativo e o servidor (apenas Kestrel e HTTP.sys). A configuração é especificada pela opção `-c|--configuration`, que é definida como `Debug` (padrão) ou `Release`.
 
-Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` o ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , `--launch-profile {PROFILE NAME}` use a opção `dotnet run` com o comando ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
+Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` o ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , use a `--launch-profile {PROFILE NAME}` opção com o `dotnet run` comando ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Suporte do HTTP/2
 

@@ -5,7 +5,7 @@ description: Saiba como usar a ferramenta global HTTP REPL do .NET Core para nav
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/11/2019
+ms.date: 05/20/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 4d0200cd412cce6eda473a64d132d74d8641db34
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4c42ad56bbdb7b66824b290cd118903cbe4311e8
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777092"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452207"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -34,7 +34,7 @@ Os [verbos HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelin
 
 * [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
-* [HEAD](#test-http-head-requests)
+* [PRINCIPAL](#test-http-head-requests)
 * [Opções](#test-http-options-requests)
 * [DISTRIBUÍDO](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
@@ -140,7 +140,7 @@ Conecte-se à uma API Web executando o seguinte comando:
 httprepl <ROOT URI>
 ```
 
-`<ROOT URI>` é o URI de base para a API Web. Por exemplo: 
+`<ROOT URI>` é o URI de base para a API Web. Por exemplo:
 
 ```console
 httprepl https://localhost:5001
@@ -152,7 +152,7 @@ Outra opção é executar o seguinte comando a qualquer momento quando o HTTP RE
 connect <ROOT URI>
 ```
 
-Por exemplo: 
+Por exemplo:
 
 ```console
 (Disconnected)~ connect https://localhost:5001
@@ -166,7 +166,7 @@ O comando connect acima tentará localizar automaticamente o documento do Swagge
 connect <ROOT URI> --swagger <SWAGGER URI>
 ```
 
-Por exemplo: 
+Por exemplo:
 
 ```console
 (Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
@@ -205,7 +205,7 @@ https://localhost:5001/fruits~ ls
 https://localhost:5001/fruits~
 ```
 
-Outra opção é executar o comando `ui` para abrir a página da interface do usuário do Swagger da API Web em um navegador. Por exemplo: 
+Outra opção é executar o comando `ui` para abrir a página da interface do usuário do Swagger da API Web em um navegador. Por exemplo:
 
 ```console
 https://localhost:5001/~ ui
@@ -249,7 +249,7 @@ O arquivo *.httpreplprefs* é carregado na inicialização e suas alterações n
 
 ### <a name="view-the-settings"></a>Exibir as configurações
 
-Para exibir as configurações disponíveis, execute o comando `pref get`. Por exemplo: 
+Para exibir as configurações disponíveis, execute o comando `pref get`. Por exemplo:
 
 ```console
 https://localhost:5001/~ pref get
@@ -287,7 +287,7 @@ Quando chaves de cor específicas não estão definidas, mais chaves genéricas 
 
 ### <a name="set-indentation-size"></a>Definir o tamanho do recuo
 
-A personalização do tamanho do recuo da resposta só é compatível com JSON. O tamanho padrão é dois espaços. Por exemplo: 
+A personalização do tamanho do recuo da resposta só é compatível com JSON. O tamanho padrão é dois espaços. Por exemplo:
 
 ```json
 [
@@ -376,7 +376,7 @@ Por padrão, HTTP REPL tem um conjunto de caminhos relativos que ele usa para lo
 - */Swagger.JSON*
 - */swagger/v1/swagger.json*
 
-Para usar um conjunto diferente de caminhos de pesquisa em seu ambiente, defina a preferência `swagger.searchPaths`. O valor precisa ser uma lista delimitada por pipes de caminhos relativos. Por exemplo: 
+Para usar um conjunto diferente de caminhos de pesquisa em seu ambiente, defina a preferência `swagger.searchPaths`. O valor precisa ser uma lista delimitada por pipes de caminhos relativos. Por exemplo:
 
 ```console
 pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
@@ -496,7 +496,7 @@ Para emitir uma solicitação HTTP POST:
     https://localhost:5001/people~ post -h Content-Type=application/json
     ```
 
-    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo: 
+    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo:
 
     ```json
     {
@@ -592,7 +592,7 @@ Para emitir uma solicitação HTTP PUT:
     https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
     ```
 
-    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo: 
+    No comando anterior, o cabeçalho da solicitação HTTP `Content-Type` está configurado para indicar um tipo de mídia de corpo da solicitação do JSON. O editor de texto padrão abrirá um arquivo *.tmp* com um modelo JSON que representa o corpo da solicitação HTTP. Por exemplo:
 
     ```json
     {
@@ -798,7 +798,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abordagens:
 
-* Configure embutido com a solicitação HTTP. Por exemplo: 
+* Configure embutido com a solicitação HTTP. Por exemplo:
 
     ```console
     https://localhost:5001/people~ post -h Content-Type=application/json
@@ -806,13 +806,13 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
     
     Com a abordagem anterior, cada cabeçalho de solicitação HTTP diferente exige sua própria opção `-h`.
 
-* Configure antes de enviar a solicitação HTTP. Por exemplo: 
+* Configure antes de enviar a solicitação HTTP. Por exemplo:
 
     ```console
     https://localhost:5001/people~ set header Content-Type application/json
     ```
     
-    Ao configurar o cabeçalho antes de enviar a solicitação, ele permanecerá configurado durante toda a sessão do shell de comando. Para limpar o cabeçalho, forneça um valor vazio. Por exemplo: 
+    Ao configurar o cabeçalho antes de enviar a solicitação, ele permanecerá configurado durante toda a sessão do shell de comando. Para limpar o cabeçalho, forneça um valor vazio. Por exemplo:
     
     ```console
     https://localhost:5001/people~ set header Content-Type
@@ -820,7 +820,23 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
 
 ## <a name="test-secured-endpoints"></a>Pontos de extremidade protegidos de teste
 
-O HTTP REPL dá suporte ao teste de pontos de extremidade protegidos por meio do uso de cabeçalhos de solicitação HTTP. Exemplos de autenticação e esquemas de autorização com suporte incluem autenticação básica, tokens de portador JWT e autenticação Digest. Por exemplo, você pode enviar um token de portador para um ponto de extremidade com o seguinte comando:
+O HTTP REPL dá suporte ao teste de pontos de extremidade protegidos de duas maneiras: por meio das credenciais padrão do usuário conectado ou do uso de cabeçalhos de solicitação HTTP. 
+
+### <a name="default-credentials"></a>Credenciais padrão
+
+Considere um cenário no qual a API Web que você está testando está hospedada no IIS e protegida com a autenticação do Windows. Você deseja que as credenciais do usuário que executa a ferramenta fluam para os pontos de extremidade HTTP que estão sendo testados. Para passar as credenciais padrão do usuário conectado:
+
+1. Defina a `httpClient.useDefaultCredentials` preferência como `true` :
+
+    ```console
+    pref set httpClient.useDefaultCredentials true
+    ```
+
+1. Saia e reinicie a ferramenta antes de enviar outra solicitação para a API da Web.
+
+### <a name="http-request-headers"></a>Cabeçalhos de solicitação HTTP
+
+Exemplos de autenticação e esquemas de autorização com suporte incluem autenticação básica, tokens de portador JWT e autenticação Digest. Por exemplo, você pode enviar um token de portador para um ponto de extremidade com o seguinte comando:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
@@ -830,25 +846,25 @@ Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do A
 
 1. Faça logon no Azure:
 
-    ```azcli
+    ```azurecli
     az login
     ```
 
 1. Obtenha sua ID de assinatura com o seguinte comando:
 
-    ```azcli
+    ```azurecli
     az account show --query id
     ```
 
 1. Copie sua ID de assinatura e execute o seguinte comando:
 
-    ```azcli
+    ```azurecli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
 1. Obtenha seu token de portador com o seguinte comando:
 
-    ```azcli
+    ```azurecli
     az account get-access-token --query accessToken
     ```
 
@@ -906,14 +922,14 @@ Por padrão, a exibição da solicitação HTTP que está sendo enviada é supri
 
 ### <a name="enable-request-display"></a>Habilitar a exibição da solicitação
 
-Exiba a solicitação HTTP que está sendo enviada executando o comando `echo on`. Por exemplo: 
+Exiba a solicitação HTTP que está sendo enviada executando o comando `echo on`. Por exemplo:
 
 ```console
 https://localhost:5001/people~ echo on
 Request echoing is on
 ```
 
-As solicitações HTTP subsequentes na sessão atual exibem os cabeçalhos de solicitação. Por exemplo: 
+As solicitações HTTP subsequentes na sessão atual exibem os cabeçalhos de solicitação. Por exemplo:
 
 ```console
 https://localhost:5001/people~ post
@@ -951,7 +967,7 @@ https://localhost:5001/people~
 
 ### <a name="disable-request-display"></a>Desabilitar a exibição da solicitação
 
-Suprima a exibição da solicitação HTTP que está sendo enviada executando o comando `echo off`. Por exemplo: 
+Suprima a exibição da solicitação HTTP que está sendo enviada executando o comando `echo off`. Por exemplo:
 
 ```console
 https://localhost:5001/people~ echo off
@@ -960,7 +976,7 @@ Request echoing is off
 
 ## <a name="run-a-script"></a>Executar um script
 
-Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, considere armazená-los em um arquivo de texto. Os comandos no arquivo assumem a mesma forma que os executados manualmente na linha de comando. Os comandos podem ser executados em um modo em lote usando o comando `run`. Por exemplo: 
+Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, considere armazená-los em um arquivo de texto. Os comandos no arquivo assumem a mesma forma que os executados manualmente na linha de comando. Os comandos podem ser executados em um modo em lote usando o comando `run`. Por exemplo:
 
 1. Crie um arquivo de texto com um conjunto de comandos delimitados por nova linha. Para ilustrar, considere um arquivo *people-script.txt* com os seguintes comandos:
 
@@ -972,7 +988,7 @@ Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, consid
     get 1
     ```
 
-1. Execute o comando `run`, passando o caminho do arquivo de texto. Por exemplo: 
+1. Execute o comando `run`, passando o caminho do arquivo de texto. Por exemplo:
 
     ```console
     https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt

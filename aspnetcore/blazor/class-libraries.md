@@ -1,7 +1,7 @@
 ---
-title: Bibliotecas Razor de classes de componentes ASP.NET Core
+title: RazorBibliotecas de classes de componentes ASP.NET Core
 author: guardrex
-description: Descubra como os componentes podem ser incluídos Blazor em aplicativos de uma biblioteca de componentes externos.
+description: Descubra como os componentes podem ser incluídos em Blazor aplicativos de uma biblioteca de componentes externos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/class-libraries
-ms.openlocfilehash: 57f3494fd825b6549c40f56962da2c8076e8fd51
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b7819404066267003a340629979f2339c66724b0
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767090"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84452012"
 ---
-# <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
+# <a name="aspnet-core-razor-components-class-libraries"></a>RazorBibliotecas de classes de componentes ASP.NET Core
 
 Por [Simon Timms](https://github.com/stimms)
 
-Os componentes podem ser compartilhados em uma [biblioteca de classes Razor (RCL)](xref:razor-pages/ui-class) em projetos. Uma *biblioteca de classes de componentes Razor* pode ser incluída em:
+Os componentes podem ser compartilhados em uma [ Razor biblioteca de classes (RCL)](xref:razor-pages/ui-class) em projetos. Uma * Razor biblioteca de classes de componentes* pode ser incluída em:
 
 * Outro projeto na solução.
 * Um pacote NuGet.
@@ -34,24 +34,24 @@ Assim como os componentes são tipos .NET regulares, os componentes fornecidos p
 
 ## <a name="create-an-rcl"></a>Criar um RCL
 
-Siga as orientações no <xref:blazor/get-started> artigo para configurar seu ambiente para um mais incrivelmente.
+Siga as orientações no <xref:blazor/get-started> artigo para configurar seu ambiente para o Blazor .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Criar um novo projeto.
-1. Selecione **biblioteca de classes Razor**. Selecione **Avançar**.
-1. Na caixa de diálogo **criar uma nova biblioteca de classes Razor** , selecione **criar**.
-1. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Os exemplos neste tópico usam o nome `MyComponentLib1`do projeto. Selecione **Criar**.
+1. Selecione ** Razor biblioteca de classes**. Selecione **Avançar**.
+1. Na caixa de diálogo **criar uma nova Razor biblioteca de classes** , selecione **criar**.
+1. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Os exemplos neste tópico usam o nome do projeto `MyComponentLib1` . Selecione **Criar**.
 1. Adicione o RCL a uma solução:
-   1. Clique com o botão direito do mouse na solução. Selecione **Adicionar** > **projeto existente**.
+   1. Clique com o botão direito do mouse na solução. Selecione **Adicionar**  >  **projeto existente**.
    1. Navegue até o arquivo de projeto do RCL.
    1. Selecione o arquivo de projeto do RCL (*. csproj*).
 1. Adicione uma referência ao RCL do aplicativo:
-   1. Clique com o botão direito do mouse no projeto do aplicativo. Selecione **Adicionar** > **referência**.
+   1. Clique com o botão direito do mouse no projeto do aplicativo. Selecione **Adicionar**  >  **referência**.
    1. Selecione o projeto RCL. Selecione **OK**.
 
 > [!NOTE]
-> Se a caixa de seleção **páginas de suporte e exibições** estiver marcada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a criação de componentes Razor:
+> Se a caixa de seleção **páginas de suporte e exibições** estiver marcada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a Razor criação de componentes:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
@@ -61,14 +61,14 @@ Siga as orientações no <xref:blazor/get-started> artigo para configurar seu am
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-1. Use o modelo de **biblioteca de classes Razor** (`razorclasslib`) com o comando [dotnet New](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um RCL é criado com `MyComponentLib1`o nome. A pasta que contém `MyComponentLib1` é criada automaticamente quando o comando é executado:
+1. Use o modelo de ** Razor biblioteca de classes** ( `razorclasslib` ) com o comando [dotnet New](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um RCL é criado com o nome `MyComponentLib1` . A pasta que contém `MyComponentLib1` é criada automaticamente quando o comando é executado:
 
    ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
    > [!NOTE]
-   > Se a `-s|--support-pages-and-views` opção for usada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a criação de componentes do Razor:
+   > Se a `-s|--support-pages-and-views` opção for usada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a criação de Razor componentes:
    >
    > ```razor
    > @using Microsoft.AspNetCore.Components.Web
@@ -89,9 +89,9 @@ Siga as orientações no <xref:blazor/get-started> artigo para configurar seu am
 Para consumir os componentes definidos em uma biblioteca em outro projeto, use uma das seguintes abordagens:
 
 * Use o nome completo do tipo com o namespace.
-* Use Razora [ \@diretiva de uso.](xref:mvc/views/razor#using) Componentes individuais podem ser adicionados por nome.
+* Use Razor a [`@using`](xref:mvc/views/razor#using) diretiva do. Componentes individuais podem ser adicionados por nome.
 
-Nos exemplos a seguir, `MyComponentLib1` é uma biblioteca de componentes que `SalesReport` contém um componente.
+Nos exemplos a seguir, `MyComponentLib1` é uma biblioteca de componentes que contém um `SalesReport` componente.
 
 O `SalesReport` componente pode ser referenciado usando seu nome de tipo completo com namespace:
 
@@ -103,7 +103,7 @@ Welcome to your new app.
 <MyComponentLib1.SalesReport />
 ```
 
-O componente também poderá ser referenciado se a biblioteca for colocada no escopo com `@using` uma diretiva:
+O componente também poderá ser referenciado se a biblioteca for colocada no escopo com uma `@using` diretiva:
 
 ```razor
 @using MyComponentLib1

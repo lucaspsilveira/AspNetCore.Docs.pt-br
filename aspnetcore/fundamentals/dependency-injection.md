@@ -1,12 +1,24 @@
 ---
-Título: injeção de dependência em ASP.NET Core autor: Rick-Anderson Descrição: saiba como ASP.NET Core implementa a injeção de dependência e como usá-la.
-monikerRange: ' >= aspnetcore-2,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/14/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: conceitos básicos/injeção de dependência
-
+title: Injeção de dependência no ASP.NET Core
+author: rick-anderson
+description: Saiba como o ASP.NET Core implementa a injeção de dependência e como usá-la.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/14/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/dependency-injection
+ms.openlocfilehash: db0a23e2db34de60308ea9be021a190278dee4aa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84271894"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -203,7 +215,7 @@ Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjec
 
 Os métodos de extensão de registro de serviço oferecem sobrecargas que são úteis em cenários específicos.
 
-| Método | Automática<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
+| Método | Automático<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sim | Sim | Não |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sim | Sim | Sim |
@@ -780,7 +792,7 @@ Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjec
 
 Os métodos de extensão de registro de serviço oferecem sobrecargas que são úteis em cenários específicos.
 
-| Método | Automática<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
+| Método | Automático<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sim | Sim | Não |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sim | Sim | Sim |

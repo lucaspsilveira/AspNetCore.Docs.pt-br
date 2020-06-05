@@ -8,11 +8,15 @@ Defina o tipo de declaração de identificador de usuário quando um aplicativo 
 Em `Startup.ConfigureServices`:
 
 ```csharp
+using System.Security.Claims;
+
+...
+
 services.Configure<IdentityOptions>(options => 
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-O seguinte `WeatherForecastController` registra em <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> log quando `Get` o método é chamado:
+O seguinte `WeatherForecastController` registra em log <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> quando o `Get` método é chamado:
 
 ```csharp
 using System;
@@ -33,7 +37,7 @@ namespace {APP NAMESPACE}.Server.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
         private static readonly string[] Summaries = new[]
         {
@@ -47,7 +51,7 @@ namespace {APP NAMESPACE}.Server.Controllers
             UserManager<ApplicationUser> userManager)
         {
             this.logger = logger;
-            _userManager = userManager;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -55,7 +59,7 @@ namespace {APP NAMESPACE}.Server.Controllers
         {
             var rng = new Random();
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await userManager.GetUserAsync(User);
 
             if (user != null)
             {
