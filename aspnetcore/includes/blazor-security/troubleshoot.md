@@ -16,8 +16,12 @@ Uma abordagem para impedir que cookies persistentes e dados do site interfira no
 * Use um comando personalizado para abrir um navegador no modo Incognito ou privado no Visual Studio:
   * Abra a caixa de diálogo **procurar com** no botão **executar** do Visual Studio.
   * Selecione o botão **Adicionar**.
-  * Forneça o caminho para o seu navegador no campo **programa** .
-  * No campo **argumentos** , forneça a opção de linha de comando que o navegador usa para abrir no modo Incognito ou privado e a URL do aplicativo. Por exemplo:
+  * Forneça o caminho para o seu navegador no campo **programa** . Os seguintes caminhos executáveis são locais típicos de instalação para o Windows 10. Se o navegador estiver instalado em um local diferente ou se você não estiver usando o Windows 10, forneça o caminho para o executável do navegador.
+    * Microsoft Edge:`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+    * Google Chrome:`C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
+    * Mozilla Firefox:`C:\Program Files\Mozilla Firefox\firefox.exe`
+  * No campo **argumentos** , forneça a opção de linha de comando que o navegador usa para abrir no modo Incognito ou privado. Alguns navegadores exigem a URL do aplicativo.
+    * Microsoft Edge:`-inprivate`
     * Google Chrome:`--incognito --new-window https://localhost:5001`
     * Mozilla Firefox:`-private -url https://localhost:5001`
   * Forneça um nome no campo **nome amigável** . Por exemplo, `Firefox Auth Testing`.
