@@ -1,12 +1,22 @@
 ---
-Título: globalização e localização no ASP.NET Core autor: Rick – descrição de Anderson: saiba como ASP.NET Core fornece serviços e middleware para localizar conteúdo em diferentes idiomas e culturas.
-MS. Author: Riande MS. Date: 11/30/2019 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: conceitos básicos/localização
-
+title: Globalização e localização no ASP.NET Core
+author: rick-anderson
+description: Saiba como o ASP.NET Core fornece serviços e middleware para localização de conteúdo em diferentes idiomas e culturas.
+ms.author: riande
+ms.date: 11/30/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/localization
+ms.openlocfilehash: e3b73a7a559d2f4a0803dc26dd42257c60fab884
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84356954"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 

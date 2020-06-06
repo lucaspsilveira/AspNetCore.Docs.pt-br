@@ -1,12 +1,24 @@
 ---
-Título: ' host e implantar Blazor o servidor de ASP.NET Core ' autor: guardrex Descrição: ' saiba como hospedar e implantar um Blazor aplicativo de servidor usando ASP.NET Core. '
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 06/04/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: host-and-Deploy/mais novo/servidor
-
+title: Hospedar e implantar o Blazor servidor de ASP.NET Core
+author: guardrex
+description: Saiba como hospedar e implantar um Blazor aplicativo de servidor usando o ASP.NET Core.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/blazor/server
+ms.openlocfilehash: 8c06d3a4d0d75a3e2fd9f699af38a23833fa8bce
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419938"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Hospedar e implantar Blazor servidor
 

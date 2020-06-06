@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ddc14aba14e31c5530cda14b4792736da001246a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 2fcfd46057935cadac76c558a78729a1c096ffc0
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767233"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451806"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
 
@@ -108,11 +108,13 @@ O diagrama a seguir mostra o design do aplicativo.
 
   ![Nova solução do macOS](first-web-api-mac/_static/sln.png)
 
-* Selecione **.NET Core** > **Aplicativo** > **API** > **Próximo**.
+* Em Visual Studio para Mac anteriores à versão 8,6, selecione API de aplicativo do **.NET Core**  >  **App**  >  **API**  >  **Avançar**. Na versão 8,6 ou posterior, selecione **Web e API de aplicativo de console**  >  **App**  >  **API**  >  **Avançar** .
 
-  ![Caixa de diálogo Novo projeto do macOS](first-web-api-mac/_static/1.png)
-  
-* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , selecione **estrutura de destino** do **.NET Core 3,1*.
+  ![seleção de modelo de API do macOS](first-web-api-mac/_static/api_template.png)
+
+* Confirme se a **estrutura de destino** está definida como **.NET Core 3,1**. Selecione **Avançar**.
+
+  ![seleção do macOS .NET Core 3,1](first-web-api-mac/_static/api_31_config.png)
 
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
@@ -145,7 +147,7 @@ Pressione CTRL+F5 para executar o aplicativo. Em um navegador, acesse a seguinte
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-Selecione **executar** > **Iniciar Depuração** para iniciar o aplicativo. O Visual Studio para Mac inicia um navegador e navega para `https://localhost:<port>`, em que `<port>` é um número de porta escolhido aleatoriamente. Um erro HTTP 404 (Não Encontrado) será retornado. Acrescente `/WeatherForecast` à URL (altere a URL para `https://localhost:<port>/WeatherForecast`).
+Selecione **executar**  >  **Iniciar Depuração** para iniciar o aplicativo. O Visual Studio para Mac inicia um navegador e navega para `https://localhost:<port>`, em que `<port>` é um número de porta escolhido aleatoriamente. Um erro HTTP 404 (Não Encontrado) será retornado. Acrescente `/WeatherForecast` à URL (altere a URL para `https://localhost:<port>/WeatherForecast`).
 
 ---
 
@@ -192,7 +194,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar** > **nova pasta**. Nomeie a pasta como *Modelos*.
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
@@ -206,7 +208,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **nova pasta**. Nomeie a pasta como *Modelos*.
+* Clique com o botão direito do mouse no projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
@@ -308,7 +310,7 @@ O código gerado:
 Os modelos de ASP.NET Core para:
 
 * Os controladores com exibições incluem `[action]` no modelo de rota.
-* Os controladores de API `[action]` não incluem no modelo de rota.
+* Os controladores de API não incluem `[action]` no modelo de rota.
 
 Quando o `[action]` token não está no modelo de rota, o nome da [ação](xref:mvc/controllers/routing#action) é excluído da rota. Ou seja, o nome do método associado da ação não é usado na rota correspondente.
 
@@ -368,7 +370,7 @@ Este tutorial usa o Postman para testar a API Web.
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/3/create.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/TodoItems/1`).
+* Cole o URI (por exemplo, `https://localhost:5001/api/TodoItems/1` ).
 * Selecione **Enviar**.
 
 ## <a name="examine-the-get-methods"></a>Examine os métodos GET
@@ -378,7 +380,7 @@ Esses métodos implementam dois pontos de extremidade GET:
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
 
-Teste o aplicativo chamando os dois pontos de extremidade de um navegador ou do Postman. Por exemplo: 
+Teste o aplicativo chamando os dois pontos de extremidade de um navegador ou do Postman. Por exemplo:
 
 * `https://localhost:5001/api/TodoItems`
 * `https://localhost:5001/api/TodoItems/1`
@@ -416,13 +418,13 @@ O [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) atributo 
 * Substitua `[controller]` pelo nome do controlador, que é o nome de classe do controlador menos o sufixo "Controlador" por convenção. Para esta amostra, o nome da classe do controlador é **TodoItems**Controller. Portanto, o nome do controlador é "TodoItems". O [roteamento](xref:mvc/controllers/routing) do ASP.NET Core não diferencia maiúsculas de minúsculas.
 * Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor `"{id}"` de na URL é fornecido para o método em seu `id` parâmetro.
+No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido para o método em seu `id` parâmetro.
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## <a name="return-values"></a>Valores retornados
 
-O tipo de retorno dos métodos `GetTodoItems` e `GetTodoItem` é o [tipo ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type). O ASP.NET Core serializa automaticamente o objeto em [JSON](https://www.json.org/) e grava o JSON no corpo da mensagem de resposta. O código de resposta para esse tipo de retorno é 200, supondo que não haja nenhuma exceção sem tratamento. As exceções sem tratamento são convertidas em erros 5xx.
+O tipo de retorno dos `GetTodoItems` `GetTodoItem` métodos e é [ActionResult \<T> tipo](xref:web-api/action-return-types#actionresultt-type). O ASP.NET Core serializa automaticamente o objeto em [JSON](https://www.json.org/) e grava o JSON no corpo da mensagem de resposta. O código de resposta para esse tipo de retorno é 200, supondo que não haja nenhuma exceção sem tratamento. As exceções sem tratamento são convertidas em erros 5xx.
 
 Os tipos de retorno `ActionResult` podem representar uma ampla variedade de códigos de status HTTP. Por exemplo, `GetTodoItem` pode retornar dois valores de status diferentes:
 
@@ -468,14 +470,14 @@ Examine o método `DeleteTodoItem`:
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído (por exemplo `https://localhost:5001/api/TodoItems/1`,).
+* Defina o URI do objeto a ser excluído (por exemplo, `https://localhost:5001/api/TodoItems/1` ).
 * Selecione **Enviar**.
 
 <a name="over-post"></a>
 
 ## <a name="prevent-over-posting"></a>Evitar excesso de postagem
 
-Atualmente, o aplicativo de exemplo expõe `TodoItem` o objeto inteiro. Os aplicativos de produções normalmente limitam os dados que são inseridos e retornados usando um subconjunto do modelo. Há várias razões por trás disso e a segurança é uma importante. O subconjunto de um modelo é geralmente conhecido como um objeto Transferência de Dados (DTO), um modelo de entrada ou um modelo de exibição. O **dto** é usado neste artigo.
+Atualmente, o aplicativo de exemplo expõe o `TodoItem` objeto inteiro. Os aplicativos de produções normalmente limitam os dados que são inseridos e retornados usando um subconjunto do modelo. Há várias razões por trás disso e a segurança é uma importante. O subconjunto de um modelo é geralmente conhecido como um objeto Transferência de Dados (DTO), um modelo de entrada ou um modelo de exibição. O **dto** é usado neste artigo.
 
 Um DTO pode ser usado para:
 
@@ -484,7 +486,7 @@ Um DTO pode ser usado para:
 * Omita algumas propriedades para reduzir o tamanho da carga.
 * Mesclar grafos de objeto que contêm objetos aninhados. Os gráficos de objeto achatados podem ser mais convenientes para os clientes.
 
-Para demonstrar a abordagem do DTO, atualize `TodoItem` a classe para incluir um campo secreto:
+Para demonstrar a abordagem do DTO, atualize a `TodoItem` classe para incluir um campo secreto:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
 
@@ -496,7 +498,7 @@ Criar um modelo de DTO:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
 
-Atualize o `TodoItemsController` para usar `TodoItemDTO`:
+Atualize o `TodoItemsController` para usar `TodoItemDTO` :
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
 
@@ -588,9 +590,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
   ![Nova solução do macOS](first-web-api-mac/_static/sln.png)
 
-* Selecione **.NET Core** > **Aplicativo** > **API** > **Próximo**.
-
-  ![Caixa de diálogo Novo projeto do macOS](first-web-api-mac/_static/1.png)
+* Em Visual Studio para Mac anteriores à versão 8,6, selecione API de aplicativo do **.NET Core**  >  **App**  >  **API**  >  **Avançar**. Na versão 8,6 ou posterior, selecione **Web e API de aplicativo de console**  >  **App**  >  **API**  >  **Avançar**.
   
 * Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, aceite a **Estrutura de Destino** padrão **.NET Core 2.2*.
 
@@ -616,7 +616,7 @@ Pressione CTRL+F5 para executar o aplicativo. Em um navegador, acesse a seguinte
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-Selecione **executar** > **Iniciar Depuração** para iniciar o aplicativo. O Visual Studio para Mac inicia um navegador e navega para `https://localhost:<port>`, em que `<port>` é um número de porta escolhido aleatoriamente. Um erro HTTP 404 (Não Encontrado) será retornado. Acrescente `/api/values` à URL (altere a URL para `https://localhost:<port>/api/values`).
+Selecione **executar**  >  **Iniciar Depuração** para iniciar o aplicativo. O Visual Studio para Mac inicia um navegador e navega para `https://localhost:<port>`, em que `<port>` é um número de porta escolhido aleatoriamente. Um erro HTTP 404 (Não Encontrado) será retornado. Acrescente `/api/values` à URL (altere a URL para `https://localhost:<port>/api/values`).
 
 ---
 
@@ -632,7 +632,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar** > **nova pasta**. Nomeie a pasta como *Modelos*.
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
@@ -646,7 +646,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **nova pasta**. Nomeie a pasta como *Modelos*.
+* Clique com o botão direito do mouse no projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
@@ -737,7 +737,7 @@ Esses métodos implementam dois pontos de extremidade GET:
 
 Interrompa o aplicativo se ele ainda estiver em execução. Em seguida, execute-o novamente para incluir as alterações mais recentes.
 
-Teste o aplicativo chamando os dois pontos de extremidade em um navegador. Por exemplo: 
+Teste o aplicativo chamando os dois pontos de extremidade em um navegador. Por exemplo:
 
 * `https://localhost:<port>/api/todo`
 * `https://localhost:<port>/api/todo/1`
@@ -771,7 +771,7 @@ No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservad
 
 ## <a name="return-values"></a>Valores retornados
 
-O tipo de retorno dos métodos `GetTodoItems` e `GetTodoItem` é o [tipo ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type). O ASP.NET Core serializa automaticamente o objeto em [JSON](https://www.json.org/) e grava o JSON no corpo da mensagem de resposta. O código de resposta para esse tipo de retorno é 200, supondo que não haja nenhuma exceção sem tratamento. As exceções sem tratamento são convertidas em erros 5xx.
+O tipo de retorno dos `GetTodoItems` `GetTodoItem` métodos e é [ActionResult \<T> tipo](xref:web-api/action-return-types#actionresultt-type). O ASP.NET Core serializa automaticamente o objeto em [JSON](https://www.json.org/) e grava o JSON no corpo da mensagem de resposta. O código de resposta para esse tipo de retorno é 200, supondo que não haja nenhuma exceção sem tratamento. As exceções sem tratamento são convertidas em erros 5xx.
 
 Os tipos de retorno `ActionResult` podem representar uma ampla variedade de códigos de status HTTP. Por exemplo, `GetTodoItem` pode retornar dois valores de status diferentes:
 
@@ -793,7 +793,7 @@ Este tutorial usa o Postman para testar a API Web.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* De **Postman** > **preferências** do postmaster (guia**geral** ), desabilite a **verificação do certificado SSL**. Como alternativa, selecione a chave inglesa, selecione **Configurações** e desabilite a verificação do certificado SSL.
+* De **Postman**  >  **preferências** do postmaster (guia**geral** ), desabilite a **verificação do certificado SSL**. Como alternativa, selecione a chave inglesa, selecione **Configurações** e desabilite a verificação do certificado SSL.
 
 ---
   
@@ -854,7 +854,7 @@ O método `CreatedAtAction`:
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/pmc2.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2`).
+* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2` ).
 * Selecione **Enviar**.
 
 ## <a name="add-a-puttodoitem-method"></a>Adicionar um método PutTodoItem
@@ -898,7 +898,7 @@ A resposta `DeleteTodoItem` é [204 (Sem conteúdo)](https://www.w3.org/Protocol
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído (por exemplo, `https://localhost:5001/api/todo/1`).
+* Defina o URI do objeto a ser excluído (por exemplo, `https://localhost:5001/api/todo/1` ).
 * Selecione **Enviar**.
 
 O aplicativo de exemplo permite que você exclua todos os itens. No entanto, quando o último item é excluído, um novo é criado pelo construtor de classe de modelo na próxima vez que a API for chamada.
@@ -924,7 +924,7 @@ Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substi
 Uma alteração nas configurações de inicialização do projeto ASP.NET Core pode ser necessária para testar a página HTML localmente:
 
 * Abra *Properties\launchSettings.json*.
-* Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index. html*&mdash;o arquivo padrão do projeto.
+* Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index. html* &mdash; o arquivo padrão do projeto.
 
 Esta amostra chama todos os métodos CRUD da API Web. Veja a seguir explicações das chamadas à API.
 

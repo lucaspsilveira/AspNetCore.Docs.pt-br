@@ -1,11 +1,23 @@
 ---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: Migrar de ASP.NET Web API para ASP.NET Core
+author: ardalis
+description: Saiba como migrar uma implementação de API da Web da API Web do ASP.NET 4. x para ASP.NET Core MVC.
+ms.author: scaddie
+ms.custom: mvc
+ms.date: 05/26/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: migration/webapi
+ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84145545"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrar de ASP.NET Web API para ASP.NET Core
 

@@ -1,11 +1,24 @@
 ---
-Título: ' proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory B2C ' autor: guardrex Descrição: monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: Security/mais alto/Webassembly/Hosted-com-Azure-Active-Directory-B2C
-
+title: Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+ms.openlocfilehash: b369bf0e9b20bcb87345e3e10c314ae6227464d1
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84215082"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory B2C
 
@@ -82,7 +95,7 @@ Em **permissões de API**:
 1. Selecione o *aplicativo de API do servidor* na coluna **nome** (por exemplo, ** Blazor servidor AAD B2C**).
 1. Abra a lista de **APIs** .
 1. Habilite o acesso à API (por exemplo, `API.Access` ).
-1. Escolha **Adicionar permissões**.
+1. Selecione **Adicionar Permissões**.
 1. Selecione o botão **conceder conteúdo do administrador para {nome do locatário}** . Selecione **Sim** para confirmar.
 
 Em **casa**  >  **Azure ad B2C**  >  **fluxos de usuário**:

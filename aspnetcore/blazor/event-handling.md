@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core Blazor manipulação de eventos ' autor: guardrex Descrição: ' saiba mais sobre os Blazor recursos de manipulação de eventos, incluindo tipos de argumento de evento, retornos de chamada de evento e gerenciamento de eventos de navegador padrão. '
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 06/04/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: mais incrivelmente/tratamento de eventos
-
+title: Manipulação de eventos de ASP.NET Core Blazor
+author: guardrex
+description: Saiba mais sobre os Blazor recursos de manipulação de eventos, incluindo tipos de argumento de evento, retornos de chamada de evento e gerenciamento de eventos de navegador padrão.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 06/04/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/event-handling
+ms.openlocfilehash: 2d806413eb66d4c1301df4a0db950e8b919c09a4
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84419743"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Manipulação de eventos de ASP.NET Core Blazor
 
@@ -65,7 +77,7 @@ Para alguns eventos, são permitidos tipos de argumento de evento. A especifica�
 
 Com suporte, <xref:System.EventArgs> são mostrados na tabela a seguir.
 
-| Evento            | Class                | Eventos e observações do DOM |
+| Evento            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
 | Área de Transferência        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` |
 | Arrastar             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer>e <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> mantenha arrastado os dados do item. |

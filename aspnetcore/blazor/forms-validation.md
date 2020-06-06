@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: ASP.NET Core Blazor formulários e validação
+author: guardrex
+description: Saiba como usar formatos e cenários de validação de campo no Blazor .
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/27/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/forms-validation
+ms.openlocfilehash: 557ccf45fb88a743158d18046789ed6776efb28c
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84145350"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
 
@@ -62,114 +74,13 @@ No exemplo anterior:
 Um conjunto de componentes de entrada internos está disponível para receber e validar a entrada do usuário. As entradas são validadas quando são alteradas e quando um formulário é enviado. Os componentes de entrada disponíveis são mostrados na tabela a seguir.
 
 | Componente de entrada | Renderizado como&hellip; |
-| ---
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--------- | título do---: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' ASP.NET Core Blazor formulários e validação ' autor: Descrição: ' saiba como usar formulários e cenários de validação de campo em Blazor . '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
----------- | | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` | | <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` | | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` | | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
 
 Todos os componentes de entrada, incluindo <xref:Microsoft.AspNetCore.Components.Forms.EditForm> , dão suporte a atributos arbitrários. Qualquer atributo que não corresponda a um parâmetro de componente é adicionado ao elemento HTML renderizado.
 

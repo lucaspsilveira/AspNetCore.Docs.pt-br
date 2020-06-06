@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core Blazor modelo de hospedagem configuração ' autor: guardrex Descrição: ' saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC. '
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/28/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: mais incrivelmente/de hospedagem-modelo-configuração
-
+title: ASP.NET Core Blazor configuração do modelo de hospedagem
+author: guardrex
+description: Saiba mais sobre Blazor a configuração do modelo de hospedagem, incluindo como integrar Razor componentes em Razor páginas e aplicativos MVC.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/28/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/hosting-model-configuration
+ms.openlocfilehash: e3b8b91a570210e77f307c49f7be21eeab714daa
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84355104"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core Blazor configuração do modelo de hospedagem
 
@@ -276,7 +288,7 @@ Os arquivos de configuração são armazenados em cache para uso offline. Com [P
 
 Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates> .
 
-### <a name="logging"></a>Registrando em log
+### <a name="logging"></a>Registro em log
 
 Para obter informações sobre o Blazor suporte a logs de Webassembly, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .
 
@@ -350,6 +362,6 @@ Para configurar o SignalR cliente no arquivo *Pages/_Host. cshtml* :
 </script>
 ```
 
-### <a name="logging"></a>Registrando em log
+### <a name="logging"></a>Registro em log
 
 Para obter informações sobre o Blazor suporte a logs de servidor, consulte <xref:fundamentals/logging/index#create-logs-in-blazor> .

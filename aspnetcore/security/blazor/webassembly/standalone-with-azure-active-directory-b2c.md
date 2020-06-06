@@ -1,11 +1,24 @@
 ---
-Título: ' proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C ' autor: guardrex Descrição: monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: Security/mais alto/Webassembly/autônomo-com-Azure-Active-Directory-B2C
-
+title: Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+ms.openlocfilehash: 911eeffbe632d8f285d54ae78b62f17851205e83
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84214959"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C
 

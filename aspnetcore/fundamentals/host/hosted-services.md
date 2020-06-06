@@ -1,12 +1,24 @@
 ---
-Título: tarefas em segundo plano com serviços hospedados em ASP.NET Core autor: Rick – descrição de Anderson: saiba como implementar tarefas em segundo plano com serviços hospedados no ASP.NET Core.
-monikerRange: ' >= aspnetcore-2,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 02/10/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: conceitos básicos/host/Hosted-Services
-
+title: Tarefas em segundo plano com serviços hospedados no ASP.NET Core
+author: rick-anderson
+description: Aprenda a implementar tarefas em segundo plano com serviços hospedados no ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/10/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: fundamentals/host/hosted-services
+ms.openlocfilehash: 47d0bdda7249232af22ec1c97e7baa710310caed
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84253676"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 

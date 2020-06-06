@@ -1,12 +1,23 @@
 ---
-Título: cache de resposta no ASP.NET Core autor: Rick-Anderson Descrição: saiba como usar o cache de resposta para reduzir os requisitos de largura de banda e aumentar o desempenho de aplicativos ASP.NET Core.
-monikerRange: ' >= aspnetcore-2,1 ' MS. Author: Riande MS. Date: 11/04/2019 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: desempenho/cache/resposta
-
+title: Cache de resposta no ASP.NET Core
+author: rick-anderson
+description: Saiba como usar o cache de resposta para reduzir os requisitos de largura de banda e elevar o desempenho de aplicativos ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.date: 11/04/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/response
+ms.openlocfilehash: 87ff2633ded612eba2c996583b4a6cf997fe8e18
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84105760"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
@@ -29,14 +40,14 @@ A [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234) descr
 | Diretiva                                                       | Ação |
 | --------------------------------------------------------------- | ------ |
 | [público](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Um cache pode armazenar a resposta. |
-| [particulares](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | A resposta não deve ser armazenada por um cache compartilhado. Um cache privado pode armazenar e reutilizar a resposta. |
+| [pessoal](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | A resposta não deve ser armazenada por um cache compartilhado. Um cache privado pode armazenar e reutilizar a resposta. |
 | [idade máxima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceita uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
 | [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Em solicitações**: um cache não deve usar uma resposta armazenada para atender à solicitação. O servidor de origem regenera a resposta para o cliente e o middleware atualiza a resposta armazenada em seu cache.<br><br>**Em respostas**: a resposta não deve ser usada para uma solicitação subsequente sem validação no servidor de origem. |
 | [sem armazenamento](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Em respostas**: um cache não deve armazenar nenhuma parte da resposta. |
 
 Outros cabeçalhos de cache que desempenham uma função no Caching são mostrados na tabela a seguir.
 
-| parâmetro                                                     | Função |
+| Cabeçalho                                                     | Função |
 | ---------------------------------------------------------- | -------- |
 | [Idade](https://tools.ietf.org/html/rfc7234#section-5.1)     | Uma estimativa da quantidade de tempo em segundos desde que a resposta foi gerada ou validada com êxito no servidor de origem. |
 | [Expira](https://tools.ietf.org/html/rfc7234#section-5.3) | O tempo após o qual a resposta é considerada obsoleta. |
@@ -88,7 +99,7 @@ O <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> especifica os parâmetr
 
 O [middleware de cache de resposta](xref:performance/caching/middleware) deve estar habilitado para definir a <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> propriedade. Caso contrário, uma exceção de tempo de execução será lançada. Não há um cabeçalho HTTP correspondente para a <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> propriedade. A propriedade é um recurso HTTP manipulado pelo middleware de cache de resposta. Para que o middleware atenda a uma resposta armazenada em cache, a cadeia de caracteres de consulta e o valor da cadeia de caracteres de consulta devem corresponder a uma solicitação anterior. Por exemplo, considere a sequência de solicitações e os resultados mostrados na tabela a seguir.
 
-| Solicitação                          | Resultado                    |
+| Solicitação                          | Result                    |
 | -------------------------------- | ------------------------- |
 | `http://example.com?key1=value1` | Retornado do servidor. |
 | `http://example.com?key1=value1` | Retornado do middleware. |

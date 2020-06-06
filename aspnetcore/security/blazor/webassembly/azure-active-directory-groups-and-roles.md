@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core Blazor Webassembly com grupos e funções de Azure Active Directory
 author: guardrex
-description: Saiba como configurar Blazor o Webassembly para usar grupos de Azure Active Directory e funções.
+description: Saiba como configurar o Blazor Webassembly para usar grupos de Azure Active Directory e funções.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/19/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,22 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/aad-groups-roles
-ms.openlocfilehash: afdb5ddc4d4ed08d0f1ecaf7158af283dda6b302
-ms.sourcegitcommit: 363e3a2a035f4082cb92e7b75ed150ba304258b3
+ms.openlocfilehash: 3ed06cca7e20da381b870e642a6c616b2578cd0a
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82976893"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84451869"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Grupos do Azure AD, funções administrativas e funções definidas pelo usuário
 
 De [Luke Latham](https://github.com/guardrex) e [Javier Calvarro Nelson](https://github.com/javiercn)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-Azure Active Directory (AAD) fornece várias abordagens de autorização que podem ser combinadas com ASP.NET Core identidade:
+Azure Active Directory (AAD) fornece várias abordagens de autorização que podem ser combinadas com ASP.NET Core Identity :
 
 * Grupos definidos pelo usuário
   * Segurança
@@ -38,7 +34,7 @@ Azure Active Directory (AAD) fornece várias abordagens de autorização que pod
   * Funções administrativas internas
   * Funções definidas pelo usuário
 
-As diretrizes neste artigo se aplicam aos cenários de implantação do AAD do Webassembly mais incrivelmente descritos nos tópicos a seguir:
+As diretrizes neste artigo se aplicam aos Blazor cenários de implantação do AAD do Webassembly descritos nos tópicos a seguir:
 
 * [Aplicativo autônomo com contas Microsoft](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
 * [Aplicativo autônomo com o AAD](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
@@ -53,9 +49,9 @@ Para configurar o aplicativo no portal do Azure para fornecer uma `groups` decla
 
 Os exemplos a seguir pressupõem que um usuário é atribuído à função de *administrador de cobrança* interna do AAD.
 
-A única `groups` declaração enviada pelo AAD apresenta os grupos e as funções do usuário como IDs de objeto (GUIDs) em uma matriz JSON. O aplicativo deve converter a matriz JSON de grupos e funções em declarações `group` individuais nas quais o aplicativo pode criar [políticas](xref:security/authorization/policies) .
+A única `groups` declaração enviada pelo AAD apresenta os grupos e as funções do usuário como IDs de objeto (GUIDs) em uma matriz JSON. O aplicativo deve converter a matriz JSON de grupos e funções em declarações individuais nas `group` quais o aplicativo pode criar [políticas](xref:security/authorization/policies) .
 
-Estenda `RemoteUserAccount` para incluir propriedades de matriz para grupos e funções.
+Estenda <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> para incluir propriedades de matriz para grupos e funções.
 
 *CustomUserAccount.cs*:
 
@@ -73,7 +69,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Crie uma fábrica de usuário personalizada no aplicativo autônomo ou aplicativo cliente de uma solução hospedada. A fábrica a seguir também é configurada para lidar `roles` com matrizes de declaração, que são abordadas na seção [funções definidas pelo usuário](#user-defined-roles) :
+Crie uma fábrica de usuário personalizada no aplicativo autônomo ou aplicativo cliente de uma solução hospedada. A fábrica a seguir também é configurada para lidar com `roles` matrizes de declaração, que são abordadas na seção [funções definidas pelo usuário](#user-defined-roles) :
 
 ```csharp
 using System.Security.Claims;
@@ -117,7 +113,7 @@ public class CustomUserFactory
 }
 ```
 
-Não é necessário fornecer código para remover a declaração original `groups` porque ela é automaticamente removida pela estrutura.
+Não é necessário fornecer código para remover a `groups` declaração original porque ela é automaticamente removida pela estrutura.
 
 Registre a fábrica no `Program.Main` (*Program.cs*) do aplicativo autônomo ou aplicativo cliente de uma solução hospedada:
 
@@ -135,7 +131,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     CustomUserFactory>();
 ```
 
-Crie uma [política](xref:security/authorization/policies) para cada grupo ou função no `Program.Main`. O exemplo a seguir cria uma política para a função de *administrador de cobrança* interna do AAD:
+Crie uma [política](xref:security/authorization/policies) para cada grupo ou função no `Program.Main` . O exemplo a seguir cria uma política para a função de *administrador de cobrança* interna do AAD:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -168,7 +164,7 @@ O [componente AuthorizeView](xref:security/blazor/index#authorizeview-component)
 </AuthorizeView>
 ```
 
-O acesso a um componente inteiro pode ser baseado na política usando a diretiva de [ `[Authorize]` diretiva de atributo](xref:security/blazor/index#authorize-attribute) :
+O acesso a um componente inteiro pode ser baseado na política usando a `[Authorize]` diretiva de atributo [] (xref: Security/mais alto/índice # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
 
 ```razor
 @page "/"
@@ -228,15 +224,15 @@ O exemplo a seguir pressupõe que um aplicativo está configurado com duas funç
 * `developer`
 
 > [!NOTE]
-> Embora não seja possível atribuir funções a grupos de segurança sem uma conta de Azure AD Premium, você pode atribuir usuários a funções `roles` e receber uma declaração para usuários com uma conta padrão do Azure. As diretrizes nesta seção não exigem uma conta de Azure AD Premium.
+> Embora não seja possível atribuir funções a grupos de segurança sem uma conta de Azure AD Premium, você pode atribuir usuários a funções e receber uma `roles` declaração para usuários com uma conta padrão do Azure. As diretrizes nesta seção não exigem uma conta de Azure AD Premium.
 >
 > Várias funções são atribuídas no portal do Azure ao **_adicionar novamente um usuário_** para cada atribuição de função adicional.
 
-A única `roles` declaração enviada pelo AAD apresenta as funções definidas pelo usuário como `appRoles` `value`s em uma matriz JSON. O aplicativo deve converter a matriz JSON de funções em declarações `role` individuais.
+A única `roles` declaração enviada pelo AAD apresenta as funções definidas pelo usuário como `appRoles` `value` s em uma matriz JSON. O aplicativo deve converter a matriz JSON de funções em `role` declarações individuais.
 
-O `CustomUserFactory` mostrado na seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) é configurado para agir em uma `roles` declaração com um valor de matriz JSON. Adicione e registre o `CustomUserFactory` no aplicativo cliente ou aplicativo autônomo de uma solução hospedada, conforme mostrado na seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) . Não é necessário fornecer código para remover a declaração original `roles` porque ela é automaticamente removida pela estrutura.
+O `CustomUserFactory` mostrado na seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) é configurado para agir em uma `roles` declaração com um valor de matriz JSON. Adicione e registre o `CustomUserFactory` no aplicativo cliente ou aplicativo autônomo de uma solução hospedada, conforme mostrado na seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) . Não é necessário fornecer código para remover a `roles` declaração original porque ela é automaticamente removida pela estrutura.
 
-No `Program.Main` aplicativo autônomo ou aplicativo cliente de uma solução hospedada, especifique a declaração denominada "`role`" como a declaração de função:
+No aplicativo `Program.Main` autônomo ou aplicativo cliente de uma solução hospedada, especifique a declaração denominada " `role` " como a declaração de função:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -247,11 +243,11 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-As abordagens de autorização de componente são funcionais neste ponto. Qualquer um dos mecanismos de autorização nos componentes pode usar `admin` a função para autorizar o usuário:
+As abordagens de autorização de componente são funcionais neste ponto. Qualquer um dos mecanismos de autorização nos componentes pode usar a `admin` função para autorizar o usuário:
 
-* [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (exemplo: `<AuthorizeView Roles="admin">`)
-* Diretiva de atributo (exemplo `@attribute [Authorize(Roles = "admin")]`:) [ `[Authorize]` ](xref:security/blazor/index#authorize-attribute)
-* [Lógica de procedimento](xref:security/blazor/index#procedural-logic) (exemplo `if (user.IsInRole("admin")) { ... }`:)
+* [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (exemplo: `<AuthorizeView Roles="admin">` )
+* [ `[Authorize]` ] diretiva de atributo] (xref: segurança/mais muito mais/índice # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (Exemplo: `@attribute [Authorize(Roles = "admin")]` )
+* [Lógica de procedimento](xref:security/blazor/index#procedural-logic) (exemplo: `if (user.IsInRole("admin")) { ... }` )
 
   Há suporte para vários testes de função:
 
@@ -264,7 +260,7 @@ As abordagens de autorização de componente são funcionais neste ponto. Qualqu
 
 ## <a name="aad-adminstrative-role-group-ids"></a>IDs do grupo de funções administrativas do AAD
 
-As IDs de objeto apresentadas na tabela a seguir são usadas para [policies](xref:security/authorization/policies) criar políticas `group` para declarações. As políticas permitem que um aplicativo autorize usuários para várias atividades em um aplicativo. Para obter mais informações, consulte a seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) .
+As IDs de objeto apresentadas na tabela a seguir são usadas para criar [políticas](xref:security/authorization/policies) para `group` declarações. As políticas permitem que um aplicativo autorize usuários para várias atividades em um aplicativo. Para obter mais informações, consulte a seção [grupos definidos pelo usuário e funções administrativas internas do AAD](#user-defined-groups-and-built-in-administrative-roles) .
 
 Função administrativa do AAD | ID de objeto
 --- | ---
@@ -288,7 +284,7 @@ Administrador do desktop Analytics | c62c4ac5-e4c6-4096-8a2f-1ee3cbaaae15
 Leitores de diretórios | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Administrador do Dynamics 365 | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
 Administradores do Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
-Administrador Identity de provedor externo | febfaeb4-e478-407a-b4b3-f4d9716618a2
+IdentityAdministrador de provedor externo | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Administrador global | a45ba61b-44db-462c-924b-3b2719152588
 Leitor global | f6903b21-6aba-4124-b44c-76671796b9d5
 Administrador de grupos | 158b3e5a-d89d-460b-92b5-3b34985f0197

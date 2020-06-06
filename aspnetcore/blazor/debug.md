@@ -1,12 +1,24 @@
 ---
-Título: ' Debug ASP.NET Core Blazor Webassembly ' autor: guardrex Descrição: ' saiba como depurar Blazor aplicativos '.
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/31/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRUID: mais incrivelmente/depurar
-
+title: Depurar ASP.NET Core Blazor Webassembly
+author: guardrex
+description: Saiba como depurar Blazor aplicativos.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/31/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/debug
+ms.openlocfilehash: 193dc656c2ee0154f0ae534bc00f8dc29bab3258
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84239221"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Depurar ASP.NET Core Blazor Webassembly
 
@@ -127,7 +139,7 @@ Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-
 
 1. Abra o Blazor aplicativo Webassembly hospedado no vs Code.
 
-1. Se não houver uma configuração de inicialização definida para o projeto, a notificação a seguir será exibida. Selecione **Sim**.
+1. Se não houver uma configuração de inicialização definida para o projeto, a notificação a seguir será exibida. Selecione **Sim** na barra superior.
 
    ![Adicionar ativos necessários](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 

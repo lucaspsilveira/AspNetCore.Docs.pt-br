@@ -1,12 +1,24 @@
 ---
-title: ' chamar uma API Web de ASP.NET Core Blazor Webassembly ' autor: guardrex Descrição: ' saiba como chamar uma API Web de um Blazor aplicativo Webassembly usando auxiliares JSON, incluindo a criação de solicitações de CORS (compartilhamento de recursos entre origens). '
-monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/28/2020 no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- ' SignalR ' UID: mais incrivelmente/Call-Web-API
-
+title: Chamar uma API Web de ASP.NET Core Blazor Webassembly
+author: guardrex
+description: Saiba como chamar uma API da Web de um Blazor aplicativo Webassembly usando auxiliares JSON, incluindo a criação de solicitações de CORS (compartilhamento de recursos entre origens).
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/28/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/call-web-api
+ms.openlocfilehash: 4f3fd1fca075098a94756757474b2cad3cc99775
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84214774"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API da Web de ASP.NET CoreBlazor
 
