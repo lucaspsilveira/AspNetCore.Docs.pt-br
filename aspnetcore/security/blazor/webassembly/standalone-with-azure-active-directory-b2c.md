@@ -1,93 +1,106 @@
 ---
-<span data-ttu-id="c011e-101">Título: ' proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C ' autor: guardrex Descrição: monikerRange: ' >= aspnetcore-3,1 ' MS. Author: Riande MS. Custom: MVC MS. Date: 05/19/2020 no-loc:</span><span class="sxs-lookup"><span data-stu-id="c011e-101">title: 'Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C' author: guardrex description: monikerRange: '>= aspnetcore-3.1' ms.author: riande ms.custom: mvc ms.date: 05/19/2020 no-loc:</span></span>
-- <span data-ttu-id="c011e-102">'Blazor'</span><span class="sxs-lookup"><span data-stu-id="c011e-102">'Blazor'</span></span>
-- <span data-ttu-id="c011e-103">'Identity'</span><span class="sxs-lookup"><span data-stu-id="c011e-103">'Identity'</span></span>
-- <span data-ttu-id="c011e-104">'Let's Encrypt'</span><span class="sxs-lookup"><span data-stu-id="c011e-104">'Let's Encrypt'</span></span>
-- <span data-ttu-id="c011e-105">'Razor'</span><span class="sxs-lookup"><span data-stu-id="c011e-105">'Razor'</span></span>
-- <span data-ttu-id="c011e-106">SignalRUID: Security/mais alto/Webassembly/autônomo-com-Azure-Active-Directory-B2C</span><span class="sxs-lookup"><span data-stu-id="c011e-106">'SignalR' uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c</span></span>
-
+title: Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C
+author: guardrex
+description: ''
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+ms.openlocfilehash: 911eeffbe632d8f285d54ae78b62f17851205e83
+ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84214959"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="c011e-107">Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="c011e-107">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C</span></span>
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="c2bd8-102">Proteger um Blazor aplicativo autônomo Webassembly ASP.NET Core com Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="c2bd8-102">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C</span></span>
 
-<span data-ttu-id="c011e-108">Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="c011e-108">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="c2bd8-103">Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="c2bd8-103">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="c011e-109">Para criar um Blazor aplicativo Webassembly autônomo que usa [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) para autenticação:</span><span class="sxs-lookup"><span data-stu-id="c011e-109">To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:</span></span>
+<span data-ttu-id="c2bd8-104">Para criar um Blazor aplicativo Webassembly autônomo que usa [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) para autenticação:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-104">To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:</span></span>
 
-<span data-ttu-id="c011e-110">Siga as orientações nos tópicos a seguir para criar um locatário e registrar um aplicativo Web no portal do Azure:</span><span class="sxs-lookup"><span data-stu-id="c011e-110">Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:</span></span>
+<span data-ttu-id="c2bd8-105">Siga as orientações nos tópicos a seguir para criar um locatário e registrar um aplicativo Web no portal do Azure:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-105">Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:</span></span>
 
-[<span data-ttu-id="c011e-111">Criar um locatário AAD B2C</span><span class="sxs-lookup"><span data-stu-id="c011e-111">Create an AAD B2C tenant</span></span>](/azure/active-directory-b2c/tutorial-create-tenant)
+[<span data-ttu-id="c2bd8-106">Criar um locatário AAD B2C</span><span class="sxs-lookup"><span data-stu-id="c2bd8-106">Create an AAD B2C tenant</span></span>](/azure/active-directory-b2c/tutorial-create-tenant)
 
-<span data-ttu-id="c011e-112">Registre as seguintes informações:</span><span class="sxs-lookup"><span data-stu-id="c011e-112">Record the following information:</span></span>
+<span data-ttu-id="c2bd8-107">Registre as seguintes informações:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-107">Record the following information:</span></span>
 
-* <span data-ttu-id="c011e-113">AAD B2C instância (por exemplo, `https://contoso.b2clogin.com/` , que inclui a barra à direita).</span><span class="sxs-lookup"><span data-stu-id="c011e-113">AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).</span></span>
-* <span data-ttu-id="c011e-114">AAD B2C domínio de locatário (por exemplo, `contoso.onmicrosoft.com` ).</span><span class="sxs-lookup"><span data-stu-id="c011e-114">AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).</span></span>
+* <span data-ttu-id="c2bd8-108">AAD B2C instância (por exemplo, `https://contoso.b2clogin.com/` , que inclui a barra à direita).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-108">AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).</span></span>
+* <span data-ttu-id="c2bd8-109">AAD B2C domínio de locatário (por exemplo, `contoso.onmicrosoft.com` ).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-109">AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).</span></span>
 
-<span data-ttu-id="c011e-115">Siga as orientações em [tutorial: registrar um aplicativo no Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) novamente para registrar um aplicativo do AAD para o *aplicativo cliente* e, em seguida, faça o seguinte:</span><span class="sxs-lookup"><span data-stu-id="c011e-115">Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app* and then do the following:</span></span>
+<span data-ttu-id="c2bd8-110">Siga as orientações em [tutorial: registrar um aplicativo no Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) novamente para registrar um aplicativo do AAD para o *aplicativo cliente* e, em seguida, faça o seguinte:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-110">Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app* and then do the following:</span></span>
 
-1. <span data-ttu-id="c011e-116">Em **Azure Active Directory**  >  **registros de aplicativo**, selecione **novo registro**.</span><span class="sxs-lookup"><span data-stu-id="c011e-116">In **Azure Active Directory** > **App registrations**, select **New registration**.</span></span>
-1. <span data-ttu-id="c011e-117">Forneça um **nome** para o aplicativo (por exemplo, \*\* Blazor AAD B2C autônomo\*\*).</span><span class="sxs-lookup"><span data-stu-id="c011e-117">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C**).</span></span>
-1. <span data-ttu-id="c011e-118">Para **tipos de conta com suporte**, selecione a opção multilocatário: **contas em qualquer diretório organizacional ou qualquer provedor de identidade. Para autenticar usuários com Azure AD B2C.**</span><span class="sxs-lookup"><span data-stu-id="c011e-118">For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
-1. <span data-ttu-id="c011e-119">Deixe a lista suspensa **URI de redirecionamento** definida como **Web** e forneça o seguinte URI de redirecionamento: `https://localhost:{PORT}/authentication/login-callback` .</span><span class="sxs-lookup"><span data-stu-id="c011e-119">Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="c011e-120">A porta padrão para um aplicativo em execução no Kestrel é 5001.</span><span class="sxs-lookup"><span data-stu-id="c011e-120">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="c011e-121">Se o aplicativo for executado em uma porta Kestrel diferente, use a porta do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c011e-121">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="c011e-122">Por IIS Express, a porta gerada aleatoriamente para o aplicativo pode ser encontrada nas propriedades do aplicativo no painel de **depuração** .</span><span class="sxs-lookup"><span data-stu-id="c011e-122">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="c011e-123">Como o aplicativo não existe neste ponto e a porta de IIS Express não é conhecida, retorne a essa etapa depois que o aplicativo for criado e atualize o URI de redirecionamento.</span><span class="sxs-lookup"><span data-stu-id="c011e-123">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="c011e-124">Um comentário aparece mais adiante neste tópico para lembrar IIS Express usuários para atualizar o URI de redirecionamento.</span><span class="sxs-lookup"><span data-stu-id="c011e-124">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
-1. <span data-ttu-id="c011e-125">Confirme se **as permissões**  >  **concedem a decento do administrador a OpenID e offline_access permissões** estão habilitadas.</span><span class="sxs-lookup"><span data-stu-id="c011e-125">Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.</span></span>
-1. <span data-ttu-id="c011e-126">Selecione **Registrar**.</span><span class="sxs-lookup"><span data-stu-id="c011e-126">Select **Register**.</span></span>
+1. <span data-ttu-id="c2bd8-111">Em **Azure Active Directory**  >  **registros de aplicativo**, selecione **novo registro**.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-111">In **Azure Active Directory** > **App registrations**, select **New registration**.</span></span>
+1. <span data-ttu-id="c2bd8-112">Forneça um **nome** para o aplicativo (por exemplo, \*\* Blazor AAD B2C autônomo\*\*).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-112">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C**).</span></span>
+1. <span data-ttu-id="c2bd8-113">Para **tipos de conta com suporte**, selecione a opção multilocatário: **contas em qualquer diretório organizacional ou qualquer provedor de identidade. Para autenticar usuários com Azure AD B2C.**</span><span class="sxs-lookup"><span data-stu-id="c2bd8-113">For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
+1. <span data-ttu-id="c2bd8-114">Deixe a lista suspensa **URI de redirecionamento** definida como **Web** e forneça o seguinte URI de redirecionamento: `https://localhost:{PORT}/authentication/login-callback` .</span><span class="sxs-lookup"><span data-stu-id="c2bd8-114">Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="c2bd8-115">A porta padrão para um aplicativo em execução no Kestrel é 5001.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-115">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="c2bd8-116">Se o aplicativo for executado em uma porta Kestrel diferente, use a porta do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-116">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="c2bd8-117">Por IIS Express, a porta gerada aleatoriamente para o aplicativo pode ser encontrada nas propriedades do aplicativo no painel de **depuração** .</span><span class="sxs-lookup"><span data-stu-id="c2bd8-117">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="c2bd8-118">Como o aplicativo não existe neste ponto e a porta de IIS Express não é conhecida, retorne a essa etapa depois que o aplicativo for criado e atualize o URI de redirecionamento.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-118">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="c2bd8-119">Um comentário aparece mais adiante neste tópico para lembrar IIS Express usuários para atualizar o URI de redirecionamento.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-119">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
+1. <span data-ttu-id="c2bd8-120">Confirme se **as permissões**  >  **concedem a decento do administrador a OpenID e offline_access permissões** estão habilitadas.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-120">Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.</span></span>
+1. <span data-ttu-id="c2bd8-121">Selecione **Registrar**.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-121">Select **Register**.</span></span>
 
-<span data-ttu-id="c011e-127">Registre a ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111` ).</span><span class="sxs-lookup"><span data-stu-id="c011e-127">Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).</span></span>
+<span data-ttu-id="c2bd8-122">Registre a ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111` ).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-122">Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).</span></span>
 
-<span data-ttu-id="c011e-128">Em **Authentication**  >  **configurações da plataforma**de autenticação  >  **Web**:</span><span class="sxs-lookup"><span data-stu-id="c011e-128">In **Authentication** > **Platform configurations** > **Web**:</span></span>
+<span data-ttu-id="c2bd8-123">Em **Authentication**  >  **configurações da plataforma**de autenticação  >  **Web**:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-123">In **Authentication** > **Platform configurations** > **Web**:</span></span>
 
-1. <span data-ttu-id="c011e-129">Confirme se o **URI de redirecionamento** do `https://localhost:{PORT}/authentication/login-callback` está presente.</span><span class="sxs-lookup"><span data-stu-id="c011e-129">Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.</span></span>
-1. <span data-ttu-id="c011e-130">Para **concessão implícita**, marque as caixas de seleção para **tokens de acesso** e **tokens de ID**.</span><span class="sxs-lookup"><span data-stu-id="c011e-130">For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.</span></span>
-1. <span data-ttu-id="c011e-131">Os padrões restantes para o aplicativo são aceitáveis para essa experiência.</span><span class="sxs-lookup"><span data-stu-id="c011e-131">The remaining defaults for the app are acceptable for this experience.</span></span>
-1. <span data-ttu-id="c011e-132">Selecione o botão **Salvar**.</span><span class="sxs-lookup"><span data-stu-id="c011e-132">Select the **Save** button.</span></span>
+1. <span data-ttu-id="c2bd8-124">Confirme se o **URI de redirecionamento** do `https://localhost:{PORT}/authentication/login-callback` está presente.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-124">Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.</span></span>
+1. <span data-ttu-id="c2bd8-125">Para **concessão implícita**, marque as caixas de seleção para **tokens de acesso** e **tokens de ID**.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-125">For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.</span></span>
+1. <span data-ttu-id="c2bd8-126">Os padrões restantes para o aplicativo são aceitáveis para essa experiência.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-126">The remaining defaults for the app are acceptable for this experience.</span></span>
+1. <span data-ttu-id="c2bd8-127">Selecione o botão **Salvar**.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-127">Select the **Save** button.</span></span>
 
-<span data-ttu-id="c011e-133">Em **casa**  >  **Azure ad B2C**  >  **fluxos de usuário**:</span><span class="sxs-lookup"><span data-stu-id="c011e-133">In **Home** > **Azure AD B2C** > **User flows**:</span></span>
+<span data-ttu-id="c2bd8-128">Em **casa**  >  **Azure ad B2C**  >  **fluxos de usuário**:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-128">In **Home** > **Azure AD B2C** > **User flows**:</span></span>
 
-[<span data-ttu-id="c011e-134">Criar um fluxo de usuário de inscrição e de entrada</span><span class="sxs-lookup"><span data-stu-id="c011e-134">Create a sign-up and sign-in user flow</span></span>](/azure/active-directory-b2c/tutorial-create-user-flows)
+[<span data-ttu-id="c2bd8-129">Criar um fluxo de usuário de inscrição e de entrada</span><span class="sxs-lookup"><span data-stu-id="c2bd8-129">Create a sign-up and sign-in user flow</span></span>](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-<span data-ttu-id="c011e-135">No mínimo, selecione o atributo de usuário nome de exibição de **declarações do aplicativo**  >  **Display Name** para popular o `context.User.Identity.Name` no `LoginDisplay` componente (*Shared/LoginDisplay. Razor*).</span><span class="sxs-lookup"><span data-stu-id="c011e-135">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).</span></span>
+<span data-ttu-id="c2bd8-130">No mínimo, selecione o atributo de usuário nome de exibição de **declarações do aplicativo**  >  **Display Name** para popular o `context.User.Identity.Name` no `LoginDisplay` componente (*Shared/LoginDisplay. Razor*).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-130">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).</span></span>
 
-<span data-ttu-id="c011e-136">Registre o nome do fluxo de usuário de entrada e de entrada criado para o aplicativo (por exemplo, `B2C_1_signupsignin` ).</span><span class="sxs-lookup"><span data-stu-id="c011e-136">Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).</span></span>
+<span data-ttu-id="c2bd8-131">Registre o nome do fluxo de usuário de entrada e de entrada criado para o aplicativo (por exemplo, `B2C_1_signupsignin` ).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-131">Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).</span></span>
 
-<span data-ttu-id="c011e-137">Substitua os espaços reservados no comando a seguir pelas informações registradas anteriormente e execute o comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="c011e-137">Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:</span></span>
+<span data-ttu-id="c2bd8-132">Substitua os espaços reservados no comando a seguir pelas informações registradas anteriormente e execute o comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-132">Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:</span></span>
 
 ```dotnetcli
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{TENANT DOMAIN}" -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-<span data-ttu-id="c011e-138">Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="c011e-138">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="c011e-139">O nome da pasta também se torna parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="c011e-139">The folder name also becomes part of the project's name.</span></span>
+<span data-ttu-id="c2bd8-133">Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-133">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="c2bd8-134">O nome da pasta também se torna parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-134">The folder name also becomes part of the project's name.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="c011e-140">No portal do Azure, o **Authentication**  >  URI de redirecionamento da Web de**configurações da plataforma**de autenticação do aplicativo  >  **Web**  >  **Redirect URI** é configurado para a porta 5001 para aplicativos executados no servidor Kestrel com as configurações padrão.</span><span class="sxs-lookup"><span data-stu-id="c011e-140">In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.</span></span>
+> <span data-ttu-id="c2bd8-135">No portal do Azure, o **Authentication**  >  URI de redirecionamento da Web de**configurações da plataforma**de autenticação do aplicativo  >  **Web**  >  **Redirect URI** é configurado para a porta 5001 para aplicativos executados no servidor Kestrel com as configurações padrão.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-135">In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.</span></span>
 >
-> <span data-ttu-id="c011e-141">Se o aplicativo for executado em uma porta IIS Express aleatória, a porta do aplicativo poderá ser encontrada nas propriedades do aplicativo no painel de **depuração** .</span><span class="sxs-lookup"><span data-stu-id="c011e-141">If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.</span></span>
+> <span data-ttu-id="c2bd8-136">Se o aplicativo for executado em uma porta IIS Express aleatória, a porta do aplicativo poderá ser encontrada nas propriedades do aplicativo no painel de **depuração** .</span><span class="sxs-lookup"><span data-stu-id="c2bd8-136">If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.</span></span>
 >
-> <span data-ttu-id="c011e-142">Se a porta não foi configurada anteriormente com a porta conhecida do aplicativo, retorne ao registro do aplicativo na portal do Azure e atualize o URI de redirecionamento com a porta correta.</span><span class="sxs-lookup"><span data-stu-id="c011e-142">If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.</span></span>
+> <span data-ttu-id="c2bd8-137">Se a porta não foi configurada anteriormente com a porta conhecida do aplicativo, retorne ao registro do aplicativo na portal do Azure e atualize o URI de redirecionamento com a porta correta.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-137">If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.</span></span>
 
-<span data-ttu-id="c011e-143">Depois de criar o aplicativo, você deve ser capaz de:</span><span class="sxs-lookup"><span data-stu-id="c011e-143">After creating the app, you should be able to:</span></span>
+<span data-ttu-id="c2bd8-138">Depois de criar o aplicativo, você deve ser capaz de:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-138">After creating the app, you should be able to:</span></span>
 
-* <span data-ttu-id="c011e-144">Faça logon no aplicativo usando uma conta de usuário do AAD.</span><span class="sxs-lookup"><span data-stu-id="c011e-144">Log into the app using an AAD user account.</span></span>
-* <span data-ttu-id="c011e-145">Solicitar tokens de acesso para APIs da Microsoft.</span><span class="sxs-lookup"><span data-stu-id="c011e-145">Request access tokens for Microsoft APIs.</span></span> <span data-ttu-id="c011e-146">Para obter mais informações, consulte:</span><span class="sxs-lookup"><span data-stu-id="c011e-146">For more information, see:</span></span>
-  * [<span data-ttu-id="c011e-147">Escopos de token de acesso</span><span class="sxs-lookup"><span data-stu-id="c011e-147">Access token scopes</span></span>](#access-token-scopes)
-  * <span data-ttu-id="c011e-148">[Início rápido: configurar um aplicativo para expor APIs da Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span><span class="sxs-lookup"><span data-stu-id="c011e-148">[Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span></span>
+* <span data-ttu-id="c2bd8-139">Faça logon no aplicativo usando uma conta de usuário do AAD.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-139">Log into the app using an AAD user account.</span></span>
+* <span data-ttu-id="c2bd8-140">Solicitar tokens de acesso para APIs da Microsoft.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-140">Request access tokens for Microsoft APIs.</span></span> <span data-ttu-id="c2bd8-141">Para obter mais informações, consulte:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-141">For more information, see:</span></span>
+  * [<span data-ttu-id="c2bd8-142">Escopos de token de acesso</span><span class="sxs-lookup"><span data-stu-id="c2bd8-142">Access token scopes</span></span>](#access-token-scopes)
+  * <span data-ttu-id="c2bd8-143">[Início rápido: configurar um aplicativo para expor APIs da Web](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-143">[Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).</span></span>
 
-## <a name="authentication-package"></a><span data-ttu-id="c011e-149">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="c011e-149">Authentication package</span></span>
+## <a name="authentication-package"></a><span data-ttu-id="c2bd8-144">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="c2bd8-144">Authentication package</span></span>
 
-<span data-ttu-id="c011e-150">Quando um aplicativo é criado para usar uma conta individual do B2C ( `IndividualB2C` ), o aplicativo recebe automaticamente uma referência de pacote para a [biblioteca de autenticação da Microsoft](/azure/active-directory/develop/msal-overview) ([Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)).</span><span class="sxs-lookup"><span data-stu-id="c011e-150">When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)).</span></span> <span data-ttu-id="c011e-151">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="c011e-151">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+<span data-ttu-id="c2bd8-145">Quando um aplicativo é criado para usar uma conta individual do B2C ( `IndividualB2C` ), o aplicativo recebe automaticamente uma referência de pacote para a [biblioteca de autenticação da Microsoft](/azure/active-directory/develop/msal-overview) ([Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-145">When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)).</span></span> <span data-ttu-id="c2bd8-146">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-146">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
 
-<span data-ttu-id="c011e-152">Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="c011e-152">If adding authentication to an app, manually add the package to the app's project file:</span></span>
+<span data-ttu-id="c2bd8-147">Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-147">If adding authentication to an app, manually add the package to the app's project file:</span></span>
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
   Version="3.2.0" />
 ```
 
-<span data-ttu-id="c011e-153">O pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) transitivamente adiciona o pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ao aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c011e-153">The [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package transitively adds the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package to the app.</span></span>
+<span data-ttu-id="c2bd8-148">O pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) transitivamente adiciona o pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) ao aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-148">The [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package transitively adds the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package to the app.</span></span>
 
-## <a name="authentication-service-support"></a><span data-ttu-id="c011e-154">Suporte ao serviço de autenticação</span><span class="sxs-lookup"><span data-stu-id="c011e-154">Authentication service support</span></span>
+## <a name="authentication-service-support"></a><span data-ttu-id="c2bd8-149">Suporte ao serviço de autenticação</span><span class="sxs-lookup"><span data-stu-id="c2bd8-149">Authentication service support</span></span>
 
-<span data-ttu-id="c011e-155">O suporte para autenticação de usuários é registrado no contêiner de serviço com o <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método de extensão fornecido pelo pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) .</span><span class="sxs-lookup"><span data-stu-id="c011e-155">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package.</span></span> <span data-ttu-id="c011e-156">Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).</span><span class="sxs-lookup"><span data-stu-id="c011e-156">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
+<span data-ttu-id="c2bd8-150">O suporte para autenticação de usuários é registrado no contêiner de serviço com o <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método de extensão fornecido pelo pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) .</span><span class="sxs-lookup"><span data-stu-id="c2bd8-150">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package.</span></span> <span data-ttu-id="c2bd8-151">Esse método configura todos os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).</span><span class="sxs-lookup"><span data-stu-id="c2bd8-151">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
 
-<span data-ttu-id="c011e-157">*Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="c011e-157">*Program.cs*:</span></span>
+<span data-ttu-id="c2bd8-152">*Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-152">*Program.cs*:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -96,9 +109,9 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-<span data-ttu-id="c011e-158">O <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c011e-158">The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app.</span></span> <span data-ttu-id="c011e-159">Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD quando você registra o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c011e-159">The values required for configuring the app can be obtained from the AAD configuration when you register the app.</span></span>
+<span data-ttu-id="c2bd8-153">O <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-153">The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app.</span></span> <span data-ttu-id="c2bd8-154">Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD quando você registra o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-154">The values required for configuring the app can be obtained from the AAD configuration when you register the app.</span></span>
 
-<span data-ttu-id="c011e-160">A configuração é fornecida pelo arquivo *wwwroot/appSettings. JSON* :</span><span class="sxs-lookup"><span data-stu-id="c011e-160">Configuration is supplied by the *wwwroot/appsettings.json* file:</span></span>
+<span data-ttu-id="c2bd8-155">A configuração é fornecida pelo arquivo *wwwroot/appSettings. JSON* :</span><span class="sxs-lookup"><span data-stu-id="c2bd8-155">Configuration is supplied by the *wwwroot/appsettings.json* file:</span></span>
 
 ```json
 {
@@ -110,7 +123,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-<span data-ttu-id="c011e-161">Exemplo:</span><span class="sxs-lookup"><span data-stu-id="c011e-161">Example:</span></span>
+<span data-ttu-id="c2bd8-156">Exemplo:</span><span class="sxs-lookup"><span data-stu-id="c2bd8-156">Example:</span></span>
 
 ```json
 {
@@ -122,9 +135,9 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-## <a name="access-token-scopes"></a><span data-ttu-id="c011e-162">Escopos de token de acesso</span><span class="sxs-lookup"><span data-stu-id="c011e-162">Access token scopes</span></span>
+## <a name="access-token-scopes"></a><span data-ttu-id="c2bd8-157">Escopos de token de acesso</span><span class="sxs-lookup"><span data-stu-id="c2bd8-157">Access token scopes</span></span>
 
-<span data-ttu-id="c011e-163">O Blazor modelo Webassembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura.</span><span class="sxs-lookup"><span data-stu-id="c011e-163">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="c011e-164">Para provisionar um token de acesso como parte do fluxo de entrada, adicione o escopo aos escopos de token de acesso padrão do <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="c011e-164">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
+<span data-ttu-id="c2bd8-158">O Blazor modelo Webassembly não configura automaticamente o aplicativo para solicitar um token de acesso para uma API segura.</span><span class="sxs-lookup"><span data-stu-id="c2bd8-158">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="c2bd8-159">Para provisionar um token de acesso como parte do fluxo de entrada, adicione o escopo aos escopos de token de acesso padrão do <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions> :</span><span class="sxs-lookup"><span data-stu-id="c2bd8-159">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -136,32 +149,32 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
-<span data-ttu-id="c011e-165">Para obter mais informações, consulte as seguintes seções do artigo *cenários adicionais* :</span><span class="sxs-lookup"><span data-stu-id="c011e-165">For more information, see the following sections of the *Additional scenarios* article:</span></span>
+<span data-ttu-id="c2bd8-160">Para obter mais informações, consulte as seguintes seções do artigo *cenários adicionais* :</span><span class="sxs-lookup"><span data-stu-id="c2bd8-160">For more information, see the following sections of the *Additional scenarios* article:</span></span>
 
-* [<span data-ttu-id="c011e-166">Solicitar tokens de acesso adicionais</span><span class="sxs-lookup"><span data-stu-id="c011e-166">Request additional access tokens</span></span>](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
-* [<span data-ttu-id="c011e-167">Anexar tokens a solicitações de saída</span><span class="sxs-lookup"><span data-stu-id="c011e-167">Attach tokens to outgoing requests</span></span>](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [<span data-ttu-id="c2bd8-161">Solicitar tokens de acesso adicionais</span><span class="sxs-lookup"><span data-stu-id="c2bd8-161">Request additional access tokens</span></span>](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [<span data-ttu-id="c2bd8-162">Anexar tokens a solicitações de saída</span><span class="sxs-lookup"><span data-stu-id="c2bd8-162">Attach tokens to outgoing requests</span></span>](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
-## <a name="imports-file"></a><span data-ttu-id="c011e-168">Arquivo de importações</span><span class="sxs-lookup"><span data-stu-id="c011e-168">Imports file</span></span>
+## <a name="imports-file"></a><span data-ttu-id="c2bd8-163">Arquivo de importações</span><span class="sxs-lookup"><span data-stu-id="c2bd8-163">Imports file</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
 
-## <a name="index-page"></a><span data-ttu-id="c011e-169">Página de índice</span><span class="sxs-lookup"><span data-stu-id="c011e-169">Index page</span></span>
+## <a name="index-page"></a><span data-ttu-id="c2bd8-164">Página de índice</span><span class="sxs-lookup"><span data-stu-id="c2bd8-164">Index page</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
-## <a name="app-component"></a><span data-ttu-id="c011e-170">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="c011e-170">App component</span></span>
+## <a name="app-component"></a><span data-ttu-id="c2bd8-165">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="c2bd8-165">App component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-## <a name="redirecttologin-component"></a><span data-ttu-id="c011e-171">Componente RedirectToLogin</span><span class="sxs-lookup"><span data-stu-id="c011e-171">RedirectToLogin component</span></span>
+## <a name="redirecttologin-component"></a><span data-ttu-id="c2bd8-166">Componente RedirectToLogin</span><span class="sxs-lookup"><span data-stu-id="c2bd8-166">RedirectToLogin component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-## <a name="logindisplay-component"></a><span data-ttu-id="c011e-172">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="c011e-172">LoginDisplay component</span></span>
+## <a name="logindisplay-component"></a><span data-ttu-id="c2bd8-167">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="c2bd8-167">LoginDisplay component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
 
-## <a name="authentication-component"></a><span data-ttu-id="c011e-173">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="c011e-173">Authentication component</span></span>
+## <a name="authentication-component"></a><span data-ttu-id="c2bd8-168">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="c2bd8-168">Authentication component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
@@ -169,10 +182,10 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
-## <a name="additional-resources"></a><span data-ttu-id="c011e-174">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="c011e-174">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="c2bd8-169">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="c2bd8-169">Additional resources</span></span>
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [<span data-ttu-id="c011e-175">Solicitações de API Web não autenticadas ou não autorizadas em um aplicativo com um cliente padrão seguro</span><span class="sxs-lookup"><span data-stu-id="c011e-175">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [<span data-ttu-id="c2bd8-170">Solicitações de API Web não autenticadas ou não autorizadas em um aplicativo com um cliente padrão seguro</span><span class="sxs-lookup"><span data-stu-id="c2bd8-170">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
-* [<span data-ttu-id="c011e-176">Tutorial - Criar um locatário do Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="c011e-176">Tutorial: Create an Azure Active Directory B2C tenant</span></span>](/azure/active-directory-b2c/tutorial-create-tenant)
-* [<span data-ttu-id="c011e-177">Documentação da plataforma de identidade da Microsoft</span><span class="sxs-lookup"><span data-stu-id="c011e-177">Microsoft identity platform documentation</span></span>](/azure/active-directory/develop/)
+* [<span data-ttu-id="c2bd8-171">Tutorial - Criar um locatário do Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="c2bd8-171">Tutorial: Create an Azure Active Directory B2C tenant</span></span>](/azure/active-directory-b2c/tutorial-create-tenant)
+* [<span data-ttu-id="c2bd8-172">Documentação da plataforma de identidade da Microsoft</span><span class="sxs-lookup"><span data-stu-id="c2bd8-172">Microsoft identity platform documentation</span></span>](/azure/active-directory/develop/)
