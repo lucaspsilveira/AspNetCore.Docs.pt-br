@@ -1,21 +1,21 @@
 ### YamlMime:Hub
-title: Documentação do ASP.NET
+title: Documentação do ASP.NET Core
 summary: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços rápidos, seguros, multiplataforma e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
 brand: aspnet
 metadata:
-  title: Documentação do ASP.NET
+  title: Documentação do ASP.NET Core
   description: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços rápidos, seguros, multiplataforma e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 05/01/2020
-  ms.openlocfilehash: 2d653ab5ca78fb856098fb5f250a235e3f2635d0
-  ms.sourcegitcommit: c19e388c83c981232e6f128d97440262adfe06e2
+  ms.date: 06/03/2020
+  ms.openlocfilehash: fb4b31258683c5928708e7a2a479f353972c010b
+  ms.sourcegitcommit: 829dca1d5a7dcccbfe90644101c6be1d1c94ac62
   ms.translationtype: HT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 05/02/2020
-  ms.locfileid: "82727658"
+  ms.lasthandoff: 06/04/2020
+  ms.locfileid: "84355403"
 highlightedContent:
   items:
   - title: Crie um aplicativo ASP.NET Core em qualquer plataforma em 5 minutos
@@ -39,12 +39,12 @@ highlightedContent:
   - title: Crie seu primeiro aplicativo Web em tempo real
     itemType: get-started
     url: tutorials/signalr.md
-  - title: Crie seu primeiro aplicativo Web MVC controlado por dados
-    itemType: get-started
-    url: tutorials/first-mvc-app//start-mvc.md
+  - title: Documentação do ASP.NET 4.x
+    itemType: overview
+    url: https://docs.microsoft.com/aspnet/overview
 conceptualContent:
   title: Desenvolver aplicativos ASP.NET Core
-  summary: Escolha aplicativos Web interativos, APIs Web, aplicativos padronizados por MVC, aplicativos em tempo real e muito mais
+  summary: Escolha aplicativos Web interativos, APIs Web, aplicativos com padrão MVC, aplicativos em tempo real e muito mais. Para obter a documentação do ASP.NET 4.x, confira [ASP.NET](https://docs.microsoft.com/aspnet/overview).
   items:
   - title: Aplicativos Blazor interativos no lado do cliente
     summary: Desenvolva com componentes de interface do usuário reutilizáveis que podem aproveitar o WebAssembly para ter desempenho quase nativo
@@ -306,7 +306,7 @@ additionalContent:
     - title: Azure e ASP.NET Core
       links:
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-dotnet
-        text: Implantar um aplicativo Web ASP.NET
+        text: Implantar um aplicativo Web do ASP.NET Core
       - url: https://docs.microsoft.com/visualstudio/containers/container-tools?view=vs-2019.md
         text: ASP.NET Core e Docker
       - url: https://docs.microsoft.com/learn/modules/host-a-web-app-with-azure-app-service/
@@ -314,7 +314,7 @@ additionalContent:
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
         text: Serviço de Aplicativo e Banco de Dados SQL do Azure
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-connect-msi
-        text: Identidade gerenciada com o ASP.NET e o Banco de Dados SQL do Azure
+        text: Identidade gerenciada com o ASP.NET Core e o Banco de Dados SQL do Azure
       - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-rest-api
         text: API Web com CORS no Serviço de Aplicativo do Azure
       - url: https://docs.microsoft.com/learn/modules/capture-application-logs-app-service/
@@ -373,4 +373,4 @@ additionalContent:
         text: Tecnologias da Web comuns do lado do cliente
       - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/development-process-for-azure
         text: Processo de desenvolvimento para o Azure
-  footer: Contribua com a documentação do ASP.NET. Leia nosso [guia do colaborador](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md).
+  footer: Contribua para a documentação do ASP.NET Core. Leia nosso [guia do colaborador](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md).
