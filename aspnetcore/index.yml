@@ -1,21 +1,21 @@
 ### YamlMime:Hub
-title: Documentação do ASP.NET Core
+title: Documentação do ASP.NET
 summary: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços rápidos, seguros, multiplataforma e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
 brand: aspnet
 metadata:
-  title: Documentação do ASP.NET Core
+  title: Documentação do ASP.NET
   description: Aprenda a usar o ASP.NET Core para criar aplicativos Web e serviços rápidos, seguros, multiplataforma e baseados em nuvem. Procure tutoriais, código de exemplo, conceitos básicos, referência de API e muito mais.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 06/03/2020
-  ms.openlocfilehash: fb4b31258683c5928708e7a2a479f353972c010b
-  ms.sourcegitcommit: 829dca1d5a7dcccbfe90644101c6be1d1c94ac62
+  ms.date: 06/05/2020
+  ms.openlocfilehash: 25b5387c8956ea7931751525ea954f6f702c0cde
+  ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
   ms.translationtype: HT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 06/04/2020
-  ms.locfileid: "84355403"
+  ms.lasthandoff: 06/08/2020
+  ms.locfileid: "84507277"
 highlightedContent:
   items:
   - title: Crie um aplicativo ASP.NET Core em qualquer plataforma em 5 minutos
@@ -44,7 +44,7 @@ highlightedContent:
     url: https://docs.microsoft.com/aspnet/overview
 conceptualContent:
   title: Desenvolver aplicativos ASP.NET Core
-  summary: Escolha aplicativos Web interativos, APIs Web, aplicativos com padrão MVC, aplicativos em tempo real e muito mais. Para obter a documentação do ASP.NET 4.x, confira [ASP.NET](https://docs.microsoft.com/aspnet/overview).
+  summary: Escolha aplicativos Web interativos, APIs Web, aplicativos padronizados por MVC, aplicativos em tempo real e muito mais
   items:
   - title: Aplicativos Blazor interativos no lado do cliente
     summary: Desenvolva com componentes de interface do usuário reutilizáveis que podem aproveitar o WebAssembly para ter desempenho quase nativo
