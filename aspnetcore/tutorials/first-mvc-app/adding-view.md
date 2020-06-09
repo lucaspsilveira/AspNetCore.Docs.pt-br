@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: c89e0f0428fa7556fcd6b75cdfc1dd19109ec1c8
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 233d6cc060481c7b2efc9a1babc12f60f457a075
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774594"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507329"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -24,9 +24,9 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nesta seção, você modifica a classe `HelloWorldController` para que ela use os arquivos de exibição do [Razor](xref:mvc/views/razor) para encapsular corretamente o processo de geração de respostas HTML para um cliente.
+Nesta seção, você modifica a `HelloWorldController` classe para usar os [Razor](xref:mvc/views/razor) arquivos de exibição para encapsular corretamente o processo de geração de respostas HTML para um cliente.
 
-Crie um arquivo de modelo de exibição usando o Razor. Os modelos de exibição baseados no Razor têm uma extensão de arquivo *.cshtml*. Eles fornecem uma maneira elegante de criar a saída HTML com o C#.
+Você cria um arquivo de modelo de exibição usando Razor . Razoros modelos de exibição baseados em são uma extensão de arquivo *. cshtml* . Eles fornecem uma maneira elegante de criar a saída HTML com o C#.
 
 Atualmente, o método `Index` retorna uma cadeia de caracteres com uma mensagem que é embutida em código na classe do controlador. Na classe `HelloWorldController`, substitua o método `Index` pelo seguinte código:
 
@@ -46,7 +46,7 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
   * Na caixa de pesquisa no canto superior direito, insira *exibição*
 
-  * Selecione **Exibição Razor**
+  * Selecionar ** Razor exibição**
 
   * Mantenha o valor da caixa **Nome**, *Index.cshtml*.
 
@@ -76,11 +76,11 @@ Adicione uma exibição `Index` ao `HelloWorldController`.
 
 ---
 
-Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* do Razor pelo seguinte:
+Substitua o conteúdo do arquivo de exibição *exibições/HelloWorld/index. cshtml* Razor pelo seguinte:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue até `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
+Navegue até `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método ( `Index` ), portanto, o modelo de exibição em */views/HelloWorld/index.cshtml* é usado. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
 
 ![Janela do navegador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -133,7 +133,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado `ViewData["Title"]` com o que definimos no modelo de exibição *index. cshtml* e o "-Movie app" adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com o `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "-Movie app" adicional adicionado no arquivo de layout.
 
 O conteúdo do modelo de exibição *Index.cshtml* é mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml*. Uma única resposta HTML é enviada ao navegador. Os modelos de layout facilitam a realização de alterações que se aplicam a todas as páginas de um aplicativo. Para saber mais, consulte [layout](xref:mvc/views/layout).
 
@@ -174,16 +174,16 @@ No exemplo acima, o dicionário `ViewData` foi usado para passar dados do contro
 No próximo tutorial, será criado um banco de dados de filmes.
 
 > [!div class="step-by-step"]
-> [Anterior](adding-controller.md)
-> [próximo](adding-model.md)
+> [Anterior](adding-controller.md) 
+>  [Avançar](adding-model.md)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Nesta seção, você modifica a classe `HelloWorldController` para que ela use os arquivos de exibição do [Razor](xref:mvc/views/razor) para encapsular corretamente o processo de geração de respostas HTML para um cliente.
+Nesta seção, você modifica a `HelloWorldController` classe para usar os [Razor](xref:mvc/views/razor) arquivos de exibição para encapsular corretamente o processo de geração de respostas HTML para um cliente.
 
-Crie um arquivo de modelo de exibição usando o Razor. Os modelos de exibição baseados no Razor têm uma extensão de arquivo *.cshtml*. Eles fornecem uma maneira elegante de criar a saída HTML com o C#.
+Você cria um arquivo de modelo de exibição usando Razor . Razoros modelos de exibição baseados em são uma extensão de arquivo *. cshtml* . Eles fornecem uma maneira elegante de criar a saída HTML com o C#.
 
 Atualmente, o método `Index` retorna uma cadeia de caracteres com uma mensagem que é embutida em código na classe do controlador. Na classe `HelloWorldController`, substitua o método `Index` pelo seguinte código:
 
@@ -203,7 +203,7 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
   * Na caixa de pesquisa no canto superior direito, insira *exibição*
 
-  * Selecione **Exibição Razor**
+  * Selecionar ** Razor exibição**
 
   * Mantenha o valor da caixa **Nome**, *Index.cshtml*.
 
@@ -293,7 +293,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
 ```
 
-Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado `ViewData["Title"]` com o que definimos no modelo de exibição *index. cshtml* e o "-Movie app" adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com o `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "-Movie app" adicional adicionado no arquivo de layout.
 
 Observe também como o conteúdo no modelo de exibição *Index.cshtml* foi mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml* e uma única resposta HTML foi enviada para o navegador. Os modelos de layout facilitam realmente a realização de alterações que se aplicam a todas as páginas do aplicativo. Para saber mais, consulte [Layout](xref:mvc/views/layout).
 
@@ -334,7 +334,7 @@ No exemplo acima, o dicionário `ViewData` foi usado para passar dados do contro
 No próximo tutorial, será criado um banco de dados de filmes.
 
 > [!div class="step-by-step"]
-> [Anterior](adding-controller.md)
-> [próximo](adding-model.md)
+> [Anterior](adding-controller.md) 
+>  [Avançar](adding-model.md)
 
 ::: moniker-end

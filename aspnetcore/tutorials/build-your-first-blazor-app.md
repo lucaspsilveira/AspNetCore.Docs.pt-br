@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 8cf356b5c9876a4114942af27a22df6bd324d0e2
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: ce3f20f7ee4ccfa73afc5f80a4429d9f4fe05591
+ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84355208"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84507251"
 ---
 # <a name="build-your-first-blazor-app"></a>Crie seu primeiro Blazor aplicativo
 
@@ -32,7 +32,7 @@ Este tutorial mostra como criar e modificar um Blazor aplicativo. Você aprender
 > * Usar manipulação de eventos e vinculação de dados em componentes
 > * Usar injeção de dependência (DI) e roteamento em um Blazor aplicativo
 
-No final deste tutorial, você terá um aplicativo de chat em funcionamento.
+No final deste tutorial, você terá um aplicativo de lista de tarefas em funcionamento.
 
 ## <a name="build-components"></a>Componentes do build
 
