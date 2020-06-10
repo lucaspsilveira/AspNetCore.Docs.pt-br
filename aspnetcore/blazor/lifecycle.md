@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core Blazor ciclo de vida ' autor: Descrição: ' saiba como usar Razor métodos de ciclo de vida de componente em Blazor aplicativos ASP.NET Core. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: BlazorCiclo de vida ASP.NET Core
+author: guardrex
+description: Saiba como usar Razor métodos de ciclo de vida do componente em ASP.NET Core Blazor aplicativos.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/lifecycle
+ms.openlocfilehash: 9dcbb2ca21cc689063198e1ccc90583db4229183
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "83864574"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>BlazorCiclo de vida ASP.NET Core
 

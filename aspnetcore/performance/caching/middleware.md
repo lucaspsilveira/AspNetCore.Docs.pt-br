@@ -1,11 +1,24 @@
 ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: Middleware de cache de resposta em ASP.NET Core
+author: rick-anderson
+description: Saiba como configurar e usar o Middleware de cache de resposta no ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: performance/caching/middleware
+ms.openlocfilehash: 2ee75b1af9ffc23ff9ae1763059364de3ec8f426
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106501"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware de cache de resposta em ASP.NET Core
 
@@ -50,38 +63,10 @@ O middleware de cache de resposta só armazena em cache as respostas do servidor
 As opções de cache de resposta são mostradas na tabela a seguir.
 
 | Opção | Descrição |
-| ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.UseCaseSensitivePaths> | Determina se as respostas são armazenadas em cache em caminhos que diferenciam maiúsculas de minúsculas. O valor padrão é `false`. |
+| ------ | ----------- |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.UseCaseSensitivePaths> | Determina se as respostas são armazenadas em cache em caminhos que diferenciam maiúsculas de minúsculas. O valor padrão é `false`. |
 
 O exemplo a seguir configura o middleware para:
 
@@ -118,22 +103,18 @@ O uso de um único valor igual a `*` in `VaryByQueryKeys` varia o cache por todo
 A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cache de resposta.
 
 | parâmetro | Detalhes |
-| ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
----- | | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. | | `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). | | `Pragma` | Um `Pragma: no-cache` cabeçalho na solicitação produz o mesmo efeito que `Cache-Control: no-cache` . Esse cabeçalho é substituído pelas diretivas relevantes no `Cache-Control` cabeçalho, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. | | `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  | | `Vary` | O `Vary` cabeçalho é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazene respostas em cache por meio da codificação, incluindo o `Vary: Accept-Encoding` cabeçalho, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. | | `Expires` | Uma resposta considerada obsoleta por esse cabeçalho não é armazenada ou recuperada, a menos que seja substituída por outros `Cache-Control` cabeçalhos. | | `If-None-Match` | A resposta completa será servida do cache se o valor não for `*` e a `ETag` da resposta não corresponder a nenhum dos valores fornecidos. Caso contrário, uma resposta 304 (não modificada) é servida. | | `If-Modified-Since` | Se o `If-None-Match` cabeçalho não estiver presente, uma resposta completa será servida do cache se a data de resposta armazenada em cache for mais recente do que o valor fornecido. Caso contrário, uma resposta *304-não modificada* é servida. | | `Date` | Ao servir do cache, o `Date` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. | | `Content-Length` | Ao servir do cache, o `Content-Length` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. | | `Age` | O `Age` cabeçalho enviado na resposta original é ignorado. O middleware computa um novo valor ao fornecer uma resposta armazenada em cache. |
+| ------ | ------- |
+| `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
+| `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Pragma` | Um `Pragma: no-cache` cabeçalho na solicitação produz o mesmo efeito que `Cache-Control: no-cache` . Esse cabeçalho é substituído pelas diretivas relevantes no `Cache-Control` cabeçalho, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. |
+| `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  |
+| `Vary` | O `Vary` cabeçalho é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazene respostas em cache por meio da codificação, incluindo o `Vary: Accept-Encoding` cabeçalho, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. |
+| `Expires` | Uma resposta considerada obsoleta por esse cabeçalho não é armazenada ou recuperada, a menos que seja substituída por outros `Cache-Control` cabeçalhos. |
+| `If-None-Match` | A resposta completa será servida do cache se o valor não for `*` e a `ETag` da resposta não corresponder a nenhum dos valores fornecidos. Caso contrário, uma resposta 304 (não modificada) é servida. |
+| `If-Modified-Since` | Se o `If-None-Match` cabeçalho não estiver presente, uma resposta completa será servida do cache se a data de resposta armazenada em cache for mais recente do que o valor fornecido. Caso contrário, uma resposta *304-não modificada* é servida. |
+| `Date` | Ao servir do cache, o `Date` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. |
+| `Content-Length` | Ao servir do cache, o `Content-Length` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. |
+| `Age` | O `Age` cabeçalho enviado na resposta original é ignorado. O middleware computa um novo valor ao fornecer uma resposta armazenada em cache. |
 
 ## <a name="caching-respects-request-cache-control-directives"></a>Aspectos de cache de solicitação de cache – diretivas de controle
 
@@ -226,38 +207,10 @@ O middleware de cache de resposta só armazena em cache as respostas do servidor
 As opções de cache de resposta são mostradas na tabela a seguir.
 
 | Opção | Descrição |
-| ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). | | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.UseCaseSensitivePaths> | Determina se as respostas são armazenadas em cache em caminhos que diferenciam maiúsculas de minúsculas. O valor padrão é `false`. |
+| ------ | ----------- |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). |
+| <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.UseCaseSensitivePaths> | Determina se as respostas são armazenadas em cache em caminhos que diferenciam maiúsculas de minúsculas. O valor padrão é `false`. |
 
 O exemplo a seguir configura o middleware para:
 
@@ -294,22 +247,18 @@ O uso de um único valor igual a `*` in `VaryByQueryKeys` varia o cache por todo
 A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cache de resposta.
 
 | parâmetro | Detalhes |
-| ---
-Título: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
---- | título do---: autor: Descrição: monikerRange: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
----- | | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. | | `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). | | `Pragma` | Um `Pragma: no-cache` cabeçalho na solicitação produz o mesmo efeito que `Cache-Control: no-cache` . Esse cabeçalho é substituído pelas diretivas relevantes no `Cache-Control` cabeçalho, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. | | `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  | | `Vary` | O `Vary` cabeçalho é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazene respostas em cache por meio da codificação, incluindo o `Vary: Accept-Encoding` cabeçalho, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. | | `Expires` | Uma resposta considerada obsoleta por esse cabeçalho não é armazenada ou recuperada, a menos que seja substituída por outros `Cache-Control` cabeçalhos. | | `If-None-Match` | A resposta completa será servida do cache se o valor não for `*` e a `ETag` da resposta não corresponder a nenhum dos valores fornecidos. Caso contrário, uma resposta 304 (não modificada) é servida. | | `If-Modified-Since` | Se o `If-None-Match` cabeçalho não estiver presente, uma resposta completa será servida do cache se a data de resposta armazenada em cache for mais recente do que o valor fornecido. Caso contrário, uma resposta *304-não modificada* é servida. | | `Date` | Ao servir do cache, o `Date` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. | | `Content-Length` | Ao servir do cache, o `Content-Length` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. | | `Age` | O `Age` cabeçalho enviado na resposta original é ignorado. O middleware computa um novo valor ao fornecer uma resposta armazenada em cache. |
+| ------ | ------- |
+| `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
+| `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Pragma` | Um `Pragma: no-cache` cabeçalho na solicitação produz o mesmo efeito que `Cache-Control: no-cache` . Esse cabeçalho é substituído pelas diretivas relevantes no `Cache-Control` cabeçalho, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. |
+| `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  |
+| `Vary` | O `Vary` cabeçalho é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazene respostas em cache por meio da codificação, incluindo o `Vary: Accept-Encoding` cabeçalho, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. |
+| `Expires` | Uma resposta considerada obsoleta por esse cabeçalho não é armazenada ou recuperada, a menos que seja substituída por outros `Cache-Control` cabeçalhos. |
+| `If-None-Match` | A resposta completa será servida do cache se o valor não for `*` e a `ETag` da resposta não corresponder a nenhum dos valores fornecidos. Caso contrário, uma resposta 304 (não modificada) é servida. |
+| `If-Modified-Since` | Se o `If-None-Match` cabeçalho não estiver presente, uma resposta completa será servida do cache se a data de resposta armazenada em cache for mais recente do que o valor fornecido. Caso contrário, uma resposta *304-não modificada* é servida. |
+| `Date` | Ao servir do cache, o `Date` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. |
+| `Content-Length` | Ao servir do cache, o `Content-Length` cabeçalho é definido pelo middleware se ele não foi fornecido na resposta original. |
+| `Age` | O `Age` cabeçalho enviado na resposta original é ignorado. O middleware computa um novo valor ao fornecer uma resposta armazenada em cache. |
 
 ## <a name="caching-respects-request-cache-control-directives"></a>Aspectos de cache de solicitação de cache – diretivas de controle
 

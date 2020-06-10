@@ -1,12 +1,24 @@
 ---
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: Integre Razor componentes de ASP.NET Core em Razor páginas e aplicativos MVC
+author: guardrex
+description: Saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/25/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: blazor/integrate-components
+ms.openlocfilehash: 97515ec519c4bedb0478f510ec9ed739b5d76e4f
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84105240"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre Razor componentes de ASP.NET Core em Razor páginas e aplicativos MVC
 
@@ -117,60 +129,10 @@ Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
    * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
    | Modo de renderização | Descrição |
-   | ---
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | título do---: ' integrar ASP.NET Core Razor componentes em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
 
    Para obter mais informações sobre o auxiliar de marca de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
@@ -241,60 +203,10 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
    * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
    | Modo de renderização | Descrição |
-   | ---
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | título do---: ' integrar ASP.NET Core Razor componentes em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' integrar Razor componentes ASP.NET Core em Razor páginas e aplicativos MVC ' autor: Descrição: ' saiba mais sobre cenários de ligação de dados para componentes e elementos DOM em Blazor aplicativos. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------- | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. | | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o `App` componente em HTML estático. |
 
    Para obter mais informações sobre o auxiliar de marca de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 

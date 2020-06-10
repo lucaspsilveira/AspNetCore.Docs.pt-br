@@ -1,12 +1,24 @@
 ---
-Título: ' ASP.NET Core SignalR cliente JavaScript ' autor: Descrição: ' visão geral de ASP.NET Core SignalR cliente JavaScript. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: ASP.NET Core SignalR cliente JavaScript
+author: bradygaster
+description: Visão geral de ASP.NET Core SignalR cliente JavaScript.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: bradyg
+ms.custom: mvc
+ms.date: 04/08/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: signalr/javascript-client
+ms.openlocfilehash: 4b3a4b2323b7f221d9cd1aab1c56d1d9828eb916
+ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84106449"
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR cliente JavaScript
 
