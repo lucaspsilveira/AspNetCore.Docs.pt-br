@@ -1,19 +1,25 @@
 ---
-title: Páginas Razor com o EF Core no ASP.NET Core – Simultaneidade – 8 de 8
+title: Parte 8, Razor páginas com EF Core em ASP.NET Core-Concurrency
 author: rick-anderson
-description: Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam a mesma entidade simultaneamente.
+description: Parte 8 de Razor páginas e Entity Framework série de tutoriais.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: c4d43f26ba80e7922c3cbd37d9a5f8e1561b11ad
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: fb6a59a11cf31dff4866d5f5294cd9f15b173add
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656908"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652436"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Simultaneidade – 8 de 8
+# <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor páginas com EF Core em ASP.NET Core-Concurrency
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -62,7 +68,7 @@ Julio clica em **Salvar** em uma página Editar que ainda mostra um orçamento d
 
 * Você não pode deixar a alteração de Julio substituir a alteração de Alice.
 
-  Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 buscado. Essa abordagem é chamada de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Se você não fizer nenhuma codificação para manipulação de moedas, o Cliente Wins acontece automaticamente.
+  Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 buscado. Essa abordagem é chamada de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Se você não fizer qualquer codificação para manipulação de simultaneidade, o cliente WINS ocorrerá automaticamente.
 
 * Você pode impedir que as alterações de Julio sejam atualizadas no banco de dados. Normalmente, o aplicativo:
 
@@ -70,7 +76,7 @@ Julio clica em **Salvar** em uma página Editar que ainda mostra um orçamento d
   * Mostra o estado atual dos dados.
   * Permite ao usuário aplicar as alterações novamente.
 
-  Isso é chamado de um cenário *O armazenamento vence*. (Os valores do armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementa o cenário Store Wins neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado.
+  Isso é chamado de um cenário *O armazenamento vence*. (Os valores de armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementa o cenário da loja vence neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado.
 
 ## <a name="conflict-detection-in-ef-core"></a>Detecção de conflitos no EF Core
 
@@ -121,7 +127,7 @@ O seguinte código realçado mostra o T-SQL que verifica exatamente se uma linha
 
 [!code-sql[](intro/samples/cu30snapshots/8-concurrency/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT ](/sql/t-sql/functions/rowcount-transact-sql) retorna o número de linhas afetadas pela última declaração. Se nenhuma linha for atualizada, o EF Core gerará uma `DbUpdateConcurrencyException`.
+[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) Retorna o número de linhas afetadas pela última instrução. Se nenhuma linha for atualizada, o EF Core gerará uma `DbUpdateConcurrencyException`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -246,7 +252,7 @@ O código a seguir mostra a página atualizada:
 
 ## <a name="update-the-edit-page-model"></a>Atualizar o modelo da página Editar
 
-Atualizar *páginas\Departamentos\Edit.cshtml.cs* com o seguinte código:
+Atualize *Pages\Departments\Edit.cshtml.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
@@ -256,7 +262,7 @@ O [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.prope
 
 No código realçado anterior:
 
-* O valor em `Department.RowVersion` é o que estava na entidade quando ela foi buscada originalmente na solicitação Get para a página Editar. O valor é fornecido ao método `OnPost` por um campo oculto na página do Razor que exibe a entidade a ser editada. O valor do campo oculto é copiado para `Department.RowVersion` pelo associador de modelos.
+* O valor em `Department.RowVersion` é o que estava na entidade quando ela foi buscada originalmente na solicitação Get para a página Editar. O valor é fornecido ao `OnPost` método por um campo oculto na Razor página que exibe a entidade a ser editada. O valor do campo oculto é copiado para `Department.RowVersion` pelo associador de modelos.
 * `OriginalValue` é o que o EF Core usará na cláusula Where. Antes que a linha de código realçada seja executada, o `OriginalValue` tem o valor que estava no banco de dados quando `FirstOrDefaultAsync` foi chamado nesse método, que pode ser diferente do que foi exibido na página de edição.
 * O código realçado garante que o EF Core use o valor `RowVersion` original da entidade `Department` exibida na cláusula Where da declaração SQL UPDATE.
 
@@ -272,9 +278,9 @@ O código realçado a seguir define o valor `RowVersion` com o novo valor recupe
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=28)]
 
-A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valor `RowVersion` antigo. Na Página do Razor, o valor `ModelState` de um campo tem precedência sobre os valores de propriedade do modelo, quando ambos estão presentes.
+A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valor `RowVersion` antigo. Na Razor página, o `ModelState` valor de um campo tem precedência sobre os valores de Propriedade do modelo quando ambos estão presentes.
 
-### <a name="update-the-razor-page"></a>Atualizar a páginas do Razor
+### <a name="update-the-razor-page"></a>Atualizar a Razor página
 
 Atualize *Pages/Departments/Edit.cshtml* com o seguinte código:
 
@@ -311,7 +317,7 @@ Clique em **Save** (Salvar). Você verá mensagens de erro em todos os campos qu
 
 ![Mensagem de erro da página Editar Departamento](concurrency/_static/edit-error30.png)
 
-Essa janela do navegador não pretendia alterar o campo Name. Copie e cole o valor atual (Languages) para o campo Name. Tabulação para fora. A validação do lado do cliente remove a mensagem de erro.
+Essa janela do navegador não pretendia alterar o campo Name. Copie e cole o valor atual (Languages) para o campo Name. Tab. A validação no lado do cliente remove a mensagem de erro.
 
 Clique em **Salvar** novamente. O valor inserido na segunda guia do navegador foi salvo. Você verá os valores salvos na página Índice.
 
@@ -327,7 +333,7 @@ A página Excluir detectou conflitos de simultaneidade quando a entidade foi alt
 * Uma exceção DbUpdateConcurrencyException é gerada.
 * `OnGetAsync` é chamado com o `concurrencyError`.
 
-### <a name="update-the-delete-razor-page"></a>Atualizar a página Excluir do Razor
+### <a name="update-the-delete-razor-page"></a>Atualizar a Razor página excluir
 
 Atualize *Pages/Departments/Delete.cshtml* com o seguinte código:
 
@@ -357,7 +363,7 @@ Altere o orçamento na primeira guia do navegador e clique em **Salvar**.
 
 O navegador mostra a página de Índice com o valor alterado e o indicador de rowVersion atualizado. Observe o indicador de rowVersion atualizado: ele é exibido no segundo postback na outra guia.
 
-Exclua o departamento de teste da segunda guia. Um erro de concorrência é exibido com os valores atuais do banco de dados. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
+Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do banco de dados. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -418,7 +424,7 @@ A simultaneidade otimista inclui as seguintes opções:
 
 * Você não pode deixar a alteração de Julio substituir a alteração de Alice.
 
-  Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 buscado. Essa abordagem é chamada de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Se você não fizer nenhuma codificação para manipulação de moedas, o Cliente Wins acontece automaticamente.
+  Na próxima vez que alguém navegar pelo departamento de inglês, verá 1/9/2013 e o valor de US$ 350.000,00 buscado. Essa abordagem é chamada de um cenário *O cliente vence* ou *O último vence*. (Todos os valores do cliente têm precedência sobre o que está no armazenamento de dados.) Se você não fizer qualquer codificação para manipulação de simultaneidade, o cliente WINS ocorrerá automaticamente.
 
 * Você pode impedir que as alterações de Julio sejam atualizadas no BD. Normalmente, o aplicativo:
 
@@ -426,7 +432,7 @@ A simultaneidade otimista inclui as seguintes opções:
   * Mostra o estado atual dos dados.
   * Permite ao usuário aplicar as alterações novamente.
 
-  Isso é chamado de um cenário *O armazenamento vence*. (Os valores do armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementa o cenário Store Wins neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado.
+  Isso é chamado de um cenário *O armazenamento vence*. (Os valores de armazenamento de dados têm precedência sobre os valores enviados pelo cliente.) Você implementa o cenário da loja vence neste tutorial. Esse método garante que nenhuma alteração é substituída sem que um usuário seja alertado.
 
 ## <a name="handling-concurrency"></a>Tratamento de simultaneidade 
 
@@ -484,7 +490,7 @@ O seguinte código realçado mostra o T-SQL que verifica exatamente se uma linha
 
 [!code-sql[](intro/samples/cu21snapshots/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT ](/sql/t-sql/functions/rowcount-transact-sql) retorna o número de linhas afetadas pela última declaração. Quando nenhuma linha é atualizada, o EF Core gera uma `DbUpdateConcurrencyException`.
+[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) Retorna o número de linhas afetadas pela última instrução. Quando nenhuma linha é atualizada, o EF Core gera uma `DbUpdateConcurrencyException`.
 
 Veja o T-SQL gerado pelo EF Core na janela de Saída do Visual Studio.
 
@@ -518,7 +524,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
- Execute o comando a seguir:
+ Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
@@ -546,7 +552,7 @@ A seguinte marcação mostra a página atualizada:
 
 ### <a name="update-the-edit-page-model"></a>Atualizar o modelo da página Editar
 
-Atualizar *páginas\Departamentos\Edit.cshtml.cs* com o seguinte código:
+Atualize *Pages\Departments\Edit.cshtml.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
@@ -568,7 +574,7 @@ O código realçado a seguir define o valor `RowVersion` com o novo valor recupe
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
 
-A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valor `RowVersion` antigo. Na Página do Razor, o valor `ModelState` de um campo tem precedência sobre os valores de propriedade do modelo, quando ambos estão presentes.
+A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valor `RowVersion` antigo. Na Razor página, o `ModelState` valor de um campo tem precedência sobre os valores de Propriedade do modelo quando ambos estão presentes.
 
 ## <a name="update-the-edit-page"></a>Atualizar a página Editar
 
@@ -607,7 +613,7 @@ Clique em **Save** (Salvar). Você verá mensagens de erro em todos os campos qu
 
 ![Mensagem de erro da página Editar Departamento](concurrency/_static/edit-error.png)
 
-Essa janela do navegador não pretendia alterar o campo Name. Copie e cole o valor atual (Languages) para o campo Name. Tabulação para fora. A validação do lado do cliente remove a mensagem de erro.
+Essa janela do navegador não pretendia alterar o campo Name. Copie e cole o valor atual (Languages) para o campo Name. Tab. A validação no lado do cliente remove a mensagem de erro.
 
 ![Mensagem de erro da página Editar Departamento](concurrency/_static/cv.png)
 
@@ -655,7 +661,7 @@ Altere o orçamento na primeira guia do navegador e clique em **Salvar**.
 
 O navegador mostra a página de Índice com o valor alterado e o indicador de rowVersion atualizado. Observe o indicador de rowVersion atualizado: ele é exibido no segundo postback na outra guia.
 
-Exclua o departamento de teste da segunda guia. Um erro de concorrência é exibido com os valores atuais do DB. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
+Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do BD. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
 
 Consulte [Herança](xref:data/ef-mvc/inheritance) para saber como herdar um modelo de dados.
 

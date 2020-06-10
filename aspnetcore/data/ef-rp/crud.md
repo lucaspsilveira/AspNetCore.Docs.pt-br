@@ -1,18 +1,24 @@
 ---
-title: Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
+title: Parte 2, Razor páginas com EF Core em ASP.NET Core-CRUD
 author: rick-anderson
-description: Mostra como criar, ler, atualizar e excluir com o EF Core.
+description: Parte 2 de Razor páginas e Entity Framework série de tutoriais.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 62e35639d5e3d43bd20c9f92b75fa101d7914f82
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78665644"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652362"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
+# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>Parte 2, Razor páginas com EF Core em ASP.NET Core-CRUD
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -24,7 +30,7 @@ Neste tutorial, o código CRUD (criar, ler, atualizar e excluir) gerado por scaf
 
 ## <a name="no-repository"></a>Nenhum repositório
 
-Alguns desenvolvedores usam um padrão de repositório ou camada de serviço para criar uma camada de abstração entre a interface do usuário (Razor Pages) e a camada de acesso a dados. Este tutorial não faz isso. Para minimizar a complexidade e manter o tutorial focado em EF Core, o código do EF Core é adicionado diretamente às classes de modelo de página. 
+Alguns desenvolvedores usam um padrão de camada de serviço ou repositório para criar uma camada de abstração entre a interface do usuário ( Razor páginas) e a camada de acesso a dados. Este tutorial não faz isso. Para minimizar a complexidade e manter o tutorial focado em EF Core, o código do EF Core é adicionado diretamente às classes de modelo de página. 
 
 ## <a name="update-the-details-page"></a>Atualizar a página Detalhes
 
@@ -90,7 +96,7 @@ O uso de `TryUpdateModel` para atualizar campos com valores postados é uma melh
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Mesmo que o aplicativo não tenha um campo `Secret` na Página criar ou atualizar do Razor, um invasor pode definir o valor `Secret` por excesso de postagem. Um invasor pode usar uma ferramenta como o Fiddler ou escrever um JavaScript para postar um valor de formulário `Secret`. O código original não limita os campos que o associador de modelos usa quando ele cria uma instância Student.
+Mesmo que o aplicativo não tenha um `Secret` campo na página criar ou atualizar Razor , um hacker poderia definir o `Secret` valor sobrepostando. Um invasor pode usar uma ferramenta como o Fiddler ou escrever um JavaScript para postar um valor de formulário `Secret`. O código original não limita os campos que o associador de modelos usa quando ele cria uma instância Student.
 
 Seja qual for o valor que o invasor especificou para o campo de formulário `Secret`, ele será atualizado no banco de dados. A imagem a seguir mostra a ferramenta Fiddler adicionando o campo `Secret` (com o valor "OverPost") aos valores de formulário postados.
 
@@ -98,13 +104,13 @@ Seja qual for o valor que o invasor especificou para o campo de formulário `Sec
 
 O valor "OverPost" foi adicionado com êxito à propriedade `Secret` da linha inserida. Isso acontece embora o designer de aplicativo nunca tenha pretendido que a propriedade `Secret` fosse definida com a página Criar.
 
-### <a name="view-model"></a>Modelo de exibição
+### <a name="view-model"></a>Exibir modelo
 
 Os modelos de exibição fornecem uma maneira alternativa para impedir o excesso de postagem.
 
 O modelo de aplicativo costuma ser chamado de modelo de domínio. O modelo de domínio normalmente contém todas as propriedades necessárias para a entidade correspondente no banco de dados. O modelo de exibição contém apenas as propriedades necessárias para a interface do usuário que é usada (por exemplo, a página Criar).
 
-Além do modelo de exibição, alguns aplicativos usam um modelo de associação ou modelo de entrada para passar dados entre a classe de modelo de página das Páginas do Razor e o navegador. 
+Além do modelo de exibição, alguns aplicativos usam um modelo de associação ou um modelo de entrada para passar dados entre a Razor classe de modelo de página de páginas e o navegador. 
 
 Considere o seguinte modelo de exibição `Student`:
 
@@ -167,7 +173,7 @@ O método `OnPostAsync` recupera a entidade selecionada e, em seguida, chama o m
 * A exceção de banco de dados é capturada.
 * O método `OnGetAsync` das páginas Excluir é chamado com `saveChangesError=true`.
 
-Adicione uma mensagem de erro à página Excluir Razor (*Pages//Students/Delete.cshtml*):
+Adicione uma mensagem de erro à Razor página excluir (*páginas/alunos/Delete. cshtml*):
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -176,8 +182,8 @@ Execute o aplicativo e exclua um aluno para testar a página Excluir.
 ## <a name="next-steps"></a>Próximas etapas
 
 > [!div class="step-by-step"]
-> [Tutorial anterior](xref:data/ef-rp/intro)
-> [Próximo tutorial](xref:data/ef-rp/sort-filter-page)
+> [Tutorial anterior](xref:data/ef-rp/intro) 
+>  [Próximo tutorial](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end
 
@@ -185,9 +191,9 @@ Execute o aplicativo e exclua um aluno para testar a página Excluir.
 
 Neste tutorial, o código CRUD (criar, ler, atualizar e excluir) gerado por scaffolding é examinado e personalizado.
 
-Para minimizar a complexidade e manter o foco destes tutoriais no EF Core, o código do EF Core é usado nos modelos de página. Alguns desenvolvedores usam um padrão de repositório ou de camada de serviço para criar uma camada de abstração entre a interface do usuário (Páginas do Razor) e a camada de acesso a dados.
+Para minimizar a complexidade e manter o foco destes tutoriais no EF Core, o código do EF Core é usado nos modelos de página. Alguns desenvolvedores usam um padrão de camada de serviço ou repositório no para criar uma camada de abstração entre a interface do usuário ( Razor páginas) e a camada de acesso a dados.
 
-Neste tutorial, as Razor Pages Criar, Editar, Excluir e Detalhes na pasta *Student* são examinadas.
+Neste tutorial, as páginas criar, editar, excluir e detalhes Razor na pasta *estudantes* são examinadas.
 
 O código gerado por scaffolding usa o seguinte padrão para as páginas Criar, Editar e Excluir:
 
@@ -231,7 +237,7 @@ Navegue para a página `Pages/Students`. Os links **Editar**, **Detalhes** e **E
 
 Execute o aplicativo e selecione o link **Detalhes**. A URL tem o formato `http://localhost:5000/Students/Details?id=2`. A ID do Aluno é passada com uma cadeia de caracteres de consulta (`?id=2`).
 
-Atualize as Páginas Editar, Detalhes e Excluir do Razor para que elas usem o modelo de rota `"{id:int}"`. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`.
+Atualize as páginas editar, detalhes e excluir Razor para usar o `"{id:int}"` modelo de rota. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`.
 
 Uma solicitação para a página com o modelo de rota "{id:int}" que **não** inclui um valor inteiro de rota retorna um erro HTTP 404 (não encontrado). Por exemplo, `http://localhost:5000/Students/Details` retorna um erro 404. Para tornar a ID opcional, acrescente `?` à restrição de rota:
 
@@ -298,7 +304,7 @@ O uso de `TryUpdateModel` para atualizar campos com valores postados é uma melh
 
 [!code-csharp[](intro/samples/cu21/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Mesmo que o aplicativo não tenha um campo `Secret` na Página criar/atualizar do Razor, um invasor pode definir o valor `Secret` por excesso de postagem. Um invasor pode usar uma ferramenta como o Fiddler ou escrever um JavaScript para postar um valor de formulário `Secret`. O código original não limita os campos que o associador de modelos usa quando ele cria uma instância Student.
+Mesmo que o aplicativo não tenha um `Secret` campo na página Criar/atualizar Razor , um hacker poderia definir o `Secret` valor sobrepostando. Um invasor pode usar uma ferramenta como o Fiddler ou escrever um JavaScript para postar um valor de formulário `Secret`. O código original não limita os campos que o associador de modelos usa quando ele cria uma instância Student.
 
 Seja qual for o valor que o invasor especificou para o campo de formulário `Secret`, ele será atualizado no BD. A imagem a seguir mostra a ferramenta Fiddler adicionando o campo `Secret` (com o valor "OverPost") aos valores de formulário postados.
 
@@ -308,9 +314,9 @@ O valor "OverPost" foi adicionado com êxito à propriedade `Secret` da linha in
 
 <a name="vm"></a>
 
-### <a name="view-model"></a>Modelo de exibição
+### <a name="view-model"></a>Exibir modelo
 
-Um modelo de exibição normalmente contém um subconjunto das propriedades incluídas no modelo usado pelo aplicativo. O modelo de aplicativo costuma ser chamado de modelo de domínio. O modelo de domínio normalmente contém todas as propriedades necessárias para a entidade correspondente no BD. O modelo de exibição contém apenas as propriedades necessárias para a camada de interface do usuário (por exemplo, a página Criar). Além do modelo de exibição, alguns aplicativos usam um modelo de associação ou modelo de entrada para passar dados entre a classe de modelo de página das Páginas do Razor e o navegador. Considere o seguinte modelo de exibição `Student`:
+Um modelo de exibição normalmente contém um subconjunto das propriedades incluídas no modelo usado pelo aplicativo. O modelo de aplicativo costuma ser chamado de modelo de domínio. O modelo de domínio normalmente contém todas as propriedades necessárias para a entidade correspondente no BD. O modelo de exibição contém apenas as propriedades necessárias para a camada de interface do usuário (por exemplo, a página Criar). Além do modelo de exibição, alguns aplicativos usam um modelo de associação ou um modelo de entrada para passar dados entre a Razor classe de modelo de página de páginas e o navegador. Considere o seguinte modelo de exibição `Student`:
 
 [!code-csharp[](intro/samples/cu21/Models/StudentVM.cs)]
 
@@ -324,7 +330,7 @@ O método [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.p
 
 O uso de `StudentVM` exige a atualização de [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) para usar `StudentVM` em vez de `Student`.
 
-Nas Páginas do Razor, a classe derivada `PageModel` é o modelo de exibição.
+Em Razor páginas, a `PageModel` classe derivada é o modelo de exibição.
 
 ## <a name="update-the-edit-page"></a>Atualizar a página Editar
 
@@ -385,9 +391,9 @@ O código anterior recupera a entidade selecionada e, em seguida, chama o métod
 * A exceção de BD é capturada.
 * O método `OnGetAsync` das páginas Excluir é chamado com `saveChangesError=true`.
 
-### <a name="update-the-delete-razor-page"></a>Atualizar a Página Excluir do Razor
+### <a name="update-the-delete-razor-page"></a>Atualizar a Razor página excluir
 
-Adicione a mensagem de erro realçada a seguir à Página Excluir do Razor.
+Adicione a seguinte mensagem de erro realçada à Razor página excluir.
 <!--
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Delete.cshtml?name=snippet&highlight=11)]
 -->
@@ -399,13 +405,13 @@ Exclusão de teste.
 
 Alunos/Índice ou outros links não funcionam:
 
-Verifique se a Página do Razor contém a diretiva `@page` correta. Por exemplo, a Razor Page Alunos/Índice **não** deve conter um modelo de rota:
+Verifique se a Razor página contém a `@page` diretiva correta. Por exemplo, a página estudantes/index Razor **não** deve conter um modelo de rota:
 
 ```cshtml
 @page "{id:int}"
 ```
 
-Cada Página do Razor deve incluir a diretiva `@page`.
+Cada Razor página deve incluir a `@page` diretiva.
 
 
 
@@ -414,7 +420,7 @@ Cada Página do Razor deve incluir a diretiva `@page`.
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 
 > [!div class="step-by-step"]
-> [Próximo](xref:data/ef-rp/intro)
-> [anterior](xref:data/ef-rp/sort-filter-page)
+> [Anterior](xref:data/ef-rp/intro) 
+>  [Avançar](xref:data/ef-rp/sort-filter-page)
 
 ::: moniker-end

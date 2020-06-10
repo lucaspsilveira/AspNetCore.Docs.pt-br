@@ -1,7 +1,7 @@
 ---
-title: Adicionar um modelo a um Razor aplicativo de páginas no ASP.NET Core
+title: Parte 2, adicionar um modelo a um Razor aplicativo de páginas no ASP.NET Core
 author: rick-anderson
-description: Saiba como adicionar classes de gerenciamento de filmes em um banco de dados usando o EF Core (Entity Framework Core).
+description: Parte 2 da série de tutoriais em Razor páginas.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: d093d7c4dc1b355c0042f300f70a830653b168c0
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d3f7d355625ce20a0cb45c785fbab259a5655c63
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769826"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652927"
 ---
-# <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
+# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Parte 2, adicionar um modelo a um Razor aplicativo de páginas no ASP.NET Core
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -38,7 +38,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
-Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **classe**. Dê à classe o nome **Movie**.
+Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**  >  **classe**. Dê à classe o nome **Movie**.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
@@ -82,11 +82,11 @@ Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > *
 
 ![Imagem das instruções anteriores.](model/_static/sca.png)
 
-Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando a adição de Entity Framework (CRUD)** > **Add**.
+Na caixa de diálogo **Adicionar Scaffold** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffold.png)
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
 
 * Na lista suspensa **Classe de modelo**, selecione **Filme (RazorPagesMovie.Models)**.
 * Na linha **Classe de contexto de dados**, selecione o sinal de adição (**+**) e altere o nome gerado de RazorPagesMovie.**Models**.RazorPagesMovieContext para RazorPagesMovie.**Data**.RazorPagesMovieContext. [Esta alteração](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) não é obrigatória. Ela cria a classe de contexto do banco de dados com o namespace correto.
@@ -136,11 +136,11 @@ Clique com o botão direito do mouse na pasta *páginas/filmes* > **Adicionar** 
 
 ![Imagem das instruções anteriores.](model/_static/scaMac.png)
 
-Na caixa de diálogo **novo scaffolding** , selecione **Razor Pages usando Entity Framework (CRUD)** > **Avançar**.
+Na caixa de diálogo **novo scaffolding** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Avançar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffoldMac.png)
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
 
 * Na lista suspensa **classe de modelo** , selecione ou digite **filme (RazorPagesMovie. Models)**.
 * Na linha **classe de contexto de dados** , digite o nome da nova classe, RazorPagesMovie. **Dados**. RazorPagesMovieContext. [Esta alteração](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) não é obrigatória. Ela cria a classe de contexto do banco de dados com o namespace correto.
@@ -236,15 +236,15 @@ Os comandos anteriores geram o seguinte aviso: "nenhum tipo foi especificado par
 
 Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
-O comando migrações gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado em `DbContext`. O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
+O comando migrações gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado em `DbContext` . O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
-O `update` comando executa o `Up` método em migrações que não foram aplicadas. Nesse caso, `update` o executa o `Up` método em *migrações/\<carimbo de data/hora>_InitialCreate arquivo. cs* , que cria o banco de dados.
+O `update` comando executa o `Up` método em migrações que não foram aplicadas. Nesse caso, `update` o executa o `Up` método no arquivo *migrations/ \<time-stamp> _InitialCreate. cs* , que cria o banco de dados.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ### <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar o contexto registrado com a injeção de dependência
 
-O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
+O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
 
 A ferramenta de scaffolding criou automaticamente um contexto de BD e o registrou no contêiner da injeção de dependência.
 
@@ -256,7 +256,7 @@ O `RazorPagesMovieContext` coordena a funcionalidade do EF Core (Criar, Ler, Atu
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
+O código anterior cria uma [propriedade \<Movie> DbSet](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
 
 O nome da cadeia de conexão é passado para o contexto com a chamada de um método em um objeto [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). Para o desenvolvimento local, o [sistema de configuração do ASP.NET Core](xref:fundamentals/configuration/index) lê a cadeia de conexão do arquivo *appsettings.json*.
 
@@ -299,8 +299,8 @@ O tutorial a seguir explica os arquivos criados por scaffolding.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior:](xref:tutorials/razor-pages/razor-pages-start)
-> introdução a[seguir: com Scaffold Razor Pages](xref:tutorials/razor-pages/page)
+> [Anterior:](xref:tutorials/razor-pages/razor-pages-start) 
+>  introdução [Em seguida: com Scaffold Razor Páginas](xref:tutorials/razor-pages/page) do
 
 ::: moniker-end
 
@@ -319,7 +319,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
-Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **classe**. Dê à classe o nome **Movie**.
+Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**  >  **classe**. Dê à classe o nome **Movie**.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
@@ -363,11 +363,11 @@ Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > *
 
 ![Imagem das instruções anteriores.](model/_static/sca.png)
 
-Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando a adição de Entity Framework (CRUD)** > **Add**.
+Na caixa de diálogo **Adicionar Scaffold** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffold.png)
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
 <!-- In the next section, change 
 (plus) sign and accept the generated name 
 to use Data, it should not use models. That will make the namespace the same for the VS version and the CLI version
@@ -413,11 +413,11 @@ Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > *
 
 ![Imagem das instruções anteriores.](model/_static/scaMac.png)
 
-Na caixa de diálogo **Adicionar novo scaffolding** , selecione **Razor Pages usando a adição de Entity Framework (CRUD)** > **Add**.
+Na caixa de diálogo **Adicionar novo scaffolding** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffoldMac.png)
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
 
 * Na lista suspensa **classe de modelo** , selecione ou digite **filme**.
 * Na linha **classe de contexto de dados** , digite Select **RazorPagesMovieContext** isso criará uma nova classe de contexto DB com o namespace correto. Nesse caso, será **RazorPagesMovie. Models. RazorPagesMovieContext**.
@@ -466,7 +466,7 @@ Update-Database
 
 O comando `Add-Migration` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O `InitialCreate` argumento é usado para nomear a migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é usado. Para obter mais informações, consulte <xref:data/ef-mvc/migrations>.
 
-O comando `Update-Database` executa o método `Up` no arquivo *Migrations/\<time-stamp>_InitialCreate.cs*. O método `Up` cria o banco de dados.
+O `Update-Database` comando executa o `Up` método no arquivo *migrations/ \<time-stamp> _InitialCreate. cs* . O método `Up` cria o banco de dados.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -484,7 +484,7 @@ O comando `Update-Database` executa o método `Up` no arquivo *Migrations/\<time
 
 ### <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar o contexto registrado com a injeção de dependência
 
-O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
+O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
 
 A ferramenta de scaffolding criou automaticamente um contexto de BD e o registrou no contêiner da injeção de dependência.
 
@@ -496,7 +496,7 @@ O `RazorPagesMovieContext` coordena a funcionalidade do EF Core (Criar, Ler, Atu
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
+O código anterior cria uma [propriedade \<Movie> DbSet](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
 
 O nome da cadeia de conexão é passado para o contexto com a chamada de um método em um objeto [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). Para o desenvolvimento local, o [sistema de configuração do ASP.NET Core](xref:fundamentals/configuration/index) lê a cadeia de conexão do arquivo *appsettings.json*.
 
@@ -539,7 +539,7 @@ O tutorial a seguir explica os arquivos criados por scaffolding.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: comece](xref:tutorials/razor-pages/razor-pages-start)
-> a[seguir: páginas Razor com Scaffold](xref:tutorials/razor-pages/page)
+> [Anterior:](xref:tutorials/razor-pages/razor-pages-start) 
+>  introdução [Em seguida: com Scaffold Razor Páginas](xref:tutorials/razor-pages/page) do
 
 ::: moniker-end

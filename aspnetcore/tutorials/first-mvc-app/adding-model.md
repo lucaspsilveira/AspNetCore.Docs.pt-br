@@ -1,7 +1,7 @@
 ---
-title: Adicione um modelo a um aplicativo ASP.NET Core MVC
+title: Parte 4, adicionar um modelo a um aplicativo ASP.NET Core MVC
 author: rick-anderson
-description: Adicione um modelo a um aplicativo ASP.NET Core simples.
+description: Parte 4 da série de tutoriais no ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 1347659ee25e2b85b0a479f6bbcc5eb1a956fab2
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776754"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652379"
 ---
-# <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
+# <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4, adicionar um modelo a um aplicativo ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Tom Dykstra](https://github.com/tdykstra)
 
@@ -44,7 +44,7 @@ Adicione um arquivo chamado *Movie.cs* à pasta *Modelos*.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-Clique com o botão direito do mouse na pasta *modelos* > **Adicionar** > **nova** > classe**vazia classe**. Dê ao arquivo o nome de *Movie.cs*.
+Clique com o botão direito do mouse na pasta *modelos* > **Adicionar**  >  **nova**classe  >  **vazia classe**. Dê ao arquivo o nome de *Movie.cs*.
 
 ---
 
@@ -54,7 +54,7 @@ Atualize o arquivo *Movie.cs* com o seguinte código:
 
 A classe `Movie` contém um campo `Id`, que é exigido pelo banco de dados para a chave primária.
 
-O <xref:System.ComponentModel.DataAnnotations.DataType> atributo em `ReleaseDate` especifica o tipo de dados (`Date`). Com esse atributo:
+O <xref:System.ComponentModel.DataAnnotations.DataType> atributo em `ReleaseDate` especifica o tipo de dados ( `Date` ). Com esse atributo:
 
 * O usuário não precisa inserir informações de tempo no campo de data.
 * Somente a data é exibida, não as informações de tempo.
@@ -89,7 +89,7 @@ No campo de **pesquisa** no canto superior direito, insira `Microsoft.EntityFram
 
 ![Adicionar Entity Framework Core pacote NuGet](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
-A caixa de diálogo **selecionar projetos** será exibida, com `MvcMovie` o projeto selecionado. Pressione o botão **OK** .
+A caixa de diálogo **selecionar projetos** será exibida, com o `MvcMovie` projeto selecionado. Pressione o botão **OK** .
 
 Uma caixa de diálogo de **aceitação de licença** será exibida. Examine as licenças conforme desejado e clique no botão **aceitar** .
 
@@ -113,13 +113,13 @@ Adicione um arquivo *Data/MvcMovieContext.cs* com o seguinte código:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
+O código anterior cria uma [propriedade \<Movie> DbSet](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
 
 <a name="reg"></a>
 
 ## <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
-O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) devem ser registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial. Nesta seção, você registra o contexto do banco de dados com o contêiner DI.
+O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) devem ser registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial. Nesta seção, você registra o contexto do banco de dados com o contêiner DI.
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 
@@ -188,7 +188,7 @@ Preencha a caixa de diálogo **Adicionar Controlador**:
 O Visual Studio cria:
 
 * Um controlador de filmes (*Controllers/MoviesController.cs*)
-* Arquivos de exibição do Razor para as páginas Criar, Excluir, Detalhes, Editar e Índice (*Views/Movies/\*.cshtml*)
+* Razorexibir arquivos para criar, excluir, detalhes, editar e indexar páginas (*exibições/filmes/ \* . cshtml*)
 
 A criação automática desses arquivos é conhecida como *scaffolding*.
 
@@ -202,7 +202,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -214,7 +214,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -332,7 +332,7 @@ O construtor usa a [Injeção de Dependência](xref:fundamentals/dependency-inje
 
 ### <a name="use-sqlite-for-development-sql-server-for-production"></a>Usar o SQLite para desenvolvimento, SQL Server para produção
 
-Quando o SQLite é selecionado, o código gerado pelo modelo está pronto para desenvolvimento. O código a seguir mostra como injetar <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> na inicialização. `IWebHostEnvironment`é injetado para `ConfigureServices` que possa usar o SQLite no desenvolvimento e SQL Server em produção.
+Quando o SQLite é selecionado, o código gerado pelo modelo está pronto para desenvolvimento. O código a seguir mostra como injetar <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> na inicialização. `IWebHostEnvironment`é injetado para que `ConfigureServices` possa usar o SQLite no desenvolvimento e SQL Server em produção.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
 
@@ -362,7 +362,7 @@ Você também pode passar a `id` com uma cadeia de consulta da seguinte maneira:
 
 `https://localhost:5001/movies/details?id=1`
 
-O `id` parâmetro é definido como um [tipo anulável](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) no caso de um valor de ID não ser fornecido.
+O `id` parâmetro é definido como um [tipo anulável](/dotnet/csharp/programming-guide/nullable-types/index) ( `int?` ) no caso de um valor de ID não ser fornecido.
 
 Um [expressão lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) é passada para `FirstOrDefaultAsync` para selecionar as entidades de filmes que correspondem ao valor da cadeia de consulta ou de dados da rota.
 
@@ -411,8 +411,8 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Anterior, adicionando um modo de exibição](adding-view.md)
-> [próximo trabalhando com SQL](working-with-sql.md)
+> [Adição anterior de uma exibição](adding-view.md) 
+>  [Em seguida, trabalhando com SQL](working-with-sql.md)
 
 ::: moniker-end
 
@@ -466,7 +466,7 @@ O Visual Studio cria:
 
 * Uma [classe de contexto de banco de dados](xref:data/ef-mvc/intro#create-the-database-context) do Entity Framework Core (*Data/MvcMovieContext.cs*)
 * Um controlador de filmes (*Controllers/MoviesController.cs*)
-* Arquivos de exibição do Razor para as páginas Criar, Excluir, Detalhes, Editar e Índice (*Views/Movies/\*.cshtml*)
+* Razorexibir arquivos para criar, excluir, detalhes, editar e indexar páginas (*exibições/filmes/ \* . cshtml*)
 
 A criação automática do contexto de banco de dados e das exibições e métodos de ação [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (criar, ler, atualizar e excluir) é conhecida como *scaffolding*.
 
@@ -488,7 +488,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -507,7 +507,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -585,7 +585,7 @@ O esquema do banco de dados é baseado no modelo especificado na classe `MvcMovi
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar o contexto registrado com a injeção de dependência
 
-O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) são registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
+O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) são registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -599,7 +599,7 @@ O `MvcMovieContext` coordena a funcionalidade do EF Core (Criar, Ler, Atualizar,
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Data/MvcMovieContext.cs)]
 
-O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
+O código anterior cria uma [propriedade \<Movie> DbSet](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para o conjunto de entidades. Na terminologia do Entity Framework, um conjunto de entidades normalmente corresponde a uma tabela de banco de dados. Uma entidade corresponde a uma linha da tabela.
 
 O nome da cadeia de conexão é passado para o contexto com a chamada de um método em um objeto [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions). Para o desenvolvimento local, o [sistema de configuração do ASP.NET Core](xref:fundamentals/configuration/index) lê a cadeia de conexão do arquivo *appsettings.json*.
 
@@ -671,7 +671,7 @@ Você também pode passar a `id` com uma cadeia de consulta da seguinte maneira:
 
 `https://localhost:5001/movies/details?id=1`
 
-O `id` parâmetro é definido como um [tipo anulável](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) no caso de um valor de ID não ser fornecido.
+O `id` parâmetro é definido como um [tipo anulável](/dotnet/csharp/programming-guide/nullable-types/index) ( `int?` ) no caso de um valor de ID não ser fornecido.
 
 Um [expressão lambda](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) é passada para `FirstOrDefaultAsync` para selecionar as entidades de filmes que correspondem ao valor da cadeia de consulta ou de dados da rota.
 
@@ -720,7 +720,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Anterior adicionando um modo de exibição](adding-view.md)
-> [próximo trabalhando com um banco de dados](working-with-sql.md)
+> [Adição anterior de uma exibição](adding-view.md) 
+>  [Em seguida, trabalhando com um banco de dados](working-with-sql.md)
 
 ::: moniker-end

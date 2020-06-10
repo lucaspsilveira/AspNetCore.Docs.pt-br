@@ -1,18 +1,24 @@
 ---
-title: Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
+title: Parte 4, Razor páginas com EF Core em ASP.NET Core-migrações
 author: rick-anderson
-description: Neste tutorial, você começa a usar o recurso de migrações do EF Core para gerenciar alterações do modelo de dados em um aplicativo ASP.NET Core MVC.
+description: Parte 4 de Razor páginas e Entity Framework série de tutoriais.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 86fd83c898fce8e121e4d259aaca12c59591e606
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 74fe8771718647c3adf8288a72b11c30fb097a63
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656530"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652625"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
+# <a name="part-4-razor-pages-with-ef-core-migrations-in-aspnet-core"></a>Parte 4, Razor páginas com EF Core migrações no ASP.NET Core
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -42,7 +48,7 @@ Drop-Database
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Execute o seguinte comando em um prompt de comando para instalar o Cli EF:
+* Execute o seguinte comando em um prompt de comando para instalar a CLI do EF:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -82,7 +88,7 @@ dotnet ef database update
 
 ## <a name="up-and-down-methods"></a>Métodos Para Cima e Para Baixo
 
-O comando `migrations add` do EF Core gerou um código para criar o banco de dados. Esse código de migrações está localizado no arquivo *Migrations\<timestamp>_InitialCreate.cs*. O método `Up` da classe `InitialCreate` cria as tabelas de banco de dados que correspondem aos conjuntos de entidades do modelo de dados. O método `Down` exclui-os, conforme mostrado no seguinte exemplo:
+O comando `migrations add` do EF Core gerou um código para criar o banco de dados. Esse código de migrações está no arquivo de *migrações \<timestamp> _InitialCreate. cs* . O método `Up` da classe `InitialCreate` cria as tabelas de banco de dados que correspondem aos conjuntos de entidades do modelo de dados. O método `Down` exclui-os, conforme mostrado no seguinte exemplo:
 
 [!code-csharp[](intro/samples/cu30/Migrations/20190731193522_InitialCreate.cs)]
 
@@ -104,7 +110,7 @@ O parâmetro de nome da migração ("InitialCreate" no exemplo) é usado para o 
 
 As migrações criam um *instantâneo* do modelo de dados atual em *Migrations/SchoolContextModelSnapshot.cs*. Quando você adiciona uma migração, o EF determina o que foi alterado, comparando o modelo de dados atual com o arquivo de instantâneo.
 
-Como o arquivo de instantâneo rastreia o estado do modelo de dados, não é possível excluir uma migração excluindo o arquivo `<timestamp>_<migrationname>.cs`. Para fazer backup da migração mais recente, você precisa usar o comando `migrations remove`. Esse comando exclui a migração e garante que o instantâneo seja redefinido corretamente. Para obter mais informações, consulte [as migrações dotnet ef remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Como o arquivo de instantâneo rastreia o estado do modelo de dados, não é possível excluir uma migração excluindo o arquivo `<timestamp>_<migrationname>.cs`. Para fazer backup da migração mais recente, você precisa usar o comando `migrations remove`. Esse comando exclui a migração e garante que o instantâneo seja redefinido corretamente. Para obter mais informações, consulte [dotnet EF migrações remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ## <a name="remove-ensurecreated"></a>Remover EnsureCreated
 
@@ -150,8 +156,8 @@ A solução pode ser executar `dotnet ef database update` em um prompt de comand
 O próximo tutorial cria o modelo de dados adicionando propriedades da entidade e novas entidades.
 
 > [!div class="step-by-step"]
-> [Tutorial anterior](xref:data/ef-rp/sort-filter-page)
-> [Próximo tutorial](xref:data/ef-rp/complex-data-model)
+> [Tutorial anterior](xref:data/ef-rp/sort-filter-page) 
+>  [Próximo tutorial](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
 
@@ -220,7 +226,7 @@ dotnet ef database update
 
 ### <a name="examine-the-up-and-down-methods"></a>Examinar os métodos Up e Down
 
-O comando `migrations add` do EF Core gerou um código para criar o BD. Esse código de migrações está localizado no arquivo *Migrations\<timestamp>_InitialCreate.cs*. O método `Up` da classe `InitialCreate` cria as tabelas de BD que correspondem aos conjuntos de entidades do modelo de dados. O método `Down` exclui-os, conforme mostrado no seguinte exemplo:
+O comando `migrations add` do EF Core gerou um código para criar o BD. Esse código de migrações está no arquivo de *migrações \<timestamp> _InitialCreate. cs* . O método `Up` da classe `InitialCreate` cria as tabelas de BD que correspondem aos conjuntos de entidades do modelo de dados. O método `Down` exclui-os, conforme mostrado no seguinte exemplo:
 
 [!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
 
@@ -253,7 +259,7 @@ Remove-Migration
 dotnet ef migrations remove
 ```
 
-Para obter mais informações, consulte [as migrações dotnet ef remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Para obter mais informações, consulte [dotnet EF migrações remover](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ---
 
@@ -311,14 +317,14 @@ Solução: execute `dotnet ef database update`
 ### <a name="additional-resources"></a>Recursos adicionais
 
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
-* [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
+* [CLI do .NET Core](/ef/core/miscellaneous/cli/dotnet).
 * [Console do Gerenciador de Pacotes (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 
 
 > [!div class="step-by-step"]
-> [Próximo](xref:data/ef-rp/sort-filter-page)
-> [anterior](xref:data/ef-rp/complex-data-model)
+> [Anterior](xref:data/ef-rp/sort-filter-page) 
+>  [Avançar](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
 

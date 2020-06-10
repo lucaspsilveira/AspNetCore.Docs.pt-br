@@ -1,7 +1,7 @@
 ---
-title: Adicionar um controlador a um aplicativo ASP.NET Core MVC
+title: Parte 2, adicionar um controlador a um aplicativo ASP.NET Core MVC
 author: rick-anderson
-description: Saiba como adicionar um controlador a um aplicativo ASP.NET Core MVC simples.
+description: Parte 2 da série de tutoriais no ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: ce6248854c738733f75c40ed8ec6100f35ab4971
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1bb2d96d7b58bdd88ce9c2266c33f6e7de9e9209
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776305"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653034"
 ---
-# <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Adicionar um controlador a um aplicativo ASP.NET Core MVC
+# <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Parte 2, adicionar um controlador a um aplicativo ASP.NET Core MVC
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -40,8 +40,8 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Em **Gerenciador de soluções**, clique com o botão direito do mouse em **controladores > menu contextual adicionar > controlador**
-  ![](adding-controller/_static/add_controller.png)
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse em **controladores >** 
+   ![ menu contextual adicionar > controlador](adding-controller/_static/add_controller.png)
 
 * Na caixa de diálogo **Adicionar Scaffold**, selecione **Controlador MVC – Vazio**
 
@@ -114,9 +114,9 @@ Execute o aplicativo e navegue até:
 
 (Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando uma resposta do aplicativo de Hello Rick,\: NumTimes é 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta do aplicativo de Hello Rick, NumTimes é \: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Na imagem acima, o segmento de URL (`Parameters`) não é usado, `name` os `numTimes` parâmetros e são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta é a seguinte. O `&` caractere separa os pares campo-valor.
+Na imagem acima, o segmento de URL ( `Parameters` ) não é usado, `name` os `numTimes` parâmetros e são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta é a seguinte. O `&` caractere separa os pares campo-valor.
 
 Substitua o método `Welcome` pelo seguinte código:
 
@@ -128,11 +128,11 @@ Agora, o terceiro segmento de URL correspondeu ao parâmetro de rota `id`. O mé
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-Nestes exemplos, o controlador tem feito a parte "VC" do MVC – ou seja, o trabalho de **V**iew e de **C**ontroller. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, normalmente, você usa um arquivo de modelo de exibição do Razor separado para gerar a resposta HTML. Faça isso no próximo tutorial.
+Nestes exemplos, o controlador tem feito a parte "VC" do MVC – ou seja, o trabalho de **V**iew e de **C**ontroller. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, você normalmente usa um Razor arquivo de modelo de exibição separado para gerar a resposta HTML. Faça isso no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior](start-mvc.md)
-> [próximo](adding-view.md)
+> [Anterior](start-mvc.md) 
+>  [Avançar](adding-view.md)
 
 ::: moniker-end
 
@@ -154,8 +154,8 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Em **Gerenciador de soluções**, clique com o botão direito do mouse em **controladores > menu contextual adicionar > controlador**
-  ![](adding-controller/_static/add_controller.png)
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse em **controladores >** 
+   ![ menu contextual adicionar > controlador](adding-controller/_static/add_controller.png)
 
 * Na caixa de diálogo **Adicionar Scaffold**, selecione **Controlador MVC – Vazio**
 
@@ -233,9 +233,9 @@ Execute o aplicativo e navegue até:
 
 (Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando uma resposta do aplicativo de Hello Rick,\: NumTimes é 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta do aplicativo de Hello Rick, NumTimes é \: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-Na imagem acima, o segmento de URL (`Parameters`) não é usado, `name` os `numTimes` parâmetros e são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta é a seguinte. O `&` caractere separa os pares campo-valor.
+Na imagem acima, o segmento de URL ( `Parameters` ) não é usado, `name` os `numTimes` parâmetros e são passados na [cadeia de caracteres de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador e a cadeia de caracteres de consulta é a seguinte. O `&` caractere separa os pares campo-valor.
 
 Substitua o método `Welcome` pelo seguinte código:
 
@@ -247,10 +247,10 @@ Agora, o terceiro segmento de URL correspondeu ao parâmetro de rota `id`. O mé
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
-Nestes exemplos, o controlador faz a parte “VC” do MVC – ou seja, o trabalho da exibição e do controlador. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, você normalmente Razor usa um arquivo de modelo de exibição separado para ajudar a gerar a resposta HTML. Faça isso no próximo tutorial.
+Nestes exemplos, o controlador faz a parte “VC” do MVC – ou seja, o trabalho da exibição e do controlador. O controlador retorna o HTML diretamente. Em geral, você não deseja que os controladores retornem HTML diretamente, pois isso é muito difícil de codificar e manter. Em vez disso, você normalmente usa um Razor arquivo de modelo de exibição separado para ajudar a gerar a resposta HTML. Faça isso no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior](start-mvc.md)
-> [próximo](adding-view.md)
+> [Anterior](start-mvc.md) 
+>  [Avançar](adding-view.md)
 
 ::: moniker-end

@@ -1,7 +1,7 @@
 ---
-title: Adicionar a pesquisa a um aplicativo ASP.NET Core MVC
+title: Parte 7, adicionar pesquisa a um aplicativo ASP.NET Core MVC
 author: rick-anderson
-description: Mostra como adicionar uma pesquisa a um aplicativo ASP.NET Core MVC básico
+description: Parte 7 da série de tutoriais no ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: 00213f9ffab13f23099e60240fa236bd1b41427f
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 83bd904f90190456d42453653d3420c4c572fe8c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775330"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652762"
 ---
-# <a name="add-search-to-an-aspnet-core-mvc-app"></a>Adicionar a pesquisa a um aplicativo ASP.NET Core MVC
+# <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Parte 7, adicionar pesquisa a um aplicativo ASP.NET Core MVC
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -153,5 +153,5 @@ Teste o aplicativo pesquisando por gênero, título do filme e por ambos:
 ![Janela do navegador mostrando resultados de https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/s2.png)
 
 > [!div class="step-by-step"]
-> [Anterior](controller-methods-views.md)
-> [próximo](new-field.md)
+> [Anterior](controller-methods-views.md) 
+>  [Avançar](new-field.md)

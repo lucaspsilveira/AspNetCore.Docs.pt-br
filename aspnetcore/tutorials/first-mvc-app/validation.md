@@ -1,7 +1,7 @@
 ---
-title: Adicionar a validação a um aplicativo ASP.NET Core MVC
+title: Parte 9, adicionar validação a um aplicativo MVC ASP.NET Core
 author: rick-anderson
-description: Como adicionar uma validação a um aplicativo ASP.NET Core.
+description: Parte 9 da série de tutoriais sobre o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/13/2017
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: 6e46a4ace7c99096f1a7d47946a21fd7a5c657e7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 70cc66955fdaee6ff93648523c2977587e6b05d6
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776188"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652452"
 ---
-# <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Adicionar a validação a um aplicativo ASP.NET Core MVC
+# <a name="part-9-add-validation-to-an-aspnet-core-mvc-app"></a>Parte 9, adicionar validação a um aplicativo MVC ASP.NET Core
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -55,7 +55,7 @@ Os dados de formulário não serão enviados para o servidor enquanto houver err
 
 Talvez você esteja se perguntando como a interface do usuário de validação foi gerada sem atualizações do código no controlador ou nas exibições. O código a seguir mostra os dois métodos `Create`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
 
 O primeiro método de ação (HTTP GET) `Create` exibe o formulário Criar inicial. A segunda versão (`[HttpPost]`) manipula a postagem de formulário. O segundo método `Create` (a versão `[HttpPost]`) chama `ModelState.IsValid` para verificar se o filme tem erros de validação. A chamada a esse método avalia os atributos de validação que foram aplicados ao objeto. Se o objeto tiver erros de validação, o método `Create` exibirá o formulário novamente. Se não houver erros, o método salvará o novo filme no banco de dados. Em nosso exemplo de filme, o formulário não é postado no servidor quando há erros de validação detectados no lado do cliente; o segundo método `Create` nunca é chamado quando há erros de validação do lado do cliente. Se você desabilitar o JavaScript no navegador, a validação do cliente será desabilitada e você poderá testar o método `Create` HTTP POST `ModelState.IsValid` detectando erros de validação.
 
@@ -89,7 +89,7 @@ Quando você precisar alterar a lógica de validação, faça isso exatamente em
 
 Abra o arquivo *Movie.cs* e examine a classe `Movie`. O namespace `System.ComponentModel.DataAnnotations` fornece atributos de formatação, além do conjunto interno de atributos de validação. Já aplicamos um valor de enumeração `DataType` à data de lançamento e aos campos de preço. O código a seguir mostra as propriedades `ReleaseDate` e `Price` com o atributo `DataType` apropriado.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 Os atributos `DataType` fornecem dicas apenas para que o mecanismo de exibição formate os dados (e fornece atributos como `<a>` para as URLs e `<a href="mailto:EmailAddress.com">` para o email). Use o atributo `RegularExpression` para validar o formato dos dados. O atributo `DataType` é usado para especificar um tipo de dados mais específico do que o tipo intrínseco de banco de dados; eles não são atributos de validação. Nesse caso, apenas desejamos acompanhar a data, não a hora. A Enumeração `DataType` fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress e muito mais. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo, um link `mailto:` pode ser criado para `DataType.EmailAddress` e um seletor de data pode ser fornecido para `DataType.Date` em navegadores que dão suporte a HTML5. Os atributos `DataType` emitem atributos `data-` HTML 5 (ou "data dash") que são reconhecidos pelos navegadores HTML 5. Os atributos `DataType`**não** fornecem nenhuma validação.
 
@@ -133,5 +133,5 @@ Na próxima parte da série, examinaremos o aplicativo e faremos algumas melhori
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
 
 > [!div class="step-by-step"]
-> [Anterior](new-field.md)
-> [próximo](details.md)  
+> [Anterior](new-field.md) 
+>  [Avançar](details.md)  

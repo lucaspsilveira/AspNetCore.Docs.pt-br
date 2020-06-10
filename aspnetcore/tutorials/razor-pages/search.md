@@ -1,7 +1,7 @@
 ---
-title: Adicionar pesquisa a páginas Razor ASP.NET Core
+title: Parte 6, adicionar pesquisa a ASP.NET Core Razor páginas
 author: rick-anderson
-description: Mostra como adicionar pesquisa a ASP.NET Core Razor páginas
+description: Parte 6 da série de tutoriais em Razor páginas.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: baa5e1cb2098a60155a4196f0e602feeff04f102
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8c5fba8596f401f1232e8dcb4659041c2a413151
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774992"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652564"
 ---
-# <a name="add-search-to-aspnet-core-razor-pages"></a>Adicionar pesquisa a páginas Razor ASP.NET Core
+# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>Parte 6, adicionar pesquisa a ASP.NET Core Razor páginas
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -120,8 +120,8 @@ Teste o aplicativo pesquisando por gênero, título do filme e por ambos.
 * [Versão do YouTube deste tutorial](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [em seguida: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1) 
+>  [Em seguida: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -223,7 +223,7 @@ O código anterior usa o auxiliar [Select tag](xref:mvc/views/working-with-forms
 * [Versão do YouTube deste tutorial](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [em seguida: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1) 
+>  [Em seguida: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

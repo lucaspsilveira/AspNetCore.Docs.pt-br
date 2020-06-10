@@ -1,5 +1,9 @@
 <a name="dc"></a>
 
+### <a name="add-nuget-packages-and-ef-tools"></a>Adicionar pacotes NuGet e ferramentas de EF
+
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
+
 ### <a name="add-a-database-context-class"></a>Adicionar uma classe de contexto de banco de dados
 
 No projeto RazorPagesMovie, crie uma pasta chamada *Dados*. Adicione a seguinte classe `RazorPagesMovieContext` à pasta *Dados*:
@@ -17,10 +21,6 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*, conforme mostrado
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
-
-### <a name="add-nuget-packages-and-ef-tools"></a>Adicionar pacotes NuGet e ferramentas de EF
-
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 
@@ -45,7 +45,7 @@ Registre o contexto do banco de dados com o contêiner de [injeção de dependê
 
 ### <a name="add-required-nuget-packages"></a>Adicionar os pacotes NuGet necessários
 
-Execute o seguinte comando .NET Core CLI para adicionar SQLite e CodeGeneration.Design ao projeto:
+Execute o seguinte comando CLI do .NET Core para adicionar SQLite e CodeGeneration. Design ao projeto:
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite

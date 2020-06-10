@@ -1,18 +1,24 @@
 ---
-title: Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
+title: Parte 7, Razor páginas com EF Core no ASP.NET Core dados relacionados à atualização
 author: rick-anderson
-description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
+description: Parte 7 de Razor páginas e Entity Framework série de tutoriais.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: d86e57d50c414e4baabd00ca9675aa66266342ca
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656418"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652607"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
+# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor páginas com EF Core no ASP.NET Core dados relacionados à atualização
 
 Por [Tom Dykstra](https://github.com/tdykstra)e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -55,9 +61,9 @@ O código anterior:
 
 * Deriva de `DepartmentNamePageModel`.
 * Usa `TryUpdateModelAsync` para impedir o [excesso de postagem](xref:data/ef-rp/crud#overposting).
-* Remove `ViewData["DepartmentID"]`. `DepartmentNameSL` da classe base é um modelo fortemente tipado e será usado pela página Razor. Modelos fortemente tipados são preferíveis aos fracamente tipados. Para obter mais informações, consulte [Dados fracamente tipados (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
+* Remove `ViewData["DepartmentID"]`. `DepartmentNameSL`da classe base é um modelo fortemente tipado e será usado pela Razor página. Modelos fortemente tipados são preferíveis aos fracamente tipados. Para obter mais informações, consulte [Dados fracamente tipados (ViewData e ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### <a name="update-the-course-create-razor-page"></a>Atualizar a página do Razor Criar do Curso
+### <a name="update-the-course-create-razor-page"></a>Atualizar a página Criar curso Razor
 
 Atualize *Pages/Courses/Create.cshtml* com o seguinte código:
 
@@ -70,7 +76,7 @@ O código anterior faz as seguintes alterações:
 * Adiciona a opção "Selecionar Departamento". Essa alteração renderiza "Selecionar Departamento" na lista suspensa quando nenhum departamento foi selecionado ainda, em vez do primeiro departamento.
 * Adiciona uma mensagem de validação quando o departamento não está selecionado.
 
-A Página do Razor usa a opção [Selecionar Auxiliar de Marcação](xref:mvc/views/working-with-forms#the-select-tag-helper):
+A Razor página usa o [auxiliar selecionar marca](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -84,7 +90,7 @@ Atualiza *Pages/Courses/Edit.cshtml.cs* com o seguinte código:
 
 As alterações são semelhantes às feitas no modelo da página Criar. No código anterior, `PopulateDepartmentsDropDownList` passa a ID do departamento, que seleciona o departamento na lista suspensa.
 
-### <a name="update-the-course-edit-razor-page"></a>Atualizar a página do Razor Editar do Curso
+### <a name="update-the-course-edit-razor-page"></a>Atualizar a página de edição do curso Razor
 
 Atualize *Pages/Courses/Edit.cshtml* com o seguinte código:
 
@@ -112,7 +118,7 @@ Faça a mesma alteração no arquivo *Pages/Courses/details.cshtml.cs*:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-razor-pages"></a>Atualizar as páginas do Razor do Curso
+### <a name="update-the-course-razor-pages"></a>Atualizar as páginas do curso Razor
 
 Atualize *Pages/Courses/Delete.cshtml* com o seguinte código:
 
@@ -150,7 +156,7 @@ Crie a classe base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 A `InstructorCoursesPageModel` é a classe base que será usada para os modelos de página Editar e Criar. `PopulateAssignedCourseData` lê todas as entidades `Course` para popular `AssignedCourseDataList`. Para cada curso, o código define a `CourseID`, o título e se o instrutor está ou não atribuído ao curso. Um [HashSet](/dotnet/api/system.collections.generic.hashset-1) é usado para pesquisas eficientes.
 
-Como a página do Razor não tem uma coleção de entidades Course, o associador de modelos não pode atualizar automaticamente a propriedade de navegação `CourseAssignments`. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a propriedade `CourseAssignments` do model binding. Isso não exige nenhuma alteração no código que chama `TryUpdateModel`, porque você está usando a sobrecarga da lista de permissões e `CourseAssignments` não está na lista de inclusões.
+Como a Razor página não tem uma coleção de entidades de curso, o associador de modelo não pode atualizar automaticamente a `CourseAssignments` propriedade de navegação. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a propriedade `CourseAssignments` do model binding. Isso não exige nenhuma alteração no código que chama `TryUpdateModel`, porque você está usando a sobrecarga da lista de permissões e `CourseAssignments` não está na lista de inclusões.
 
 Se nenhuma caixa de seleção foi marcada, o código em `UpdateInstructorCourses` inicializa a propriedade de navegação `CourseAssignments` com uma coleção vazia e retorna:
 
@@ -189,7 +195,7 @@ O código anterior:
 * Chama `UpdateInstructorCourses` em `OnPostAsync` para aplicar informações das caixas de seleção à entidade do instrutor que está sendo editada.
 * Chamará `PopulateAssignedCourseData` e `UpdateInstructorCourses` em `OnPostAsync` se `TryUpdateModel` falhar. Essas chamadas de método restauram os dados de curso atribuídos inseridos na página quando são exibidos novamente com uma mensagem de erro.
 
-### <a name="update-the-instructor-edit-razor-page"></a>Atualizar a página do Razor Editar do Instrutor
+### <a name="update-the-instructor-edit-razor-page"></a>Atualizar a página de edição do instrutor Razor
 
 Atualize *Pages/Instructors/Edit.cshtml* com o código a seguir:
 
@@ -205,7 +211,7 @@ Execute o aplicativo e teste a página Editar de Instrutores atualizada. Altere 
 
 ### <a name="update-the-instructor-create-page"></a>Atualizar a página Criar do Instrutor
 
-Atualize o modelo de página Criar do Instrutor e a página do Razor com código semelhante ao da página Editar:
+Atualize o modelo e a página do instrutor criar página Razor com um código semelhante à página Editar:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -230,8 +236,8 @@ Execute o aplicativo e teste a página Excluir.
 ## <a name="next-steps"></a>Próximas etapas
 
 > [!div class="step-by-step"]
-> [Tutorial anterior](xref:data/ef-rp/read-related-data)
-> [Próximo tutorial](xref:data/ef-rp/concurrency)
+> [Tutorial anterior](xref:data/ef-rp/read-related-data) 
+>  [Próximo tutorial](xref:data/ef-rp/concurrency)
 
 ::: moniker-end
 
@@ -287,7 +293,7 @@ A marcação anterior faz as seguintes alterações:
 * Adiciona a opção "Selecionar Departamento". Essa alteração renderiza "Selecionar Departamento", em vez do departamento primeiro.
 * Adiciona uma mensagem de validação quando o departamento não está selecionado.
 
-A Página do Razor usa a opção [Selecionar Auxiliar de Marcação](xref:mvc/views/working-with-forms#the-select-tag-helper):
+A Razor página usa o [auxiliar selecionar marca](xref:mvc/views/working-with-forms#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -327,7 +333,7 @@ Atualize o método `OnGetAsync` no arquivo *Pages/Courses/Details.cshtml.cs*:
 
 ### <a name="modify-the-delete-and-details-pages"></a>Modificar as páginas Excluir e Detalhes
 
-Atualize a página Excluir do Razor com a seguinte marcação:
+Atualize a Razor página excluir com a seguinte marcação:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-20)]
 
@@ -402,7 +408,7 @@ Atualize o modelo de página Editar Instrutor com o seguinte código:
 
 O código anterior manipula as alterações de atribuição de escritório.
 
-Atualize a Exibição do Razor do instrutor:
+Atualize a exibição do instrutor Razor :
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -426,7 +432,7 @@ Atualize o modelo de página Criar instrutor com o seguinte código:
 
 O código anterior é semelhante ao código de *Pages/Instructors/Edit.cshtml.cs*.
 
-Atualize a página Criar instrutor do Razor com a seguinte marcação:
+Atualize a página Criar do instrutor Razor com a seguinte marcação:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Create.cshtml?highlight=32-62)]
 
@@ -450,7 +456,7 @@ O código anterior faz as seguintes alterações:
 * [Versão do YouTube deste tutorial (Parte 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
-> [Próximo](xref:data/ef-rp/read-related-data)
-> [anterior](xref:data/ef-rp/concurrency)
+> [Anterior](xref:data/ef-rp/read-related-data) 
+>  [Avançar](xref:data/ef-rp/concurrency)
 
 ::: moniker-end

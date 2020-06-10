@@ -1,7 +1,7 @@
 ---
-title: Adicionar validação a uma página de ASP.NET Core Razor
+title: Parte 8, adicionar validação a uma página de ASP.NET Core Razor
 author: rick-anderson
-description: Descubra como adicionar validação a uma Razor página no ASP.NET Core.
+description: Parte 8 da série de tutoriais em Razor páginas.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 7aeb77e836ce0546766d88f2c52f37aaf75c12c4
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: f72edda54d4201915e2494b75b4d49ec6c9c6d75
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452038"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652842"
 ---
-# <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma página de ASP.NET Core Razor
+# <a name="part-8-add-validation-to-an-aspnet-core-razor-page"></a>Parte 8, adicionar validação a uma página de ASP.NET Core Razor
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 

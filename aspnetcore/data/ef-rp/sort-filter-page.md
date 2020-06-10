@@ -1,19 +1,25 @@
 ---
-title: Páginas Razor com o EF Core no ASP.NET Core – Classificação, filtro, paginação – 3 de 8
+title: Parte 3, Razor páginas com EF Core em ASP.NET Core-classificar, filtrar, paginação
 author: rick-anderson
-description: Neste tutorial, você adicionará funcionalidades de classificação, filtragem e paginação à página do Razor usando o ASP.NET Core e o Entity Framework Core.
+description: Parte 3 de Razor páginas e Entity Framework série de tutoriais.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 9563f3ef52ce429eb0a58b468acb8e9cd7b276e2
-ms.sourcegitcommit: f7886fd2e219db9d7ce27b16c0dc5901e658d64e
+ms.openlocfilehash: 99b14c99cb99d106604f1a4edacf1da0a2d6125c
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "78656460"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652596"
 ---
-# <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Classificação, filtro, paginação – 3 de 8
+# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Parte 3, Razor páginas com EF Core em ASP.NET Core-classificar, filtrar, paginação
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -45,7 +51,7 @@ O parâmetro `sortOrder` é "Name" ou "Data". O parâmetro `sortOrder` é opcion
 
 Quando a página Índice é solicitada do link **Alunos**, não há nenhuma cadeia de caracteres de consulta. Os alunos são exibidos em ordem ascendente por sobrenome. A ordem ascendente por sobrenome é o padrão (caso fall-through) na instrução `switch`. Quando o usuário clica em um link de título de coluna, o valor `sortOrder` apropriado é fornecido no valor de cadeia de caracteres de consulta.
 
-`NameSort` e `DateSort` são usados pela Página do Razor para configurar os hiperlinks de título de coluna com os valores de cadeia de caracteres de consulta apropriados:
+`NameSort`e `DateSort` são usados pela Razor página para configurar os hiperlinks de título de coluna com os valores de cadeia de caracteres de consulta apropriados:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
@@ -92,7 +98,7 @@ Para verificar se a classificação funciona:
 
 Para adicionar a filtragem à página Índice de Alunos:
 
-* Uma caixa de texto e um botão Enviar são adicionados à Página do Razor. A caixa de texto fornece uma cadeia de caracteres de pesquisa no nome ou sobrenome.
+* Uma caixa de texto e um botão enviar são adicionados à Razor página. A caixa de texto fornece uma cadeia de caracteres de pesquisa no nome ou sobrenome.
 * O modelo de página é atualizado para usar o valor da caixa de texto.
 
 ### <a name="update-the-ongetasync-method"></a>Atualizar o método OnGetAsync
@@ -106,7 +112,7 @@ O código anterior:
 * Adiciona o parâmetro `searchString` ao método `OnGetAsync` e salva o valor do parâmetro na propriedade `CurrentFilter`. O valor de cadeia de caracteres de pesquisa é recebido de uma caixa de texto que é adicionada na próxima seção.
 * Adiciona uma cláusula `Where` à instrução LINQ. A cláusula `Where` seleciona somente os alunos cujo nome ou sobrenome contém a cadeia de caracteres de pesquisa. A instrução LINQ é executada somente se há um valor a ser pesquisado.
 
-### <a name="iqueryable-vs-ienumerable"></a>IQueryable vs. IEnumerable
+### <a name="iqueryable-vs-ienumerable"></a>IQueryable versus IEnumerable
 
 O código chama o método `Where` em um objeto `IQueryable`, e o filtro é processado no servidor. Em alguns cenários, o aplicativo pode chamar o método `Where` como um método de extensão em uma coleção em memória. Por exemplo, suponha que `_context.Students` seja alterado do `DbSet` do EF Core para um método de repositório que retorna uma coleção `IEnumerable`. O resultado normalmente é o mesmo, mas em alguns casos pode ser diferente.
 
@@ -126,7 +132,7 @@ Há uma penalidade de desempenho por chamar `ToUpper`. O código `ToUpper` adici
 
 Para obter mais informações, confira [Como usar consulta que não diferencia maiúsculas de minúsculas com o provedor SQLite](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
-### <a name="update-the-razor-page"></a>Atualizar a páginas do Razor
+### <a name="update-the-razor-page"></a>Atualizar a Razor página
 
 Substitua o código em *Pages/Students/index.cshtml* para criar um botão de **Pesquisa** e um cromado classificado.
 
@@ -187,9 +193,9 @@ Todos os parâmetros que `OnGetAsync` recebe são nulos quando:
 
 Quando um link de paginação recebe um clique, a variável de índice de páginas contém o número da página a ser exibido.
 
-A propriedade `CurrentSort` fornece à Página do Razor a ordem de classificação atual. A ordem de classificação atual precisa ser incluída nos links de paginação para que a ordem de classificação seja mantida durante a paginação.
+A `CurrentSort` propriedade fornece a Razor página com a ordem de classificação atual. A ordem de classificação atual precisa ser incluída nos links de paginação para que a ordem de classificação seja mantida durante a paginação.
 
-A propriedade `CurrentFilter` fornece à Página do Razor a cadeia de caracteres de filtro atual. O valor `CurrentFilter`:
+A `CurrentFilter` propriedade fornece a Razor página com a cadeia de caracteres de filtro atual. O valor `CurrentFilter`:
 
 * Deve ser incluído nos links de paginação para que as configurações de filtro sejam mantidas durante a paginação.
 * Deve ser restaurado para a caixa de texto quando a página é exibida novamente.
@@ -199,13 +205,13 @@ Se a cadeia de caracteres de pesquisa é alterada durante a paginação, a pági
   * A cadeia de caracteres de pesquisa foi alterada.
   * O parâmetro `searchString` não é nulo.
 
-  O método `PaginatedList.CreateAsync` converte a consulta de alunos em uma única página de alunos de um tipo de coleção compatível com paginação. Essa única página de alunos é passada para a Página do Razor.
+  O método `PaginatedList.CreateAsync` converte a consulta de alunos em uma única página de alunos de um tipo de coleção compatível com paginação. Essa única página de alunos é passada para a Razor página.
 
   Os dois pontos de interrogação em `pageIndex` na chamada `PaginatedList.CreateAsync` representam o [operador de união de nulo](/dotnet/csharp/language-reference/operators/null-conditional-operator). O operador de união de nulo define um valor padrão para um tipo que permite valor nulo. A expressão `(pageIndex ?? 1)` significará retornar o valor de `pageIndex` se ele tiver um valor. Se `pageIndex` não tiver um valor, 1 será retornado.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Adicionar links de paginação à Página do Razor
+### <a name="add-paging-links-to-the-razor-page"></a>Adicionar links de paginação à Razor página
 
-Substitua o código em *Students/Index.cshtml* pelo seguinte código. As alterações são realçadas:
+Substitua o código em *Students/index. cshtml* pelo código a seguir. As alterações são realçadas:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
@@ -228,7 +234,7 @@ Execute o aplicativo e navegue para a página de alunos.
 
 Esta seção cria uma página Sobre que exibe quantos alunos se inscreveram para cada data de registro. A atualização usa o agrupamento e inclui as seguintes etapas:
 
-* Crie um modelo de exibição para os dados usados pela página **Sobre.**
+* Crie um modelo de exibição para os dados usados pela página **sobre** .
 * Atualizar a página Sobre para usar o modelo de exibição.
 
 ### <a name="create-the-view-model"></a>Criar o modelo de exibição
@@ -239,7 +245,7 @@ Crie *SchoolViewModels/EnrollmentDateGroup.cs* com o seguinte código:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Criar a página do Razor
+### <a name="create-the-razor-page"></a>Criar a Razor página
 
 Crie um arquivo *Pages/About.cshtml* com o seguinte código:
 
@@ -262,8 +268,8 @@ Execute o aplicativo e navegue para a página Sobre. A contagem de alunos para c
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 
 > [!div class="step-by-step"]
-> [Tutorial anterior](xref:data/ef-rp/crud)
-> [Próximo tutorial](xref:data/ef-rp/migrations)
+> [Tutorial anterior](xref:data/ef-rp/crud) 
+>  [Próximo tutorial](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 
@@ -279,22 +285,22 @@ Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](
 
 ## <a name="add-sorting-to-the-index-page"></a>Adicionar uma classificação à página Índice
 
-Adicionar strings aos *Alunos/Index.cshtml.cs* `PageModel` para conter os parâmetros de classificação:
+Adicione cadeias de caracteres aos *alunos/index. cshtml. cs* `PageModel` para conter os parâmetros de classificação:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet1&highlight=10-13)]
 
-Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
+Atualize os *alunos/index. cshtml. cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly)]
 
-O código anterior recebe um parâmetro `sortOrder` da cadeia de caracteres de consulta na URL. A URL (incluindo a seqüência de consultas) é gerada pelo [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+O código anterior recebe um parâmetro `sortOrder` da cadeia de caracteres de consulta na URL. A URL (incluindo a cadeia de caracteres de consulta) é gerada pelo [auxiliar de marca de âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 )
 
 O parâmetro `sortOrder` é "Name" ou "Data". O parâmetro `sortOrder` é opcionalmente seguido de "_desc" para especificar a ordem descendente. A ordem de classificação padrão é crescente.
 
 Quando a página Índice é solicitada do link **Alunos**, não há nenhuma cadeia de caracteres de consulta. Os alunos são exibidos em ordem ascendente por sobrenome. A ordem ascendente por sobrenome é o padrão (caso fall-through) na instrução `switch`. Quando o usuário clica em um link de título de coluna, o valor `sortOrder` apropriado é fornecido no valor de cadeia de caracteres de consulta.
 
-`NameSort` e `DateSort` são usados pela Página do Razor para configurar os hiperlinks de título de coluna com os valores de cadeia de caracteres de consulta apropriados:
+`NameSort`e `DateSort` são usados pela Razor página para configurar os hiperlinks de título de coluna com os valores de cadeia de caracteres de consulta apropriados:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
@@ -354,12 +360,12 @@ Execute o depurador em etapas.
 
 Para adicionar a filtragem à página Índice de Alunos:
 
-* Uma caixa de texto e um botão Enviar são adicionados à Página do Razor. A caixa de texto fornece uma cadeia de caracteres de pesquisa no nome ou sobrenome.
+* Uma caixa de texto e um botão enviar são adicionados à Razor página. A caixa de texto fornece uma cadeia de caracteres de pesquisa no nome ou sobrenome.
 * O modelo de página é atualizado para usar o valor da caixa de texto.
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>Adicionar a funcionalidade de filtragem a método Index
 
-Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
+Atualize os *alunos/index. cshtml. cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
@@ -424,7 +430,7 @@ Em *Students/Index.cshtml.cs*, atualize o tipo de `Student` em `IList<Student>` 
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
-Atualize os *Alunos/Index.cshtml.cs* `OnGetAsync` com o seguinte código:
+Atualize os *alunos/index. cshtml. cs* `OnGetAsync` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
 
@@ -439,9 +445,9 @@ Todos os parâmetros são nulos quando:
 
 Quando um link de paginação recebe um clique, a variável de índice de páginas contém o número da página a ser exibido.
 
-`CurrentSort` fornece à Página do Razor a ordem de classificação atual. A ordem de classificação atual precisa ser incluída nos links de paginação para que a ordem de classificação seja mantida durante a paginação.
+`CurrentSort`fornece a Razor página com a ordem de classificação atual. A ordem de classificação atual precisa ser incluída nos links de paginação para que a ordem de classificação seja mantida durante a paginação.
 
-`CurrentFilter` fornece à Página do Razor a cadeia de caracteres de filtro atual. O valor `CurrentFilter`:
+`CurrentFilter`fornece a Razor página com a cadeia de caracteres de filtro atual. O valor `CurrentFilter`:
 
 * Deve ser incluído nos links de paginação para que as configurações de filtro sejam mantidas durante a paginação.
 * Deve ser restaurado para a caixa de texto quando a página é exibida novamente.
@@ -453,13 +459,13 @@ Se a cadeia de caracteres de pesquisa é alterada durante a paginação, a pági
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage3)]
 
-O método `PaginatedList.CreateAsync` converte a consulta de alunos em uma única página de alunos de um tipo de coleção compatível com paginação. Essa única página de alunos é passada para a Página do Razor.
+O método `PaginatedList.CreateAsync` converte a consulta de alunos em uma única página de alunos de um tipo de coleção compatível com paginação. Essa única página de alunos é passada para a Razor página.
 
 [!code-csharp[](intro/samples/cu21/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
 Os dois pontos de interrogação em `PaginatedList.CreateAsync` representam o [operador de união de nulo](/dotnet/csharp/language-reference/operators/null-conditional-operator). O operador de união de nulo define um valor padrão para um tipo que permite valor nulo. A expressão `(pageIndex ?? 1)` significará retornar o valor de `pageIndex` se ele tiver um valor. Se `pageIndex` não tiver um valor, 1 será retornado.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>Adicionar links de paginação à Página do Razor do aluno
+## <a name="add-paging-links-to-the-student-razor-page"></a>Adicionar links de paginação à página do aluno Razor
 
 Atualize a marcação em *Students/Index.cshtml*. As alterações são realçadas:
 
@@ -505,7 +511,7 @@ Na pasta *SchoolViewModels*, adicione um *EnrollmentDateGroup.cs* com o seguinte
 
 ### <a name="update-the-about-page-model"></a>Atualizar o modelo da página Sobre
 
-Os modelos da Web no ASP.NET Core 2.2 não incluem a página Sobre. Se estiver usando o ASP.NET Core 2.2, crie a página Sobre o Razor.
+Os modelos da Web no ASP.NET Core 2.2 não incluem a página Sobre. Se você estiver usando o ASP.NET Core 2,2, crie a Razor página sobre.
 
 Atualize o arquivo *Pages/About.cshtml.cs* com o seguinte código:
 
@@ -513,7 +519,7 @@ Atualize o arquivo *Pages/About.cshtml.cs* com o seguinte código:
 
 A instrução LINQ agrupa as entidades de alunos por data de registro, calcula o número de entidades em cada grupo e armazena os resultados em uma coleção de objetos de modelo de exibição `EnrollmentDateGroup`.
 
-### <a name="modify-the-about-razor-page"></a>Modificar a Página Sobre do Razor
+### <a name="modify-the-about-razor-page"></a>Modificar a Razor página sobre
 
 Substitua o código no arquivo *Pages/About.cshtml* pelo seguinte código:
 
@@ -533,8 +539,8 @@ Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído p
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 
 > [!div class="step-by-step"]
-> [Próximo](xref:data/ef-rp/crud)
-> [anterior](xref:data/ef-rp/migrations)
+> [Anterior](xref:data/ef-rp/crud) 
+>  [Avançar](xref:data/ef-rp/migrations)
 
 ::: moniker-end
 

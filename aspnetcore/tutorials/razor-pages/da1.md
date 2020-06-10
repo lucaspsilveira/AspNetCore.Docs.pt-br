@@ -1,7 +1,7 @@
 ---
-title: Atualizar as páginas geradas em um aplicativo ASP.NET Core
+title: Parte 5, atualizar as páginas geradas em um aplicativo ASP.NET Core
 author: rick-anderson
-description: Saiba como atualizar as páginas geradas em um aplicativo ASP.NET Core.
+description: Parte 5 da série de tutoriais em Razor páginas.
 ms.author: riande
 ms.date: 12/20/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: d9ab20b7ed4b394c154141efe3a94481efaf063c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 144c4e7f07986c0a10089d74991fe3b44c013894
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774542"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652868"
 ---
-# <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
+# <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Parte 5, atualizar as páginas geradas em um aplicativo ASP.NET Core
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -46,7 +46,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo [Auxiliar de M
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page`e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
+Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page` e a ID da rota ( `asp-route-id` ). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
 
 Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
@@ -127,13 +127,13 @@ Quando a página Movies/Edit é postada:
 * Se há erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertido em uma data), o formulário é exibido novamente com os valores enviados.
 * Se não houver erros do modelo, o filme será salvo.
 
-Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP `OnPostAsync` post na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na página Editar. Razor
+Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP POST `OnPostAsync` na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na Razor página Editar.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql) 
+>  [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -161,7 +161,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo [Auxiliar de M
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page`e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
+Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML da Razor página (a rota é relativa), a `asp-page` e a ID da rota ( `asp-route-id` ). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
 
 Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
@@ -240,7 +240,7 @@ Quando a página Movies/Edit é postada:
 * Se houver erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertido em uma data), o formulário será mostrado com os valores enviados.
 * Se não houver erros do modelo, o filme será salvo.
 
-Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP `OnPostAsync` post na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na página Editar. Razor
+Os métodos GET HTTP nas páginas index, Create e Delete Razor seguem um padrão semelhante. O método HTTP POST `OnPostAsync` na página Criar Razor segue um padrão semelhante ao `OnPostAsync` método na Razor página Editar.
 
 A pesquisa é adicionada no próximo tutorial.
 
@@ -249,7 +249,7 @@ A pesquisa é adicionada no próximo tutorial.
 * [Versão do YouTube deste tutorial](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql) 
+>  [Próximo: Adicionar pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

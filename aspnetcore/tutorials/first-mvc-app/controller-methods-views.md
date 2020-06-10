@@ -1,7 +1,7 @@
 ---
-title: Os métodos e as exibições do controlador no ASP.NET Core
+title: Parte 6, métodos e exibições do controlador no ASP.NET Core
 author: rick-anderson
-description: Aprenda a trabalhar com os métodos, as exibições e as DataAnnotations do controlador no ASP.NET Core.
+description: Parte 6, adicionar um modelo a um aplicativo ASP.NET Core MVC
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 444c870fcf9e866f0c382e32af174442d11d3af5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 50b527cee19f19316fd9034759c05817010fefbb
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777573"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84653022"
 ---
-# <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
+# <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Parte 6, métodos e exibições do controlador no ASP.NET Core
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -42,7 +42,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo Auxiliar de Ma
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML do método de ação do controlador e da ID da rota. Use o **modo de exibição de origem** do seu navegador favorito ou use as ferramentas de desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
+Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML do método de ação do controlador e da ID da rota. Use o **modo de exibição de origem** do seu navegador favorito ou use as ferramentas de desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
 ```html
  <td>
@@ -62,7 +62,7 @@ Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) são um dos novo
 
 <a name="get-post"></a>
 
-Abra o controlador `Movies` e examine os dois métodos de ação `Edit`. O código a seguir mostra `HTTP GET Edit` o método, que busca o filme e popula o formulário de edição gerado pelo arquivo *Edit. cshtml* Razor .
+Abra o controlador `Movies` e examine os dois métodos de ação `Edit`. O código a seguir mostra o `HTTP GET Edit` método, que busca o filme e popula o formulário de edição gerado pelo arquivo *Edit. cshtml* Razor .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -118,7 +118,7 @@ Quando o sistema de scaffolding criou a exibição de Edição, ele examinou a c
 
 Observe como o modelo de exibição tem uma instrução `@model MvcMovie.Models.Movie` na parte superior do arquivo. `@model MvcMovie.Models.Movie` especifica que a exibição espera que o modelo de exibição seja do tipo `Movie`.
 
-O código com scaffolding usa vários métodos de Auxiliares de Marcação para simplificar a marcação HTML. O – [Auxiliar de Marcação de Rótulo](xref:mvc/views/working-with-forms) exibe o nome do campo (“Title”, “ReleaseDate”, “Genre” ou “Price”). O [Auxiliar de Marcação de Entrada](xref:mvc/views/working-with-forms) renderiza um elemento `<input>` HTML. O [Auxiliar de Marcação de Validação](xref:mvc/views/working-with-forms) exibe todas as mensagens de validação associadas a essa propriedade.
+O código com scaffolding usa vários métodos de Auxiliares de Marcação para simplificar a marcação HTML. O [auxiliar de marca de rótulo](xref:mvc/views/working-with-forms) exibe o nome do campo ("título", "liberado", "gênero" ou "preço"). O [Auxiliar de Marcação de Entrada](xref:mvc/views/working-with-forms) renderiza um elemento `<input>` HTML. O [Auxiliar de Marcação de Validação](xref:mvc/views/working-with-forms) exibe todas as mensagens de validação associadas a essa propriedade.
 
 Execute o aplicativo e navegue para a URL `/Movies`. Clique em um link de **edição** . No navegador, exiba a origem da página. O HTML gerado para o elemento `<form>` é mostrado abaixo.
 
@@ -167,5 +167,5 @@ Todos os métodos `HttpGet` no controlador de filme seguem um padrão semelhante
 * [Auxiliar de marcação de validação](xref:mvc/views/working-with-forms)
 
 > [!div class="step-by-step"]
-> [Anterior](working-with-sql.md)
-> [próximo](search.md)  
+> [Anterior](working-with-sql.md) 
+>  [Avançar](search.md)  

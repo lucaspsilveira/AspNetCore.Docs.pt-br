@@ -1,7 +1,7 @@
 ---
-title: Adicionar uma exibição a um aplicativo ASP.NET Core MVC
+title: Parte 3, adicionar uma exibição a um aplicativo ASP.NET Core MVC
 author: rick-anderson
-description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
+description: Parte 3 da série de tutoriais no ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc:
@@ -11,14 +11,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 233d6cc060481c7b2efc9a1babc12f60f457a075
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 3976ecba1a6bbf30c3147bf1cef78c5ced5bec62
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507329"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652829"
 ---
-# <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
+# <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Parte 3, adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 

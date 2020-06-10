@@ -1,7 +1,7 @@
 ---
-title: Adicionar um novo campo a uma Razor página no ASP.NET Core
+title: Parte 7, adicione um novo campo a uma Razor página no ASP.NET Core
 author: rick-anderson
-description: Mostra como adicionar um novo campo a uma Razor página com Entity Framework Core
+description: Parte 7 da série de tutoriais em Razor páginas.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
@@ -12,14 +12,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 683d6718f4dcdb73c45cbcf94f6ac4f477b71bcd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 15d4ccbe88c2147210918a3db1416983fb30132b
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769728"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652802"
 ---
-# <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Parte 7, adicione um novo campo a uma Razor página no ASP.NET Core
 
 De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -59,7 +59,7 @@ Atualize as seguintes páginas:
 * Atualize [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) com um campo `Rating`.
 * Adicione o campo `Rating` à página Editar.
 
-O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem Atualizar o banco de dados `SqlException`gera um:
+O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem Atualizar o banco de dados gera um `SqlException` :
 
 `SqlException: Invalid column name 'Rating'.`
 
@@ -145,8 +145,8 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search)
-> [seguinte: adicionando validação](xref:tutorials/razor-pages/validation)
+> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search) 
+>  [Em seguida: adicionando validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -268,7 +268,7 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search)
-> [seguinte: adicionando validação](xref:tutorials/razor-pages/validation)
+> [Anterior: adicionando pesquisa](xref:tutorials/razor-pages/search) 
+>  [Em seguida: adicionando validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end

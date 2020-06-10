@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 5e617a201cbd133e695bdadc08dc6c797f97b6be
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 10d6f0bd6f6b95efbe868e4bc21513460e1f0b67
+ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773621"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84652470"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core
 
@@ -78,7 +78,7 @@ Use Você pode usar o atributo `DisplayFormat` por si só, mas geralmente é uma
 
 * Por padrão, o navegador renderizará os dados usando o formato correto de acordo com a localidade.
 
-Para obter mais informações, consulte [ \<a documentação auxiliar da marca de> de entrada](../../mvc/views/working-with-forms.md#the-input-tag-helper).
+Para obter mais informações, consulte a [ \<input> documentação auxiliar de marca](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Execute o aplicativo, acesse a página Índice de Alunos e observe que as horas não são mais exibidas nas datas de registro. O mesmo será verdadeiro para qualquer exibição que usa o modelo Aluno.
 
@@ -95,7 +95,7 @@ Suponha que você deseje garantir que os usuários não insiram mais de 50 carac
 O atributo `StringLength` não impedirá que um usuário insira um espaço em branco em um nome. Use o atributo `RegularExpression` para aplicar restrições à entrada. Por exemplo, o seguinte código exige que o primeiro caractere esteja em maiúscula e os caracteres restantes estejam em ordem alfabética:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 O atributo `MaxLength` fornece uma funcionalidade semelhante ao atributo `StringLength`, mas não fornece a validação do lado do cliente.
@@ -112,7 +112,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado * \<timestamp>_MaxLengthOnNames. cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
+O comando `migrations add` alerta que pode ocorrer perda de dados, pois a alteração torna o tamanho máximo mais curto para duas colunas.  As migrações criam um arquivo chamado * \<timeStamp> _MaxLengthOnNames. cs*. Esse arquivo contém o código no método `Up` que atualizará o banco de dados para que ele corresponda ao modelo de dados atual. O comando `database update` executou esse código.
 
 O carimbo de data/hora prefixado ao nome do arquivo de migrações é usado pelo Entity Framework para ordenar as migrações. Crie várias migrações antes de executar o comando de atualização de banco de dados e, em seguida, todas as migrações são aplicadas na ordem em que foram criadas.
 
