@@ -5,7 +5,7 @@ description: Crie um aplicativo de chat que usa ASP.NET Core SignalR com Blazor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/10/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: d3ce11606b4193d5c2938b5996d8dcd1cb99a731
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 720f534426cc0e2b32778e49050c7f7d75ecd60d
+ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451882"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84679586"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usar ASP.NET Core SignalR com Blazor Webassembly
 
@@ -93,7 +93,7 @@ Siga as orientações para sua escolha de ferramentas:
 
 1. Em Visual Studio Code, abra a pasta do projeto do aplicativo.
 
-1. Quando a caixa de diálogo aparecer para adicionar ativos para compilar e depurar o aplicativo, selecione **Sim**. Visual Studio Code adiciona automaticamente a pasta *. vscode* com arquivos *Launch. JSON* e *Tasks. JSON* gerados.
+1. Quando a caixa de diálogo aparecer para adicionar ativos para compilar e depurar o aplicativo, selecione **Sim**. Visual Studio Code adiciona automaticamente a pasta *. vscode* com o *launch.jsgerado no* e *tasks.jsem* arquivos.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -230,7 +230,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-1. Quando o VS Code oferece para criar um perfil de inicialização para o aplicativo de servidor (*. vscode/Launch. JSON*), a `program` entrada é semelhante à seguinte para apontar para o assembly do aplicativo ( `{APPLICATION NAME}.Server.dll` ):
+1. Quando o VS Code oferece para criar um perfil de inicialização para o aplicativo de servidor (*. vscode/launch.json*), a `program` entrada é semelhante à seguinte para apontar para o assembly do aplicativo ( `{APPLICATION NAME}.Server.dll` ):
 
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
@@ -296,3 +296,4 @@ Para saber mais sobre a criação de Blazor aplicativos, consulte a Blazor docum
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:signalr/introduction>
+* [SignalRnegociação entre origens para autenticação](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
