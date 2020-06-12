@@ -560,6 +560,9 @@
         - name: Considerações sobre o design da API
           uid: signalr/api-design
           displayName: signalr
+        - name: Filtros de hub
+          uid: signalr/hub-filters
+          displayName: signalr
     - name: Clientes
       displayName: signalr
       items:
