@@ -5,7 +5,7 @@ description: Saiba como criar e usar Razor componentes, incluindo como associar 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 06/11/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: 59b0c51e0006db0eb748b14b82a114a8bad986e8
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 2a6de1a39737f98cb151a0556f36c223d86f9752
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105137"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84723945"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar componentes de ASP.NET Core Razor
 
@@ -88,7 +88,7 @@ Ao acessar o conteúdo em Razor sintaxe, preste atenção especial às seguintes
 
 Blazorsegue a Convenção de ASP.NET Core aplicativos que posicionam ativos estáticos na [pasta raiz da Web do projeto (wwwroot)](xref:fundamentals/index#web-root).
 
-Use um caminho relativo de base ( `/` ) para se referir à raiz da Web para um ativo estático. No exemplo a seguir, *logo. png* está localizado fisicamente na pasta *{Project root}/wwwroot/images* :
+Use um caminho relativo de base ( `/` ) para se referir à raiz da Web para um ativo estático. No exemplo a seguir, *logo.png* está localizado fisicamente na pasta *{Project root}/wwwroot/images* :
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
@@ -365,7 +365,7 @@ Registre o `NotifierService` como um singletion:
 * Em Blazor servidor, registre o serviço em `Startup.ConfigureServices` :
 
   ```csharp
-  services.AddSingleton<NotifierService>();
+  services.AddScoped<NotifierService>();
   ```
 
 Use o `NotifierService` para atualizar um componente:

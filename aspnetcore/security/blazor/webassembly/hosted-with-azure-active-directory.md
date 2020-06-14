@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 9e76b300c159a2a1432aa4b1c6e47b3d91084a85
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 5c73b5e5416956e2f6996e5692100e8c02a25cbf
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84215096"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724322"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory
 
@@ -40,7 +40,7 @@ Siga as orientações em [início rápido: registrar um aplicativo com a platafo
 1. Forneça um **nome** para o aplicativo (por exemplo, ** Blazor servidor AAD**).
 1. Escolha um **tipo de conta com suporte**. Você pode selecionar **contas neste diretório organizacional somente** (locatário único) para essa experiência.
 1. O *aplicativo de API do servidor* não requer um **URI de redirecionamento** nesse cenário, portanto, deixe a lista suspensa definida como **Web** e não insira um URI de redirecionamento.
-1. Desabilite a caixa de seleção **permissões**  >  **conceder administrador concento para OpenID e offline_access** .
+1. Desabilite a caixa de seleção **permissões**  >  **conceder consentimento de administrador para OpenID e offline_access** .
 1. Selecione **Registrar**.
 
 Registre as seguintes informações:
@@ -74,7 +74,7 @@ Siga as orientações em [início rápido: registrar um aplicativo com a platafo
 1. Forneça um **nome** para o aplicativo (por exemplo, ** Blazor cliente AAD**).
 1. Escolha um **tipo de conta com suporte**. Você pode selecionar **contas neste diretório organizacional somente** (locatário único) para essa experiência.
 1. Deixe a lista suspensa **URI de redirecionamento** definida como **Web** e forneça o seguinte URI de redirecionamento: `https://localhost:{PORT}/authentication/login-callback` . A porta padrão para um aplicativo em execução no Kestrel é 5001. Se o aplicativo for executado em uma porta Kestrel diferente, use a porta do aplicativo. Por IIS Express, a porta gerada aleatoriamente para o aplicativo pode ser encontrada nas propriedades do aplicativo do servidor no painel de **depuração** . Como o aplicativo não existe neste ponto e a porta de IIS Express não é conhecida, retorne a essa etapa depois que o aplicativo for criado e atualize o URI de redirecionamento. Um comentário é exibido na seção [criar o aplicativo](#create-the-app) para lembrar IIS Express usuários para atualizar o URI de redirecionamento.
-1. Desabilite a caixa de seleção **permissões**  >  **conceder administrador concento para OpenID e offline_access** .
+1. Desabilite a caixa de seleção **permissões**  >  **conceder consentimento de administrador para OpenID e offline_access** .
 1. Selecione **Registrar**.
 
 Registre a ID do aplicativo de aplicativo *cliente* (ID do cliente) (por exemplo, `33333333-3333-3333-3333-333333333333` ).
@@ -166,9 +166,9 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-### <a name="app-settings"></a>Configurações de aplicativo
+### <a name="app-settings"></a>Configurações do aplicativo
 
-O arquivo *appSettings. JSON* contém as opções para configurar o manipulador de portador JWT usado para validar tokens de acesso:
+O *appsettings.jsno* arquivo contém as opções para configurar o manipulador de portador JWT usado para validar tokens de acesso:
 
 ```json
 {
@@ -261,7 +261,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 O <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método aceita um retorno de chamada para configurar os parâmetros necessários para autenticar um aplicativo. Os valores necessários para configurar o aplicativo podem ser obtidos na configuração do AAD do portal do Azure quando você registra o aplicativo.
 
-A configuração é fornecida pelo arquivo *wwwroot/appSettings. JSON* :
+A configuração é fornecida pelo *wwwroot/appsettings.jsno* arquivo:
 
 ```json
 {

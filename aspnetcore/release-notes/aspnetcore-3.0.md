@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 38a75e9577bab6bbdb5accf161659e8e301947b1
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: f2588665c26887a6e3864866425b887e97e656d5
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105929"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84755866"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -84,13 +84,13 @@ Para obter mais informações, consulte <xref:grpc/index>.
 
 ## SignalR
 
-Consulte [Atualizar SignalR código](xref:migration/22-to-30#signalr) para obter instruções de migração. SignalRAgora usa `System.Text.Json` para serializar/desserializar mensagens JSON. Consulte [mudar para Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson) para obter instruções para restaurar o `Newtonsoft.Json` serializador baseado em.
+Consulte [Atualizar SignalR código](xref:migration/22-to-30#signalr) para obter instruções de migração. SignalRAgora usa `System.Text.Json` para serializar/desserializar mensagens JSON. Consulte [mudar para Newtonsoft.Jsem](xref:migration/22-to-30#switch-to-newtonsoftjson) para obter instruções para restaurar o `Newtonsoft.Json` serializador baseado em.
 
 Nos clientes JavaScript e .NET para SignalR , o suporte foi adicionado para reconexão automática. Por padrão, o cliente tenta se reconectar imediatamente e tentar novamente após 2, 10 e 30 segundos, se necessário. Se o cliente reconectar-se com êxito, ele receberá uma nova ID de conexão. A reconexão automática é opcional:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect()
     .build();
 ```
@@ -316,7 +316,7 @@ O ASP.NET Core 3,0 agora usa <xref:System.Text.Json> por padrão para SERIALIZA�
 * É otimizado para texto UTF-8.
 * Geralmente um desempenho maior do que o `Newtonsoft.Json` .
 
-Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [Adicionar suporte ao formato JSON baseado em Newtonsoft. JSON](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
+Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [adicionar Newtonsoft.Jssuporte ao formato JSON baseado em](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
 
 ## <a name="new-razor-directives"></a>Novas Razor diretivas
 
@@ -401,7 +401,7 @@ Para obter mais informações, consulte <xref:security/authentication/windowsaut
 Os modelos de interface do usuário da Web ( Razor páginas, MVC com controlador e exibições) têm o seguinte removido:
 
 * A interface do usuário de consentimento do cookie não está mais incluída. Para habilitar o recurso de consentimento de cookie em um ASP.NET Core aplicativo gerado pelo modelo 3,0, consulte <xref:security/gdpr> .
-* Os scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar CDNs. Para obter mais informações, consulte [scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar o CDNs com base no ambiente atual (ASPNET/AspNetCore. Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
+* Os scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar CDNs. Para obter mais informações, consulte [scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar o CDNs com base no ambiente atual (ASPNET/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 O modelo angular atualizado para usar o angular 8.
 
@@ -437,7 +437,7 @@ Para obter mais informações, consulte <xref:migration/22-to-30#kestrel>.
 
 ## <a name="http2-enabled-by-default"></a>HTTP/2 habilitado por padrão
 
-O HTTP/2 é habilitado por padrão em Kestrel para pontos de extremidade HTTPS. O suporte a HTTP/2 para IIS ou HTTP. sys é habilitado quando há suporte para o sistema operacional.
+O HTTP/2 é habilitado por padrão em Kestrel para pontos de extremidade HTTPS. O suporte a HTTP/2 para IIS ou HTTP.sys é habilitado quando suportado pelo sistema operacional.
 
 ## <a name="eventcounters-on-request"></a>EventCounters na solicitação
 
@@ -536,7 +536,7 @@ A estrutura compartilhada ASP.NET Core 3,0, contida no [metapacote Microsoft. As
 
 Os assemblies mais notáveis removidos da estrutura compartilhada ASP.NET Core 3,0 são:
 
-* [Newtonsoft. JSON](https://www.nuget.org/packages/Newtonsoft.Json/) (JSON.net). Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [Adicionar suporte ao formato JSON baseado em Newtonsoft. JSON](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3,0 apresenta `System.Text.Json` para leitura e gravação de JSON. Para obter mais informações, consulte [nova SERIALIZAÇÃO JSON](#new-json-serialization) neste documento.
+* [Newtonsoft.Jsem](https://www.nuget.org/packages/Newtonsoft.Json/) (JSON.net). Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [adicionar Newtonsoft.Jssuporte ao formato JSON baseado em](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3,0 apresenta `System.Text.Json` para leitura e gravação de JSON. Para obter mais informações, consulte [nova SERIALIZAÇÃO JSON](#new-json-serialization) neste documento.
 * [Entity Framework Core](/ef/core/)
 
 Para obter uma lista completa de assemblies removidos da estrutura compartilhada, consulte [assemblies sendo removidos do Microsoft. AspNetCore. App 3,0](https://github.com/dotnet/AspNetCore/issues/3755). Para obter mais informações sobre a motivação para essa alteração, consulte [alterações recentes em Microsoft. AspNetCore. app em 3,0](https://github.com/aspnet/Announcements/issues/325) e [uma primeira análise sobre as alterações que chegam no ASP.NET Core 3,0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).

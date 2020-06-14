@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/aad-groups-roles
-ms.openlocfilehash: 3ed06cca7e20da381b870e642a6c616b2578cd0a
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 87cdf02a6f6babc869d90658e6a7cd54db73bb68
+ms.sourcegitcommit: a423e8fcde4b6181a3073ed646a603ba20bfa5f9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451869"
+ms.lasthandoff: 06/13/2020
+ms.locfileid: "84756022"
 ---
 # <a name="azure-ad-groups-administrative-roles-and-user-defined-roles"></a>Grupos do Azure AD, funções administrativas e funções definidas pelo usuário
 
@@ -164,7 +164,7 @@ O [componente AuthorizeView](xref:security/blazor/index#authorizeview-component)
 </AuthorizeView>
 ```
 
-O acesso a um componente inteiro pode ser baseado na política usando a `[Authorize]` diretiva de atributo [] (xref: Security/mais alto/índice # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
+O acesso a um componente inteiro pode ser baseado na política usando a [ `[Authorize]` diretiva de atributo](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ):
 
 ```razor
 @page "/"
@@ -246,7 +246,7 @@ builder.Services.AddMsalAuthentication(options =>
 As abordagens de autorização de componente são funcionais neste ponto. Qualquer um dos mecanismos de autorização nos componentes pode usar a `admin` função para autorizar o usuário:
 
 * [Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (exemplo: `<AuthorizeView Roles="admin">` )
-* [ `[Authorize]` ] diretiva de atributo] (xref: segurança/mais muito mais/índice # Authorize-Attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (Exemplo: `@attribute [Authorize(Roles = "admin")]` )
+* [ `[Authorize]` diretiva de atributo](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (exemplo: `@attribute [Authorize(Roles = "admin")]` )
 * [Lógica de procedimento](xref:security/blazor/index#procedural-logic) (exemplo: `if (user.IsInRole("admin")) { ... }` )
 
   Há suporte para vários testes de função:
@@ -267,8 +267,8 @@ Função administrativa do AAD | ID de objeto
 Administrador de aplicativos | fa11557b-4f15-4ddd-85d5-313c7cd74047
 Desenvolvedor de aplicativos | 68adcbb8-9504-44f6-89f2-5cd48dc74a2c
 Administrador de autenticação | 02d110a1-96b1-419e-af87-746461b60ed7
-Administrador de DevOps do Azure | a5311ace-ca41-44cd-b833-8d22caa0b34f
-Administrador da proteção de informações do Azure | 18632dce-f9b5-4f01-abb5-37051f06860e
+Administrador do Azure DevOps | a5311ace-ca41-44cd-b833-8d22caa0b34f
+Administrador da Proteção de Informações do Azure | 18632dce-f9b5-4f01-abb5-37051f06860e
 Administrador do conjunto de chaves B2C IEF | 0c2e87e5-94f9-4adb-ae8c-bcafe11bd368
 Administrador da política IEF B2C | bfcab36c-10c6-4b13-b63c-4d8b62c0c44e
 Administrador de fluxo de usuário B2C | baa531b7-8cf0-44ad-8f98-eded88dae827
@@ -283,7 +283,7 @@ Aprovador de acesso do Sistema de Proteção de Dados do Cliente | c18d54a8-b13e
 Administrador do desktop Analytics | c62c4ac5-e4c6-4096-8a2f-1ee3cbaaae15
 Leitores de diretórios | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Administrador do Dynamics 365 | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
-Administradores do Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
+Administrador do Exchange | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
 IdentityAdministrador de provedor externo | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Administrador global | a45ba61b-44db-462c-924b-3b2719152588
 Leitor global | f6903b21-6aba-4124-b44c-76671796b9d5
@@ -294,15 +294,15 @@ Administrador do Intune | 79950741-23fa-4189-b2cb-46640601c497
 Administrador do Kaizala | d6322af2-48e7-42e0-8c68-0bbe31af3412
 Administrador de licenças | 3355458a-e423-44bf-8b98-4ac5e572cea5
 Leitor de privacidade do centro de mensagens | 6395db95-9fb8-42b9-b1ed-30a2405eee6f
-Leitor do centro de mensagens | fd5d37b8-4e24-434b-9e63-70ed3b759a16
+Leitor do Centro de Mensagens | fd5d37b8-4e24-434b-9e63-70ed3b759a16
 Administrador de aplicativos do Office | 5f3870cd-b042-4f93-86d7-c9d77c664dc7
 Administrador de senha | 466e48b7-5d66-4ae5-8911-1a118de74941
-Administrador de Power BI | 984e83b8-8337-4255-91a1-acb663175ab4
-Administrador de plataforma Power | 76d6f95e-9a15-4d7d-8d21-00de00faf9fd
+Administrador do Power BI | 984e83b8-8337-4255-91a1-acb663175ab4
+Administrador do Power Platform | 76d6f95e-9a15-4d7d-8d21-00de00faf9fd
 Administrador de autenticação privilegiada | 0829f731-b46d-419F-9742-aeb122367d11
 Administrador de função com privilégios | f20a725a-d1c8-4107-83ea-1171c97d00c7
 Leitor de relatórios | 54635450-e8ed-4f2d-9632-07db2517b4de
-Administrador de pesquisa | c770a2f1-c9ba-4e60-9176-9f52b1eb1a31
+Administrador de pesquisas | c770a2f1-c9ba-4e60-9176-9f52b1eb1a31
 Editor de pesquisa | 6a6858c6-5f0d-44ac-87c7-0190fbedd271
 Administrador de segurança | 20fa50e3-6531-44d8-bd39-b251420568ad
 Operador de segurança | 43aae017-8e51-4188-91ab-e6debd572800

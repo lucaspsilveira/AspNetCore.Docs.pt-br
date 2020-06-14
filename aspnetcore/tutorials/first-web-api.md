@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 2fcfd46057935cadac76c558a78729a1c096ffc0
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 71ab0fc0a679acf540fa53fa2a9c8ba893b34edf
+ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451806"
+ms.lasthandoff: 06/12/2020
+ms.locfileid: "84724348"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
 
@@ -477,7 +477,7 @@ Use o Postman para excluir um item pendente:
 
 ## <a name="prevent-over-posting"></a>Evitar excesso de postagem
 
-Atualmente, o aplicativo de exemplo expõe o `TodoItem` objeto inteiro. Os aplicativos de produções normalmente limitam os dados que são inseridos e retornados usando um subconjunto do modelo. Há várias razões por trás disso e a segurança é uma importante. O subconjunto de um modelo é geralmente conhecido como um objeto Transferência de Dados (DTO), um modelo de entrada ou um modelo de exibição. O **dto** é usado neste artigo.
+Atualmente, o aplicativo de exemplo expõe o `TodoItem` objeto inteiro. Os aplicativos de produção normalmente limitam os dados que são inseridos e retornados usando um subconjunto do modelo. Há várias razões por trás disso e a segurança é uma importante. O subconjunto de um modelo é geralmente conhecido como um objeto Transferência de Dados (DTO), um modelo de entrada ou um modelo de exibição. O **dto** é usado neste artigo.
 
 Um DTO pode ser usado para:
 
@@ -924,7 +924,7 @@ Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substi
 Uma alteração nas configurações de inicialização do projeto ASP.NET Core pode ser necessária para testar a página HTML localmente:
 
 * Abra *Properties\launchSettings.json*.
-* Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index. html* &mdash; o arquivo padrão do projeto.
+* Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index.html* &mdash; o arquivo padrão do projeto.
 
 Esta amostra chama todos os métodos CRUD da API Web. Veja a seguir explicações das chamadas à API.
 
