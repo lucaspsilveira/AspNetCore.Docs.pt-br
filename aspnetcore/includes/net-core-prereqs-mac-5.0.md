@@ -1,2 +1,1 @@
-* [<span data-ttu-id="1c4ea-101">Visual Studio para Mac versão 8.6 ou posterior</span><span class="sxs-lookup"><span data-stu-id="1c4ea-101">Visual Studio for Mac version 8.6 or later</span></span>](/visualstudio/releasenotes/vs2019-mac-preview-relnotes)
-* [!INCLUDE [.NET 5.0 SDK](~/includes/5.0-SDK.md)]
+<span data-ttu-id="09b24-101">ASP.NET Core 5,0 ainda não tem suporte no Visual Studio para Mac.</span><span class="sxs-lookup"><span data-stu-id="09b24-101">ASP.NET Core 5.0 isn't yet supported in Visual Studio for Mac.</span></span>
