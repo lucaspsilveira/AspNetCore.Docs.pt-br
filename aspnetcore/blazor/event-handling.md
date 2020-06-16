@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/event-handling
-ms.openlocfilehash: 2d806413eb66d4c1301df4a0db950e8b919c09a4
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 66430fe45d74fadf46dff3798215ae3ac6e10a40
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84419743"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776391"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Manipulação de eventos de ASP.NET Core Blazor
 
@@ -184,7 +184,7 @@ Quando o botão estiver selecionado no `ChildComponent` :
 Invocar um <xref:Microsoft.AspNetCore.Components.EventCallback> ou <xref:Microsoft.AspNetCore.Components.EventCallback%601> com <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> e aguardar <xref:System.Threading.Tasks.Task> :
 
 ```csharp
-await callback.InvokeAsync(arg);
+await OnClickCallback.InvokeAsync(arg);
 ```
 
 Use <xref:Microsoft.AspNetCore.Components.EventCallback> e <xref:Microsoft.AspNetCore.Components.EventCallback%601> para manipulação de eventos e parâmetros de componente de associação.

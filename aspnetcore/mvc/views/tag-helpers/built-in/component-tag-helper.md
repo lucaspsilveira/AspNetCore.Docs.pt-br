@@ -2,7 +2,7 @@
 title: Auxiliar de marca de componente no ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Saiba como usar o auxiliar de marca de componente ASP.NET Core para Razor renderizar componentes em páginas e exibições.
+description: Saiba como usar o auxiliar de marca de componente ASP.NET Core para renderizar Razor componentes em páginas e exibições.
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: 4e003e5ed5e7863d8a218c0f02bb37e214e31910
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b6e3890e13ef5ad20098d3907b6895046087aeca
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773923"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776495"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Auxiliar de marca de componente no ASP.NET Core
 
@@ -31,7 +31,7 @@ Siga as orientações na seção *preparar o aplicativo para usar componentes em
 
 ## <a name="component-tag-helper"></a>Auxiliar de marca de componente
 
-O auxiliar de marca de componente a seguir `Counter` renderiza o componente em uma página ou exibição:
+O auxiliar de marca de componente a seguir renderiza o `Counter` componente em uma página ou exibição:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -42,7 +42,7 @@ O auxiliar de marca de componente a seguir `Counter` renderiza o componente em u
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-O exemplo anterior pressupõe que o `Counter` componente está na pasta *páginas* do aplicativo.
+O exemplo anterior pressupõe que o `Counter` componente está na pasta *páginas* do aplicativo. O espaço reservado `{APP ASSEMBLY}` é o nome do assembly do aplicativo (por exemplo, `@using BlazorSample.Pages` ).
 
 O auxiliar de marca de componente também pode passar parâmetros para componentes. Considere o seguinte `ColorfulCheckbox` componente que define a cor e o tamanho do rótulo da caixa de seleção:
 
@@ -72,7 +72,7 @@ O auxiliar de marca de componente também pode passar parâmetros para component
 }
 ```
 
-Os `Size` parâmetros`int`de `Color` [componente](xref:blazor/components#component-parameters) (`string`) e () podem ser definidos pelo auxiliar de marca do componente:
+Os `Size` `int` parâmetros de componente () e `Color` ( `string` ) podem ser definidos pelo auxiliar de marca do componente: [component parameters](xref:blazor/components#component-parameters)
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -84,7 +84,7 @@ Os `Size` parâmetros`int`de `Color` [componente](xref:blazor/components#compone
     param-Size="14" param-Color="@("blue")" />
 ```
 
-O exemplo anterior pressupõe que o `ColorfulCheckbox` componente está na pasta *compartilhada* do aplicativo.
+O exemplo anterior pressupõe que o `ColorfulCheckbox` componente está na pasta *compartilhada* do aplicativo. O espaço reservado `{APP ASSEMBLY}` é o nome do assembly do aplicativo (por exemplo, `@using BlazorSample.Shared` ).
 
 O HTML a seguir é renderizado na página ou exibição:
 
@@ -95,9 +95,9 @@ O HTML a seguir é renderizado na página ou exibição:
 </label>
 ```
 
-A passagem de uma cadeia de caracteres entre aspas requer uma [expressão explícita do Razor](xref:mvc/views/razor#explicit-razor-expressions), conforme mostrado `param-Color` no exemplo anterior. O comportamento de análise do Razor para `string` um valor de tipo não se `param-*` aplica a um atributo porque o `object` atributo é um tipo.
+A passagem de uma cadeia de caracteres entre aspas requer uma [ Razor expressão explícita](xref:mvc/views/razor#explicit-razor-expressions), conforme mostrado `param-Color` no exemplo anterior. O Razor comportamento de análise para um `string` valor de tipo não se aplica a um `param-*` atributo porque o atributo é um `object` tipo.
 
-O tipo de parâmetro deve ser serializável em JSON, o que normalmente significa que o tipo deve ter propriedades de construtor e settable padrão. Por exemplo, você pode especificar um valor para `Size` e `Color` no exemplo anterior, porque os tipos de `Size` e `Color` são tipos primitivos`int` ( `string`e), que são suportados pelo serializador JSON.
+O tipo de parâmetro deve ser serializável em JSON, o que normalmente significa que o tipo deve ter propriedades de construtor e settable padrão. Por exemplo, você pode especificar um valor para `Size` e `Color` no exemplo anterior, porque os tipos de `Size` e `Color` são tipos primitivos ( `int` e `string` ), que são suportados pelo serializador JSON.
 
 No exemplo a seguir, um objeto de classe é passado para o componente:
 
@@ -151,17 +151,17 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-O exemplo anterior pressupõe que o `MyComponent` componente está na pasta *compartilhada* do aplicativo. `MyClass`está no namespace do aplicativo (`{APP ASSEMBLY}`).
+O exemplo anterior pressupõe que o `MyComponent` componente está na pasta *compartilhada* do aplicativo. O espaço reservado `{APP ASSEMBLY}` é o nome do assembly do aplicativo (por exemplo, `@using BlazorSample` e `@using BlazorSample.Shared` ). `MyClass`está no namespace do aplicativo.
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se o componente:
 
 * É renderizado na página.
-* É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
+* É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
 | Modo de renderização | Descrição |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar Blazor um aplicativo. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar Blazor um aplicativo. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o componente em HTML estático. |
 
 Embora as páginas e exibições possam usar componentes, o inverso não é verdadeiro. Os componentes não podem usar recursos de exibição e específicos de página, como exibições parciais e seções. Para usar a lógica de uma exibição parcial em um componente, desfatore a lógica de exibição parcial em um componente.

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 5c73b5e5416956e2f6996e5692100e8c02a25cbf
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: 5e403d3503fb534d5c3db71a7d6831953c60ac28
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724322"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776521"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-azure-active-directory"></a>Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com Azure Active Directory
 
@@ -246,6 +246,8 @@ builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client =>
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
+
+O espaço reservado `{APP ASSEMBLY}` é o nome do assembly do aplicativo (por exemplo, `BlazorSample.ServerAPI` ).
 
 O suporte para autenticação de usuários é registrado no contêiner de serviço com o <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> método de extensão fornecido pelo pacote [Microsoft. Authentication. Webassembly. MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) . Esse método configura os serviços necessários para que o aplicativo interaja com o Identity provedor (IP).
 

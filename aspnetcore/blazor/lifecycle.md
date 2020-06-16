@@ -5,7 +5,7 @@ description: Saiba como usar Razor métodos de ciclo de vida do componente em AS
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/07/2020
+ms.date: 06/01/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/lifecycle
-ms.openlocfilehash: 9dcbb2ca21cc689063198e1ccc90583db4229183
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: 3f9feef205e0d28d3160d5e5f6f49390ce5cd0b1
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "83864574"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776365"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>BlazorCiclo de vida ASP.NET Core
 
@@ -28,9 +28,32 @@ A Blazor estrutura inclui métodos de ciclo de vida síncronos e assíncronos. S
 
 ## <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
+### <a name="before-parameters-are-set"></a>Antes de os parâmetros serem definidos
+
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>define os parâmetros fornecidos pelo pai do componente na árvore de renderização:
+
+```csharp
+public override async Task SetParametersAsync(ParameterView parameters)
+{
+    await ...
+
+    await base.SetParametersAsync(parameters);
+}
+```
+
+<xref:Microsoft.AspNetCore.Components.ParameterView>contém o conjunto inteiro de valores de parâmetro a cada vez que <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> é chamado.
+
+A implementação padrão de <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> define o valor de cada propriedade com o [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) atributo ou que tem um valor correspondente no <xref:Microsoft.AspNetCore.Components.ParameterView> . Os parâmetros que não têm um valor correspondente em <xref:Microsoft.AspNetCore.Components.ParameterView> são deixados inalterados.
+
+Se [base. SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) não é invocado, o código personalizado pode interpretar o valor dos parâmetros de entrada de qualquer forma necessária. Por exemplo, não há nenhum requisito para atribuir os parâmetros de entrada às propriedades na classe.
+
+Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte de componentes com IDisposable](#component-disposal-with-idisposable) .
+
 ### <a name="component-initialization-methods"></a>Métodos de inicialização de componente
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> são invocados quando o componente é inicializado após ter recebido seus parâmetros iniciais de seu componente pai. Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> quando o componente executa uma operação assíncrona e deve ser atualizado quando a operação é concluída.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> são invocados quando o componente é inicializado após ter recebido seus parâmetros iniciais de seu componente pai no <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> . 
+
+Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> quando o componente executa uma operação assíncrona e deve ser atualizado quando a operação é concluída.
 
 Para uma operação síncrona, substitua <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> :
 
@@ -61,32 +84,11 @@ Enquanto um Blazor aplicativo de servidor está sendo renderizado, determinadas 
 
 Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte de componentes com IDisposable](#component-disposal-with-idisposable) .
 
-### <a name="before-parameters-are-set"></a>Antes de os parâmetros serem definidos
-
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>define os parâmetros fornecidos pelo pai do componente na árvore de renderização:
-
-```csharp
-public override async Task SetParametersAsync(ParameterView parameters)
-{
-    await ...
-
-    await base.SetParametersAsync(parameters);
-}
-```
-
-<xref:Microsoft.AspNetCore.Components.ParameterView>contém o conjunto inteiro de valores de parâmetro a cada vez que <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> é chamado.
-
-A implementação padrão de <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> define o valor de cada propriedade com o [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) atributo ou que tem um valor correspondente no <xref:Microsoft.AspNetCore.Components.ParameterView> . Os parâmetros que não têm um valor correspondente em <xref:Microsoft.AspNetCore.Components.ParameterView> são deixados inalterados.
-
-Se [base. SetParametersAync](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) não é invocado, o código personalizado pode interpretar o valor dos parâmetros de entrada de qualquer forma necessária. Por exemplo, não há nenhum requisito para atribuir os parâmetros de entrada às propriedades na classe.
-
-Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte de componentes com IDisposable](#component-disposal-with-idisposable) .
-
 ### <a name="after-parameters-are-set"></a>Depois que os parâmetros são definidos
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>e <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> são chamados de:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>ou <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> são chamados:
 
-* Quando o componente é inicializado e recebeu seu primeiro conjunto de parâmetros de seu componente pai.
+* Depois que o componente é inicializado no <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> ou no <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> .
 * Quando o componente pai é renderizado novamente e fornece:
   * Somente tipos irmutáveis de primitivo conhecidos dos quais pelo menos um parâmetro foi alterado.
   * Qualquer parâmetro de tipo complexo. A estrutura não pode saber se os valores de um parâmetro de tipo complexo foram modificados internamente e, portanto, trata o conjunto de parâmetros como alterado.
