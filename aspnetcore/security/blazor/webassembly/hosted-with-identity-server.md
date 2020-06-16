@@ -13,52 +13,52 @@ no-loc:
 - Razor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: ade2d88c6a2d59e169c9019e871982a74ae46b33
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c85843c04688beefe7ea87d9e8b281d14ab85bc5
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452311"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84776508"
 ---
-# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a><span data-ttu-id="08b62-103">Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com o Identity servidor</span><span class="sxs-lookup"><span data-stu-id="08b62-103">Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server</span></span>
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a><span data-ttu-id="72ace-103">Proteger um Blazor aplicativo hospedado Webassembly ASP.NET Core com o Identity servidor</span><span class="sxs-lookup"><span data-stu-id="72ace-103">Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server</span></span>
 
-<span data-ttu-id="08b62-104">Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="08b62-104">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="72ace-104">Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="72ace-104">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="08b62-105">Este artigo explica como criar um novo Blazor aplicativo hospedado que usa [IdentityServer](https://identityserver.io/) para autenticar usuários e chamadas de API.</span><span class="sxs-lookup"><span data-stu-id="08b62-105">This article explains how to create a new Blazor hosted app that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.</span></span>
+<span data-ttu-id="72ace-105">Este artigo explica como criar um novo Blazor aplicativo hospedado que usa [IdentityServer](https://identityserver.io/) para autenticar usuários e chamadas de API.</span><span class="sxs-lookup"><span data-stu-id="72ace-105">This article explains how to create a new Blazor hosted app that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="08b62-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="08b62-106">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="72ace-106">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="72ace-106">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="08b62-107">No Visual Studio:</span><span class="sxs-lookup"><span data-stu-id="08b62-107">In Visual Studio:</span></span>
+<span data-ttu-id="72ace-107">No Visual Studio:</span><span class="sxs-lookup"><span data-stu-id="72ace-107">In Visual Studio:</span></span>
 
-1. <span data-ttu-id="08b62-108">Crie um novo aplicativo \*\* Blazor Webassembly\*\* .</span><span class="sxs-lookup"><span data-stu-id="08b62-108">Create a new **Blazor WebAssembly** app.</span></span> <span data-ttu-id="08b62-109">Para obter mais informações, consulte <xref:blazor/get-started>.</span><span class="sxs-lookup"><span data-stu-id="08b62-109">For more information, see <xref:blazor/get-started>.</span></span>
-1. <span data-ttu-id="08b62-110">Na caixa de diálogo **criar um novo Blazor aplicativo** , selecione **alterar** na seção **autenticação** .</span><span class="sxs-lookup"><span data-stu-id="08b62-110">In the **Create a new Blazor app** dialog, select **Change** in the **Authentication** section.</span></span>
-1. <span data-ttu-id="08b62-111">Selecione **contas de usuário individuais** seguidas por **OK**.</span><span class="sxs-lookup"><span data-stu-id="08b62-111">Select **Individual User Accounts** followed by **OK**.</span></span>
-1. <span data-ttu-id="08b62-112">Marque a caixa de seleção **ASP.NET Core hospedado** na seção **avançado** .</span><span class="sxs-lookup"><span data-stu-id="08b62-112">Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.</span></span>
-1. <span data-ttu-id="08b62-113">Selecione o botão **Criar**.</span><span class="sxs-lookup"><span data-stu-id="08b62-113">Select the **Create** button.</span></span>
+1. <span data-ttu-id="72ace-108">Crie um novo aplicativo \*\* Blazor Webassembly\*\* .</span><span class="sxs-lookup"><span data-stu-id="72ace-108">Create a new **Blazor WebAssembly** app.</span></span> <span data-ttu-id="72ace-109">Para obter mais informações, consulte <xref:blazor/get-started>.</span><span class="sxs-lookup"><span data-stu-id="72ace-109">For more information, see <xref:blazor/get-started>.</span></span>
+1. <span data-ttu-id="72ace-110">Na caixa de diálogo **criar um novo Blazor aplicativo** , selecione **alterar** na seção **autenticação** .</span><span class="sxs-lookup"><span data-stu-id="72ace-110">In the **Create a new Blazor app** dialog, select **Change** in the **Authentication** section.</span></span>
+1. <span data-ttu-id="72ace-111">Selecione **contas de usuário individuais** seguidas por **OK**.</span><span class="sxs-lookup"><span data-stu-id="72ace-111">Select **Individual User Accounts** followed by **OK**.</span></span>
+1. <span data-ttu-id="72ace-112">Marque a caixa de seleção **ASP.NET Core hospedado** na seção **avançado** .</span><span class="sxs-lookup"><span data-stu-id="72ace-112">Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.</span></span>
+1. <span data-ttu-id="72ace-113">Selecione o botão **Criar**.</span><span class="sxs-lookup"><span data-stu-id="72ace-113">Select the **Create** button.</span></span>
 
-# <a name="net-core-cli"></a>[<span data-ttu-id="08b62-114">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="08b62-114">.NET Core CLI</span></span>](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[<span data-ttu-id="72ace-114">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="72ace-114">.NET Core CLI</span></span>](#tab/netcore-cli/)
 
-<span data-ttu-id="08b62-115">Para criar o aplicativo em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="08b62-115">To create the app in a command shell, execute the following command:</span></span>
+<span data-ttu-id="72ace-115">Para criar o aplicativo em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="72ace-115">To create the app in a command shell, execute the following command:</span></span>
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -ho
 ```
 
-<span data-ttu-id="08b62-116">Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="08b62-116">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="08b62-117">O nome da pasta também se torna parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="08b62-117">The folder name also becomes part of the project's name.</span></span>
+<span data-ttu-id="72ace-116">Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ).</span><span class="sxs-lookup"><span data-stu-id="72ace-116">To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`).</span></span> <span data-ttu-id="72ace-117">O nome da pasta também se torna parte do nome do projeto.</span><span class="sxs-lookup"><span data-stu-id="72ace-117">The folder name also becomes part of the project's name.</span></span>
 
 ---
 
-## <a name="server-app-configuration"></a><span data-ttu-id="08b62-118">Configuração de aplicativo do servidor</span><span class="sxs-lookup"><span data-stu-id="08b62-118">Server app configuration</span></span>
+## <a name="server-app-configuration"></a><span data-ttu-id="72ace-118">Configuração de aplicativo do servidor</span><span class="sxs-lookup"><span data-stu-id="72ace-118">Server app configuration</span></span>
 
-<span data-ttu-id="08b62-119">As seções a seguir descrevem as adições ao projeto quando o suporte à autenticação é incluído.</span><span class="sxs-lookup"><span data-stu-id="08b62-119">The following sections describe additions to the project when authentication support is included.</span></span>
+<span data-ttu-id="72ace-119">As seções a seguir descrevem as adições ao projeto quando o suporte à autenticação é incluído.</span><span class="sxs-lookup"><span data-stu-id="72ace-119">The following sections describe additions to the project when authentication support is included.</span></span>
 
-### <a name="startup-class"></a><span data-ttu-id="08b62-120">Classe de inicialização</span><span class="sxs-lookup"><span data-stu-id="08b62-120">Startup class</span></span>
+### <a name="startup-class"></a><span data-ttu-id="72ace-120">Classe de inicialização</span><span class="sxs-lookup"><span data-stu-id="72ace-120">Startup class</span></span>
 
-<span data-ttu-id="08b62-121">A `Startup` classe tem as seguintes adições.</span><span class="sxs-lookup"><span data-stu-id="08b62-121">The `Startup` class has the following additions.</span></span>
+<span data-ttu-id="72ace-121">A `Startup` classe tem as seguintes adições.</span><span class="sxs-lookup"><span data-stu-id="72ace-121">The `Startup` class has the following additions.</span></span>
 
-* <span data-ttu-id="08b62-122">Em `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="08b62-122">In `Startup.ConfigureServices`:</span></span>
+* <span data-ttu-id="72ace-122">Em `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="72ace-122">In `Startup.ConfigureServices`:</span></span>
 
-  * <span data-ttu-id="08b62-123">ASP.NET Core Identity :</span><span class="sxs-lookup"><span data-stu-id="08b62-123">ASP.NET Core Identity:</span></span>
+  * <span data-ttu-id="72ace-123">ASP.NET Core Identity :</span><span class="sxs-lookup"><span data-stu-id="72ace-123">ASP.NET Core Identity:</span></span>
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -70,69 +70,69 @@ dotnet new blazorwasm -au Individual -ho
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * <span data-ttu-id="08b62-124">IdentityServer com um <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> método auxiliar adicional que configura as convenções de ASP.NET Core padrão na parte superior do IdentityServer:</span><span class="sxs-lookup"><span data-stu-id="08b62-124">IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:</span></span>
+  * <span data-ttu-id="72ace-124">IdentityServer com um <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> método auxiliar adicional que configura as convenções de ASP.NET Core padrão na parte superior do IdentityServer:</span><span class="sxs-lookup"><span data-stu-id="72ace-124">IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:</span></span>
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * <span data-ttu-id="08b62-125">Autenticação com um <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar adicional que configura o aplicativo para validar tokens JWT produzidos por IdentityServer:</span><span class="sxs-lookup"><span data-stu-id="08b62-125">Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:</span></span>
+  * <span data-ttu-id="72ace-125">Autenticação com um <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar adicional que configura o aplicativo para validar tokens JWT produzidos por IdentityServer:</span><span class="sxs-lookup"><span data-stu-id="72ace-125">Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:</span></span>
 
     ```csharp
     services.AddAuthentication()
         .AddIdentityServerJwt();
     ```
 
-* <span data-ttu-id="08b62-126">Em `Startup.Configure`:</span><span class="sxs-lookup"><span data-stu-id="08b62-126">In `Startup.Configure`:</span></span>
+* <span data-ttu-id="72ace-126">Em `Startup.Configure`:</span><span class="sxs-lookup"><span data-stu-id="72ace-126">In `Startup.Configure`:</span></span>
 
-  * <span data-ttu-id="08b62-127">O middleware IdentityServer expõe os pontos de extremidade do Open ID Connect (OIDC):</span><span class="sxs-lookup"><span data-stu-id="08b62-127">The IdentityServer middleware exposes the Open ID Connect (OIDC) endpoints:</span></span>
+  * <span data-ttu-id="72ace-127">O middleware IdentityServer expõe os pontos de extremidade do Open ID Connect (OIDC):</span><span class="sxs-lookup"><span data-stu-id="72ace-127">The IdentityServer middleware exposes the Open ID Connect (OIDC) endpoints:</span></span>
 
     ```csharp
     app.UseIdentityServer();
     ```
 
-  * <span data-ttu-id="08b62-128">O middleware de autenticação é responsável por validar as credenciais de solicitação e definir o usuário no contexto da solicitação:</span><span class="sxs-lookup"><span data-stu-id="08b62-128">The Authentication middleware is responsible for validating request credentials and setting the user on the request context:</span></span>
+  * <span data-ttu-id="72ace-128">O middleware de autenticação é responsável por validar as credenciais de solicitação e definir o usuário no contexto da solicitação:</span><span class="sxs-lookup"><span data-stu-id="72ace-128">The Authentication middleware is responsible for validating request credentials and setting the user on the request context:</span></span>
 
     ```csharp
     app.UseAuthentication();
     ```
 
-  * <span data-ttu-id="08b62-129">O middleware de autorização habilita os recursos de autorização:</span><span class="sxs-lookup"><span data-stu-id="08b62-129">Authorization Middleware enables authorization capabilities:</span></span>
+  * <span data-ttu-id="72ace-129">O middleware de autorização habilita os recursos de autorização:</span><span class="sxs-lookup"><span data-stu-id="72ace-129">Authorization Middleware enables authorization capabilities:</span></span>
 
     ```csharp
     app.UseAuthentication();
     app.UseAuthorization();
     ```
 
-### <a name="addapiauthorization"></a><span data-ttu-id="08b62-130">AddApiAuthorization</span><span class="sxs-lookup"><span data-stu-id="08b62-130">AddApiAuthorization</span></span>
+### <a name="addapiauthorization"></a><span data-ttu-id="72ace-130">AddApiAuthorization</span><span class="sxs-lookup"><span data-stu-id="72ace-130">AddApiAuthorization</span></span>
 
-<span data-ttu-id="08b62-131">O <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> método auxiliar configura [IdentityServer](https://identityserver.io/) para cenários de ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="08b62-131">The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios.</span></span> <span data-ttu-id="08b62-132">O IdentityServer é uma estrutura avançada e extensível para lidar com questões de segurança de aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-132">IdentityServer is a powerful and extensible framework for handling app security concerns.</span></span> <span data-ttu-id="08b62-133">O IdentityServer expõe complexidade desnecessária para os cenários mais comuns.</span><span class="sxs-lookup"><span data-stu-id="08b62-133">IdentityServer exposes unnecessary complexity for the most common scenarios.</span></span> <span data-ttu-id="08b62-134">Consequentemente, um conjunto de convenções e opções de configuração é fornecido para considerarmos um bom ponto de partida.</span><span class="sxs-lookup"><span data-stu-id="08b62-134">Consequently, a set of conventions and configuration options is provided that we consider a good starting point.</span></span> <span data-ttu-id="08b62-135">Depois que a autenticação precisar ser alterada, todo o poder do IdentityServer estará disponível para personalizar a autenticação de acordo com os requisitos do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-135">Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.</span></span>
+<span data-ttu-id="72ace-131">O <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> método auxiliar configura [IdentityServer](https://identityserver.io/) para cenários de ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="72ace-131">The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios.</span></span> <span data-ttu-id="72ace-132">O IdentityServer é uma estrutura avançada e extensível para lidar com questões de segurança de aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-132">IdentityServer is a powerful and extensible framework for handling app security concerns.</span></span> <span data-ttu-id="72ace-133">O IdentityServer expõe complexidade desnecessária para os cenários mais comuns.</span><span class="sxs-lookup"><span data-stu-id="72ace-133">IdentityServer exposes unnecessary complexity for the most common scenarios.</span></span> <span data-ttu-id="72ace-134">Consequentemente, um conjunto de convenções e opções de configuração é fornecido para considerarmos um bom ponto de partida.</span><span class="sxs-lookup"><span data-stu-id="72ace-134">Consequently, a set of conventions and configuration options is provided that we consider a good starting point.</span></span> <span data-ttu-id="72ace-135">Depois que a autenticação precisar ser alterada, todo o poder do IdentityServer estará disponível para personalizar a autenticação de acordo com os requisitos do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-135">Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.</span></span>
 
-### <a name="addidentityserverjwt"></a><span data-ttu-id="08b62-136">AddIdentityServerJwt</span><span class="sxs-lookup"><span data-stu-id="08b62-136">AddIdentityServerJwt</span></span>
+### <a name="addidentityserverjwt"></a><span data-ttu-id="72ace-136">AddIdentityServerJwt</span><span class="sxs-lookup"><span data-stu-id="72ace-136">AddIdentityServerJwt</span></span>
 
-<span data-ttu-id="08b62-137">O <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar configura um esquema de política para o aplicativo como o manipulador de autenticação padrão.</span><span class="sxs-lookup"><span data-stu-id="08b62-137">The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler.</span></span> <span data-ttu-id="08b62-138">A política está configurada para permitir que o Identity manipule todas as solicitações roteadas para qualquer subcaminho no Identity espaço de URL `/Identity` .</span><span class="sxs-lookup"><span data-stu-id="08b62-138">The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space `/Identity`.</span></span> <span data-ttu-id="08b62-139">O <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> lida com todas as outras solicitações.</span><span class="sxs-lookup"><span data-stu-id="08b62-139">The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests.</span></span> <span data-ttu-id="08b62-140">Além disso, esse método:</span><span class="sxs-lookup"><span data-stu-id="08b62-140">Additionally, this method:</span></span>
+<span data-ttu-id="72ace-137">O <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> método auxiliar configura um esquema de política para o aplicativo como o manipulador de autenticação padrão.</span><span class="sxs-lookup"><span data-stu-id="72ace-137">The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler.</span></span> <span data-ttu-id="72ace-138">A política está configurada para permitir que o Identity manipule todas as solicitações roteadas para qualquer subcaminho no Identity espaço de URL `/Identity` .</span><span class="sxs-lookup"><span data-stu-id="72ace-138">The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space `/Identity`.</span></span> <span data-ttu-id="72ace-139">O <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> lida com todas as outras solicitações.</span><span class="sxs-lookup"><span data-stu-id="72ace-139">The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests.</span></span> <span data-ttu-id="72ace-140">Além disso, esse método:</span><span class="sxs-lookup"><span data-stu-id="72ace-140">Additionally, this method:</span></span>
 
-* <span data-ttu-id="08b62-141">Registra um `{APPLICATION NAME}API` recurso de API com IdentityServer com um escopo padrão de `{APPLICATION NAME}API` .</span><span class="sxs-lookup"><span data-stu-id="08b62-141">Registers an `{APPLICATION NAME}API` API resource with IdentityServer with a default scope of `{APPLICATION NAME}API`.</span></span>
-* <span data-ttu-id="08b62-142">Configura o middleware do token de portador JWT para validar tokens emitidos por IdentityServer para o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-142">Configures the JWT Bearer Token Middleware to validate tokens issued by IdentityServer for the app.</span></span>
+* <span data-ttu-id="72ace-141">Registra um `{APPLICATION NAME}API` recurso de API com IdentityServer com um escopo padrão de `{APPLICATION NAME}API` .</span><span class="sxs-lookup"><span data-stu-id="72ace-141">Registers an `{APPLICATION NAME}API` API resource with IdentityServer with a default scope of `{APPLICATION NAME}API`.</span></span>
+* <span data-ttu-id="72ace-142">Configura o middleware do token de portador JWT para validar tokens emitidos por IdentityServer para o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-142">Configures the JWT Bearer Token Middleware to validate tokens issued by IdentityServer for the app.</span></span>
 
-### <a name="weatherforecastcontroller"></a><span data-ttu-id="08b62-143">WeatherForecastController</span><span class="sxs-lookup"><span data-stu-id="08b62-143">WeatherForecastController</span></span>
+### <a name="weatherforecastcontroller"></a><span data-ttu-id="72ace-143">WeatherForecastController</span><span class="sxs-lookup"><span data-stu-id="72ace-143">WeatherForecastController</span></span>
 
-<span data-ttu-id="08b62-144">No `WeatherForecastController` (*Controllers/WeatherForecastController. cs*), o [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo é aplicado à classe.</span><span class="sxs-lookup"><span data-stu-id="08b62-144">In the `WeatherForecastController` (*Controllers/WeatherForecastController.cs*), the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is applied to the class.</span></span> <span data-ttu-id="08b62-145">O atributo indica que o usuário deve ser autorizado com base na política padrão para acessar o recurso.</span><span class="sxs-lookup"><span data-stu-id="08b62-145">The attribute indicates that the user must be authorized based on the default policy to access the resource.</span></span> <span data-ttu-id="08b62-146">A política de autorização padrão é configurada para usar o esquema de autenticação padrão, que é configurado por <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> .</span><span class="sxs-lookup"><span data-stu-id="08b62-146">The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>.</span></span> <span data-ttu-id="08b62-147">O método auxiliar <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> é configurado como o manipulador padrão para solicitações ao aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-147">The helper method configures <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> as the default handler for requests to the app.</span></span>
+<span data-ttu-id="72ace-144">No `WeatherForecastController` (*Controllers/WeatherForecastController. cs*), o [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo é aplicado à classe.</span><span class="sxs-lookup"><span data-stu-id="72ace-144">In the `WeatherForecastController` (*Controllers/WeatherForecastController.cs*), the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is applied to the class.</span></span> <span data-ttu-id="72ace-145">O atributo indica que o usuário deve ser autorizado com base na política padrão para acessar o recurso.</span><span class="sxs-lookup"><span data-stu-id="72ace-145">The attribute indicates that the user must be authorized based on the default policy to access the resource.</span></span> <span data-ttu-id="72ace-146">A política de autorização padrão é configurada para usar o esquema de autenticação padrão, que é configurado por <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> .</span><span class="sxs-lookup"><span data-stu-id="72ace-146">The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>.</span></span> <span data-ttu-id="72ace-147">O método auxiliar <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> é configurado como o manipulador padrão para solicitações ao aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-147">The helper method configures <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> as the default handler for requests to the app.</span></span>
 
-### <a name="applicationdbcontext"></a><span data-ttu-id="08b62-148">ApplicationDbContext</span><span class="sxs-lookup"><span data-stu-id="08b62-148">ApplicationDbContext</span></span>
+### <a name="applicationdbcontext"></a><span data-ttu-id="72ace-148">ApplicationDbContext</span><span class="sxs-lookup"><span data-stu-id="72ace-148">ApplicationDbContext</span></span>
 
-<span data-ttu-id="08b62-149">No `ApplicationDbContext` (*Data/ApplicationDbContext. cs*), <xref:Microsoft.EntityFrameworkCore.DbContext> estende- <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> se para incluir o esquema para IdentityServer.</span><span class="sxs-lookup"><span data-stu-id="08b62-149">In the `ApplicationDbContext` (*Data/ApplicationDbContext.cs*), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for IdentityServer.</span></span> <span data-ttu-id="08b62-150"><xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601>é derivado de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> .</span><span class="sxs-lookup"><span data-stu-id="08b62-150"><xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.</span></span>
+<span data-ttu-id="72ace-149">No `ApplicationDbContext` (*Data/ApplicationDbContext. cs*), <xref:Microsoft.EntityFrameworkCore.DbContext> estende- <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> se para incluir o esquema para IdentityServer.</span><span class="sxs-lookup"><span data-stu-id="72ace-149">In the `ApplicationDbContext` (*Data/ApplicationDbContext.cs*), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for IdentityServer.</span></span> <span data-ttu-id="72ace-150"><xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601>é derivado de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> .</span><span class="sxs-lookup"><span data-stu-id="72ace-150"><xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.</span></span>
 
-<span data-ttu-id="08b62-151">Para obter controle total do esquema de banco de dados, herde de uma das Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes disponíveis e configure o contexto para incluir o Identity esquema chamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` no <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> método.</span><span class="sxs-lookup"><span data-stu-id="08b62-151">To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> method.</span></span>
+<span data-ttu-id="72ace-151">Para obter controle total do esquema de banco de dados, herde de uma das Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes disponíveis e configure o contexto para incluir o Identity esquema chamando `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` no <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> método.</span><span class="sxs-lookup"><span data-stu-id="72ace-151">To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> method.</span></span>
 
-### <a name="oidcconfigurationcontroller"></a><span data-ttu-id="08b62-152">OidcConfigurationController</span><span class="sxs-lookup"><span data-stu-id="08b62-152">OidcConfigurationController</span></span>
+### <a name="oidcconfigurationcontroller"></a><span data-ttu-id="72ace-152">OidcConfigurationController</span><span class="sxs-lookup"><span data-stu-id="72ace-152">OidcConfigurationController</span></span>
 
-<span data-ttu-id="08b62-153">No `OidcConfigurationController` (*Controllers/OidcConfigurationController. cs*), o ponto de extremidade do cliente é provisionado para atender aos parâmetros OIDC.</span><span class="sxs-lookup"><span data-stu-id="08b62-153">In the `OidcConfigurationController` (*Controllers/OidcConfigurationController.cs*), the client endpoint is provisioned to serve OIDC parameters.</span></span>
+<span data-ttu-id="72ace-153">No `OidcConfigurationController` (*Controllers/OidcConfigurationController. cs*), o ponto de extremidade do cliente é provisionado para atender aos parâmetros OIDC.</span><span class="sxs-lookup"><span data-stu-id="72ace-153">In the `OidcConfigurationController` (*Controllers/OidcConfigurationController.cs*), the client endpoint is provisioned to serve OIDC parameters.</span></span>
 
-### <a name="app-settings-files"></a><span data-ttu-id="08b62-154">Arquivos de configurações do aplicativo</span><span class="sxs-lookup"><span data-stu-id="08b62-154">App settings files</span></span>
+### <a name="app-settings-files"></a><span data-ttu-id="72ace-154">Arquivos de configurações do aplicativo</span><span class="sxs-lookup"><span data-stu-id="72ace-154">App settings files</span></span>
 
-<span data-ttu-id="08b62-155">No arquivo de configurações do aplicativo (*appSettings. JSON*) na raiz do projeto, a `IdentityServer` seção descreve a lista de clientes configurados.</span><span class="sxs-lookup"><span data-stu-id="08b62-155">In the app settings file (*appsettings.json*) at the project root, the `IdentityServer` section describes the list of configured clients.</span></span> <span data-ttu-id="08b62-156">No exemplo a seguir, há um único cliente.</span><span class="sxs-lookup"><span data-stu-id="08b62-156">In the following example, there's a single client.</span></span> <span data-ttu-id="08b62-157">O nome do cliente corresponde ao nome do aplicativo e é mapeado por convenção para o `ClientId` parâmetro OAuth.</span><span class="sxs-lookup"><span data-stu-id="08b62-157">The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter.</span></span> <span data-ttu-id="08b62-158">O perfil indica o tipo de aplicativo que está sendo configurado.</span><span class="sxs-lookup"><span data-stu-id="08b62-158">The profile indicates the app type being configured.</span></span> <span data-ttu-id="08b62-159">O perfil é usado internamente para direcionar as convenções que simplificam o processo de configuração para o servidor.</span><span class="sxs-lookup"><span data-stu-id="08b62-159">The profile is used internally to drive conventions that simplify the configuration process for the server.</span></span> <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
+<span data-ttu-id="72ace-155">No arquivo de configurações do aplicativo (*appsettings.jsem*) na raiz do projeto, a `IdentityServer` seção descreve a lista de clientes configurados.</span><span class="sxs-lookup"><span data-stu-id="72ace-155">In the app settings file (*appsettings.json*) at the project root, the `IdentityServer` section describes the list of configured clients.</span></span> <span data-ttu-id="72ace-156">No exemplo a seguir, há um único cliente.</span><span class="sxs-lookup"><span data-stu-id="72ace-156">In the following example, there's a single client.</span></span> <span data-ttu-id="72ace-157">O nome do cliente corresponde ao nome do aplicativo e é mapeado por convenção para o `ClientId` parâmetro OAuth.</span><span class="sxs-lookup"><span data-stu-id="72ace-157">The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter.</span></span> <span data-ttu-id="72ace-158">O perfil indica o tipo de aplicativo que está sendo configurado.</span><span class="sxs-lookup"><span data-stu-id="72ace-158">The profile indicates the app type being configured.</span></span> <span data-ttu-id="72ace-159">O perfil é usado internamente para direcionar as convenções que simplificam o processo de configuração para o servidor.</span><span class="sxs-lookup"><span data-stu-id="72ace-159">The profile is used internally to drive conventions that simplify the configuration process for the server.</span></span> <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
 ```json
 "IdentityServer": {
@@ -144,13 +144,15 @@ dotnet new blazorwasm -au Individual -ho
 }
 ```
 
-## <a name="client-app-configuration"></a><span data-ttu-id="08b62-160">Configuração do aplicativo cliente</span><span class="sxs-lookup"><span data-stu-id="08b62-160">Client app configuration</span></span>
+<span data-ttu-id="72ace-160">O espaço reservado `{APP ASSEMBLY}` é o nome do assembly do aplicativo (por exemplo, `BlazorSample.Client` ).</span><span class="sxs-lookup"><span data-stu-id="72ace-160">The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).</span></span>
 
-### <a name="authentication-package"></a><span data-ttu-id="08b62-161">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="08b62-161">Authentication package</span></span>
+## <a name="client-app-configuration"></a><span data-ttu-id="72ace-161">Configuração do aplicativo cliente</span><span class="sxs-lookup"><span data-stu-id="72ace-161">Client app configuration</span></span>
 
-<span data-ttu-id="08b62-162">Quando um aplicativo é criado para usar contas de usuário individuais ( `Individual` ), o aplicativo recebe automaticamente uma referência de pacote para o pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) no arquivo de projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-162">When an app is created to use Individual User Accounts (`Individual`), the app automatically receives a package reference for the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package in the app's project file.</span></span> <span data-ttu-id="08b62-163">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="08b62-163">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+### <a name="authentication-package"></a><span data-ttu-id="72ace-162">Pacote de autenticação</span><span class="sxs-lookup"><span data-stu-id="72ace-162">Authentication package</span></span>
 
-<span data-ttu-id="08b62-164">Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="08b62-164">If adding authentication to an app, manually add the package to the app's project file:</span></span>
+<span data-ttu-id="72ace-163">Quando um aplicativo é criado para usar contas de usuário individuais ( `Individual` ), o aplicativo recebe automaticamente uma referência de pacote para o pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) no arquivo de projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-163">When an app is created to use Individual User Accounts (`Individual`), the app automatically receives a package reference for the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package in the app's project file.</span></span> <span data-ttu-id="72ace-164">O pacote fornece um conjunto de primitivos que ajudam o aplicativo a autenticar usuários e obter tokens para chamar APIs protegidas.</span><span class="sxs-lookup"><span data-stu-id="72ace-164">The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.</span></span>
+
+<span data-ttu-id="72ace-165">Se estiver adicionando autenticação a um aplicativo, adicione manualmente o pacote ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="72ace-165">If adding authentication to an app, manually add the package to the app's project file:</span></span>
 
 ```xml
 <PackageReference 
@@ -158,43 +160,43 @@ dotnet new blazorwasm -au Individual -ho
   Version="3.2.0" />
 ```
 
-### <a name="api-authorization-support"></a><span data-ttu-id="08b62-165">Suporte à autorização de API</span><span class="sxs-lookup"><span data-stu-id="08b62-165">API authorization support</span></span>
+### <a name="api-authorization-support"></a><span data-ttu-id="72ace-166">Suporte à autorização de API</span><span class="sxs-lookup"><span data-stu-id="72ace-166">API authorization support</span></span>
 
-<span data-ttu-id="08b62-166">O suporte para autenticação de usuários é conectado ao contêiner de serviço pelo método de extensão fornecido no pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) .</span><span class="sxs-lookup"><span data-stu-id="08b62-166">The support for authenticating users is plugged into the service container by the extension method provided inside the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package.</span></span> <span data-ttu-id="08b62-167">Esse método configura os serviços exigidos pelo aplicativo para interagir com o sistema de autorização existente.</span><span class="sxs-lookup"><span data-stu-id="08b62-167">This method sets up the services required by the app to interact with the existing authorization system.</span></span>
+<span data-ttu-id="72ace-167">O suporte para autenticação de usuários é conectado ao contêiner de serviço pelo método de extensão fornecido no pacote [Microsoft. AspNetCore. Components. Webassembly. Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) .</span><span class="sxs-lookup"><span data-stu-id="72ace-167">The support for authenticating users is plugged into the service container by the extension method provided inside the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package.</span></span> <span data-ttu-id="72ace-168">Esse método configura os serviços exigidos pelo aplicativo para interagir com o sistema de autorização existente.</span><span class="sxs-lookup"><span data-stu-id="72ace-168">This method sets up the services required by the app to interact with the existing authorization system.</span></span>
 
 ```csharp
 builder.Services.AddApiAuthorization();
 ```
 
-<span data-ttu-id="08b62-168">Por padrão, a configuração para o aplicativo é carregada por convenção de `_configuration/{client-id}` .</span><span class="sxs-lookup"><span data-stu-id="08b62-168">By default, configuration for the app is loaded by convention from `_configuration/{client-id}`.</span></span> <span data-ttu-id="08b62-169">Por convenção, a ID do cliente é definida como o nome do assembly do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-169">By convention, the client ID is set to the app's assembly name.</span></span> <span data-ttu-id="08b62-170">Essa URL pode ser alterada para apontar para um ponto de extremidade separado chamando a sobrecarga com opções.</span><span class="sxs-lookup"><span data-stu-id="08b62-170">This URL can be changed to point to a separate endpoint by calling the overload with options.</span></span>
+<span data-ttu-id="72ace-169">Por padrão, a configuração para o aplicativo é carregada por convenção de `_configuration/{client-id}` .</span><span class="sxs-lookup"><span data-stu-id="72ace-169">By default, configuration for the app is loaded by convention from `_configuration/{client-id}`.</span></span> <span data-ttu-id="72ace-170">Por convenção, a ID do cliente é definida como o nome do assembly do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-170">By convention, the client ID is set to the app's assembly name.</span></span> <span data-ttu-id="72ace-171">Essa URL pode ser alterada para apontar para um ponto de extremidade separado chamando a sobrecarga com opções.</span><span class="sxs-lookup"><span data-stu-id="72ace-171">This URL can be changed to point to a separate endpoint by calling the overload with options.</span></span>
 
-### <a name="imports-file"></a><span data-ttu-id="08b62-171">Arquivo de importações</span><span class="sxs-lookup"><span data-stu-id="08b62-171">Imports file</span></span>
+### <a name="imports-file"></a><span data-ttu-id="72ace-172">Arquivo de importações</span><span class="sxs-lookup"><span data-stu-id="72ace-172">Imports file</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
 
-### <a name="index-page"></a><span data-ttu-id="08b62-172">Página de índice</span><span class="sxs-lookup"><span data-stu-id="08b62-172">Index page</span></span>
+### <a name="index-page"></a><span data-ttu-id="72ace-173">Página de índice</span><span class="sxs-lookup"><span data-stu-id="72ace-173">Index page</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
-### <a name="app-component"></a><span data-ttu-id="08b62-173">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="08b62-173">App component</span></span>
+### <a name="app-component"></a><span data-ttu-id="72ace-174">Componente do aplicativo</span><span class="sxs-lookup"><span data-stu-id="72ace-174">App component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/app-component.md)]
 
-### <a name="redirecttologin-component"></a><span data-ttu-id="08b62-174">Componente RedirectToLogin</span><span class="sxs-lookup"><span data-stu-id="08b62-174">RedirectToLogin component</span></span>
+### <a name="redirecttologin-component"></a><span data-ttu-id="72ace-175">Componente RedirectToLogin</span><span class="sxs-lookup"><span data-stu-id="72ace-175">RedirectToLogin component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
 
-### <a name="logindisplay-component"></a><span data-ttu-id="08b62-175">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="08b62-175">LoginDisplay component</span></span>
+### <a name="logindisplay-component"></a><span data-ttu-id="72ace-176">Componente LoginDisplay</span><span class="sxs-lookup"><span data-stu-id="72ace-176">LoginDisplay component</span></span>
 
-<span data-ttu-id="08b62-176">O `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) é renderizado no `MainLayout` componente (*Shared/MainLayout. Razor*) e gerencia os seguintes comportamentos:</span><span class="sxs-lookup"><span data-stu-id="08b62-176">The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `MainLayout` component (*Shared/MainLayout.razor*) and manages the following behaviors:</span></span>
+<span data-ttu-id="72ace-177">O `LoginDisplay` componente (*Shared/LoginDisplay. Razor*) é renderizado no `MainLayout` componente (*Shared/MainLayout. Razor*) e gerencia os seguintes comportamentos:</span><span class="sxs-lookup"><span data-stu-id="72ace-177">The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `MainLayout` component (*Shared/MainLayout.razor*) and manages the following behaviors:</span></span>
 
-* <span data-ttu-id="08b62-177">Para usuários autenticados:</span><span class="sxs-lookup"><span data-stu-id="08b62-177">For authenticated users:</span></span>
-  * <span data-ttu-id="08b62-178">Exibe o nome de usuário atual.</span><span class="sxs-lookup"><span data-stu-id="08b62-178">Displays the current user name.</span></span>
-  * <span data-ttu-id="08b62-179">Oferece um link para a página de perfil do usuário no ASP.NET Core Identity .</span><span class="sxs-lookup"><span data-stu-id="08b62-179">Offers a link to the user profile page in ASP.NET Core Identity.</span></span>
-  * <span data-ttu-id="08b62-180">Oferece um botão para fazer logoff do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="08b62-180">Offers a button to log out of the app.</span></span>
-* <span data-ttu-id="08b62-181">Para usuários anônimos:</span><span class="sxs-lookup"><span data-stu-id="08b62-181">For anonymous users:</span></span>
-  * <span data-ttu-id="08b62-182">Oferece a opção de se registrar.</span><span class="sxs-lookup"><span data-stu-id="08b62-182">Offers the option to register.</span></span>
-  * <span data-ttu-id="08b62-183">Oferece a opção de fazer logon.</span><span class="sxs-lookup"><span data-stu-id="08b62-183">Offers the option to log in.</span></span>
+* <span data-ttu-id="72ace-178">Para usuários autenticados:</span><span class="sxs-lookup"><span data-stu-id="72ace-178">For authenticated users:</span></span>
+  * <span data-ttu-id="72ace-179">Exibe o nome de usuário atual.</span><span class="sxs-lookup"><span data-stu-id="72ace-179">Displays the current user name.</span></span>
+  * <span data-ttu-id="72ace-180">Oferece um link para a página de perfil do usuário no ASP.NET Core Identity .</span><span class="sxs-lookup"><span data-stu-id="72ace-180">Offers a link to the user profile page in ASP.NET Core Identity.</span></span>
+  * <span data-ttu-id="72ace-181">Oferece um botão para fazer logoff do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="72ace-181">Offers a button to log out of the app.</span></span>
+* <span data-ttu-id="72ace-182">Para usuários anônimos:</span><span class="sxs-lookup"><span data-stu-id="72ace-182">For anonymous users:</span></span>
+  * <span data-ttu-id="72ace-183">Oferece a opção de se registrar.</span><span class="sxs-lookup"><span data-stu-id="72ace-183">Offers the option to register.</span></span>
+  * <span data-ttu-id="72ace-184">Oferece a opção de fazer logon.</span><span class="sxs-lookup"><span data-stu-id="72ace-184">Offers the option to log in.</span></span>
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -224,28 +226,28 @@ builder.Services.AddApiAuthorization();
 }
 ```
 
-### <a name="authentication-component"></a><span data-ttu-id="08b62-184">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="08b62-184">Authentication component</span></span>
+### <a name="authentication-component"></a><span data-ttu-id="72ace-185">Componente de autenticação</span><span class="sxs-lookup"><span data-stu-id="72ace-185">Authentication component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
-### <a name="fetchdata-component"></a><span data-ttu-id="08b62-185">Componente FetchData</span><span class="sxs-lookup"><span data-stu-id="08b62-185">FetchData component</span></span>
+### <a name="fetchdata-component"></a><span data-ttu-id="72ace-186">Componente FetchData</span><span class="sxs-lookup"><span data-stu-id="72ace-186">FetchData component</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
-## <a name="run-the-app"></a><span data-ttu-id="08b62-186">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="08b62-186">Run the app</span></span>
+## <a name="run-the-app"></a><span data-ttu-id="72ace-187">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="72ace-187">Run the app</span></span>
 
-<span data-ttu-id="08b62-187">Execute o aplicativo no projeto do servidor.</span><span class="sxs-lookup"><span data-stu-id="08b62-187">Run the app from the Server project.</span></span> <span data-ttu-id="08b62-188">Ao usar o Visual Studio, seja:</span><span class="sxs-lookup"><span data-stu-id="08b62-188">When using Visual Studio, either:</span></span>
+<span data-ttu-id="72ace-188">Execute o aplicativo no projeto do servidor.</span><span class="sxs-lookup"><span data-stu-id="72ace-188">Run the app from the Server project.</span></span> <span data-ttu-id="72ace-189">Ao usar o Visual Studio, seja:</span><span class="sxs-lookup"><span data-stu-id="72ace-189">When using Visual Studio, either:</span></span>
 
-* <span data-ttu-id="08b62-189">Defina a lista suspensa **projetos de inicialização** na barra de ferramentas para o aplicativo de *API do servidor* e selecione o botão **executar** .</span><span class="sxs-lookup"><span data-stu-id="08b62-189">Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.</span></span>
-* <span data-ttu-id="08b62-190">Selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .</span><span class="sxs-lookup"><span data-stu-id="08b62-190">Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.</span></span>
+* <span data-ttu-id="72ace-190">Defina a lista suspensa **projetos de inicialização** na barra de ferramentas para o aplicativo de *API do servidor* e selecione o botão **executar** .</span><span class="sxs-lookup"><span data-stu-id="72ace-190">Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.</span></span>
+* <span data-ttu-id="72ace-191">Selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .</span><span class="sxs-lookup"><span data-stu-id="72ace-191">Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.</span></span>
 
-## <a name="name-and-role-claim-with-api-authorization"></a><span data-ttu-id="08b62-191">Nome e declaração de função com autorização de API</span><span class="sxs-lookup"><span data-stu-id="08b62-191">Name and role claim with API authorization</span></span>
+## <a name="name-and-role-claim-with-api-authorization"></a><span data-ttu-id="72ace-192">Nome e declaração de função com autorização de API</span><span class="sxs-lookup"><span data-stu-id="72ace-192">Name and role claim with API authorization</span></span>
 
-### <a name="custom-user-factory"></a><span data-ttu-id="08b62-192">Fábrica de usuário personalizada</span><span class="sxs-lookup"><span data-stu-id="08b62-192">Custom user factory</span></span>
+### <a name="custom-user-factory"></a><span data-ttu-id="72ace-193">Fábrica de usuário personalizada</span><span class="sxs-lookup"><span data-stu-id="72ace-193">Custom user factory</span></span>
 
-<span data-ttu-id="08b62-193">No aplicativo cliente, crie uma fábrica de usuário personalizada.</span><span class="sxs-lookup"><span data-stu-id="08b62-193">In the Client app, create a custom user factory.</span></span> Identity<span data-ttu-id="08b62-194">O servidor envia várias funções como uma matriz JSON em uma única `role` declaração.</span><span class="sxs-lookup"><span data-stu-id="08b62-194"> Server sends multiple roles as a JSON array in a single `role` claim.</span></span> <span data-ttu-id="08b62-195">Uma única função é enviada como um valor de cadeia de caracteres na declaração.</span><span class="sxs-lookup"><span data-stu-id="08b62-195">A single role is sent as a string value in the claim.</span></span> <span data-ttu-id="08b62-196">A fábrica cria uma `role` declaração individual para cada uma das funções do usuário.</span><span class="sxs-lookup"><span data-stu-id="08b62-196">The factory creates an individual `role` claim for each of the user's roles.</span></span>
+<span data-ttu-id="72ace-194">No aplicativo cliente, crie uma fábrica de usuário personalizada.</span><span class="sxs-lookup"><span data-stu-id="72ace-194">In the Client app, create a custom user factory.</span></span> Identity<span data-ttu-id="72ace-195">O servidor envia várias funções como uma matriz JSON em uma única `role` declaração.</span><span class="sxs-lookup"><span data-stu-id="72ace-195"> Server sends multiple roles as a JSON array in a single `role` claim.</span></span> <span data-ttu-id="72ace-196">Uma única função é enviada como um valor de cadeia de caracteres na declaração.</span><span class="sxs-lookup"><span data-stu-id="72ace-196">A single role is sent as a string value in the claim.</span></span> <span data-ttu-id="72ace-197">A fábrica cria uma `role` declaração individual para cada uma das funções do usuário.</span><span class="sxs-lookup"><span data-stu-id="72ace-197">The factory creates an individual `role` claim for each of the user's roles.</span></span>
 
-<span data-ttu-id="08b62-197">*CustomUserFactory.cs*:</span><span class="sxs-lookup"><span data-stu-id="08b62-197">*CustomUserFactory.cs*:</span></span>
+<span data-ttu-id="72ace-198">*CustomUserFactory.cs*:</span><span class="sxs-lookup"><span data-stu-id="72ace-198">*CustomUserFactory.cs*:</span></span>
 
 ```csharp
 using System.Linq;
@@ -305,14 +307,14 @@ public class CustomUserFactory
 }
 ```
 
-<span data-ttu-id="08b62-198">No aplicativo cliente, registre a fábrica em `Program.Main` (*Program.cs*):</span><span class="sxs-lookup"><span data-stu-id="08b62-198">In the Client app, register the factory in `Program.Main` (*Program.cs*):</span></span>
+<span data-ttu-id="72ace-199">No aplicativo cliente, registre a fábrica em `Program.Main` (*Program.cs*):</span><span class="sxs-lookup"><span data-stu-id="72ace-199">In the Client app, register the factory in `Program.Main` (*Program.cs*):</span></span>
 
 ```csharp
 builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-<span data-ttu-id="08b62-199">No aplicativo de servidor, chame <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> no Identity Construtor, que adiciona serviços relacionados a funções:</span><span class="sxs-lookup"><span data-stu-id="08b62-199">In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:</span></span>
+<span data-ttu-id="72ace-200">No aplicativo de servidor, chame <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> no Identity Construtor, que adiciona serviços relacionados a funções:</span><span class="sxs-lookup"><span data-stu-id="72ace-200">In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -325,19 +327,19 @@ services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ```
 
-### <a name="configure-identity-server"></a><span data-ttu-id="08b62-200">Configurar Identity servidor</span><span class="sxs-lookup"><span data-stu-id="08b62-200">Configure Identity Server</span></span>
+### <a name="configure-identity-server"></a><span data-ttu-id="72ace-201">Configurar Identity servidor</span><span class="sxs-lookup"><span data-stu-id="72ace-201">Configure Identity Server</span></span>
 
-<span data-ttu-id="08b62-201">Use **uma** das seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="08b62-201">Use **one** of the following approaches:</span></span>
+<span data-ttu-id="72ace-202">Use **uma** das seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="72ace-202">Use **one** of the following approaches:</span></span>
 
-* [<span data-ttu-id="08b62-202">Opções de autorização de API</span><span class="sxs-lookup"><span data-stu-id="08b62-202">API authorization options</span></span>](#api-authorization-options)
-* [<span data-ttu-id="08b62-203">Serviço de perfil</span><span class="sxs-lookup"><span data-stu-id="08b62-203">Profile Service</span></span>](#profile-service)
+* [<span data-ttu-id="72ace-203">Opções de autorização de API</span><span class="sxs-lookup"><span data-stu-id="72ace-203">API authorization options</span></span>](#api-authorization-options)
+* [<span data-ttu-id="72ace-204">Serviço de perfil</span><span class="sxs-lookup"><span data-stu-id="72ace-204">Profile Service</span></span>](#profile-service)
 
-#### <a name="api-authorization-options"></a><span data-ttu-id="08b62-204">Opções de autorização de API</span><span class="sxs-lookup"><span data-stu-id="08b62-204">API authorization options</span></span>
+#### <a name="api-authorization-options"></a><span data-ttu-id="72ace-205">Opções de autorização de API</span><span class="sxs-lookup"><span data-stu-id="72ace-205">API authorization options</span></span>
 
-<span data-ttu-id="08b62-205">No aplicativo do servidor:</span><span class="sxs-lookup"><span data-stu-id="08b62-205">In the Server app:</span></span>
+<span data-ttu-id="72ace-206">No aplicativo do servidor:</span><span class="sxs-lookup"><span data-stu-id="72ace-206">In the Server app:</span></span>
 
-* <span data-ttu-id="08b62-206">Configure Identity o servidor para colocar o `name` e as `role` declarações no token de ID e no token de acesso.</span><span class="sxs-lookup"><span data-stu-id="08b62-206">Configure Identity Server to put the `name` and `role` claims into the ID token and access token.</span></span>
-* <span data-ttu-id="08b62-207">Impedir o mapeamento padrão para funções no manipulador de tokens JWT.</span><span class="sxs-lookup"><span data-stu-id="08b62-207">Prevent the default mapping for roles in the JWT token handler.</span></span>
+* <span data-ttu-id="72ace-207">Configure Identity o servidor para colocar o `name` e as `role` declarações no token de ID e no token de acesso.</span><span class="sxs-lookup"><span data-stu-id="72ace-207">Configure Identity Server to put the `name` and `role` claims into the ID token and access token.</span></span>
+* <span data-ttu-id="72ace-208">Impedir o mapeamento padrão para funções no manipulador de tokens JWT.</span><span class="sxs-lookup"><span data-stu-id="72ace-208">Prevent the default mapping for roles in the JWT token handler.</span></span>
 
 ```csharp
 using System.IdentityModel.Tokens.Jwt;
@@ -356,11 +358,11 @@ services.AddIdentityServer()
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 ```
 
-#### <a name="profile-service"></a><span data-ttu-id="08b62-208">Serviço de perfil</span><span class="sxs-lookup"><span data-stu-id="08b62-208">Profile Service</span></span>
+#### <a name="profile-service"></a><span data-ttu-id="72ace-209">Serviço de perfil</span><span class="sxs-lookup"><span data-stu-id="72ace-209">Profile Service</span></span>
 
-<span data-ttu-id="08b62-209">No aplicativo de servidor, crie uma `ProfileService` implementação.</span><span class="sxs-lookup"><span data-stu-id="08b62-209">In the Server app, create a `ProfileService` implementation.</span></span>
+<span data-ttu-id="72ace-210">No aplicativo de servidor, crie uma `ProfileService` implementação.</span><span class="sxs-lookup"><span data-stu-id="72ace-210">In the Server app, create a `ProfileService` implementation.</span></span>
 
-<span data-ttu-id="08b62-210">*ProfileService.cs*:</span><span class="sxs-lookup"><span data-stu-id="08b62-210">*ProfileService.cs*:</span></span>
+<span data-ttu-id="72ace-211">*ProfileService.cs*:</span><span class="sxs-lookup"><span data-stu-id="72ace-211">*ProfileService.cs*:</span></span>
 
 ```csharp
 using IdentityModel;
@@ -392,7 +394,7 @@ public class ProfileService : IProfileService
 }
 ```
 
-<span data-ttu-id="08b62-211">No aplicativo de servidor, registre o serviço de perfil em `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="08b62-211">In the Server app, register the Profile Service in `Startup.ConfigureServices`:</span></span>
+<span data-ttu-id="72ace-212">No aplicativo de servidor, registre o serviço de perfil em `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="72ace-212">In the Server app, register the Profile Service in `Startup.ConfigureServices`:</span></span>
 
 ```csharp
 using IdentityServer4.Services;
@@ -402,15 +404,15 @@ using IdentityServer4.Services;
 services.AddTransient<IProfileService, ProfileService>();
 ```
 
-### <a name="use-authorization-mechanisms"></a><span data-ttu-id="08b62-212">Usar mecanismos de autorização</span><span class="sxs-lookup"><span data-stu-id="08b62-212">Use authorization mechanisms</span></span>
+### <a name="use-authorization-mechanisms"></a><span data-ttu-id="72ace-213">Usar mecanismos de autorização</span><span class="sxs-lookup"><span data-stu-id="72ace-213">Use authorization mechanisms</span></span>
 
-<span data-ttu-id="08b62-213">No aplicativo cliente, as abordagens de autorização de componente são funcionais neste ponto.</span><span class="sxs-lookup"><span data-stu-id="08b62-213">In the Client app, component authorization approaches are functional at this point.</span></span> <span data-ttu-id="08b62-214">Qualquer um dos mecanismos de autorização nos componentes pode usar uma função para autorizar o usuário:</span><span class="sxs-lookup"><span data-stu-id="08b62-214">Any of the authorization mechanisms in components can use a role to authorize the user:</span></span>
+<span data-ttu-id="72ace-214">No aplicativo cliente, as abordagens de autorização de componente são funcionais neste ponto.</span><span class="sxs-lookup"><span data-stu-id="72ace-214">In the Client app, component authorization approaches are functional at this point.</span></span> <span data-ttu-id="72ace-215">Qualquer um dos mecanismos de autorização nos componentes pode usar uma função para autorizar o usuário:</span><span class="sxs-lookup"><span data-stu-id="72ace-215">Any of the authorization mechanisms in components can use a role to authorize the user:</span></span>
 
-* <span data-ttu-id="08b62-215">[Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (exemplo: `<AuthorizeView Roles="admin">` )</span><span class="sxs-lookup"><span data-stu-id="08b62-215">[AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)</span></span>
-* <span data-ttu-id="08b62-216">[ `[Authorize]` diretiva de atributo](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (exemplo: `@attribute [Authorize(Roles = "admin")]` )</span><span class="sxs-lookup"><span data-stu-id="08b62-216">[`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)</span></span>
-* <span data-ttu-id="08b62-217">[Lógica de procedimento](xref:security/blazor/index#procedural-logic) (exemplo: `if (user.IsInRole("admin")) { ... }` )</span><span class="sxs-lookup"><span data-stu-id="08b62-217">[Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)</span></span>
+* <span data-ttu-id="72ace-216">[Componente AuthorizeView](xref:security/blazor/index#authorizeview-component) (exemplo: `<AuthorizeView Roles="admin">` )</span><span class="sxs-lookup"><span data-stu-id="72ace-216">[AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)</span></span>
+* <span data-ttu-id="72ace-217">[ `[Authorize]` diretiva de atributo](xref:security/blazor/index#authorize-attribute) ( <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ) (exemplo: `@attribute [Authorize(Roles = "admin")]` )</span><span class="sxs-lookup"><span data-stu-id="72ace-217">[`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)</span></span>
+* <span data-ttu-id="72ace-218">[Lógica de procedimento](xref:security/blazor/index#procedural-logic) (exemplo: `if (user.IsInRole("admin")) { ... }` )</span><span class="sxs-lookup"><span data-stu-id="72ace-218">[Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)</span></span>
 
-  <span data-ttu-id="08b62-218">Há suporte para vários testes de função:</span><span class="sxs-lookup"><span data-stu-id="08b62-218">Multiple role tests are supported:</span></span>
+  <span data-ttu-id="72ace-219">Há suporte para vários testes de função:</span><span class="sxs-lookup"><span data-stu-id="72ace-219">Multiple role tests are supported:</span></span>
 
   ```csharp
   if (user.IsInRole("admin") && user.IsInRole("developer"))
@@ -419,15 +421,15 @@ services.AddTransient<IProfileService, ProfileService>();
   }
   ```
 
-<span data-ttu-id="08b62-219">`User.Identity.Name`é preenchido no aplicativo cliente com o nome de usuário do usuário, que geralmente é seu endereço de email de entrada.</span><span class="sxs-lookup"><span data-stu-id="08b62-219">`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.</span></span>
+<span data-ttu-id="72ace-220">`User.Identity.Name`é preenchido no aplicativo cliente com o nome de usuário do usuário, que geralmente é seu endereço de email de entrada.</span><span class="sxs-lookup"><span data-stu-id="72ace-220">`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.</span></span>
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
-## <a name="additional-resources"></a><span data-ttu-id="08b62-220">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="08b62-220">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="72ace-221">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="72ace-221">Additional resources</span></span>
 
-* [<span data-ttu-id="08b62-221">Implantação no serviço Azure App</span><span class="sxs-lookup"><span data-stu-id="08b62-221">Deployment to Azure App Service</span></span>](xref:security/authentication/identity/spa#deploy-to-production)
-* [<span data-ttu-id="08b62-222">Importar um certificado do Key Vault (documentação do Azure)</span><span class="sxs-lookup"><span data-stu-id="08b62-222">Import a certificate from Key Vault (Azure documentation)</span></span>](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
+* [<span data-ttu-id="72ace-222">Implantação no serviço Azure App</span><span class="sxs-lookup"><span data-stu-id="72ace-222">Deployment to Azure App Service</span></span>](xref:security/authentication/identity/spa#deploy-to-production)
+* [<span data-ttu-id="72ace-223">Importar um certificado do Key Vault (documentação do Azure)</span><span class="sxs-lookup"><span data-stu-id="72ace-223">Import a certificate from Key Vault (Azure documentation)</span></span>](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [<span data-ttu-id="08b62-223">Solicitações de API Web não autenticadas ou não autorizadas em um aplicativo com um cliente padrão seguro</span><span class="sxs-lookup"><span data-stu-id="08b62-223">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [<span data-ttu-id="72ace-224">Solicitações de API Web não autenticadas ou não autorizadas em um aplicativo com um cliente padrão seguro</span><span class="sxs-lookup"><span data-stu-id="72ace-224">Unauthenticated or unauthorized web API requests in an app with a secure default client</span></span>](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
