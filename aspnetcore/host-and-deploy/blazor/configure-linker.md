@@ -1,12 +1,24 @@
 ---
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: Configurar o vinculador para ASP.NET CoreBlazor
+author: guardrex
+description: Saiba como controlar o vinculador de linguagem intermediária (IL) ao criar um Blazor aplicativo.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/19/2020
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: host-and-deploy/blazor/configure-linker
+ms.openlocfilehash: fd8dc118b8ed9c9e7c0d43e67b14ef4affa09d48
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "83608623"
 ---
 # <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurar o vinculador para ASP.NET CoreBlazor
 
@@ -43,7 +55,7 @@ Controle a vinculação por assembly fornecendo um arquivo de configuração XML
 </ItemGroup>
 ```
 
-*LinkerConfig. xml*:
+*LinkerConfig.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -81,7 +93,7 @@ Para obter mais informações e exemplos, consulte [formatos de dados (repositó
 
 Para configurar o vinculador para uma biblioteca específica, adicione um arquivo de configuração do vinculador XML à biblioteca como um recurso incorporado. O recurso inserido deve ter o mesmo nome que o assembly.
 
-No exemplo a seguir, o arquivo *LinkerConfig. xml* é especificado como um recurso inserido que tem o mesmo nome que o assembly da biblioteca:
+No exemplo a seguir, o arquivo de *LinkerConfig.xml* é especificado como um recurso inserido que tem o mesmo nome que o assembly da biblioteca:
 
 ```xml
 <ItemGroup>
@@ -104,141 +116,14 @@ Para controlar quais assemblies de I18N são retidos, defina a `<BlazorWebAssemb
 ```
 
 | Valor da região     | Assembly de região mono    |
-| ---
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--------- | título do---: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: ' configurar o vinculador para ASP.NET Core Blazor ' autor: Descrição: ' saiba como controlar o vinculador de linguagem intermediária (Il) ao criar um Blazor aplicativo. '
-monikerRange: MS. Author: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
------------- | | `all`            | Todos os assemblies incluídos | | `cjk`             |  *I18n. CJK. dll* | | `mideast`         |  *I18n. Oriente Médio. dll* | | `none`(padrão) | Nenhum | | `other`           |  *I18n. Other. dll* | | `rare`            |  *I18n. Raras. dll* | | `west`            |  *I18n. West. dll*         |
+| ---------------- | ----------------------- |
+| `all`            | Todos os assemblies incluídos |
+| `cjk`            | *I18N.CJK.dll*          |
+| `mideast`        | *I18N.MidEast.dll*      |
+| `none` (padrão) | Nenhum                    |
+| `other`          | *I18N.Other.dll*        |
+| `rare`           | *I18N.Rare.dll*         |
+| `west`           | *I18N.West.dll*         |
 
 Use uma vírgula para separar vários valores (por exemplo, `mideast,west` ).
 

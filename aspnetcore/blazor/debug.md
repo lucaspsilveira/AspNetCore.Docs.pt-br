@@ -14,10 +14,10 @@ no-loc:
 - SignalR
 uid: blazor/debug
 ms.openlocfilehash: 193dc656c2ee0154f0ae534bc00f8dc29bab3258
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
+ms.lasthandoff: 06/16/2020
 ms.locfileid: "84239221"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>Depurar ASP.NET Core Blazor Webassembly
@@ -51,13 +51,13 @@ A depuração requer um dos seguintes navegadores:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitar depuração para Visual Studio e Visual Studio Code
 
-Para habilitar a depuração para um Blazor aplicativo Webassembly existente, atualize o arquivo *launchSettings. JSON* no projeto de inicialização para incluir a seguinte `inspectUri` propriedade em cada perfil de inicialização:
+Para habilitar a depuração para um Blazor aplicativo Webassembly existente, atualize o *launchSettings.jsno* arquivo no projeto de inicialização para incluir a seguinte `inspectUri` propriedade em cada perfil de inicialização:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-Depois de atualizado, o arquivo *launchSettings. JSON* deve ser semelhante ao exemplo a seguir:
+Depois de atualizado, o *launchSettings.jsno* arquivo deve ser semelhante ao exemplo a seguir:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
@@ -145,11 +145,11 @@ Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-
 
 1. Na janela de seleção, selecione o projeto de *servidor* dentro da solução hospedada.
 
-Um arquivo *Launch. JSON* é gerado com a configuração de inicialização para iniciar o depurador.
+Um *launch.jsno* arquivo é gerado com a configuração de inicialização para iniciar o depurador.
 
 ### <a name="attach-to-an-existing-debugging-session"></a>Anexar a uma sessão de depuração existente
 
-Para anexar a um aplicativo em execução Blazor , crie um arquivo *Launch. JSON* com a seguinte configuração:
+Para anexar a um aplicativo em execução Blazor , crie um *launch.jsno* arquivo com a seguinte configuração:
 
 ```json
 {
