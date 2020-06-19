@@ -11,12 +11,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: c2b49976d2063679eab2403aae432660e8c8932d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 214e3fa86a1418f04a5e292cdc1b4baac8c75643
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775408"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074188"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrar módulos e manipuladores HTTP para ASP.NET Core middleware
 
@@ -34,7 +34,7 @@ Antes de prosseguir para ASP.NET Core middleware, vamos primeiro recapitular com
 
 * Usado para lidar com solicitações com um determinado nome de arquivo ou extensão, como *. Report*
 
-* [Configurado](/iis/configuration/system.webserver/handlers/) no *Web. config*
+* [Configurado](/iis/configuration/system.webserver/handlers/) no *Web.config*
 
 **Os módulos são:**
 
@@ -46,13 +46,13 @@ Antes de prosseguir para ASP.NET Core middleware, vamos primeiro recapitular com
 
 * Capaz de adicionar à resposta HTTP ou criar suas próprias
 
-* [Configurado](/iis/configuration/system.webserver/modules/) no *Web. config*
+* [Configurado](/iis/configuration/system.webserver/modules/) no *Web.config*
 
 **A ordem na qual os módulos processam solicitações de entrada é determinada por:**
 
 1. O [ciclo de vida do aplicativo](https://msdn.microsoft.com/library/ms227673.aspx), que é uma série de eventos acionados por ASP.net: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Cada módulo pode criar um manipulador para um ou mais eventos.
 
-2. Para o mesmo evento, a ordem na qual eles são configurados em *Web. config*.
+2. Para o mesmo evento, a ordem na qual eles são configurados em *Web.config*.
 
 Além dos módulos, você pode adicionar manipuladores para os eventos do ciclo de vida ao arquivo *global.asax.cs* . Esses manipuladores são executados após os manipuladores nos módulos configurados.
 
@@ -60,13 +60,22 @@ Além dos módulos, você pode adicionar manipuladores para os eventos do ciclo 
 
 **O middleware é mais simples do que módulos e manipuladores HTTP:**
 
-* Módulos, manipuladores, *global.asax.cs*, *Web. config* (exceto para a configuração do IIS) e o ciclo de vida do aplicativo foram eliminados
+* Módulos, manipuladores, *global.asax.cs*, *Web.config* (exceto para a configuração do IIS) e o ciclo de vida do aplicativo foram eliminados
 
 * As funções dos módulos e dos manipuladores foram tomadas pelo middleware
 
-* O middleware é configurado usando código em vez de *Web. config*
+* O middleware é configurado usando código em vez de *Web.config*
+
+::: moniker range=">= aspnetcore-3.0"
+
+* O [Branch de pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) permite enviar solicitações para middleware específico, com base na URL, mas também em cabeçalhos de solicitação, cadeias de consulta, etc.
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
 
 * O [Branch de pipeline](xref:fundamentals/middleware/index#use-run-and-map) permite enviar solicitações para middleware específico, com base na URL, mas também em cabeçalhos de solicitação, cadeias de consulta, etc.
+
+::: moniker-end
 
 **Os middleware são muito semelhantes aos módulos:**
 
@@ -94,7 +103,7 @@ Um módulo HTTP existente terá uma aparência semelhante a esta:
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyModule.cs?highlight=6,8,24,31)]
 
-Conforme mostrado na página [middleware](xref:fundamentals/middleware/index) , um middleware ASP.NET Core é uma classe que expõe um `Invoke` método que leva um `HttpContext` e retornando um. `Task` Seu novo middleware terá a seguinte aparência:
+Conforme mostrado na página [middleware](xref:fundamentals/middleware/index) , um middleware ASP.NET Core é uma classe que expõe um `Invoke` método que leva um `HttpContext` e retornando um `Task` . Seu novo middleware terá a seguinte aparência:
 
 <a name="http-modules-usemiddleware"></a>
 
@@ -118,7 +127,7 @@ Ao migrar a funcionalidade do módulo para o novo middleware, você pode achar q
 
 ## <a name="migrating-module-insertion-into-the-request-pipeline"></a>Migrando a inserção de módulo para o pipeline de solicitação
 
-Módulos HTTP são normalmente adicionados ao pipeline de solicitação usando *Web. config*:
+Os módulos HTTP são normalmente adicionados ao pipeline de solicitação usando *Web.config*:
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
@@ -126,7 +135,7 @@ Converta isso [adicionando o novo middleware](xref:fundamentals/middleware/index
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
-O ponto exato no pipeline em que você insere o novo middleware depende do evento que ele tratou de um módulo (`BeginRequest`, `EndRequest`etc.) e de sua ordem na lista de módulos em *Web. config*.
+O ponto exato no pipeline em que você insere o novo middleware depende do evento que ele tratou de um módulo ( `BeginRequest` , `EndRequest` etc.) e de sua ordem na lista de módulos no *Web.config*.
 
 Como mencionado anteriormente, não há nenhum ciclo de vida do aplicativo em ASP.NET Core e a ordem em que as respostas são processadas pelo middleware difere da ordem usada pelos módulos. Isso pode tornar sua decisão de pedido mais desafiadora.
 
@@ -142,11 +151,11 @@ Em seu projeto de ASP.NET Core, você converteria isso em um middleware semelhan
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
 
-Esse middleware é muito semelhante ao middleware correspondente aos módulos. A única diferença real é que aqui não há nenhuma chamada para `_next.Invoke(context)`. Isso faz sentido, porque o manipulador está no final do pipeline de solicitação, portanto, não haverá o próximo middleware a ser invocado.
+Esse middleware é muito semelhante ao middleware correspondente aos módulos. A única diferença real é que aqui não há nenhuma chamada para `_next.Invoke(context)` . Isso faz sentido, porque o manipulador está no final do pipeline de solicitação, portanto, não haverá o próximo middleware a ser invocado.
 
 ## <a name="migrating-handler-insertion-into-the-request-pipeline"></a>Migrando a inserção do manipulador para o pipeline de solicitação
 
-A configuração de um manipulador HTTP é feita em *Web. config* e é semelhante a esta:
+A configuração de um manipulador HTTP é feita em *Web.config* e é semelhante a:
 
 [!code-xml[](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32,46-48,50,101)]
 
@@ -166,7 +175,7 @@ Middleware adicionado ao pipeline antes que a ramificação seja invocada em tod
 
 ## <a name="loading-middleware-options-using-the-options-pattern"></a>Carregando opções de middleware usando o padrão de opções
 
-Alguns módulos e manipuladores têm opções de configuração que são armazenadas em *Web. config*. No entanto, no ASP.NET Core um novo modelo de configuração é usado no lugar de *Web. config*.
+Alguns módulos e manipuladores têm opções de configuração que são armazenadas em *Web.config*. No entanto, no ASP.NET Core um novo modelo de configuração é usado no lugar de *Web.config*.
 
 O novo [sistema de configuração](xref:fundamentals/configuration/index) oferece essas opções para resolver isso:
 
@@ -180,7 +189,7 @@ O novo [sistema de configuração](xref:fundamentals/configuration/index) oferec
 
 2. Armazenar os valores de opção
 
-   O sistema de configuração permite que você armazene valores de opção em qualquer lugar que desejar. No entanto, a maioria dos sites usa *appSettings. JSON*, portanto, seguiremos essa abordagem:
+   O sistema de configuração permite que você armazene valores de opção em qualquer lugar que desejar. No entanto, a maioria dos sites usa *appsettings.js*, portanto, seguiremos essa abordagem:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
@@ -188,11 +197,11 @@ O novo [sistema de configuração](xref:fundamentals/configuration/index) oferec
 
 3. Associar os valores de opção à classe Options
 
-    O padrão de opções usa a estrutura de injeção de dependência do ASP.NET Core para associar o tipo `MyMiddlewareOptions`de opções ( `MyMiddlewareOptions` como) a um objeto que tem as opções reais.
+    O padrão de opções usa a estrutura de injeção de dependência do ASP.NET Core para associar o tipo de opções (como `MyMiddlewareOptions` ) a um `MyMiddlewareOptions` objeto que tem as opções reais.
 
     Atualize sua `Startup` classe:
 
-   1. Se você estiver usando *appSettings. JSON*, adicione-o ao construtor de configuração no `Startup` Construtor:
+   1. Se você estiver usando *appsettings.jsno*, adicione-o ao construtor de configuração no `Startup` Construtor:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -208,9 +217,9 @@ O novo [sistema de configuração](xref:fundamentals/configuration/index) oferec
 
    [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
 
-   O método de extensão [UseMiddleware](#http-modules-usemiddleware) que adiciona seu middleware ao `IApplicationBuilder` cuida da injeção de dependência.
+   O método de extensão [UseMiddleware](#http-modules-usemiddleware) que adiciona seu middleware ao cuida `IApplicationBuilder` da injeção de dependência.
 
-   Isso não é limitado `IOptions` a objetos. Qualquer outro objeto que seu middleware requer pode ser injetado dessa maneira.
+   Isso não é limitado a `IOptions` objetos. Qualquer outro objeto que seu middleware requer pode ser injetado dessa maneira.
 
 ## <a name="loading-middleware-options-through-direct-injection"></a>Carregando opções de middleware por meio de injeção direta
 
@@ -218,11 +227,11 @@ O padrão de opções tem a vantagem de que ele cria um acoplamento flexível en
 
 Isso é interrompido no entanto, se você quiser usar o mesmo middleware duas vezes, com opções diferentes. Por exemplo, um middleware de autorização usado em diferentes ramificações que permitem diferentes funções. Você não pode associar dois objetos de opções diferentes com a classe One Options.
 
-A solução é obter os objetos de opções com os valores de opções reais em `Startup` sua classe e passá-los diretamente para cada instância do middleware.
+A solução é obter os objetos de opções com os valores de opções reais em sua `Startup` classe e passá-los diretamente para cada instância do middleware.
 
-1. Adicionar uma segunda chave para *appSettings. JSON*
+1. Adicionar uma segunda chave para *appsettings.jsem*
 
-   Para adicionar um segundo conjunto de opções ao arquivo *appSettings. JSON* , use uma nova chave para identificá-la exclusivamente:
+   Para adicionar um segundo conjunto de opções ao *appsettings.jsno* arquivo, use uma nova chave para identificá-lo exclusivamente:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
@@ -230,21 +239,21 @@ A solução é obter os objetos de opções com os valores de opções reais em 
 
    [!code-csharp[](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
 
-3. Habilite o middleware para obter um parâmetro de opções. Forneça uma sobrecarga do método `Use...` de extensão (que usa o parâmetro options e o transmite para `UseMiddleware`). Quando `UseMiddleware` é chamado com parâmetros, ele passa os parâmetros para o construtor de middleware quando cria uma instância do objeto de middleware.
+3. Habilite o middleware para obter um parâmetro de opções. Forneça uma sobrecarga do `Use...` método de extensão (que usa o parâmetro options e o transmite para `UseMiddleware` ). Quando `UseMiddleware` é chamado com parâmetros, ele passa os parâmetros para o construtor de middleware quando cria uma instância do objeto de middleware.
 
    [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
 
-   Observe como isso encapsula o objeto Options em um `OptionsWrapper` objeto. Isso implementa `IOptions`, conforme esperado pelo construtor de middleware.
+   Observe como isso encapsula o objeto Options em um `OptionsWrapper` objeto. Isso implementa `IOptions` , conforme esperado pelo construtor de middleware.
 
 ## <a name="migrating-to-the-new-httpcontext"></a>Migrando para o novo HttpContext
 
-Vimos anteriormente que o `Invoke` método em seu middleware usa um parâmetro do tipo: `HttpContext`
+Vimos anteriormente que o `Invoke` método em seu middleware usa um parâmetro do tipo `HttpContext` :
 
 ```csharp
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext`mudou significativamente em ASP.NET Core. Esta seção mostra como converter as propriedades usadas com mais frequência de [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) para o novo `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext`mudou significativamente em ASP.NET Core. Esta seção mostra como converter as propriedades usadas com mais frequência de [System. Web. HttpContext](/dotnet/api/system.web.httpcontext) para o novo `Microsoft.AspNetCore.Http.HttpContext` .
 
 ### <a name="httpcontext"></a>HttpContext
 
@@ -350,7 +359,7 @@ O envio de cabeçalhos de resposta é complicado pelo fato de que, se você defi
 
 A solução é definir um método de retorno de chamada que será chamado imediatamente antes de gravar na resposta começar. Isso é melhor feito no início do `Invoke` método em seu middleware. Esse é o método de retorno de chamada que define seus cabeçalhos de resposta.
 
-O código a seguir define um método de `SetHeaders`retorno de chamada chamado:
+O código a seguir define um método de retorno de chamada chamado `SetHeaders` :
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
@@ -382,6 +391,6 @@ O `SetCookies` método de retorno de chamada seria semelhante ao seguinte:
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Visão geral de manipuladores HTTP e módulos HTTP](/iis/configuration/system.webserver/)
-* [Configuração](xref:fundamentals/configuration/index)
+* [Configuration](xref:fundamentals/configuration/index)
 * [Inicialização de aplicativos](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)

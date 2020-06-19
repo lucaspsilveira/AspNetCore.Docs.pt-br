@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 720f534426cc0e2b32778e49050c7f7d75ecd60d
-ms.sourcegitcommit: 6371114344a5f4fbc5d4a119b0be1ad3762e0216
+ms.openlocfilehash: 8ef029af10f767ae505fddc636bb15f7e7c5e538
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84679586"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102700"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usar ASP.NET Core SignalR com Blazor Webassembly
 
@@ -296,4 +296,4 @@ Para saber mais sobre a criação de Blazor aplicativos, consulte a Blazor docum
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:signalr/introduction>
-* [SignalRnegociação entre origens para autenticação](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [SignalRnegociação entre origens para autenticação](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

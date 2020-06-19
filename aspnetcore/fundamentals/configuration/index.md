@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 9b34125fdf6c6d451a11a53874944f5d8b44aa29
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: 91200a7a4396d91bec3cfe6ce4b787839f30c72f
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776534"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102673"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -730,7 +730,7 @@ Antes do aplicativo ser configurado e iniciado, um *host* é configurado e inici
 Para obter detalhes sobre a configuração padrão ao usar o [host da Web](xref:fundamentals/host/web-host), confira a [versão do ASP.NET Core 2.2 deste tópico](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * A configuração do host é fornecida de:
-  * Variáveis de ambiente prefixadas com `DOTNET_` (por exemplo, `DOTNET_ENVIRONMENT` ) usando o [provedor de configuração de variáveis de ambiente](#environment-variables-configuration-provider). O prefixo (`DOTNET_`) é removido durante o carregamento dos pares chave-valor de configuração.
+  * Variáveis de ambiente prefixadas com `DOTNET_` (por exemplo, `DOTNET_ENVIRONMENT` ) usando o [provedor de configuração de variáveis de ambiente](#environment-variables). O prefixo (`DOTNET_`) é removido durante o carregamento dos pares chave-valor de configuração.
   * Argumentos de linha de comando usando o [provedor de configuração de linha de comando](#command-line-configuration-provider).
 * A configuração padrão do host da Web foi estabelecida (`ConfigureWebHostDefaults`):
   * O Kestrel é usado como o servidor Web e configurado usando provedores de configuração do aplicativo.
@@ -759,6 +759,7 @@ Uma implementação <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite 
 
 * [Código-fonte de configuração](https://github.com/dotnet/extensions/tree/master/src/Configuration)
 * <xref:fundamentals/configuration/options>
+* <xref:blazor/fundamentals/configuration>
 
 ::: moniker-end
 

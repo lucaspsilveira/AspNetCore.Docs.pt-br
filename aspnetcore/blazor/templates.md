@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f582e8201a3393b848cf3f2c21ce3a7df5554100
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 3a491e43aec8291fcf03696b53240bd33e0deda1
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105526"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102493"
 ---
 # <a name="aspnet-core-blazor-templates"></a>Modelos de ASP.NET Core Blazor
 
@@ -59,7 +59,7 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir de 
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction) , que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
     * [MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) é chamado para configurar a página raiz do aplicativo (*pages/_Host. cshtml*) e habilitar a navegação.
 
-* *wwwroot/index.html* ( Blazor Webassembly): a página raiz do aplicativo implementada como uma página HTML:
+* *wwwroot/index.html* ( Blazor Webassembly): a página raiz do aplicativo é implementada como uma página HTML:
   * Quando qualquer página do aplicativo é solicitada inicialmente, essa página é renderizada e retornada na resposta.
   * A página especifica onde o `App` componente raiz é renderizado. O `App` componente (*app. Razor*) é especificado como o `app` elemento DOM para o `AddComponent` método em `Startup.Configure` .
   * O `_framework/blazor.webassembly.js` arquivo JavaScript é carregado, que:
@@ -80,7 +80,7 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir de 
 
 * Pasta *compartilhada* : contém outros componentes de interface do usuário (*. Razor*) usados pelo aplicativo:
   * `MainLayout`(*MainLayout. Razor*): o componente de layout do aplicativo.
-  * `NavMenu`(*NavMenu. Razor*): implementa a navegação na barra lateral. Inclui o [componente NavLink](xref:blazor/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), que renderiza links de navegação para outros Razor componentes. O <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente um estado selecionado quando seu componente é carregado, o que ajuda o usuário a entender qual componente está sendo exibido no momento.
+  * `NavMenu`(*NavMenu. Razor*): implementa a navegação na barra lateral. Inclui o [componente NavLink](xref:blazor/fundamentals/routing#navlink-component) ( <xref:Microsoft.AspNetCore.Components.Routing.NavLink> ), que renderiza links de navegação para outros Razor componentes. O <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente indica automaticamente um estado selecionado quando seu componente é carregado, o que ajuda o usuário a entender qual componente está sendo exibido no momento.
 
 * *_Imports. Razor*: inclui Razor diretivas comuns para incluir nos componentes do aplicativo (*. Razor*), como [`@using`](xref:mvc/views/razor#using) diretivas para namespaces.
 
@@ -88,4 +88,4 @@ Os seguintes arquivos e pastas compõem um Blazor aplicativo gerado a partir de 
 
 * *wwwroot*: a pasta [raiz da Web](xref:fundamentals/index#web-root) para o aplicativo que contém os ativos estáticos públicos do aplicativo.
 
-* *appSettings. JSON* ( Blazor servidor): definições de configuração para o aplicativo.
+* *appsettings.jsem* ( Blazor servidor): definições de configuração para o aplicativo.

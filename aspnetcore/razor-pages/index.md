@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 70f5da1dad9b4c0b9526a7688862637291be9a68
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 52c3dc82e51cb4375954a603a1bfde60fd667b56
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652578"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103048"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução às Razor páginas no ASP.NET Core
 
@@ -130,7 +130,7 @@ Por convenção, a classe `PageModel` é chamada de `<PageName>Model` e está no
 A classe `PageModel` permite separar a lógica de uma página da respectiva apresentação. Ela define manipuladores para as solicitações enviadas e os dados usados para renderizar a página. Essa separação permite:
 
 * Gerenciamento de dependências de página por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
-* [Testes de unidade](xref:test/razor-pages-tests)
+* [Teste de unidade](xref:test/razor-pages-tests)
 
 A página tem um  *método de manipulador*`OnPostAsync`, que é executado em solicitações `POST` (quando um usuário posta o formulário). Métodos de manipulador para qualquer verbo HTTP podem ser adicionados. Os manipuladores mais comuns são:
 
@@ -428,13 +428,13 @@ O aplicativo tem a estrutura de arquivos/pastas a seguir:
 
 * */Pages*
 
-  * *Index. cshtml*
+  * *Index.cshtml*
   * *Privacidade. cshtml*
   * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
-    * *Index. cshtml*
+    * *Index.cshtml*
 
 As páginas *pages/Customers/Create. cshtml* e *pages/Customers/Edit. cshtml* redirecionam para *pages/Customers/index. cshtml* após o êxito. A cadeia de caracteres `./Index` é um nome de página relativo usado para acessar a página anterior. Ele é usado para gerar URLs para a página *pages/Customers/index. cshtml* . Por exemplo:
 
@@ -608,7 +608,7 @@ Adicionar <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBui
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
-* <xref:blazor/integrate-components>
+* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>
 
 ::: moniker-end
 
@@ -945,12 +945,12 @@ O aplicativo tem a estrutura de arquivos/pastas a seguir:
 
 * */Pages*
 
-  * *Index. cshtml*
+  * *Index.cshtml*
   * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
-    * *Index. cshtml*
+    * *Index.cshtml*
 
 As páginas *Pages/Customers/Create.cshtml* e *Pages/Customers/Edit.cshtml* redirecionam para o *Pages/Index.cshtml* após êxito. A cadeia de caracteres `/Index` faz parte do URI para acessar a página anterior. A cadeia de caracteres `/Index` pode ser usada para gerar URIs para a página *Pages/Index.cshtml*. Por exemplo:
 

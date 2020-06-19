@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 5b6ae8173ca3d968e220faa4a060e1b42b14f8bb
-ms.sourcegitcommit: 05490855e0c70565f0c4b509d392b0828bcfd141
+ms.openlocfilehash: 6a03e35495e2ae545dc0a3cdd38578b433d8df6b
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84507238"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102584"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>O que há de novo no ASP.NET Core 3,1
 
@@ -25,7 +25,7 @@ Este artigo destaca as alterações mais significativas no ASP.NET Core 3,1 com 
 
 ## <a name="partial-class-support-for-razor-components"></a>Suporte de classe parcial para Razor componentes
 
-RazorAgora, os componentes são gerados como classes parciais. O código para um Razor componente pode ser escrito usando um arquivo code-behind definido como uma classe parcial, em vez de definir todo o código para o componente em um único arquivo. Para obter mais informações, consulte [suporte de classe parcial](xref:blazor/components#partial-class-support).
+RazorAgora, os componentes são gerados como classes parciais. O código para um Razor componente pode ser escrito usando um arquivo code-behind definido como uma classe parcial, em vez de definir todo o código para o componente em um único arquivo. Para obter mais informações, consulte [suporte de classe parcial](xref:blazor/components/index#partial-class-support).
 
 ## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>BlazorAuxiliar de marca de componente e passar parâmetros para componentes de nível superior
 
@@ -46,11 +46,11 @@ Por exemplo, PreRender um `Counter` componente com um valor de incremento ( `Inc
     param-IncrementAmount="10" />
 ```
 
-Para obter mais informações, consulte [integrar componentes em Razor páginas e aplicativos MVC](xref:blazor/integrate-components).
+Para obter mais informações, consulte [integrar componentes em Razor páginas e aplicativos MVC](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
-## <a name="support-for-shared-queues-in-httpsys"></a>Suporte para filas compartilhadas em HTTP. sys
+## <a name="support-for-shared-queues-in-httpsys"></a>Suporte para filas compartilhadas no HTTP.sys
 
-O [http. sys](xref:fundamentals/servers/httpsys) dá suporte à criação de filas de solicitações anônimas. No ASP.NET Core 3,1, adicionamos a capacidade de criar ou anexar a uma fila de solicitações de HTTP. sys chamada existente. A criação ou anexação a uma fila de solicitações HTTP. sys denominada permite cenários em que o processo do controlador HTTP. sys que possui a fila é independente do processo do ouvinte. Essa independência possibilita preservar as conexões existentes e as solicitações enfileiradas entre as reinicializações do processo de ouvinte:
+[HTTP.sys](xref:fundamentals/servers/httpsys) dá suporte à criação de filas de solicitação anônimas. No ASP.NET Core 3,1, adicionamos a capacidade de criar ou anexar a uma fila de solicitações HTTP.sys nomeada existente. Criar ou anexar a uma fila de solicitação chamada HTTP.sys existente habilita cenários em que o processo do controlador de HTTP.sys que possui a fila é independente do processo do ouvinte. Essa independência possibilita preservar as conexões existentes e as solicitações enfileiradas entre as reinicializações do processo de ouvinte:
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
@@ -66,7 +66,7 @@ Use o `@on{EVENT}:preventDefault` atributo diretiva para impedir a ação padrã
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-Para obter mais informações, consulte [impedir ações padrão](xref:blazor/event-handling#prevent-default-actions).
+Para obter mais informações, consulte [impedir ações padrão](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## <a name="stop-event-propagation-in-blazor-apps"></a>Parar a propagação de eventos em Blazor aplicativos
 
@@ -86,7 +86,7 @@ Use o `@on{EVENT}:stopPropagation` atributo diretiva para parar a propagação d
 }
 ```
 
-Para obter mais informações, consulte [parar a propagação do evento](xref:blazor/event-handling#stop-event-propagation).
+Para obter mais informações, consulte [parar a propagação do evento](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## <a name="detailed-errors-during-blazor-app-development"></a>Erros detalhados durante o Blazor desenvolvimento de aplicativos
 
@@ -95,4 +95,4 @@ Quando um Blazor aplicativo não está funcionando corretamente durante o desenv
 * Durante o desenvolvimento, a barra de ouro direciona você para o console do navegador, onde você pode ver a exceção.
 * Em produção, a barra de ouro notifica o usuário de que ocorreu um erro e recomenda a atualização do navegador.
 
-Para obter mais informações, consulte [erros detalhados durante o desenvolvimento](xref:blazor/handle-errors#detailed-errors-during-development).
+Para obter mais informações, consulte [erros detalhados durante o desenvolvimento](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

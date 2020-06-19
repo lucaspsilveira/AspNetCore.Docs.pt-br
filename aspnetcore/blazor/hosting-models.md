@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 9556fea5319956ce4ae4f4faf90cb405784c733c
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: a5323534cd76cfb60008636066ca5dcb7308d134
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105487"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102267"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelos de hospedagem ASP.NET Core
 
@@ -28,7 +28,7 @@ Blazoro é uma estrutura da Web criada para executar o lado do cliente no navega
 
 Para criar um projeto para os modelos de hospedagem descritos neste artigo, consulte <xref:blazor/get-started> .
 
-Para configuração avançada, consulte <xref:blazor/hosting-model-configuration> .
+Para configuração avançada, consulte <xref:blazor/fundamentals/configuration> .
 
 ## <a name="blazor-webassembly"></a>BlazorWebassembly
 
@@ -116,7 +116,7 @@ Uma atualização de interface do usuário no Blazor é disparada por:
 
 O grafo é rerenderizado e uma *comparação* de interface do usuário (diferença) é calculada. Essa diferença é o menor conjunto de edições DOM necessárias para atualizar a interface do usuário no cliente. A comparação é enviada ao cliente em um formato binário e aplicada pelo navegador.
 
-Um componente é descartado depois que o usuário navega para fora dele no cliente. Embora um usuário esteja interagindo com um componente, o estado do componente (serviços, recursos) deve ser mantido na memória do servidor. Como o estado de muitos componentes pode ser mantido pelo servidor simultaneamente, o esgotamento de memória é uma preocupação que deve ser resolvida. Para obter orientação sobre como criar um Blazor aplicativo de servidor para garantir o melhor uso da memória do servidor, consulte <xref:security/blazor/server/threat-mitigation> .
+Um componente é descartado depois que o usuário navega para fora dele no cliente. Embora um usuário esteja interagindo com um componente, o estado do componente (serviços, recursos) deve ser mantido na memória do servidor. Como o estado de muitos componentes pode ser mantido pelo servidor simultaneamente, o esgotamento de memória é uma preocupação que deve ser resolvida. Para obter orientação sobre como criar um Blazor aplicativo de servidor para garantir o melhor uso da memória do servidor, consulte <xref:blazor/security/server/threat-mitigation> .
 
 ### <a name="circuits"></a>Circuitos
 
@@ -136,10 +136,10 @@ Para um aplicativo de linha de negócios limitado a uma rede corporativa privada
 
 O uso de memória também pode contribuir para a latência do aplicativo. O aumento do uso da memória resulta em uma coleta de lixo frequente ou na paginação da memória no disco, e conseqüentemente aumenta a latência da interface do usuário.
 
-BlazorAplicativos de servidor devem ser otimizados para minimizar a latência da interface do usuário, reduzindo a latência de rede e o uso de memória Para obter uma abordagem para medir a latência de rede, consulte <xref:host-and-deploy/blazor/server#measure-network-latency> . Para obter mais informações sobre o SignalR e o Blazor , consulte:
+BlazorAplicativos de servidor devem ser otimizados para minimizar a latência da interface do usuário, reduzindo a latência de rede e o uso de memória Para obter uma abordagem para medir a latência de rede, consulte <xref:blazor/host-and-deploy/server#measure-network-latency> . Para obter mais informações sobre o SignalR e o Blazor , consulte:
 
-* <xref:host-and-deploy/blazor/server>
-* <xref:security/blazor/server/threat-mitigation>
+* <xref:blazor/host-and-deploy/server>
+* <xref:blazor/security/server/threat-mitigation>
 
 ### <a name="connection-to-the-server"></a>Conexão com o servidor
 
@@ -147,7 +147,7 @@ BlazorOs aplicativos de servidor exigem uma SignalR conexão ativa com o servido
 
 Um Blazor aplicativo de servidor é renderizado em resposta à primeira solicitação do cliente, que configura o estado da interface do usuário no servidor. Quando o cliente tenta criar uma SignalR conexão, o cliente deve se reconectar ao mesmo servidor. BlazorOs aplicativos de servidor que usam mais de um servidor back-end devem implementar *sessões adesivas* para SignalR conexões.
 
-É recomendável usar [o SignalR serviço do Azure](/azure/azure-signalr) para Blazor aplicativos de servidor. O serviço permite escalar verticalmente um Blazor aplicativo de servidor para um grande número de conexões simultâneas SignalR . As sessões adesivas são habilitadas para o serviço do Azure SignalR definindo a opção do serviço `ServerStickyMode` ou o valor de configuração como `Required` . Para obter mais informações, consulte <xref:host-and-deploy/blazor/server#signalr-configuration>.
+É recomendável usar [o SignalR serviço do Azure](/azure/azure-signalr) para Blazor aplicativos de servidor. O serviço permite escalar verticalmente um Blazor aplicativo de servidor para um grande número de conexões simultâneas SignalR . As sessões adesivas são habilitadas para o serviço do Azure SignalR definindo a opção do serviço `ServerStickyMode` ou o valor de configuração como `Required` . Para obter mais informações, consulte <xref:blazor/host-and-deploy/server#signalr-configuration>.
 
 Ao usar o IIS, as sessões adesivas são habilitadas com Application Request Routing. Para obter mais informações, consulte [balanceamento de carga http usando Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
@@ -155,5 +155,5 @@ Ao usar o IIS, as sessões adesivas são habilitadas com Application Request Rou
 
 * <xref:blazor/get-started>
 * <xref:signalr/introduction>
-* <xref:blazor/hosting-model-configuration>
+* <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

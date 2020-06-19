@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 8195702a3de93bafc76dff61939dfc70d4e896b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cc12dc2bc6720652866227dc2bbcbcf4e8af793d
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775239"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074230"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -46,7 +46,7 @@ Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Az
 <xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Saiba como criar um aplicativo Web ASP.NET Core usando o Visual Studio e implantá-lo no Serviço de Aplicativo do Azure, usando o Git para implantação contínua.
 
-[Crie seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
+[Criar seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
 Configurar um build de CI para um aplicativo ASP.NET Core e, em seguida, criar uma versão de implantação contínua para o Serviço de Aplicativo do Azure.
 
 [Área restrita de aplicativo Web do Azure](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
@@ -87,19 +87,22 @@ Os pacotes anteriores não estão disponíveis no [Microsoft.AspNetCore.App meta
 
 ## <a name="override-app-configuration-using-the-azure-portal"></a>Substituir a configuração do aplicativo no Portal do Azure
 
+::: moniker range=">= aspnetcore-3.0"
+
+As configurações do aplicativo no portal do Azure permitem definir variáveis de ambiente para o aplicativo. As variáveis de ambiente podem ser consumidas pelo [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables).
+
+Quando uma configuração de aplicativo é criada ou modificada no Portal do Azure e o botão **Salvar** é selecionado, o Aplicativo Azure é reiniciado. A variável de ambiente estará disponível para o aplicativo após o serviço ser reiniciado.
+
+Quando um aplicativo usa o [host genérico](xref:fundamentals/host/generic-host), as variáveis de ambiente são carregadas na configuração do aplicativo quando <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> é chamado para compilar o host. Para saber mais, confira <xref:fundamentals/host/generic-host> e o [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables).
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+
 As configurações do aplicativo no portal do Azure permitem definir variáveis de ambiente para o aplicativo. As variáveis de ambiente podem ser consumidas pelo [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 Quando uma configuração de aplicativo é criada ou modificada no Portal do Azure e o botão **Salvar** é selecionado, o Aplicativo Azure é reiniciado. A variável de ambiente estará disponível para o aplicativo após o serviço ser reiniciado.
 
-::: moniker range=">= aspnetcore-3.0"
-
-Quando um aplicativo usa o [host genérico](xref:fundamentals/host/generic-host), as variáveis de ambiente são carregadas na configuração do <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> aplicativo quando é chamado para compilar o host. Para saber mais, confira <xref:fundamentals/host/generic-host> e o [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-Quando um aplicativo usa o [host da Web](xref:fundamentals/host/web-host), as variáveis de ambiente são carregadas na configuração <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> do aplicativo quando é chamado para compilar o host. Para saber mais, confira <xref:fundamentals/host/web-host> e o [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+Quando um aplicativo usa o [host da Web](xref:fundamentals/host/web-host), as variáveis de ambiente são carregadas na configuração do aplicativo quando <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> é chamado para compilar o host. Para saber mais, confira <xref:fundamentals/host/web-host> e o [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 ::: moniker-end
 
@@ -169,11 +172,11 @@ Use [Azure app cenários de CI/CD de serviço](/azure/app-service/deploy-continu
 
 #### <a name="specify-the-net-core-sdk-version"></a>Especificar a versão de SDK do .NET Core
 
-Ao usar o centro de implantação do serviço de aplicativo para criar uma compilação DevOps do Azure, o pipeline de `Restore`compilação `Build`padrão `Test`inclui etapas `Publish`para,, e. Para especificar a versão do SDK, selecione o botão **Adicionar (+)** na lista de trabalhos do agente para adicionar uma nova etapa. Pesquise **SDK do .NET Core** na barra de pesquisa. 
+Ao usar o centro de implantação do serviço de aplicativo para criar uma compilação DevOps do Azure, o pipeline de compilação padrão inclui etapas para `Restore` , `Build` , `Test` e `Publish` . Para especificar a versão do SDK, selecione o botão **Adicionar (+)** na lista de trabalhos do agente para adicionar uma nova etapa. Pesquise **SDK do .NET Core** na barra de pesquisa. 
 
 ![Adicionar a etapa de SDK do .NET Core](index/add-sdk-step.png)
 
-Mova a etapa para a primeira posição na compilação para que as etapas a seguir usem a versão especificada do SDK do .NET Core. Especifique a versão do SDK do .NET Core. Neste exemplo, o SDK é definido como `3.0.100`.
+Mova a etapa para a primeira posição na compilação para que as etapas a seguir usem a versão especificada do SDK do .NET Core. Especifique a versão do SDK do .NET Core. Neste exemplo, o SDK é definido como `3.0.100` .
 
 ![Etapa do SDK concluída](index/sdk-step-first-place.png)
 
@@ -213,7 +216,7 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
 
 1. Selecione **Ferramentas Avançadas**.
 1. Selecione **Acessar** em **Ferramentas Avançadas**.
-1. Selecione o item de menu do**PowerShell** do **console** > de depuração.
+1. Selecione o item de menu do PowerShell do **console de depuração**  >  **PowerShell** .
 1. No prompt do PowerShell, execute o seguinte comando. Substitua a versão do runtime do ASP.NET Core por `{X.Y}` e a plataforma por `{PLATFORM}` no comando:
 
    ```powershell
@@ -227,7 +230,7 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
 >
 > Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o runtime da versão prévia de 64 bits, se estiver presente. Instale a extensão de **tempo de execução do ASP.NET Core {X. Y} (x64)** usando o portal do Azure.
 >
-> Depois de instalar o tempo de execução x64 Preview, execute o seguinte comando na janela de comando do Azure kudu PowerShell para verificar a instalação. Substitua a versão de tempo de `{X.Y}` execução ASP.NET Core para no seguinte comando:
+> Depois de instalar o tempo de execução x64 Preview, execute o seguinte comando na janela de comando do Azure kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução ASP.NET Core para `{X.Y}` no seguinte comando:
 >
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
@@ -240,7 +243,7 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
 
 **Usar a extensão de site de versão prévia com um modelo do ARM**
 
-Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recurso `siteextensions` poderá ser usado para adicionar a extensão de site a um aplicativo Web. Por exemplo: 
+Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recurso `siteextensions` poderá ser usado para adicionar a extensão de site a um aplicativo Web. Por exemplo:
 
 [!code-json[](index/sample/arm.json?highlight=2)]
 
@@ -259,7 +262,7 @@ Para uma implantação de 64 bits:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Selecione **Compilar** > **publicar {nome do aplicativo}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto em **Gerenciador de soluções** e selecione **publicar**.
+1. Selecione **Compilar**  >  **publicar {nome do aplicativo}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto em **Gerenciador de soluções** e selecione **publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
 1. Selecione **Avançado**. A caixa de diálogo **Publicar** será aberta.
 1. Na caixa de diálogo **Publicar**:
@@ -290,7 +293,7 @@ Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Selecione **Compilar** > **publicar {nome do aplicativo}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto em **Gerenciador de soluções** e selecione **publicar**.
+1. Selecione **Compilar**  >  **publicar {nome do aplicativo}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto em **Gerenciador de soluções** e selecione **publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
 1. Selecione **Avançado**. A caixa de diálogo **Publicar** será aberta.
 1. Na caixa de diálogo **Publicar**:

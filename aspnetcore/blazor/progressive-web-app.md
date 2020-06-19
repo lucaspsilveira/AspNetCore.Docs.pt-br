@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: ffdc329d813dcbfffe2216dc58bbc4150f7cf786
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: b55619889c294a0cd6ab98ffdf228d86ee60cd7c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776417"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102310"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Crie aplicativos Web progressivos com o Blazor Webassembly ASP.NET Core
 
@@ -89,7 +89,7 @@ Por padrão, os aplicativos criados usando a opção de modelo do PWA têm supor
 
 Para ver como funciona o suporte offline:
 
-1. Publique o aplicativo. Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#publish-the-app>.
+1. Publique o aplicativo. Para obter mais informações, consulte <xref:blazor/host-and-deploy/index#publish-the-app>.
 1. Implante o aplicativo em um servidor que dê suporte a HTTPS e acesse o aplicativo em um navegador em seu endereço HTTPS seguro.
 1. Abra as ferramentas de desenvolvimento do navegador e verifique se um *trabalhador de serviço* está registrado para o host na guia **aplicativo** :
 
@@ -295,4 +295,4 @@ O aplicativo de exemplo [CarChecker](https://github.com/SteveSandersonMS/CarChec
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [SignalRnegociação entre origens para autenticação](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [SignalRnegociação entre origens para autenticação](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

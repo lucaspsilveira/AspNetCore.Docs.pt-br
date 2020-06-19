@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 26202c45e49e64117d35fe6f1e9a65c4acc170fb
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: de04992c3e3c7ce2dc73eee801484d5e3930fa3a
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105084"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102467"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Chamar funções JavaScript de métodos .NET no ASP.NET CoreBlazor
 
@@ -85,7 +85,7 @@ No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas fun
 * `showPrompt`: Produz uma solicitação para aceitar a entrada do usuário (o nome do usuário) e retorna o nome para o chamador.
 * `displayWelcome`: Atribui uma mensagem de boas-vindas do chamador a um objeto DOM com um `id` de `welcome` .
 
-*wwwroot/exampleJsInterop. js*:
+*wwwroot/exampleJsInterop.js*:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
@@ -101,7 +101,7 @@ Coloque a `<script>` marca que faz referência ao arquivo JavaScript no arquivo 
 
 Não coloque uma `<script>` marca em um arquivo de componente porque a `<script>` marca não pode ser atualizada dinamicamente.
 
-Os métodos .NET interoperam com as funções JavaScript no arquivo *exampleJsInterop. js* chamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
+Os métodos .NET interoperabilidade com as funções JavaScript no arquivo *exampleJsInterop.js* chamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
 
 A <xref:Microsoft.JSInterop.IJSRuntime> abstração é assíncrona para permitir Blazor cenários de servidor. Se o aplicativo for um Blazor aplicativo Webassembly e você quiser invocar uma função JavaScript de forma síncrona, downcast <xref:Microsoft.JSInterop.IJSInProcessRuntime> e chame <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> . Recomendamos que a maioria das bibliotecas de interoperabilidade do JS use as APIs assíncronas para garantir que as bibliotecas estejam disponíveis em todos os cenários.
 
@@ -142,7 +142,7 @@ O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidad
 }
 ```
 
-1. Quando `TriggerJsPrompt` é executado selecionando o botão de **prompt do JavaScript** do componente de gatilho, a `showPrompt` função JavaScript fornecida no arquivo *wwwroot/exampleJsInterop. js* é chamada.
+1. Quando `TriggerJsPrompt` é executado selecionando o botão de **prompt de JavaScript** do componente de gatilho, a `showPrompt` função JavaScript fornecida no arquivo *wwwroot/exampleJsInterop.js* é chamada.
 1. A `showPrompt` função aceita a entrada do usuário (o nome do usuário), que é codificado em HTML e retornada ao componente. O componente armazena o nome do usuário em uma variável local, `name` .
 1. A cadeia de caracteres armazenada em `name` é incorporada a uma mensagem de boas-vindas, que é passada para uma função JavaScript, `displayWelcome` , que renderiza a mensagem de boas-vindas em uma marca de cabeçalho.
 
@@ -193,7 +193,7 @@ No que diz respeito ao código .NET, um <xref:Microsoft.AspNetCore.Components.El
 
 Por exemplo, o código a seguir define um método de extensão .NET que permite definir o foco em um elemento:
 
-*exampleJsInterop. js*:
+*exampleJsInterop.js*:
 
 ```javascript
 window.exampleJsFunctions = {
@@ -222,7 +222,7 @@ O `Focus` método é chamado diretamente no objeto. O exemplo a seguir pressupõ
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> A `username` variável é populada apenas depois que o componente é renderizado. Se um não populado <xref:Microsoft.AspNetCore.Components.ElementReference> for passado para o código JavaScript, o código JavaScript receberá um valor de `null` . Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [métodos de ciclo de vida do componente OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
+> A `username` variável é populada apenas depois que o componente é renderizado. Se um não populado <xref:Microsoft.AspNetCore.Components.ElementReference> for passado para o código JavaScript, o código JavaScript receberá um valor de `null` . Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [métodos de ciclo de vida do componente OnAfterRenderAsync ou OnAfterRender](xref:blazor/components/lifecycle#after-component-render).
 
 Ao trabalhar com tipos genéricos e retornar um valor, use <xref:System.Threading.Tasks.ValueTask%601> :
 
@@ -459,7 +459,7 @@ A interoperabilidade JS pode falhar devido a erros de rede e deve ser tratada co
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-Para obter mais informações sobre esgotamento de recursos, consulte <xref:security/blazor/server/threat-mitigation> .
+Para obter mais informações sobre esgotamento de recursos, consulte <xref:blazor/security/server/threat-mitigation> .
 
 [!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 

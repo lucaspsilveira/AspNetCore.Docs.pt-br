@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/loadtests
-ms.openlocfilehash: f0c930a7689c7288a58cfc3ca630d3cd324bf2cd
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 0ec69ad783a4e545ea95ddcb928d03ba6a2e0050
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106800"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074376"
 ---
 # <a name="aspnet-core-loadstress-testing"></a>ASP.NET Core teste de carga/estresse
 
@@ -29,15 +29,7 @@ Testes de carga e testes de estresse são importantes para garantir que um aplic
 
 Testes de estresse determinam se um aplicativo sob estresse pode se recuperar de uma falha e retornar normalmente para o comportamento esperado. Sob estresse, o aplicativo não é executado sob condições normais.
 
-O Visual Studio 2019 é a última versão do Visual Studio com recursos de teste de carga. Para clientes que precisam de ferramentas de teste de carga no futuro, recomendamos ferramentas alternativas, como Apache JMeter, Akamai CloudTest e BlazeMeter. Para obter mais informações, consulte as [notas de versão do Visual Studio 2019](/visualstudio/releases/2019/release-notes-v16.0#test-tools).
-
-## <a name="visual-studio-tools"></a>Ferramentas do Visual Studio
-
-O Visual Studio permite que os usuários criem, desenvolvam e depurem testes de carga e desempenho da Web. Uma opção está disponível para criar testes por meio da gravação de ações em um navegador da Web.
-
-Para obter informações sobre como criar, configurar e executar projetos de teste de carga usando o Visual Studio 2017, consulte [início rápido: criar um projeto de teste de carga](/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2017).
-
-Os testes de carga podem ser configurados para serem executados no local ou executados na nuvem usando o Azure DevOps.
+O Visual Studio 2019 anunciou planos para [substituir o teste de carga](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/). O serviço de teste de carga baseado em nuvem DevOps do Azure correspondente foi fechado.
 
 ## <a name="third-party-tools"></a>Ferramentas de terceiros
 
@@ -51,4 +43,3 @@ A lista a seguir contém ferramentas de desempenho da Web de terceiros com vári
 * [Websurto de vento oeste](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
-

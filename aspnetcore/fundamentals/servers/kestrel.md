@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 4da32b14ca640bda4df5d6c9d685f4702c6eb266
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: fd0db90e897a813e0127ce1c751569158efa8fdf
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106761"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074166"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web Kestrel no ASP.NET Core
 
@@ -122,7 +122,7 @@ Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Nos exemplos mostrados posteriormente neste artigo, as opções de Kestrel são configuradas no código C#. As opções de Kestrel também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider) pode carregar a configuração Kestrel de *appSettings. JSON* ou *appSettings. { Arquivo de ambiente}. JSON* :
+Nos exemplos mostrados posteriormente neste artigo, as opções de Kestrel são configuradas no código C#. As opções de Kestrel também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider) pode carregar a configuração de Kestrel de um *appsettings.jsem* ou *appSettings. { Arquivo de ambiente}. JSON* :
 
 ```json
 {
@@ -722,7 +722,7 @@ Restrições TLS para HTTP/2:
 * Tamanhos mínimos de troca de chaves efêmera:
   * Diffie-Hellman (ECDHE) RFC4492 de curva elíptica &lbrack; [RFC4492](https://www.ietf.org/rfc/rfc4492.txt) &rbrack; : mínimo de 224 bits
   * Campo finito Diffie-Hellman (DHE) &lbrack; `TLS12` &rbrack; : mínimo de 2048 bits
-* Pacote de criptografia não autorizado
+* Conjunto de codificação não proibido. 
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`&lbrack;`TLS-ECDHE`&rbrack; com a curva elíptica P-256 tem &lbrack; `FIPS186` &rbrack; suporte por padrão.
 
@@ -848,7 +848,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 `CreateDefaultBuilder` chama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` por padrão ao carregar a configuração do Kestrel.
 
-O exemplo *appSettings. JSON* a seguir estabelece o http/1.1 como o protocolo de conexão padrão para todos os pontos de extremidade:
+O seguinte *appsettings.jsno* exemplo estabelece o http/1.1 como o protocolo de conexão padrão para todos os pontos de extremidade:
 
 ```json
 {
@@ -860,7 +860,7 @@ O exemplo *appSettings. JSON* a seguir estabelece o http/1.1 como o protocolo de
 }
 ```
 
-O exemplo *appSettings. JSON* a seguir estabelece o protocolo de conexão HTTP/1.1 para um ponto de extremidade específico:
+O exemplo a seguir *appsettings.js* estabelece o protocolo de conexão HTTP/1.1 para um ponto de extremidade específico:
 
 ```json
 {
@@ -960,9 +960,9 @@ Como uma solução alternativa, use o Middleware de Filtragem de Host. O middlew
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave em *appSettings. JSON* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
+Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave no *appsettings.jsem* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
 
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 ```json
 {
@@ -1094,7 +1094,7 @@ Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-As opções de Kestrel, que são configuradas no código C# nos exemplos a seguir, também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o provedor de configuração de arquivo pode carregar a configuração Kestrel de *appSettings. JSON* ou *appSettings. { Arquivo de ambiente}. JSON* :
+As opções de Kestrel, que são configuradas no código C# nos exemplos a seguir, também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o provedor de configuração de arquivo pode carregar a configuração de Kestrel de um *appsettings.jsem* ou *appSettings. { Arquivo de ambiente}. JSON* :
 
 ```json
 {
@@ -1911,9 +1911,9 @@ Como uma solução alternativa, use o Middleware de Filtragem de Host. O middlew
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave em *appSettings. JSON* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
+Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave no *appsettings.jsem* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
 
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 ```json
 {
@@ -2002,7 +2002,7 @@ Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-As opções de Kestrel, que são configuradas no código C# nos exemplos a seguir, também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o provedor de configuração de arquivo pode carregar a configuração Kestrel de *appSettings. JSON* ou *appSettings. { Arquivo de ambiente}. JSON* :
+As opções de Kestrel, que são configuradas no código C# nos exemplos a seguir, também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o provedor de configuração de arquivo pode carregar a configuração de Kestrel de um *appsettings.jsem* ou *appSettings. { Arquivo de ambiente}. JSON* :
 
 ```json
 {
@@ -2701,9 +2701,9 @@ Como uma solução alternativa, use o Middleware de Filtragem de Host. O middlew
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave em *appSettings. JSON* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
+Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o middleware, defina uma `AllowedHosts` chave no *appsettings.jsem* / *appSettings. \<EnvironmentName> JSON*. O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:
 
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 ```json
 {

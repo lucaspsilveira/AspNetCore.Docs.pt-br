@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 36afa8ece58843b434ebfba6305bffdb9eb9bca0
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: f3314458a504af7f44dcdc276de890fa9485a2b3
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724283"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103038"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Scaffold Identity em projetos de ASP.NET Core
 
@@ -195,7 +195,7 @@ Tokens podem ser passados para componentes:
 * Quando os tokens de autenticação são provisionados e salvos no cookie de autenticação, eles podem ser passados para componentes.
 * Razoros componentes não podem usar `HttpContext` diretamente, portanto, não há como obter um [token de XSRF (falsificação de solicitação)](xref:security/anti-request-forgery) para postar no Identity ponto de extremidade de logout em `/Identity/Account/Logout` . Um token XSRF pode ser passado para componentes.
 
-Para obter mais informações, consulte <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+Para obter mais informações, consulte <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
 No arquivo *pages/_Host. cshtml* , estabeleça o token depois de adicioná-lo às `InitialApplicationState` `TokenProvider` classes e:
 
@@ -229,7 +229,7 @@ O `TokenProvider` serviço demonstrado no tópico é usado no `LoginDisplay` com
 Na `Startup` classe:
 
 * Confirme se as Razor páginas de serviços são adicionadas no `Startup.ConfigureServices` .
-* Se estiver usando o [TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registre o serviço.
+* Se estiver usando o [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), registre o serviço.
 * Chame `UseDatabaseErrorPage` no Application Builder no `Startup.Configure` para o ambiente de desenvolvimento.
 * Chamar `UseAuthentication` e `UseAuthorization` depois `UseRouting` .
 * Adicione um ponto de extremidade para Razor páginas.
@@ -253,7 +253,7 @@ Adicione um `RedirectToLogin` componente (*RedirectToLogin. Razor*) à pasta *co
 }
 ```
 
-Adicione um `LoginDisplay` componente (*LoginDisplay. Razor*) à pasta *compartilhada* do aplicativo. O [serviço TokenProvider](xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornece o token XSRF para o formulário HTML que posta para o Identity ponto de extremidade de logout:
+Adicione um `LoginDisplay` componente (*LoginDisplay. Razor*) à pasta *compartilhada* do aplicativo. O [serviço TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) fornece o token XSRF para o formulário HTML que posta para o Identity ponto de extremidade de logout:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization

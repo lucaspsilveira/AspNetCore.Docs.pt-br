@@ -2,7 +2,7 @@
 ---
 Embora um aplicativo de servidor mais incrivelmente seja o pré-processamento, determinadas ações, como a chamada para JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados.
 
-Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão com o navegador seja estabelecida, você pode usar o [evento de ciclo de vida do componente OnAfterRenderAsync](xref:blazor/lifecycle#after-component-render). Esse evento é chamado somente depois que o aplicativo é totalmente renderizado e a conexão do cliente é estabelecida.
+Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão com o navegador seja estabelecida, você pode usar o [evento de ciclo de vida do componente OnAfterRenderAsync](xref:blazor/components/lifecycle#after-component-render). Esse evento é chamado somente depois que o aplicativo é totalmente renderizado e a conexão do cliente é estabelecida.
 
 ```cshtml
 @using Microsoft.JSInterop
@@ -24,7 +24,7 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
 }
 ```
 
-Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly do mais claro) ou *páginas/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
 
 ```html
 <script>
@@ -39,7 +39,7 @@ O componente a seguir demonstra como usar a interoperabilidade do JavaScript com
 
 Em que <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> é chamado, `ElementRef` é usado apenas em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> e não em nenhum método de ciclo de vida anterior porque não há nenhum elemento JavaScript até que o componente seja renderizado.
 
-[StateHasChanged](xref:blazor/lifecycle#state-changes) é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null` .
+[StateHasChanged](xref:blazor/components/lifecycle#state-changes) é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null` .
 
 ```cshtml
 @page "/prerendered-interop"
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly do mais claro) ou *páginas/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e retorna um valor:
 
 ```html
 <script>

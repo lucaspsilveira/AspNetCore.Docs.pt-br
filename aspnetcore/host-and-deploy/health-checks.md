@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: cb3ee4f3bf9061d212c1fee85f3f4a22946be097
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105773"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074428"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -324,7 +324,7 @@ O primeiro exemplo do aplicativo de exemplo demonstra como usar <xref:System.Tex
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_WriteResponse_SystemTextJson)]
 
-O segundo exemplo demonstra como usar [Newtonsoft. JSON](https://www.nuget.org/packages/Newtonsoft.Json/):
+O segundo exemplo demonstra como usar [Newtonsoft.Jsem](https://www.nuget.org/packages/Newtonsoft.Json/):
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_WriteResponse_NewtonSoftJson)]
 
@@ -560,11 +560,11 @@ dotnet run --scenario writer
 
 Chame `RequireHost` on `MapHealthChecks` com um padrão de URL que especifica uma porta para restringir as solicitações de verificação de integridade à porta especificada. Isso normalmente é usado em um ambiente de contêiner para expor uma porta para os serviços de monitoramento.
 
-O aplicativo de exemplo configura a porta usando o [Provedor de Configuração de Variáveis de Ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider). A porta é definida no arquivo *launchSettings.json* e passada para o provedor de configuração por meio de uma variável de ambiente. Você também precisa configurar o servidor para escutar as solicitações na porta de gerenciamento.
+O aplicativo de exemplo configura a porta usando o [Provedor de Configuração de Variáveis de Ambiente](xref:fundamentals/configuration/index#environment-variables). A porta é definida no arquivo *launchSettings.json* e passada para o provedor de configuração por meio de uma variável de ambiente. Você também precisa configurar o servidor para escutar as solicitações na porta de gerenciamento.
 
 Para usar o aplicativo de exemplo para demonstrar a configuração de porta de gerenciamento, crie o arquivo *launchSettings.json* em uma pasta *Properties*.
 
-O arquivo de *Propriedades/launchSettings. JSON* a seguir no aplicativo de exemplo não está incluído nos arquivos de projeto do aplicativo de exemplo e deve ser criado manualmente:
+As seguintes *Propriedades/launchSettings.jsno* arquivo no aplicativo de exemplo não estão incluídas nos arquivos de projeto do aplicativo de exemplo e devem ser criadas manualmente:
 
 ```json
 {
@@ -614,7 +614,7 @@ app.UseEndpoints(endpoints =>
 ```
 
 > [!NOTE]
-> Você pode evitar criar o arquivo *launchSettings. JSON* no aplicativo de exemplo definindo a porta de gerenciamento explicitamente no código. Em *Program.cs* em que o <xref:Microsoft.Extensions.Hosting.HostBuilder> é criado, adicione uma chamada para <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> e forneça o ponto de extremidade da porta de gerenciamento do aplicativo. Em `Configure` *ManagementPortStartup.cs*, especifique a porta de gerenciamento com `RequireHost` :
+> Você pode evitar criar o *launchSettings.jsno* arquivo no aplicativo de exemplo definindo a porta de gerenciamento explicitamente no código. Em *Program.cs* em que o <xref:Microsoft.Extensions.Hosting.HostBuilder> é criado, adicione uma chamada para <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> e forneça o ponto de extremidade da porta de gerenciamento do aplicativo. Em `Configure` *ManagementPortStartup.cs*, especifique a porta de gerenciamento com `RequireHost` :
 >
 > *Program.cs*:
 >
@@ -789,7 +789,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Para obter mais informações, consulte <xref:fundamentals/middleware/index#use-run-and-map>.
+Para obter mais informações, consulte <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
 
 ::: moniker-end
 
@@ -1269,7 +1269,7 @@ O aplicativo de exemplo configura a porta usando o [Provedor de Configuração d
 
 Para usar o aplicativo de exemplo para demonstrar a configuração de porta de gerenciamento, crie o arquivo *launchSettings.json* em uma pasta *Properties*.
 
-O arquivo de *Propriedades/launchSettings. JSON* a seguir no aplicativo de exemplo não está incluído nos arquivos de projeto do aplicativo de exemplo e deve ser criado manualmente:
+As seguintes *Propriedades/launchSettings.jsno* arquivo no aplicativo de exemplo não estão incluídas nos arquivos de projeto do aplicativo de exemplo e devem ser criadas manualmente:
 
 ```json
 {

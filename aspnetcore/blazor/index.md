@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: eb8a6d2ddbd3e8f61626566878a7af5f5a2525d8
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: feca504a39624282961fbc6405876e970a20b5d4
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "83608181"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102280"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introdução ao ASP.NET CoreBlazor
 
@@ -126,7 +126,7 @@ Quando um Blazor aplicativo Webassembly é compilado e executado em um navegador
 
 O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de desempenho crítico para a utilidade do aplicativo. Um aplicativo grande leva um tempo relativamente longo para baixar para um navegador, o que afeta a experiência do usuário. BlazorO Webassembly otimiza o tamanho da carga para reduzir os tempos de download:
 
-* O código não utilizado é retirado do aplicativo quando publicado pelo [Vinculador de linguagem intermediária (IL)](xref:host-and-deploy/blazor/configure-linker).
+* O código não utilizado é retirado do aplicativo quando publicado pelo [Vinculador de linguagem intermediária (IL)](xref:blazor/host-and-deploy/configure-linker).
 * As respostas HTTP são compactadas.
 * O runtime do .NET e os assemblies são armazenados em cache no navegador.
 

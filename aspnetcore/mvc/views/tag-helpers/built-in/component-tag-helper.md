@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: b6e3890e13ef5ad20098d3907b6895046087aeca
-ms.sourcegitcommit: b0062f29cba2e5c21b95cf89eaf435ba830d11a3
+ms.openlocfilehash: df978d49201ba1010ddf13b1b9a63ae27116616e
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84776495"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85103090"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Auxiliar de marca de componente no ASP.NET Core
 
@@ -27,7 +27,7 @@ Para renderizar um componente de uma página ou exibição, use o [auxiliar de m
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-Siga as orientações na seção *preparar o aplicativo para usar componentes em páginas e exibições* do <xref:blazor/integrate-components#prepare-the-app> artigo.
+Siga as orientações na seção *preparar o aplicativo para usar componentes em páginas e exibições* do <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#prepare-the-app> artigo.
 
 ## <a name="component-tag-helper"></a>Auxiliar de marca de componente
 
@@ -72,7 +72,7 @@ O auxiliar de marca de componente também pode passar parâmetros para component
 }
 ```
 
-Os `Size` `int` parâmetros de componente () e `Color` ( `string` ) podem ser definidos pelo auxiliar de marca do componente: [component parameters](xref:blazor/components#component-parameters)
+Os `Size` `int` parâmetros de componente () e `Color` ( `string` ) podem ser definidos pelo auxiliar de marca do componente: [component parameters](xref:blazor/components/index#component-parameters)
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -172,4 +172,4 @@ Não há suporte para a renderização de componentes de servidor de uma página
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
-* <xref:blazor/components>
+* <xref:blazor/components/index>

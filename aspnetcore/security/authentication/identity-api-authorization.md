@@ -13,18 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 26d371161bf5f926e50cbc141ccfaac40ee96977
-ms.sourcegitcommit: ff5c47beded9264c1395beb9c905f826261f3ba3
+ms.openlocfilehash: 6d9d8cf6ca9ca3afc570c2c68510125200b96c60
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/16/2020
-ms.locfileid: "83440172"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074472"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticação e autorização para SPAs
 
 O ASP.NET Core 3,0 ou posterior oferece autenticação em aplicativos de página única (SPAs) usando o suporte para autorização de API. ASP.NET Core Identity para autenticação e armazenamento de usuários é combinado com o [IdentityServer](https://identityserver.io/) para implementar o Open ID Connect.
 
-Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e **reajam** que é semelhante ao parâmetro de autenticação nos modelos de projeto de **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** ( Razor páginas). Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **reajam. js e Redux** não dá suporte ao parâmetro de autenticação no momento.
+Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e **reajam** que é semelhante ao parâmetro de autenticação nos modelos de projeto de **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** ( Razor páginas). Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **React.js e Redux** não dá suporte ao parâmetro de autenticação neste momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Criar um aplicativo com suporte à autorização de API
 
@@ -49,6 +49,8 @@ O comando anterior cria um aplicativo ASP.NET Core com um diretório *ClientApp*
 As seções a seguir descrevem as adições ao projeto quando o suporte à autenticação é incluído:
 
 ### <a name="startup-class"></a>Classe de inicialização
+
+Os exemplos de código a seguir dependem do pacote NuGet [Microsoft. AspNetCore. ApiAuthorization. IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) . Os exemplos configuram a autenticação e a autorização da API usando os <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> métodos de extensão e. Os projetos que usam os modelos de projeto de SPA de reagir ou angulares com autenticação incluem uma referência a esse pacote.
 
 A `Startup` classe tem as seguintes adições:
 
@@ -115,7 +117,7 @@ No arquivo *Controllers\OidcConfigurationController.cs* , observe o ponto de ext
 
 ### <a name="appsettingsjson"></a>appsettings.json
 
-No arquivo *appSettings. JSON* da raiz do projeto, há uma nova `IdentityServer` seção que descreve a lista de clientes configurados. No exemplo a seguir, há um único cliente. O nome do cliente corresponde ao nome do aplicativo e é mapeado por convenção para o `ClientId` parâmetro OAuth. O perfil indica o tipo de aplicativo que está sendo configurado. Ele é usado internamente para direcionar as convenções que simplificam o processo de configuração para o servidor. Há vários perfis disponíveis, conforme explicado na seção [perfis de aplicativo](#application-profiles) .
+No *appsettings.jsno* arquivo da raiz do projeto, há uma nova `IdentityServer` seção que descreve a lista de clientes configurados. No exemplo a seguir, há um único cliente. O nome do cliente corresponde ao nome do aplicativo e é mapeado por convenção para o `ClientId` parâmetro OAuth. O perfil indica o tipo de aplicativo que está sendo configurado. Ele é usado internamente para direcionar as convenções que simplificam o processo de configuração para o servidor. Há vários perfis disponíveis, conforme explicado na seção [perfis de aplicativo](#application-profiles) .
 
 ```json
 "IdentityServer": {
@@ -127,9 +129,9 @@ No arquivo *appSettings. JSON* da raiz do projeto, há uma nova `IdentityServer`
 }
 ```
 
-### <a name="appsettingsdevelopmentjson"></a>AppSettings. Development. JSON
+### <a name="appsettingsdevelopmentjson"></a>appsettings.Development.jsem
 
-Em *appSettings. Arquivo Development. JSON* da raiz do projeto, há uma `IdentityServer` seção que descreve a chave usada para assinar tokens. Ao implantar na produção, uma chave precisa ser provisionada e implantada juntamente com o aplicativo, conforme explicado na seção [implantar na produção](#deploy-to-production) .
+No *appsettings.Development.jsno* arquivo da raiz do projeto, há uma `IdentityServer` seção que descreve a chave usada para assinar tokens. Ao implantar na produção, uma chave precisa ser provisionada e implantada juntamente com o aplicativo, conforme explicado na seção [implantar na produção](#deploy-to-production) .
 
 ```json
 "IdentityServer": {
@@ -159,12 +161,12 @@ O suporte de autorização de API e autenticação no modelo angular reside em s
 O suporte para autenticação e autorização de API no modelo reagir reside no diretório *ClientApp\src\components\api-Authorization* Ele é composto pelos seguintes elementos:
 
 * 4 componentes:
-  * *Login. js*: manipula o fluxo de logon do aplicativo.
-  * *Logout. js*: manipula o fluxo de logout do aplicativo.
-  * *LoginMenu. js*: um widget que exibe um dos seguintes conjuntos de links:
+  * *Login.js*: manipula o fluxo de logon do aplicativo.
+  * *Logout.js*: manipula o fluxo de logout do aplicativo.
+  * *LoginMenu.js*: um widget que exibe um dos seguintes conjuntos de links:
     * Os links de gerenciamento de perfil de usuário e logoff quando o usuário é autenticado.
     * Os links de registro e logon quando o usuário não está autenticado.
-  * *AuthorizeRoute. js*: um componente de rota que requer que um usuário seja autenticado antes de renderizar o componente indicado no `Component` parâmetro.
+  * *AuthorizeRoute.js*: um componente de rota que exige que um usuário seja autenticado antes de renderizar o componente indicado no `Component` parâmetro.
 * Uma instância exportada `authService` da classe `AuthorizeService` que manipula os detalhes de nível inferior do processo de autenticação e expõe informações sobre o usuário autenticado para o restante do aplicativo para consumo.
 
 Agora que você já viu os principais componentes da solução, pode fazer uma análise mais profunda de cenários individuais para o aplicativo.
@@ -280,7 +282,7 @@ Para implantar o aplicativo na produção, os seguintes recursos precisam ser pr
 
 Esta seção descreve a implantação do aplicativo no serviço Azure App usando um certificado armazenado no repositório de certificados. Para modificar o aplicativo para carregar um certificado do repositório de certificados, um plano de serviço de camada Standard ou melhor é necessário quando você configura o aplicativo no portal do Azure em uma etapa posterior.
 
-No arquivo *appSettings. JSON* do aplicativo, modifique a `IdentityServer` seção para incluir os detalhes da chave:
+Naappsettings.jsdo aplicativo *no* arquivo, modifique a `IdentityServer` seção para incluir os detalhes da chave:
 
 ```json
 "IdentityServer": {

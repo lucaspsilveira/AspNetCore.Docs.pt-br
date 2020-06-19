@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 08229283882928c4cc733de19840d25872846c97
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: c90c3bf7ccef420101c66fe04d579920209b066c
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452025"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102333"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET CoreBlazor
 
@@ -54,7 +54,7 @@ Para começar a usar Blazor o, siga as orientações para sua escolha de ferrame
 
 1. Instale a extensão mais recente [do C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true` .
 
-  Para definir `debug.javascript.usePreview` como `true` usar a interface do usuário do **File**vs Code, abra  >  **Preferences**  >  **configurações** de preferências de arquivo e pesquise por `debug javascript use preview` . Marque a caixa de seleção para **usar o novo depurador de JavaScript em visualização para node. js e Chrome**.
+  Para definir `debug.javascript.usePreview` como `true` usar a interface do usuário do **File**vs Code, abra  >  **Preferences**  >  **configurações** de preferências de arquivo e pesquise por `debug javascript use preview` . Marque a caixa de seleção para **usar o novo depurador de JavaScript em visualização para Node.js e Chrome**.
 
 1. Para uma Blazor experiência de Webassembly, execute o seguinte comando em um shell de comando:
 
@@ -133,7 +133,7 @@ Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no 
 
 Várias páginas estão disponíveis em guias na barra lateral:
 
-* Início
+* Página Inicial
 * Contador
 * Buscar dados
 
@@ -162,7 +162,7 @@ Adicione um componente a outro componente usando a sintaxe HTML. Por exemplo, ad
 
 Execute o aplicativo. A Home Page tem seu próprio contador fornecido pelo `Counter` componente.
 
-Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components#child-content), que permitem definir propriedades no componente filho. Para adicionar um parâmetro ao `Counter` componente, atualize o bloco do componente `@code` :
+Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components/index#child-content), que permitem definir propriedades no componente filho. Para adicionar um parâmetro ao `Counter` componente, atualize o bloco do componente `@code` :
 
 * Adicione uma propriedade pública para `IncrementAmount` com um [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) atributo.
 * Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.

@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: f99ac6aea7bd959473fdbbfeec6ba19d4dad4ff3
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: f4bba10f7ce0b5a95c2aed8644aed18fa0637457
+ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106540"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85074507"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -71,7 +71,7 @@ O exemplo anterior inclui uma única *rota para* o ponto de extremidade de códi
   * `Hello World!`é gravado na resposta HTTP. Por padrão, a URL raiz `/` é `https://localhost:5001/` .
 * Se o método de solicitação não for `GET` ou a URL raiz não for `/` , nenhuma correspondência de rota será retornada e um http 404 será retornado.
 
-### <a name="endpoint"></a>Ponto de Extremidade
+### <a name="endpoint"></a>Ponto de extremidade
 
 <a name="endpoint"></a>
 
@@ -500,7 +500,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra as restrições de rota de exemplo e seu comportamento esperado:
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` . Não diferenciam maiúsculas de minúsculas |
@@ -563,7 +563,7 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o `$` caractere e correspondem ao final da cadeia de caracteres. Os `^` `$` caracteres e garantem que a expressão regular corresponda ao valor do parâmetro de rota inteiro. Sem os `^` `$` caracteres e, a expressão regular corresponde a qualquer subcadeia de caracteres dentro da cadeia de caracteres, o que geralmente é indesejável. A tabela a seguir fornece exemplos e explica por que eles correspondem ou falham na correspondência:
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -833,7 +833,7 @@ Os links a seguir fornecem informações sobre como configurar metadados de pont
 * [Testar a autenticação com o atributo [autorizar]](xref:security/authentication/identity#test-identity)
 * <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Selecionando o esquema com o atributo [autorizar]](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
-* [Aplicando políticas usando o atributo [autorizar]](xref:security/authorization/policies#applying-policies-to-mvc-controllers)
+* [Aplicar políticas usando o atributo [autorizar]](xref:security/authorization/policies#apply-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
 
 <a name="hostmatch"></a>
@@ -1434,7 +1434,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro. |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou ' false. Não diferencia maiúsculas de minúsculas. |
@@ -1484,7 +1484,7 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere de cursor e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de sinal de dólar `$` e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -1884,7 +1884,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1928,7 +1928,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |

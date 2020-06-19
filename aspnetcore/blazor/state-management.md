@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: cfc2867baa03cbc0bedc9ad4a90244ec007094d6
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 3cc75406a1680dff4727527153a62856a594c8c7
+ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84105656"
+ms.lasthandoff: 06/19/2020
+ms.locfileid: "85102499"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>BlazorGerenciamento de estado ASP.NET Core
 
@@ -99,7 +99,7 @@ O conteúdo da barra de endereços do navegador é mantido:
 * Se o usuário recarregar a página manualmente.
 * Se o servidor Web ficar indisponível e o usuário for forçado a recarregar a página a fim de se conectar a um servidor diferente.
 
-Para obter informações sobre como definir padrões de URL com a `@page` diretiva, consulte <xref:blazor/routing> .
+Para obter informações sobre como definir padrões de URL com a `@page` diretiva, consulte <xref:blazor/fundamentals/routing> .
 
 ### <a name="client-side-in-the-browser"></a>Lado do cliente no navegador
 
@@ -196,7 +196,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , não <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>é chamado apenas uma vez quando o componente é instanciado primeiro. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>Não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página. Para obter mais informações, consulte <xref:blazor/lifecycle>.
+Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> , não <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> . <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>é chamado apenas uma vez quando o componente é instanciado primeiro. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>Não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página. Para obter mais informações, consulte <xref:blazor/components/lifecycle>.
 
 > [!WARNING]
 > Os exemplos nesta seção só funcionarão se o servidor não tiver o pré-processamento habilitado. Com o pré-processamento habilitado, um erro é gerado semelhante a:
