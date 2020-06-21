@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: f72edda54d4201915e2494b75b4d49ec6c9c6d75
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: ff44b4b80385ffbd1a6659b2684ef2a8055ee2d0
+ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652842"
+ms.lasthandoff: 06/20/2020
+ms.locfileid: "85122107"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-razor-page"></a>Parte 8, adicionar validação a uma página de ASP.NET Core Razor
 
@@ -119,7 +119,7 @@ Examine a classe `Movie`. O namespace `System.ComponentModel.DataAnnotations` fo
 
 Os atributos `DataType` fornecem apenas dicas para que o mecanismo de exibição formate os dados (e fornece atributos como `<a>` para as URLs e `<a href="mailto:EmailAddress.com">` para o email). Use o atributo `RegularExpression` para validar o formato dos dados. O atributo `DataType` é usado para especificar um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Os atributos `DataType` não são atributos de validação. No aplicativo de exemplo, apenas a data é exibida, sem a hora.
 
-A Enumeração `DataType` fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress e muito mais. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo, um link `mailto:` pode ser criado para `DataType.EmailAddress`. Um seletor de data pode ser fornecido para `DataType.Date` em navegadores que dão suporte a HTML5. Os atributos `DataType` emitem atributos `data-` HTML 5 (pronunciados “data dash”) que são consumidos pelos navegadores HTML 5. Os atributos `DataType`**não** fornecem nenhuma validação.
+A Enumeração `DataType` fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress e muito mais. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo, um link `mailto:` pode ser criado para `DataType.EmailAddress`. Um seletor de data pode ser fornecido para `DataType.Date` em navegadores que dão suporte a HTML5. Os `DataType` atributos emitem HTML 5 `data-` (pronunciado dados Dash) os atributos que os navegadores HTML 5 consomem. Os atributos `DataType`**não** fornecem nenhuma validação.
 
 `DataType.Date` não especifica o formato da data exibida. Por padrão, o campo de dados é exibido de acordo com os formatos padrão com base nas `CultureInfo` do servidor.
 
@@ -138,9 +138,9 @@ O atributo `DisplayFormat` pode ser usado por si só, mas geralmente é uma boa 
 
 * O navegador pode habilitar os recursos do HTML5 (por exemplo, mostrar um controle de calendário, o símbolo de moeda apropriado à localidade, links de email, etc.)
 * Por padrão, o navegador renderizará os dados usando o formato correto de acordo com a localidade.
-* O atributo `DataType` pode permitir que a estrutura ASP.NET Core escolha o modelo de campo correto para renderizar os dados. O `DisplayFormat`, se usado por si só, usa o modelo de cadeia de caracteres.
+* O atributo `DataType` pode permitir que a estrutura ASP.NET Core escolha o modelo de campo correto para renderizar os dados. O `DisplayFormat` , se usado por si só, usa o modelo de cadeia de caracteres.
 
-Observação: a validação do jQuery não funciona com os atributos `Range` e `DateTime`. Por exemplo, o seguinte código sempre exibirá um erro de validação do lado do cliente, mesmo quando a data estiver no intervalo especificado:
+**Observação:** a validação do jQuery não funciona com o `Range` atributo e `DateTime` . Por exemplo, o seguinte código sempre exibirá um erro de validação do lado do cliente, mesmo quando a data estiver no intervalo especificado:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
