@@ -1,31 +1,37 @@
 ---
-title: Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
+title: RazorPáginas com Entity Framework Core no ASP.NET Core-tutorial 1 de 8
 author: rick-anderson
-description: Mostra como criar um aplicativo das Páginas do Razor usando o Entity Framework Core
+description: Mostra como criar um Razor aplicativo de páginas usando Entity Framework Core
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
+no-loc:
+- Blazor
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 07faf5e596e7ea8b134d13caa0259c1e9d74ff1b
-ms.sourcegitcommit: 5547d920f322e5a823575c031529e4755ab119de
+ms.openlocfilehash: a6915da23124b7ed4bfaa982692635f9fc75f96a
+ms.sourcegitcommit: 726b8c5cf92e6f6a4d0205787b19307e889d6240
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81661622"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "82967501"
 ---
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
+# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>RazorPáginas com Entity Framework Core no ASP.NET Core-tutorial 1 de 8
 
 Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Este é o primeiro de uma série de tutoriais que mostram como usar o Entity Framework (EF) Core em um aplicativo [ASP.NET Core Razor Pages.](xref:razor-pages/index) O tutorial cria um site de uma Contoso University fictícia. O site inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. O tutorial usa a primeira abordagem de código. Para obter informações sobre como seguir este tutorial usando a primeira abordagem do banco de dados, consulte [este problema do Github](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+Este é o primeiro de uma série de tutoriais que mostram como usar o Entity Framework (EF) Core em um aplicativo [ASP.NET Core Razor pages](xref:razor-pages/index) . O tutorial cria um site de uma Contoso University fictícia. O site inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. O tutorial usa a abordagem Code First. Para obter informações sobre como seguir este tutorial usando a abordagem do banco de dados primeiro, consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* Se você for novo no Razor Pages, confira a série de tutoriais de [Introdução ao Razor Pages](xref:tutorials/razor-pages/razor-pages-start) antes de iniciar este.
+* Se você for novo em Razor páginas, consulte a série de tutoriais [introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start) antes de iniciar esta.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -65,7 +71,6 @@ Siga o link na parte superior da página para obter o código-fonte do projeto c
 
 Para executar o aplicativo depois de baixar o projeto concluído:
 
-* Exclua três arquivos e uma pasta que tenha *SQLite* no nome.
 * Compile o projeto.
 * No PMC (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
@@ -83,6 +88,7 @@ Para executar o aplicativo depois de baixar o projeto concluído:
 * Exclua *Startup.cs* e altere o nome de *StartupSQLite.cs* para *Startup.cs*.
 * Exclua *appSettings.json* e altere o nome de *appSettingsSQLite.json* para *appSettings.json*.
 * Exclua a pasta *Migrations* e altere o nome de *MigrationsSQL* para *Migrations*.
+* Faça uma pesquisa global para `#if SQLiteVersion` e remova `#if SQLiteVersion` e a `#endif` instrução associada.
 * Compile o projeto.
 * Em um prompt de comando na pasta do projeto, execute os seguintes comandos:
 
@@ -114,7 +120,7 @@ Para executar o aplicativo depois de baixar o projeto concluído:
 
 * Em um terminal, navegue até a pasta na qual a pasta do projeto deve ser criada.
 
-* Execute os comandos a seguir para criar um projeto do Razor Pages `cd` para a nova pasta do projeto:
+* Execute os seguintes comandos para criar um Razor projeto de páginas e `cd` para a nova pasta de projeto:
 
   ```dotnetcli
   dotnet new webapp -o ContosoUniversity
@@ -159,7 +165,7 @@ Um aluno pode ser registrado em qualquer quantidade de cursos e um curso pode te
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
-A propriedade `ID` se torna a coluna de chave primária da tabela de banco de dados que corresponde a essa classe. Por padrão, o EF Core interpreta uma propriedade nomeada `ID` ou `classnameID` como a chave primária. Portanto, o nome alternativo reconhecido automaticamente para a chave primária da classe `Student` é `StudentID`. Para obter mais informações, consulte [EF Core - Keys](/ef/core/modeling/keys?tabs=data-annotations).
+A propriedade `ID` se torna a coluna de chave primária da tabela de banco de dados que corresponde a essa classe. Por padrão, o EF Core interpreta uma propriedade nomeada `ID` ou `classnameID` como a chave primária. Portanto, o nome alternativo reconhecido automaticamente para a chave primária da classe `Student` é `StudentID`. Para obter mais informações, consulte [chaves de EF Core](/ef/core/modeling/keys?tabs=data-annotations).
 
 A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação armazenam outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma entidade `Student` armazena todas as entidades `Enrollment` relacionadas àquele Aluno. Por exemplo, se uma linha Aluno no banco de dados tiver duas linhas Registro relacionadas, a propriedade de navegação `Enrollments` conterá duas entidades de Registro. 
 
@@ -204,14 +210,14 @@ Compile o projeto para validar que não há erros de compilador.
 Nesta seção, você usa a ferramenta de scaffolding do ASP.NET Core para gerar:
 
 * Uma classe *contexto* do EF Core. O contexto é a classe principal que coordena a funcionalidade do Entity Framework para determinado modelo de dados. Ele deriva da classe `Microsoft.EntityFrameworkCore.DbContext`.
-* Páginas do Razor que lidam com as operações CRUD (criar, ler, atualizar e excluir) para a entidade `Student`.
+* Razorpáginas que lidam com as operações CRUD (criar, ler, atualizar e excluir) para a `Student` entidade.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Crie uma pasta *Alunos* na pasta *Páginas*.
 * No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Páginas/Alunos* e selecione **Adicionar** > **Novo Item com Scaffold**.
-* Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
-* Na caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+* Na caixa de diálogo **Adicionar Scaffold** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Adicionar**.
+* Na caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
   * Na lista suspensa **classe Modelo**, selecione **Aluno (ContosoUniversity.Models)**.
   * Na linha **Classe de contexto de dados**, selecione o sinal de **+** (adição).
   * Altere o nome do contexto de dados de *ContosoUniversity.Models.ContosoUniversityContext* para *ContosoUniversity.Data.SchoolContext*.
@@ -270,7 +276,7 @@ Se você tiver um problema com a etapa anterior, compile o projeto e repita a et
 
 O processo de scaffolding:
 
-* Cria páginas do Razor na pasta *Pages/Students:*
+* Cria Razor páginas na pasta *páginas/alunos* :
   * *Create.cshtml* e *Create.cshtml.cs*
   * *Delete.cshtml* e *Delete.cshtml.cs*
   * *Details.cshtml* e *Details.cshtml.cs*
@@ -306,20 +312,20 @@ Atualize *SchoolContext.cs* com o seguinte código:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-O código destacado cria uma propriedade [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. Na terminologia do EF Core:
+O código realçado cria uma propriedade [DbSet \<TEntity> ](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. Na terminologia do EF Core:
 
 * Um conjunto de entidades normalmente corresponde a uma tabela de banco de dados.
 * Uma entidade corresponde a uma linha da tabela.
 
 Como um conjunto de entidades contém várias entidades, as propriedades DBSet devem ser nomes no plural. Como a ferramenta scaffolding criou um`Student` DBSet, essa etapa o altera para o `Students` no plural. 
 
-Para fazer com que o código do Razor Pages corresponda ao novo nome do DBSet, faça uma alteração global em todo o projeto de `_context.Student` para `_context.Students`.  Há oito ocorrências.
+Para fazer com que o Razor código das páginas corresponda ao novo nome de DBSet, faça uma alteração global em todo o projeto de `_context.Student` para `_context.Students` .  Há oito ocorrências.
 
 Compile o projeto para verificar se não há erros de compilador.
 
 ## <a name="startupcs"></a>Startup.cs
 
-O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de banco de dados do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do banco de dados é mostrado mais adiante no tutorial.
+O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de banco de dados do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do banco de dados é mostrado mais adiante no tutorial.
 
 A ferramenta de scaffolding registrou automaticamente a classe de contexto com o contêiner de injeção de dependência.
 
@@ -367,7 +373,7 @@ Posteriormente na série de tutoriais, você excluirá o banco de dados que foi 
 O método `EnsureCreated` cria um banco de dados vazio. Esta seção adiciona um código que preenche o banco de dados com os dados de teste.
 
 Crie *Data/DbInitializer.cs* com o seguinte código:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   O código verifica se há alunos no banco de dados. Se não houver nenhum aluno, ele adicionará dados de teste ao banco de dados. Ele carrega os dados de teste em matrizes, em vez de em coleções de `List<T>`, para otimizar o desempenho.
@@ -454,7 +460,7 @@ Para obter mais informações sobre a programação assíncrona, consulte [Visã
 
 ::: moniker range="< aspnetcore-3.0"
 
-O aplicativo Web de exemplo Contoso University demonstra como criar um aplicativo Razor Pages do ASP.NET Core usando o EF (Entity Framework) Core.
+O aplicativo Web de exemplo Contoso University demonstra como criar um Razor aplicativo de páginas ASP.NET Core usando Entity Framework (EF) Core.
 
 O aplicativo de exemplo é um site de uma Contoso University fictícia. Ele inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. Esta página é a primeira de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University.
 
@@ -472,7 +478,7 @@ O aplicativo de exemplo é um site de uma Contoso University fictícia. Ele incl
 
 ---
 
-Familiaridade com as [Páginas do Razor](xref:razor-pages/index). Os novos programadores devem concluir a [Introdução às Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start) antes de começar esta série.
+Familiaridade com [ Razor páginas](xref:razor-pages/index). Os novos programadores devem concluir a [introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start) antes de iniciar esta série.
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
@@ -488,9 +494,9 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
 ![Página Editar Alunos](intro/_static/student-edit.png)
 
-O estilo de interface do usuário deste site é próximo ao que é gerado pelos modelos internos. O foco do tutorial é o EF Core com as Páginas do Razor, não a interface do usuário.
+O estilo de interface do usuário deste site é próximo ao que é gerado pelos modelos internos. O foco do tutorial está em EF Core com Razor páginas, não na interface do usuário.
 
-## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Criar o aplicativo Web Razor Pages da ContosoUniversity
+## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Criar o Razor aplicativo Web ContosoUniversity Pages
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -498,7 +504,7 @@ O estilo de interface do usuário deste site é próximo ao que é gerado pelos 
 * Crie um novo Aplicativo Web ASP.NET Core. Nomeie o projeto **ContosoUniversity**. É importante nomear o projeto *ContosoUniversity* para que os namespaces sejam correspondentes quando o código for copiado/colado.
 * Selecione **ASP.NET Core 2.1** na lista suspensa e selecione **Aplicativo Web**.
 
-Para ver imagens das etapas anteriores, confira [Criar um aplicativo Web do Razor](xref:tutorials/razor-pages/razor-pages-start#create-a-razor-pages-web-app).
+Para imagens das etapas anteriores, consulte [criar um Razor aplicativo Web](xref:tutorials/razor-pages/razor-pages-start#create-a-razor-pages-web-app).
 Execute o aplicativo.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -591,9 +597,9 @@ Nesta seção, é feito o scaffold do modelo de aluno. Ou seja, a ferramenta de 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Pages/Students* > **Adicionar** > **Novo Item com Scaffold**.
-* Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+* Na caixa de diálogo **Adicionar Scaffold** , selecione ** Razor páginas usando Entity Framework (CRUD)** > **Adicionar**.
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor páginas usando Entity Framework (CRUD)** :
 
 * Na lista suspensa **classe Modelo**, selecione **Aluno (ContosoUniversity.Models)**.
 * Na linha **Classe de contexto de dados**, selecione o sinal de (mais) **+** e altere o nome gerado para **ContosoUniversity.Models.SchoolContext**.
@@ -630,7 +636,7 @@ O processo de scaffold criou e alterou os seguintes arquivos:
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar o contexto registrado com a injeção de dependência
 
-O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD é mostrado mais adiante no tutorial.
+O ASP.NET Core é construído com a [injeção de dependência](xref:fundamentals/dependency-injection). Serviços (como o contexto de BD do EF Core) são registrados com injeção de dependência durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como Razor páginas) são fornecidos a esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD é mostrado mais adiante no tutorial.
 
 A ferramenta de scaffolding criou automaticamente um contexto de BD e o registrou no contêiner da injeção de dependência.
 
@@ -678,7 +684,7 @@ Atualize *SchoolContext.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu21/Data/SchoolContext.cs?name=snippet_Intro&highlight=12-14)]
 
-O código destacado cria uma propriedade [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. Na terminologia do EF Core:
+O código realçado cria uma propriedade [DbSet \<TEntity> ](/dotnet/api/microsoft.entityframeworkcore.dbset-1) para cada conjunto de entidades. Na terminologia do EF Core:
 
 * Um conjunto de entidades normalmente corresponde a uma tabela de BD.
 * Uma entidade corresponde a uma linha da tabela.
@@ -697,7 +703,7 @@ Na pasta *Dados*, crie um novo arquivo de classe chamado *DbInitializer.cs* e ad
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
-Nota: O `Models` código precedente é`namespace ContosoUniversity.Models`necessário `Data`para o namespace ( ) em vez de . `Models` é consistente com o código gerado pelo scaffolder. Para saber mais, confira [este problema de scaffolding do GitHub](https://github.com/aspnet/Scaffolding/issues/822).
+Observação: o código anterior usa `Models` para o namespace ( `namespace ContosoUniversity.Models` ) em vez de `Data` . `Models` é consistente com o código gerado pelo scaffolder. Para saber mais, confira [este problema de scaffolding do GitHub](https://github.com/aspnet/Scaffolding/issues/822).
 
 O código verifica se há alunos no BD. Se não houver nenhum aluno no BD, o BD será inicializado com os dados de teste. Ele carrega os dados de teste em matrizes em vez de em coleções `List<T>` para otimizar o desempenho.
 

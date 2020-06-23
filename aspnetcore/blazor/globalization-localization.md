@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 42b61c9af0c1809ecb7d9a45ec8edfa815e2df22
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 5050d99e5304c7edaf6faa43f05298b69882521d
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102320"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243584"
 ---
 # <a name="aspnet-core-blazor-globalization-and-localization"></a>ASP.NET Core Blazor globalização e localização
 
@@ -71,7 +71,7 @@ Para configurar explicitamente a cultura, defina <xref:System.Globalization.Cult
 
 Por padrão, a Blazor configuração do vinculador para Blazor aplicativos Webassembly retira informações de internacionalização, exceto as localidades explicitamente solicitadas. Para obter mais informações e orientação sobre como controlar o comportamento do vinculador, consulte <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization> .
 
-Embora a cultura que Blazor seleciona por padrão possa ser suficiente para a maioria dos usuários, considere a possibilidade de oferecer uma maneira para os usuários especificarem sua localidade preferida. Para um Blazor aplicativo de exemplo Webassembly com um seletor de cultura, consulte o aplicativo de exemplo de localização [LocSample](https://github.com/pranavkm/LocSample) .
+Embora a cultura que Blazor seleciona por padrão possa ser suficiente para a maioria dos usuários, considere a possibilidade de oferecer uma maneira para os usuários especificarem sua localidade preferida. Para um Blazor aplicativo de exemplo Webassembly com um seletor de cultura, consulte o [`LocSample`](https://github.com/pranavkm/LocSample) aplicativo de exemplo de localização.
 
 ### <a name="blazor-server"></a>BlazorServidor
 
@@ -92,7 +92,7 @@ O uso de um cookie garante que a conexão WebSocket possa propagar corretamente 
 
 Qualquer técnica pode ser usada para atribuir uma cultura se a cultura persistir em um cookie de localização. Se o aplicativo já tiver um esquema de localização estabelecido para ASP.NET Core do lado do servidor, continue a usar a infraestrutura de localização existente do aplicativo e defina o cookie de cultura de localização no esquema do aplicativo.
 
-O exemplo a seguir mostra como definir a cultura atual em um cookie que pode ser lido pelo middleware de localização. Crie uma Razor expressão no arquivo *Pages/_Host. cshtml* imediatamente dentro da marca de abertura `<body>` :
+O exemplo a seguir mostra como definir a cultura atual em um cookie que pode ser lido pelo middleware de localização. Crie uma Razor expressão no `Pages/_Host.cshtml` arquivo imediatamente dentro da marca de abertura `<body>` :
 
 ```cshtml
 @using System.Globalization
@@ -118,7 +118,7 @@ A localização é manipulada pelo aplicativo na seguinte sequência de eventos:
 
 1. O navegador envia uma solicitação HTTP inicial para o aplicativo.
 1. A cultura é atribuída pelo middleware de localização.
-1. A Razor expressão na `_Host` página (*_Host. cshtml*) persiste a cultura em um cookie como parte da resposta.
+1. A Razor expressão na `_Host` página ( `_Host.cshtml` ) persiste a cultura em um cookie como parte da resposta.
 1. O navegador abre uma conexão WebSocket para criar uma Blazor sessão de servidor interativa.
 1. O middleware de localização lê o cookie e atribui a cultura.
 1. A Blazor sessão de servidor começa com a cultura correta.
