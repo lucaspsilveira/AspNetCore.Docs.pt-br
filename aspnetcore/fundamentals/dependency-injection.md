@@ -5,7 +5,7 @@ description: Saiba como o ASP.NET Core implementa a injeção de dependência e 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 06/21/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: ddb583f69758055500ff63960f469c1cea44c77e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 34ed08a5b49b56fd37628032ac73fe03a34448e6
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102590"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240844"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -197,9 +197,13 @@ Escolha um tempo de vida apropriado para cada serviço registrado. Os serviços 
 
 Serviços temporários de tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) são criados cada vez que são solicitados pelo contêiner de serviço. Esse tempo de vida funciona melhor para serviços leves e sem estado.
 
+Em aplicativos que processam solicitações, os serviços transitórios são descartados no final da solicitação.
+
 ### <a name="scoped"></a>Com escopo
 
 Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) com escopo são criados uma vez por solicitação de cliente (conexão).
+
+Em aplicativos que processam solicitações, os serviços com escopo são descartados no final da solicitação.
 
 > [!WARNING]
 > Ao usar um serviço com escopo em um middleware, injete o serviço no método `Invoke` ou `InvokeAsync`. Não injetar via [injeção de Construtor](xref:mvc/controllers/dependency-injection#constructor-injection) porque força o serviço a se comportar como um singleton. Para obter mais informações, consulte <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -207,6 +211,8 @@ Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.S
 ### <a name="singleton"></a>Singleton
 
 Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) são criados na primeira solicitação (ou quando `Startup.ConfigureServices` é executado e uma instância é especificada com o registro do serviço). Cada solicitação subsequente usa a mesma instância. Se o aplicativo exigir um comportamento de singleton, recomendamos permitir que o contêiner do serviço gerencie o tempo de vida do serviço. Não implemente o padrão de design singleton e forneça o código de usuário para gerenciar o tempo de vida do objeto na classe.
+
+Em aplicativos que processam solicitações, os serviços singleton são descartados quando o <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> é Descartado no desligamento do aplicativo.
 
 > [!WARNING]
 > É perigoso resolver um serviço com escopo de um singleton. Pode fazer com que o serviço tenha um estado incorreto durante o processamento das solicitações seguintes.
@@ -217,11 +223,11 @@ Os métodos de extensão de registro de serviço oferecem sobrecargas que são �
 
 | Método | Automático<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sim | Sim | Não |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sim | Sim | Sim |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<MyDep>();` | Sim | Não | Não |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Não | Sim | Sim |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Não | Não | Sim |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Yes | Sim | No |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<MyDep>();` | Sim | No | Não |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Não | Sim | Yes |
+| `AddSingleton(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | No | Não | Sim |
 
 Para obter mais informações sobre o descarte de tipos, consulte a seção [Descarte de serviços](#disposal-of-services). Um cenário comum para várias implementações é a [simulação de tipos para teste](xref:test/integration-tests#inject-mock-services).
 
@@ -774,9 +780,13 @@ Escolha um tempo de vida apropriado para cada serviço registrado. Os serviços 
 
 Serviços temporários de tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) são criados cada vez que são solicitados pelo contêiner de serviço. Esse tempo de vida funciona melhor para serviços leves e sem estado.
 
+Em aplicativos que processam solicitações, os serviços transitórios são descartados no final da solicitação.
+
 ### <a name="scoped"></a>Com escopo
 
 Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) com escopo são criados uma vez por solicitação de cliente (conexão).
+
+Em aplicativos que processam solicitações, os serviços com escopo são descartados no final da solicitação.
 
 > [!WARNING]
 > Ao usar um serviço com escopo em um middleware, injete o serviço no método `Invoke` ou `InvokeAsync`. Não injetar via [injeção de Construtor](xref:mvc/controllers/dependency-injection#constructor-injection) porque força o serviço a se comportar como um singleton. Para obter mais informações, consulte <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -784,6 +794,8 @@ Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.S
 ### <a name="singleton"></a>Singleton
 
 Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) são criados na primeira solicitação (ou quando `Startup.ConfigureServices` é executado e uma instância é especificada com o registro do serviço). Cada solicitação subsequente usa a mesma instância. Se o aplicativo exigir um comportamento de singleton, recomendamos permitir que o contêiner do serviço gerencie o tempo de vida do serviço. Não implemente o padrão de design singleton e forneça o código de usuário para gerenciar o tempo de vida do objeto na classe.
+
+Em aplicativos que processam solicitações, os serviços singleton são descartados quando o <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> é Descartado no desligamento do aplicativo.
 
 > [!WARNING]
 > É perigoso resolver um serviço com escopo de um singleton. Pode fazer com que o serviço tenha um estado incorreto durante o processamento das solicitações seguintes.
@@ -794,11 +806,11 @@ Os métodos de extensão de registro de serviço oferecem sobrecargas que são �
 
 | Método | Automático<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sim | Sim | Não |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sim | Sim | Sim |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<MyDep>();` | Sim | Não | Não |
-| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Não | Sim | Sim |
-| `AddSingleton(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | Não | Não | Sim |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Yes | Sim | No |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<MyDep>();` | Sim | No | Não |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | Não | Sim | Yes |
+| `AddSingleton(new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | No | Não | Sim |
 
 Para obter mais informações sobre o descarte de tipos, consulte a seção [Descarte de serviços](#disposal-of-services). Um cenário comum para várias implementações é a [simulação de tipos para teste](xref:test/integration-tests#inject-mock-services).
 

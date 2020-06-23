@@ -1,4 +1,4 @@
-O `App` componente (*app. Razor*) é semelhante ao `App` componente encontrado nos aplicativos de servidor mais incrivelmente:
+O `App` componente ( `App.razor` ) é semelhante ao `App` componente encontrado nos aplicativos de servidor mais incrivelmente:
 
 * O <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> componente gerencia a exposição do <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> ao restante do aplicativo.
 * O <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> componente garante que o usuário atual esteja autorizado a acessar uma determinada página ou, de outra forma, renderiza o `RedirectToLogin` componente.

@@ -24,7 +24,7 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
 }
 ```
 
-Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly do mais claro) ou *páginas/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de `wwwroot/index.html` (Webassembly mais claro) ou `Pages/_Host.cshtml` (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
 
 ```html
 <script>
@@ -72,7 +72,7 @@ Set value via JS interop call:
 }
 ```
 
-Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly do mais claro) ou *páginas/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e retorna um valor:
+Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do `<head>` elemento de `wwwroot/index.html` (Webassembly mais claro) ou `Pages/_Host.cshtml` (servidor mais incrivelmente). A função é chamada com <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> e retorna um valor:
 
 ```html
 <script>

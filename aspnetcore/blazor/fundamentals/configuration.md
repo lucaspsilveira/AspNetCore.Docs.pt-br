@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: b43eae03c71cabbaafa2bc0d704765e89f743279
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 0e36b81d771b07e85158724c02210ee50a3ab118
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103552"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242674"
 ---
 # <a name="aspnet-core-blazor-configuration"></a>Configuração de ASP.NET Core Blazor
 
@@ -28,8 +28,8 @@ ms.locfileid: "85103552"
 BlazorO Webassembly carrega a configuração de:
 
 * Arquivos de configurações do aplicativo por padrão:
-  * *wwwroot/appsettings.jsem*
-  * *wwwroot/appSettings. {ENVIRONMENT}. JSON*
+  * `wwwroot/appsettings.json`
+  * `wwwroot/appsettings.{ENVIRONMENT}.json`
 * Outros [provedores de configuração](xref:fundamentals/configuration/index) registrados pelo aplicativo. Nem todos os provedores são apropriados para Blazor aplicativos Webassembly. O esclarecimento sobre quais provedores têm suporte para o Blazor Webassembly é acompanhado pelos [provedores de configuração do Clarify para Blazor WASM (dotNet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
@@ -39,7 +39,7 @@ Para obter mais informações sobre provedores de configuração, consulte <xref
 
 ## <a name="app-settings-configuration"></a>Configuração de configurações do aplicativo
 
-*wwwroot/appsettings.jsem*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -112,9 +112,9 @@ Injetar uma <xref:Microsoft.Extensions.Configuration.IConfiguration> instância 
 }
 ```
 
-Para ler outros arquivos de configuração da pasta *wwwroot* para a configuração, use um <xref:System.Net.Http.HttpClient> para obter o conteúdo do arquivo. Ao usar essa abordagem, o <xref:System.Net.Http.HttpClient> registro de serviço existente pode usar o cliente local criado para ler o arquivo, como mostra o exemplo a seguir:
+Para ler outros arquivos de configuração da `wwwroot` pasta para a configuração, use um <xref:System.Net.Http.HttpClient> para obter o conteúdo do arquivo. Ao usar essa abordagem, o <xref:System.Net.Http.HttpClient> registro de serviço existente pode usar o cliente local criado para ler o arquivo, como mostra o exemplo a seguir:
 
-*wwwroot/cars.jsem*:
+`wwwroot/cars.json`:
 
 ```json
 {
@@ -144,7 +144,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## <a name="authentication-configuration"></a>Configuração de autenticação
 
-*wwwroot/appsettings.jsem*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -164,13 +164,13 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>Configuração de log
 
-Adicione uma referência de pacote para [Microsoft.Extensions.Logging.Configuração](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
+Adicione uma referência de pacote para [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/) :
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-*wwwroot/appsettings.jsem*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -208,6 +208,6 @@ var hostname = builder.Configuration["HostName"];
 Os arquivos de configuração são armazenados em cache para uso offline. Com [PWAs (aplicativos Web progressivos)](xref:blazor/progressive-web-app), você só pode atualizar arquivos de configuração ao criar uma nova implantação. A edição de arquivos de configuração entre implantações não tem efeito porque:
 
 * Os usuários têm versões em cache dos arquivos que eles continuam a usar.
-* Os arquivos de *service-worker.js* e *service-worker-assets.js* do PWA devem ser recriados na compilação, que sinalizam ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.
+* Os `service-worker.js` arquivos e do PWA `service-worker-assets.js` devem ser recriados na compilação, que sinaliza ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.
 
 Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates> .

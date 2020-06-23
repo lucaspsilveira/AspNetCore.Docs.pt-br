@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-ms.openlocfilehash: 78d524bc0271fd2640302bb0de78571ab688bef5
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1c71067528fb34ab141bb1ee846716834204ee40
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103571"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242453"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre Razor componentes de ASP.NET Core em Razor páginas e aplicativos MVC
 
@@ -37,7 +37,7 @@ Depois de [preparar o aplicativo](#prepare-the-app), use as diretrizes nas seç�
 
 Uma Razor página existente ou um aplicativo MVC pode integrar Razor componentes em páginas e exibições:
 
-1. No arquivo de layout do aplicativo (*_Layout. cshtml*):
+1. No arquivo de layout do aplicativo ( `_Layout.cshtml` ):
 
    * Adicione a seguinte `<base>` marcação ao `<head>` elemento:
 
@@ -47,7 +47,7 @@ Uma Razor página existente ou um aplicativo MVC pode integrar Razor componentes
 
      O `href` valor (o *caminho base do aplicativo*) no exemplo anterior pressupõe que o aplicativo reside no caminho da URL raiz ( `/` ). Se o aplicativo for um subaplicativo, siga as orientações na seção *caminho base do aplicativo* do <xref:blazor/host-and-deploy/index#app-base-path> artigo.
 
-     O arquivo *_Layout. cshtml* está localizado na pasta *páginas/compartilhada* em um Razor aplicativo de páginas ou em *exibições/pastas compartilhadas* em um aplicativo MVC.
+     O `_Layout.cshtml` arquivo está localizado na pasta *páginas/compartilhada* em um Razor aplicativo de páginas ou em *exibições/pastas compartilhadas* em um aplicativo MVC.
 
    * Adicione uma `<script>` marca para o script de *blazor.server.js* imediatamente antes da marca de fechamento `</body>` :
 
@@ -57,7 +57,7 @@ Uma Razor página existente ou um aplicativo MVC pode integrar Razor componentes
 
      A estrutura adiciona o script *blazor.server.js* ao aplicativo. Não é necessário adicionar manualmente o script ao aplicativo.
 
-1. Adicione um arquivo *_Imports. Razor* à pasta raiz do projeto com o seguinte conteúdo (altere o último namespace, `MyAppNamespace` , para o namespace do aplicativo):
+1. Adicione um `_Imports.razor` arquivo à pasta raiz do projeto com o seguinte conteúdo (altere o último namespace, `MyAppNamespace` , para o namespace do aplicativo):
 
    ```razor
    @using System.Net.Http
@@ -92,7 +92,7 @@ Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
 
 1. Siga as orientações na seção [preparar o aplicativo](#prepare-the-app) .
 
-1. Adicione um arquivo *app. Razor* à raiz do projeto com o seguinte conteúdo:
+1. Adicione um `App.razor` arquivo à raiz do projeto com o seguinte conteúdo:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -108,7 +108,7 @@ Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
    </Router>
    ```
 
-1. Adicione um arquivo *_Host. cshtml* à pasta *páginas* com o seguinte conteúdo:
+1. Adicione um `_Host.cshtml` arquivo à `Pages` pasta com o seguinte conteúdo:
 
    ```cshtml
    @page "/blazor"
@@ -121,14 +121,14 @@ Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
    </app>
    ```
 
-   Os componentes usam o arquivo *_Layout. cshtml* compartilhado para seu layout.
+   Os componentes usam o `_Layout.cshtml` arquivo compartilhado para seu layout.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se o `App` componente:
 
    * É renderizado na página.
    * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
-   | Modo de renderização | Descrição |
+   | Modo de renderização | Description |
    | ----------- | ----------- |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
@@ -136,7 +136,7 @@ Para dar suporte a componentes roteáveis Razor em Razor páginas aplicativos:
 
    Para obter mais informações sobre o auxiliar de marca de componente, consulte <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> .
 
-1. Adicione uma rota de baixa prioridade para a página *_Host. cshtml* à configuração do ponto de extremidade no `Startup.Configure` :
+1. Adicione uma rota de baixa prioridade à `_Host.cshtml` página para a configuração de ponto de extremidade no `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -167,7 +167,7 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
 
 1. Siga as orientações na seção [preparar o aplicativo](#prepare-the-app) .
 
-1. Adicione um arquivo *app. Razor* à raiz do projeto com o seguinte conteúdo:
+1. Adicione um `App.razor` arquivo à raiz do projeto com o seguinte conteúdo:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -183,7 +183,7 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
    </Router>
    ```
 
-1. Adicione um arquivo *_Host. cshtml* à pasta *views/Home* com o seguinte conteúdo:
+1. Adicione um `_Host.cshtml` arquivo à `Views/Home` pasta com o seguinte conteúdo:
 
    ```cshtml
    @{
@@ -195,14 +195,14 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
    </app>
    ```
 
-   Os componentes usam o arquivo *_Layout. cshtml* compartilhado para seu layout.
+   Os componentes usam o `_Layout.cshtml` arquivo compartilhado para seu layout.
    
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode>configura se o `App` componente:
 
    * É renderizado na página.
    * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um Blazor aplicativo por meio do agente do usuário.
 
-   | Modo de renderização | Descrição |
+   | Modo de renderização | Description |
    | ----------- | ----------- |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o `App` componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
    | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do `App` componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
@@ -219,7 +219,7 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
    }
    ```
 
-1. Adicione uma rota de baixa prioridade para a ação do controlador que retorna a exibição *_Host. cshtml* para a configuração do ponto de extremidade no `Startup.Configure` :
+1. Adicione uma rota de baixa prioridade para a ação do controlador que retorna a `_Host.cshtml` exibição para a configuração do ponto de extremidade no `Startup.Configure` :
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -230,7 +230,7 @@ Para dar suporte a componentes roteáveis Razor em aplicativos MVC:
    });
    ```
 
-1. Crie uma pasta de *páginas* e adicione componentes roteáveis ao aplicativo. Por exemplo:
+1. Crie uma `Pages` pasta e adicione componentes roteáveis ao aplicativo. Por exemplo:
 
    ```razor
    @page "/counter"
@@ -299,7 +299,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/c
 
 ## <a name="component-namespaces"></a>Namespaces de componente
 
-Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicione o namespace que representa a pasta à página/exibição ou ao arquivo *_ViewImports. cshtml* . No exemplo a seguir:
+Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicione o namespace que representa a pasta à página/exibição ou ao `_ViewImports.cshtml` arquivo. No exemplo a seguir:
 
 * Altere `MyAppNamespace` para o namespace do aplicativo.
 * Se uma pasta chamada *Components* não for usada para manter os componentes, altere `Components` para a pasta onde residem os componentes.
@@ -308,6 +308,6 @@ Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicio
 @using MyAppNamespace.Components
 ```
 
-O arquivo *_ViewImports. cshtml* está localizado na pasta *páginas* de um Razor aplicativo de páginas ou na pasta *views* de um aplicativo MVC.
+O `_ViewImports.cshtml` arquivo está localizado na `Pages` pasta de um Razor aplicativo de páginas ou na `Views` pasta de um aplicativo MVC.
 
 Para obter mais informações, consulte <xref:blazor/components/index#namespaces>.

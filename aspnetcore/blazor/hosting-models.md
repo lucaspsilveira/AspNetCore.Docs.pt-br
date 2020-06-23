@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: a5323534cd76cfb60008636066ca5dcb7308d134
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a54f92d1c951792e599992b82e6b6d5c85549292
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102267"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243493"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelos de hospedagem ASP.NET Core
 
@@ -36,9 +36,9 @@ O modelo de hospedagem principal para o Blazor está executando o lado do client
 
 ![BlazorWebassembly: o Blazor aplicativo é executado em um thread de interface do usuário dentro do navegador.](hosting-models/_static/blazor-webassembly.png)
 
-Para criar um Blazor aplicativo usando o modelo de hospedagem do lado do cliente, use o modelo de ** Blazor aplicativo Webassembly** ([dotnet novo blazorwasm](/dotnet/core/tools/dotnet-new)).
+Para criar um Blazor aplicativo usando o modelo de hospedagem do lado do cliente, use o modelo de ** Blazor aplicativo Webassembly** ( [`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new) ).
 
-Depois de selecionar o modelo de ** Blazor aplicativo Webassembly** , você tem a opção de configurar o aplicativo para usar um ASP.NET Core backend marcando a caixa de seleção **ASP.NET Core hospedado** ([dotnet New blazorwasm – hospedado](/dotnet/core/tools/dotnet-new)). O aplicativo ASP.NET Core serve o Blazor aplicativo aos clientes. O Blazor aplicativo Webassembly pode interagir com o servidor pela rede usando chamadas de API Web ou [SignalR](xref:signalr/introduction) ( <xref:tutorials/signalr-blazor-webassembly> ).
+Depois de selecionar o modelo de ** Blazor aplicativo Webassembly** , você tem a opção de configurar o aplicativo para usar um ASP.NET Core back-end marcando a caixa de seleção **ASP.NET Core hospedado** ( [`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new) ). O aplicativo ASP.NET Core serve o Blazor aplicativo aos clientes. O Blazor aplicativo Webassembly pode interagir com o servidor pela rede usando chamadas de API Web ou [SignalR](xref:signalr/introduction) ( <xref:tutorials/signalr-blazor-webassembly> ).
 
 Os modelos incluem o `blazor.webassembly.js` script que manipula:
 
@@ -67,7 +67,7 @@ Com o Blazor modelo de hospedagem do servidor, o aplicativo é executado no serv
 
 ![O navegador interage com o aplicativo (hospedado dentro de um aplicativo ASP.NET Core) no servidor por uma SignalR conexão.](hosting-models/_static/blazor-server.png)
 
-Para criar um Blazor aplicativo usando o Blazor modelo de Hospedagem de servidor, use o modelo de ** Blazor aplicativo ASP.NET Core Server** ([dotnet New blazorserver](/dotnet/core/tools/dotnet-new)). O aplicativo ASP.NET Core hospeda o Blazor aplicativo de servidor e cria o SignalR ponto de extremidade onde os clientes se conectam.
+Para criar um Blazor aplicativo usando o Blazor modelo de Hospedagem de servidor, use o modelo de ** Blazor aplicativo ASP.NET Core Server** ( [`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new) ). O aplicativo ASP.NET Core hospeda o Blazor aplicativo de servidor e cria o SignalR ponto de extremidade onde os clientes se conectam.
 
 O aplicativo ASP.NET Core referencia a classe do aplicativo `Startup` a ser adicionada:
 

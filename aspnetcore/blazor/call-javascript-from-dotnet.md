@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: de04992c3e3c7ce2dc73eee801484d5e3930fa3a
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: f39a1a3b78d8017738f83f4d191c7f11c7a6c9e6
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102467"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242532"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Chamar funções JavaScript de métodos .NET no ASP.NET CoreBlazor
 
@@ -34,13 +34,13 @@ Para chamar o JavaScript do .NET, use a <xref:Microsoft.JSInterop.IJSRuntime> ab
 
 Para Blazor aplicativos de servidor com pré-processamento habilitado, a chamada ao JavaScript não é possível durante o pré-processamento inicial. As chamadas de interoperabilidade do JavaScript devem ser adiadas até que a conexão com o navegador seja estabelecida. Para obter mais informações, consulte a seção [detectar quando um Blazor aplicativo de servidor está sendo renderizado](#detect-when-a-blazor-server-app-is-prerendering) .
 
-O exemplo a seguir é baseado em [textdecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), um decodificador baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript de um método C# que descarrega um requisito do código do desenvolvedor para uma API JavaScript existente. A função JavaScript aceita uma matriz de bytes de um método C#, decodifica a matriz e retorna o texto para o componente para exibição.
+O exemplo a seguir se baseia em [`TextDecoder`](https://developer.mozilla.org/docs/Web/API/TextDecoder) um decodificador baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript de um método C# que descarrega um requisito do código do desenvolvedor para uma API JavaScript existente. A função JavaScript aceita uma matriz de bytes de um método C#, decodifica a matriz e retorna o texto para o componente para exibição.
 
-Dentro do `<head>` elemento de *wwwroot/index.html* ( Blazor Webassembly) ou *pages/_Host. cshtml* ( Blazor servidor), forneça uma função JavaScript que usa `TextDecoder` para decodificar uma matriz passada e retornar o valor decodificado:
+Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma função JavaScript que usa `TextDecoder` para decodificar uma matriz passada e retornar o valor decodificado:
 
 [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-convertarray.html)]
 
-O código JavaScript, como o código mostrado no exemplo anterior, também pode ser carregado de um arquivo JavaScript (*. js*) com uma referência ao arquivo de script:
+O código JavaScript, como o código mostrado no exemplo anterior, também pode ser carregado de um arquivo JavaScript ( `.js` ) com uma referência ao arquivo de script:
 
 ```html
 <script src="exampleJsInterop.js"></script>
@@ -48,7 +48,7 @@ O código JavaScript, como o código mostrado no exemplo anterior, também pode 
 
 O seguinte componente:
 
-* Invoca a `convertArray` função JavaScript usando `JSRuntime` quando um botão de componente (**matriz de conversão**) é selecionado.
+* Invoca a `convertArray` função JavaScript usando `JSRuntime` quando um botão de componente ( **`Convert Array`** ) é selecionado.
 * Depois que a função JavaScript é chamada, a matriz passada é convertida em uma cadeia de caracteres. A cadeia de caracteres é retornada para o componente para exibição.
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
@@ -57,19 +57,19 @@ O seguinte componente:
 
 Para usar a <xref:Microsoft.JSInterop.IJSRuntime> abstração, adote qualquer uma das seguintes abordagens:
 
-* Injetar a <xref:Microsoft.JSInterop.IJSRuntime> abstração no Razor componente (*. Razor*):
+* Injetar a <xref:Microsoft.JSInterop.IJSRuntime> abstração no Razor componente ( `.razor` ):
 
   [!code-razor[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
-  Dentro do `<head>` elemento de *wwwroot/index.html* ( Blazor Webassembly) ou *pages/_Host. cshtml* ( Blazor servidor), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
+  Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged1.html)]
 
-* Injetar a <xref:Microsoft.JSInterop.IJSRuntime> abstração em uma classe (*. cs*):
+* Injetar a <xref:Microsoft.JSInterop.IJSRuntime> abstração em uma classe ( `.cs` ):
 
   [!code-csharp[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
-  Dentro do `<head>` elemento de *wwwroot/index.html* ( Blazor Webassembly) ou *pages/_Host. cshtml* ( Blazor servidor), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com `JSRuntime.InvokeAsync` e retorna um valor:
+  Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com `JSRuntime.InvokeAsync` e retorna um valor:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged2.html)]
 
@@ -85,23 +85,23 @@ No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas fun
 * `showPrompt`: Produz uma solicitação para aceitar a entrada do usuário (o nome do usuário) e retorna o nome para o chamador.
 * `displayWelcome`: Atribui uma mensagem de boas-vindas do chamador a um objeto DOM com um `id` de `welcome` .
 
-*wwwroot/exampleJsInterop.js*:
+`wwwroot/exampleJsInterop.js`:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Coloque a `<script>` marca que faz referência ao arquivo JavaScript no arquivo *wwwroot/index.html* ( Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* ( Blazor servidor).
+Coloque a `<script>` marca que faz referência ao arquivo JavaScript no `wwwroot/index.html` arquivo ( Blazor Webassembly) ou `Pages/_Host.cshtml` arquivo ( Blazor servidor).
 
-*wwwroot/index.html* ( Blazor Webassembly):
+`wwwroot/index.html`( Blazor Webassembly):
 
 [!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
-*Páginas/_Host. cshtml* ( Blazor servidor):
+`Pages/_Host.cshtml`( Blazor Servidor):
 
 [!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=35)]
 
 Não coloque uma `<script>` marca em um arquivo de componente porque a `<script>` marca não pode ser atualizada dinamicamente.
 
-Os métodos .NET interoperabilidade com as funções JavaScript no arquivo *exampleJsInterop.js* chamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
+Os métodos .NET interoperam com as funções JavaScript no `exampleJsInterop.js` arquivo chamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
 
 A <xref:Microsoft.JSInterop.IJSRuntime> abstração é assíncrona para permitir Blazor cenários de servidor. Se o aplicativo for um Blazor aplicativo Webassembly e você quiser invocar uma função JavaScript de forma síncrona, downcast <xref:Microsoft.JSInterop.IJSInProcessRuntime> e chame <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> . Recomendamos que a maioria das bibliotecas de interoperabilidade do JS use as APIs assíncronas para garantir que as bibliotecas estejam disponíveis em todos os cenários.
 
@@ -111,7 +111,7 @@ O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidad
 * Retorna o texto para o componente para processamento.
 * Chama uma segunda função JavaScript que interage com o DOM para exibir uma mensagem de boas-vindas.
 
-*Páginas/JSInterop. Razor*:
+`Pages/JsInterop.razor`:
 
 ```razor
 @page "/JSInterop"
@@ -142,7 +142,7 @@ O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidad
 }
 ```
 
-1. Quando `TriggerJsPrompt` é executado selecionando o botão de **prompt de JavaScript** do componente de gatilho, a `showPrompt` função JavaScript fornecida no arquivo *wwwroot/exampleJsInterop.js* é chamada.
+1. Quando `TriggerJsPrompt` é executado selecionando o botão do componente **`Trigger JavaScript Prompt`** , a `showPrompt` função JavaScript fornecida no `wwwroot/exampleJsInterop.js` arquivo é chamada.
 1. A `showPrompt` função aceita a entrada do usuário (o nome do usuário), que é codificado em HTML e retornada ao componente. O componente armazena o nome do usuário em uma variável local, `name` .
 1. A cadeia de caracteres armazenada em `name` é incorporada a uma mensagem de boas-vindas, que é passada para uma função JavaScript, `displayWelcome` , que renderiza a mensagem de boas-vindas em uma marca de cabeçalho.
 
@@ -193,7 +193,7 @@ No que diz respeito ao código .NET, um <xref:Microsoft.AspNetCore.Components.El
 
 Por exemplo, o código a seguir define um método de extensão .NET que permite definir o foco em um elemento:
 
-*exampleJsInterop.js*:
+`exampleJsInterop.js`:
 
 ```javascript
 window.exampleJsFunctions = {
@@ -222,7 +222,7 @@ O `Focus` método é chamado diretamente no objeto. O exemplo a seguir pressupõ
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> A `username` variável é populada apenas depois que o componente é renderizado. Se um não populado <xref:Microsoft.AspNetCore.Components.ElementReference> for passado para o código JavaScript, o código JavaScript receberá um valor de `null` . Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [métodos de ciclo de vida do componente OnAfterRenderAsync ou OnAfterRender](xref:blazor/components/lifecycle#after-component-render).
+> A `username` variável é populada apenas depois que o componente é renderizado. Se um não populado <xref:Microsoft.AspNetCore.Components.ElementReference> for passado para o código JavaScript, o código JavaScript receberá um valor de `null` . Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [ `OnAfterRenderAsync` métodos de ciclo de vida do `OnAfterRender` componente ou](xref:blazor/components/lifecycle#after-component-render).
 
 Ao trabalhar com tipos genéricos e retornar um valor, use <xref:System.Threading.Tasks.ValueTask%601> :
 
@@ -250,7 +250,7 @@ Para que um componente pai torne uma referência de elemento disponível para ou
 
 O Blazor exemplo de Webassembly a seguir ilustra a abordagem.
 
-No `<head>` de *wwwroot/index.html*:
+No `<head>` de `wwwroot/index.html` :
 
 ```html
 <style>
@@ -258,7 +258,7 @@ No `<head>` de *wwwroot/index.html*:
 </style>
 ```
 
-No `<body>` de *wwwroot/index.html*:
+No `<body>` de `wwwroot/index.html` :
 
 ```html
 <script>
@@ -270,7 +270,7 @@ No `<body>` de *wwwroot/index.html*:
 </script>
 ```
 
-*Páginas/index. Razor* (componente pai):
+`Pages/Index.razor`(componente pai):
 
 ```razor
 @page "/"
@@ -282,7 +282,7 @@ Welcome to your new app.
 <SurveyPrompt Parent="this" Title="How is Blazor working for you?" />
 ```
 
-*Páginas/index. Razor. cs*:
+`Pages/Index.razor.cs`:
 
 ```csharp
 using System;
@@ -366,7 +366,7 @@ namespace BlazorSample.Pages
 }
 ```
 
-*Shared/SurveyPrompt. Razor* (componente filho):
+`Shared/SurveyPrompt.razor`(componente filho):
 
 ```razor
 @inject IJSRuntime JS
@@ -389,7 +389,7 @@ namespace BlazorSample.Pages
 }
 ```
 
-*Compartilhado/SurveyPrompt. Razor. cs*:
+`Shared/SurveyPrompt.razor.cs`:
 
 ```csharp
 using System;

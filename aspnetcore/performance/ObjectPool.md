@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: f29d15fc1e2d2ad84526598be14638110f08614e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 004ca5724517bf3fbf6512c0b9653793f4e0f702
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774776"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241009"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Reutilização de objeto com objectpool no ASP.NET Core
 
@@ -31,7 +31,7 @@ Talvez você queira usar o pool de objetos se os objetos que estão sendo gerenc
 - Representam alguns recursos limitados.
 - Usado de forma previsível e frequente.
 
-Por exemplo, o ASP.NET Core Framework usa o pool de objetos em alguns lugares para <xref:System.Text.StringBuilder> reutilizar instâncias. `StringBuilder`Aloca e gerencia seus próprios buffers para armazenar dados de caractere. O ASP.NET Core usa `StringBuilder` regularmente para implementar recursos e reusá-los proporciona um benefício de desempenho.
+Por exemplo, o ASP.NET Core Framework usa o pool de objetos em alguns lugares para reutilizar <xref:System.Text.StringBuilder> instâncias. `StringBuilder`Aloca e gerencia seus próprios buffers para armazenar dados de caractere. O ASP.NET Core usa regularmente `StringBuilder` para implementar recursos e reusá-los proporciona um benefício de desempenho.
 
 O pool de objetos nem sempre melhora o desempenho:
 
@@ -40,7 +40,7 @@ O pool de objetos nem sempre melhora o desempenho:
 
 Use o pool de objetos somente depois de coletar dados de desempenho usando cenários realistas para seu aplicativo ou biblioteca.
 
-**Aviso: o `ObjectPool` não implementa `IDisposable`. Não é recomendável usá-lo com tipos que precisam de descarte.**
+**Aviso: o `ObjectPool` não implementa `IDisposable` . Não é recomendável usá-lo com tipos que precisam de descarte.**
 
 **Observação: o objectpool não coloca um limite no número de objetos que ele alocará, ele coloca um limite no número de objetos que será mantido.**
 
@@ -69,10 +69,12 @@ O seguinte código:
 
 * Adiciona `ObjectPoolProvider` ao contêiner de [injeção de dependência](xref:fundamentals/dependency-injection) (di).
 * Adiciona e configura `ObjectPool<StringBuilder>` o contêiner di.
-* Adiciona o `BirthdayMiddleware`.
+* Adiciona o `BirthdayMiddleware` .
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 O código a seguir implementa`BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]

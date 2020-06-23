@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 9668077d9b59ff20b1aab0b496278f2460e5ad2a
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: fde30109395065014433bebde52a9eb22458c451
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103556"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242739"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core Blazor
 
@@ -32,11 +32,11 @@ BlazorO servidor é integrado ao [Roteamento de ponto de extremidade ASP.NET Cor
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-A configuração mais típica é rotear todas as solicitações para uma Razor página, que atua como o host da parte do lado do servidor do Blazor aplicativo do servidor. Por convenção, a página *host* geralmente é chamada de *_Host. cshtml*. A rota especificada no arquivo de host é chamada de *rota de fallback* porque opera com uma prioridade baixa na correspondência de rota. A rota de fallback é considerada quando outras rotas não correspondem. Isso permite que o aplicativo use outros controladores e páginas sem interferir no aplicativo do Blazor servidor.
+A configuração mais típica é rotear todas as solicitações para uma Razor página, que atua como o host da parte do lado do servidor do Blazor aplicativo do servidor. Por convenção, a página *host* geralmente é denominada `_Host.cshtml` . A rota especificada no arquivo de host é chamada de *rota de fallback* porque opera com uma prioridade baixa na correspondência de rota. A rota de fallback é considerada quando outras rotas não correspondem. Isso permite que o aplicativo use outros controladores e páginas sem interferir no aplicativo do Blazor servidor.
 
 ## <a name="route-templates"></a>Modelos de rota
 
-O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente permite o roteamento para cada componente com uma rota especificada. O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente aparece no arquivo *app. Razor* :
+O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente permite o roteamento para cada componente com uma rota especificada. O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente aparece no `App.razor` arquivo:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -49,14 +49,14 @@ O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente permite o rot
 </Router>
 ```
 
-Quando um arquivo *. Razor* com uma `@page` diretiva é compilado, a classe gerada é fornecida <xref:Microsoft.AspNetCore.Components.RouteAttribute> especificando o modelo de rota.
+Quando um `.razor` arquivo com uma `@page` diretiva é compilado, a classe gerada é fornecida <xref:Microsoft.AspNetCore.Components.RouteAttribute> especificando o modelo de rota.
 
 Em tempo de execução, o <xref:Microsoft.AspNetCore.Components.RouteView> componente:
 
 * Recebe o <xref:Microsoft.AspNetCore.Components.RouteData> do <xref:Microsoft.AspNetCore.Components.Routing.Router> junto com os parâmetros desejados.
 * Renderiza o componente especificado com seu layout (ou um layout padrão opcional) usando os parâmetros especificados.
 
-Opcionalmente, você pode especificar um <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parâmetro com uma classe de layout a ser usada para componentes que não especificam um layout. Os Blazor modelos padrão especificam o `MainLayout` componente. *MainLayout. Razor* está na pasta *compartilhada* do projeto de modelo. Para obter mais informações sobre layouts, consulte <xref:blazor/layouts> .
+Opcionalmente, você pode especificar um <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parâmetro com uma classe de layout a ser usada para componentes que não especificam um layout. Os Blazor modelos padrão especificam o `MainLayout` componente. `MainLayout.razor`está na pasta do projeto de modelo `Shared` . Para obter mais informações sobre layouts, consulte <xref:blazor/layouts> .
 
 Vários modelos de rota podem ser aplicados a um componente. O componente a seguir responde a solicitações para o `/BlazorRoute` e o `/DifferentBlazorRoute` :
 
@@ -68,13 +68,13 @@ Vários modelos de rota podem ser aplicados a um componente. O componente a segu
 ```
 
 > [!IMPORTANT]
-> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma `<base>` marca em seu arquivo *wwwroot/index.html* ( Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* ( Blazor servidor) com o caminho base do aplicativo especificado no `href` atributo ( `<base href="/">` ). Para obter mais informações, consulte <xref:blazor/host-and-deploy/index#app-base-path>.
+> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma `<base>` marca em seu `wwwroot/index.html` arquivo ( Blazor Webassembly) ou `Pages/_Host.cshtml` arquivo ( Blazor servidor) com o caminho base do aplicativo especificado no `href` atributo ( `<base href="/">` ). Para obter mais informações, consulte <xref:blazor/host-and-deploy/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornecer conteúdo personalizado quando o conteúdo não for encontrado
 
 O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente permite que o aplicativo especifique conteúdo personalizado se o conteúdo não for encontrado para a rota solicitada.
 
-No arquivo *app. Razor* , defina conteúdo personalizado no <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parâmetro de modelo do <xref:Microsoft.AspNetCore.Components.Routing.Router> componente:
+No `App.razor` arquivo, defina conteúdo personalizado no <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parâmetro de modelo do <xref:Microsoft.AspNetCore.Components.Routing.Router> componente:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -140,21 +140,21 @@ As restrições de rota mostradas na tabela a seguir estão disponíveis. Para a
 
 | Constraint | Exemplo           | Correspondências de exemplo                                                                  | Constante<br>culture<br>correspondência |
 | ---------- | ----------------- | -------------------------------------------------------------------------------- | :------------------------------: |
-| `bool`     | `{active:bool}`   | `true`, `FALSE`                                                                  | Não                               |
-| `datetime` | `{dob:datetime}`  | `2016-12-31`, `2016-12-31 7:32pm`                                                | Sim                              |
-| `decimal`  | `{price:decimal}` | `49.99`, `-1,000.01`                                                             | Sim                              |
-| `double`   | `{weight:double}` | `1.234`, `-1,001.01e8`                                                           | Sim                              |
-| `float`    | `{weight:float}`  | `1.234`, `-1,001.01e8`                                                           | Sim                              |
-| `guid`     | `{id:guid}`       | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Não                               |
-| `int`      | `{id:int}`        | `123456789`, `-123456789`                                                        | Sim                              |
-| `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Sim                              |
+| `bool`     | `{active:bool}`   | `true`, `FALSE`                                                                  | No                               |
+| `datetime` | `{dob:datetime}`  | `2016-12-31`, `2016-12-31 7:32pm`                                                | Yes                              |
+| `decimal`  | `{price:decimal}` | `49.99`, `-1,000.01`                                                             | Yes                              |
+| `double`   | `{weight:double}` | `1.234`, `-1,001.01e8`                                                           | Yes                              |
+| `float`    | `{weight:float}`  | `1.234`, `-1,001.01e8`                                                           | Yes                              |
+| `guid`     | `{id:guid}`       | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No                               |
+| `int`      | `{id:int}`        | `123456789`, `-123456789`                                                        | Yes                              |
+| `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Yes                              |
 
 > [!WARNING]
 > As restrições de rota que verificam a URL e são convertidas em um tipo CLR (como `int` ou <xref:System.DateTime>) sempre usam a cultura invariável. Essas restrições consideram que a URL não é localizável.
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Roteamento com URLs que contêm pontos
 
-Em Blazor aplicativos de servidor, a rota padrão em *_Host. cshtml* é `/` ( `@page "/"` ). Uma URL de solicitação que contém um ponto ( `.` ) não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um Blazor aplicativo retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
+Em Blazor aplicativos de servidor, a rota padrão no `_Host.cshtml` é `/` ( `@page "/"` ). Uma URL de solicitação que contém um ponto ( `.` ) não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um Blazor aplicativo retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure `_Host.cshtml` com o seguinte modelo de rota:
 
 ```cshtml
 @page "/{**path}"
@@ -166,7 +166,7 @@ O `"/{**path}"` modelo inclui:
 * `path`nome do parâmetro de rota.
 
 > [!NOTE]
-> A sintaxe de parâmetro *catch-all* ( `*` / `**` ) **não** tem suporte em Razor componentes (*. Razor*).
+> *Catch-all* `*` / `**` **Não** há suporte para a sintaxe de parâmetro catch () em Razor Components ( `.razor` ).
 
 Para obter mais informações, consulte <xref:fundamentals/routing>.
 
@@ -174,7 +174,7 @@ Para obter mais informações, consulte <xref:fundamentals/routing>.
 
 Use um <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente no lugar de elementos de hiperlink HTML ( `<a>` ) ao criar links de navegação. Um <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componente se comporta como um `<a>` elemento, exceto que alterna uma `active` classe CSS com base no fato de sua `href` correspondência com a URL atual. A `active` classe ajuda um usuário a entender qual página é a página ativa entre os links de navegação exibidos.
 
-O componente a seguir `NavMenu` cria uma barra de navegação de [inicialização](https://getbootstrap.com/docs/) que demonstra como usar <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componentes:
+O componente a seguir `NavMenu` cria uma [`Bootstrap`](https://getbootstrap.com/docs/) barra de navegação que demonstra como usar <xref:Microsoft.AspNetCore.Components.Routing.NavLink> componentes:
 
 [!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
@@ -201,10 +201,10 @@ A seguinte marcação HTML é renderizada:
 
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> para trabalhar com URIs e navegação em código C#. <xref:Microsoft.AspNetCore.Components.NavigationManager>fornece o evento e os métodos mostrados na tabela a seguir.
 
-| Membro | Descrição |
+| Membro | Description |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Obtém o URI absoluto atual. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponde ao `href` atributo no elemento do documento `<base>` em *wwwroot/index.html* ( Blazor webassembly) ou *pages/_Host. cshtml* ( Blazor servidor). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponde ao `href` atributo no elemento do documento `<base>` em `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor servidor). |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navega para o URI especificado. Se `forceLoad` for `true` :<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | Um evento que é acionado quando o local de navegação é alterado. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converte um URI relativo em um URI absoluto. |

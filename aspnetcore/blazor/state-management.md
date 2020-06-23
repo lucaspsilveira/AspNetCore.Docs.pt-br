@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: 3cc75406a1680dff4727527153a62856a594c8c7
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 59adcce972b503a6aa6e596bc9bff63225961f84
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102499"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243194"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>BlazorGerenciamento de estado ASP.NET Core
 
@@ -135,7 +135,7 @@ Vale a pena considerar a escolha de um pacote que usa de forma transparente a [p
 
 ## <a name="protected-browser-storage-experimental-package"></a>Pacote experimental de armazenamento de navegador protegido
 
-Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/data-protection/introduction) para `localStorage` `sessionStorage` o e é [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/data-protection/introduction) para o `localStorage` e o `sessionStorage` é [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
 
 > [!WARNING]
 > `Microsoft.AspNetCore.ProtectedBrowserStorage`é um pacote experimental sem suporte não adequado para uso em produção no momento.
@@ -144,8 +144,8 @@ Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/da
 
 Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
 
-1. No Blazor projeto de aplicativo do servidor, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
-1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte `<script>` marca:
+1. No Blazor projeto de aplicativo do servidor, adicione uma referência de pacote a [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
+1. No HTML de nível superior (por exemplo, no `Pages/_Host.cshtml` arquivo no modelo de projeto padrão), adicione a seguinte `<script>` marca:
 
    ```html
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
@@ -171,7 +171,7 @@ A escolha depende de qual repositório de backup você deseja usar. No exemplo a
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
-A `@using` instrução pode ser colocada em um arquivo *_Imports. Razor* em vez de no componente. O uso do arquivo *_Imports. Razor* torna o namespace disponível para segmentos maiores do aplicativo ou todo o aplicativo.
+A `@using` instrução pode ser colocada em um `_Imports.razor` arquivo em vez de no componente. O uso do `_Imports.razor` arquivo disponibiliza o namespace para segmentos maiores do aplicativo ou todo o aplicativo.
 
 Para manter o `currentCount` valor no `Counter` componente do modelo de projeto, modifique o `IncrementCount` método a ser usado `ProtectedSessionStore.SetAsync` :
 
@@ -215,7 +215,7 @@ Uma abordagem é controlar se os dados estão `null` (ainda carregando) ou não.
 private int? currentCount;
 ```
 
-Em vez de exibir incondicionalmente o botão contagem e **incremento** , escolha exibir esses elementos somente se os dados forem carregados:
+Em vez de exibir incondicionalmente a contagem e o **`Increment`** botão, escolha exibir esses elementos somente se os dados forem carregados:
 
 ```razor
 @if (currentCount.HasValue)
@@ -243,7 +243,7 @@ Durante o pré-processamento:
 
 Uma maneira de resolver o erro é desabilitar o pré-processamento. Normalmente, essa é a melhor opção se o aplicativo fizer uso intensivo de armazenamento baseado em navegador. O pré-processamento adiciona complexidade e não beneficia o aplicativo porque o aplicativo não pode colocar nenhum conteúdo útil até `localStorage` ou `sessionStorage` estar disponível.
 
-Para desabilitar o pré-processamento, abra o arquivo *pages/_Host. cshtml* e altere o `render-mode` do auxiliar de [marca do componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> .
+Para desabilitar o pré-processamento, abra o `Pages/_Host.cshtml` arquivo e altere o `render-mode` do auxiliar de [marca de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> .
 
 O pré-processamento pode ser útil para outras páginas que não usam o `localStorage` ou o `sessionStorage` . Para manter o pré-processamento habilitado, adie a operação de carregamento até que o navegador esteja conectado ao circuito. Veja a seguir um exemplo de como armazenar um valor de contador:
 
@@ -326,7 +326,7 @@ else
 
 O `CounterStateProvider` componente manipula a fase de carregamento não processando seu conteúdo filho até que o carregamento seja concluído.
 
-Para usar o `CounterStateProvider` componente, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote o `CounterStateProvider` componente em volta do <xref:Microsoft.AspNetCore.Components.Routing.Router> no `App` componente (*app. Razor*):
+Para usar o `CounterStateProvider` componente, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote o `CounterStateProvider` componente em volta do <xref:Microsoft.AspNetCore.Components.Routing.Router> no `App` componente ( `App.razor` ):
 
 ```razor
 <CounterStateProvider>

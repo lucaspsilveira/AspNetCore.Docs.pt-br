@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: b8701687d97f5fe940e2f39fca9c3f98052660be
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 20a6cbbdd1f10c06f454f230363951059bdd3a7b
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773517"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240926"
 ---
 # <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: usando o recurso de migrações – ASP.NET MVC com EF Core
 
@@ -78,10 +78,13 @@ Salve as alterações e compile o projeto. Em seguida, abra uma janela Comando e
 Insira o seguinte comando na janela de comando:
 
 ```dotnetcli
+dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
 
-Você verá uma saída semelhante à seguinte na janela Comando:
+`dotnet tool install --global dotnet-ef`o é instalado `dotnet ef` como uma [ferramenta global](/ef/core/miscellaneous/cli/dotnet).
+
+Nos comandos anteriores, uma saída semelhante à seguinte é exibida:
 
 ```console
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
@@ -89,14 +92,11 @@ info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-> [!NOTE]
-> Se você receber uma mensagem de erro *Nenhum comando "dotnet-ef" executável correspondente encontrado*, consulte [esta postagem no blog](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) para ajudar a solucionar o problema.
-
-Se você vir uma mensagem de erro "*não é possível acessar o arquivo... ContosoUniversity. dll porque ele está sendo usado por outro processo.*", localize o ícone de IIS Express na bandeja do sistema do Windows e clique com o botão direito do mouse nele e clique em **ContosoUniversity > parar site**.
+Se você vir uma mensagem de erro "*não é possível acessar o arquivo... ContosoUniversity.dll porque ele está sendo usado por outro processo.*", localize o ícone de IIS Express na bandeja do sistema do Windows e clique com o botão direito do mouse nele e clique em **ContosoUniversity > parar site**.
 
 ## <a name="examine-up-and-down-methods"></a>Examinará os métodos Up e Down
 
-Quando você executou o comando `migrations add`, o EF gerou o código que criará o banco de dados do zero. Esse código está localizado na pasta *Migrations*, no arquivo chamado *\<timestamp>_InitialCreate.cs*. O método `Up` da classe `InitialCreate` cria as tabelas de banco de dados que correspondem aos conjuntos de entidades do modelo de dados, e o método `Down` exclui-as, conforme mostrado no exemplo a seguir.
+Quando você executou o comando `migrations add`, o EF gerou o código que criará o banco de dados do zero. Esse código está na pasta *migrações* , no arquivo chamado * \<timestamp> _InitialCreate. cs*. O método `Up` da classe `InitialCreate` cria as tabelas de banco de dados que correspondem aos conjuntos de entidades do modelo de dados, e o método `Down` exclui-as, conforme mostrado no exemplo a seguir.
 
 [!code-csharp[](intro/samples/cu/Migrations/20170215220724_InitialCreate.cs?range=92-118)]
 
@@ -110,7 +110,7 @@ Se você criou a migração inicial quando o banco de dados já existia, o códi
 
 As migrações criam um *instantâneo* do esquema de banco de dados atual em *Migrations/SchoolContextModelSnapshot.cs*. Quando você adiciona uma migração, o EF determina o que foi alterado, comparando o modelo de dados com o arquivo de instantâneo.
 
-Use o comando [dotnet EF migrações remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) para remover uma migração. `dotnet ef migrations remove` exclui a migração e garante que o instantâneo seja redefinido corretamente. Se `dotnet ef migrations remove` o falhar, `dotnet ef migrations remove -v` use para obter mais informações sobre a falha.
+Use o comando [dotnet EF migrações remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) para remover uma migração. `dotnet ef migrations remove` exclui a migração e garante que o instantâneo seja redefinido corretamente. Se `dotnet ef migrations remove` o falhar, use `dotnet ef migrations remove -v` para obter mais informações sobre a falha.
 
 Confira [Migrações do EF Core em ambientes de equipe](/ef/core/managing-schemas/migrations/teams) para obter mais informações de como o arquivo de instantâneo é usado.
 

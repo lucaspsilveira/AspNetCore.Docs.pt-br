@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: a8604ca6ea60386bb3c54c950205ee695d37c689
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2bdd2f256f456cbf474181021fafc6830bfd68f4
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103532"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242921"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteger Blazor aplicativos do ASP.NET Core Server
 
@@ -53,7 +53,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na tabela a seguir.
 
-| Mecanismo de autenticação | Descrição |
+| Mecanismo de autenticação | Description |
 | ------------------------ | ----------- |
 | `None` (padrão)         | Sem autenticação |
 | `Individual`             | Usuários armazenados no aplicativo com ASP.NET CoreIdentity |
@@ -67,7 +67,7 @@ Usando a `-o|--output` opção, o comando usa o valor fornecido para o `{APP NAM
 * Crie uma pasta para o projeto.
 * Nomeie o projeto.
 
-Para obter mais informações, confira o [novo comando do dotnet](/dotnet/core/tools/dotnet-new) no Guia do .NET Core.
+Para obter mais informações, consulte o [`dotnet new`](/dotnet/core/tools/dotnet-new) comando no guia do .NET Core.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -87,7 +87,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na tabela a seguir.
 
-| Mecanismo de autenticação | Descrição |
+| Mecanismo de autenticação | Description |
 | ------------------------ | ----------- |
 | `None` (padrão)         | Sem autenticação |
 | `Individual`             | Usuários armazenados no aplicativo com ASP.NET CoreIdentity |
@@ -101,7 +101,7 @@ Usando a `-o|--output` opção, o comando usa o valor fornecido para o `{APP NAM
 * Crie uma pasta para o projeto.
 * Nomeie o projeto.
 
-Para obter mais informações, confira o [novo comando do dotnet](/dotnet/core/tools/dotnet-new) no Guia do .NET Core.
+Para obter mais informações, consulte o [`dotnet new`](/dotnet/core/tools/dotnet-new) comando no guia do .NET Core.
 
 ---
 

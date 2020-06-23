@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 073a2a85369a100352a163693c5cba907203059e
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: a94dcd818c3f4e19ace57fad6390a84e704192bd
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103534"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242960"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Diretrizes de mitigação de ameaças para o ASP.NET Core Blazor Server
 
@@ -134,7 +134,7 @@ Para chamadas de métodos .NET para JavaScript:
 
 Tome as seguintes precauções para proteger contra os cenários anteriores:
 
-* Encapsular chamadas de interoperabilidade JS em instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) para considerar erros que podem ocorrer durante as invocações. Para obter mais informações, consulte <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Encapsular chamadas de interoperabilidade JS dentro de [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) instruções para considerar erros que podem ocorrer durante as invocações. Para obter mais informações, consulte <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 * Valide os dados retornados das invocações de interoperabilidade do JS, incluindo mensagens de erro, antes de realizar qualquer ação.
 
 ### <a name="net-methods-invoked-from-the-browser"></a>Métodos .NET invocados no navegador
@@ -302,7 +302,7 @@ O erro do lado do cliente não inclui a pilha de chamadas e não fornece detalhe
 Habilitar erros detalhados em JavaScript com:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* A `DetailedErrors` chave de configuração definida como `true` , que pode ser definida no arquivo de configurações do aplicativo (*appsettings.jsem*). A chave também pode ser definida usando a `ASPNETCORE_DETAILEDERRORS` variável de ambiente com um valor de `true` .
+* A `DetailedErrors` chave de configuração definida como `true` , que pode ser definida no arquivo de configurações do aplicativo ( `appsettings.json` ). A chave também pode ser definida usando a `ASPNETCORE_DETAILEDERRORS` variável de ambiente com um valor de `true` .
 
 > [!WARNING]
 > Expor informações de erro aos clientes na Internet é um risco de segurança que sempre deve ser evitado.
@@ -348,7 +348,7 @@ Além das proteções que a estrutura implementa, o aplicativo deve ser codifica
 * Não confie na entrada em chamadas de interoperabilidade JS em qualquer direção entre os métodos JavaScript e .NET.
 * O aplicativo é responsável por validar que o conteúdo dos argumentos e dos resultados é válido, mesmo que os argumentos ou os resultados sejam desserializados corretamente.
 
-Para que uma vulnerabilidade de XSS exista, o aplicativo deve incorporar a entrada do usuário na página renderizada. BlazorOs componentes do servidor executam uma etapa de tempo de compilação em que a marcação em um arquivo *. Razor* é transformada em lógica C# de procedimento. Em tempo de execução, a lógica do C# cria uma *árvore de renderização* que descreve os elementos, o texto e os componentes filho. Isso é aplicado ao DOM do navegador por meio de uma sequência de instruções de JavaScript (ou é serializado para HTML no caso de pré-processamento):
+Para que uma vulnerabilidade de XSS exista, o aplicativo deve incorporar a entrada do usuário na página renderizada. BlazorOs componentes de servidor executam uma etapa de tempo de compilação em que a marcação em um `.razor` arquivo é transformada em lógica C# de procedimento. Em tempo de execução, a lógica do C# cria uma *árvore de renderização* que descreve os elementos, o texto e os componentes filho. Isso é aplicado ao DOM do navegador por meio de uma sequência de instruções de JavaScript (ou é serializado para HTML no caso de pré-processamento):
 
 * A entrada do usuário renderizada por meio Razor da sintaxe normal (por exemplo, `@someStringValue` ) não expõe uma vulnerabilidade de XSS porque a Razor sintaxe é adicionada ao dom por meio de comandos que só podem gravar texto. Mesmo se o valor incluir marcação HTML, o valor será exibido como texto estático. Ao renderizar, a saída é codificada em HTML, que também exibe o conteúdo como texto estático.
 * Marcas de script não são permitidas e não devem ser incluídas na árvore de renderização de componente do aplicativo. Se uma marca de script for incluída na marcação de um componente, um erro de tempo de compilação será gerado.

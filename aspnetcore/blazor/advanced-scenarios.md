@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 3345f545e230ada78e6c66fc9eb049060d5794d6
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: d4ebab0d8fc2ee48fa4d9c8b1f1b8e5cbf43cab9
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83851153"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242428"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>ASP.NET Core Blazor cenários avançados
 
@@ -68,7 +68,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o Blazor circuito do servidor. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
+Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o Blazor circuito do servidor. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) instruções com tratamento de erros e registro em log.
 
 Quando um circuito termina porque um usuário se desconectou e a estrutura está limpando o estado do circuito, a estrutura descarta o escopo de DI do circuito. Descartar o escopo descarta todos os serviços de DI no escopo do circuito que implementam o <xref:System.IDisposable?displayProperty=fullName> . Se qualquer serviço de DI lançar uma exceção sem tratamento durante a alienação, a estrutura registrará a exceção.
 
@@ -133,11 +133,11 @@ No exemplo a seguir, o loop no `CreateComponent` método gera três `PetDetails`
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Números de sequência se relacionam a números de linha de código e não a ordem de execução
 
-Razoros arquivos de componente (*. Razor*) são sempre compilados. A compilação é uma vantagem potencial sobre a interpretação do código, pois a etapa de compilação pode ser usada para injetar informações que melhoram o desempenho do aplicativo em tempo de execução.
+Razoros arquivos de componente ( `.razor` ) são sempre compilados. A compilação é uma vantagem potencial sobre a interpretação do código, pois a etapa de compilação pode ser usada para injetar informações que melhoram o desempenho do aplicativo em tempo de execução.
 
 Um exemplo importante desses aprimoramentos envolve *números de sequência*. Os números de sequência indicam ao tempo de execução que as saídas vieram de quais linhas de código distintas e ordenadas. O tempo de execução usa essas informações para gerar comparações de árvore eficientes em tempo linear, o que é muito mais rápido do que normalmente é possível para um algoritmo de comparação de árvore geral.
 
-Considere o seguinte Razor arquivo de componente (*. Razor*):
+Considere o seguinte Razor arquivo de componente ( `.razor` ):
 
 ```razor
 @if (someFlag)
@@ -161,14 +161,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true` , o Construtor receberá:
 
-| Sequência | Digite      | Dados   |
+| Sequência | Type      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false` e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | Digite       | Dados   |
+| Sequência | Type       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -193,14 +193,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequência | Type      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag`está `false` no segundo processamento e a saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequência | Type      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 
@@ -217,9 +217,9 @@ Esse é um exemplo trivial. Em casos mais realistas com estruturas complexas e p
 
 * O desempenho do aplicativo será afetado se os números de sequência forem gerados dinamicamente.
 * A estrutura não pode criar seus próprios números de sequência automaticamente em tempo de execução porque as informações necessárias não existem, a menos que sejam capturadas no momento da compilação.
-* Não grave blocos longos de lógica implementada manualmente <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> . Prefira arquivos *. Razor* e permita que o compilador lide com os números de sequência. Se não for possível evitar lógica manual <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> , divida blocos longos de código em partes menores encapsuladas em <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A> / <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> chamadas. Cada região tem seu próprio espaço separado de números de sequência, para que você possa reiniciar de zero (ou qualquer outro número arbitrário) dentro de cada região.
+* Não grave blocos longos de lógica implementada manualmente <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> . Prefira `.razor` arquivos e permita que o compilador lide com os números de sequência. Se não for possível evitar lógica manual <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> , divida blocos longos de código em partes menores encapsuladas em <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A> / <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> chamadas. Cada região tem seu próprio espaço separado de números de sequência, para que você possa reiniciar de zero (ou qualquer outro número arbitrário) dentro de cada região.
 * Se os números de sequência forem codificados, o algoritmo diff só exigirá que os números de sequência aumentem de valor. O valor inicial e as lacunas são irrelevantes. Uma opção legítima é usar o número de linha de código como o número de sequência, ou começar de zero e aumentar por um ou centenas (ou qualquer intervalo preferencial). 
-* Blazorusa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando números de sequência são usados e Blazor tem a vantagem de uma etapa de compilação que lida com números de sequência automaticamente para desenvolvedores que criam arquivos *. Razor* .
+* Blazorusa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando números de sequência são usados e Blazor tem a vantagem de uma etapa de compilação que lida com números de sequência automaticamente para desenvolvedores que criam `.razor` arquivos.
 
 ## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Executar grandes transferências de dados em Blazor aplicativos de servidor
 

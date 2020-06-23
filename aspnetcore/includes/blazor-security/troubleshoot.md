@@ -31,7 +31,7 @@ Uma abordagem para impedir que cookies persistentes e dados do site interfira no
 
 ### <a name="run-the-server-app"></a>Executar o aplicativo de servidor
 
-Ao testar e solucionar problemas de um aplicativo com mais de um e mais, verifique se você está executando o aplicativo do projeto do **servidor** . Por exemplo, no Visual Studio, confirme se o projeto do servidor está realçado em **Gerenciador de soluções** antes de iniciar o aplicativo com qualquer uma das seguintes abordagens:
+Ao testar e solucionar problemas de um aplicativo de mais de um prazer, verifique se você está executando o aplicativo do **`Server`** projeto. Por exemplo, no Visual Studio, confirme se o projeto do servidor está realçado em **Gerenciador de soluções** antes de iniciar o aplicativo com qualquer uma das seguintes abordagens:
 
 * Selecione o botão **Executar**.
 * Use **depurar**  >  **Iniciar Depuração** no menu.

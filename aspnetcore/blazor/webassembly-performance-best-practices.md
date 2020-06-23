@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: c5169231eec67a43830f761bff7585deff774613
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 2b6d4e706856cb28f26c2502feca4f959ca4abac
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103578"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85243025"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>BlazorPráticas recomendadas de desempenho do Webassembly ASP.NET Core
 
@@ -76,10 +76,10 @@ Para obter mais informações, consulte <xref:blazor/components/lifecycle#after-
 
 Os componentes oferecem uma abordagem conveniente para produzir fragmentos reutilizáveis de código e marcação. Em geral, é recomendável criar componentes individuais que melhor se alinhem com os requisitos do aplicativo. Uma limitação é que cada componente filho adicional contribui para o tempo total que leva para renderizar um componente pai. Para a maioria dos aplicativos, a sobrecarga adicional é insignificante. Os aplicativos que produzem um grande número de componentes devem considerar o uso de estratégias para reduzir a sobrecarga de processamento, como limitar o número de componentes renderizados.
 
-Por exemplo, uma grade ou lista que renderiza centenas de linhas que contêm componentes tem uso intensivo de processador para renderização. Considere a possibilidade de virtualizar um layout de grade ou lista para que apenas um subconjunto dos componentes seja renderizado em um determinado momento. Para obter um exemplo de renderização de subconjunto de componentes, consulte os seguintes componentes no [aplicativo de exemplo de virtualização (repositório GitHub de exemplos ASPNET/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
+Por exemplo, uma grade ou lista que renderiza centenas de linhas que contêm componentes tem uso intensivo de processador para renderização. Considere a possibilidade de virtualizar um layout de grade ou lista para que apenas um subconjunto dos componentes seja renderizado em um determinado momento. Para obter um exemplo de renderização de subconjunto de componentes, consulte os seguintes componentes no [ `Virtualization` aplicativo de exemplo (repositório GitHub ASPNET/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
 
-* `Virtualize`componente ([compartilhado/virtualizar. Razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): um componente escrito em C# que implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> para renderizar um conjunto de linhas de dados meteorológicos com base na rolagem do usuário.
-* `FetchData`componente ([pages/FetchData. Razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): usa o `Virtualize` componente para exibir 25 linhas de dados meteorológicos por vez.
+* `Virtualize`Component ( [`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs) ): um componente escrito em C# que implementa <xref:Microsoft.AspNetCore.Components.ComponentBase> para renderizar um conjunto de linhas de dados meteorológicos com base na rolagem do usuário.
+* `FetchData`Component ( [`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor) ): usa o `Virtualize` componente para exibir 25 linhas de dados meteorológicos por vez.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Evitar a interoperabilidade JavaScript para empacotar dados
 
@@ -89,7 +89,7 @@ No Blazor Webassembly, uma chamada de interoperabilidade JavaScript (js) deve at
 
 Blazora implementação de interoperabilidade do JS depende de <xref:System.Text.Json> , que é uma biblioteca de SERIALIZAÇÃO JSON de alto desempenho com alocação de memória insuficiente. O uso <xref:System.Text.Json> do não resulta em tamanho de carga de aplicativo adicional ao adicionar uma ou mais bibliotecas JSON alternativas.
 
-Para obter diretrizes de migração, consulte [como migrar do Newtonsoft.Jspara o System.Text.Jsno](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+Para obter diretrizes de migração, consulte [como migrar do `Newtonsoft.Json` para `System.Text.Json` o ](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>Usar APIs de interoperabilidade do JS síncronas e não marshalled, quando apropriado
 
@@ -138,7 +138,7 @@ BlazorO Webassembly oferece duas versões adicionais do <xref:Microsoft.JSIntero
 
 ### <a name="intermediate-language-il-linking"></a>Vinculação de IL (linguagem intermediária)
 
-[Vinculando um Blazor O aplicativo Webassembly](xref:blazor/host-and-deploy/configure-linker) reduz o tamanho do aplicativo ao cortar o código não utilizado nos binários do aplicativo. Por padrão, o vinculador só é habilitado ao compilar na `Release` configuração. Para se beneficiar disso, publique o aplicativo para implantação usando o comando [dotnet Publish](/dotnet/core/tools/dotnet-publish) com a opção [-c |--configuração](/dotnet/core/tools/dotnet-publish#options) definida como `Release` :
+[Vinculando um Blazor O aplicativo Webassembly](xref:blazor/host-and-deploy/configure-linker) reduz o tamanho do aplicativo ao cortar o código não utilizado nos binários do aplicativo. Por padrão, o vinculador só é habilitado ao compilar na `Release` configuração. Para se beneficiar disso, publique o aplicativo para implantação usando o [`dotnet publish`](/dotnet/core/tools/dotnet-publish) comando com a opção de [configuração-c |--](/dotnet/core/tools/dotnet-publish#options) definida como `Release` :
 
 ```dotnetcli
 dotnet publish -c Release

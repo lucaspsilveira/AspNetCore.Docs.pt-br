@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 63359260766846ccf14ececfae82bf02cc598cf9
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 360fff9383e25a6b5b9308cfebd397f7f4ee31a6
+ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103530"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85242973"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Impor uma política de segurança de conteúdo para ASP.NET CoreBlazor
 
@@ -85,7 +85,7 @@ As seções a seguir mostram exemplos de políticas para Blazor Webassembly e Bl
 
 ### <a name="blazor-webassembly"></a>BlazorWebassembly
 
-No `<head>` conteúdo da página host *wwwroot/index.html* , aplique as diretivas descritas na seção [diretivas de política](#policy-directives) :
+Na `<head>` página conteúdo do `wwwroot/index.html` host, aplique as diretivas descritas na seção [diretivas de política](#policy-directives) :
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -108,7 +108,7 @@ No `<head>` conteúdo da página host *wwwroot/index.html* , aplique as diretiva
 
 ### <a name="blazor-server"></a>BlazorServidor
 
-No `<head>` conteúdo da página do host *Pages/_Host. cshtml* , aplique as diretivas descritas na seção [diretivas de política](#policy-directives) :
+Na `<head>` página conteúdo do `Pages/_Host.cshtml` host, aplique as diretivas descritas na seção [diretivas de política](#policy-directives) :
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 

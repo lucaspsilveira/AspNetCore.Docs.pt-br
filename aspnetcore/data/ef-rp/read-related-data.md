@@ -12,12 +12,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: e67738015f64ca7077c2f87a8f7eabe722aac9d8
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 5ffb57f21c89e21fcbb14b933cb0d0cb29d9c71b
+ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652620"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240946"
 ---
 # <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Parte 6, Razor páginas com EF Core em dados relacionados à leitura de ASP.NET Core
 
@@ -52,7 +52,7 @@ Há várias maneiras pelas quais o EF Core pode carregar dados relacionados nas 
 
   ![Exemplo de consultas separadas](read-related-data/_static/separate-queries.png)
 
-  Observação: o EF Core corrige automaticamente as propriedades de navegação para outras entidades que foram carregadas anteriormente na instância do contexto. Mesmo se os dados de uma propriedade de navegação *não* foram incluídos de forma explícita, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
+  **Observação:** EF Core automaticamente corrige Propriedades de navegação para quaisquer outras entidades que foram carregadas anteriormente na instância de contexto. Mesmo se os dados de uma propriedade de navegação *não* foram incluídos de forma explícita, a propriedade ainda pode ser populada se algumas ou todas as entidades relacionadas foram carregadas anteriormente.
 
 * [Carregamento explícito](/ef/core/querying/related-data#explicit-loading). Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. Um código precisa ser escrito para recuperar os dados relacionados quando eles forem necessários. O carregamento explícito com consultas separadas resulta no envio de várias consultas ao banco de dados. Com o carregamento explícito, o código especifica as propriedades de navegação a serem carregadas. Use o método `Load` para fazer o carregamento explícito. Por exemplo:
 
@@ -231,7 +231,7 @@ O código a seguir é executado quando o instrutor é selecionado (`id != null`)
 
 O instrutor selecionado é recuperado da lista de instrutores no modelo de exibição. Em seguida, a propriedade `Courses` do modelo de exibição é carregada com as entidades `Course` da propriedade de navegação `CourseAssignments` desse instrutor.
 
-O método `Where` retorna uma coleção. Mas, neste caso, o filtro selecionará uma única entidade. Portanto, o método `Single` é chamado para converter a coleção em uma única entidade `Instructor`. A entidade `Instructor` fornece acesso à propriedade `CourseAssignments`. `CourseAssignments` fornece acesso às entidades `Course` relacionadas.
+O método `Where` retorna uma coleção. Mas, nesse caso, o filtro selecionará uma única entidade, de modo que o `Single` método é chamado para converter a coleção em uma única `Instructor` entidade. A entidade `Instructor` fornece acesso à propriedade `CourseAssignments`. `CourseAssignments` fornece acesso às entidades `Course` relacionadas.
 
 ![Instrutor para Cursos m:M](complex-data-model/_static/courseassignment.png)
 
@@ -396,7 +396,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
- Execute o seguinte comando:
+ Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
@@ -483,7 +483,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
- Execute o seguinte comando:
+ Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
