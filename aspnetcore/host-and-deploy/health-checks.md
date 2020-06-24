@@ -5,7 +5,7 @@ description: Saiba como configurar verificações de integridade para a infraest
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 06/22/2020
 no-loc:
 - Blazor
 - Identity
@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 00b2697a6b916718d9d0e01d1ea9f922eb2b5706
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: ca5540b4920bc92e968dcbc22a9407453041b01c
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074428"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292692"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -442,10 +442,10 @@ Unhealthy
 
 Em alguns cenários de hospedagem, é usado um par de verificações de integridade que distingue dois estados de aplicativo:
 
-* O aplicativo está funcionando, mas ainda não está pronto para receber solicitações. Esse estado é a *preparação* do aplicativo.
-* O aplicativo está funcionando e respondendo a solicitações. Esse estado é a *atividade* do aplicativo.
+* A *preparação* indica se o aplicativo está em execução normalmente, mas não está pronto para receber solicitações.
+* A *vida* indica se um aplicativo falhou e deve ser reiniciado.
 
-A verificação de preparação geralmente executa um conjunto mais amplo e demorado de verificações para determinar se todos os recursos e subsistemas do aplicativo estão disponíveis. Uma verificação de atividade apenas executa uma verificação rápida para determinar se o aplicativo está disponível para processar solicitações. Depois que o aplicativo é aprovado na verificação de preparação, não há nenhuma necessidade de sobrecarregar o aplicativo com o conjunto caro de verificações de preparação – as verificações adicionais exigem somente a verificação de atividade.
+Considere o exemplo a seguir: um aplicativo deve baixar um arquivo de configuração grande antes de estar pronto para processar solicitações. Não queremos que o aplicativo seja reiniciado se o download inicial falhar, pois o aplicativo pode tentar baixar o arquivo várias vezes. Usamos uma *investigação de tempo de vida* para descrever a vida do processo, nenhuma verificação adicional é executada. Também queremos impedir que solicitações sejam enviadas ao aplicativo antes que o download do arquivo de configuração seja bem-sucedido. Usamos uma *investigação de prontidão* para indicar um estado "não pronto" até que o download seja bem sucedido e o aplicativo esteja pronto para receber solicitações.
 
 O aplicativo de exemplo contém uma verificação de integridade para relatar a conclusão da tarefa de inicialização de execução longa em um [Serviço Hospedado](xref:fundamentals/host/hosted-services). A `StartupHostedServiceHealthCheck` expõe uma propriedade `StartupTaskCompleted`, que o serviço hospedado poderá definir como `true` quando sua tarefa de execução longa estiver concluída (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1155,10 +1155,10 @@ Unhealthy
 
 Em alguns cenários de hospedagem, é usado um par de verificações de integridade que distingue dois estados de aplicativo:
 
-* O aplicativo está funcionando, mas ainda não está pronto para receber solicitações. Esse estado é a *preparação* do aplicativo.
-* O aplicativo está funcionando e respondendo a solicitações. Esse estado é a *atividade* do aplicativo.
+* A *preparação* indica se o aplicativo está em execução normalmente, mas não está pronto para receber solicitações.
+* A *vida* indica se um aplicativo falhou e deve ser reiniciado.
 
-A verificação de preparação geralmente executa um conjunto mais amplo e demorado de verificações para determinar se todos os recursos e subsistemas do aplicativo estão disponíveis. Uma verificação de atividade apenas executa uma verificação rápida para determinar se o aplicativo está disponível para processar solicitações. Depois que o aplicativo é aprovado na verificação de preparação, não há nenhuma necessidade de sobrecarregar o aplicativo com o conjunto caro de verificações de preparação – as verificações adicionais exigem somente a verificação de atividade.
+Considere o exemplo a seguir: um aplicativo deve baixar um arquivo de configuração grande antes de estar pronto para processar solicitações. Não queremos que o aplicativo seja reiniciado se o download inicial falhar, pois o aplicativo pode tentar baixar o arquivo várias vezes. Usamos uma *investigação de tempo de vida* para descrever a vida do processo, nenhuma verificação adicional é executada. Também queremos impedir que solicitações sejam enviadas ao aplicativo antes que o download do arquivo de configuração seja bem-sucedido. Usamos uma *investigação de prontidão* para indicar um estado "não pronto" até que o download seja bem sucedido e o aplicativo esteja pronto para receber solicitações.
 
 O aplicativo de exemplo contém uma verificação de integridade para relatar a conclusão da tarefa de inicialização de execução longa em um [Serviço Hospedado](xref:fundamentals/host/hosted-services). A `StartupHostedServiceHealthCheck` expõe uma propriedade `StartupTaskCompleted`, que o serviço hospedado poderá definir como `true` quando sua tarefa de execução longa estiver concluída (*StartupHostedServiceHealthCheck.cs*):
 

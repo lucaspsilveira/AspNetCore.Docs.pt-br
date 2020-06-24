@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 2ee75b1af9ffc23ff9ae1763059364de3ec8f426
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 93ac4e7e159f2b1f031e48a44c2297a741ba7b1c
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106501"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292640"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware de cache de resposta em ASP.NET Core
 
@@ -40,7 +40,10 @@ No `Startup.ConfigureServices` , adicione o middleware de cache de resposta à c
 
 Configure o aplicativo para usar o middleware com o <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> método de extensão, que adiciona o middleware ao pipeline de processamento de solicitação no `Startup.Configure` :
 
-[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=16)]
+[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
+
+> [!WARNING]
+> <xref:Owin.CorsExtensions.UseCors%2A>deve ser chamado antes de <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> usar o [middleware CORS](xref:security/cors).
 
 O aplicativo de exemplo adiciona cabeçalhos ao cache de controle em solicitações subsequentes:
 
@@ -102,7 +105,7 @@ O uso de um único valor igual a `*` in `VaryByQueryKeys` varia o cache por todo
 
 A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cache de resposta.
 
-| parâmetro | Detalhes |
+| Cabeçalho | Detalhes |
 | ------ | ------- |
 | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
 | `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
@@ -246,7 +249,7 @@ O uso de um único valor igual a `*` in `VaryByQueryKeys` varia o cache por todo
 
 A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cache de resposta.
 
-| parâmetro | Detalhes |
+| Cabeçalho | Detalhes |
 | ------ | ------- |
 | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
 | `Cache-Control` | O middleware só considera respostas de cache marcadas com a `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>máximo-obsoleto&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>&#8225; de revalidação de proxy</li></ul>&#8224;se nenhum limite for especificado para `max-stale` , o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate` .<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |

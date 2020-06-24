@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 2de33deccbb86bd810c4337f5aa105118de4d9b4
-ms.sourcegitcommit: 77729ba225d5143c0e3954db005906f4a5c7da95
+ms.openlocfilehash: 892663a533a207df84b0fce9af259a7dc212bc9b
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/20/2020
-ms.locfileid: "85122146"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292770"
 ---
 # <a name="build-your-first-blazor-app"></a>Crie seu primeiro Blazor aplicativo
 
@@ -143,7 +143,7 @@ Um [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop é u
 
 Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pendentes simples.
 
-1. Adicione um novo `Todo` Razor componente ao aplicativo na `Pages` pasta. Se você estiver usando o Visual Studio, clique com o botão direito do mouse na `Pages` pasta e selecione **Adicionar**  >  **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente `Todo.razor` . Em outros ambientes de desenvolvimento, adicione um arquivo em branco à `Pages` pasta chamada `Todo.razor` .
+1. Adicione um novo `Todo` Razor componente ao aplicativo na `Pages` pasta. Se você estiver usando o Visual Studio, clique com o botão direito do mouse na `Pages` pasta e selecione **Adicionar**  >  **novo item**  >  ** Razor componente**. Nomeie o arquivo do componente `Todo.razor` . Em outros ambientes de desenvolvimento, adicione um arquivo em branco à `Pages` pasta chamada `Todo.razor` . Razoros nomes de arquivo de componente exigem uma primeira letra em maiúscula, portanto, confirme se o `Todo` nome do arquivo de componente começa com uma letra maiúscula `T` .
 
 1. Forneça a marcação inicial do componente:
 

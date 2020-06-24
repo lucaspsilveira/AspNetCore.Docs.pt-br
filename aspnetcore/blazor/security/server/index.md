@@ -13,16 +13,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 2bdd2f256f456cbf474181021fafc6830bfd68f4
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 2811e08fd2f6c66112ffa0bb40f474158f4c7a59
+ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242921"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85292679"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteger Blazor aplicativos do ASP.NET Core Server
 
 Por [Luke Latham](https://github.com/guardrex)
+
+BlazorOs aplicativos de servidor são configurados para segurança da mesma maneira que ASP.NET Core aplicativos. Para obter mais informações, consulte os artigos em <xref:security/index> . Os tópicos desta visão geral se aplicam especificamente ao Blazor servidor. 
 
 ## <a name="blazor-server-project-template"></a>BlazorModelo de projeto de servidor
 
@@ -53,7 +55,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na tabela a seguir.
 
-| Mecanismo de autenticação | Description |
+| Mecanismo de autenticação | Descrição |
 | ------------------------ | ----------- |
 | `None` (padrão)         | Sem autenticação |
 | `Individual`             | Usuários armazenados no aplicativo com ASP.NET CoreIdentity |
@@ -87,7 +89,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na tabela a seguir.
 
-| Mecanismo de autenticação | Description |
+| Mecanismo de autenticação | Descrição |
 | ------------------------ | ----------- |
 | `None` (padrão)         | Sem autenticação |
 | `Individual`             | Usuários armazenados no aplicativo com ASP.NET CoreIdentity |
@@ -104,10 +106,6 @@ Usando a `-o|--output` opção, o comando usa o valor fornecido para o `{APP NAM
 Para obter mais informações, consulte o [`dotnet new`](/dotnet/core/tools/dotnet-new) comando no guia do .NET Core.
 
 ---
-
-## <a name="secure-an-existing-app"></a>Proteger um aplicativo existente
-
-BlazorOs aplicativos de servidor são configurados para segurança da mesma maneira que ASP.NET Core aplicativos. Para obter mais informações, consulte os artigos em <xref:security/index> .
 
 ## <a name="scaffold-identity"></a>ScaffoldIdentity
 
