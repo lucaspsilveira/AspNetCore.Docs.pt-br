@@ -7,38 +7,40 @@ ms.custom: mvc
 ms.date: 08/14/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/libman/index
-ms.openlocfilehash: 8dc94bd8dc15eaf3b778a8bd2905fcce08398a95
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a9b0f389303709ebf27e6c300ac2489d4e5a86a9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770487"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403075"
 ---
-# <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a><span data-ttu-id="e3363-103">Aquisição de biblioteca do lado do cliente no ASP.NET Core com LibMan</span><span class="sxs-lookup"><span data-stu-id="e3363-103">Client-side library acquisition in ASP.NET Core with LibMan</span></span>
+# <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a><span data-ttu-id="88bd8-103">Aquisição de biblioteca do lado do cliente no ASP.NET Core com LibMan</span><span class="sxs-lookup"><span data-stu-id="88bd8-103">Client-side library acquisition in ASP.NET Core with LibMan</span></span>
 
-<span data-ttu-id="e3363-104">Por [Scott Addie](https://twitter.com/Scott_Addie)</span><span class="sxs-lookup"><span data-stu-id="e3363-104">By [Scott Addie](https://twitter.com/Scott_Addie)</span></span>
+<span data-ttu-id="88bd8-104">Por [Scott Addie](https://twitter.com/Scott_Addie)</span><span class="sxs-lookup"><span data-stu-id="88bd8-104">By [Scott Addie](https://twitter.com/Scott_Addie)</span></span>
 
-<span data-ttu-id="e3363-105">O Gerenciador de Bibliotecas (LibMan) é uma ferramenta leve de aquisição de bibliotecas do lado do cliente.</span><span class="sxs-lookup"><span data-stu-id="e3363-105">Library Manager (LibMan) is a lightweight, client-side library acquisition tool.</span></span> <span data-ttu-id="e3363-106">O LibMan baixa bibliotecas e estruturas populares do sistema de arquivos ou de uma [CDN (rede de distribuição de conteúdo)](https://wikipedia.org/wiki/Content_delivery_network).</span><span class="sxs-lookup"><span data-stu-id="e3363-106">LibMan downloads popular libraries and frameworks from the file system or from a [content delivery network (CDN)](https://wikipedia.org/wiki/Content_delivery_network).</span></span> <span data-ttu-id="e3363-107">Os CDNs com suporte incluem [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/)e [unpkg](https://unpkg.com/#/).</span><span class="sxs-lookup"><span data-stu-id="e3363-107">The supported CDNs include [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/), and [unpkg](https://unpkg.com/#/).</span></span> <span data-ttu-id="e3363-108">Os arquivos de biblioteca selecionados são buscados e colocados no local adequado dentro do projeto do ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="e3363-108">The selected library files are fetched and placed in the appropriate location within the ASP.NET Core project.</span></span>
+<span data-ttu-id="88bd8-105">O Gerenciador de Bibliotecas (LibMan) é uma ferramenta leve de aquisição de bibliotecas do lado do cliente.</span><span class="sxs-lookup"><span data-stu-id="88bd8-105">Library Manager (LibMan) is a lightweight, client-side library acquisition tool.</span></span> <span data-ttu-id="88bd8-106">O LibMan baixa bibliotecas e estruturas populares do sistema de arquivos ou de uma [CDN (rede de distribuição de conteúdo)](https://wikipedia.org/wiki/Content_delivery_network).</span><span class="sxs-lookup"><span data-stu-id="88bd8-106">LibMan downloads popular libraries and frameworks from the file system or from a [content delivery network (CDN)](https://wikipedia.org/wiki/Content_delivery_network).</span></span> <span data-ttu-id="88bd8-107">Os CDNs com suporte incluem [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/)e [unpkg](https://unpkg.com/#/).</span><span class="sxs-lookup"><span data-stu-id="88bd8-107">The supported CDNs include [CDNJS](https://cdnjs.com/), [jsDelivr](https://www.jsdelivr.com/), and [unpkg](https://unpkg.com/#/).</span></span> <span data-ttu-id="88bd8-108">Os arquivos de biblioteca selecionados são buscados e colocados no local adequado dentro do projeto do ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="88bd8-108">The selected library files are fetched and placed in the appropriate location within the ASP.NET Core project.</span></span>
 
-## <a name="libman-use-cases"></a><span data-ttu-id="e3363-109">Casos de uso do LibMan</span><span class="sxs-lookup"><span data-stu-id="e3363-109">LibMan use cases</span></span>
+## <a name="libman-use-cases"></a><span data-ttu-id="88bd8-109">Casos de uso do LibMan</span><span class="sxs-lookup"><span data-stu-id="88bd8-109">LibMan use cases</span></span>
 
-<span data-ttu-id="e3363-110">O LibMan oferece os seguintes benefícios:</span><span class="sxs-lookup"><span data-stu-id="e3363-110">LibMan offers the following benefits:</span></span>
+<span data-ttu-id="88bd8-110">O LibMan oferece os seguintes benefícios:</span><span class="sxs-lookup"><span data-stu-id="88bd8-110">LibMan offers the following benefits:</span></span>
 
-* <span data-ttu-id="e3363-111">Somente os arquivos de biblioteca necessários são baixados.</span><span class="sxs-lookup"><span data-stu-id="e3363-111">Only the library files you need are downloaded.</span></span>
-* <span data-ttu-id="e3363-112">Ferramentas adicionais, tais como [Node.js](https://nodejs.org), [npm](https://www.npmjs.com) e [WebPack](https://webpack.js.org), não são necessárias para adquirir um subconjunto de arquivos em uma biblioteca.</span><span class="sxs-lookup"><span data-stu-id="e3363-112">Additional tooling, such as [Node.js](https://nodejs.org), [npm](https://www.npmjs.com), and [WebPack](https://webpack.js.org), isn't necessary to acquire a subset of files in a library.</span></span>
-* <span data-ttu-id="e3363-113">Arquivos podem ser colocados em um local específico sem recorrer a tarefas de build ou à cópia manual de arquivos.</span><span class="sxs-lookup"><span data-stu-id="e3363-113">Files can be placed in a specific location without resorting to build tasks or manual file copying.</span></span>
+* <span data-ttu-id="88bd8-111">Somente os arquivos de biblioteca necessários são baixados.</span><span class="sxs-lookup"><span data-stu-id="88bd8-111">Only the library files you need are downloaded.</span></span>
+* <span data-ttu-id="88bd8-112">Ferramentas adicionais, tais como [Node.js](https://nodejs.org), [npm](https://www.npmjs.com) e [WebPack](https://webpack.js.org), não são necessárias para adquirir um subconjunto de arquivos em uma biblioteca.</span><span class="sxs-lookup"><span data-stu-id="88bd8-112">Additional tooling, such as [Node.js](https://nodejs.org), [npm](https://www.npmjs.com), and [WebPack](https://webpack.js.org), isn't necessary to acquire a subset of files in a library.</span></span>
+* <span data-ttu-id="88bd8-113">Arquivos podem ser colocados em um local específico sem recorrer a tarefas de build ou à cópia manual de arquivos.</span><span class="sxs-lookup"><span data-stu-id="88bd8-113">Files can be placed in a specific location without resorting to build tasks or manual file copying.</span></span>
 
-<span data-ttu-id="e3363-114">Para obter mais informações sobre os benefícios do LibMan, assista a [Modern front-end web development in Visual Studio 2017: LibMan segment](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s) (Desenvolvimento de front-end da Web moderno no Visual Studio 2017: segmento LibMan).</span><span class="sxs-lookup"><span data-stu-id="e3363-114">For more information about LibMan's benefits, watch [Modern front-end web development in Visual Studio 2017: LibMan segment](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).</span></span>
+<span data-ttu-id="88bd8-114">Para obter mais informações sobre os benefícios do LibMan, assista a [Modern front-end web development in Visual Studio 2017: LibMan segment](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s) (Desenvolvimento de front-end da Web moderno no Visual Studio 2017: segmento LibMan).</span><span class="sxs-lookup"><span data-stu-id="88bd8-114">For more information about LibMan's benefits, watch [Modern front-end web development in Visual Studio 2017: LibMan segment](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).</span></span>
 
-<span data-ttu-id="e3363-115">O LibMan não é um sistema de gerenciamento de pacotes.</span><span class="sxs-lookup"><span data-stu-id="e3363-115">LibMan isn't a package management system.</span></span> <span data-ttu-id="e3363-116">Se você já está usando um gerenciador de pacotes, assim como o npm ou [yarn](https://yarnpkg.com), continue fazendo isso.</span><span class="sxs-lookup"><span data-stu-id="e3363-116">If you're already using a package manager, such as npm or [yarn](https://yarnpkg.com), continue doing so.</span></span> <span data-ttu-id="e3363-117">O LibMan não foi desenvolvido para substituir essas ferramentas.</span><span class="sxs-lookup"><span data-stu-id="e3363-117">LibMan wasn't developed to replace those tools.</span></span>
+<span data-ttu-id="88bd8-115">O LibMan não é um sistema de gerenciamento de pacotes.</span><span class="sxs-lookup"><span data-stu-id="88bd8-115">LibMan isn't a package management system.</span></span> <span data-ttu-id="88bd8-116">Se você já está usando um gerenciador de pacotes, assim como o npm ou [yarn](https://yarnpkg.com), continue fazendo isso.</span><span class="sxs-lookup"><span data-stu-id="88bd8-116">If you're already using a package manager, such as npm or [yarn](https://yarnpkg.com), continue doing so.</span></span> <span data-ttu-id="88bd8-117">O LibMan não foi desenvolvido para substituir essas ferramentas.</span><span class="sxs-lookup"><span data-stu-id="88bd8-117">LibMan wasn't developed to replace those tools.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="e3363-118">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="e3363-118">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="88bd8-118">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="88bd8-118">Additional resources</span></span>
 
 * <xref:client-side/libman/libman-vs>
 * <xref:client-side/libman/libman-cli>
-* [<span data-ttu-id="e3363-119">Repositório do GitHub do LibMan</span><span class="sxs-lookup"><span data-stu-id="e3363-119">LibMan GitHub repository</span></span>](https://github.com/aspnet/LibraryManager)
+* [<span data-ttu-id="88bd8-119">Repositório do GitHub do LibMan</span><span class="sxs-lookup"><span data-stu-id="88bd8-119">LibMan GitHub repository</span></span>](https://github.com/aspnet/LibraryManager)
