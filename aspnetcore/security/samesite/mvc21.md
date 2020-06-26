@@ -8,25 +8,27 @@ ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 6a53c0d3c0a314c4137f071cf50062182b654658
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4239321531f3a7696a15b1dea164450ea0860c2b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777300"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409053"
 ---
-# <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a><span data-ttu-id="7a30e-103">Exemplo de cookie do ASP.NET Core 2,1 MVC SameSite</span><span class="sxs-lookup"><span data-stu-id="7a30e-103">ASP.NET Core 2.1 MVC SameSite cookie sample</span></span>
+# <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a><span data-ttu-id="7fa75-103">Exemplo de cookie do ASP.NET Core 2,1 MVC SameSite</span><span class="sxs-lookup"><span data-stu-id="7fa75-103">ASP.NET Core 2.1 MVC SameSite cookie sample</span></span>
 
-<span data-ttu-id="7a30e-104">ASP.NET Core 2,1 tem suporte interno para o atributo [SameSite](https://www.owasp.org/index.php/SameSite) , mas foi gravado no padrão original.</span><span class="sxs-lookup"><span data-stu-id="7a30e-104">ASP.NET Core 2.1 has built-in support for the [SameSite](https://www.owasp.org/index.php/SameSite) attribute, but it was written to the original standard.</span></span> <span data-ttu-id="7a30e-105">O [comportamento de patches](https://github.com/dotnet/aspnetcore/issues/8212) alterou o `SameSite.None` significado de para emitir o atributo sameSite com um `None`valor de, em vez de não emitir o valor de forma alguma.</span><span class="sxs-lookup"><span data-stu-id="7a30e-105">The [patched behavior](https://github.com/dotnet/aspnetcore/issues/8212) changed the meaning of `SameSite.None` to emit the sameSite attribute with a value of `None`, rather than not emit the value at all.</span></span> <span data-ttu-id="7a30e-106">Se você quiser não emitir o valor, poderá definir a `SameSite` Propriedade em um cookie como-1.</span><span class="sxs-lookup"><span data-stu-id="7a30e-106">If you want to not emit the value you can set the `SameSite` property on a cookie to -1.</span></span>
+<span data-ttu-id="7fa75-104">ASP.NET Core 2,1 tem suporte interno para o atributo [SameSite](https://www.owasp.org/index.php/SameSite) , mas foi gravado no padrão original.</span><span class="sxs-lookup"><span data-stu-id="7fa75-104">ASP.NET Core 2.1 has built-in support for the [SameSite](https://www.owasp.org/index.php/SameSite) attribute, but it was written to the original standard.</span></span> <span data-ttu-id="7fa75-105">O [comportamento de patches](https://github.com/dotnet/aspnetcore/issues/8212) alterou o significado de `SameSite.None` para emitir o atributo sameSite com um valor de `None` , em vez de não emitir o valor de forma alguma.</span><span class="sxs-lookup"><span data-stu-id="7fa75-105">The [patched behavior](https://github.com/dotnet/aspnetcore/issues/8212) changed the meaning of `SameSite.None` to emit the sameSite attribute with a value of `None`, rather than not emit the value at all.</span></span> <span data-ttu-id="7fa75-106">Se você quiser não emitir o valor, poderá definir a `SameSite` propriedade em um cookie como-1.</span><span class="sxs-lookup"><span data-stu-id="7fa75-106">If you want to not emit the value you can set the `SameSite` property on a cookie to -1.</span></span>
 
-## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a><span data-ttu-id="7a30e-107">Gravando o atributo SameSite</span><span class="sxs-lookup"><span data-stu-id="7a30e-107">Writing the SameSite attribute</span></span>
+## <a name="writing-the-samesite-attribute"></a><a name="sampleCode"></a><span data-ttu-id="7fa75-107">Gravando o atributo SameSite</span><span class="sxs-lookup"><span data-stu-id="7fa75-107">Writing the SameSite attribute</span></span>
 
-<span data-ttu-id="7a30e-108">Veja a seguir um exemplo de como escrever um atributo SameSite em um cookie:</span><span class="sxs-lookup"><span data-stu-id="7a30e-108">Following is an example of how to write a SameSite attribute on a cookie:</span></span>
+<span data-ttu-id="7fa75-108">Veja a seguir um exemplo de como escrever um atributo SameSite em um cookie:</span><span class="sxs-lookup"><span data-stu-id="7fa75-108">Following is an example of how to write a SameSite attribute on a cookie:</span></span>
 
 ```c#
 var cookieOptions = new CookieOptions
@@ -48,9 +50,9 @@ var cookieOptions = new CookieOptions
 Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 ```
 
-## <a name="setting-cookie-authentication-and-session-state-cookies"></a><span data-ttu-id="7a30e-109">Definindo a autenticação de cookie e cookies de estado de sessão</span><span class="sxs-lookup"><span data-stu-id="7a30e-109">Setting Cookie Authentication and Session State cookies</span></span>
+## <a name="setting-cookie-authentication-and-session-state-cookies"></a><span data-ttu-id="7fa75-109">Definindo a autenticação de cookie e cookies de estado de sessão</span><span class="sxs-lookup"><span data-stu-id="7fa75-109">Setting Cookie Authentication and Session State cookies</span></span>
 
-<span data-ttu-id="7a30e-110">Autenticação de cookie, estado de sessão e [vários outros componentes](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) definem suas opções de sameSite por meio de opções de cookie, por exemplo</span><span class="sxs-lookup"><span data-stu-id="7a30e-110">Cookie authentication, session state and [various other components](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example</span></span>
+<span data-ttu-id="7fa75-110">Autenticação de cookie, estado de sessão e [vários outros componentes](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) definem suas opções de sameSite por meio de opções de cookie, por exemplo</span><span class="sxs-lookup"><span data-stu-id="7fa75-110">Cookie authentication, session state and [various other components](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example</span></span>
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -69,21 +71,21 @@ services.AddSession(options =>
 });
 ```
 
-<span data-ttu-id="7a30e-111">No código anterior, a autenticação de cookie e o estado de sessão definem seu `None`atributo sameSite como, emitindo o `None` atributo com um valor e também definimos o atributo Secure como true.</span><span class="sxs-lookup"><span data-stu-id="7a30e-111">In the preceding code, both cookie authentication and session state set their sameSite attribute to `None`, emitting the attribute with a `None` value, and also set the Secure attribute to true.</span></span>
+<span data-ttu-id="7fa75-111">No código anterior, a autenticação de cookie e o estado de sessão definem seu atributo sameSite como `None` , emitindo o atributo com um `None` valor e também definimos o atributo Secure como true.</span><span class="sxs-lookup"><span data-stu-id="7fa75-111">In the preceding code, both cookie authentication and session state set their sameSite attribute to `None`, emitting the attribute with a `None` value, and also set the Secure attribute to true.</span></span>
 
-### <a name="run-the-sample"></a><span data-ttu-id="7a30e-112">Execute o exemplo</span><span class="sxs-lookup"><span data-stu-id="7a30e-112">Run the sample</span></span>
+### <a name="run-the-sample"></a><span data-ttu-id="7fa75-112">Execute o exemplo</span><span class="sxs-lookup"><span data-stu-id="7fa75-112">Run the sample</span></span>
 
-<span data-ttu-id="7a30e-113">Se você executar o [projeto de exemplo](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), carregue o depurador do navegador na página inicial e use-o para exibir a coleção de cookies para o site.</span><span class="sxs-lookup"><span data-stu-id="7a30e-113">If you run the [sample project](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), load your browser debugger on the initial page and use it to view the cookie collection for the site.</span></span> <span data-ttu-id="7a30e-114">Para fazer isso no Edge e no Chrome `F12` , selecione a `Application` guia e clique na URL do site na `Cookies` opção na `Storage` seção.</span><span class="sxs-lookup"><span data-stu-id="7a30e-114">To do so in Edge and Chrome press `F12` then select the `Application` tab and click the site URL under the `Cookies` option in the `Storage` section.</span></span>
+<span data-ttu-id="7fa75-113">Se você executar o [projeto de exemplo](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), carregue o depurador do navegador na página inicial e use-o para exibir a coleção de cookies para o site.</span><span class="sxs-lookup"><span data-stu-id="7fa75-113">If you run the [sample project](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), load your browser debugger on the initial page and use it to view the cookie collection for the site.</span></span> <span data-ttu-id="7fa75-114">Para fazer isso no Edge e no Chrome `F12` , selecione a `Application` guia e clique na URL do site na `Cookies` opção na `Storage` seção.</span><span class="sxs-lookup"><span data-stu-id="7fa75-114">To do so in Edge and Chrome press `F12` then select the `Application` tab and click the site URL under the `Cookies` option in the `Storage` section.</span></span>
 
 ![Lista de cookies do depurador do navegador](BrowserDebugger.png)
 
-<span data-ttu-id="7a30e-116">Você pode ver na imagem acima que o cookie criado pelo exemplo quando você clica no botão "Create SameSite cookie" tem um valor de atributo SameSite de `Lax`, correspondendo ao valor definido no código de [exemplo](#sampleCode).</span><span class="sxs-lookup"><span data-stu-id="7a30e-116">You can see from the image above that the cookie created by the sample when you click the "Create SameSite Cookie" button has a SameSite attribute value of `Lax`, matching the value set in the [sample code](#sampleCode).</span></span>
+<span data-ttu-id="7fa75-116">Você pode ver na imagem acima que o cookie criado pelo exemplo quando você clica no botão "Create SameSite cookie" tem um valor de atributo SameSite de `Lax` , correspondendo ao valor definido no [código de exemplo](#sampleCode).</span><span class="sxs-lookup"><span data-stu-id="7fa75-116">You can see from the image above that the cookie created by the sample when you click the "Create SameSite Cookie" button has a SameSite attribute value of `Lax`, matching the value set in the [sample code](#sampleCode).</span></span>
 
-## <a name="intercepting-cookies"></a><a name="interception"></a><span data-ttu-id="7a30e-117">Interceptando cookies</span><span class="sxs-lookup"><span data-stu-id="7a30e-117">Intercepting cookies</span></span>
+## <a name="intercepting-cookies"></a><a name="interception"></a><span data-ttu-id="7fa75-117">Interceptando cookies</span><span class="sxs-lookup"><span data-stu-id="7fa75-117">Intercepting cookies</span></span>
 
-<span data-ttu-id="7a30e-118">Para interceptar cookies, para ajustar o valor None de acordo com seu suporte no agente de navegador do usuário, você deve usar `CookiePolicy` o middleware.</span><span class="sxs-lookup"><span data-stu-id="7a30e-118">In order to intercept cookies, to adjust the none value according to its support in the user's browser agent you must use the `CookiePolicy` middleware.</span></span> <span data-ttu-id="7a30e-119">Isso deve ser colocado no pipeline de solicitação HTTP **antes** de quaisquer componentes que gravam cookies e `ConfigureServices()`configurados no.</span><span class="sxs-lookup"><span data-stu-id="7a30e-119">This must be placed into the http request pipeline **before** any components that write cookies and configured within `ConfigureServices()`.</span></span>
+<span data-ttu-id="7fa75-118">Para interceptar cookies, para ajustar o valor None de acordo com seu suporte no agente de navegador do usuário, você deve usar o `CookiePolicy` middleware.</span><span class="sxs-lookup"><span data-stu-id="7fa75-118">In order to intercept cookies, to adjust the none value according to its support in the user's browser agent you must use the `CookiePolicy` middleware.</span></span> <span data-ttu-id="7fa75-119">Isso deve ser colocado no pipeline de solicitação HTTP **antes** de quaisquer componentes que gravam cookies e configurados no `ConfigureServices()` .</span><span class="sxs-lookup"><span data-stu-id="7fa75-119">This must be placed into the http request pipeline **before** any components that write cookies and configured within `ConfigureServices()`.</span></span>
 
-<span data-ttu-id="7a30e-120">Para inseri-lo no pipeline, `app.UseCookiePolicy()` use o `Configure(IApplicationBuilder, IHostingEnvironment)` método em [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs).</span><span class="sxs-lookup"><span data-stu-id="7a30e-120">To insert it into the pipeline use `app.UseCookiePolicy()` in the `Configure(IApplicationBuilder, IHostingEnvironment)` method in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs).</span></span> <span data-ttu-id="7a30e-121">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="7a30e-121">For example:</span></span>
+<span data-ttu-id="7fa75-120">Para inseri-lo no pipeline, use `app.UseCookiePolicy()` o `Configure(IApplicationBuilder, IHostingEnvironment)` método em [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs).</span><span class="sxs-lookup"><span data-stu-id="7fa75-120">To insert it into the pipeline use `app.UseCookiePolicy()` in the `Configure(IApplicationBuilder, IHostingEnvironment)` method in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs).</span></span> <span data-ttu-id="7fa75-121">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="7fa75-121">For example:</span></span>
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -113,7 +115,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-<span data-ttu-id="7a30e-122">Em seguida, `ConfigureServices(IServiceCollection services)` em configurar a política de cookie para chamar uma classe auxiliar quando os cookies são anexados ou excluídos.</span><span class="sxs-lookup"><span data-stu-id="7a30e-122">Then in the `ConfigureServices(IServiceCollection services)` configure the cookie policy to call out to a helper class when cookies are appended or deleted.</span></span> <span data-ttu-id="7a30e-123">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="7a30e-123">For example:</span></span>
+<span data-ttu-id="7fa75-122">Em seguida, em `ConfigureServices(IServiceCollection services)` Configurar a política de cookie para chamar uma classe auxiliar quando os cookies são anexados ou excluídos.</span><span class="sxs-lookup"><span data-stu-id="7fa75-122">Then in the `ConfigureServices(IServiceCollection services)` configure the cookie policy to call out to a helper class when cookies are appended or deleted.</span></span> <span data-ttu-id="7fa75-123">Por exemplo:</span><span class="sxs-lookup"><span data-stu-id="7fa75-123">For example:</span></span>
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -142,30 +144,30 @@ private void CheckSameSite(HttpContext httpContext, CookieOptions options)
 }
 ```
 
-<span data-ttu-id="7a30e-124">A função `CheckSameSite(HttpContext, CookieOptions)`auxiliar:</span><span class="sxs-lookup"><span data-stu-id="7a30e-124">The helper function `CheckSameSite(HttpContext, CookieOptions)`:</span></span>
+<span data-ttu-id="7fa75-124">A função auxiliar `CheckSameSite(HttpContext, CookieOptions)` :</span><span class="sxs-lookup"><span data-stu-id="7fa75-124">The helper function `CheckSameSite(HttpContext, CookieOptions)`:</span></span>
 
-* <span data-ttu-id="7a30e-125">É chamado quando os cookies são anexados à solicitação ou excluídos da solicitação.</span><span class="sxs-lookup"><span data-stu-id="7a30e-125">Is called when cookies are appended to the request or deleted from the request.</span></span>
-* <span data-ttu-id="7a30e-126">Verifica se a `SameSite` Propriedade está definida como `None`.</span><span class="sxs-lookup"><span data-stu-id="7a30e-126">Checks to see if the `SameSite` property is set to `None`.</span></span>
-* <span data-ttu-id="7a30e-127">Se `SameSite` é definido como `None` e o agente do usuário atual é conhecido por não oferecer suporte ao valor de atributo None.</span><span class="sxs-lookup"><span data-stu-id="7a30e-127">If `SameSite` is set to `None` and the current user agent is known to not support the none attribute value.</span></span> <span data-ttu-id="7a30e-128">A verificação é feita usando a classe [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) :</span><span class="sxs-lookup"><span data-stu-id="7a30e-128">The check is done using the [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) class:</span></span>
-  * <span data-ttu-id="7a30e-129">Define `SameSite` como não emitir o valor definindo a propriedade como`(SameSiteMode)(-1)`</span><span class="sxs-lookup"><span data-stu-id="7a30e-129">Sets `SameSite` to not emit the value by setting the property to `(SameSiteMode)(-1)`</span></span>
+* <span data-ttu-id="7fa75-125">É chamado quando os cookies são anexados à solicitação ou excluídos da solicitação.</span><span class="sxs-lookup"><span data-stu-id="7fa75-125">Is called when cookies are appended to the request or deleted from the request.</span></span>
+* <span data-ttu-id="7fa75-126">Verifica se a `SameSite` propriedade está definida como `None` .</span><span class="sxs-lookup"><span data-stu-id="7fa75-126">Checks to see if the `SameSite` property is set to `None`.</span></span>
+* <span data-ttu-id="7fa75-127">Se `SameSite` é definido como `None` e o agente do usuário atual é conhecido por não oferecer suporte ao valor de atributo None.</span><span class="sxs-lookup"><span data-stu-id="7fa75-127">If `SameSite` is set to `None` and the current user agent is known to not support the none attribute value.</span></span> <span data-ttu-id="7fa75-128">A verificação é feita usando a classe [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) :</span><span class="sxs-lookup"><span data-stu-id="7fa75-128">The check is done using the [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) class:</span></span>
+  * <span data-ttu-id="7fa75-129">Define `SameSite` como não emitir o valor definindo a propriedade como`(SameSiteMode)(-1)`</span><span class="sxs-lookup"><span data-stu-id="7fa75-129">Sets `SameSite` to not emit the value by setting the property to `(SameSiteMode)(-1)`</span></span>
 
-## <a name="targeting-net-framework"></a><span data-ttu-id="7a30e-130">Direcionamento .NET Framework</span><span class="sxs-lookup"><span data-stu-id="7a30e-130">Targeting .NET Framework</span></span>
+## <a name="targeting-net-framework"></a><span data-ttu-id="7fa75-130">Direcionamento .NET Framework</span><span class="sxs-lookup"><span data-stu-id="7fa75-130">Targeting .NET Framework</span></span>
 
-<span data-ttu-id="7a30e-131">ASP.NET Core e System. Web (ASP.NET clássico) têm implementações independentes de SameSite.</span><span class="sxs-lookup"><span data-stu-id="7a30e-131">ASP.NET Core and System.Web (ASP.NET Classic) have independent implementations of SameSite.</span></span> <span data-ttu-id="7a30e-132">Os patches do SameSite KB para .NET Framework não são necessários se usar ASP.NET Core nem o requisito de versão de estrutura mínima do System. Web SameSite (.NET 4.7.2) se aplicam ao ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7a30e-132">The SameSite KB patches for .NET Framework are not required if using ASP.NET Core nor does the System.Web SameSite minimum framework version requirement (.NET 4.7.2) apply to ASP.NET Core.</span></span>
+<span data-ttu-id="7fa75-131">ASP.NET Core e System. Web (ASP.NET clássico) têm implementações independentes de SameSite.</span><span class="sxs-lookup"><span data-stu-id="7fa75-131">ASP.NET Core and System.Web (ASP.NET Classic) have independent implementations of SameSite.</span></span> <span data-ttu-id="7fa75-132">Os patches do SameSite KB para .NET Framework não são necessários se usar ASP.NET Core nem o requisito de versão de estrutura mínima do System. Web SameSite (.NET 4.7.2) se aplicam ao ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="7fa75-132">The SameSite KB patches for .NET Framework are not required if using ASP.NET Core nor does the System.Web SameSite minimum framework version requirement (.NET 4.7.2) apply to ASP.NET Core.</span></span>
 
-<span data-ttu-id="7a30e-133">ASP.NET Core no .NET requer a atualização das dependências do pacote NuGet para obter as correções apropriadas.</span><span class="sxs-lookup"><span data-stu-id="7a30e-133">ASP.NET Core on .NET requires updating nuget package dependencies to get the appropriate fixes.</span></span>
+<span data-ttu-id="7fa75-133">ASP.NET Core no .NET requer a atualização das dependências do pacote NuGet para obter as correções apropriadas.</span><span class="sxs-lookup"><span data-stu-id="7fa75-133">ASP.NET Core on .NET requires updating nuget package dependencies to get the appropriate fixes.</span></span>
 
-<span data-ttu-id="7a30e-134">Para obter as alterações de ASP.NET Core para .NET Framework Verifique se você tem uma referência direta para os pacotes e versões de patch (2.1.14 ou versões posteriores 2,1).</span><span class="sxs-lookup"><span data-stu-id="7a30e-134">To get the ASP.NET Core changes for .NET Framework ensure that you have a direct reference to the patched packages and versions (2.1.14 or later 2.1 versions).</span></span>
+<span data-ttu-id="7fa75-134">Para obter as alterações de ASP.NET Core para .NET Framework Verifique se você tem uma referência direta para os pacotes e versões de patch (2.1.14 ou versões posteriores 2,1).</span><span class="sxs-lookup"><span data-stu-id="7fa75-134">To get the ASP.NET Core changes for .NET Framework ensure that you have a direct reference to the patched packages and versions (2.1.14 or later 2.1 versions).</span></span>
 
 ```xml
 <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.1.14" />
 <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.14" />
 ```
 
-### <a name="more-information"></a><span data-ttu-id="7a30e-135">Mais informações</span><span class="sxs-lookup"><span data-stu-id="7a30e-135">More Information</span></span>
+### <a name="more-information"></a><span data-ttu-id="7fa75-135">Mais informações</span><span class="sxs-lookup"><span data-stu-id="7fa75-135">More Information</span></span>
  
-<span data-ttu-id="7a30e-136">[Atualizações](https://www.chromium.org/updates/same-site)
-do Chrome[ASP.NET Core documentação](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1)
-do SameSite[ASP.NET Core 2,1 SameSite de alteração do aviso](https://github.com/dotnet/aspnetcore/issues/8212)</span><span class="sxs-lookup"><span data-stu-id="7a30e-136">[Chrome Updates](https://www.chromium.org/updates/same-site)
+<span data-ttu-id="7fa75-136">[Atualizações](https://www.chromium.org/updates/same-site) 
+ do Chrome Documentação do ASP.NET Core [SameSite](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 
+ [Aviso de alteração do ASP.NET Core 2,1 SameSite](https://github.com/dotnet/aspnetcore/issues/8212)</span><span class="sxs-lookup"><span data-stu-id="7fa75-136">[Chrome Updates](https://www.chromium.org/updates/same-site)
 [ASP.NET Core SameSite Documentation](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1)
 [ASP.NET Core 2.1 SameSite Change Announcement](https://github.com/dotnet/aspnetcore/issues/8212)</span></span>
