@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: 1a42d162e28d4bb4cce284b8b5e37f1be6ff64c6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: ed5dffb83a2f1a40f3d6596d23135c0fa5b6791f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770546"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403177"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usar a CLI do LibMan com ASP.NET Core
 
@@ -98,7 +100,7 @@ As seções a seguir descrevem os comandos da CLI disponíveis.
 
 ## <a name="initialize-libman-in-the-project"></a>Inicializar LibMan no projeto
 
-O `libman init` comando criará um arquivo *Libman. JSON* se ele não existir. O arquivo é criado com o conteúdo do modelo de item padrão.
+O `libman init` comando criará um *libman.jsno* arquivo se ele não existir. O arquivo é criado com o conteúdo do modelo de item padrão.
 
 ### <a name="synopsis"></a>Sinopse
 
@@ -113,11 +115,11 @@ As opções a seguir estão disponíveis para o comando `libman init`:
 
 * `-d|--default-destination <PATH>`
 
-  Um caminho relativo à pasta atual. Os arquivos de biblioteca serão instalados nesse local se nenhuma `destination` propriedade for definida para uma biblioteca em *Libman. JSON*. O `<PATH>` valor é gravado na `defaultDestination` propriedade de *Libman. JSON*.
+  Um caminho relativo à pasta atual. Os arquivos de biblioteca serão instalados nesse local se nenhuma `destination` propriedade for definida para uma biblioteca no *libman.jsem*. O `<PATH>` valor é gravado na `defaultDestination` propriedade de *libman.jsem*.
 
 * `-p|--default-provider <PROVIDER>`
 
-  O provedor a ser usado se nenhum provedor for definido para uma determinada biblioteca. O `<PROVIDER>` valor é gravado na `defaultProvider` propriedade de *Libman. JSON*. Substitua `<PROVIDER>` por um dos seguintes valores:
+  O provedor a ser usado se nenhum provedor for definido para uma determinada biblioteca. O `<PROVIDER>` valor é gravado na `defaultProvider` propriedade de *libman.jsem*. Substitua `<PROVIDER>` por um dos seguintes valores:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
@@ -125,7 +127,7 @@ As opções a seguir estão disponíveis para o comando `libman init`:
 
 ### <a name="examples"></a>Exemplos
 
-Para criar um arquivo *Libman. JSON* em um projeto ASP.NET Core:
+Para criar um *libman.jsno* arquivo em um projeto ASP.NET Core:
 
 * Navegue até a raiz do projeto.
 * Execute o comando a seguir:
@@ -140,7 +142,7 @@ Para criar um arquivo *Libman. JSON* em um projeto ASP.NET Core:
 
   ![comando init Libman – provedor padrão](_static/libman-init-provider.png)
 
-Um arquivo *Libman. JSON* é adicionado à raiz do projeto com o seguinte conteúdo:
+Um *libman.jsno* arquivo é adicionado à raiz do projeto com o seguinte conteúdo:
 
 ```json
 {
@@ -152,7 +154,7 @@ Um arquivo *Libman. JSON* é adicionado à raiz do projeto com o seguinte conte�
 
 ## <a name="add-library-files"></a>Adicionar arquivos de biblioteca
 
-O `libman install` comando baixa e instala arquivos de biblioteca no projeto. Um arquivo *Libman. JSON* será adicionado se um não existir. O arquivo *Libman. JSON* é modificado para armazenar detalhes de configuração dos arquivos de biblioteca.
+O `libman install` comando baixa e instala arquivos de biblioteca no projeto. Um *libman.jsno* arquivo será adicionado se um não existir. O *libman.jsno* arquivo é modificado para armazenar detalhes de configuração dos arquivos de biblioteca.
 
 ### <a name="synopsis"></a>Sinopse
 
@@ -173,7 +175,7 @@ As opções a seguir estão disponíveis para o comando `libman install`:
 
 * `-d|--destination <PATH>`
 
-  O local para instalar a biblioteca. Se não for especificado, o local padrão será usado. Se nenhuma `defaultDestination` propriedade for especificada em *Libman. JSON*, essa opção será necessária.
+  O local para instalar a biblioteca. Se não for especificado, o local padrão será usado. Se nenhuma `defaultDestination` propriedade for especificada no *libman.jsem*, essa opção será necessária.
 
 * `--files <FILE>`
 
@@ -185,13 +187,13 @@ As opções a seguir estão disponíveis para o comando `libman install`:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  Se não for especificado, a `defaultProvider` propriedade em *Libman. JSON* será usada. Se nenhuma `defaultProvider` propriedade for especificada em *Libman. JSON*, essa opção será necessária.
+  Se não for especificado, a `defaultProvider` propriedade no *libman.jsem* será usada. Se nenhuma `defaultProvider` propriedade for especificada no *libman.jsem*, essa opção será necessária.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### <a name="examples"></a>Exemplos
 
-Considere o seguinte arquivo *Libman. JSON* :
+Considere o seguinte *libman.jsno* arquivo:
 
 ```json
 {
@@ -201,13 +203,13 @@ Considere o seguinte arquivo *Libman. JSON* :
 }
 ```
 
-Para instalar o arquivo jQuery versão 3.2.1 *jQuery. min. js* na pasta *wwwroot/scripts/jQuery* usando o provedor CDNJS:
+Para instalar o arquivo jQuery versão 3.2.1 *jquery.min.js* na pasta *wwwroot/scripts/jQuery* usando o provedor CDNJS:
 
 ```console
 libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquery --files jquery.min.js
 ```
 
-O arquivo *Libman. JSON* é semelhante ao seguinte:
+O *libman.jsno* arquivo é semelhante ao seguinte:
 
 ```json
 {
@@ -225,7 +227,7 @@ O arquivo *Libman. JSON* é semelhante ao seguinte:
 }
 ```
 
-Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C: \\ temp \\ contosoCalendar \\ * usando o provedor do sistema de arquivos:
+Para instalar os arquivos *calendar.js* e *Calendar. css* de *C: \\ temp \\ contosoCalendar \\ * usando o provedor do sistema de arquivos:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
@@ -233,12 +235,12 @@ Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C: \\ temp \\ con
 
 O prompt a seguir aparece por dois motivos:
 
-* O arquivo *Libman. JSON* não contém uma `defaultDestination` propriedade.
+* O *libman.jsno* arquivo não contém uma `defaultDestination` propriedade.
 * O `libman install` comando não contém a `-d|--destination` opção.
 
 ![comando de instalação do Libman-destino](_static/libman-install-destination.png)
 
-Depois de aceitar o destino padrão, o arquivo *Libman. JSON* é semelhante ao seguinte:
+Depois de aceitar o destino padrão, o *libman.jsno* arquivo é semelhante ao seguinte:
 
 ```json
 {
@@ -267,11 +269,11 @@ Depois de aceitar o destino padrão, o arquivo *Libman. JSON* é semelhante ao s
 
 ## <a name="restore-library-files"></a>Restaurar arquivos de biblioteca
 
-O `libman restore` comando instala os arquivos de biblioteca definidos em *Libman. JSON*. As seguintes regras se aplicam:
+O `libman restore` comando instala os arquivos de biblioteca definidos no *libman.jsem*. As seguintes regras se aplicam:
 
-* Se nenhum arquivo *Libman. JSON* existir na raiz do projeto, um erro será retornado.
-* Se uma biblioteca especificar um provedor, a `defaultProvider` propriedade em *Libman. JSON* será ignorada.
-* Se uma biblioteca especificar um destino, a `defaultDestination` propriedade em *Libman. JSON* será ignorada.
+* Se nenhum *libman.jsno* arquivo existir na raiz do projeto, um erro será retornado.
+* Se uma biblioteca especificar um provedor, a `defaultProvider` propriedade no *libman.jsem* será ignorada.
+* Se uma biblioteca especificar um destino, a `defaultDestination` propriedade no *libman.jsem* será ignorada.
 
 ### <a name="synopsis"></a>Sinopse
 
@@ -288,7 +290,7 @@ As opções a seguir estão disponíveis para o comando `libman restore`:
 
 ### <a name="examples"></a>Exemplos
 
-Para restaurar os arquivos de biblioteca definidos em *Libman. JSON*:
+Para restaurar os arquivos de biblioteca definidos no *libman.jsem*:
 
 ```console
 libman restore
@@ -296,7 +298,7 @@ libman restore
 
 ## <a name="delete-library-files"></a>Excluir arquivos de biblioteca
 
-O `libman clean` comando exclui os arquivos de biblioteca restaurados anteriormente por meio de LibMan. Pastas que se tornam vazias depois que essa operação é excluída. As configurações associadas dos arquivos de biblioteca na `libraries` propriedade de *Libman. JSON* não são removidas.
+O `libman clean` comando exclui os arquivos de biblioteca restaurados anteriormente por meio de LibMan. Pastas que se tornam vazias depois que essa operação é excluída. As configurações associadas dos arquivos de biblioteca na `libraries` propriedade de *libman.json* não são removidas.
 
 ### <a name="synopsis"></a>Sinopse
 
@@ -323,12 +325,12 @@ libman clean
 
 O comando `libman uninstall`:
 
-* Exclui todos os arquivos associados à biblioteca especificada do destino em *Libman. JSON*.
-* Remove a configuração de biblioteca associada de *Libman. JSON*.
+* Exclui todos os arquivos associados à biblioteca especificada do destino no *libman.jsem*.
+* Remove a configuração da biblioteca associada do *libman.jsem*.
 
 Ocorrerá um erro quando:
 
-* Nenhum arquivo *Libman. JSON* existe na raiz do projeto.
+* Não existe *libman.jsno* arquivo na raiz do projeto.
 * A biblioteca especificada não existe.
 
 Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.
@@ -354,7 +356,7 @@ As opções a seguir estão disponíveis para o comando `libman uninstall`:
 
 ### <a name="examples"></a>Exemplos
 
-Considere o seguinte arquivo *Libman. JSON* :
+Considere o seguinte *libman.jsno* arquivo:
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -380,7 +382,7 @@ O `libman update` comando atualiza uma biblioteca instalada por meio de LibMan p
 
 Ocorrerá um erro quando:
 
-* Nenhum arquivo *Libman. JSON* existe na raiz do projeto.
+* Não existe *libman.jsno* arquivo na raiz do projeto.
 * A biblioteca especificada não existe.
 
 Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.

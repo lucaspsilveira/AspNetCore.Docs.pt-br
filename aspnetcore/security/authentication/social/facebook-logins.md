@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: 11ddc7314a694446d488da6ef1b2e3423bf7241a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: df91b6f324de70b8492ccf0aef74c9264c3e9711
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777027"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403944"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Facebook no ASP.NET Core
 
@@ -55,16 +57,16 @@ Este tutorial com exemplos de código mostra como permitir que os usuários entr
 
   ![Página de configurações do OAuth do cliente](index/_static/FBOAuthSetup.png)
 
-* Insira seu URI de desenvolvimento com */SignIn-Facebook* anexados ao campo **URIs de redirecionamento OAuth válido** ( `https://localhost:44320/signin-facebook`por exemplo:). A autenticação do Facebook configurada posteriormente neste tutorial tratará automaticamente as solicitações na rota */SignIn-Facebook* para implementar o fluxo OAuth.
+* Insira seu URI de desenvolvimento com */SignIn-Facebook* anexados ao campo **URIs de redirecionamento OAuth válido** (por exemplo: `https://localhost:44320/signin-facebook` ). A autenticação do Facebook configurada posteriormente neste tutorial tratará automaticamente as solicitações na rota */SignIn-Facebook* para implementar o fluxo OAuth.
 
 > [!NOTE]
 > O URI */SignIn-Facebook* é definido como o retorno de chamada padrão do provedor de autenticação do Facebook. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação do Facebook por meio da propriedade [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) herdada da classe [facebookoptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) .
 
 * Clique em **Salvar Alterações**.
 
-* Clique no link **configurações** > **básico** no painel de navegação esquerdo.
+* Clique **Settings**  >  no link configurações**básico** no painel de navegação esquerdo.
 
-  Nesta página, anote seu `App ID` e seu. `App Secret` Você adicionará ambos ao seu aplicativo ASP.NET Core na próxima seção:
+  Nesta página, anote seu `App ID` e seu `App Secret` . Você adicionará ambos ao seu aplicativo ASP.NET Core na próxima seção:
 
 * Ao implantar o site, você precisa revisitar a página de configuração de **logon do Facebook** e registrar um novo URI público.
 
@@ -73,7 +75,7 @@ Este tutorial com exemplos de código mostra como permitir que os usuários entr
 Armazene configurações confidenciais, como a ID do aplicativo do Facebook e valores secretos com o [Gerenciador de segredo](xref:security/app-secrets). Para este exemplo, use as seguintes etapas:
 
 1. Inicialize o projeto para o armazenamento secreto de acordo com as instruções em [habilitar armazenamento secreto](xref:security/app-secrets#enable-secret-storage).
-1. Armazene as configurações confidenciais no repositório de segredo local com as chaves `Authentication:Facebook:AppId` secretas e `Authentication:Facebook:AppSecret`:
+1. Armazene as configurações confidenciais no repositório de segredo local com as chaves secretas `Authentication:Facebook:AppId` e `Authentication:Facebook:AppSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
@@ -112,11 +114,11 @@ Agora você está conectado usando suas credenciais do Facebook:
 
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath>pode fornecer um caminho de redirecionamento para o agente do usuário quando o usuário não aprova a demanda de autorização solicitada.
 
-O código a seguir define `AccessDeniedPath` o `"/AccessDeniedPathInfo"`para:
+O código a seguir define o `AccessDeniedPath` para `"/AccessDeniedPathInfo"` :
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
 
-Recomendamos que `AccessDeniedPath` a página contenha as seguintes informações:
+Recomendamos que a `AccessDeniedPath` página contenha as seguintes informações:
 
 *  A autenticação remota foi cancelada.
 * Este aplicativo requer autenticação.
@@ -127,7 +129,7 @@ Recomendamos que `AccessDeniedPath` a página contenha as seguintes informaçõe
 * Navegue até [Facebook.com](https://www.facebook.com/)
 * Se você estiver conectado, deverá sair.
 * Execute o aplicativo e selecione entrada no Facebook.
-* Selecione **não agora**. Você será redirecionado para a página `AccessDeniedPath` especificada.
+* Selecione **não agora**. Você será redirecionado para a `AccessDeniedPath` página especificada.
 
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -141,7 +143,7 @@ Consulte a referência da API do [facebookoptions](/dotnet/api/microsoft.aspnetc
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-* **Somente ASP.NET Core 2. x:** Se Identity não estiver configurado chamando `services.AddIdentity` em `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso seja feito.
+* **Somente ASP.NET Core 2. x:** Se Identity não estiver configurado chamando `services.AddIdentity` em `ConfigureServices` , a tentativa de autenticar resultará em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso seja feito.
 * Se o banco de dados do site não tiver sido criado aplicando a migração inicial, você obterá *uma operação de banco de dados com falha ao processar o erro de solicitação* . Toque em **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas

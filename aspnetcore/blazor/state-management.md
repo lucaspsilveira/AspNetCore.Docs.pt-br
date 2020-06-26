@@ -1,30 +1,32 @@
 ---
 title: BlazorGerenciamento de estado ASP.NET Core
 author: guardrex
-description: Saiba como persistir o estado em Blazor aplicativos de servidor.
+description: Saiba como persistir o estado em Blazor Server aplicativos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: 59adcce972b503a6aa6e596bc9bff63225961f84
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: a6c646425145855538f408ec6cafdb151cd24b86
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243194"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401942"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>BlazorGerenciamento de estado ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-BlazorO servidor é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
+Blazor Serveré uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
 
 Exemplos de estado mantido para o circuito de um usuário incluem:
 
@@ -33,7 +35,7 @@ Exemplos de estado mantido para o circuito de um usuário incluem:
 * Dados mantidos em instâncias de serviço de [injeção de dependência (di)](xref:fundamentals/dependency-injection) que estão no escopo do circuito.
 
 > [!NOTE]
-> Este artigo aborda a persistência de estado em Blazor aplicativos de servidor. BlazorOs aplicativos Webassembly podem aproveitar a [persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
+> Este artigo aborda a persistência de estado em Blazor Server aplicativos. Blazor WebAssemblyos aplicativos podem aproveitar [a persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
 
 ## <a name="blazor-circuits"></a>Blazorcircuitos
 
@@ -68,7 +70,7 @@ Normalmente, não é necessário preservar o estado de recriação fácil, como 
 
 ## <a name="where-to-persist-state"></a>Onde persistir o estado
 
-Existem três localizações comuns para o estado persistente em um Blazor aplicativo de servidor. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
+Existem três localizações comuns para o estado persistente em um Blazor Server aplicativo. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
 
 * [Lado do servidor em um banco de dados](#server-side-in-a-database)
 * [URL](#url)
@@ -106,7 +108,7 @@ Para obter informações sobre como definir padrões de URL com a `@page` direti
 Para dados transitórios que o usuário está criando ativamente, um repositório de backup comum é o navegador `localStorage` e as `sessionStorage` coleções. O aplicativo não é necessário para gerenciar ou limpar o estado armazenado se o circuito for abandonado, o que é uma vantagem sobre o armazenamento do lado do servidor.
 
 > [!NOTE]
-> "Lado do cliente" nesta seção refere-se a cenários do lado do cliente no navegador, não no [ Blazor modelo de hospedagem Webassembly](xref:blazor/hosting-models#blazor-webassembly). `localStorage`e `sessionStorage` podem ser usados em Blazor aplicativos Webassembly, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
+> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no [ Blazor WebAssembly modelo de hospedagem](xref:blazor/hosting-models#blazor-webassembly). `localStorage`e `sessionStorage` pode ser usado em Blazor WebAssembly aplicativos, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
 
 `localStorage`e `sessionStorage` diferem da seguinte maneira:
 
@@ -124,7 +126,7 @@ Advertências para usar o armazenamento de navegador:
 
 * Assim como o uso de um banco de dados do lado do servidor, o carregamento e o salvamento do data são assíncronos.
 * Ao contrário de um banco de dados do lado do servidor, o armazenamento não está disponível durante o pré-processamento porque a página solicitada não existe no navegador durante o estágio de pré-processamento.
-* O armazenamento de alguns kilobytes de dados é razoável para persistir para Blazor aplicativos de servidor. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
+* O armazenamento de alguns kilobytes de dados é razoável para persistir para Blazor Server aplicativos. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
 * Os usuários podem exibir ou adulterar os dados. ASP.NET Core [proteção de dados](xref:security/data-protection/introduction) pode reduzir o risco.
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluções de armazenamento de navegadores de terceiros
@@ -144,7 +146,7 @@ Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/da
 
 Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
 
-1. No Blazor projeto de aplicativo do servidor, adicione uma referência de pacote a [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
+1. No Blazor Server projeto de aplicativo, adicione uma referência de pacote a [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage) .
 1. No HTML de nível superior (por exemplo, no `Pages/_Host.cshtml` arquivo no modelo de projeto padrão), adicione a seguinte `<script>` marca:
 
    ```html

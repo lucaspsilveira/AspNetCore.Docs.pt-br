@@ -8,17 +8,19 @@ ms.date: 02/06/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 7f17352d2e7e3f4239b338ec961120ab3088c77a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 3a42ce1773bef74fab35884025765d147c534dd2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773543"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403216"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
@@ -318,7 +320,7 @@ Clique com o botão direito do mouse na tabela **Aluno** e clique em **Exibir Da
 
 ![Tabela Aluno no SSOX](intro/_static/ssox-student-table.png)
 
-Os arquivos de banco de dados *. MDF* e *. ldf* estão na pasta *\\\<C:\Users seunomedeusuário>* .
+Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Users\\\<yourusername>*.
 
 Como você está chamando `EnsureCreated` no método inicializador executado na inicialização do aplicativo, agora você pode fazer uma alteração na classe `Student`, excluir o banco de dados, executar novamente o aplicativo e o banco de dados será recriado automaticamente para que ele corresponda à alteração. Por exemplo, se você adicionar uma propriedade `EmailAddress` à classe `Student`, verá uma nova coluna `EmailAddress` na tabela recriada.
 
@@ -332,7 +334,7 @@ A quantidade de código feita para que o Entity Framework possa criar um banco d
 
 * As propriedades de entidade que são nomeadas ID ou classnameID são reconhecidas como propriedades de chave primária.
 
-* Uma propriedade será interpretada como uma propriedade de chave estrangeira se for nomeada * \<nome da \<propriedade de navegação>nome da propriedade de chave primária>* (por exemplo, `Student` `StudentID` para a `Student` propriedade de navegação, desde que a chave primária da entidade seja `ID`). As propriedades de chave estrangeira também podem ser nomeadas simplesmente `EnrollmentID` `Enrollment` `EnrollmentID` * \<como nome de propriedade de chave primária>* (por exemplo, como a chave primária da entidade é).
+* Uma propriedade será interpretada como uma propriedade de chave estrangeira se ela for nomeada *\<navigation property name>\<primary key property name>* (por exemplo, `StudentID` para a `Student` propriedade de navegação, uma vez que a `Student` chave primária da entidade é `ID` ). As propriedades de chave estrangeira também podem ser nomeadas simplesmente *\<primary key property name>* (por exemplo, `EnrollmentID` uma vez que a `Enrollment` chave primária da entidade é `EnrollmentID` ).
 
 O comportamento convencional pode ser substituído. Por exemplo, você pode especificar os nomes de tabela de forma explícita, conforme visto anteriormente neste tutorial. Além disso, você pode definir nomes de coluna e qualquer propriedade como a chave primária ou chave estrangeira, como você verá em um [tutorial posterior](complex-data-model.md) desta série.
 

@@ -8,17 +8,19 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 74153b9a185d382a3418dd9470ce6ca4c3c70041
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7233d6baf139d2ef362f4e3d1a56cf7f0e2514d2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773608"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403112"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core
 
@@ -99,7 +101,7 @@ Quando o botão **Atualizar** recebe um clique, o método HttpPost é chamado e 
 
 No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Views/Courses* e, em seguida, clique em **Adicionar > Novo Item**.
 
-Na caixa de diálogo **Adicionar novo item** , clique em **ASP.NET Core** em **instalado** no painel esquerdo, clique em ** Razor exibir**e nomeie o novo modo de exibição *UpdateCourseCredits. cshtml*.
+Na caixa de diálogo **Adicionar novo item** , clique em **ASP.NET Core** em **instalado** no painel esquerdo, clique em ** Razor Exibir**e nomeie o novo modo de exibição *UpdateCourseCredits. cshtml*.
 
 Em *Views/Courses/UpdateCourseCredits.cshtml*, substitua o código de modelo pelo seguinte código:
 
@@ -148,7 +150,7 @@ INNER JOIN (
 ORDER BY [t].[ID]
 ```
 
-Você observará algo aqui que pode ser surpreendente: o SQL seleciona até 2 linhas (`TOP(2)`) da tabela Person. O método `SingleOrDefaultAsync` não é resolvido para uma 1 linha no servidor. Eis o porquê:
+Você observará algo aqui que pode ser surpreendente: o SQL seleciona até 2 linhas (`TOP(2)`) da tabela Person. O método `SingleOrDefaultAsync` não é resolvido para uma 1 linha no servidor. Veja por quê:
 
 * Se a consulta retorna várias linhas, o método retorna nulo.
 * Para determinar se a consulta retorna várias linhas, o EF precisa verificar se ela retorna pelo menos 2.
@@ -187,7 +189,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Código-fonte e planos de desenvolvimento do EF Core
 
-A fonte de Entity Framework Core está [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)em. O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/dotnet/efcore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
+A fonte de Entity Framework Core está em [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore) . O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/dotnet/efcore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
 
 Embora o código-fonte seja aberto, há suporte completo para o Entity Framework Core como um produto Microsoft. A equipe do Microsoft Entity Framework mantém controle sobre quais contribuições são aceitas e testa todas as alterações de código para garantir a qualidade de cada versão.
 

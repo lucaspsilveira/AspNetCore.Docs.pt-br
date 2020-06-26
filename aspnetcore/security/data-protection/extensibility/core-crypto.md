@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 08/11/2017
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/core-crypto
-ms.openlocfilehash: c63cc124e1893f23c18581841194fa66848a2a1e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: de34968f21eec28cf375ee9f75d3cb8b212c7e70
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776416"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404269"
 ---
 # <a name="core-cryptography-extensibility-in-aspnet-core"></a>Extensibilidade de criptografia de núcleo no ASP.NET Core
 
@@ -126,10 +128,10 @@ A principal diferença entre IAuthenticatedEncryptor e IAuthenticatedEncryptorDe
 
 O descritor pode ser serializado por meio de sua rotina ExportToXml. Essa rotina retorna um XmlSerializedDescriptorInfo que contém duas propriedades: a representação XElement do descritor e o tipo que representa um [IAuthenticatedEncryptorDescriptorDeserializer](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer) que pode ser usado para ressuscitar esse descritor, considerando o XElement correspondente.
 
-O descritor serializado pode conter informações confidenciais, como o material de chave de criptografia. O sistema de proteção de dados tem suporte interno para criptografar informações antes que ela seja persistida no armazenamento. Para tirar proveito disso, o descritor deve marcar o elemento que contém informações confidenciais com o nome do atributo "requiresEncryption" (xmlns<http://schemas.asp.net/2015/03/dataProtection>""), valor "true".
+O descritor serializado pode conter informações confidenciais, como o material de chave de criptografia. O sistema de proteção de dados tem suporte interno para criptografar informações antes que ela seja persistida no armazenamento. Para tirar proveito disso, o descritor deve marcar o elemento que contém informações confidenciais com o nome do atributo "requiresEncryption" (xmlns " <http://schemas.asp.net/2015/03/dataProtection> "), valor "true".
 
 >[!TIP]
-> Há uma API auxiliar para definir esse atributo. Chame o método de extensão XElement. MarkAsRequiresEncryption () localizado no namespace Microsoft. AspNetCore. dataprotection. AuthenticatedEncryption. ConfigurationModel.
+> Há uma API auxiliar para definir esse atributo. Chame o método de extensão XElement. MarkAsRequiresEncryption () localizado no namespace Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.
 
 Também pode haver casos em que o descritor serializado não contém informações confidenciais. Considere novamente o caso de uma chave de criptografia armazenada em um HSM. O descritor não pode gravar o material da chave ao se serializar, pois o HSM não exporá o material em formato de texto sem formatação. Em vez disso, o descritor pode gravar a versão com encapsulamento de chave da chave (se o HSM permitir exportar dessa maneira) ou o próprio identificador exclusivo do HSM para a chave.
 

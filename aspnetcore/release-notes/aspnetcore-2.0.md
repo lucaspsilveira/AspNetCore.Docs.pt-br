@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: b1fc486633ab7c7d7bee4f8981a978747b2890da
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 97d8606ba6bef0bb8bf23d1553c7cb5681fbdbd8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775811"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404360"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novidades do ASP.NET Core 2.0
 
@@ -72,13 +74,13 @@ Para obter informações sobre o status da documentação planejada, consulte o 
 
 ## <a name="identity-update"></a>atualização de Identity
 
-Tornamos mais fácil criar APIs Web seguras usando Identity o no ASP.NET Core 2,0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+Tornamos mais fácil criar APIs Web seguras usando o Identity no ASP.NET Core 2,0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 Para obter mais informações sobre alterações de autenticação no 2.0, consulte os seguintes recursos:
 
 * [Confirmação de conta e de recuperação de senha no ASP.NET Core](xref:security/authentication/accconfirm)
 * [Habilitar a geração de código QR para aplicativos de autenticador no ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Migrar autenticação Identity e para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
+* [Migrar autenticação e Identity para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="spa-templates"></a>Modelos do SPA
 
@@ -110,7 +112,7 @@ var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
 
-O arquivo retornado para os visitantes tem os cabeçalhos HTTP apropriados para os `ETag` valores `LastModified` e.
+O arquivo retornado para os visitantes tem os cabeçalhos HTTP apropriados para os `ETag` `LastModified` valores e.
 
 Se um visitante do aplicativo solicitar o conteúdo com um cabeçalho de solicitação de intervalo, o ASP.NET Core reconhecerá a solicitação e lidará com o cabeçalho. Se parte do conteúdo solicitado puder ser entregue, o ASP.NET Core ignorará a parte em questão e retornará apenas o conjunto de bytes solicitado. Você não precisa gravar nenhum manipulador especial em seus métodos para adaptar ou manipular esse recurso; ele é manipulado automaticamente para você.
 
@@ -132,7 +134,7 @@ Para obter mais informações, confira [Impedir ataques de XSRF/CSRF (solicitaç
 
 Razora exibição de pré-compilação é habilitada durante a publicação por padrão, reduzindo o tamanho da saída de publicação e o tempo de inicialização do aplicativo.
 
-Para obter mais informações, [ Razor consulte Exibir compilação e pré-compilação no ASP.NET Core](xref:mvc/views/view-compilation).
+Para obter mais informações, consulte [ Razor Exibir compilação e pré-compilação no ASP.NET Core](xref:mvc/views/view-compilation).
 
 ## <a name="razor-support-for-c-71"></a>Razorsuporte para C# 7,1
 
@@ -158,7 +160,7 @@ Para obter informações sobre o status dos recursos do C# 7.1, consulte [o repo
 Para obter diretrizes sobre como migrar aplicativos ASP.NET Core 1.x para o ASP.NET Core 2.0, consulte os seguintes recursos:
 
 * [Migrar do ASP.NET Core 1.x para o ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrar autenticação Identity e para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
+* [Migrar autenticação e Identity para ASP.NET Core 2,0](xref:migration/1x-to-2x/identity-2x)
 
 ## <a name="additional-information"></a>Informações adicionais
 

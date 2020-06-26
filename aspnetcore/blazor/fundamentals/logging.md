@@ -8,23 +8,25 @@ ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: 841c4021d9217312b2601b0e775542c6455cca82
-ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
+ms.openlocfilehash: 1f4b18bdea02016fb76b75dd01a8fcbeab9b2bc9
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240879"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402826"
 ---
 # <a name="aspnet-core-blazor-logging"></a>Log de ASP.NET Core Blazor
 
-## <a name="blazor-webassembly"></a>BlazorWebassembly
+## Blazor WebAssembly
 
-Configure o log em Blazor aplicativos Webassembly com a `WebAssemblyHostBuilder.Logging` propriedade em `Program.Main` :
+Configure o log em Blazor WebAssembly aplicativos com a `WebAssemblyHostBuilder.Logging` propriedade em `Program.Main` :
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -41,11 +43,11 @@ A `Logging` propriedade é do tipo <xref:Microsoft.Extensions.Logging.ILoggingBu
 
 A configuração de log pode ser carregada de arquivos de configurações do aplicativo. Para obter mais informações, consulte <xref:blazor/fundamentals/configuration#logging-configuration>.
 
-## <a name="blazor-server"></a>BlazorServidor
+## Blazor Server
 
 Para obter diretrizes gerais de log de ASP.NET Core, consulte <xref:fundamentals/logging/index> .
 
-## <a name="blazor-webassembly-signalr-net-client-logging"></a>BlazorLog de cliente do Webassembly SignalR .net
+## <a name="blazor-webassembly-signalr-net-client-logging"></a>Blazor WebAssemblySignalRLog de cliente .net
 
 Insira um <xref:Microsoft.Extensions.Logging.ILoggerProvider> para adicionar um `WebAssemblyConsoleLogger` aos provedores de log passados para <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder> . Ao contrário de um tradicional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger> , `WebAssemblyConsoleLogger` é um wrapper em relação às APIs de log específicas do navegador (por exemplo, `console.log` ). O uso de `WebAssemblyConsoleLogger` torna o registro em log possível no mono dentro de um contexto do navegador.
 

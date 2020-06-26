@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 72a8b59b06e40f6f85abe41217ae564f82c8d89c
-ms.sourcegitcommit: 1833870ad0845326fb764fef1b530a07b9b5b099
+ms.openlocfilehash: 236dffd829bcd7c30ae1145242ce07cd8e9857e6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85347067"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402943"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core Blazor configuração do modelo de hospedagem
 
@@ -28,7 +30,7 @@ Este artigo aborda a configuração do modelo de hospedagem.
 
 ### <a name="signalr-cross-origin-negotiation-for-authentication"></a>SignalRnegociação entre origens para autenticação
 
-*Esta seção aplica-se ao Blazor Webassembly.*
+*Esta seção aplica-se a Blazor WebAssembly .*
 
 Para configurar SignalR o cliente subjacente do para enviar credenciais, como cookies ou cabeçalhos de autenticação http:
 
@@ -61,7 +63,7 @@ Para obter mais informações, consulte <xref:signalr/configuration#configure-ad
 
 ## <a name="reflect-the-connection-state-in-the-ui"></a>Refletir o estado da conexão na interface do usuário
 
-*Esta seção aplica-se ao Blazor servidor do.*
+*Esta seção aplica-se a Blazor Server .*
 
 Quando o cliente detecta que a conexão foi perdida, uma interface de usuário padrão é exibida para o usuário enquanto o cliente tenta se reconectar. Se a reconexão falhar, o usuário receberá a opção de tentar novamente.
 
@@ -84,9 +86,9 @@ A tabela a seguir descreve as classes CSS aplicadas ao `components-reconnect-mod
 
 ## <a name="render-mode"></a>Modo de renderização
 
-*Esta seção aplica-se ao Blazor servidor do.*
+*Esta seção aplica-se a Blazor Server .*
 
-BlazorOs aplicativos de servidor são configurados por padrão para PreRender a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida. Isso é configurado na `_Host.cshtml` Razor página:
+Blazor Serveros aplicativos são configurados por padrão para PreRender a interface do usuário no servidor antes que a conexão do cliente com o servidor seja estabelecida. Isso é configurado na `_Host.cshtml` Razor página:
 
 ```cshtml
 <body>
@@ -105,17 +107,17 @@ BlazorOs aplicativos de servidor são configurados por padrão para PreRender a 
 
 | <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Descrição |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o componente em HTML estático e inclui um marcador para um Blazor aplicativo de servidor. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor aplicativo de servidor. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renderiza o componente em HTML estático e inclui um marcador para um Blazor Server aplicativo. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renderiza um marcador para um Blazor Server aplicativo. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um Blazor aplicativo. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renderiza o componente em HTML estático. |
 
 Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
 
-## <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Configurar o SignalR cliente para Blazor aplicativos de servidor
+## <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Configurar o SignalR cliente para Blazor Server aplicativos
 
-*Esta seção aplica-se ao Blazor servidor do.*
+*Esta seção aplica-se a Blazor Server .*
 
-Às vezes, você precisa configurar o SignalR cliente usado por Blazor aplicativos de servidor. Por exemplo, talvez você queira configurar o registro em log no SignalR cliente para diagnosticar um problema de conexão.
+Às vezes, você precisa configurar o SignalR cliente usado por Blazor Server aplicativos. Por exemplo, talvez você queira configurar o registro em log no SignalR cliente para diagnosticar um problema de conexão.
 
 Para configurar o SignalR cliente no `Pages/_Host.cshtml` arquivo:
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 0cd21e6b4930fb6112aa448a8a44be80cc8fbf61
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 040f9560bd51841063ca2785b0c0730c6bb16002
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243558"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402644"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar ASP.NET CoreBlazor
 
@@ -53,10 +55,10 @@ Publicar o aplicativo dispara uma [restauração](/dotnet/core/tools/dotnet-rest
 
 Locais de publicação:
 
-* BlazorWebassembly
+* Blazor WebAssembly
   * Autônomo: o aplicativo é publicado na `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` pasta. Para implantar o aplicativo como um site estático, copie o conteúdo da `wwwroot` pasta para o host do site estático.
-  * Hospedado: o Blazor aplicativo Webassembly do cliente é publicado na `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` pasta do aplicativo do servidor, juntamente com quaisquer outros ativos da Web estáticos do aplicativo do servidor. Implante o conteúdo da `publish` pasta no host.
-* BlazorServidor: o aplicativo é publicado na `/bin/Release/{TARGET FRAMEWORK}/publish` pasta. Implante o conteúdo da `publish` pasta no host.
+  * Hospedado: o Blazor WebAssembly aplicativo cliente é publicado na `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` pasta do aplicativo de servidor, juntamente com quaisquer outros ativos da Web estáticos do aplicativo de servidor. Implante o conteúdo da `publish` pasta no host.
+* Blazor Server: O aplicativo é publicado na `/bin/Release/{TARGET FRAMEWORK}/publish` pasta. Implante o conteúdo da `publish` pasta no host.
 
 Os ativos na pasta são implantados no servidor Web. A implantação pode ser um processo manual ou automatizado, dependendo das ferramentas de desenvolvimento em uso.
 
@@ -73,13 +75,13 @@ O *caminho base do aplicativo* é o caminho da URL raiz do aplicativo. Considere
 
 Sem especificar a configuração adicional para `CoolApp` o, o subaplicativo nesse cenário não tem conhecimento de onde ele reside no servidor. Por exemplo, o aplicativo não pode construir URLs relativas corretas para seus recursos sem saber que ela reside no caminho de URL relativo `/CoolApp/` .
 
-Para fornecer a configuração para o Blazor caminho base do aplicativo `https://www.contoso.com/CoolApp/` , o `<base>` atributo da marca `href` é definido como o caminho raiz relativo no `Pages/_Host.cshtml` arquivo ( Blazor servidor) ou `wwwroot/index.html` arquivo ( Blazor Webassembly):
+Para fornecer a configuração para o Blazor caminho base do aplicativo `https://www.contoso.com/CoolApp/` , o `<base>` atributo da marca `href` é definido como o caminho raiz relativo no `Pages/_Host.cshtml` arquivo ( Blazor Server ) ou `wwwroot/index.html` arquivo ( Blazor WebAssembly ):
 
 ```html
 <base href="/CoolApp/">
 ```
 
-BlazorOs aplicativos de servidor também definem o caminho base do servidor chamando <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> no pipeline de solicitação do aplicativo de `Startup.Configure` :
+Blazor Serveros aplicativos também definem o caminho base do servidor chamando <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> no pipeline de solicitação do aplicativo de `Startup.Configure` :
 
 ```csharp
 app.UsePathBase("/CoolApp");
@@ -89,21 +91,21 @@ Ao fornecer o caminho de URL relativo, um componente que não está no diretóri
 
 Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra ( `<base href="/" />` ), que é a configuração padrão para um Blazor aplicativo. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho de URL relativo do servidor do aplicativo.
 
-Para definir o caminho base do aplicativo, atualize a `<base>` marca dentro dos `<head>` elementos de marca do `Pages/_Host.cshtml` arquivo ( Blazor servidor) ou `wwwroot/index.html` arquivo ( Blazor Webassembly). Defina o `href` valor do atributo como `/{RELATIVE URL PATH}/` (a barra à direita é necessária), em que `{RELATIVE URL PATH}` é o caminho de URL relativo completo do aplicativo.
+Para definir o caminho base do aplicativo, atualize a `<base>` marca dentro dos `<head>` elementos de marca do `Pages/_Host.cshtml` arquivo ( Blazor Server ) ou `wwwroot/index.html` arquivo ( Blazor WebAssembly ). Defina o `href` valor do atributo como `/{RELATIVE URL PATH}/` (a barra à direita é necessária), em que `{RELATIVE URL PATH}` é o caminho de URL relativo completo do aplicativo.
 
-Para um Blazor aplicativo Webassembly com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">` ), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no runtime. Não inclua uma barra à direita. Para passar o argumento de base Path ao executar o aplicativo localmente, execute o `dotnet run` comando no diretório do aplicativo com a `--pathbase` opção:
+Para um Blazor WebAssembly aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">` ), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no runtime. Não inclua uma barra à direita. Para passar o argumento de base Path ao executar o aplicativo localmente, execute o `dotnet run` comando no diretório do aplicativo com a `--pathbase` opção:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 ```
 
-Para um Blazor aplicativo Webassembly com um caminho de URL relativo de `/CoolApp/` ( `<base href="/CoolApp/">` ), o comando é:
+Para um Blazor WebAssembly aplicativo com um caminho de URL relativo de `/CoolApp/` ( `<base href="/CoolApp/">` ), o comando é:
 
 ```dotnetcli
 dotnet run --pathbase=/CoolApp
 ```
 
-O Blazor aplicativo Webassembly responde localmente em `http://localhost:port/CoolApp` .
+O Blazor WebAssembly aplicativo responde localmente em `http://localhost:port/CoolApp` .
 
 ## <a name="deployment"></a>Implantação
 

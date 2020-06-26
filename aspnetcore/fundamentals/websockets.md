@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: da713f22582cf17f60a4deda1b689662a4e4ae06
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: e2aff39db621ea6e71dce1f1560b1aa70fa865f0
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775434"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404087"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Suporte ao WebSockets no ASP.NET Core
 
@@ -28,11 +30,11 @@ Este artigo explica como começar a usar o WebSockets no ASP.NET Core. [WebSocke
 
 [Exiba ou baixe o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([como baixar](xref:index#how-to-download-a-sample)). [Como executar](#sample-app).
 
-## <a name="signalr"></a>SignalR
+## SignalR
 
-[SignalR do ASP.NET Core](xref:signalr/introduction) é uma biblioteca que simplifica a adição da funcionalidade da Web em tempo real aos aplicativos. Ele usa WebSockets sempre que possível.
+[ASP.NET Core SignalR ](xref:signalr/introduction) é uma biblioteca que simplifica a adição de funcionalidades da Web em tempo real a aplicativos. Ele usa WebSockets sempre que possível.
 
-Para a maioria dos aplicativos, recomendamos o SignalR sobre WebSockets brutos. O SignalR fornece o fallback de transporte para os ambientes em que o WebSocket não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E, na maioria dos cenários, o SignalR não tem nenhuma desvantagem de desempenho significativa em comparação ao uso de WebSockets brutos.
+Para a maioria dos aplicativos, recomendamos SignalR sobre WebSockets brutos. SignalRfornece fallback de transporte para ambientes em que o WebSockets não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E na maioria dos cenários, SignalR não há uma desvantagem significativa no desempenho em comparação com o uso de WebSockets brutos.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -188,13 +190,13 @@ Para habilitar o suporte para o protocolo WebSocket no Windows 8 ou posterior:
 > [!NOTE]
 > Estas etapas não são necessárias ao usar o IIS Express
 
-1. Navegue até **o painel** > de controle**programas** > **programas e recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
-1. Abra os seguintes nós: **serviços de informações da Internet** > os**recursos de desenvolvimento de aplicativos****dos serviços** > World Wide Webs.
+1. Navegue até o **painel de controle**  >  **programas**  >  **programas e recursos**  >  **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. Abra os seguintes nós: **serviços de informações da Internet**os  >  recursos de desenvolvimento de aplicativos**dos serviços World Wide Webs**  >  **Application Development Features**.
 1. Selecione o recurso **Protocolo WebSocket**. Selecione **OK**.
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Desabilite o WebSocket ao usar o socket.io no Node.js
 
-Se estiver usando o suporte WebSocket [no Socket.Io](https://socket.io/) no [node. js](https://nodejs.org/), desabilite o módulo padrão WebSocket do `webSocket` IIS usando o elemento em *Web. config* ou *ApplicationHost. config*. Se essa etapa não for executada, o módulo WebSocket do IIS tentará manipular a comunicação WebSocket em vez do node. js e do aplicativo.
+Se estiver usando o suporte WebSocket no [Socket.Io](https://socket.io/) no [Node.js](https://nodejs.org/), desabilite o módulo WebSocket padrão do IIS usando o `webSocket` elemento em *web.config* ou *applicationHost.config*. Se essa etapa não for executada, o módulo WebSocket do IIS tentará lidar com a comunicação WebSocket em vez de Node.js e o aplicativo.
 
 ```xml
 <system.webServer>

@@ -1,34 +1,36 @@
 ---
-title: BlazorCenários de segurança adicionais do ASP.NET Core Server
+title: ASP.NET Core Blazor Server cenários de segurança adicionais
 author: guardrex
-description: Saiba como configurar o Blazor servidor para cenários de segurança adicionais.
+description: Saiba como configurar o Blazor Server para cenários de segurança adicionais.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 7f92f82d6e78771494b9f2358ee19153502f8dcb
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 46de9a22dec540b8dfda7583b7a3c5c2dcbbc549
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85243038"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402319"
 ---
-# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>BlazorCenários de segurança adicionais do ASP.NET Core Server
+# <a name="aspnet-core-blazor-server-additional-security-scenarios"></a>ASP.NET Core Blazor Server cenários de segurança adicionais
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
-## <a name="pass-tokens-to-a-blazor-server-app"></a>Passar tokens para um Blazor aplicativo de servidor
+## <a name="pass-tokens-to-a-blazor-server-app"></a>Passar tokens para um Blazor Server aplicativo
 
-Os tokens disponíveis fora dos Razor componentes em um Blazor aplicativo de servidor podem ser passados para componentes com a abordagem descrita nesta seção. Para obter o código de exemplo, incluindo um `Startup.ConfigureServices` exemplo completo, consulte os [tokens de passagem para um Blazor aplicativo do lado do servidor](https://github.com/javiercn/blazor-server-aad-sample).
+Os tokens disponíveis fora dos Razor componentes em um Blazor Server aplicativo podem ser passados para os componentes com a abordagem descrita nesta seção. Para obter o código de exemplo, incluindo um `Startup.ConfigureServices` exemplo completo, consulte os [tokens de passagem para um Blazor aplicativo do lado do servidor](https://github.com/javiercn/blazor-server-aad-sample).
 
-Autentique o Blazor aplicativo de servidor como você faria com Razor páginas regulares ou um aplicativo MVC. Provisione e salve os tokens no cookie de autenticação. Por exemplo:
+Autentique o Blazor Server aplicativo como você faria com páginas regulares Razor ou um aplicativo MVC. Provisione e salve os tokens no cookie de autenticação. Por exemplo:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

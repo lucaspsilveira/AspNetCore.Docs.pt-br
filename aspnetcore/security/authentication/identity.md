@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 6d9532ed8ff89735f41c362b27826436c37c6cb5
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 97cbc5f68d20c06e92a56ead85c8377d4e8ef582
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452129"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404581"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução ao Identity no ASP.NET Core
 
@@ -238,6 +240,7 @@ Para evitar a publicação de ativos estáticos Identity (folhas de estilo e arq
 
 ## <a name="next-steps"></a>Próximas etapas
 
+* [ASP.NET Core Identity código-fonte](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
 * Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/5131) para obter informações sobre como configurar o Identity uso do SQLite.
 * [ConfigurarIdentity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>

@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/06/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 109bebe79c9e77d26b02ca27367b8ff33191a4b4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 54080191d76df674444019d43180a7f9d84b471c
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776689"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403632"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -40,9 +42,9 @@ Antes de criar seu próprio associador de modelos personalizado, vale a pena ana
 
 ### <a name="working-with-the-bytearraymodelbinder"></a>Trabalhando com o ByteArrayModelBinder
 
-Cadeias de caracteres codificadas em Base64 podem ser usadas para representar dados binários. Por exemplo, uma imagem pode ser codificada como uma cadeia de caracteres. O exemplo inclui uma imagem como uma cadeia de caracteres codificada em base64 em [base64string. txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/3.x/CustomModelBindingSample/Base64String.txt).
+Cadeias de caracteres codificadas em Base64 podem ser usadas para representar dados binários. Por exemplo, uma imagem pode ser codificada como uma cadeia de caracteres. O exemplo inclui uma imagem como uma cadeia de caracteres codificada em base64 no [Base64String.txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/3.x/CustomModelBindingSample/Base64String.txt).
 
-O ASP.NET Core MVC pode usar uma cadeia de caracteres codificada em Base64 e usar um `ByteArrayModelBinder` para convertê-la em uma matriz de bytes. Os <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> argumentos `byte[]` de mapas `ByteArrayModelBinder`para:
+O ASP.NET Core MVC pode usar uma cadeia de caracteres codificada em Base64 e usar um `ByteArrayModelBinder` para convertê-la em uma matriz de bytes. Os <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> argumentos de mapas `byte[]` para `ByteArrayModelBinder` :
 
 ```csharp
 public IModelBinder GetBinder(ModelBinderProviderContext context)
@@ -62,7 +64,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 }
 ```
 
-Ao criar seu próprio associador de modelo personalizado, você pode implementar `IModelBinderProvider` seu próprio tipo ou usar <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>o.
+Ao criar seu próprio associador de modelo personalizado, você pode implementar seu próprio `IModelBinderProvider` tipo ou usar o <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> .
 
 O seguinte exemplo mostra como usar `ByteArrayModelBinder` para converter uma cadeia de caracteres codificada em Base64 em um `byte[]` e salvar o resultado em um arquivo:
 
@@ -164,9 +166,9 @@ Antes de criar seu próprio associador de modelos personalizado, vale a pena ana
 
 ### <a name="working-with-the-bytearraymodelbinder"></a>Trabalhando com o ByteArrayModelBinder
 
-Cadeias de caracteres codificadas em Base64 podem ser usadas para representar dados binários. Por exemplo, uma imagem pode ser codificada como uma cadeia de caracteres. O exemplo inclui uma imagem como uma cadeia de caracteres codificada em base64 em [base64string. txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/2.x/CustomModelBindingSample/Base64String.txt).
+Cadeias de caracteres codificadas em Base64 podem ser usadas para representar dados binários. Por exemplo, uma imagem pode ser codificada como uma cadeia de caracteres. O exemplo inclui uma imagem como uma cadeia de caracteres codificada em base64 no [Base64String.txt](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/2.x/CustomModelBindingSample/Base64String.txt).
 
-O ASP.NET Core MVC pode usar uma cadeia de caracteres codificada em Base64 e usar um `ByteArrayModelBinder` para convertê-la em uma matriz de bytes. Os <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> argumentos `byte[]` de mapas `ByteArrayModelBinder`para:
+O ASP.NET Core MVC pode usar uma cadeia de caracteres codificada em Base64 e usar um `ByteArrayModelBinder` para convertê-la em uma matriz de bytes. Os <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> argumentos de mapas `byte[]` para `ByteArrayModelBinder` :
 
 ```csharp
 public IModelBinder GetBinder(ModelBinderProviderContext context)
@@ -185,7 +187,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 }
 ```
 
-Ao criar seu próprio associador de modelo personalizado, você pode implementar `IModelBinderProvider` seu próprio tipo ou usar <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>o.
+Ao criar seu próprio associador de modelo personalizado, você pode implementar seu próprio `IModelBinderProvider` tipo ou usar o <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> .
 
 O seguinte exemplo mostra como usar `ByteArrayModelBinder` para converter uma cadeia de caracteres codificada em Base64 em um `byte[]` e salvar o resultado em um arquivo:
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 14cf614bf5d4f2ad6a34c49cb08277a2deae8d00
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: e905f08f867b73fc37d5fed7138256ac89811312
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242944"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85402397"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>BlazorAutenticação e autorização do ASP.NET Core
 
@@ -26,12 +28,12 @@ Por [Steve Sanderson](https://github.com/SteveSandersonMS) e [Luke Latham](https
 
 O ASP.NET Core dá suporte à configuração e ao gerenciamento de segurança em Blazor aplicativos.
 
-Cenários de segurança diferem entre Blazor aplicativos de servidor e Blazor Webassembly. Como os Blazor aplicativos de servidor são executados no servidor, as verificações de autorização são capazes de determinar:
+Cenários de segurança diferem entre Blazor Server Blazor WebAssembly aplicativos e. Como os Blazor Server aplicativos são executados no servidor, as verificações de autorização são capazes de determinar:
 
 * As opções de interface do usuário apresentadas ao usuário (por exemplo, as entradas de menu disponíveis a um usuário).
 * As regras de acesso para áreas do aplicativo e componentes.
 
-BlazorOs aplicativos Webassembly são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um usuário, um Blazor aplicativo Webassembly não pode impor regras de acesso de autorização.
+Blazor WebAssemblyos aplicativos são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um usuário, um Blazor WebAssembly aplicativo não pode impor regras de acesso de autorização.
 
 As [ Razor convenções de autorização de páginas](xref:security/authorization/razor-pages-authorization) não se aplicam a componentes roteáveis Razor . Se um componente não roteável Razor for [inserido em uma página](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#render-components-from-a-page-or-view), as convenções de autorização da página afetarão indiretamente o Razor componente junto com o restante do conteúdo da página.
 
@@ -40,11 +42,11 @@ As [ Razor convenções de autorização de páginas](xref:security/authorizatio
 
 ## <a name="authentication"></a>Autenticação
 
-Blazorusa os mecanismos de autenticação de ASP.NET Core existentes para estabelecer a identidade do usuário. O mecanismo exato depende de como o Blazor aplicativo é hospedado, Blazor Webassembly ou Blazor servidor.
+Blazorusa os mecanismos de autenticação de ASP.NET Core existentes para estabelecer a identidade do usuário. O mecanismo exato depende de como o Blazor aplicativo é hospedado Blazor WebAssembly ou Blazor Server .
 
-### <a name="blazor-webassembly-authentication"></a>BlazorAutenticação de Webassembly
+### <a name="blazor-webassembly-authentication"></a>autenticação Blazor WebAssembly
 
-Em Blazor aplicativos Webassembly, as verificações de autenticação podem ser ignoradas porque todo o código do lado do cliente pode ser modificado por usuários. Isso também ocorre com todas as tecnologias de aplicativo do lado do cliente, incluindo estruturas de SPA do JavaScript ou aplicativos nativos em qualquer sistema operacional.
+Em Blazor WebAssembly aplicativos, as verificações de autenticação podem ser ignoradas porque todo o código do lado do cliente pode ser modificado por usuários. Isso também ocorre com todas as tecnologias de aplicativo do lado do cliente, incluindo estruturas de SPA do JavaScript ou aplicativos nativos em qualquer sistema operacional.
 
 Adicione o seguinte:
 
@@ -55,9 +57,9 @@ Para lidar com a autenticação, a implementação de um serviço interno ou per
 
 Para obter mais informações sobre como criar aplicativos e configuração, consulte <xref:blazor/security/webassembly/index> .
 
-### <a name="blazor-server-authentication"></a>BlazorAutenticação do servidor
+### <a name="blazor-server-authentication"></a>autenticação Blazor Server
 
-BlazorOs aplicativos de servidor operam em uma conexão em tempo real que é criada usando o SignalR . A [autenticação em SignalR aplicativos baseados no](xref:signalr/authn-and-authz) é tratada quando a conexão é estabelecida. A autenticação pode ser baseada em um cookie ou um algum outro token de portador.
+Blazor Serveros aplicativos operam em uma conexão em tempo real que é criada usando o SignalR . A [autenticação em SignalR aplicativos baseados no](xref:signalr/authn-and-authz) é tratada quando a conexão é estabelecida. A autenticação pode ser baseada em um cookie ou um algum outro token de portador.
 
 Para obter mais informações sobre como criar aplicativos e configuração, consulte <xref:blazor/security/server/index> .
 
@@ -149,7 +151,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-Em um Blazor aplicativo Webassembly, o `CustomAuthStateProvider` serviço é registrado em `Main` `Program.cs` :
+Em um Blazor WebAssembly aplicativo, o `CustomAuthStateProvider` serviço é registrado em `Main` `Program.cs` :
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -159,7 +161,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
-Em um Blazor aplicativo de servidor, o `CustomAuthStateProvider` serviço é registrado em `Startup.ConfigureServices` :
+Em um Blazor Server aplicativo, o `CustomAuthStateProvider` serviço é registrado em `Startup.ConfigureServices` :
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -225,14 +227,14 @@ Configure o `Task<` <xref:Microsoft.AspNetCore.Components.Authorization.Authenti
 </CascadingAuthenticationState>
 ```
 
-Em um Blazor aplicativo Webassembly, adicione serviços para opções e autorização para `Program.Main` :
+Em um Blazor WebAssembly aplicativo, adicione serviços para opções e autorização para `Program.Main` :
 
 ```csharp
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 ```
 
-Em um Blazor aplicativo de servidor, os serviços para opções e autorização já estão presentes, portanto, nenhuma ação adicional é necessária.
+Em um Blazor Server aplicativo, os serviços para opções e autorização já estão presentes, portanto, nenhuma ação adicional é necessária.
 
 ## <a name="authorization"></a>Autorização
 
@@ -310,13 +312,13 @@ Para a autorização baseada em políticas, use o parâmetro <xref:Microsoft.Asp
 
 A autorização baseada em declarações é um caso especial de autorização baseada em políticas. Por exemplo, você pode definir uma política que exige que os usuários tenham determinada declaração. Para obter mais informações, consulte <xref:security/authorization/policies>.
 
-Essas APIs podem ser usadas em Blazor aplicativos de servidor ou Blazor Webassembly.
+Essas APIs podem ser usadas em um Blazor Server ou em Blazor WebAssembly aplicativos.
 
 Se <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> e <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> não forem especificados, o <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> usará a política padrão.
 
 ### <a name="content-displayed-during-asynchronous-authentication"></a>Conteúdo exibido durante a autenticação assíncrona
 
-Blazorpermite que o estado de autenticação seja determinado de *forma assíncrona*. O cenário principal para essa abordagem é em Blazor aplicativos Webassembly que fazem uma solicitação para um ponto de extremidade externo para autenticação.
+Blazorpermite que o estado de autenticação seja determinado de *forma assíncrona*. O cenário principal para essa abordagem é em Blazor WebAssembly aplicativos que fazem uma solicitação para um ponto de extremidade externo para autenticação.
 
 Enquanto a autenticação estiver em andamento, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> não exibirá nenhum conteúdo por padrão. Para exibir o conteúdo enquanto a autenticação ocorre, use o elemento `<Authorizing>`:
 
@@ -333,7 +335,7 @@ Enquanto a autenticação estiver em andamento, <xref:Microsoft.AspNetCore.Compo
 </AuthorizeView>
 ```
 
-Essa abordagem não é normalmente aplicável a Blazor aplicativos de servidor. BlazorOs aplicativos de servidor conhecem o estado de autenticação assim que o estado é estabelecido. <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing>o conteúdo pode ser fornecido no Blazor componente de um aplicativo de servidor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> , mas o conteúdo nunca é exibido.
+Essa abordagem não é normalmente aplicável a Blazor Server aplicativos. Blazor Serveros aplicativos conhecem o estado de autenticação assim que o estado é estabelecido. <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing>o conteúdo pode ser fornecido no Blazor Server componente de um aplicativo <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> , mas o conteúdo nunca é exibido.
 
 ## <a name="authorize-attribute"></a>Atributo [Authorize]
 
@@ -380,7 +382,7 @@ O <xref:Microsoft.AspNetCore.Components.Routing.Router> componente, em conjunto 
 * O usuário falha [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) em uma condição aplicada ao componente. O [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) atributo é abordado na seção [ `[Authorize]` atributo](#authorize-attribute) .
 * A autenticação assíncrona estiver em andamento.
 
-No modelo de Blazor projeto do servidor padrão, o `App` componente ( `App.razor` ) demonstra como definir o conteúdo personalizado:
+No modelo de Blazor Server projeto padrão, o `App` componente ( `App.razor` ) demonstra como definir o conteúdo personalizado:
 
 ```razor
 <CascadingAuthenticationState>
@@ -460,7 +462,7 @@ Se o aplicativo for necessário para verificar as regras de autorização como p
 ```
 
 > [!NOTE]
-> Em um Blazor componente de aplicativo Webassembly, adicione <xref:Microsoft.AspNetCore.Authorization> os <xref:Microsoft.AspNetCore.Components.Authorization> namespaces e:
+> Em um Blazor WebAssembly componente de aplicativo, adicione <xref:Microsoft.AspNetCore.Authorization> os <xref:Microsoft.AspNetCore.Components.Authorization> namespaces e:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Authorization
@@ -477,7 +479,7 @@ Erros comuns:
 
 * **`null`o valor é recebido para`authenticationStateTask`**
 
-É provável que o projeto não tenha sido criado usando um Blazor modelo de servidor com autenticação habilitada. Empacote uma `<CascadingAuthenticationState>` parte da árvore de interface do usuário, por exemplo, no `App` componente ( `App.razor` ) da seguinte maneira:
+É provável que o projeto não tenha sido criado usando um Blazor Server modelo com autenticação habilitada. Empacote uma `<CascadingAuthenticationState>` parte da árvore de interface do usuário, por exemplo, no `App` componente ( `App.razor` ) da seguinte maneira:
 
 ```razor
 <CascadingAuthenticationState>

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 45f81cbc713e7e7c1f335aef49360992d2297a81
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 504c34ccd8813273161b86504700704f8a932538
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82770077"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403164"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Usar o LibMan com ASP.NET Core no Visual Studio
 
@@ -28,7 +30,7 @@ O Visual Studio tem suporte interno para [LibMan](xref:client-side/libman/index)
 * Suporte para configurar e executar operações de restauração do LibMan no Build.
 * Itens de menu para disparar operações de restauração LibMan e limpeza.
 * Caixa de diálogo de pesquisa para localizar bibliotecas e adicionar os arquivos a um projeto.
-* Edição do suporte para *Libman. JSON* &mdash; o arquivo de manifesto Libman.
+* Suporte de edição para *libman.jsno* &mdash; arquivo de manifesto LibMan.
 
 [Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(como baixar)](xref:index#how-to-download-a-sample)
 
@@ -66,7 +68,7 @@ Siga estas etapas para instalar uma biblioteca do lado do cliente:
     * *lib* será usado se *wwwroot* não existir.
   * Se for iniciado a partir de uma pasta de projeto, o nome de pasta correspondente será usado.
 
-  A sugestão de pasta é sufixada com o nome da biblioteca. A tabela a seguir ilustra as sugestões de pasta ao instalar o jQuery em um projeto Razor Pages.
+  A sugestão de pasta é sufixada com o nome da biblioteca. A tabela a seguir ilustra as sugestões de pasta ao instalar o jQuery em um Razor projeto de páginas.
   
   |Local de inicialização                           |Pasta sugerida      |
   |------------------------------------------|----------------------|
@@ -74,7 +76,7 @@ Siga estas etapas para instalar uma biblioteca do lado do cliente:
   |raiz do projeto (se *wwwroot* não existir) |*lib/jQuery/*         |
   |Pasta *páginas* no projeto                 |*Páginas/jQuery/*       |
 
-* Clique no botão **instalar** para baixar os arquivos, de acordo com a configuração em *Libman. JSON*.
+* Clique no botão **instalar** para baixar os arquivos, de acordo com a configuração no *libman.jsem*.
 * Examine o feed do **Gerenciador de biblioteca** da janela **saída** para obter detalhes da instalação. Por exemplo:
 
   ```console
@@ -90,32 +92,32 @@ Siga estas etapas para instalar uma biblioteca do lado do cliente:
 
 ### <a name="manually-configure-libman-manifest-file-entries"></a>Configurar manualmente as entradas do arquivo de manifesto LibMan
 
-Todas as operações de LibMan no Visual Studio se baseiam no conteúdo do manifesto LibMan da raiz do projeto (*LibMan. JSON*). Você pode editar manualmente *Libman. JSON* para configurar arquivos de biblioteca para o projeto. O Visual Studio restaura todos os arquivos de biblioteca quando o *Libman. JSON* é salvo.
+Todas as operações de LibMan no Visual Studio se baseiam no conteúdo do manifesto LibMan da raiz do projeto (*libman.jsem*). Você pode editar manualmente *libman.jsem* para configurar os arquivos de biblioteca para o projeto. O Visual Studio restaura todos os arquivos de biblioteca quando *libman.jsno* é salvo.
 
-Para abrir o *Libman. JSON* para edição, existem as seguintes opções:
+Para abrir *libman.js* para edição, existem as seguintes opções:
 
-* Clique duas vezes no arquivo *Libman. JSON* em **Gerenciador de soluções**.
+* Clique duas vezes na *libman.jsno* arquivo **Gerenciador de soluções**.
 * Clique com o botão direito do mouse no projeto no **Gerenciador de soluções** e selecione **gerenciar bibliotecas do lado do cliente**. **&#8224;**
 * Selecione **gerenciar bibliotecas do lado do cliente** no menu do **projeto** do Visual Studio. **&#8224;**
 
-**& #8224;** Se o arquivo *Libman. JSON* ainda não existir na raiz do projeto, ele será criado com o conteúdo do modelo de item padrão.
+**&#8224;** Se o *libman.jsno* arquivo ainda não existir na raiz do projeto, ele será criado com o conteúdo do modelo de item padrão.
 
 O Visual Studio oferece suporte avançado para edição de JSON, como colorização, formatação, IntelliSense e validação de esquema. O esquema JSON do manifesto LibMan é encontrado em [https://json.schemastore.org/libman](https://json.schemastore.org/libman) .
 
 Com o arquivo de manifesto a seguir, LibMan recupera arquivos de acordo com a configuração definida na `libraries` propriedade. Uma explicação dos literais de objeto definidos na `libraries` seguinte maneira:
 
-* Um subconjunto do [jQuery](https://jquery.com/) versão 3.3.1 é recuperado do provedor CDNJS. O subconjunto é definido na `files` propriedade &mdash; *jQuery. min. js*, *jQuery. js*e *jQuery. min. map*. Os arquivos são colocados na pasta *wwwroot/lib/jQuery* do projeto.
+* Um subconjunto do [jQuery](https://jquery.com/) versão 3.3.1 é recuperado do provedor CDNJS. O subconjunto é definido na `files` propriedade &mdash; *jquery.min.js*, *jquery.js*e *jQuery. min. map*. Os arquivos são colocados na pasta *wwwroot/lib/jQuery* do projeto.
 * A totalidade da versão de [Bootstrap](https://getbootstrap.com/) 4.1.3 é recuperada e colocada em uma pasta *wwwroot/lib/Bootstrap* . A propriedade do literal do objeto `provider` substitui o `defaultProvider` valor da propriedade. LibMan recupera os arquivos de inicialização do provedor unpkg.
-* Um subconjunto de [Lodash](https://lodash.com/) foi aprovado por um corpo governado dentro da organização. Os arquivos *lodash. js* e *lodash. min. js* são recuperados do sistema de arquivos local em *C: \\ temp \\ lodash \\ *. Os arquivos são copiados para a pasta *wwwroot/lib/lodash* do projeto.
+* Um subconjunto de [Lodash](https://lodash.com/) foi aprovado por um corpo governado dentro da organização. Os arquivos de *lodash.js* e *lodash.min.js* são recuperados do sistema de arquivos local em *C: \\ temp \\ lodash \\ *. Os arquivos são copiados para a pasta *wwwroot/lib/lodash* do projeto.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
 > [!NOTE]
-> O LibMan dá suporte apenas a uma versão de cada provedor de cada fornecedor. O arquivo *Libman. JSON* falhará na validação do esquema se ele contiver duas bibliotecas com o mesmo nome de biblioteca para um determinado provedor.
+> O LibMan dá suporte apenas a uma versão de cada provedor de cada fornecedor. O *libman.jsno* arquivo falha na validação do esquema se ele contiver duas bibliotecas com o mesmo nome de biblioteca para um determinado provedor.
 
 ## <a name="restore-library-files"></a>Restaurar arquivos de biblioteca
 
-Para restaurar arquivos de biblioteca de dentro do Visual Studio, deve haver um arquivo *Libman. JSON* válido na raiz do projeto. Os arquivos restaurados são colocados no projeto no local especificado para cada biblioteca.
+Para restaurar arquivos de biblioteca de dentro do Visual Studio, deve haver um *libman.jsválido no* arquivo na raiz do projeto. Os arquivos restaurados são colocados no projeto no local especificado para cada biblioteca.
 
 Os arquivos de biblioteca podem ser restaurados em um projeto ASP.NET Core de duas maneiras:
 
@@ -128,7 +130,7 @@ LibMan pode restaurar os arquivos de biblioteca definidos como parte do processo
 
 Para habilitar e testar o comportamento de Restore-on-Build:
 
-* Clique com o botão direito do mouse em *Libman. JSON* em **Gerenciador de soluções** e selecione **habilitar restaurar bibliotecas do lado do cliente no Build** no menu de contexto.
+* Clique com o botão direito do mouse em *libman.js* em **Gerenciador de soluções** e selecione **habilitar a restauração de bibliotecas do lado do cliente no Build** no menu de contexto.
 * Clique no botão **Sim** quando for solicitado a instalar um pacote NuGet. O pacote NuGet [Microsoft. Web. LibraryManager. Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) é adicionado ao projeto:
 
   [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
@@ -148,9 +150,9 @@ Para habilitar e testar o comportamento de Restore-on-Build:
   ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
   ```
 
-Quando o comportamento de Restore-on-Build é habilitado, o menu de contexto *Libman. JSON* exibe uma opção **desabilitar restaurar bibliotecas do lado do cliente no Build** . A seleção dessa opção remove a `Microsoft.Web.LibraryManager.Build` referência de pacote do arquivo de projeto. Consequentemente, as bibliotecas do lado do cliente não são mais restauradas em cada compilação.
+Quando o comportamento de Restore-on-Build é habilitado, o *libman.jsno menu de* contexto exibe uma opção **Disable restaurar bibliotecas do lado do cliente no Build** . A seleção dessa opção remove a `Microsoft.Web.LibraryManager.Build` referência de pacote do arquivo de projeto. Consequentemente, as bibliotecas do lado do cliente não são mais restauradas em cada compilação.
 
-Independentemente da configuração de Restore-on-Build, você pode restaurar manualmente a qualquer momento no menu de contexto *Libman. JSON* . Para obter mais informações, consulte [restaurar arquivos manualmente](#restore-files-manually).
+Independentemente da configuração de Restore-on-Build, você pode restaurar manualmente a qualquer momento do *libman.jsno* menu de contexto. Para obter mais informações, consulte [restaurar arquivos manualmente](#restore-files-manually).
 
 ### <a name="restore-files-manually"></a>Restaurar arquivos manualmente
 
@@ -160,7 +162,7 @@ Para restaurar manualmente os arquivos de biblioteca:
   * Clique com o botão direito do mouse no nome da solução em **Gerenciador de soluções**.
   * Selecione a opção **restaurar bibliotecas do lado do cliente** .
 * Para um projeto específico:
-  * Clique com o botão direito do mouse no arquivo *Libman. JSON* em **Gerenciador de soluções**.
+  * Clique com o botão direito do mouse no arquivo *libman.js* no **Gerenciador de soluções**.
   * Selecione a opção **restaurar bibliotecas do lado do cliente** .
 
 Enquanto a operação de restauração está em execução:
@@ -183,7 +185,7 @@ Enquanto a operação de restauração está em execução:
 
 Para executar a operação de *limpeza* , que exclui os arquivos de biblioteca restaurados anteriormente no Visual Studio:
 
-* Clique com o botão direito do mouse no arquivo *Libman. JSON* em **Gerenciador de soluções**.
+* Clique com o botão direito do mouse no arquivo *libman.js* no **Gerenciador de soluções**.
 * Selecione a opção **limpar bibliotecas do lado do cliente** .
 
 Para evitar a remoção não intencional de arquivos que não são da biblioteca, a operação de limpeza não exclui diretórios inteiros. Ele remove apenas os arquivos que foram incluídos na restauração anterior.
@@ -205,19 +207,19 @@ A operação de limpeza somente exclui arquivos do projeto. Os arquivos de bibli
 
 Para desinstalar os arquivos de biblioteca:
 
-* Abra *Libman. JSON*.
+* Abra *libman.jsem*.
 * Posicione o cursor dentro do `libraries` literal de objeto correspondente.
-* Clique no ícone de lâmpada que aparece na margem esquerda e selecione **desinstalar \< library_name> @ \< library_version>**:
+* Clique no ícone de lâmpada que aparece na margem esquerda e selecione **desinstalar \<library_name> @ \<library_version> **:
 
   ![Opção de menu de contexto desinstalar biblioteca](_static/uninstall-menu-option.png)
 
-Como alternativa, você pode editar e salvar manualmente o manifesto LibMan (*LibMan. JSON*). A [operação de restauração](#restore-library-files) é executada quando o arquivo é salvo. Os arquivos de biblioteca que não são mais definidos no *Libman. JSON* são removidos do projeto.
+Como alternativa, você pode editar e salvar manualmente o manifesto LibMan (*libman.jsem*). A [operação de restauração](#restore-library-files) é executada quando o arquivo é salvo. Os arquivos de biblioteca que não estão mais definidos no *libman.jsem* são removidos do projeto.
 
 ## <a name="update-library-version"></a>Atualizar versão da biblioteca
 
 Para verificar se há uma versão atualizada da biblioteca:
 
-* Abra *Libman. JSON*.
+* Abra *libman.jsem*.
 * Posicione o cursor dentro do `libraries` literal de objeto correspondente.
 * Clique no ícone de lâmpada que aparece na margem esquerda. Passe o mouse sobre **verificar se há atualizações**.
 
@@ -230,7 +232,7 @@ LibMan verifica se há uma versão de biblioteca mais recente do que a versão i
 
 * Se um pré-lançamento mais recente do que a versão instalada estiver disponível, o pré-lançamento será exibido.
 
-Para fazer o downgrade para uma versão de biblioteca mais antiga, edite manualmente o arquivo *Libman. JSON* . Quando o arquivo for salvo, a [operação de restauração](#restore-library-files)do LibMan:
+Para fazer o downgrade para uma versão mais antiga da biblioteca, edite manualmente o *libman.jsno* arquivo. Quando o arquivo for salvo, a [operação de restauração](#restore-library-files)do LibMan:
 
 * Remove arquivos redundantes da versão anterior.
 * Adiciona arquivos novos e atualizados da nova versão.

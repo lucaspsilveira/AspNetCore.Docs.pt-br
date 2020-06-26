@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 632cc9fafc5daf2923997f0113adee52491acdcc
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 055dc7295aad67f92fe5f4e8271a1543262257b5
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "83838312"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404594"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -528,7 +530,7 @@ Muitas implementações devem incluir uma verificação de que o arquivo existe;
 
 Limite o tamanho dos arquivos carregados.
 
-No aplicativo de exemplo, o tamanho do arquivo é limitado a 2 MB (indicado em bytes). O limite é fornecido por meio da [configuração](xref:fundamentals/configuration/index) do arquivo *appSettings. JSON* :
+No aplicativo de exemplo, o tamanho do arquivo é limitado a 2 MB (indicado em bytes). O limite é fornecido por meio da [configuração](xref:fundamentals/configuration/index) do *appsettings.jsno* arquivo:
 
 ```json
 {
@@ -707,7 +709,7 @@ Outros limites de Kestrel podem ser aplicados para aplicativos hospedados pelo K
 
 ### <a name="iis-content-length-limit"></a>Limite de comprimento de conteúdo do IIS
 
-O limite de solicitação padrão ( `maxAllowedContentLength` ) é 30 milhões bytes, que é de aproximadamente 28.6 MB. Personalize o limite no arquivo *Web. config* :
+O limite de solicitação padrão ( `maxAllowedContentLength` ) é 30 milhões bytes, que é de aproximadamente 28.6 MB. Personalize o limite no arquivo de *web.config* :
 
 ```xml
 <system.webServer>
@@ -1257,7 +1259,7 @@ Muitas implementações devem incluir uma verificação de que o arquivo existe;
 
 Limite o tamanho dos arquivos carregados.
 
-No aplicativo de exemplo, o tamanho do arquivo é limitado a 2 MB (indicado em bytes). O limite é fornecido por meio da [configuração](xref:fundamentals/configuration/index) do arquivo *appSettings. JSON* :
+No aplicativo de exemplo, o tamanho do arquivo é limitado a 2 MB (indicado em bytes). O limite é fornecido por meio da [configuração](xref:fundamentals/configuration/index) do *appsettings.jsno* arquivo:
 
 ```json
 {
@@ -1429,7 +1431,7 @@ Outros limites de Kestrel podem ser aplicados para aplicativos hospedados pelo K
 
 ### <a name="iis-content-length-limit"></a>Limite de comprimento de conteúdo do IIS
 
-O limite de solicitação padrão ( `maxAllowedContentLength` ) é 30 milhões bytes, que é de aproximadamente 28.6 MB. Personalize o limite no arquivo *Web. config* :
+O limite de solicitação padrão ( `maxAllowedContentLength` ) é 30 milhões bytes, que é de aproximadamente 28.6 MB. Personalize o limite no arquivo de *web.config* :
 
 ```xml
 <system.webServer>

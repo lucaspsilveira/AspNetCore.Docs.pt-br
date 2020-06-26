@@ -8,17 +8,19 @@ ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: 555965b96b0d4d541c70f8a137d4f098dc06a4d6
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 56b4d4c13023918a4ac25c8c5d8ad1ee2c346ac6
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106618"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403034"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK do ASP.NET Core Razor
 
@@ -124,7 +126,7 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `RazorTargetName` | Nome do arquivo (sem extensão) do assembly produzido por Razor . |
 | `RazorOutputPath` | O Razor diretório de saída. |
 | `RazorCompileToolset` | Usado para determinar o conjunto de ferramentas usado para compilar o Razor assembly. Os valores válidos são `Implicit`, `RazorSDK` e `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true` , inclui arquivos *Web. config*, *. JSON*e *. cshtml* como conteúdo no projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web` de, os arquivos em arquivos *wwwroot* e config também são incluídos. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true` , inclui arquivos *web.config*, *. JSON*e *. cshtml* como conteúdo no projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web` de, os arquivos em arquivos *wwwroot* e config também são incluídos. |
 | `EnableDefaultRazorGenerateItems` | Quando `true`, inclui arquivos *.cshtml* de itens de `Content` em itens de `RazorGenerate`. |
 | `GenerateRazorTargetAssemblyInfo` | Quando `true` , o gera um arquivo *. cs* contendo atributos especificados por `RazorAssemblyAttribute` e inclui o arquivo na saída de compilação. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true`, adiciona um conjunto padrão de atributos de assembly em `RazorAssemblyAttribute`. |
@@ -148,7 +150,7 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `RazorTargetName` | Nome do arquivo (sem extensão) do assembly produzido por Razor . |
 | `RazorOutputPath` | O Razor diretório de saída. |
 | `RazorCompileToolset` | Usado para determinar o conjunto de ferramentas usado para compilar o Razor assembly. Os valores válidos são `Implicit`, `RazorSDK` e `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true` , inclui arquivos *Web. config*, *. JSON*e *. cshtml* como conteúdo no projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web` de, os arquivos em arquivos *wwwroot* e config também são incluídos. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true` , inclui arquivos *web.config*, *. JSON*e *. cshtml* como conteúdo no projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web` de, os arquivos em arquivos *wwwroot* e config também são incluídos. |
 | `EnableDefaultRazorGenerateItems` | Quando `true`, inclui arquivos *.cshtml* de itens de `Content` em itens de `RazorGenerate`. |
 | `GenerateRazorTargetAssemblyInfo` | Quando `true` , o gera um arquivo *. cs* contendo atributos especificados por `RazorAssemblyAttribute` e inclui o arquivo na saída de compilação. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true`, adiciona um conjunto padrão de atributos de assembly em `RazorAssemblyAttribute`. |

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: 0f0e97246b6e1381b85866bd831ee9b4b150650d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c797ce8bcb22aec2b56df2f3b108da4cbfde263d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774321"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403294"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -43,13 +45,13 @@ Para obter mais informações, consulte <xref:fundamentals/startup>.
 
 ASP.NET Core inclui uma estrutura de injeção de dependência interna (DI) que torna os serviços configurados disponíveis em todo o aplicativo. Por exemplo, um componente de registro em log é um serviço.
 
-Código para configurar (ou *registrar*) serviços é adicionado ao método `Startup.ConfigureServices`. Por exemplo: 
+Código para configurar (ou *registrar*) serviços é adicionado ao método `Startup.ConfigureServices`. Por exemplo:
 
 [!code-csharp[](index/samples_snapshot/3.x/ConfigureServices.cs)]
 
 Normalmente, os serviços são resolvidos de DI usando injeção de construtor. Com a injeção de construtor, uma classe declara um parâmetro de construtor do tipo necessário ou de uma interface. A estrutura DI fornece uma instância desse serviço em tempo de execução.
 
-O exemplo a seguir usa injeção de construtor para `RazorPagesMovieContext` resolver um de di:
+O exemplo a seguir usa injeção de construtor para resolver um `RazorPagesMovieContext` de di:
 
 [!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
 
@@ -92,7 +94,7 @@ O exemplo a seguir cria um host genérico .NET:
 
 [!code-csharp[](index/samples_snapshot/3.x/Program.cs)]
 
-Os `CreateDefaultBuilder` métodos `ConfigureWebHostDefaults` e configuram um host com um conjunto de opções padrão, como:
+Os `CreateDefaultBuilder` `ConfigureWebHostDefaults` métodos e configuram um host com um conjunto de opções padrão, como:
 
 * Uso do [Kestrel](#servers) como o servidor Web e habilitação da integração do IIS.
 * Configuração de carregamento de *appsettings.json*, *appsettings.{EnvironmentName}.json*, de variáveis de ambiente, de argumentos de linha de comando e outras fontes de configuração.
@@ -132,7 +134,7 @@ Para obter mais informações, consulte <xref:fundamentals/servers/index>.
 
 O ASP.NET Core fornece uma estrutura de configuração que obtém as configurações como pares nome-valor de um conjunto ordenado de provedores de configuração. Os provedores de configuração internos estão disponíveis para uma variedade de fontes, como arquivos *. JSON* , arquivos *. xml* , variáveis de ambiente e argumentos de linha de comando. Escreva provedores de configuração personalizados para dar suporte a outras fontes.
 
-Por [padrão](xref:fundamentals/configuration/index#default), os aplicativos ASP.NET Core são configurados para ler de *appSettings. JSON*, variáveis de ambiente, a linha de comando e muito mais. Quando a configuração do aplicativo é carregada, os valores das variáveis de ambiente substituem valores de *appSettings. JSON*.
+Por [padrão](xref:fundamentals/configuration/index#default), os aplicativos ASP.NET Core são configurados para ler de *appsettings.js*, variáveis de ambiente, linha de comando e muito mais. Quando a configuração do aplicativo é carregada, os valores das variáveis de ambiente substituem valores de *appsettings.jsem*.
 
 A maneira preferida de ler valores de configuração relacionados é usar o [padrão de opções](xref:fundamentals/configuration/options). Para obter mais informações, consulte [associar dados de configuração hierárquica usando o padrão de opções](xref:fundamentals/configuration/index#optpat).
 
@@ -142,9 +144,9 @@ Para obter mais informações, consulte <xref:fundamentals/configuration/index>.
 
 ## <a name="environments"></a>Ambientes
 
-Ambientes de execução, `Development` `Staging`como, e `Production`, são uma noção de primeira classe no ASP.NET Core. Especifique o ambiente em que um aplicativo está sendo executado definindo `ASPNETCORE_ENVIRONMENT` a variável de ambiente. O ASP.NET Core lê a variável de ambiente na inicialização do aplicativo e armazena o valor em uma implementação `IWebHostEnvironment`. Essa implementação está disponível em qualquer lugar em um aplicativo por meio de injeção de dependência (DI).
+Ambientes de execução, como `Development` , `Staging` e `Production` , são uma noção de primeira classe no ASP.NET Core. Especifique o ambiente em que um aplicativo está sendo executado definindo a `ASPNETCORE_ENVIRONMENT` variável de ambiente. O ASP.NET Core lê a variável de ambiente na inicialização do aplicativo e armazena o valor em uma implementação `IWebHostEnvironment`. Essa implementação está disponível em qualquer lugar em um aplicativo por meio de injeção de dependência (DI).
 
-O exemplo a seguir configura o aplicativo para fornecer informações de erro detalhadas durante a `Development` execução no ambiente:
+O exemplo a seguir configura o aplicativo para fornecer informações de erro detalhadas durante a execução no `Development` ambiente:
 
 [!code-csharp[](index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
 
@@ -162,17 +164,17 @@ O ASP.NET Core dá suporte a uma API de registro em log que funciona com uma sé
 * Serviço de aplicativo do Azure
 * Azure Application Insights
 
-Para criar logs, resolva um <xref:Microsoft.Extensions.Logging.ILogger%601> serviço de injeção de dependência (di) e métodos de registro em <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>log de chamada, como. Por exemplo: 
+Para criar logs, resolva um <xref:Microsoft.Extensions.Logging.ILogger%601> serviço de injeção de dependência (di) e métodos de registro em log de chamada, como <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> . Por exemplo:
 
 [!code-csharp[](index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
 
-Métodos de registro em `LogInformation` log, como suporte a qualquer número de campos. Esses campos são comumente usados para construir uma mensagem `string`, mas alguns provedores de log os enviam para um armazenamento de dados como campos separados. Esse recurso torna possível para provedores de log implementar [registro em log semântico, também conhecido como registro em log estruturado](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
+Métodos de registro em log, como `LogInformation` suporte a qualquer número de campos. Esses campos são comumente usados para construir uma mensagem `string` , mas alguns provedores de log os enviam para um armazenamento de dados como campos separados. Esse recurso torna possível para provedores de log implementar [registro em log semântico, também conhecido como registro em log estruturado](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
 Para obter mais informações, consulte <xref:fundamentals/logging/index>.
 
 ## <a name="routing"></a>Roteamento
 
-Um *rota* é um padrão de URL mapeado para um manipulador. O manipulador normalmente é um Razor Page, um método de ação em um controlador MVC ou um middleware. O roteamento do ASP.NET Core lhe dá controle sobre as URLs usadas pelo seu aplicativo.
+Um *rota* é um padrão de URL mapeado para um manipulador. O manipulador é normalmente uma Razor página, um método de ação em um controlador MVC ou um middleware. O roteamento do ASP.NET Core lhe dá controle sobre as URLs usadas pelo seu aplicativo.
 
 Para obter mais informações, consulte <xref:fundamentals/routing>.
 
@@ -194,8 +196,8 @@ Uma implementação de `IHttpClientFactory` está disponível para a criação d
 * Fornece um local central para nomear e configurar instâncias lógicas de `HttpClient`. Por exemplo, registre e configure um cliente *GitHub* para acessar o github. Registre e configure um cliente padrão para outras finalidades.
 * Dá suporte ao registro e ao encadeamento de vários manipuladores de delegação para criar um pipeline do middleware de solicitação saída. Esse padrão é semelhante ao pipeline de middleware de entrada de ASP.NET Core. O padrão fornece um mecanismo para gerenciar preocupações abrangentes para solicitações HTTP, incluindo cache, tratamento de erros, serialização e registro em log.
 * Integra-se com a *Polly*, uma biblioteca de terceiros popular para tratamento de falhas transitórias.
-* Gerencia o pooling e o tempo de vida `HttpClientHandler` de instâncias subjacentes para evitar problemas comuns de DNS `HttpClient` que ocorrem durante o gerenciamento manual de tempos de vida.
-* Adiciona uma experiência de registro configurável <xref:Microsoft.Extensions.Logging.ILogger> por meio de todas as solicitações enviadas por clientes criados pela fábrica.
+* Gerencia o pooling e o tempo de vida de instâncias subjacentes `HttpClientHandler` para evitar problemas comuns de DNS que ocorrem durante o gerenciamento `HttpClient` manual de tempos de vida.
+* Adiciona uma experiência de registro configurável por meio <xref:Microsoft.Extensions.Logging.ILogger> de todas as solicitações enviadas por clientes criados pela fábrica.
 
 Para obter mais informações, consulte <xref:fundamentals/http-requests>.
 
@@ -206,7 +208,7 @@ A raiz do conteúdo é o caminho base para:
 * O executável que hospeda o aplicativo (*. exe*).
 * Assemblies compilados que compõem o aplicativo (*. dll*).
 * Arquivos de conteúdo usados pelo aplicativo, como:
-  * Arquivos Razor (*. cshtml*, *. Razor*)
+  * Razorarquivos (*. cshtml*, *. Razor*)
   * Arquivos de configuração (*. JSON*, *. xml*)
   * Arquivos de dados (*. db*)
 * A [raiz da Web](#web-root), normalmente a pasta *wwwroot* .
@@ -223,7 +225,7 @@ A raiz da Web é o caminho base para arquivos de recursos públicos e estáticos
 
 Por padrão, os arquivos estáticos são servidos somente do diretório raiz da Web e de seus subdiretórios. O caminho raiz da Web tem como padrão *{Content root}/wwwroot*. Especifique uma raiz da Web diferente definindo seu caminho ao [compilar o host](#host). Para obter mais informações, confira [Diretório base](xref:fundamentals/host/generic-host#webroot).
 
-Impedir a publicação de arquivos em *wwwroot* com o [ \<conteúdo> item de projeto](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo de projeto. O exemplo a seguir impede a publicação de conteúdo em *wwwroot/local* e em seus subdiretórios:
+Impedir a publicação de arquivos em *wwwroot* com o [ \<Content> item de projeto](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo de projeto. O exemplo a seguir impede a publicação de conteúdo em *wwwroot/local* e em seus subdiretórios:
 
 ```xml
 <ItemGroup>
@@ -231,7 +233,7 @@ Impedir a publicação de arquivos em *wwwroot* com o [ \<conteúdo> item de pro
 </ItemGroup>
 ```
 
-Nos arquivos Razor *. cshtml* , a barra til (`~/`) aponta para a raiz da Web. Um caminho que começa `~/` com é conhecido como um *caminho virtual*.
+Em Razor arquivos *. cshtml* , a barra til ( `~/` ) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
 
 Para obter mais informações, consulte <xref:fundamentals/static-files>.
 
@@ -481,7 +483,7 @@ Os arquivos estáticos são servidos apenas por padrão no diretório raiz da We
 
 O caminho raiz da Web tem como padrão *{Content root}/wwwroot*, mas uma raiz da Web diferente pode ser especificada ao [criar o host](#host). Para obter mais informações, confira [Diretório base](xref:fundamentals/host/web-host#web-root).
 
-Impedir a publicação de arquivos em *wwwroot* com o [ \<conteúdo> item de projeto](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo de projeto. O exemplo a seguir impede a publicação de conteúdo no diretório *wwwroot/local* e nos subpastas:
+Impedir a publicação de arquivos em *wwwroot* com o [ \<Content> item de projeto](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo de projeto. O exemplo a seguir impede a publicação de conteúdo no diretório *wwwroot/local* e nos subpastas:
 
 ```xml
 <ItemGroup>
@@ -489,7 +491,7 @@ Impedir a publicação de arquivos em *wwwroot* com o [ \<conteúdo> item de pro
 </ItemGroup>
 ```
 
-Em Razor arquivos (*. cshtml*), a barra til (`~/`) aponta para a raiz da Web. Um caminho que começa `~/` com é conhecido como um *caminho virtual*.
+Em Razor arquivos (*. cshtml*), a barra til ( `~/` ) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
 
 Para obter mais informações, consulte <xref:fundamentals/static-files>.
 

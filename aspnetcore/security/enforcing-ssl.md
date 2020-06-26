@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 26e6fb38cf31b5a2d5c88c19347c867641eb55df
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 8247d66900a0c15b3b386dca021c5c5922d26e71
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84451726"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404556"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -58,7 +60,7 @@ Nenhuma API pode impedir que um cliente envie dados confidenciais na primeira so
 
 ::: moniker-end
 
-## <a name="require-https"></a>Exigir HTTPS
+## <a name="require-https"></a>Solicitar HTTPS
 
 É recomendável que a produção ASP.NET Core aplicativos Web usem:
 
@@ -108,7 +110,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
   * Na configuração do host.
   * Definindo a `ASPNETCORE_HTTPS_PORT` variável de ambiente.
-  * Adicionando uma entrada de nível superior em *appSettings. JSON*:
+  * Adicionando uma entrada de nível superior no *appsettings.jsem*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -122,7 +124,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
   * Na configuração do host.
   * Definindo a `ASPNETCORE_HTTPS_PORT` variável de ambiente.
-  * Adicionando uma entrada de nível superior em *appSettings. JSON*:
+  * Adicionando uma entrada de nível superior no *appsettings.jsem*:
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -130,16 +132,16 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
 ::: moniker-end
 
-* Em desenvolvimento, defina uma URL HTTPS em *launchsettings. JSON*. Habilite HTTPS quando IIS Express for usado.
+* Em desenvolvimento, defina uma URL HTTPS no *launchsettings.jsem*. Habilite HTTPS quando IIS Express for usado.
 
-* Configure um ponto de extremidade de URL HTTPS para uma implantação de borda voltada para o público do servidor [Kestrel](xref:fundamentals/servers/kestrel) ou [http. sys](xref:fundamentals/servers/httpsys) . Somente **uma porta https** é usada pelo aplicativo. O middleware descobre a porta por meio de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
+* Configure um ponto de extremidade de URL HTTPS para uma implantação de borda voltada para o público do [Kestrel](xref:fundamentals/servers/kestrel) Server ou do servidor de [HTTP.sys](xref:fundamentals/servers/httpsys) . Somente **uma porta https** é usada pelo aplicativo. O middleware descobre a porta por meio de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
 > [!NOTE]
 > Quando um aplicativo é executado em uma configuração de proxy reverso, o <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> não está disponível. Defina a porta usando uma das outras abordagens descritas nesta seção.
 
 ### <a name="edge-deployments"></a>Implantações do Edge 
 
-Quando Kestrel ou HTTP. sys é usado como um servidor de borda voltado ao público, Kestrel ou HTTP. sys deve ser configurado para escutar em ambos:
+Quando Kestrel ou HTTP.sys é usado como um servidor de borda voltado ao público, Kestrel ou HTTP.sys deve ser configurado para escutar em ambos:
 
 * A porta segura em que o cliente é redirecionado (normalmente, 443 em produção e 5001 em desenvolvimento).
 * A porta insegura (normalmente, 80 em produção e 5000 em desenvolvimento).
@@ -283,7 +285,7 @@ O seguinte código:
 ::: moniker-end
 
 
-* Define o parâmetro PreLoad do `Strict-Transport-Security` cabeçalho. Pré-carregar não faz parte da [especificação RFC HSTS](https://tools.ietf.org/html/rfc6797), mas tem suporte de navegadores da Web para pré-carregar HSTS sites na nova instalação. Para obter mais informações, confira [https://hstspreload.org/](https://hstspreload.org/).
+* Define o parâmetro PreLoad do `Strict-Transport-Security` cabeçalho. Pré-carregar não faz parte da [especificação RFC HSTS](https://tools.ietf.org/html/rfc6797), mas tem suporte de navegadores da Web para pré-carregar HSTS sites na nova instalação. Para obter mais informações, consulte [https://hstspreload.org/](https://hstspreload.org/).
 * Habilita [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), que aplica a política HSTS aos subdomínios de host.
 * Define explicitamente o `max-age` parâmetro do `Strict-Transport-Security` cabeçalho como 60 dias. Se não estiver definido, o padrão será 30 dias. Para obter mais informações, consulte a [diretiva Max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Adiciona `example.com` à lista de hosts a serem excluídos.

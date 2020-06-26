@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 796d7da76da6723ea996b57510da9c45ab21b3e7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 79022af0e6ee1294e12c21492bc81bc40482a3fb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775915"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85403957"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedar e implantar o ASP.NET Core
 
@@ -79,7 +81,7 @@ Confira <xref:host-and-deploy/visual-studio-publish-profiles> para obter instru�
 
 ## <a name="internet-information-services-iis"></a>Serviços de Informações da Internet (IIS)
 
-Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo *Web. config* , consulte os artigos <xref:host-and-deploy/iis/index>em.
+Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo de *web.config* , consulte os artigos em <xref:host-and-deploy/iis/index> .
 
 ## <a name="host-in-a-web-farm"></a>Hospedar em uma web farm
 
@@ -157,7 +159,7 @@ Confira <xref:host-and-deploy/visual-studio-publish-profiles> para obter instru�
 
 ## <a name="internet-information-services-iis"></a>Serviços de Informações da Internet (IIS)
 
-Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo *Web. config* , consulte os artigos <xref:host-and-deploy/iis/index>em.
+Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo de *web.config* , consulte os artigos em <xref:host-and-deploy/iis/index> .
 
 ## <a name="host-in-a-web-farm"></a>Hospedar em uma web farm
 
