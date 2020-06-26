@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: cc12dc2bc6720652866227dc2bbcbcf4e8af793d
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 9ffeebbf8125ddac5d6e621e411c4e86c5bd34b1
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074230"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399303"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -270,7 +272,7 @@ Para uma implantação de 64 bits:
    * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
    * Selecione **Portátil** como o **Runtime de Destino**.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -301,7 +303,7 @@ Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma
    * Abra a lista suspensa **Modo de Implantação** e selecione **Autocontido**.
    * Selecione o runtime de destino na lista suspensa **Runtime de Destino**. O padrão é `win-x86`.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)

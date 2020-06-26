@@ -8,17 +8,19 @@ ms.custom: H1Hack27Feb2017
 ms.date: 09/06/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 65bd5157bb3909f8352debcb1a6dfa7d888eec0e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 05f76a7d341fc5c55b8234b6ff6d2be5aa61d6fd
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769917"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401825"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Use os serviços JavaScript para criar aplicativos de página única no ASP.NET Core
 
@@ -67,7 +69,7 @@ Coletivamente, esses componentes de infraestrutura aprimoram o fluxo de trabalho
 
 Para trabalhar com o SpaServices, instale o seguinte:
 
-* [Node. js](https://nodejs.org/) (versão 6 ou posterior) com NPM
+* [Node.js](https://nodejs.org/) (versão 6 ou posterior) com NPM
 
   * Para verificar se esses componentes estão instalados e podem ser encontrados, execute o seguinte na linha de comando:
 
@@ -75,7 +77,7 @@ Para trabalhar com o SpaServices, instale o seguinte:
     node -v && npm -v
     ```
 
-  * Se estiver implantando em um site do Azure, nenhuma ação será necessária, o &mdash; node. js será instalado e estará disponível nos ambientes de servidor.
+  * Se estiver implantando em um site do Azure, nenhuma ação será necessária &mdash;Node.js estiver instalada e disponível nos ambientes de servidor.
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
@@ -85,7 +87,7 @@ Para trabalhar com o SpaServices, instale o seguinte:
 
 ## <a name="server-side-prerendering"></a>Pré-processamento do lado do servidor
 
-Um aplicativo universal (também conhecido como isomórficos) é um aplicativo JavaScript capaz de executar ambos no servidor e no cliente. Angular, reagir e outras estruturas populares fornecem uma plataforma universal para esse estilo de desenvolvimento de aplicativos. A ideia é primeiro renderizar os componentes do Framework no servidor por meio do node. js e delegar mais execução ao cliente.
+Um aplicativo universal (também conhecido como isomórficos) é um aplicativo JavaScript capaz de executar ambos no servidor e no cliente. Angular, reagir e outras estruturas populares fornecem uma plataforma universal para esse estilo de desenvolvimento de aplicativos. A ideia é primeiro renderizar os componentes do Framework no servidor por meio de Node.js e delegar mais execução ao cliente.
 
 ASP.NET Core os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) fornecidos pelo SpaServices simplificam a implementação do pré-processamento do lado do servidor invocando as funções JavaScript no servidor.
 
@@ -103,23 +105,23 @@ Os auxiliares de marca são descobertos por meio do registro de namespace no arq
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-Esses auxiliares de marcas abstrairam a complexidade da comunicação direta com APIs de nível baixo, aproveitando uma sintaxe semelhante a HTML dentro da exibição do Razor:
+Esses auxiliares de marcas abstrairam a complexidade da comunicação direta com APIs de nível baixo, aproveitando uma sintaxe semelhante a HTML dentro da Razor exibição:
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
 ### <a name="asp-prerender-module-tag-helper"></a>Auxiliar de marca do ASP-PreRender-Module
 
-O `asp-prerender-module` auxiliar de marca, usado no exemplo de código anterior, executa *ClientApp/dist/Main-Server. js* no servidor por meio do node. js. Para fins de clareza, o arquivo *Main-Server. js* é um artefato da tarefa Transpilação do TypeScript para JavaScript no processo de Build do [webpack](https://webpack.github.io/) . O webpack define um alias de ponto de entrada de `main-server` ; e a passagem do grafo de dependência para esse alias começa no arquivo *ClientApp/boot-Server. TS* :
+O `asp-prerender-module` auxiliar de marca, usado no exemplo de código anterior, executa *ClientApp/dist/main-server.js* no servidor via Node.js. Para fins de clareza, *main-server.js* arquivo é um artefato da tarefa Transpilação do TypeScript para JavaScript no processo de Build do [webpack](https://webpack.github.io/) . O webpack define um alias de ponto de entrada de `main-server` ; e a passagem do grafo de dependência para esse alias começa no arquivo *ClientApp/boot-Server. TS* :
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
-No exemplo angular a seguir, o arquivo *ClientApp/boot-Server. TS* utiliza a `createServerRenderer` função e `RenderResult` o tipo do `aspnet-prerendering` pacote NPM para configurar a renderização do servidor por meio do node. js. A marcação HTML destinada à renderização do lado do servidor é passada para uma chamada de função de resolução, que é encapsulada em um objeto JavaScript fortemente tipado `Promise` . O `Promise` significado do objeto é que ele fornece de forma assíncrona a marcação HTML para a página para injeção no elemento PlaceHolder do dom.
+No exemplo angular a seguir, o arquivo *ClientApp/boot-Server. TS* utiliza a `createServerRenderer` função e `RenderResult` o tipo do `aspnet-prerendering` pacote NPM para configurar a renderização do servidor via Node.js. A marcação HTML destinada à renderização do lado do servidor é passada para uma chamada de função de resolução, que é encapsulada em um objeto JavaScript fortemente tipado `Promise` . O `Promise` significado do objeto é que ele fornece de forma assíncrona a marcação HTML para a página para injeção no elemento PlaceHolder do dom.
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
 ### <a name="asp-prerender-data-tag-helper"></a>ASP-PreRender-auxiliar de marca de dados
 
-Quando combinado com o `asp-prerender-module` auxiliar de marca, o `asp-prerender-data` auxiliar de marca pode ser usado para passar informações contextuais da exibição do Razor para o JavaScript do lado do servidor. Por exemplo, a marcação a seguir passa dados do usuário para o `main-server` módulo:
+Quando combinado com o `asp-prerender-module` auxiliar de marca, o `asp-prerender-data` auxiliar de marca pode ser usado para passar informações contextuais da Razor exibição para o JavaScript do lado do servidor. Por exemplo, a marcação a seguir passa dados do usuário para o `main-server` módulo:
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 
@@ -139,7 +141,7 @@ A `postList` matriz definida dentro do `globals` objeto é anexada ao objeto glo
 
 ## <a name="webpack-dev-middleware"></a>Middleware de dev do webpack
 
-O [middleware de dev do webpack](https://webpack.js.org/guides/development/#using-webpack-dev-middleware) apresenta um fluxo de trabalho de desenvolvimento simplificado no qual o webpack cria recursos sob demanda. O middleware compila automaticamente e fornece recursos do lado do cliente quando uma página é recarregada no navegador. A abordagem alternativa é invocar manualmente o webpack por meio do script de Build NPM do projeto quando uma dependência de terceiros ou o código personalizado for alterado. Um script de Build NPM no arquivo *Package. JSON* é mostrado no exemplo a seguir:
+O [middleware de dev do webpack](https://webpack.js.org/guides/development/#using-webpack-dev-middleware) apresenta um fluxo de trabalho de desenvolvimento simplificado no qual o webpack cria recursos sob demanda. O middleware compila automaticamente e fornece recursos do lado do cliente quando uma página é recarregada no navegador. A abordagem alternativa é invocar manualmente o webpack por meio do script de Build NPM do projeto quando uma dependência de terceiros ou o código personalizado for alterado. Um script de Build NPM na *package.jsno* arquivo é mostrado no exemplo a seguir:
 
 ```json
 "build": "npm run build:vendor && npm run build:custom",
@@ -161,7 +163,7 @@ O middleware de dev do webpack é registrado no pipeline de solicitação HTTP p
 
 O `UseWebpackDevMiddleware` método de extensão deve ser chamado antes de [registrar a hospedagem de arquivo estático](xref:fundamentals/static-files) por meio do `UseStaticFiles` método de extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
 
-A propriedade do arquivo *webpack. config. js* `output.publicPath` informa ao middleware para observar a `dist` pasta em busca de alterações:
+A propriedade do arquivo *webpack.config.js* `output.publicPath` informa ao middleware para ver as `dist` alterações na pasta:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -189,7 +191,7 @@ app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
 
 Assim como acontece com o [middleware de dev do webpack](#webpack-dev-middleware), o `UseWebpackDevMiddleware` método de extensão deve ser chamado antes do `UseStaticFiles` método de extensão. Por motivos de segurança, registre o middleware somente quando o aplicativo for executado no modo de desenvolvimento.
 
-O arquivo *webpack. config. js* deve definir uma `plugins` matriz, mesmo que ela seja deixada vazia:
+O arquivo de *webpack.config.js* deve definir uma `plugins` matriz, mesmo que ela seja deixada vazia:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,25)]
 
@@ -231,11 +233,11 @@ dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 
 Uma lista de modelos SPA disponíveis é exibida:
 
-| Modelos                                 | Nome curto | Linguagem | Marcas        |
+| Modelos                                 | Nome curto | Idioma | Marcações        |
 | ------------------------------------------| :--------: | :------: | :---------: |
 | ASP.NET Core MVC com angular             | angular    | [C#]     | Web/MVC/SPA |
-| ASP.NET Core MVC com reajam. js            | react      | [C#]     | Web/MVC/SPA |
-| ASP.NET Core MVC com reajam. js e Redux  | reactredux | [C#]     | Web/MVC/SPA |
+| ASP.NET Core MVC com React.js            | react      | [C#]     | Web/MVC/SPA |
+| ASP.NET Core MVC com React.js e Redux  | reactredux | [C#]     | Web/MVC/SPA |
 
 Para criar um novo projeto usando um dos modelos SPA, inclua o **nome curto** do modelo no comando [dotnet New](/dotnet/core/tools/dotnet-new) . O comando a seguir cria um aplicativo angular com ASP.NET Core MVC configurado para o lado do servidor:
 
@@ -290,7 +292,7 @@ Abra o prompt de comando no diretório *ClientApp* Execute o comando a seguir:
 npm test
 ```
 
-O script inicia o executor de teste do karma, que lê as configurações definidas no arquivo *karma. conf. js* . Entre outras configurações, o *karma. conf. js* identifica os arquivos de teste a serem executados por meio de sua `files` matriz:
+O script inicia o executor de teste do karma, que lê as configurações definidas no arquivo *karma.conf.js* . Entre outras configurações, o *karma.conf.js* identifica os arquivos de teste a serem executados por meio de sua `files` matriz:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 

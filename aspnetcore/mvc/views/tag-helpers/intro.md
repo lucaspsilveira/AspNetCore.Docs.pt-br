@@ -7,17 +7,19 @@ ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 7298e514938e8285a1e42afad0f2f71375e2781d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 36d8c3dd42ac9d0acdb93bba4bc39ab18ad5c52f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776468"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400889"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Auxiliares de Marca no ASP.NET Core
 
@@ -25,13 +27,13 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="what-are-tag-helpers"></a>O que são Auxiliares de Marca
 
-Os auxiliares de marca permitem que o código do servidor participe da criação e renderização de Razor elementos HTML em arquivos. Por exemplo, o `ImageTagHelper` interno pode acrescentar um número de versão ao nome da imagem. Sempre que a imagem é alterada, o servidor gera uma nova versão exclusiva para a imagem, de modo que os clientes tenham a garantia de obter a imagem atual (em vez de uma imagem obsoleta armazenada em cache). Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o `LabelTagHelper` interno pode ser direcionado ao elemento `<label>` HTML quando os atributos `LabelTagHelper` são aplicados. Se você estiver familiarizado com [auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), os auxiliares de marcação reduzirão as transições explícitas entre Razor HTML e C# em exibições. Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxiliar de Marca específico, mas é importante reconhecer que os Auxiliares de Marca não substituem os Auxiliares HTML e que não há um Auxiliar de Marca para cada Auxiliar HTML. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente.
+Os auxiliares de marca permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos. Por exemplo, o `ImageTagHelper` interno pode acrescentar um número de versão ao nome da imagem. Sempre que a imagem é alterada, o servidor gera uma nova versão exclusiva para a imagem, de modo que os clientes tenham a garantia de obter a imagem atual (em vez de uma imagem obsoleta armazenada em cache). Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o `LabelTagHelper` interno pode ser direcionado ao elemento `<label>` HTML quando os atributos `LabelTagHelper` são aplicados. Se você estiver familiarizado com [auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), os auxiliares de marcação reduzirão as transições explícitas entre HTML e C# em Razor exibições. Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxiliar de Marca específico, mas é importante reconhecer que os Auxiliares de Marca não substituem os Auxiliares HTML e que não há um Auxiliar de Marca para cada Auxiliar HTML. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente.
 
 ## <a name="what-tag-helpers-provide"></a>O que os Auxiliares de Marca fornecem
 
-**Uma experiência de desenvolvimento amigável em HTML** Na maior parte, Razor a marcação usando auxiliares de marca parece com HTML padrão. Designers de front-end conversos com HTML/CSS/JavaScript podem Razor editar sem aprender Razor a sintaxe do C#.
+**Uma experiência de desenvolvimento amigável em HTML** Na maior parte, a Razor marcação usando auxiliares de marca parece com HTML padrão. Designers de front-end conversos com HTML/CSS/JavaScript podem editar Razor sem aprender a sintaxe do C# Razor .
 
-**Um ambiente avançado do IntelliSense para a criação Razor de HTML e marcação** isso está em contraste com os auxiliares HTML, a abordagem anterior à criação do lado do Razor servidor de marcação em exibições. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente. [Suporte do IntelliSense para Auxiliares de Marca](#intellisense-support-for-tag-helpers) explica o ambiente do IntelliSense. Até mesmo os desenvolvedores Razor experientes com sintaxe em c# são mais produtivos usando auxiliares Razor de marcas do que escrever marcação em c#.
+**Um ambiente avançado do IntelliSense para a criação de HTML e Razor marcação** isso está em contraste com os auxiliares HTML, a abordagem anterior à criação do lado do servidor de marcação em Razor exibições. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente. [Suporte do IntelliSense para Auxiliares de Marca](#intellisense-support-for-tag-helpers) explica o ambiente do IntelliSense. Até mesmo os desenvolvedores experientes com Razor sintaxe em c# são mais produtivos usando auxiliares de marcas do que escrever marcação em c# Razor .
 
 **Uma maneira de fazer com que você fique mais produtivo e possa produzir um código mais robusto, confiável e possível de ser mantido usando as informações apenas disponíveis no servidor** Por exemplo, historicamente, o mantra da atualização de imagens era alterar o nome da imagem quando a imagem era alterada. As imagens devem ser armazenadas em cache de forma agressiva por motivos de desempenho e, a menos que você altere o nome de uma imagem, você corre o risco de os clientes obterem uma cópia obsoleta. Historicamente, depois que uma imagem era editada, o nome precisava ser alterado e cada referência à imagem no aplicativo Web precisava ser atualizada. Isso não só é muito trabalhoso, também é propenso a erros (você pode perder uma referência, inserir acidentalmente a cadeia de caracteres errada, etc.) O interno `ImageTagHelper` pode fazer isso para você automaticamente. O `ImageTagHelper` pode acrescentar um número de versão ao nome da imagem, de modo que sempre que a imagem é alterada, o servidor gera automaticamente uma nova versão exclusiva para a imagem. Os clientes têm a garantia de obter a imagem atual. Basicamente, essa economia na robustez e no trabalho é obtida gratuitamente com o `ImageTagHelper`.
 
@@ -48,7 +50,7 @@ public class Movie
 }
 ```
 
-A marcação Razor a seguir:
+A marcação a seguir Razor :
 
 ```cshtml
 <label asp-for="Movie.Title"></label>
@@ -74,7 +76,7 @@ Se você criar um novo aplicativo Web ASP.NET Core chamado *AuthoringTagHelpers*
 
 [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=2&range=2-3)]
 
-A diretiva `@addTagHelper` disponibiliza os Auxiliares de Marca para a exibição. Nesse caso, o arquivo de exibição é *pages/_ViewImports. cshtml*, que por padrão é herdado por todos os arquivos na pasta *pages* e subpastas; tornando os auxiliares de marca disponíveis. O código acima usa a sintaxe curinga ("\*") para especificar que todos os auxiliares de marca no assembly especificado (*Microsoft. AspNetCore. Mvc. TagHelpers*) estarão disponíveis para cada arquivo de exibição no diretório ou subdiretório de *exibições* . O primeiro parâmetro após `@addTagHelper` especifica os Auxiliares de Marca a serem carregados (estamos usando "\*" para todos os Auxiliares de Marca) e o segundo parâmetro "Microsoft.AspNetCore.Mvc.TagHelpers" especifica o assembly que contém os Auxiliares de Marca. *Microsoft.AspNetCore.Mvc.TagHelpers* é o assembly para os Auxiliares de Marca internos do ASP.NET Core.
+A diretiva `@addTagHelper` disponibiliza os Auxiliares de Marca para a exibição. Nesse caso, o arquivo de exibição é *pages/_ViewImports. cshtml*, que por padrão é herdado por todos os arquivos na pasta *pages* e subpastas; tornando os auxiliares de marca disponíveis. O código acima usa a sintaxe curinga (" \* ") para especificar que todos os auxiliares de marca no assembly especificado (*Microsoft. AspNetCore. Mvc. TagHelpers*) estarão disponíveis para cada arquivo de exibição no diretório ou subdiretório de *exibições* . O primeiro parâmetro após `@addTagHelper` especifica os Auxiliares de Marca a serem carregados (estamos usando "\*" para todos os Auxiliares de Marca) e o segundo parâmetro "Microsoft.AspNetCore.Mvc.TagHelpers" especifica o assembly que contém os Auxiliares de Marca. *Microsoft.AspNetCore.Mvc.TagHelpers* é o assembly para os Auxiliares de Marca internos do ASP.NET Core.
 
 Para expor todos os Auxiliares de Marca neste projeto (que cria um assembly chamado *AuthoringTagHelpers*), você usará o seguinte:
 
@@ -157,7 +159,7 @@ O código anterior pode ser escrito como:
 
 ## <a name="intellisense-support-for-tag-helpers"></a>Suporte do IntelliSense para Auxiliares de Marca
 
-Quando você cria um novo aplicativo Web ASP.NET Core no Visual Studio, ele adiciona o pacote NuGet "Microsoft. AspNetCore. Razor. Ferramentas ". Esse é o pacote que adiciona ferramentas do Auxiliar de Marca.
+Quando você cria um novo aplicativo Web ASP.NET Core no Visual Studio, ele adiciona o pacote NuGet "Microsoft. AspNetCore. Razor . Ferramentas ". Esse é o pacote que adiciona ferramentas do Auxiliar de Marca.
 
 Considere a escrita de um elemento `<label>` HTML. Assim que você insere `<l` no editor do Visual Studio, o IntelliSense exibe elementos correspondentes:
 
@@ -197,19 +199,19 @@ O IntelliSense lista as propriedades e os métodos disponíveis para o modelo na
 
 ## <a name="tag-helpers-compared-to-html-helpers"></a>Comparação entre Auxiliares de Marca e Auxiliares HTML
 
-Os auxiliares de marcação anexam elementos Razor HTML em exibições, enquanto os [auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) são invocados como métodos Razor intercalados com HTML em exibições. Considere a seguinte Razor marcação, que cria um rótulo HTML com a classe CSS "Caption":
+Os auxiliares de marcação anexam elementos HTML em Razor exibições, enquanto os [auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) são invocados como métodos intercalados com HTML em Razor exibições. Considere a seguinte Razor marcação, que cria um rótulo HTML com a classe CSS "Caption":
 
 ```cshtml
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
 ```
 
-O símbolo de`@`arroba () Razor diz que este é o início do código. Os dois próximos parâmetros ("FirstName" e "First Name:") são cadeias de caracteres; portanto, o [IntelliSense](/visualstudio/ide/using-intellisense) não pode ajudar. O último argumento:
+O símbolo de arroba ( `@` ) diz Razor que este é o início do código. Os dois próximos parâmetros ("FirstName" e "First Name:") são cadeias de caracteres; portanto, o [IntelliSense](/visualstudio/ide/using-intellisense) não pode ajudar. O último argumento:
 
 ```cshtml
 new {@class="caption"}
 ```
 
-É um objeto anônimo usado para representar atributos. Como a `class` é uma palavra-chave reservada no C#, use o símbolo `@` para forçar o C# a interpretar `@class=` como um símbolo (nome da propriedade). Para um designer de front-end (alguém familiarizado com HTML/CSS/JavaScript e outras tecnologias de cliente, mas que não Razorestão familiarizados com C# e), a maior parte da linha é estrangeira. Toda a linha precisa ser criada sem nenhuma ajuda do IntelliSense.
+É um objeto anônimo usado para representar atributos. Como a `class` é uma palavra-chave reservada no C#, use o símbolo `@` para forçar o C# a interpretar `@class=` como um símbolo (nome da propriedade). Para um designer de front-end (alguém familiarizado com HTML/CSS/JavaScript e outras tecnologias de cliente, mas que não estão familiarizados com C# e Razor ), a maior parte da linha é estrangeira. Toda a linha precisa ser criada sem nenhuma ajuda do IntelliSense.
 
 Usando o `LabelTagHelper`, a mesma marcação pode ser escrita como:
 
@@ -267,7 +269,7 @@ O editor do Visual Studio ajuda você a escrever **toda** a marcação na aborda
 
 ## <a name="customizing-the-tag-helper-element-font"></a>Personalizando a fonte de elemento do Auxiliar de Marca
 
-Você pode personalizar a fonte e a colorização em **ferramentas** > **Opções** > **Environment** > **fontes e cores**do ambiente:
+Você pode personalizar a fonte e a colorização em **ferramentas**  >  **Opções**  >  **Environment**  >  **fontes e cores**do ambiente:
 
 ![image](intro/_static/fontoptions2.png)
 
@@ -276,5 +278,5 @@ Você pode personalizar a fonte e a colorização em **ferramentas** > **Opçõe
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
-* [Trabalhando com formulários](xref:mvc/views/working-with-forms)
+* [Trabalhar com formulários](xref:mvc/views/working-with-forms)
 * [TagHelperSamples no GitHub](https://github.com/dpaquette/TagHelperSamples) contém amostras de Auxiliar de Marca para trabalhar com o [Bootstrap](https://getbootstrap.com/).

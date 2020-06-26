@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 31e72eeac415f10d573de455f19aa8ff34743356
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 91f2aa893c06728b4b71d010241a2cb5a307ae0b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242388"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400187"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Chamar métodos .NET de funções JavaScript no ASP.NET CoreBlazor
 
@@ -32,7 +34,7 @@ Este artigo aborda a invocação de métodos .NET do JavaScript. Para obter info
 
 ## <a name="static-net-method-call"></a>Chamada de método .NET estático
 
-Para invocar um método .NET estático do JavaScript, use `DotNet.invokeMethod` as `DotNet.invokeMethodAsync` funções ou. Passe o identificador do método estático que você deseja chamar, o nome do assembly que contém a função e os argumentos. A versão assíncrona é preferida para dar suporte a Blazor cenários de servidor. O método .NET deve ser público, estático e ter o [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) atributo. Atualmente, não há suporte para chamar métodos genéricos abertos.
+Para invocar um método .NET estático do JavaScript, use `DotNet.invokeMethod` as `DotNet.invokeMethodAsync` funções ou. Passe o identificador do método estático que você deseja chamar, o nome do assembly que contém a função e os argumentos. A versão assíncrona é preferida para dar suporte a Blazor Server cenários. O método .NET deve ser público, estático e ter o [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) atributo. Atualmente, não há suporte para chamar métodos genéricos abertos.
 
 O aplicativo de exemplo inclui um método C# para retornar uma `int` matriz. O [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) atributo é aplicado ao método.
 
@@ -377,4 +379,4 @@ Para obter mais informações, consulte os seguintes problemas:
 
 * <xref:blazor/call-javascript-from-dotnet>
 * [`InteropComponent.razor`exemplo (dotNet/AspNetCore do repositório GitHub, Branch de lançamento 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Executar grandes transferências de dados em Blazor aplicativos de servidor](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
+* [Executar grandes transferências de dados em Blazor Server aplicativos](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

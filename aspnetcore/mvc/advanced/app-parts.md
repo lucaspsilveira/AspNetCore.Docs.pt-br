@@ -1,24 +1,26 @@
 ---
-title: Compartilhar controladores, exibições Razor , páginas e muito mais com partes de aplicativo no ASP.NET Core
+title: Compartilhar controladores, exibições, Razor páginas e muito mais com partes de aplicativo no ASP.NET Core
 author: rick-anderson
 description: Compartilhar controladores, exibir, Razor páginas e muito mais com partes de aplicativo no ASP.NET Core
 ms.author: riande
 ms.date: 11/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 68991a3df5e09b63dc52bdadae55f055a721ad3c
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: cb1f8b045b8f2b143afc7895234733fbfb02cb07
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774399"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399745"
 ---
-# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Compartilhar controladores, exibições Razor , páginas e muito mais com partes do aplicativo
+# <a name="share-controllers-views-razor-pages-and-more-with-application-parts"></a>Compartilhar controladores, exibições, Razor páginas e muito mais com partes do aplicativo
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -26,19 +28,19 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([como baixar](xref:index#how-to-download-a-sample))
 
-Uma *parte do aplicativo* é uma abstração sobre os recursos de um aplicativo. As partes do aplicativo permitem ASP.NET Core descobrir controladores, exibir componentes, auxiliares de Razor marcas, páginas, fontes de compilação do Razor e muito mais. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart>é uma parte do aplicativo. `AssemblyPart`encapsula uma referência de assembly e expõe tipos e referências de compilação.
+Uma *parte do aplicativo* é uma abstração sobre os recursos de um aplicativo. As partes do aplicativo permitem ASP.NET Core descobrir controladores, exibir componentes, auxiliares de marcas, Razor páginas, fontes de compilação do Razor e muito mais. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart>é uma parte do aplicativo. `AssemblyPart`encapsula uma referência de assembly e expõe tipos e referências de compilação.
 
 Os [provedores de recursos](#fp) trabalham com partes do aplicativo para preencher os recursos de um aplicativo ASP.NET Core. O principal caso de uso para partes do aplicativo é configurar um aplicativo para descobrir (ou evitar carregar) ASP.NET Core recursos de um assembly. Por exemplo, talvez você queira compartilhar funcionalidade comum entre vários aplicativos. Usando partes de aplicativo, você pode compartilhar um assembly (DLL) contendo controladores, exibições, Razor páginas, fontes de compilação do Razor, auxiliares de marca e muito mais com vários aplicativos. O compartilhamento de um assembly é preferencial para duplicar o código em vários projetos.
 
-Os aplicativos ASP.NET Core carregam <xref:System.Web.WebPages.ApplicationPart>recursos do. A <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classe representa uma parte do aplicativo que é apoiada por um assembly.
+Os aplicativos ASP.NET Core carregam recursos do <xref:System.Web.WebPages.ApplicationPart> . A <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classe representa uma parte do aplicativo que é apoiada por um assembly.
 
 ## <a name="load-aspnet-core-features"></a>Carregar recursos de ASP.NET Core
 
-Use as <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> classes <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> e para descobrir e carregar ASP.NET Core recursos (controladores, exibir componentes, etc.). O <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> rastreia as partes do aplicativo e os provedores de recursos disponíveis. `ApplicationPartManager`está configurado em `Startup.ConfigureServices`:
+Use as <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classes e para descobrir e carregar ASP.NET Core recursos (controladores, exibir componentes, etc.). O <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> rastreia as partes do aplicativo e os provedores de recursos disponíveis. `ApplicationPartManager`está configurado em `Startup.ConfigureServices` :
 
 [!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup.cs?name=snippet)]
 
-O código a seguir fornece uma abordagem alternativa para `ApplicationPartManager` configurar `AssemblyPart`o usando:
+O código a seguir fornece uma abordagem alternativa para configurar o `ApplicationPartManager` usando `AssemblyPart` :
 
 [!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup2.cs?name=snippet)]
 
@@ -50,7 +52,7 @@ Use uma [ Razor biblioteca de classes](xref:razor-pages/ui-class) para incluir e
 
 ### <a name="prevent-loading-resources"></a>Impedir o carregamento de recursos
 
-Partes de aplicativo podem ser usadas para *evitar* o carregamento de recursos em um determinado assembly ou local. Adicionar ou remover membros da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> coleção para ocultar ou tornar os recursos disponíveis. A ordem das entradas na coleção `ApplicationParts` não é importante. Configure o `ApplicationPartManager` antes de usá-lo para configurar serviços no contêiner. Por exemplo, configure o `ApplicationPartManager` antes de chamar `AddControllersAsServices`. Chame `Remove` na `ApplicationParts` coleção para remover um recurso.
+Partes de aplicativo podem ser usadas para *evitar* o carregamento de recursos em um determinado assembly ou local. Adicionar ou remover membros da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> coleção para ocultar ou tornar os recursos disponíveis. A ordem das entradas na coleção `ApplicationParts` não é importante. Configure o `ApplicationPartManager` antes de usá-lo para configurar serviços no contêiner. Por exemplo, configure o `ApplicationPartManager` antes de chamar `AddControllersAsServices` . Chame `Remove` na `ApplicationParts` coleção para remover um recurso.
 
 O `ApplicationPartManager` inclui partes para:
 
@@ -116,19 +118,19 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([como baixar](xref:index#how-to-download-a-sample))
 
-Uma *parte do aplicativo* é uma abstração sobre os recursos de um aplicativo. As partes do aplicativo permitem ASP.NET Core descobrir controladores, exibir componentes, auxiliares de Razor marcas, páginas, fontes de compilação do Razor e muito mais. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) é uma parte do aplicativo. `AssemblyPart`encapsula uma referência de assembly e expõe tipos e referências de compilação.
+Uma *parte do aplicativo* é uma abstração sobre os recursos de um aplicativo. As partes do aplicativo permitem ASP.NET Core descobrir controladores, exibir componentes, auxiliares de marcas, Razor páginas, fontes de compilação do Razor e muito mais. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) é uma parte do aplicativo. `AssemblyPart`encapsula uma referência de assembly e expõe tipos e referências de compilação.
 
 Os *provedores de recursos* trabalham com partes do aplicativo para preencher os recursos de um aplicativo ASP.NET Core. O principal caso de uso para partes do aplicativo é configurar um aplicativo para descobrir (ou evitar carregar) ASP.NET Core recursos de um assembly. Por exemplo, talvez você queira compartilhar funcionalidade comum entre vários aplicativos. Usando partes de aplicativo, você pode compartilhar um assembly (DLL) contendo controladores, exibições, Razor páginas, fontes de compilação do Razor, auxiliares de marca e muito mais com vários aplicativos. O compartilhamento de um assembly é preferencial para duplicar o código em vários projetos.
 
-Os aplicativos ASP.NET Core carregam <xref:System.Web.WebPages.ApplicationPart>recursos do. A <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classe representa uma parte do aplicativo que é apoiada por um assembly.
+Os aplicativos ASP.NET Core carregam recursos do <xref:System.Web.WebPages.ApplicationPart> . A <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classe representa uma parte do aplicativo que é apoiada por um assembly.
 
 ## <a name="load-aspnet-core-features"></a>Carregar recursos de ASP.NET Core
 
-Use as `ApplicationPart` classes `AssemblyPart` e para descobrir e carregar ASP.NET Core recursos (controladores, exibir componentes, etc.). O <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> rastreia as partes do aplicativo e os provedores de recursos disponíveis. `ApplicationPartManager`está configurado em `Startup.ConfigureServices`:
+Use as `ApplicationPart` `AssemblyPart` classes e para descobrir e carregar ASP.NET Core recursos (controladores, exibir componentes, etc.). O <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> rastreia as partes do aplicativo e os provedores de recursos disponíveis. `ApplicationPartManager`está configurado em `Startup.ConfigureServices` :
 
 [!code-csharp[](./app-parts/sample1/WebAppParts/Startup.cs?name=snippet)]
 
-O código a seguir fornece uma abordagem alternativa para `ApplicationPartManager` configurar `AssemblyPart`o usando:
+O código a seguir fornece uma abordagem alternativa para configurar o `ApplicationPartManager` usando `AssemblyPart` :
 
 [!code-csharp[](./app-parts/sample1/WebAppParts/Startup2.cs?name=snippet)]
 
@@ -140,9 +142,9 @@ Use uma [ Razor biblioteca de classes](xref:razor-pages/ui-class) para incluir e
 
 ### <a name="prevent-loading-resources"></a>Impedir o carregamento de recursos
 
-Partes de aplicativo podem ser usadas para *evitar* o carregamento de recursos em um determinado assembly ou local. Adicionar ou remover membros da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> coleção para ocultar ou tornar os recursos disponíveis. A ordem das entradas na coleção `ApplicationParts` não é importante. Configure o `ApplicationPartManager` antes de usá-lo para configurar serviços no contêiner. Por exemplo, configure o `ApplicationPartManager` antes de chamar `AddControllersAsServices`. Chame `Remove` na `ApplicationParts` coleção para remover um recurso.
+Partes de aplicativo podem ser usadas para *evitar* o carregamento de recursos em um determinado assembly ou local. Adicionar ou remover membros da <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> coleção para ocultar ou tornar os recursos disponíveis. A ordem das entradas na coleção `ApplicationParts` não é importante. Configure o `ApplicationPartManager` antes de usá-lo para configurar serviços no contêiner. Por exemplo, configure o `ApplicationPartManager` antes de chamar `AddControllersAsServices` . Chame `Remove` na `ApplicationParts` coleção para remover um recurso.
 
-O código a seguir <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> usa para `MyDependentLibrary` remover do aplicativo:[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+O código a seguir usa <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> para remover `MyDependentLibrary` do aplicativo:[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 O `ApplicationPartManager` inclui partes para:
 

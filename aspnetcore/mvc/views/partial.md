@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 1bce6b9cdc876062b050eae6eb3c4acf0127ce92
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 47bd91f4d2bf166a4d0c9a0829e24cbe26a81a10
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777118"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399706"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Exibições parciais no ASP.NET Core
 
@@ -27,7 +29,7 @@ Uma exibição parcial é um [Razor](xref:mvc/views/razor) arquivo de marcação
 
 ::: moniker range=">= aspnetcore-2.1"
 
-O termo *exibição parcial* é usado ao desenvolver um aplicativo MVC, em que os arquivos de marcação são chamados de modos Razor de *exibição*ou um aplicativo de páginas, onde os arquivos de marcação são chamados *páginas*. Este tópico se refere genericmente a exibições Razor do MVC e páginas de páginas como *arquivos de marcação*.
+O termo *exibição parcial* é usado ao desenvolver um aplicativo MVC, em que os arquivos de marcação são chamados de *modos de exibição*ou um Razor aplicativo de páginas, onde os arquivos de marcação são chamados *páginas*. Este tópico se refere genericmente a exibições do MVC e Razor páginas de páginas como *arquivos de marcação*.
 
 ::: moniker-end
 
@@ -52,7 +54,7 @@ Não use uma exibição parcial em que a lógica de renderização complexa ou a
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Uma exibição parcial é um arquivo de marcação *. cshtml* mantido dentro da pasta de *exibições* (MVC) ouRazor da pasta de *páginas* (páginas).
+Uma exibição parcial é um arquivo de marcação *. cshtml* mantido dentro da pasta de *exibições* (MVC) ou da pasta de *páginas* ( Razor páginas).
 
 No ASP.NET Core MVC, um <xref:Microsoft.AspNetCore.Mvc.ViewResult> do controlador é capaz de retornar uma exibição ou uma exibição parcial. Em Razor páginas, um <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> pode retornar uma exibição parcial representada como um <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> objeto. A referência e a renderização de exibições parciais são descritas na seção [Referenciar uma exibição parcial](#reference-a-partial-view).
 
@@ -80,7 +82,7 @@ Nomes de arquivos de exibição parcial geralmente começam com um sublinhado (`
 
 ### <a name="use-a-partial-view-in-a-razor-pages-pagemodel"></a>Usar uma exibição parcial em Razor páginas PageModel
 
-No ASP.NET Core 2,0 ou 2,1, o seguinte método de manipulador renderiza a * \_exibição parcial AuthorPartialRP. cshtml* para a resposta:
+No ASP.NET Core 2,0 ou 2,1, o seguinte método de manipulador renderiza a exibição parcial * \_ AuthorPartialRP. cshtml* para a resposta:
 
 ```csharp
 public IActionResult OnGetPartial() =>
@@ -207,7 +209,7 @@ O exemplo a seguir faz referência a uma exibição parcial com um caminho relat
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
-Como alternativa, é possível renderizar uma exibição parcial com <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>. Esse método não retorna um <xref:Microsoft.AspNetCore.Html.IHtmlContent>. Ele transmite a saída renderizada diretamente para a resposta. Como o método não retorna um resultado, ele deve ser chamado dentro de Razor um bloco de código:
+Como alternativa, é possível renderizar uma exibição parcial com <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>. Esse método não retorna um <xref:Microsoft.AspNetCore.Html.IHtmlContent>. Ele transmite a saída renderizada diretamente para a resposta. Como o método não retorna um resultado, ele deve ser chamado dentro de um Razor bloco de código:
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
@@ -269,7 +271,7 @@ As convenções a seguir se aplicam à descoberta de exibição parcial:
 
 * Diferentes exibições parciais com o mesmo nome de arquivo são permitidos quando as exibições parciais estão em pastas diferentes.
 * Ao referenciar uma exibição parcial pelo nome sem uma extensão de arquivo e a exibição parcial está presente na pasta do chamador e na pasta *Compartilhada*, a exibição parcial na pasta do chamador fornece a exibição parcial. Se a exibição parcial não existir na pasta do chamador, ela será fornecida pela pasta *Compartilhada*. Exibições parciais na pasta *Compartilhada* são chamadas de *exibições parciais compartilhadas* ou *exibições parciais padrão*.
-* Exibições parciais podem ser *encadeadas*&mdash;uma exibição parcial pode chamar outra exibição parcial se uma referência circular não é formada pelas chamadas. Caminhos relativos sempre são relativos ao arquivo atual, não à raiz ou ao pai do arquivo.
+* Exibições parciais podem ser *encadeadas* &mdash; uma exibição parcial pode chamar outra exibição parcial se uma referência circular não é formada pelas chamadas. Caminhos relativos sempre são relativos ao arquivo atual, não à raiz ou ao pai do arquivo.
 
 > [!NOTE]
 > Um [Razor](xref:mvc/views/razor) `section` definido em uma exibição parcial é invisível para arquivos de marcação pai. A `section` só é visível para a exibição parcial na qual ela está definida.

@@ -8,21 +8,23 @@ ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: 530ce2d2a7f67f549f6d188a0c571a5d58518377
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 1f44fd65836cc42ffb2303890eefb053b61c4c30
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776240"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399459"
 ---
 # <a name="use-web-api-analyzers"></a>Usar os analisadores da API Web
 
-O ASP.NET Core 2,2 e posterior fornece um pacote de analisadores MVC destinado ao uso com projetos de API Web. Os analisadores trabalham com controladores anotados com <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>o, ao criar [convenções de API Web](xref:web-api/advanced/conventions).
+O ASP.NET Core 2,2 e posterior fornece um pacote de analisadores MVC destinado ao uso com projetos de API Web. Os analisadores trabalham com controladores anotados com o <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> , ao criar [convenções de API Web](xref:web-api/advanced/conventions).
 
 O pacote de analisadores notifica você sobre qualquer ação do controlador que:
 
@@ -35,7 +37,7 @@ O pacote de analisadores notifica você sobre qualquer ação do controlador que
 
 ## <a name="reference-the-analyzer-package"></a>Referenciar o pacote do analisador
 
-No ASP.NET Core 3,0 ou posterior, os analisadores estão incluídos na SDK do .NET Core. Para habilitar o analisador em seu projeto, inclua `IncludeOpenAPIAnalyzers` a propriedade no arquivo de projeto:
+No ASP.NET Core 3,0 ou posterior, os analisadores estão incluídos na SDK do .NET Core. Para habilitar o analisador em seu projeto, inclua a `IncludeOpenAPIAnalyzers` propriedade no arquivo de projeto:
 
 ```xml
 <PropertyGroup>

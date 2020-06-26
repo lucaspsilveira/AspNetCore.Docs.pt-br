@@ -7,17 +7,19 @@ ms.author: jamesnk
 ms.date: 01/09/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/versioning
-ms.openlocfilehash: dcf089f1e5f27639d048e91ee3aa42c7da6d8398
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af8c6cac621ed073fc34e2afe0402e640c2c5727
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775356"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400005"
 ---
 # <a name="versioning-grpc-services"></a>Controle de versão de serviços gRPC
 
@@ -54,7 +56,7 @@ As alterações a seguir são não separáveis em um nível de protocolo gRPC, m
 
 * A **remoção de um campo** -valores de um campo removido são desserializados para os [campos desconhecidos](https://developers.google.com/protocol-buffers/docs/proto3#unknowns)de uma mensagem. Isso não é uma alteração significativa de protocolo gRPC, mas o cliente precisa ser atualizado se ele atualizar para o contrato mais recente. É importante que um número de campo removido não seja acidentalmente reutilizado no futuro. Para garantir que isso não aconteça, especifique os números e nomes dos campos excluídos na mensagem usando a palavra-chave [reservada](https://developers.google.com/protocol-buffers/docs/proto3#reserved) do Protobuf.
 * **Renomear uma mensagem** -nomes de mensagens normalmente não são enviados na rede, portanto, isso não é uma alteração de interrupção de protocolo gRPC. O cliente precisará ser atualizado se atualizar para o contrato mais recente. Uma situação em que os nomes de mensagem **são** enviados na rede é com [qualquer](https://developers.google.com/protocol-buffers/docs/proto3#any) campo, quando o nome da mensagem é usado para identificar o tipo de mensagem.
-* **Changing csharp_namespace** Alterar a alteração de `csharp_namespace` csharp_namespace alterará o namespace dos tipos .net gerados. Isso não é uma alteração significativa de protocolo gRPC, mas o cliente precisa ser atualizado se ele atualizar para o contrato mais recente.
+* Alterar a alteração de **csharp_namespace** `csharp_namespace` alterará o namespace dos tipos .net gerados. Isso não é uma alteração significativa de protocolo gRPC, mas o cliente precisa ser atualizado se ele atualizar para o contrato mais recente.
 
 ### <a name="protocol-breaking-changes"></a>Alterações significativas de protocolo
 

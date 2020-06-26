@@ -3,7 +3,7 @@
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio) 
 
 * No menu **Exibir** , selecione **pesquisador de objetos do SQL Server** (SSOX).
-* Navegue até **(LocalDB) MSSQLLocalDB (SQL Server 13)** . Clique com o botão direito do mouse em **dbo. AspNetUsers** > **exibir dados**:
+* Navegue até **(LocalDB) MSSQLLocalDB (SQL Server 13)**. Clique com o botão direito do mouse em **dbo. AspNetUsers**  >  **exibir dados**:
 
 ![Menu contextual na tabela AspNetUsers no Pesquisador de Objetos do SQL Server](~/security/authentication/accconfirm/_static/ssox.png)
 

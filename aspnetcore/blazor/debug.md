@@ -1,30 +1,32 @@
 ---
-title: Depurar ASP.NET Core Blazor Webassembly
+title: ASP.NET Core de depuraçãoBlazor WebAssembly
 author: guardrex
 description: Saiba como depurar Blazor aplicativos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2020
+ms.date: 06/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 75db5d5e69cb200ebf3bd1dc1e0afed0300214cc
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 9fe51b8c7eafdd62cc6fc1a820135d9ee5ff010e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242765"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401006"
 ---
-# <a name="debug-aspnet-core-blazor-webassembly"></a>Depurar ASP.NET Core Blazor Webassembly
+# <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core de depuraçãoBlazor WebAssembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-BlazorOs aplicativos Webassembly podem ser depurados usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (borda/Chrome). Como alternativa, você pode depurar seu aplicativo usando o Visual Studio ou Visual Studio Code.
+Blazor WebAssemblyos aplicativos podem ser depurados usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (borda/Chrome). Como alternativa, você pode depurar seu aplicativo usando o Visual Studio ou Visual Studio Code.
 
 Os cenários disponíveis incluem:
 
@@ -51,7 +53,7 @@ A depuração requer um dos seguintes navegadores:
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitar depuração para Visual Studio e Visual Studio Code
 
-Para habilitar a depuração para um Blazor aplicativo Webassembly existente, atualize o `launchSettings.json` arquivo no projeto de inicialização para incluir a seguinte `inspectUri` propriedade em cada perfil de inicialização:
+Para habilitar a depuração para um Blazor WebAssembly aplicativo existente, atualize o `launchSettings.json` arquivo no projeto de inicialização para incluir a seguinte `inspectUri` propriedade em cada perfil de inicialização:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
@@ -63,16 +65,16 @@ Uma vez atualizado, o `launchSettings.json` arquivo deve ser semelhante ao exemp
 
 A `inspectUri` Propriedade:
 
-* Permite que o IDE detecte que o aplicativo é um Blazor aplicativo Webassembly.
+* Permite que o IDE detecte que o aplicativo é um Blazor WebAssembly aplicativo.
 * Instrui a infraestrutura de depuração de script para se conectar ao navegador por meio Blazor do proxy de depuração.
 
 Os valores de espaço reservado para o protocolo WebSockets ( `wsProtocol` ), host ( `url.hostname` ), porta ( `url.port` ) e URI do Inspetor no navegador iniciado ( `browserInspectUri` ) são fornecidos pela estrutura.
 
 ## <a name="visual-studio"></a>Visual Studio
 
-Para depurar um Blazor aplicativo Webassembly no Visual Studio:
+Para depurar um Blazor WebAssembly aplicativo no Visual Studio:
 
-1. Crie um novo Blazor aplicativo Webassembly hospedado ASP.NET Core.
+1. Crie um novo aplicativo hospedado ASP.NET Core Blazor WebAssembly .
 1. Pressione <kbd>F5</kbd> para executar o aplicativo no depurador.
 1. Defina um ponto de interrupção no `Pages/Counter.razor` no `IncrementCount` método.
 1. Navegue até a **`Counter`** guia e selecione o botão para atingir o ponto de interrupção:
@@ -85,7 +87,7 @@ Para depurar um Blazor aplicativo Webassembly no Visual Studio:
 
 1. Pressione <kbd>F5</kbd> para continuar a execução.
 
-Ao depurar seu Blazor aplicativo Webassembly, você também pode depurar o código do servidor:
+Ao depurar seu Blazor WebAssembly aplicativo, você também pode depurar o código do servidor:
 
 1. Defina um ponto de interrupção na `Pages/FetchData.razor` página em <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> .
 1. Defina um ponto de interrupção no `WeatherForecastController` `Get` Método Action.
@@ -103,7 +105,7 @@ Ao depurar seu Blazor aplicativo Webassembly, você também pode depurar o códi
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-Para depurar um Blazor aplicativo Webassembly no Visual Studio Code:
+Para depurar um Blazor WebAssembly aplicativo no Visual Studio Code:
  
 Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true` .
 
@@ -111,9 +113,9 @@ Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-
 
 ![Depurador de visualização JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
 
-### <a name="debug-standalone-blazor-webassembly"></a>Depurar Blazor Webassembly autônomo
+### <a name="debug-standalone-blazor-webassembly"></a>Depurar autônomoBlazor WebAssembly
 
-1. Abra o Blazor aplicativo Webassembly autônomo no vs Code.
+1. Abra o Blazor WebAssembly aplicativo autônomo no vs Code.
 
    Se você receber a notificação a seguir, será necessária uma configuração adicional para habilitar a depuração:
    
@@ -125,7 +127,7 @@ Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-
 
 1. Inicie a depuração usando o atalho de teclado <kbd>F5</kbd> ou o item de menu.
 
-1. Quando solicitado, selecione a opção ** Blazor Webassembly Debug** para iniciar a depuração.
+1. Quando solicitado, selecione a opção de ** Blazor WebAssembly depuração** para iniciar a depuração.
 
    ![Lista de opções de depuração disponíveis](index/_static/blazor-vscode-debugtypes.png)
 
@@ -135,9 +137,9 @@ Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-
 
    ![Contador de depuração no VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
-### <a name="debug-hosted-blazor-webassembly"></a>Depurar Blazor Webassembly hospedado
+### <a name="debug-hosted-blazor-webassembly"></a>Depuração hospedadaBlazor WebAssembly
 
-1. Abra o Blazor aplicativo Webassembly hospedado no vs Code.
+1. Abra o Blazor WebAssembly aplicativo hospedado no vs Code.
 
 1. Se não houver uma configuração de inicialização definida para o projeto, a notificação a seguir será exibida. Selecione **Sim** na barra superior.
 
@@ -168,11 +170,11 @@ As opções de configuração de inicialização a seguir têm suporte para o `b
 
 | Opção    | Descrição |
 | --------- | ----------- |
-| `request` | Use `launch` para iniciar e anexar uma sessão de depuração a um Blazor aplicativo Webassembly ou `attach` para anexar uma sessão de depuração a um aplicativo já em execução. |
+| `request` | Use `launch` para iniciar e anexar uma sessão de depuração a um Blazor WebAssembly aplicativo ou `attach` para anexar uma sessão de depuração a um aplicativo já em execução. |
 | `url`     | A URL a ser aberta no navegador durante a depuração. O padrão é `https://localhost:5001`. |
 | `browser` | O navegador a ser iniciado para a sessão de depuração. Definir como `edge` ou `chrome`. O padrão é `chrome`. |
 | `trace`   | Usado para gerar logs do depurador JS. Defina como `true` para gerar logs. |
-| `hosted`  | Deve ser definido como `true` se estiver iniciando e depurando um Blazor aplicativo Webassembly hospedado. |
+| `hosted`  | Deve ser definido como `true` se estiver iniciando e depurando um Blazor WebAssembly aplicativo hospedado. |
 | `webRoot` | Especifica o caminho absoluto do servidor Web. Deve ser definido se um aplicativo for servido de uma sub-roteiro. |
 | `timeout` | O número de milissegundos a aguardar a sessão de depuração ser anexada. O padrão é 30.000 milissegundos (30 segundos). |
 | `program` | Uma referência ao executável para executar o servidor do aplicativo hospedado. Deve ser definido se `hosted` for `true` . |
@@ -181,7 +183,7 @@ As opções de configuração de inicialização a seguir têm suporte para o `b
 
 ### <a name="example-launch-configurations"></a>Exemplo de configurações de inicialização
 
-#### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>Iniciar e depurar um Blazor aplicativo Webassembly autônomo
+#### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>Iniciar e depurar um Blazor WebAssembly aplicativo autônomo
 
 ```json
 {
@@ -202,7 +204,7 @@ As opções de configuração de inicialização a seguir têm suporte para o `b
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Iniciar e depurar um Blazor aplicativo Webassembly hospedado
+#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Iniciar e depurar um Blazor WebAssembly aplicativo hospedado
 
 ```json
 {
@@ -236,3 +238,4 @@ Se você estiver executando erros, as dicas a seguir podem ajudar:
 
 * Na guia **depurador** , abra as ferramentas de desenvolvedor em seu navegador. No console do, execute `localStorage.clear()` para remover qualquer ponto de interrupção.
 * Confirme que você instalou e confia no certificado de desenvolvimento ASP.NET Core HTTPS. Para obter mais informações, consulte <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
+* O Visual Studio requer a opção **Habilitar depuração JavaScript para ASP.net (Chrome, Edge e IE)** em **ferramentas**  >  **Opções**  >  **depuração**  >  **geral**. Essa é a configuração padrão para o Visual Studio. Se a depuração não estiver funcionando, confirme se a opção está selecionada.

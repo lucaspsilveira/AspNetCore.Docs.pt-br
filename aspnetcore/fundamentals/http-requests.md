@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: a54861945d97728336149d5ffb39952c3d61b7bd
-ms.sourcegitcommit: d243fadeda20ad4f142ea60301ae5f5e0d41ed60
+ms.openlocfilehash: 578263978959100e266626aeccccc0830d9462b7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84724257"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399108"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -368,7 +370,7 @@ Chamada <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensio
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registro em log
+## <a name="logging"></a>Registrando em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível de informações apropriado na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
@@ -686,7 +688,7 @@ Chamada <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensio
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registro em log
+## <a name="logging"></a>Registrando em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível apropriado de informações na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
@@ -994,7 +996,7 @@ Chamada <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensio
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registro em log
+## <a name="logging"></a>Registrando em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível apropriado de informações na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 

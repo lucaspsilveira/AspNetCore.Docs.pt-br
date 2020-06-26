@@ -5,20 +5,22 @@ description: Saiba como criar e usar Razor componentes, incluindo como associar 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/11/2020
+ms.date: 06/25/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: e1778d865edcfed8f5f45f4f53a57f1b3a3bd9aa
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 02e3f7f5442a5abde0b13b7bba14d9d0f29c1de7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242427"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399082"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar componentes de ASP.NET Core Razor
 
@@ -427,11 +429,24 @@ Embora a captura de referências de componente use uma sintaxe semelhante à [ca
 > [!NOTE]
 > Não **use referências** de componente para converter o estado dos componentes filho. Em vez disso, use parâmetros declarativos normais para passar dados para componentes filho. O uso de parâmetros declarativos normais resulta em componentes filho que são reprocessados nos horários corretos automaticamente.
 
-## <a name="invoke-component-methods-externally-to-update-state"></a>Invocar métodos de componente externamente para atualizar o estado
+## <a name="synchronization-context"></a>Contexto de sincronização
 
 Blazorusa um contexto de sincronização ( <xref:System.Threading.SynchronizationContext> ) para impor um único thread lógico de execução. Os métodos de [ciclo de vida](xref:blazor/components/lifecycle) de um componente e quaisquer retornos de chamada de evento que são gerados pelo Blazor são executados no contexto de sincronização.
 
-BlazorO contexto de sincronização do servidor tenta emular um ambiente de thread único para que ele corresponda ao modelo Webassembly no navegador, que é um thread único. Em qualquer momento determinado, o trabalho é executado em exatamente um thread, dando a impressão de um único thread lógico. Duas operações não são executadas simultaneamente.
+Blazor Servero contexto de sincronização do tenta emular um ambiente de thread único para que ele corresponda ao modelo Webassembly no navegador, que é um thread único. Em qualquer momento determinado, o trabalho é executado em exatamente um thread, dando a impressão de um único thread lógico. Duas operações não são executadas simultaneamente.
+
+### <a name="avoid-thread-blocking-calls"></a>Evitar chamadas de bloqueio de thread
+
+Em geral, não chame os métodos a seguir. Os métodos a seguir bloqueiam o thread e, portanto, impedem que o aplicativo retome o trabalho até que o subjacente <xref:System.Threading.Tasks.Task> seja concluído:
+
+* <xref:System.Threading.Tasks.Task%601.Result%2A>
+* <xref:System.Threading.Tasks.Task.Wait%2A>
+* <xref:System.Threading.Tasks.Task.WaitAny%2A>
+* <xref:System.Threading.Tasks.Task.WaitAll%2A>
+* <xref:System.Threading.Thread.Sleep%2A>
+* <xref:System.Runtime.CompilerServices.TaskAwaiter.GetResult%2A>
+
+### <a name="invoke-component-methods-externally-to-update-state"></a>Invocar métodos de componente externamente para atualizar o estado
 
 No caso de um componente precisar ser atualizado com base em um evento externo, como um temporizador ou outras notificações, use o `InvokeAsync` método, que é expedido para o Blazor contexto de sincronização. Por exemplo, considere um *serviço de notificação* que pode notificar qualquer componente de escuta do estado atualizado:
 
@@ -453,13 +468,13 @@ public class NotifierService
 
 Registre o `NotifierService` como um singletion:
 
-* No Blazor Webassembly, registre o serviço em `Program.Main` :
+* No Blazor WebAssembly , registre o serviço no `Program.Main` :
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   ```
 
-* Em Blazor servidor, registre o serviço em `Startup.ConfigureServices` :
+* No Blazor Server , registre o serviço no `Startup.ConfigureServices` :
 
   ```csharp
   services.AddScoped<NotifierService>();
@@ -798,7 +813,7 @@ No entanto, a marcação SVG embutida não tem suporte em todos os cenários. Se
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* <xref:blazor/security/server/threat-mitigation>: Inclui diretrizes sobre a criação de Blazor aplicativos de servidor que devem combater o esgotamento de recursos.
+* <xref:blazor/security/server/threat-mitigation>: Inclui diretrizes sobre a criação de Blazor Server aplicativos que devem combater o esgotamento de recursos.
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

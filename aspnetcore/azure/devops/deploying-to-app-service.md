@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: 811b6d047e344fa98ce14f436d3cd8f03c786aff
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 7cf6395b6f57413d85532ed15e5a875af10f905b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767025"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400382"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Implantar um aplicativo no serviço de aplicativo
 
@@ -41,7 +43,7 @@ Sinta-se à vontade para examinar o código, mas é importante entender que não
 
 Em um shell de comando, baixe o código, compile o projeto e execute-o da seguinte maneira.
 
-> *Observação: os usuários do Linux/macOS devem fazer as alterações apropriadas para caminhos, por exemplo, usando`/`a barra () em vez`\`da barra invertida ().*
+> *Observação: os usuários do Linux/macOS devem fazer as alterações apropriadas para caminhos, por exemplo, usando `/` a barra () em vez da barra invertida ( `\` ).*
 
 1. Clone o código em uma pasta no computador local.
 
@@ -73,7 +75,7 @@ Em um shell de comando, baixe o código, compile o projeto e execute-o da seguin
 
      ![O aplicativo que exibe o conteúdo de um RSS feed](./media/deploying-to-app-service/app-in-browser.png)
 
-6. Quando estiver satisfeito, o aplicativo está funcionando corretamente, desative-o pressionando **Ctrl**+**C** no Shell de comando.
+6. Quando estiver satisfeito, o aplicativo está funcionando corretamente, desative-o pressionando **Ctrl** + **C** no Shell de comando.
 
 ## <a name="create-the-azure-app-service-web-app"></a>Criar o aplicativo Web do serviço de Azure App
 
@@ -83,7 +85,7 @@ Para implantar o aplicativo, você precisará criar um [aplicativo Web](/azure/a
 
 2. Use o Cloud Shell para as etapas a seguir.
 
-    a. Declare uma variável para armazenar o nome do aplicativo Web. O nome deve ser exclusivo para ser usado na URL padrão. O uso `$RANDOM` da função bash para construir o nome garante exclusividade e resulta no formato `webappname99999`.
+    a. Declare uma variável para armazenar o nome do aplicativo Web. O nome deve ser exclusivo para ser usado na URL padrão. O uso da `$RANDOM` função bash para construir o nome garante exclusividade e resulta no formato `webappname99999` .
 
     ```console
     webappname=mywebapp$RANDOM
@@ -127,7 +129,7 @@ Para implantar o aplicativo, você precisará criar um [aplicativo Web](/azure/a
     echo Web app URL: http://$webappname.azurewebsites.net
     ```
 
-3. Usando um shell de comando em seu computador local, navegue até a pasta do projeto do aplicativo Web (por `.\simple-feed-reader\SimpleFeedReader`exemplo,). Execute os comandos a seguir para configurar o Git para enviar por push para a URL de implantação:
+3. Usando um shell de comando em seu computador local, navegue até a pasta do projeto do aplicativo Web (por exemplo, `.\simple-feed-reader\SimpleFeedReader` ). Execute os comandos a seguir para configurar o Git para enviar por push para a URL de implantação:
 
     a. Adicione a URL remota ao repositório local.
 
@@ -143,17 +145,17 @@ Para implantar o aplicativo, você precisará criar um [aplicativo Web](/azure/a
 
     Você será solicitado a fornecer as credenciais de implantação que criou anteriormente. Observe a saída no Shell de comando. O Azure cria o aplicativo ASP.NET Core remotamente.
 
-4. Em um navegador, navegue até a *URL do aplicativo Web* e anote que o aplicativo foi compilado e implantado. Alterações adicionais podem ser confirmadas no repositório git local `git commit`com. Essas alterações são enviadas por push para o Azure `git push` com o comando anterior.
+4. Em um navegador, navegue até a *URL do aplicativo Web* e anote que o aplicativo foi compilado e implantado. Alterações adicionais podem ser confirmadas no repositório git local com `git commit` . Essas alterações são enviadas por push para o Azure com o `git push` comando anterior.
 
 ## <a name="deployment-with-visual-studio"></a>Implantação com o Visual Studio
 
-> *Observação: Esta seção aplica-se somente ao Windows. Os usuários do Linux e do macOS devem fazer a alteração descrita na etapa 2 abaixo. Salve o arquivo e confirme a alteração no repositório local com `git commit`. Por fim, envie por push `git push`a alteração com, como na primeira seção.*
+> *Observação: Esta seção aplica-se somente ao Windows. Os usuários do Linux e do macOS devem fazer a alteração descrita na etapa 2 abaixo. Salve o arquivo e confirme a alteração no repositório local com `git commit` . Por fim, envie por push a alteração com `git push` , como na primeira seção.*
 
 O aplicativo já foi implantado a partir do Shell de comando. Vamos usar as ferramentas integradas do Visual Studio para implantar uma atualização para o aplicativo. Nos bastidores, o Visual Studio realiza a mesma coisa que as ferramentas de linha de comando, mas dentro da interface do usuário familiar do Visual Studio.
 
 1. Abra *SimpleFeedReader. sln* no Visual Studio.
 2. Em Gerenciador de Soluções, abra *Pages\Index.cshtml*. Alterar `<h2>Simple Feed Reader</h2>` para `<h2>Simple Feed Reader - V2</h2>`.
-3. Pressione **Ctrl**+**Shift**+**B** para compilar o aplicativo.
+3. Pressione **Ctrl** + **Shift** + **B** para compilar o aplicativo.
 4. Em Gerenciador de Soluções, clique com o botão direito do mouse no projeto e clique em **publicar**.
 
     ![Captura de tela mostrando clique com o botão direito do mouse, publicar](./media/deploying-to-app-service/publish.png)
@@ -192,7 +194,7 @@ Os slots de implantação dão suporte à preparação de alterações sem afeta
     echo Staging web app URL: http://$webappname-staging.azurewebsites.net
     ```
 
-3. Em um editor de texto ou no Visual Studio, modifique *pages/index. cshtml* novamente para `<h2>` que o `<h2>Simple Feed Reader - V3</h2>` elemento Leia e salve o arquivo.
+3. Em um editor de texto ou no Visual Studio, modifique *pages/index. cshtml* novamente para que o `<h2>` elemento leia `<h2>Simple Feed Reader - V3</h2>` e salve o arquivo.
 
 4. Confirme o arquivo no repositório git local, usando a página **alterações** na guia *Team Explorer* do Visual Studio ou digitando o seguinte usando o Shell de comando do computador local:
 

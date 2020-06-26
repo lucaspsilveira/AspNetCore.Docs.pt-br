@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: 39fba5ccc99ec0ecf32df5681cfc025c52bc5469
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0d1bf0dd23b7f3b99d6e9383ffc72291c1b138ec
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776429"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400707"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -32,7 +34,7 @@ A classe `Startup` configura serviços e o pipeline de solicitação do aplicati
 
 Os aplicativos do ASP.NET Core usam uma classe `Startup`, que é chamada de `Startup` por convenção. A classe `Startup`:
 
-* Opcionalmente, inclua um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> para configurar os *serviços* do aplicativo. Um serviço é um componente reutilizável que fornece a funcionalidade do aplicativo. Os serviços *registered* são registrados `ConfigureServices` e consumidos em todo o aplicativo por meio de injeção <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>de [dependência (di)](xref:fundamentals/dependency-injection) ou.
+* Opcionalmente, inclua um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> para configurar os *serviços* do aplicativo. Um serviço é um componente reutilizável que fornece a funcionalidade do aplicativo. Os serviços *registered* são registrados `ConfigureServices` e consumidos em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection) ou <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
 * Inclui um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> para criar o pipeline de processamento de solicitações do aplicativo.
 
 `ConfigureServices` e `Configure` são chamados pelo runtime do ASP.NET Core quando o aplicativo é iniciado:
@@ -42,13 +44,13 @@ Os aplicativos do ASP.NET Core usam uma classe `Startup`, que é chamada de `Sta
 O exemplo anterior é para [ Razor páginas](xref:razor-pages/index); a versão MVC é semelhante.
 
 
-A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A `Startup` classe normalmente é especificada chamando o método [WebHostBuilderExtensions. UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no construtor de hosts:
+A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A `Startup` classe normalmente é especificada chamando o método [WebHostBuilderExtensions. UseStartup \<TStartup> ](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no host Builder:
 
 [!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
 O host fornece serviços que estão disponíveis para o construtor de classe `Startup`. O aplicativo adiciona serviços adicionais por meio de `ConfigureServices`. Os serviços de aplicativos e o host ficam disponíveis em `Configure` e em todo o aplicativo.
 
-Somente os seguintes tipos de serviço podem ser injetados no `Startup` Construtor ao usar o [host genérico](xref:fundamentals/host/generic-host) (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
+Somente os seguintes tipos de serviço podem ser injetados no `Startup` Construtor ao usar o [host genérico](xref:fundamentals/host/generic-host) ( <xref:Microsoft.Extensions.Hosting.IHostBuilder> ):
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
@@ -116,9 +118,9 @@ Para configurar serviços e o pipeline de processamento de solicitação sem usa
 
 ## <a name="extend-startup-with-startup-filters"></a>Estender a inicialização com filtros de inicialização
 
-Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
+Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> :
 
-* Para configurar o middleware no início ou no final de um pipeline de middleware de [configuração](#the-configure-method) de um aplicativo sem uma chamada `Use{Middleware}`explícita para. `IStartupFilter`é usado pelo ASP.NET Core para adicionar padrões ao início do pipeline sem precisar fazer com que o autor do aplicativo registre explicitamente o middleware padrão. `IStartupFilter`permite uma chamada `Use{Middleware}` de componente diferente em nome do autor do aplicativo.
+* Para configurar o middleware no início ou no final de um pipeline de middleware de [configuração](#the-configure-method) de um aplicativo sem uma chamada explícita para `Use{Middleware}` . `IStartupFilter`é usado pelo ASP.NET Core para adicionar padrões ao início do pipeline sem precisar fazer com que o autor do aplicativo registre explicitamente o middleware padrão. `IStartupFilter`permite uma chamada de componente diferente `Use{Middleware}` em nome do autor do aplicativo.
 * Para criar um pipeline de `Configure` métodos. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) pode definir um middleware para ser executado antes ou depois do middleware adicionado pelas bibliotecas.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, que recebe e retorna um `Action<IApplicationBuilder>`. Um <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> define uma classe para configurar o pipeline de solicitação do aplicativo. Para obter mais informações, confira [Criar um pipeline de middleware com o IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
@@ -167,14 +169,14 @@ Uma implementação <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite 
 
 Os aplicativos do ASP.NET Core usam uma classe `Startup`, que é chamada de `Startup` por convenção. A classe `Startup`:
 
-* Opcionalmente, inclua um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> para configurar os *serviços* do aplicativo. Um serviço é um componente reutilizável que fornece a funcionalidade do aplicativo. Os serviços *registered* são registrados `ConfigureServices` e consumidos em todo o aplicativo por meio de injeção <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>de [dependência (di)](xref:fundamentals/dependency-injection) ou.
+* Opcionalmente, inclua um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> para configurar os *serviços* do aplicativo. Um serviço é um componente reutilizável que fornece a funcionalidade do aplicativo. Os serviços *registered* são registrados `ConfigureServices` e consumidos em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection) ou <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*> .
 * Inclui um método <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> para criar o pipeline de processamento de solicitações do aplicativo.
 
 `ConfigureServices` e `Configure` são chamados pelo runtime do ASP.NET Core quando o aplicativo é iniciado:
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs)]
 
-A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A `Startup` classe normalmente é especificada chamando o método [WebHostBuilderExtensions. UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no construtor de hosts:
+A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A `Startup` classe normalmente é especificada chamando o método [WebHostBuilderExtensions. UseStartup \<TStartup> ](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no host Builder:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=12)]
 
@@ -248,9 +250,9 @@ Para configurar serviços e o pipeline de processamento de solicitação sem usa
 
 ## <a name="extend-startup-with-startup-filters"></a>Estender a inicialização com filtros de inicialização
 
-Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
+Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> :
 
-* Para configurar o middleware no início ou no final de um pipeline de middleware de [configuração](#the-configure-method) de um aplicativo sem uma chamada `Use{Middleware}`explícita para. `IStartupFilter`é usado pelo ASP.NET Core para adicionar padrões ao início do pipeline sem precisar fazer com que o autor do aplicativo registre explicitamente o middleware padrão. `IStartupFilter`permite uma chamada `Use{Middleware}` de componente diferente em nome do autor do aplicativo.
+* Para configurar o middleware no início ou no final de um pipeline de middleware de [configuração](#the-configure-method) de um aplicativo sem uma chamada explícita para `Use{Middleware}` . `IStartupFilter`é usado pelo ASP.NET Core para adicionar padrões ao início do pipeline sem precisar fazer com que o autor do aplicativo registre explicitamente o middleware padrão. `IStartupFilter`permite uma chamada de componente diferente `Use{Middleware}` em nome do autor do aplicativo.
 * Para criar um pipeline de `Configure` métodos. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) pode definir um middleware para ser executado antes ou depois do middleware adicionado pelas bibliotecas.
 
 `IStartupFilter` implementa <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, que recebe e retorna um `Action<IApplicationBuilder>`. Um <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> define uma classe para configurar o pipeline de solicitação do aplicativo. Para obter mais informações, confira [Criar um pipeline de middleware com o IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).

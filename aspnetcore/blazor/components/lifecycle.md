@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/01/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 61c1dc383728f42c5dac6742fd19d1d22c988913
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 312a265dd251eadf876b4252e3d9f9858adcde1b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242687"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400980"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>BlazorCiclo de vida ASP.NET Core
 
@@ -73,14 +75,14 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-BlazorAplicativos de servidor que preparam [sua chamada de conteúdo](xref:blazor/fundamentals/additional-scenarios#render-mode) <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_duas vezes_**:
+Blazor Serveraplicativos que preparam [sua chamada de conteúdo](xref:blazor/fundamentals/additional-scenarios#render-mode) <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_duas vezes_**:
 
 * Uma vez quando o componente é inicialmente renderizado estaticamente como parte da página.
 * Uma segunda vez quando o navegador estabelece uma conexão de volta para o servidor.
 
 Para impedir que o código <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> do desenvolvedor seja executado duas vezes, consulte a seção [reconexão com estado após o pré-processamento](#stateful-reconnection-after-prerendering) .
 
-Enquanto um Blazor aplicativo de servidor está sendo renderizado, determinadas ações, como chamar em JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados. Para obter mais informações, consulte a seção [detectar quando o aplicativo está sendo processado](#detect-when-the-app-is-prerendering) .
+Embora um Blazor Server aplicativo esteja sendo renderizado, determinadas ações, como chamar em JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados. Para obter mais informações, consulte a seção [detectar quando o aplicativo está sendo processado](#detect-when-the-app-is-prerendering) .
 
 Se algum manipulador de eventos estiver configurado, desvincule-os na alienação. Para obter mais informações, consulte a seção [descarte `IDisposable` de componentes com](#component-disposal-with-idisposable) .
 
@@ -179,7 +181,7 @@ Ações assíncronas executadas em eventos de ciclo de vida podem não ter sido 
 
 No `FetchData` componente dos Blazor modelos, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> é substituído para Asychronously receber dados de previsão ( `forecasts` ). Quando `forecasts` é `null` , uma mensagem de carregamento é exibida para o usuário. Depois que o `Task` retornado por <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> for concluído, o componente será rerenderizado com o estado atualizado.
 
-`Pages/FetchData.razor`no Blazor modelo de servidor:
+`Pages/FetchData.razor`no Blazor Server modelo:
 
 [!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
@@ -220,20 +222,20 @@ Para obter informações sobre como lidar com erros durante a execução do mét
 
 ## <a name="stateful-reconnection-after-prerendering"></a>Reconexão com estado após o pré-processamento
 
-Em um Blazor aplicativo de servidor quando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> é <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> , o componente é inicialmente renderizado estaticamente como parte da página. Depois que o navegador estabelece uma conexão de volta com o servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o [`OnInitialized{Async}`](#component-initialization-methods) método de ciclo de vida para inicializar o componente estiver presente, o método será executado *duas vezes*:
+Em um Blazor Server aplicativo quando <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> é <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> , o componente é inicialmente renderizado estaticamente como parte da página. Depois que o navegador estabelece uma conexão de volta com o servidor, o componente é renderizado *novamente*e o componente agora é interativo. Se o [`OnInitialized{Async}`](#component-initialization-methods) método de ciclo de vida para inicializar o componente estiver presente, o método será executado *duas vezes*:
 
 * Quando o componente é renderizado estaticamente.
 * Depois que a conexão do servidor tiver sido estabelecida.
 
 Isso pode resultar em uma alteração perceptível nos dados exibidos na interface do usuário quando o componente é finalmente renderizado.
 
-Para evitar o cenário de processamento duplo em um Blazor aplicativo de servidor:
+Para evitar o cenário de processamento duplo em um Blazor Server aplicativo:
 
 * Passe um identificador que pode ser usado para armazenar em cache o estado durante o pré-processamento e para recuperar o estado após a reinicialização do aplicativo.
 * Use o identificador durante o pré-processamento para salvar o estado do componente.
 * Use o identificador após o pré-processamento para recuperar o estado armazenado em cache.
 
-O código a seguir demonstra uma atualização `WeatherForecastService` em um aplicativo de servidor baseado em modelo Blazor que evita a renderização dupla:
+O código a seguir demonstra uma atualização `WeatherForecastService` em um aplicativo baseado em modelo Blazor Server que evita a renderização dupla:
 
 ```csharp
 public class WeatherForecastService

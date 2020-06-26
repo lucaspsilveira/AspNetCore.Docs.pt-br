@@ -8,25 +8,27 @@ ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: d4ebab0d8fc2ee48fa4d9c8b1f1b8e5cbf43cab9
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: bdea9f2fe5c552b56414bb49588733c8dc2a34db
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242428"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400213"
 ---
 # <a name="aspnet-core-blazor-advanced-scenarios"></a>ASP.NET Core Blazor cenários avançados
 
 De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-## <a name="blazor-server-circuit-handler"></a>BlazorManipulador de circuito de servidor
+## <a name="blazor-server-circuit-handler"></a>Blazor Servermanipulador de circuito
 
-BlazorO servidor permite que o código defina um *manipulador de circuito*, que permite a execução de código em alterações no estado do circuito de um usuário. Um manipulador de circuito é implementado derivando de `CircuitHandler` e registrando a classe no contêiner de serviço do aplicativo. O exemplo a seguir de um manipulador de circuito rastreia SignalR conexões abertas:
+Blazor Serverpermite que o código defina um *manipulador de circuito*, que permite a execução de código em alterações no estado do circuito de um usuário. Um manipulador de circuito é implementado derivando de `CircuitHandler` e registrando a classe no contêiner de serviço do aplicativo. O exemplo a seguir de um manipulador de circuito rastreia SignalR conexões abertas:
 
 ```csharp
 using System.Collections.Generic;
@@ -68,7 +70,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o Blazor circuito do servidor. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) instruções com tratamento de erros e registro em log.
+Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o Blazor Server circuito. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) instruções com tratamento de erros e registro em log.
 
 Quando um circuito termina porque um usuário se desconectou e a estrutura está limpando o estado do circuito, a estrutura descarta o escopo de DI do circuito. Descartar o escopo descarta todos os serviços de DI no escopo do circuito que implementam o <xref:System.IDisposable?displayProperty=fullName> . Se qualquer serviço de DI lançar uma exceção sem tratamento durante a alienação, a estrutura registrará a exceção.
 
@@ -161,14 +163,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true` , o Construtor receberá:
 
-| Sequência | Type      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false` e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | Type       | Dados   |
+| Sequência | Digite       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -193,14 +195,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequência | Type      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag`está `false` no segundo processamento e a saída é:
 
-| Sequência | Type      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 
@@ -221,14 +223,14 @@ Esse é um exemplo trivial. Em casos mais realistas com estruturas complexas e p
 * Se os números de sequência forem codificados, o algoritmo diff só exigirá que os números de sequência aumentem de valor. O valor inicial e as lacunas são irrelevantes. Uma opção legítima é usar o número de linha de código como o número de sequência, ou começar de zero e aumentar por um ou centenas (ou qualquer intervalo preferencial). 
 * Blazorusa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando números de sequência são usados e Blazor tem a vantagem de uma etapa de compilação que lida com números de sequência automaticamente para desenvolvedores que criam `.razor` arquivos.
 
-## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Executar grandes transferências de dados em Blazor aplicativos de servidor
+## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>Executar grandes transferências de dados em Blazor Server aplicativos
 
 Em alguns cenários, grandes quantidades de dados devem ser transferidas entre o JavaScript e o Blazor . Normalmente, grandes transferências de dados ocorrem quando:
 
 * As APIs do sistema de arquivos do navegador são usadas para carregar ou baixar um arquivo.
 * A interoperabilidade com uma biblioteca de terceiros é necessária.
 
-No Blazor servidor, uma limitação está em vigor para evitar a passagem de mensagens grandes e que podem resultar em problemas de desempenho.
+No Blazor Server , uma limitação está em vigor para evitar a passagem de mensagens grandes e que podem resultar em problemas de desempenho.
 
 Considere as seguintes diretrizes ao desenvolver código que transfere dados entre JavaScript e Blazor :
 

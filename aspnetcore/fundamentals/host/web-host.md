@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 10/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 71bca4c0987059efa0e4ff35f25fe7cdb75641d5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 630191948a9013e88853ee1a31d15f2964b4a7f4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773985"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399407"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
 
@@ -66,13 +68,13 @@ O código que chama `CreateDefaultBuilder` está em um método chamado `CreateWe
   * Variáveis de ambiente prefixadas com `ASPNETCORE_` (por exemplo, `ASPNETCORE_ENVIRONMENT`).
   * Argumentos de linha de comando.
 * Carrega a configuração do aplicativo na seguinte ordem de:
-  * *appSettings. JSON*.
+  * *appsettings.jsem*.
   * *appsettings.{Environment}.json*.
   * [Gerenciador de Segredo](xref:security/app-secrets) quando o aplicativo é executado no ambiente `Development` usando o assembly de entrada.
   * Variáveis de ambiente.
   * Argumentos de linha de comando.
 * Configura o [registro em log](xref:fundamentals/logging/index) para a saída do console e de depuração. O registro em log inclui regras de [filtragem de log](xref:fundamentals/logging/index#log-filtering) especificadas em uma seção de configuração de registro em log de um arquivo *appsettings.json* ou *appsettings.{Environment}.json*.
-* Ao executar por trás do IIS com o [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` o habilita a [integração do IIS](xref:host-and-deploy/iis/index), que configura o endereço base e a porta do aplicativo. A Integração do IIS também configura o aplicativo para [capturar erros de inicialização](#capture-startup-errors). Para as opções padrão do IIS, veja <xref:host-and-deploy/iis/index#iis-options>.
+* Ao executar por trás do IIS com o [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module), o `CreateDefaultBuilder` habilita a [integração do IIS](xref:host-and-deploy/iis/index), que configura o endereço base e a porta do aplicativo. A Integração do IIS também configura o aplicativo para [capturar erros de inicialização](#capture-startup-errors). Para as opções padrão do IIS, veja <xref:host-and-deploy/iis/index#iis-options>.
 * Definirá [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) como `true` se o ambiente do aplicativo for de desenvolvimento. Para obter mais informações, confira [Validação de escopo](#scope-validation).
 
 A configuração definida por `CreateDefaultBuilder` pode ser substituída e aumentada por [ConfigureAppConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configureappconfiguration), [ConfigureLogging](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configurelogging) e outros métodos, bem como os métodos de extensão de [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Veja a seguir alguns exemplos:
@@ -88,7 +90,7 @@ A configuração definida por `CreateDefaultBuilder` pode ser substituída e aum
         ...
     ```
 
-* A seguinte chamada de `ConfigureLogging` adiciona um delegado para configurar o nível de log mínimo ([SetMinimumLevel](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.setminimumlevel)) como [LogLevel.Warning](/dotnet/api/microsoft.extensions.logging.loglevel). Essa configuração substitui as configurações em *appSettings. Development. JSON* (`LogLevel.Debug`) e *appSettings. Production. JSON* (`LogLevel.Error`) configurado por `CreateDefaultBuilder`. `ConfigureLogging` pode ser chamado várias vezes.
+* A seguinte chamada de `ConfigureLogging` adiciona um delegado para configurar o nível de log mínimo ([SetMinimumLevel](/dotnet/api/microsoft.extensions.logging.loggingbuilderextensions.setminimumlevel)) como [LogLevel.Warning](/dotnet/api/microsoft.extensions.logging.loglevel). Essa configuração substitui as configurações em *appsettings.Development.jsem* ( `LogLevel.Debug` ) e *appsettings.Production.jsno* ( `LogLevel.Error` ) configurado por `CreateDefaultBuilder` . `ConfigureLogging` pode ser chamado várias vezes.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -393,7 +395,7 @@ Define o caminho relativo para os ativos estáticos do aplicativo.
 
 **Chave**: webroot  
 **Tipo**: *cadeia de caracteres*  
-**Padrão**: o padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
+**Padrão**: o padrão é `wwwroot` . O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
 **Definir usando**:`UseWebRoot`  
 **Variável de ambiente**:`ASPNETCORE_WEBROOT`
 
@@ -460,7 +462,7 @@ dotnet run --urls "http://*:8080"
 
 ## <a name="manage-the-host"></a>Gerenciar o host
 
-**Funcionam**
+**Executar**
 
 O método `Run` inicia o aplicativo Web e bloqueia o thread de chamada até que o host seja desligado:
 
@@ -530,7 +532,7 @@ using (var host = WebHost.Start("http://localhost:8080", app => app.Response.Wri
 
 Produz o mesmo resultado que **Start(RequestDelegate app)**, mas o aplicativo responde em `http://localhost:8080`.
 
-**Start (ação\<IRouteBuilder> routeBuilder)**
+**Start(Action\<IRouteBuilder> routeBuilder)**
 
 Use uma instância de `IRouteBuilder` ([Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/)) para usar o middleware de roteamento:
 
@@ -564,7 +566,7 @@ Use as seguintes solicitações de navegador com o exemplo:
 
 `WaitForShutdown` bloqueia até que uma quebra (Ctrl-C/SIGINT ou SIGTERM) seja emitida. O aplicativo exibe a mensagem `Console.WriteLine` e aguarda um pressionamento de tecla para ser encerrado.
 
-**Start (cadeia de caracteres URL\<, ação IRouteBuilder> routeBuilder)**
+**Start(string url, Action\<IRouteBuilder> routeBuilder)**
 
 Use uma URL e uma instância de `IRouteBuilder`:
 
@@ -585,9 +587,9 @@ using (var host = WebHost.Start("http://localhost:8080", router => router
 }
 ```
 
-Produz o mesmo resultado que **Start (ação\<IRouteBuilder> routeBuilder)**, exceto que o aplicativo responde `http://localhost:8080`em.
+Produz o mesmo resultado que **Start(Action\<IRouteBuilder> routeBuilder)**, mas o aplicativo responde em `http://localhost:8080`.
 
-**StartWith (ação\<IApplicationBuilder> aplicativo)**
+**StartWith(Action\<IApplicationBuilder> app)**
 
 Forneça um delegado para configurar um `IApplicationBuilder`:
 
@@ -608,7 +610,7 @@ using (var host = WebHost.StartWith(app =>
 
 Faça uma solicitação no navegador para `http://localhost:5000` para receber a resposta "Olá, Mundo!" `WaitForShutdown` bloqueia até que uma quebra (Ctrl-C/SIGINT ou SIGTERM) seja emitida. O aplicativo exibe a mensagem `Console.WriteLine` e aguarda um pressionamento de tecla para ser encerrado.
 
-**StartWith (cadeia de caracteres URL\<, ação IApplicationBuilder> aplicativo)**
+**StartWith(string url, Action\<IApplicationBuilder> app)**
 
 Forneça um delegado e uma URL para configurar um `IApplicationBuilder`:
 
@@ -627,7 +629,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 }
 ```
 
-Produz o mesmo resultado que **StartWith (Action\<IApplicationBuilder> app)**, exceto que o aplicativo responde `http://localhost:8080`.
+Produz o mesmo resultado que **StartWith(Action\<IApplicationBuilder> app)**, mas o aplicativo responde em `http://localhost:8080`.
 
 ::: moniker range=">= aspnetcore-3.0"
 

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: ced10a7b7b221188fdac2a4e3c54f66292110ece
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65d8bbcdaed76a308b924ba024219e8f520bb585
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773936"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399277"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Auxiliar de Marca de Cache no ASP.NET Core MVC
 
@@ -27,7 +29,7 @@ O Auxiliar de Marca de Cache possibilita melhorar o desempenho de seu aplicativo
 
 Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
-A seguinte marcação Razor armazena em cache a data atual:
+A seguinte Razor marcação armazena em cache a data atual:
 
 ```cshtml
 <cache>@DateTime.Now</cache>
@@ -85,7 +87,7 @@ Exemplo:
 </cache>
 ```
 
-O Mecanismo de Exibição do Razor define o valor `expires-after` padrão como vinte minutos.
+O Razor mecanismo de exibição define o `expires-after` valor padrão como vinte minutos.
 
 ### <a name="expires-sliding"></a>expires-sliding
 
@@ -107,7 +109,7 @@ Exemplo:
 
 | Tipo de Atributo | Exemplos                                    |
 | -------------- | ------------------------------------------- |
-| String         | `User-Agent`, `User-Agent,content-encoding` |
+| Cadeia de caracteres         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` aceita uma lista delimitada por vírgulas de valores de cabeçalho que disparam uma atualização do cache quando eles mudam.
 
@@ -123,7 +125,7 @@ O exemplo a seguir monitora o valor do cabeçalho `User-Agent`. O exemplo armaze
 
 | Tipo de Atributo | Exemplos             |
 | -------------- | -------------------- |
-| String         | `Make`, `Make,Model` |
+| Cadeia de caracteres         | `Make`, `Make,Model` |
 
 `vary-by-query` aceita uma lista delimitada por vírgula de <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> em uma cadeia de consulta (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) que dispara uma atualização do cache quando o valor de qualquer chave listada é alterado.
 
@@ -139,7 +141,7 @@ O exemplo a seguir monitora os valores de `Make` e `Model`. O exemplo armazena e
 
 | Tipo de Atributo | Exemplos             |
 | -------------- | -------------------- |
-| String         | `Make`, `Make,Model` |
+| Cadeia de caracteres         | `Make`, `Make,Model` |
 
 `vary-by-route` aceita uma lista delimitada por vírgulas de nomes de parâmetros de rota que disparam uma atualização do cache quando o valor de parâmetro de dados de rota muda.
 
@@ -165,11 +167,11 @@ routes.MapRoute(
 
 | Tipo de Atributo | Exemplos                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| Cadeia de caracteres         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie` aceita uma lista delimitada por vírgulas de nomes de cookie que disparam uma atualização do cache quando os valores de cookie mudam.
 
-O exemplo a seguir monitora o cookie associado à identidade do ASP.NET Core. Quando um usuário é autenticado, uma alteração ao cookie de Identidade dispara uma atualização do cache:
+O exemplo a seguir monitora o cookie associado a ASP.NET Core Identity . Quando um usuário é autenticado, uma alteração no Identity Cookie dispara uma atualização do cache:
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -183,7 +185,7 @@ O exemplo a seguir monitora o cookie associado à identidade do ASP.NET Core. Qu
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
-`vary-by-user` especifica se o cache é redefinido ou não quando o usuário conectado (ou a Entidade de Contexto) muda. O usuário atual também é conhecido como a Entidade do contexto de solicitação e pode ser exibido em um modo de exibição do Razor referenciando `@User.Identity.Name`.
+`vary-by-user` especifica se o cache é redefinido ou não quando o usuário conectado (ou a Entidade de Contexto) muda. O usuário atual também é conhecido como a entidade de contexto de solicitação e pode ser exibido em uma Razor exibição referenciando `@User.Identity.Name` .
 
 O exemplo a seguir monitora o usuário conectado atual para disparar uma atualização de cache:
 
@@ -199,7 +201,7 @@ Usar esse atributo mantém o conteúdo no cache durante um ciclo de entrada e sa
 
 | Tipo de Atributo | Exemplo  |
 | -------------- | -------- |
-| String         | `@Model` |
+| Cadeia de caracteres         | `@Model` |
 
 `vary-by` permite a personalização de quais dados são armazenados em cache. Quando o objeto referenciado pelo valor de cadeia de caracteres do atributo é alterado, o conteúdo do Auxiliar de Marca de Cache é atualizado. Frequentemente, uma concatenação de cadeia de caracteres de valores do modelo é atribuída a este atributo. Na verdade, isso resulta em um cenário em que uma atualização de qualquer um dos valores concatenados invalida o cache.
 

@@ -8,17 +8,19 @@ ms.date: 02/04/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 51334370b07709a773f6acd18d302f8b3ea88290
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0be63811874709db95285f4013e47bc1706050b1
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773582"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401474"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core
 
@@ -70,7 +72,7 @@ A última parte da URL ("?courseID=2021") é um valor de cadeia de caracteres de
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 ```
 
-Na página índice, as URLs de hiperlink são criadas pelas instruções auxiliares de Razor marca na exibição. No código a Razor seguir, o `id` parâmetro corresponde à rota padrão, portanto `id` , é adicionado aos dados de rota.
+Na página índice, as URLs de hiperlink são criadas pelas instruções auxiliares de marca na Razor exibição. No código a seguir Razor , o `id` parâmetro corresponde à rota padrão, portanto, `id` é adicionado aos dados de rota.
 
 ```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
@@ -82,7 +84,7 @@ Isso gera o seguinte HTML quando `item.ID` é 6:
 <a href="/Students/Edit/6">Edit</a>
 ```
 
-No código a Razor seguir, `studentID` não corresponde a um parâmetro na rota padrão, portanto, ele é adicionado como uma cadeia de caracteres de consulta.
+No código a seguir Razor , `studentID` não corresponde a um parâmetro na rota padrão, portanto, ele é adicionado como uma cadeia de caracteres de consulta.
 
 ```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
@@ -157,7 +159,7 @@ Uma maneira alternativa de impedir o excesso de postagem preferida por muitos de
 
 ### <a name="test-the-create-page"></a>Testar a página Criar
 
-O código em *views/Students/Create. cshtml* usa `label` `input`, `span` e (para mensagens de validação) os auxiliares de marca para cada campo.
+O código em *views/Students/Create. cshtml* usa `label` , `input` e `span` (para mensagens de validação) os auxiliares de marca para cada campo.
 
 Execute o aplicativo, selecione a guia **Alunos** e, em seguida, clique em **Criar Novo**.
 

@@ -7,17 +7,19 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: d9cd3a74c35d531b5e8c91fc7f922b0cdf8e9558
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 45aabc644fbeaeaa31d534877ba93cb0611f3f34
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773504"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401331"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicionar classificação, filtragem e paginação-ASP.NET MVC com EF Core
 
@@ -97,7 +99,7 @@ Em *StudentsController.cs*, substitua o método `Index` pelo código a seguir (a
 Você adicionou um parâmetro `searchString` ao método `Index`. O valor de cadeia de caracteres de pesquisa é recebido em uma caixa de texto que você adicionará à exibição Índice. Você também adicionou à instrução LINQ uma cláusula Where, que seleciona somente os alunos cujo nome ou sobrenome contém a cadeia de caracteres de pesquisa. A instrução que adiciona a cláusula Where é executada somente se há um valor a ser pesquisado.
 
 > [!NOTE]
-> Aqui você está chamando o método `Where` em um objeto `IQueryable`, e o filtro será processado no servidor. Em alguns cenários, você pode chamar o método `Where` como um método de extensão em uma coleção em memória. (Por exemplo, suponha que você altere a referência `_context.Students` para que, em vez de `DbSet` um EF, ele faça referência a um `IEnumerable` método de repositório que retorne uma coleção.) O resultado normalmente seria o mesmo, mas em alguns casos pode ser diferente.
+> Aqui você está chamando o método `Where` em um objeto `IQueryable`, e o filtro será processado no servidor. Em alguns cenários, você pode chamar o método `Where` como um método de extensão em uma coleção em memória. (Por exemplo, suponha que você altere a referência para `_context.Students` que, em vez de um EF, `DbSet` ele faça referência a um método de repositório que retorne uma `IEnumerable` coleção.) O resultado normalmente seria o mesmo, mas em alguns casos pode ser diferente.
 >
 >Por exemplo, a implementação do .NET Framework do método `Contains` executa uma comparação que diferencia maiúsculas de minúsculas por padrão, mas no SQL Server, isso é determinado pela configuração de ordenação da instância do SQL Server. Por padrão, essa configuração diferencia maiúsculas de minúsculas. Você pode chamar o método `ToUpper` para fazer com que o teste diferencie maiúsculas de minúsculas de forma explícita: *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Isso garantirá que os resultados permaneçam os mesmos se você alterar o código mais tarde para usar um repositório que retorna uma coleção `IEnumerable` em vez de um objeto `IQueryable`. (Ao chamar o `Contains` método em uma `IEnumerable` coleção, você obtém a implementação de .NET Framework; ao chamá-la em um `IQueryable` objeto, você obtém a implementação do provedor de banco de dados.) No entanto, há uma penalidade de desempenho para essa solução. O código `ToUpper` colocará uma função na cláusula WHERE da instrução TSQL SELECT. Isso pode impedir que o otimizador use um índice. Considerando que o SQL geralmente é instalado como não diferenciando maiúsculas e minúsculas, é melhor evitar o código `ToUpper` até você migrar para um armazenamento de dados que diferencia maiúsculas de minúsculas.
 

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/21/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 34ed08a5b49b56fd37628032ac73fe03a34448e6
-ms.sourcegitcommit: dd2a1542a4a377123490034153368c135fdbd09e
+ms.openlocfilehash: 665f9f761f729fad59af298cacd0d48ab3a3f71f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85240844"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400719"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -540,7 +542,7 @@ O método de fábrica de um único serviço, como o segundo argumento para [adds
 
 * Evite usar o *padrão do localizador de serviço*. Por exemplo, não invoque <xref:System.IServiceProvider.GetService*> para obter uma instância de serviço quando for possível usar a DI:
 
-  **Incorreto**
+  **Incorreto:**
 
   ```csharp
   public class MyClass()
@@ -1123,7 +1125,7 @@ O método de fábrica de um único serviço, como o segundo argumento para [adds
 
   * Não invoque <xref:System.IServiceProvider.GetService*> para obter uma instância de serviço quando você pode usar di em vez disso:
 
-    **Incorreto**
+    **Incorreto:**
 
     ```csharp
     public class MyClass()

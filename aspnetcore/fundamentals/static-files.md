@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: f7697260e6ab29d0e9ba955dfdf0c8c81e4e1130
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 33b4d43471932ed5e9e328163672028b00e6b5b8
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775486"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399472"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -56,7 +58,7 @@ Os arquivos estáticos podem ser acessados por meio de um caminho relativo à [r
   * **images**
   * **JS**
 
-O formato de URI para acessar um arquivo na subpasta *images* é *http://\<server_address>/images/\<image_file_name>*. Por exemplo, *http://localhost:9189/images/banner3.svg* .
+O formato do URI para acessar um arquivo na *images* subpasta imagens *é \<server_address> http:// \<image_file_name> /images/*. Por exemplo, *http://localhost:9189/images/banner3.svg* .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -88,7 +90,7 @@ A sobrecarga do `UseStaticFiles` método sem parâmetros marca os arquivos na [r
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-No código anterior, o caractere `~/` til aponta para a [raiz da Web](xref:fundamentals/index#web-root).
+No código anterior, o caractere til `~/` aponta para a [raiz da Web](xref:fundamentals/index#web-root).
 
 ### <a name="serve-files-outside-of-web-root"></a>Fornecer arquivos fora do diretório base
 
@@ -106,7 +108,7 @@ Uma solicitação pode acessar o arquivo *banner1.svg* configurando o middleware
 
 [!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-No código anterior, a hierarquia de diretórios *MyStaticFiles* é exposta publicamente por meio do segmento do URI *StaticFiles*. Uma solicitação para *http://\<server_address>/StaticFiles/images/banner1.svg* atende ao arquivo *banner1.svg*.
+No código anterior, a hierarquia de diretórios *MyStaticFiles* é exposta publicamente por meio do segmento do URI *StaticFiles*. Uma solicitação para *http:// \<server_address> /StaticFiles/images/banner1.svg* serve o arquivo *banner1. svg* .
 
 A seguinte marcação referencia *MyStaticFiles/images/banner1.svg*:
 
@@ -114,7 +116,7 @@ A seguinte marcação referencia *MyStaticFiles/images/banner1.svg*:
 
 ### <a name="set-http-response-headers"></a>Definir cabeçalhos de resposta HTTP
 
-Um objeto [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) pode ser usado para definir cabeçalhos de resposta HTTP. Além de configurar o serviço de arquivos estáticos na [raiz da Web](xref:fundamentals/index#web-root), o código a `Cache-Control` seguir define o cabeçalho:
+Um objeto [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) pode ser usado para definir cabeçalhos de resposta HTTP. Além de configurar o serviço de arquivos estáticos na [raiz da Web](xref:fundamentals/index#web-root), o código a seguir define o `Cache-Control` cabeçalho:
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet_ConfigureMethod)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
@@ -144,13 +146,13 @@ Adicione os serviços necessários invocando o método [AddDirectoryBrowser](/do
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
 
-O código anterior permite a navegação no diretório da pasta *wwwroot/images* usando a URL *http://\<server_address>/MyImages*, com links para cada arquivo e pasta:
+O código anterior permite a navegação no diretório da pasta *wwwroot/images* usando a URL *http:// \<server_address> /myImages*, com links para cada arquivo e pasta:
 
 ![navegação no diretório](static-files/_static/dir-browse.png)
 
 Consulte [Considerações](#considerations) para saber mais sobre os riscos de segurança ao habilitar a navegação.
 
-Observe as duas chamadas `UseStaticFiles` no exemplo a seguir. A primeira chamada permite o fornecimento de arquivos estáticos na pasta *wwwroot*. A segunda chamada habilita a navegação no diretório da pasta *wwwroot/images* usando a URL *http://\<server_address>/MyImages*:
+Observe as duas chamadas `UseStaticFiles` no exemplo a seguir. A primeira chamada permite o fornecimento de arquivos estáticos na pasta *wwwroot*. A segunda chamada habilita a navegação no diretório da pasta *wwwroot/images* usando a URL *http:// \<server_address> /myImages*:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=3,5)]
 
@@ -168,7 +170,7 @@ Com `UseDefaultFiles`, as solicitações para uma pasta pesquisam:
 * *default.htm*
 * *default.html*
 * *index.htm*
-* *index. html*
+* *index.html*
 
 O primeiro arquivo encontrado na lista é fornecido como se a solicitação fosse o URI totalmente qualificado. A URL do navegador continua refletindo o URI solicitado.
 
@@ -178,7 +180,7 @@ O seguinte código altera o nome de arquivo padrão para *mydefault.html*:
 
 ## <a name="usefileserver"></a>UseFileServer
 
-<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina a funcionalidade de `UseStaticFiles`, `UseDefaultFiles`e opcionalmente `UseDirectoryBrowser`.
+<xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*>combina a funcionalidade de `UseStaticFiles` , `UseDefaultFiles` e opcionalmente `UseDirectoryBrowser` .
 
 O código a seguir permite o fornecimento de arquivos estáticos e do arquivo padrão. A navegação no diretório não está habilitada.
 
@@ -215,10 +217,10 @@ Com o uso da hierarquia de arquivos e do código anterior, as URLs são resolvid
 
 | URI            |                             Resposta  |
 | ------- | ------|
-| *http://\<server_address>/staticfiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
-| *http://\<server_address>/staticfiles*             |     MyStaticFiles/default.html |
+| *http:// \<server_address> /StaticFiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
+| *http:// \<server_address> /StaticFiles*             |     MyStaticFiles/default.html |
 
-Se nenhum arquivo nomeado como padrão existir no diretório *MyStaticFiles*, *http://\<server_address>/StaticFiles* retornará a listagem de diretórios com links clicáveis:
+Se nenhum arquivo nomeado padrão existir no diretório *MyStaticFiles* , *http:// \<server_address> /StaticFiles* retornará a listagem de diretório com links clicáveis:
 
 ![Lista de arquivos estáticos](static-files/_static/db2.png)
 
@@ -253,7 +255,7 @@ Com o código anterior, uma solicitação para um arquivo com um tipo de conteú
 ### <a name="considerations"></a>Considerações
 
 > [!WARNING]
-> `UseDirectoryBrowser` e `UseStaticFiles` podem causar a perda de segredos. A desabilitação da navegação no diretório em produção é altamente recomendada. Examine com atenção os diretórios que são habilitados por meio de `UseStaticFiles` ou `UseDirectoryBrowser`. Todo o diretório e seus subdiretórios se tornam publicamente acessíveis. Armazene arquivos adequados para servir ao público em um diretório dedicado, como * \<content_root>/wwwroot*. Separe esses arquivos de exibições do Razor MVC, páginas (somente 2. x), arquivos de configuração, etc.
+> `UseDirectoryBrowser` e `UseStaticFiles` podem causar a perda de segredos. A desabilitação da navegação no diretório em produção é altamente recomendada. Examine com atenção os diretórios que são habilitados por meio de `UseStaticFiles` ou `UseDirectoryBrowser`. Todo o diretório e seus subdiretórios se tornam publicamente acessíveis. Armazene arquivos adequados para servir ao público em um diretório dedicado, como * \<content_root> /wwwroot*. Separe esses arquivos de exibições do MVC, Razor páginas (somente 2. x), arquivos de configuração, etc.
 
 * As URLs para o conteúdo exposto com `UseDirectoryBrowser` e `UseStaticFiles` estão sujeitas à diferenciação de maiúsculas e minúsculas e a restrições de caracteres do sistema de arquivos subjacente. Por exemplo, o Windows diferencia maiúsculas de minúsculas, o macOS e o Linux não.
 

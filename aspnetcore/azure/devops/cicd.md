@@ -7,17 +7,19 @@ ms.date: 10/24/2018
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: f5b0e0ee1c903de26188815c7dc01ed547cca97e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0edded18d766d6f2af08f6be5dbecbfd52a14a35
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767129"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400551"
 ---
 # <a name="continuous-integration-and-deployment"></a>Integração e implantação contínuas
 
@@ -36,7 +38,7 @@ Nesta seção, você concluirá as seguintes tarefas:
 
 ## <a name="publish-the-apps-code-to-github"></a>Publicar o código do aplicativo no GitHub
 
-1. Abra uma janela do navegador e navegue até `https://github.com`.
+1. Abra uma janela do navegador e navegue até `https://github.com` .
 1. Clique na **+** lista suspensa no cabeçalho e selecione **novo repositório**:
 
     ![Opção novo repositório do GitHub](media/cicd/github-new-repo.png)
@@ -62,13 +64,13 @@ Nesta seção, você concluirá as seguintes tarefas:
     git push -u origin master
     ```
 
-1. Abra uma janela do navegador e navegue até `https://github.com/<GitHub_username>/simple-feed-reader/`. Valide se seu código aparece no repositório GitHub.
+1. Abra uma janela do navegador e navegue até `https://github.com/<GitHub_username>/simple-feed-reader/` . Valide se seu código aparece no repositório GitHub.
 
 ## <a name="disconnect-local-git-deployment"></a>Desconectar a implantação do git local
 
 Remova a implantação do git local com as etapas a seguir. Azure Pipelines (um serviço DevOps do Azure) substitui e aumenta essa funcionalidade.
 
-1. Abra o [portal do Azure](https://portal.azure.com/)e navegue até o aplicativo Web de *preparo (\<myWebApp\>unique_number/staging)* . O aplicativo Web pode ser localizado rapidamente inserindo o *preparo* na caixa de pesquisa do portal:
+1. Abra o [portal do Azure](https://portal.azure.com/)e navegue até o aplicativo Web de *preparo (myWebApp \<unique_number\> /staging)* . O aplicativo Web pode ser localizado rapidamente inserindo o *preparo* na caixa de pesquisa do portal:
 
     ![termo de pesquisa do aplicativo Web de preparo](media/cicd/portal-search-box.png)
 
@@ -89,7 +91,7 @@ Remova a implantação do git local com as etapas a seguir. Azure Pipelines (um 
 
     ![Botão iniciar o projeto](media/cicd/vsts-start-project.png)
 
-1. Um navegador é aberto * \<para\>account_name. VisualStudio.com*. Clique no link *MyFirstProject* para começar a configurar o pipeline DevOps do projeto.
+1. Um navegador é aberto para * \<account_name\> . VisualStudio.com*. Clique no link *MyFirstProject* para começar a configurar o pipeline DevOps do projeto.
 
 ## <a name="configure-the-azure-pipelines-pipeline"></a>Configurar o pipeline de Azure Pipelines
 
@@ -105,7 +107,7 @@ Há três etapas distintas a serem concluídas. A conclusão das etapas nas trê
 
     ![Selecionar uma origem-GitHub](media/cicd/vsts-select-source.png)
 
-1. A autorização é necessária para que o Azure DevOps possa acessar seu repositório GitHub. Insira *<GitHub_username> conexão do GitHub* na caixa de texto **nome da conexão** . Por exemplo: 
+1. A autorização é necessária para que o Azure DevOps possa acessar seu repositório GitHub. Insira *<GitHub_username> conexão do GitHub* na caixa de texto **nome da conexão** . Por exemplo:
 
     ![Nome da conexão do GitHub](media/cicd/vsts-repo-authz.png)
 
@@ -136,7 +138,7 @@ Há três etapas distintas a serem concluídas. A conclusão das etapas nas trê
 
     ![Salvar definição de compilação – caixa de diálogo modal](media/cicd/vsts-save-modal.png)
 
-    Use a pasta padrão do *\\*e clique no botão **salvar** .
+    Use a pasta padrão do *\\* e clique no botão **salvar** .
 
 ### <a name="create-the-release-pipeline"></a>Criar o pipeline de lançamento
 
@@ -178,7 +180,7 @@ Há três etapas distintas a serem concluídas. A conclusão das etapas nas trê
 
 1. Clique no link **1 fase, 2 tarefas** na caixa **produção** :
 
-    ![Pipeline de lançamento – link do ambiente de produção. png](media/cicd/vsts-production-link.png)
+    ![Pipeline de lançamento – ambiente de produção link.png](media/cicd/vsts-production-link.png)
 
     A guia **tarefas** do ambiente é exibida.
 1. Clique na tarefa **implantar o serviço de Azure app para o slot** . Suas configurações aparecem em um painel à direita.
@@ -198,7 +200,7 @@ Há três etapas distintas a serem concluídas. A conclusão das etapas nas trê
 
 1. Abra *SimpleFeedReader. sln* no Visual Studio.
 1. Em Gerenciador de Soluções, abra *Pages\Index.cshtml*. Alterar `<h2>Simple Feed Reader - V3</h2>` para `<h2>Simple Feed Reader - V4</h2>`.
-1. Pressione **Ctrl**+**Shift**+**B** para compilar o aplicativo.
+1. Pressione **Ctrl** + **Shift** + **B** para compilar o aplicativo.
 1. Confirme o arquivo para o repositório GitHub. Use a página **alterações** na guia *Team Explorer* do Visual Studio ou execute o seguinte usando o Shell de comando do computador local:
 
     ```console
@@ -219,7 +221,7 @@ Há três etapas distintas a serem concluídas. A conclusão das etapas nas trê
 
     ![habilitar integração contínua](media/cicd/enable-ci.png)
 
-1. Navegue até a guia **enfileirada** da página de**Builds** **Azure pipelines** > em Azure DevOps Services. A compilação em fila mostra a ramificação e a confirmação que disparou a compilação:
+1. Navegue até a guia **enfileirada** da **Azure Pipelines**  >  página de**Builds** Azure pipelines em Azure DevOps Services. A compilação em fila mostra a ramificação e a confirmação que disparou a compilação:
 
     ![compilação enfileirada](media/cicd/build-queued.png)
 
@@ -237,15 +239,15 @@ A guia **tarefas** da definição de compilação lista as etapas individuais qu
 
 ![tarefas de definição de compilação](media/cicd/build-definition-tasks.png)
 
-1. **Restore** &mdash; executa o `dotnet restore` comando para restaurar os pacotes NuGet do aplicativo. O feed de pacote padrão usado é nuget.org.
-1. O **Build** &mdash; executa o `dotnet build --configuration release` comando para compilar o código do aplicativo. Essa `--configuration` opção é usada para produzir uma versão otimizada do código, que é adequada para implantação em um ambiente de produção. Modifique a variável *BuildConfiguration* na guia **variáveis** da definição de compilação se, por exemplo, uma configuração de depuração for necessária.
-1. O **teste** &mdash; executa o `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>` comando para executar os testes de unidade do aplicativo. Os testes de unidade são executados em qualquer projeto C# `**/*Tests/*.csproj` correspondente ao padrão glob. Os resultados de teste são salvos em um arquivo *. trx* no local especificado pela `--results-directory` opção. Se algum teste falhar, a compilação falhará e não será implantada.
+1. **Restaurar** &mdash; Executa o `dotnet restore` comando para restaurar os pacotes NuGet do aplicativo. O feed de pacote padrão usado é nuget.org.
+1. **Criar** &mdash; Executa o `dotnet build --configuration release` comando para compilar o código do aplicativo. Essa `--configuration` opção é usada para produzir uma versão otimizada do código, que é adequada para implantação em um ambiente de produção. Modifique a variável *BuildConfiguration* na guia **variáveis** da definição de compilação se, por exemplo, uma configuração de depuração for necessária.
+1. **Teste** &mdash; do Executa o `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>` comando para executar os testes de unidade do aplicativo. Os testes de unidade são executados em qualquer projeto C# correspondente ao `**/*Tests/*.csproj` padrão glob. Os resultados de teste são salvos em um arquivo *. trx* no local especificado pela `--results-directory` opção. Se algum teste falhar, a compilação falhará e não será implantada.
 
     > [!NOTE]
     > Para verificar se os testes de unidade funcionam, modifique *SimpleFeedReader. Tests\Services\NewsServiceTests.cs* para quebrar propositadamente um dos testes. Por exemplo, altere `Assert.True(result.Count > 0);` para `Assert.False(result.Count > 0);` no `Returns_News_Stories_Given_Valid_Uri` método. Confirme e envie por push a alteração para o GitHub. A compilação é disparada e falha. O status do pipeline de compilação muda para **com falha**. Reverta a alteração, confirme e envie o push novamente. A compilação é realizada com sucesso.
 
-1. A **publicação** &mdash; executa o `dotnet publish --configuration release --output <local_path_on_build_agent>` comando para produzir um arquivo *. zip* com os artefatos a serem implantados. A `--output` opção especifica o local de publicação do arquivo *. zip* . Esse local é especificado passando uma [variável predefinida](/azure/devops/pipelines/build/variables) chamada `$(build.artifactstagingdirectory)`. Essa variável expande para um caminho local, como *c:\agent\_work\1\a*, no agente de compilação.
-1. **Publicar artefato** &mdash; publica o arquivo *. zip* produzido pela tarefa de **publicação** . A tarefa aceita o local do arquivo *. zip* como um parâmetro, que é a variável `$(build.artifactstagingdirectory)`predefinida. O arquivo *. zip* é publicado como uma pasta chamada *drop*.
+1. **Publicar** &mdash; Executa o `dotnet publish --configuration release --output <local_path_on_build_agent>` comando para produzir um arquivo *. zip* com os artefatos a serem implantados. A `--output` opção especifica o local de publicação do arquivo *. zip* . Esse local é especificado passando uma [variável predefinida](/azure/devops/pipelines/build/variables) chamada `$(build.artifactstagingdirectory)` . Essa variável expande para um caminho local, como *c:\agent \_ work\1\a*, no agente de compilação.
+1. **Publicar artefato** &mdash; Publica o arquivo *. zip* produzido pela tarefa de **publicação** . A tarefa aceita o local do arquivo *. zip* como um parâmetro, que é a variável predefinida `$(build.artifactstagingdirectory)` . O arquivo *. zip* é publicado como uma pasta chamada *drop*.
 
 Clique no link **Resumo** da definição de compilação para exibir um histórico de compilações com a definição:
 
@@ -279,7 +281,7 @@ O pipeline de lançamento consiste em duas tarefas: *implantar Azure app serviç
 
 ![Captura de tela mostrando tarefa de implantação de pipeline de liberação](media/cicd/release-definition-task1.png)
 
-A assinatura do Azure, o tipo de serviço, o nome do aplicativo Web, o grupo de recursos e o slot de implantação são definidos na tarefa de implantação. A caixa de texto **pacote ou pasta** contém o caminho do arquivo *. zip* a ser extraído e implantado no slot de *preparo* do aplicativo Web *myWebApp\<unique_number\> * .
+A assinatura do Azure, o tipo de serviço, o nome do aplicativo Web, o grupo de recursos e o slot de implantação são definidos na tarefa de implantação. A caixa de texto **pacote ou pasta** contém o caminho do arquivo *. zip* a ser extraído e implantado no slot de *preparo* do aplicativo Web *myWebApp \<unique_number\> * .
 
 Clicar na tarefa de permuta de slot revela a seguinte configuração de tarefa:
 

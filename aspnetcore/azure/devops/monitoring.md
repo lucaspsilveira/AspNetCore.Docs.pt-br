@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 07/10/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/monitor
-ms.openlocfilehash: 3af36a37124968e13952e8bf5de1b643265a4a5b
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a94b1e0b5ce2a24cf22eb665c9bcd03c25ffa67f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766882"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400369"
 ---
 # <a name="monitor-and-debug"></a>Monitorar e depurar
 
@@ -37,7 +39,7 @@ Nesta seção, você concluirá as seguintes tarefas:
 
 Os aplicativos Web do serviço de aplicativo são facilmente monitorados em tempo real. O portal do Azure renderiza métricas em gráficos fáceis de entender e grafos.
 
-1. Abra o [portal do Azure](https://portal.azure.com)e, em seguida, navegue até o serviço de aplicativo *myWebApp\<\> unique_number* .
+1. Abra o [portal do Azure](https://portal.azure.com)e, em seguida, navegue até o serviço de aplicativo *myWebApp \<unique_number\> * .
 
 1. A guia **visão geral** exibe informações úteis "em breve", incluindo grafos que exibem métricas recentes.
 
@@ -65,7 +67,7 @@ Os aplicativos Web do serviço de aplicativo são facilmente monitorados em temp
 
 [Application insights](/azure/application-insights/app-insights-overview) é um serviço do Azure para analisar o desempenho e a estabilidade de aplicativos Web e como os usuários os usam. Os dados de Application Insights são mais amplos e mais detalhados do que o de Azure Monitor. Os dados podem fornecer aos desenvolvedores e aos administradores informações importantes para melhorar os aplicativos. Application Insights pode ser adicionado a um recurso de serviço de Azure App sem alterações de código.
 
-1. Abra o [portal do Azure](https://portal.azure.com)e, em seguida, navegue até o serviço de aplicativo *myWebApp\<\> unique_number* .
+1. Abra o [portal do Azure](https://portal.azure.com)e, em seguida, navegue até o serviço de aplicativo *myWebApp \<unique_number\> * .
 1. Na guia **visão geral** , clique no bloco **Application insights** .
 
     ![Bloco do Application Insights](./media/monitoring/app-insights.png)
@@ -90,7 +92,7 @@ Application Insights fornece informações úteis do lado do servidor sem nenhum
 
 Os logs do servidor Web e do aplicativo são desabilitados por padrão no serviço Azure App. Habilite os logs com as seguintes etapas:
 
-1. Abra o [portal do Azure](https://portal.azure.com)e navegue até o serviço de aplicativo *myWebApp\<\> unique_number* .
+1. Abra o [portal do Azure](https://portal.azure.com)e navegue até o serviço de aplicativo *myWebApp \<unique_number\> * .
 1. No menu à esquerda, role para baixo até a seção **monitoramento** . Selecione **logs de diagnóstico**.
 
     ![Link de logs de diagnóstico](./media/monitoring/logging.png)
@@ -98,7 +100,7 @@ Os logs do servidor Web e do aplicativo são desabilitados por padrão no servi�
 1. Ative o **registro em log do aplicativo (Filesystem)**. Se solicitado, clique na caixa para instalar as extensões para habilitar o log de aplicativo no aplicativo Web.
 1. Defina o **log do servidor Web** no **sistema de arquivos**.
 1. Insira o **período de retenção** em dias. Por exemplo, 30.
-1. Clique em **Save** (Salvar).
+1. Clique em **Salvar**.
 
 Os logs do ASP.NET Core e do servidor Web (serviço de aplicativo) são gerados para o aplicativo Web. Eles podem ser baixados usando as informações de FTP/FTPS exibidas. A senha é a mesma que as credenciais de implantação criadas anteriormente neste guia. Os logs podem ser [transmitidos diretamente para seu computador local com o PowerShell ou CLI do Azure](/azure/app-service/web-sites-enable-diagnostic-log#download). Os logs também podem ser [exibidos em Application insights](/azure/app-service/web-sites-enable-diagnostic-log#how-to-view-logs-in-application-insights).
 
@@ -106,7 +108,7 @@ Os logs do ASP.NET Core e do servidor Web (serviço de aplicativo) são gerados 
 
 Os logs do aplicativo e do servidor Web podem ser transmitidos em tempo real por meio do Portal.
 
-1. Abra o [portal do Azure](https://portal.azure.com)e navegue até o serviço de aplicativo *myWebApp\<\> unique_number* .
+1. Abra o [portal do Azure](https://portal.azure.com)e navegue até o serviço de aplicativo *myWebApp \<unique_number\> * .
 1. No menu à esquerda, role para baixo até a seção **monitoramento** e selecione **fluxo de log**.
 
     ![Captura de tela mostrando link de fluxo de log](./media/monitoring/log-stream.png)

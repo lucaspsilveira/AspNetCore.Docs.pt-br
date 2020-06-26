@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 12/18/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 2e604cd1869ea077fc0465df91ec083b9db83763
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: b3dcb3a80e8d5150d8513ef558531749d0884568
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768964"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400148"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Model binding no ASP.NET Core
 
@@ -29,7 +31,7 @@ Este artigo explica o que é model binding, como ele funciona e como personaliza
 
 ## <a name="what-is-model-binding"></a>O que é o model binding
 
-Os controladores Razor e as páginas funcionam com dados provenientes de solicitações HTTP. Por exemplo, dados de rota podem fornecer uma chave de registro e campos de formulário postados podem fornecer valores para as propriedades do modelo. Escrever código para recuperar cada um desses valores e convertê-los de cadeias de caracteres em tipos .NET seria uma tarefa entediante e propensa a erro. O model binding automatiza esse processo. O sistema de model binding:
+Os controladores e Razor as páginas funcionam com dados provenientes de solicitações HTTP. Por exemplo, dados de rota podem fornecer uma chave de registro e campos de formulário postados podem fornecer valores para as propriedades do modelo. Escrever código para recuperar cada um desses valores e convertê-los de cadeias de caracteres em tipos .NET seria uma tarefa entediante e propensa a erro. O model binding automatiza esse processo. O sistema de model binding:
 
 * Recupera dados de várias fontes, como dados de rota, campos de formulário e cadeias de caracteres de consulta.
 * Fornece os dados para controladores e Razor páginas em parâmetros de método e propriedades públicas.
@@ -66,7 +68,7 @@ No exemplo anterior, os destinos do model binding são parâmetros de método qu
 O model binding tenta encontrar valores para os seguintes tipos de destinos:
 
 * Parâmetros do método de ação do controlador para o qual uma solicitação é roteada.
-* Parâmetros do método Razor de manipulador Pages para o qual uma solicitação é roteada. 
+* Parâmetros do Razor método de manipulador Pages para o qual uma solicitação é roteada. 
 * Propriedades públicas de um controlador ou classe `PageModel`, se especificadas por atributos.
 
 ### <a name="bindproperty-attribute"></a>Atributo [BindProperty]
@@ -124,7 +126,7 @@ Esses atributos:
 
 Aplique o `[FromBody]` atributo a um parâmetro para popular suas propriedades do corpo de uma solicitação HTTP. O tempo de execução de ASP.NET Core delega a responsabilidade de ler o corpo para um formatador de entrada. O formatadores de entrada são explicados [posteriormente neste artigo](#input-formatters).
 
-Quando `[FromBody]` é aplicado a um parâmetro de tipo complexo, todos os atributos de origem de associação aplicados às suas propriedades são ignorados. Por exemplo, a ação `Create` a seguir especifica que `pet` seu parâmetro é populado a partir do corpo:
+Quando `[FromBody]` é aplicado a um parâmetro de tipo complexo, todos os atributos de origem de associação aplicados às suas propriedades são ignorados. Por exemplo, a ação a seguir `Create` especifica que seu `pet` parâmetro é populado a partir do corpo:
 
 ```csharp
 public ActionResult<Pet> Create([FromBody] Pet pet)
@@ -149,7 +151,7 @@ No exemplo anterior:
 
 Os formatadores de entrada lêem apenas o corpo e não entendem os atributos de origem da associação. Se um valor adequado for encontrado no corpo, esse valor será usado para popular a `Breed` propriedade.
 
-Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Depois que o fluxo de solicitação é lido por um formatador de entrada, ele não está mais disponível para ser lido `[FromBody]` novamente para ligar outros parâmetros.
+Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Depois que o fluxo de solicitação é lido por um formatador de entrada, ele não está mais disponível para ser lido novamente para ligar outros `[FromBody]` parâmetros.
 
 ### <a name="additional-sources"></a>Fontes adicionais
 
@@ -174,7 +176,7 @@ Por padrão, um erro de estado de modelo não será criado se nenhum valor for e
 * Para tipos complexos, o model binding cria uma instância usando o construtor padrão sem definir propriedades.
 * As matrizes são definidas como `Array.Empty<T>()`, exceto que matrizes `byte[]` são definidas como `null`.
 
-Se o estado do modelo deve ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de [`[BindRequired]`](#bindrequired-attribute) modelo, use o atributo.
+Se o estado do modelo deve ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de modelo, use o [`[BindRequired]`](#bindrequired-attribute) atributo.
 
 Observe que este comportamento `[BindRequired]` se aplica ao model binding de dados de formulário postados, não a dados JSON ou XML em um corpo da solicitação. Dados do corpo da solicitação são tratados pelos [formatadores de entrada](#input-formatters).
 
@@ -188,7 +190,7 @@ Em uma Razor página, reexiba a página com uma mensagem de erro:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-A validação no lado do cliente captura dados mais inválidos que, de outra Razor forma, seriam enviados a um formulário de páginas. Essa validação torna difícil disparar o código realçado anterior. O aplicativo de exemplo inclui um botão **Enviar com Data Inválida** que coloca os dados inválidos no campo **Data de Contratação** e envia o formulário. Esse botão mostra como o código para exibir novamente a página funciona quando ocorrem erros de conversão de dados.
+A validação no lado do cliente captura dados mais inválidos que, de outra forma, seriam enviados a um Razor formulário de páginas. Essa validação torna difícil disparar o código realçado anterior. O aplicativo de exemplo inclui um botão **Enviar com Data Inválida** que coloca os dados inválidos no campo **Data de Contratação** e envia o formulário. Esse botão mostra como o código para exibir novamente a página funciona quando ocorrem erros de conversão de dados.
 
 Quando a página é exibida novamente pelo código anterior, a entrada inválida não é mostrada no campo de formulário. Isso ocorre porque a propriedade do modelo foi definida como nulo ou um valor padrão. A entrada inválida aparece em uma mensagem de erro. Porém, se você quiser exibir novamente os dados inválidos no campo de formulário, considere tornar a propriedade do modelo uma cadeia de caracteres e fazer a conversão de dados manualmente.
 
@@ -201,17 +203,17 @@ Os tipos simples em que o associador de modelos pode converter cadeias de caract
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [º](xref:System.ComponentModel.CharConverter)
-* [Horário](xref:System.ComponentModel.DateTimeConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Clique](xref:System.ComponentModel.DoubleConverter)
-* [Enumera](xref:System.ComponentModel.EnumConverter)
+* [Enumeração](xref:System.ComponentModel.EnumConverter)
 * [Volume](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [Período](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
-* [URI](xref:System.UriTypeConverter)
+* [Uri](xref:System.UriTypeConverter)
 * [Versão](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipos complexos
@@ -452,13 +454,13 @@ Para usar os formatadores de entrada XML internos:
 
 ### <a name="customize-model-binding-with-input-formatters"></a>Personalizar a associação de modelo com formatadores de entrada
 
-Um formatador de entrada assume total responsabilidade pela leitura de dados do corpo da solicitação. Para personalizar esse processo, configure as APIs usadas pelo formatador de entrada. Esta seção descreve como personalizar o `System.Text.Json`formatador de entrada baseado em dados para entender um tipo `ObjectId`personalizado chamado. 
+Um formatador de entrada assume total responsabilidade pela leitura de dados do corpo da solicitação. Para personalizar esse processo, configure as APIs usadas pelo formatador de entrada. Esta seção descreve como personalizar o `System.Text.Json` formatador de entrada baseado em dados para entender um tipo personalizado chamado `ObjectId` . 
 
-Considere o seguinte modelo, que contém uma propriedade `ObjectId` personalizada chamada `Id`:
+Considere o seguinte modelo, que contém uma `ObjectId` propriedade personalizada chamada `Id` :
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs?name=snippet_Class&highlight=3)]
 
-Para personalizar o processo de associação de modelo `System.Text.Json`ao usar o, crie uma <xref:System.Text.Json.Serialization.JsonConverter%601>classe derivada de:
+Para personalizar o processo de associação de modelo ao usar o `System.Text.Json` , crie uma classe derivada de <xref:System.Text.Json.Serialization.JsonConverter%601> :
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs?name=snippet_Class)]
 
@@ -515,7 +517,7 @@ Este artigo explica o que é model binding, como ele funciona e como personaliza
 
 ## <a name="what-is-model-binding"></a>O que é o model binding
 
-Os controladores Razor e as páginas funcionam com dados provenientes de solicitações HTTP. Por exemplo, dados de rota podem fornecer uma chave de registro e campos de formulário postados podem fornecer valores para as propriedades do modelo. Escrever código para recuperar cada um desses valores e convertê-los de cadeias de caracteres em tipos .NET seria uma tarefa entediante e propensa a erro. O model binding automatiza esse processo. O sistema de model binding:
+Os controladores e Razor as páginas funcionam com dados provenientes de solicitações HTTP. Por exemplo, dados de rota podem fornecer uma chave de registro e campos de formulário postados podem fornecer valores para as propriedades do modelo. Escrever código para recuperar cada um desses valores e convertê-los de cadeias de caracteres em tipos .NET seria uma tarefa entediante e propensa a erro. O model binding automatiza esse processo. O sistema de model binding:
 
 * Recupera dados de várias fontes, como dados de rota, campos de formulário e cadeias de caracteres de consulta.
 * Fornece os dados para controladores e Razor páginas em parâmetros de método e propriedades públicas.
@@ -552,7 +554,7 @@ No exemplo anterior, os destinos do model binding são parâmetros de método qu
 O model binding tenta encontrar valores para os seguintes tipos de destinos:
 
 * Parâmetros do método de ação do controlador para o qual uma solicitação é roteada.
-* Parâmetros do método Razor de manipulador Pages para o qual uma solicitação é roteada. 
+* Parâmetros do Razor método de manipulador Pages para o qual uma solicitação é roteada. 
 * Propriedades públicas de um controlador ou classe `PageModel`, se especificadas por atributos.
 
 ### <a name="bindproperty-attribute"></a>Atributo [BindProperty]
@@ -610,7 +612,7 @@ Esses atributos:
 
 Aplique o `[FromBody]` atributo a um parâmetro para popular suas propriedades do corpo de uma solicitação HTTP. O tempo de execução de ASP.NET Core delega a responsabilidade de ler o corpo para um formatador de entrada. O formatadores de entrada são explicados [posteriormente neste artigo](#input-formatters).
 
-Quando `[FromBody]` é aplicado a um parâmetro de tipo complexo, todos os atributos de origem de associação aplicados às suas propriedades são ignorados. Por exemplo, a ação `Create` a seguir especifica que `pet` seu parâmetro é populado a partir do corpo:
+Quando `[FromBody]` é aplicado a um parâmetro de tipo complexo, todos os atributos de origem de associação aplicados às suas propriedades são ignorados. Por exemplo, a ação a seguir `Create` especifica que seu `pet` parâmetro é populado a partir do corpo:
 
 ```csharp
 public ActionResult<Pet> Create([FromBody] Pet pet)
@@ -635,7 +637,7 @@ No exemplo anterior:
 
 Os formatadores de entrada lêem apenas o corpo e não entendem os atributos de origem da associação. Se um valor adequado for encontrado no corpo, esse valor será usado para popular a `Breed` propriedade.
 
-Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Depois que o fluxo de solicitação é lido por um formatador de entrada, ele não está mais disponível para ser lido `[FromBody]` novamente para ligar outros parâmetros.
+Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Depois que o fluxo de solicitação é lido por um formatador de entrada, ele não está mais disponível para ser lido novamente para ligar outros `[FromBody]` parâmetros.
 
 ### <a name="additional-sources"></a>Fontes adicionais
 
@@ -660,7 +662,7 @@ Por padrão, um erro de estado de modelo não será criado se nenhum valor for e
 * Para tipos complexos, o model binding cria uma instância usando o construtor padrão sem definir propriedades.
 * As matrizes são definidas como `Array.Empty<T>()`, exceto que matrizes `byte[]` são definidas como `null`.
 
-Se o estado do modelo deve ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de [`[BindRequired]`](#bindrequired-attribute) modelo, use o atributo.
+Se o estado do modelo deve ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de modelo, use o [`[BindRequired]`](#bindrequired-attribute) atributo.
 
 Observe que este comportamento `[BindRequired]` se aplica ao model binding de dados de formulário postados, não a dados JSON ou XML em um corpo da solicitação. Dados do corpo da solicitação são tratados pelos [formatadores de entrada](#input-formatters).
 
@@ -674,7 +676,7 @@ Em uma Razor página, reexiba a página com uma mensagem de erro:
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
-A validação no lado do cliente captura dados mais inválidos que, de outra Razor forma, seriam enviados a um formulário de páginas. Essa validação torna difícil disparar o código realçado anterior. O aplicativo de exemplo inclui um botão **Enviar com Data Inválida** que coloca os dados inválidos no campo **Data de Contratação** e envia o formulário. Esse botão mostra como o código para exibir novamente a página funciona quando ocorrem erros de conversão de dados.
+A validação no lado do cliente captura dados mais inválidos que, de outra forma, seriam enviados a um Razor formulário de páginas. Essa validação torna difícil disparar o código realçado anterior. O aplicativo de exemplo inclui um botão **Enviar com Data Inválida** que coloca os dados inválidos no campo **Data de Contratação** e envia o formulário. Esse botão mostra como o código para exibir novamente a página funciona quando ocorrem erros de conversão de dados.
 
 Quando a página é exibida novamente pelo código anterior, a entrada inválida não é mostrada no campo de formulário. Isso ocorre porque a propriedade do modelo foi definida como nulo ou um valor padrão. A entrada inválida aparece em uma mensagem de erro. Porém, se você quiser exibir novamente os dados inválidos no campo de formulário, considere tornar a propriedade do modelo uma cadeia de caracteres e fazer a conversão de dados manualmente.
 
@@ -687,17 +689,17 @@ Os tipos simples em que o associador de modelos pode converter cadeias de caract
 * [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [º](xref:System.ComponentModel.CharConverter)
-* [Horário](xref:System.ComponentModel.DateTimeConverter)
+* [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Clique](xref:System.ComponentModel.DoubleConverter)
-* [Enumera](xref:System.ComponentModel.EnumConverter)
+* [Enumeração](xref:System.ComponentModel.EnumConverter)
 * [Volume](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [Período](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
-* [URI](xref:System.UriTypeConverter)
+* [Uri](xref:System.UriTypeConverter)
 * [Versão](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipos complexos

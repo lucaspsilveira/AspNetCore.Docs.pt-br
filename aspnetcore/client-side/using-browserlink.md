@@ -7,17 +7,19 @@ ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: 619d19ba90298b2455d4a558fea138c86a751f07
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95ddf379d7cab336356cbfd3853311cb0911552a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773651"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85401708"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Link do navegador no ASP.NET Core
 
@@ -29,25 +31,25 @@ O link do navegador é um recurso do Visual Studio. Ele cria um canal de comunic
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Adicione o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) ao seu projeto. Para ASP.NET Core Razor páginas ou projetos MVC, habilite também a compilação Razor em tempo de execução de arquivos (*. cshtml*), conforme descrito em <xref:mvc/views/view-compilation>. Razoras alterações de sintaxe são aplicadas somente quando a compilação em tempo de execução tiver sido habilitada.
+Adicione o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) ao seu projeto. Para ASP.NET Core Razor páginas ou projetos MVC, habilite também a compilação em tempo de execução de Razor arquivos (*. cshtml*), conforme descrito em <xref:mvc/views/view-compilation> . Razoras alterações de sintaxe são aplicadas somente quando a compilação em tempo de execução tiver sido habilitada.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-Ao converter um projeto ASP.NET Core 2,0 para ASP.NET Core 2,1 e fazer a transição para o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), instale o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) para a funcionalidade de link do navegador. Os modelos de projeto ASP.NET Core 2,1 usam `Microsoft.AspNetCore.App` o metapacote por padrão.
+Ao converter um projeto ASP.NET Core 2,0 para ASP.NET Core 2,1 e fazer a transição para o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), instale o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) para a funcionalidade de link do navegador. Os modelos de projeto ASP.NET Core 2,1 usam o `Microsoft.AspNetCore.App` metapacote por padrão.
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-Os modelos de projeto de **aplicativo web**ASP.NET Core 2,0, **vazio**e de **API Web** usam o [metapacote Microsoft. AspNetCore. All](xref:fundamentals/metapackage), que contém uma referência de pacote para [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Portanto, o uso `Microsoft.AspNetCore.All` do metapacote não requer nenhuma ação adicional para disponibilizar o link do navegador para uso.
+Os modelos de projeto de **aplicativo web**ASP.NET Core 2,0, **vazio**e de **API Web** usam o [metapacote Microsoft. AspNetCore. All](xref:fundamentals/metapackage), que contém uma referência de pacote para [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Portanto, o uso do `Microsoft.AspNetCore.All` metapacote não requer nenhuma ação adicional para disponibilizar o link do navegador para uso.
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
 
-O modelo de projeto de **aplicativo Web** ASP.NET Core 1. x tem uma referência de pacote para o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) . Outros tipos de projeto exigem que você adicione uma referência de `Microsoft.VisualStudio.Web.BrowserLink`pacote ao.
+O modelo de projeto de **aplicativo Web** ASP.NET Core 1. x tem uma referência de pacote para o pacote [Microsoft. VisualStudio. Web. BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) . Outros tipos de projeto exigem que você adicione uma referência de pacote ao `Microsoft.VisualStudio.Web.BrowserLink` .
 
 ::: moniker-end
 
@@ -59,7 +61,7 @@ Chame `UseBrowserLink` no método `Startup.Configure`:
 app.UseBrowserLink();
 ```
 
-Normalmente `UseBrowserLink` , a chamada é colocada dentro `if` de um bloco que habilita apenas o link do navegador no ambiente de desenvolvimento. Por exemplo:
+Normalmente, a `UseBrowserLink` chamada é colocada dentro de um `if` bloco que habilita apenas o link do navegador no ambiente de desenvolvimento. Por exemplo:
 
 ```csharp
 if (env.IsDevelopment())
@@ -134,7 +136,7 @@ Quando a sincronização automática de CSS está habilitada, os navegadores con
 
 ## <a name="how-it-works"></a>Como ele funciona
 
-O link do [SignalR](xref:signalr/introduction) navegador usa para criar um canal de comunicação entre o Visual Studio e o navegador. Quando o link do navegador está habilitado, o Visual Studio SignalR atua como um servidor ao qual vários clientes (navegadores) podem se conectar. O link do navegador também registra um componente de middleware no pipeline de solicitação de ASP.NET Core. Esse componente injeta referências especiais `<script>` em cada solicitação de página do servidor. Você pode ver as referências de script selecionando **Exibir origem** no navegador e rolando até o final do conteúdo `<body>` da marca:
+O link do navegador usa [SignalR](xref:signalr/introduction) para criar um canal de comunicação entre o Visual Studio e o navegador. Quando o link do navegador está habilitado, o Visual Studio atua como um SignalR servidor ao qual vários clientes (navegadores) podem se conectar. O link do navegador também registra um componente de middleware no pipeline de solicitação de ASP.NET Core. Esse componente injeta referências especiais `<script>` em cada solicitação de página do servidor. Você pode ver as referências de script selecionando **Exibir origem** no navegador e rolando até o final do `<body>` conteúdo da marca:
 
 ```html
     <!-- Visual Studio Browser Link -->
@@ -148,4 +150,4 @@ O link do [SignalR](xref:signalr/introduction) navegador usa para criar um canal
 
 Os arquivos de origem não são modificados. O componente de middleware injeta as referências de script dinamicamente.
 
-Como o código do lado do navegador é todo o JavaScript, ele funciona em todos SignalR os navegadores que oferecem suporte sem a necessidade de um plug-in de navegador.
+Como o código do lado do navegador é todo o JavaScript, ele funciona em todos os navegadores que SignalR oferecem suporte sem a necessidade de um plug-in de navegador.

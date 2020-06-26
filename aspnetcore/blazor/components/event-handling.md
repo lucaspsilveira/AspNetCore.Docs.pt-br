@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 4ac7b82d734f078cf50901d02e7d0c4eb8bb45bb
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 2fce394202be5df9af67e8afca27a0914f410402
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242413"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399030"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Manipulação de eventos de ASP.NET Core Blazor
 
@@ -139,7 +141,7 @@ Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conju
 ```
 
 > [!NOTE]
-> **Não** use uma variável de loop diretamente em uma expressão lambda, como `i` no exemplo de `for` loop anterior ou em uma variável de referência em um `foreach` loop. Caso contrário, a mesma variável é usada por todas as expressões lambda, o que resulta em uso do mesmo valor em todos os lambdas. Sempre Capture o valor da variável em uma variável local e, em seguida, use-o. No exemplo anterior, a variável de loop `i` é atribuída a `buttonNumber` .
+> **Não** use uma variável de loop diretamente em uma expressão lambda, como `i` no exemplo de `for` loop anterior. Caso contrário, a mesma variável é usada por todas as expressões lambda, o que resulta em uso do mesmo valor em todos os lambdas. Sempre Capture o valor da variável em uma variável local e, em seguida, use-o. No exemplo anterior, a variável de loop `i` é atribuída a `buttonNumber` .
 
 ## <a name="eventcallback"></a>EventCallback
 

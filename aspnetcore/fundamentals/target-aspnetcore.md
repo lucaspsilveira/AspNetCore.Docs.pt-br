@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 70a445d109a1a9553178e94d79df87cd373e6b06
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: 1c794092b856a916a318956d7cfb357d46a22d1d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85103026"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399641"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Usar ASP.NET Core APIs em uma biblioteca de classes
 
@@ -52,7 +54,7 @@ Blazordá suporte ao Webassembly (WASM) e [modelos de hospedagem](xref:blazor/ho
 
 ### <a name="support-both-hosting-models"></a>Suporte para ambos os modelos de hospedagem
 
-Para dar suporte ao Razor consumo de componentes de projetos de [ Blazor servidor](xref:blazor/hosting-models#blazor-server) e [ Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) , use as instruções a seguir para o seu editor.
+Para dar suporte ao Razor consumo de componentes de [Blazor Server](xref:blazor/hosting-models#blazor-server) projetos e [ Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) , use as instruções a seguir para o seu editor.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -86,7 +88,7 @@ Por exemplo:
 
 ### <a name="support-a-specific-hosting-model"></a>Suporte a um modelo de hospedagem específico
 
-É muito menos comum oferecer suporte a um único Blazor modelo de hospedagem. Por exemplo, para dar suporte ao Razor consumo de componentes somente de projetos de [ Blazor servidor](xref:blazor/hosting-models#blazor-server) :
+É muito menos comum oferecer suporte a um único Blazor modelo de hospedagem. Por exemplo, para dar suporte ao Razor consumo de componentes [Blazor Server](xref:blazor/hosting-models#blazor-server) somente de projetos:
 
 * Direcione o .NET Core 3. x.
 * Adicione um `<FrameworkReference>` elemento para a estrutura compartilhada.

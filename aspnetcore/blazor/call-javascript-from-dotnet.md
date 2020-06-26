@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: f39a1a3b78d8017738f83f4d191c7f11c7a6c9e6
-ms.sourcegitcommit: 066d66ea150f8aab63f9e0e0668b06c9426296fd
+ms.openlocfilehash: 8a2df6ca55985a1cff49abb09113e49bfeae6829
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85242532"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400512"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Chamar funções JavaScript de métodos .NET no ASP.NET CoreBlazor
 
@@ -32,11 +34,11 @@ Este artigo aborda a invocação de funções JavaScript do .NET. Para obter inf
 
 Para chamar o JavaScript do .NET, use a <xref:Microsoft.JSInterop.IJSRuntime> abstração. Para emitir chamadas de interoperabilidade JS, insira a <xref:Microsoft.JSInterop.IJSRuntime> abstração em seu componente. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>usa um identificador para a função JavaScript que você deseja invocar junto com qualquer número de argumentos serializáveis para JSON. O identificador de função é relativo ao escopo global ( `window` ). Se você quiser chamar `window.someScope.someFunction` , o identificador será `someScope.someFunction` . Não é necessário registrar a função antes que ela seja chamada. O tipo de retorno `T` também deve ser serializável em JSON. `T`deve corresponder ao tipo .NET que melhor mapeia para o tipo JSON retornado.
 
-Para Blazor aplicativos de servidor com pré-processamento habilitado, a chamada ao JavaScript não é possível durante o pré-processamento inicial. As chamadas de interoperabilidade do JavaScript devem ser adiadas até que a conexão com o navegador seja estabelecida. Para obter mais informações, consulte a seção [detectar quando um Blazor aplicativo de servidor está sendo renderizado](#detect-when-a-blazor-server-app-is-prerendering) .
+Para Blazor Server aplicativos com pré-processamento habilitado, não é possível chamar o JavaScript durante o pré-processamento inicial. As chamadas de interoperabilidade do JavaScript devem ser adiadas até que a conexão com o navegador seja estabelecida. Para obter mais informações, consulte a seção [detectar quando um Blazor Server aplicativo está sendo renderizado](#detect-when-a-blazor-server-app-is-prerendering) .
 
 O exemplo a seguir se baseia em [`TextDecoder`](https://developer.mozilla.org/docs/Web/API/TextDecoder) um decodificador baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript de um método C# que descarrega um requisito do código do desenvolvedor para uma API JavaScript existente. A função JavaScript aceita uma matriz de bytes de um método C#, decodifica a matriz e retorna o texto para o componente para exibição.
 
-Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma função JavaScript que usa `TextDecoder` para decodificar uma matriz passada e retornar o valor decodificado:
+Dentro do `<head>` elemento de `wwwroot/index.html` ( Blazor WebAssembly ) ou `Pages/_Host.cshtml` ( Blazor Server ), forneça uma função JavaScript que usa `TextDecoder` para decodificar uma matriz passada e retornar o valor decodificado:
 
 [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-convertarray.html)]
 
@@ -61,7 +63,7 @@ Para usar a <xref:Microsoft.JSInterop.IJSRuntime> abstração, adote qualquer um
 
   [!code-razor[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
-  Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
+  Dentro do `<head>` elemento de `wwwroot/index.html` ( Blazor WebAssembly ) ou `Pages/_Host.cshtml` ( Blazor Server ), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> e não retorna um valor:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged1.html)]
 
@@ -69,7 +71,7 @@ Para usar a <xref:Microsoft.JSInterop.IJSRuntime> abstração, adote qualquer um
 
   [!code-csharp[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
-  Dentro do `<head>` elemento `wwwroot/index.html` ( Blazor Webassembly) ou `Pages/_Host.cshtml` ( Blazor Server), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com `JSRuntime.InvokeAsync` e retorna um valor:
+  Dentro do `<head>` elemento de `wwwroot/index.html` ( Blazor WebAssembly ) ou `Pages/_Host.cshtml` ( Blazor Server ), forneça uma `handleTickerChanged` função JavaScript. A função é chamada com `JSRuntime.InvokeAsync` e retorna um valor:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged2.html)]
 
@@ -89,13 +91,13 @@ No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas fun
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Coloque a `<script>` marca que faz referência ao arquivo JavaScript no `wwwroot/index.html` arquivo ( Blazor Webassembly) ou `Pages/_Host.cshtml` arquivo ( Blazor servidor).
+Coloque a `<script>` marca que faz referência ao arquivo JavaScript no `wwwroot/index.html` arquivo ( Blazor WebAssembly ) ou `Pages/_Host.cshtml` arquivo ( Blazor Server ).
 
-`wwwroot/index.html`( Blazor Webassembly):
+`wwwroot/index.html` (Blazor WebAssembly):
 
 [!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
-`Pages/_Host.cshtml`( Blazor Servidor):
+`Pages/_Host.cshtml` (Blazor Server):
 
 [!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=35)]
 
@@ -103,7 +105,7 @@ Não coloque uma `<script>` marca em um arquivo de componente porque a `<script>
 
 Os métodos .NET interoperam com as funções JavaScript no `exampleJsInterop.js` arquivo chamando <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> .
 
-A <xref:Microsoft.JSInterop.IJSRuntime> abstração é assíncrona para permitir Blazor cenários de servidor. Se o aplicativo for um Blazor aplicativo Webassembly e você quiser invocar uma função JavaScript de forma síncrona, downcast <xref:Microsoft.JSInterop.IJSInProcessRuntime> e chame <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> . Recomendamos que a maioria das bibliotecas de interoperabilidade do JS use as APIs assíncronas para garantir que as bibliotecas estejam disponíveis em todos os cenários.
+A <xref:Microsoft.JSInterop.IJSRuntime> abstração é assíncrona para permitir Blazor Server cenários. Se o aplicativo for um Blazor WebAssembly aplicativo e você quiser invocar uma função JavaScript de forma síncrona, downcast <xref:Microsoft.JSInterop.IJSInProcessRuntime> e chame <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> em seu lugar. Recomendamos que a maioria das bibliotecas de interoperabilidade do JS use as APIs assíncronas para garantir que as bibliotecas estejam disponíveis em todos os cenários.
 
 O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidade do JS. O componente:
 
@@ -150,7 +152,7 @@ O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidad
 
 As funções JavaScript que retornam [void (0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) ou [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) são chamadas com <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> .
 
-## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Detectar quando um Blazor aplicativo de servidor está sendo renderizado
+## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Detectar quando um Blazor Server aplicativo está sendo renderizado
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
@@ -248,7 +250,7 @@ Para que um componente pai torne uma referência de elemento disponível para ou
 * Permitir que componentes filho registrem retornos de chamada.
 * Invoque os retornos de chamada registrados durante o <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> evento com a referência de elemento passada. Indiretamente, essa abordagem permite que os componentes filho interajam com a referência de elemento do pai.
 
-O Blazor exemplo de Webassembly a seguir ilustra a abordagem.
+O exemplo a seguir Blazor WebAssembly ilustra a abordagem.
 
 No `<head>` de `wwwroot/index.html` :
 
@@ -443,7 +445,7 @@ namespace BlazorSample.Shared
 
 ## <a name="harden-js-interop-calls"></a>Proteger chamadas Interop JS
 
-A interoperabilidade JS pode falhar devido a erros de rede e deve ser tratada como não confiável. Por padrão, um Blazor aplicativo de servidor atinge o tempo limite de chamadas de interoperabilidade js no servidor após um minuto. Se um aplicativo puder tolerar um tempo limite mais agressivo, defina o tempo limite usando uma das seguintes abordagens:
+A interoperabilidade JS pode falhar devido a erros de rede e deve ser tratada como não confiável. Por padrão, um Blazor Server aplicativo expira as chamadas de interoperabilidade js no servidor após um minuto. Se um aplicativo puder tolerar um tempo limite mais agressivo, defina o tempo limite usando uma das seguintes abordagens:
 
 * Globalmente no `Startup.ConfigureServices` , especifique o tempo limite:
 
@@ -479,4 +481,4 @@ Para obter mais informações, consulte os seguintes problemas:
 
 * <xref:blazor/call-dotnet-from-javascript>
 * [Exemplo de InteropComponent. Razor (AspNetCore dotnet/repositório GitHub, Branch de lançamento 3,1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Executar grandes transferências de dados em Blazor aplicativos de servidor](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
+* [Executar grandes transferências de dados em Blazor Server aplicativos](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: 1917a329a5dcbe60542541cfcdc746799307e3d5
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: ed8aee214ff9b9e941aeea01887882c3bdfc56a7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850403"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400291"
 ---
 # <a name="tools-and-downloads"></a>Ferramentas e downloads
 
@@ -33,8 +35,8 @@ As seguintes assinaturas são necessárias:
 
 As seguintes ferramentas são necessárias:
 
-* O [git](https://git-scm.com/downloads) &mdash; , uma compreensão fundamental do git, é recomendável para este guia. Examine a [documentação do git](https://git-scm.com/doc), especificamente [git remoto](https://git-scm.com/docs/git-remote) e [git Push](https://git-scm.com/docs/git-push).
-* [SDK do .NET Core](https://dotnet.microsoft.com/download/) &mdash; versão 2.1.300 ou posterior é necessária para compilar e executar o aplicativo de exemplo. Se o Visual Studio estiver instalado com a carga de trabalho de **desenvolvimento de plataforma cruzada do .NET Core** , o SDK do .NET Core já estará instalado.
+* [Git](https://git-scm.com/downloads) &mdash; Uma compreensão fundamental do git é recomendada para este guia. Examine a [documentação do git](https://git-scm.com/doc), especificamente [git remoto](https://git-scm.com/docs/git-remote) e [git Push](https://git-scm.com/docs/git-push).
+* [SDK do .NET Core](https://dotnet.microsoft.com/download/) &mdash; A versão 2.1.300 ou posterior é necessária para compilar e executar o aplicativo de exemplo. Se o Visual Studio estiver instalado com a carga de trabalho de **desenvolvimento de plataforma cruzada do .NET Core** , o SDK do .NET Core já estará instalado.
 
     Verifique a instalação do SDK do .NET Core. Abra um shell de comando e execute o seguinte comando:
 

@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/24/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-ms.openlocfilehash: df1daa68a3e18f7aad4507ce9526d76ff6a2114d
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4b8e393542c56502a825000773bbf714d91e4128
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773910"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85399225"
 ---
 # <a name="distributed-cache-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Cache Distribuído no ASP.NET Core
 
@@ -52,9 +54,9 @@ O Auxiliar de Marca de Cache Distribuído herda da mesma classe que o Auxiliar d
 
 | Tipo de Atributo | Exemplo                               |
 | -------------- | ------------------------------------- |
-| String         | `my-distributed-cache-unique-key-101` |
+| Cadeia de caracteres         | `my-distributed-cache-unique-key-101` |
 
-`name` é obrigatório. O atributo `name` é usado como uma chave para cada instância de cache armazenada. Ao contrário do auxiliar de marca de cache que atribui uma chave de cache para cada instância com Razor base no nome da página e Razor no local na página, o auxiliar da marca cache distribuído baseia-se `name`apenas em sua chave no atributo.
+`name` é obrigatório. O atributo `name` é usado como uma chave para cada instância de cache armazenada. Ao contrário do auxiliar de marca de cache que atribui uma chave de cache para cada instância com base no Razor nome da página e no local na Razor página, o auxiliar da marca cache distribuído baseia-se apenas em sua chave no atributo `name` .
 
 Exemplo:
 

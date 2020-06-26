@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 4/1/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: f4bba10f7ce0b5a95c2aed8644aed18fa0637457
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 7ac6dc983454153792610a07c1df01fbc38c8d67
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074507"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85400824"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -563,14 +565,14 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o `$` caractere e correspondem ao final da cadeia de caracteres. Os `^` `$` caracteres e garantem que a expressão regular corresponda ao valor do parâmetro de rota inteiro. Sem os `^` `$` caracteres e, a expressão regular corresponde a qualquer subcadeia de caracteres dentro da cadeia de caracteres, o que geralmente é indesejável. A tabela a seguir fornece exemplos e explica por que eles correspondem ou falham na correspondência:
 
-| Expression   | String    | Corresponder a | Comentário               |
+| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
@@ -1484,14 +1486,14 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere de cursor e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de sinal de dólar `$` e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | String    | Corresponder a | Comentário               |
+| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
@@ -1928,14 +1930,14 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | String    | Corresponder a | Comentário               |
+| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
