@@ -1,23 +1,25 @@
 ---
 title: Criar um aplicativo ASP.NET Core com dados de usuário protegidos por autorização
 author: rick-anderson
-description: Saiba como criar um aplicativo Razor de páginas com dados de usuário protegidos por autorização. Inclui HTTPS, autenticação, segurança ASP.NET Core Identity.
+description: Saiba como criar um Razor aplicativo de páginas com dados de usuário protegidos por autorização. Inclui HTTPS, autenticação, segurança ASP.NET Core Identity .
 ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: f52b08786dde54e7dcbd2e00f43badb58879cf79
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f50015af864a4a62abd5e2eab508aac915cb6370
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775746"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404711"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com dados de usuário protegidos por autorização
 
@@ -45,13 +47,13 @@ Este tutorial mostra como criar um aplicativo Web ASP.NET Core com dados de usu�
 
 As imagens neste documento não correspondem exatamente aos modelos mais recentes.
 
-Na imagem a seguir, o usuário Rick`rick@example.com`() está conectado. Rick só pode exibir contatos aprovados e **Editar**/**excluir**/**criar novos** links para seus contatos. Somente o último registro, criado por Rick, exibe links de **edição** e **exclusão** . Outros usuários não verão o último registro até que um gerente ou Administrador altere o status para "aprovado".
+Na imagem a seguir, o usuário Rick ( `rick@example.com` ) está conectado. Rick só pode exibir contatos aprovados e **Editar** / **excluir** / **criar novos** links para seus contatos. Somente o último registro, criado por Rick, exibe links de **edição** e **exclusão** . Outros usuários não verão o último registro até que um gerente ou Administrador altere o status para "aprovado".
 
 ![Captura de tela mostrando Rick conectado](secure-data/_static/rick.png)
 
 Na imagem a seguir, `manager@contoso.com` está conectado e na função do gerente:
 
-![Captura de manager@contoso.com tela mostrando a entrada](secure-data/_static/manager1.png)
+![Captura de tela mostrando a manager@contoso.com entrada](secure-data/_static/manager1.png)
 
 A imagem a seguir mostra a exibição de detalhes dos gerentes de um contato:
 
@@ -61,7 +63,7 @@ Os botões **aprovar** e **rejeitar** são exibidos apenas para gerentes e admin
 
 Na imagem a seguir, `admin@contoso.com` está conectado e na função do administrador:
 
-![Captura de admin@contoso.com tela mostrando a entrada](secure-data/_static/admin.png)
+![Captura de tela mostrando a admin@contoso.com entrada](secure-data/_static/admin.png)
 
 O administrador tem todos os privilégios. Ela pode ler/editar/excluir qualquer contato e alterar o status dos contatos.
 
@@ -101,11 +103,11 @@ As seções a seguir têm todas as principais etapas para criar o aplicativo de 
 
 ### <a name="tie-the-contact-data-to-the-user"></a>Vincular os dados de contato ao usuário
 
-Use a ID de usuário de [identidade](xref:security/authentication/identity) ASP.net para garantir que os usuários possam editar seus dados, mas não outros dados de usuários. Adicione `OwnerID` e `ContactStatus` ao `Contact` modelo:
+Use a [Identity](xref:security/authentication/identity) ID de usuário ASP.net para garantir que os usuários possam editar seus dados, mas não outros dados de usuários. Adicione `OwnerID` e `ContactStatus` ao `Contact` modelo:
 
 [!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`é a ID do usuário da `AspNetUser` tabela no banco de dados de [identidade](xref:security/authentication/identity) . O `Status` campo determina se um contato é visível por usuários gerais.
+`OwnerID`é a ID do usuário da `AspNetUser` tabela no banco de [Identity](xref:security/authentication/identity) dados. O `Status` campo determina se um contato é visível por usuários gerais.
 
 Crie uma nova migração e atualize o banco de dados:
 
@@ -114,7 +116,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-identity"></a>Adicionar serviços de função à identidade
+### <a name="add-role-services-to-identity"></a>Adicionar serviços de função aIdentity
 
 Acrescente [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) para adicionar serviços de função:
 
@@ -126,7 +128,7 @@ Defina a política de autenticação padrão para exigir que os usuários sejam 
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=15-99)] 
 
- Você pode recusar a autenticação na página do Razor, no controlador ou no nível do método de ação `[AllowAnonymous]` com o atributo. Definir a política de autenticação padrão para exigir que os usuários sejam autenticados protege Razor Pages e controladores adicionados recentemente. Ter a autenticação exigida por padrão é mais seguro do que depender de novos controladores e Razor Pages incluir `[Authorize]` o atributo.
+ Você pode recusar a autenticação na Razor página, controlador ou nível de método de ação com o `[AllowAnonymous]` atributo. Definir a política de autenticação padrão para exigir que os usuários sejam autenticados protege Razor páginas e controladores adicionados recentemente. Ter a autenticação exigida por padrão é mais seguro do que depender de novos controladores e Razor páginas para incluir o `[Authorize]` atributo.
 
 Adicione [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) às páginas de índice e privacidade para que os usuários anônimos possam obter informações sobre o site antes de se registrarem.
 
@@ -152,7 +154,7 @@ Atualize o `Initialize` método na `SeedData` classe para criar as contas de tes
 
 [!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet_Initialize)]
 
-Adicione a ID de usuário do `ContactStatus` administrador e aos contatos. Faça um dos contatos "enviado" e um "rejeitado". Adicione a ID de usuário e o status a todos os contatos. Apenas um contato é mostrado:
+Adicione a ID de usuário do administrador e `ContactStatus` aos contatos. Faça um dos contatos "enviado" e um "rejeitado". Adicione a ID de usuário e o status a todos os contatos. Apenas um contato é mostrado:
 
 [!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
@@ -165,7 +167,7 @@ Crie uma `ContactIsOwnerAuthorizationHandler` classe na pasta *Authorization* . 
 O `ContactIsOwnerAuthorizationHandler` contexto de chamadas [. Com sucesso](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) se o usuário autenticado atual for o proprietário do contato. Manipuladores de autorização geralmente:
 
 * Retornar `context.Succeed` quando os requisitos forem atendidos.
-* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha&mdash;permite que outros manipuladores de autorização sejam executados.
+* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha &mdash; permite que outros manipuladores de autorização sejam executados.
 
 Se você precisar falhar explicitamente, o contexto de retorno será retornado [. Falha](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -185,7 +187,7 @@ Crie uma `ContactAdministratorsAuthorizationHandler` classe na pasta *Authorizat
 
 ## <a name="register-the-authorization-handlers"></a>Registrar os manipuladores de autorização
 
-Os serviços que usam Entity Framework Core devem ser registrados para [injeção de dependência](xref:fundamentals/dependency-injection) usando [addscoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). O `ContactIsOwnerAuthorizationHandler` usa ASP.NET Core [identidade](xref:security/authentication/identity), que se baseia em Entity Framework Core. Registre os manipuladores com a coleção de serviços para que fiquem disponíveis para `ContactsController` o através de [injeção de dependência](xref:fundamentals/dependency-injection). Adicione o seguinte código ao final de `ConfigureServices`:
+Os serviços que usam Entity Framework Core devem ser registrados para [injeção de dependência](xref:fundamentals/dependency-injection) usando [addscoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). O `ContactIsOwnerAuthorizationHandler` usa ASP.NET Core [Identity](xref:security/authentication/identity) , que se baseia em Entity Framework Core. Registre os manipuladores com a coleção de serviços para que fiquem disponíveis para o `ContactsController` através de [injeção de dependência](xref:fundamentals/dependency-injection). Adicione o seguinte código ao final de `ConfigureServices` :
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 
@@ -193,7 +195,7 @@ Os serviços que usam Entity Framework Core devem ser registrados para [injeçã
 
 ## <a name="support-authorization"></a>Autorização de suporte
 
-Nesta seção, você atualiza o Razor Pages e adiciona uma classe de requisitos de operações.
+Nesta seção, você atualizará as Razor páginas e adicionará uma classe de requisitos de operações.
 
 ### <a name="review-the-contact-operations-requirements-class"></a>Examinar a classe de requisitos de operações de contato
 
@@ -201,21 +203,21 @@ Examine a `ContactOperations` classe. Essa classe contém os requisitos aos quai
 
 [!code-csharp[](secure-data/samples/final3/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Criar uma classe base para os contatos Razor Pages
+### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Criar uma classe base para as páginas de contatos Razor
 
-Crie uma classe base que contenha os serviços usados na Razor Pages de contatos. A classe base coloca o código de inicialização em um local:
+Crie uma classe base que contenha os serviços usados nas páginas de contatos Razor . A classe base coloca o código de inicialização em um local:
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/DI_BasePageModel.cs)]
 
 O código anterior:
 
 * Adiciona o `IAuthorizationService` serviço para acessar os manipuladores de autorização.
-* Adiciona o serviço `UserManager` de identidade.
+* Adiciona o Identity `UserManager` serviço.
 * Adicione a `ApplicationDbContext`.
 
 ### <a name="update-the-createmodel"></a>Atualizar o CREATEMODEL
 
-Atualize o Construtor criar modelo de página para usar `DI_BasePageModel` a classe base:
+Atualize o Construtor criar modelo de página para usar a `DI_BasePageModel` classe base:
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
 
@@ -259,7 +261,7 @@ Atualize os links **Editar** e **excluir** em *pages/Contacts/index. cshtml* par
 [!code-cshtml[](secure-data/samples/final3/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
-> Ocultar links de usuários que não têm permissão para alterar dados não protege o aplicativo. Ocultar links torna o aplicativo mais amigável exibindo apenas links válidos. Os usuários podem invadir as URLs geradas para invocar operações de edição e exclusão nos dados que não possuem. A página Razor ou o controlador deve impor verificações de acesso para proteger os dados.
+> Ocultar links de usuários que não têm permissão para alterar dados não protege o aplicativo. Ocultar links torna o aplicativo mais amigável exibindo apenas links válidos. Os usuários podem invadir as URLs geradas para invocar operações de edição e exclusão nos dados que não possuem. A Razor página ou o controlador deve impor verificações de acesso para proteger os dados.
 
 ### <a name="update-details"></a>Atualizar detalhes
 
@@ -307,7 +309,7 @@ Se o aplicativo tiver contatos:
 * Exclua todos os registros na `Contact` tabela.
 * Reinicie o aplicativo para propagar o banco de dados.
 
-Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadores diferentes (ou sessões Incognito/InPrivate). Em um navegador, registre um novo usuário (por exemplo, `test@example.com`). Entre em cada navegador com um usuário diferente. Verifique as seguintes operações:
+Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadores diferentes (ou sessões Incognito/InPrivate). Em um navegador, registre um novo usuário (por exemplo, `test@example.com` ). Entre em cada navegador com um usuário diferente. Verifique as seguintes operações:
 
 * Os usuários registrados podem exibir todos os dados de contato aprovados.
 * Os usuários registrados podem editar/excluir seus próprios dados.
@@ -316,15 +318,15 @@ Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadore
 
 | Usuário                | Propagado pelo aplicativo | Opções                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Não                | Edite/exclua os próprios dados.                |
-| manager@contoso.com | Sim               | Aprovar/rejeitar e editar/excluir os próprios dados. |
-| admin@contoso.com   | Sim               | Aprovar/rejeitar e editar/excluir todos os dados. |
+| test@example.com    | No                | Edite/exclua os próprios dados.                |
+| manager@contoso.com | Yes               | Aprovar/rejeitar e editar/excluir os próprios dados. |
+| admin@contoso.com   | Yes               | Aprovar/rejeitar e editar/excluir todos os dados. |
 
 Crie um contato no navegador do administrador. Copie a URL para excluir e editar do contato do administrador. Cole esses links no navegador do usuário de teste para verificar se o usuário de teste não pode executar essas operações.
 
 ## <a name="create-the-starter-app"></a>Criar o aplicativo inicial
 
-* Criar um aplicativo Razor Pages chamado "ContactManager"
+* Criar um Razor aplicativo de páginas chamado "ContactManager"
   * Crie o aplicativo com **contas de usuário individuais**.
   * Nomeie-o como "ContactManager" para que o namespace corresponda ao namespace usado no exemplo.
   * `-uld`Especifica o LocalDB em vez do SQLite
@@ -365,7 +367,7 @@ Adicione a classe [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/mast
 
 [!code-csharp[](secure-data/samples/starter3/Data/SeedData.cs)]
 
-Chamada `SeedData.Initialize` de `Main`:
+Chamada `SeedData.Initialize` de `Main` :
 
 [!code-csharp[](secure-data/samples/starter3/Program.cs)]
 
@@ -381,13 +383,13 @@ Este tutorial mostra como criar um aplicativo Web ASP.NET Core com dados de usu�
 * **Os gerentes** podem aprovar ou rejeitar dados de contato. Somente contatos aprovados são visíveis para os usuários.
 * **Os administradores** podem aprovar/rejeitar e editar/excluir todos os dados.
 
-Na imagem a seguir, o usuário Rick`rick@example.com`() está conectado. Rick só pode exibir contatos aprovados e **Editar**/**excluir**/**criar novos** links para seus contatos. Somente o último registro, criado por Rick, exibe links de **edição** e **exclusão** . Outros usuários não verão o último registro até que um gerente ou Administrador altere o status para "aprovado".
+Na imagem a seguir, o usuário Rick ( `rick@example.com` ) está conectado. Rick só pode exibir contatos aprovados e **Editar** / **excluir** / **criar novos** links para seus contatos. Somente o último registro, criado por Rick, exibe links de **edição** e **exclusão** . Outros usuários não verão o último registro até que um gerente ou Administrador altere o status para "aprovado".
 
 ![Captura de tela mostrando Rick conectado](secure-data/_static/rick.png)
 
 Na imagem a seguir, `manager@contoso.com` está conectado e na função do gerente:
 
-![Captura de manager@contoso.com tela mostrando a entrada](secure-data/_static/manager1.png)
+![Captura de tela mostrando a manager@contoso.com entrada](secure-data/_static/manager1.png)
 
 A imagem a seguir mostra a exibição de detalhes dos gerentes de um contato:
 
@@ -397,7 +399,7 @@ Os botões **aprovar** e **rejeitar** são exibidos apenas para gerentes e admin
 
 Na imagem a seguir, `admin@contoso.com` está conectado e na função do administrador:
 
-![Captura de admin@contoso.com tela mostrando a entrada](secure-data/_static/admin.png)
+![Captura de tela mostrando a admin@contoso.com entrada](secure-data/_static/admin.png)
 
 O administrador tem todos os privilégios. Ela pode ler/editar/excluir qualquer contato e alterar o status dos contatos.
 
@@ -437,11 +439,11 @@ As seções a seguir têm todas as principais etapas para criar o aplicativo de 
 
 ### <a name="tie-the-contact-data-to-the-user"></a>Vincular os dados de contato ao usuário
 
-Use a ID de usuário de [identidade](xref:security/authentication/identity) ASP.net para garantir que os usuários possam editar seus dados, mas não outros dados de usuários. Adicione `OwnerID` e `ContactStatus` ao `Contact` modelo:
+Use a [Identity](xref:security/authentication/identity) ID de usuário ASP.net para garantir que os usuários possam editar seus dados, mas não outros dados de usuários. Adicione `OwnerID` e `ContactStatus` ao `Contact` modelo:
 
 [!code-csharp[](secure-data/samples/final2.1/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
-`OwnerID`é a ID do usuário da `AspNetUser` tabela no banco de dados de [identidade](xref:security/authentication/identity) . O `Status` campo determina se um contato é visível por usuários gerais.
+`OwnerID`é a ID do usuário da `AspNetUser` tabela no banco de [Identity](xref:security/authentication/identity) dados. O `Status` campo determina se um contato é visível por usuários gerais.
 
 Crie uma nova migração e atualize o banco de dados:
 
@@ -450,7 +452,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-identity"></a>Adicionar serviços de função à identidade
+### <a name="add-role-services-to-identity"></a>Adicionar serviços de função aIdentity
 
 Acrescente [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) para adicionar serviços de função:
 
@@ -462,7 +464,7 @@ Defina a política de autenticação padrão para exigir que os usuários sejam 
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet&highlight=17-99)] 
 
- Você pode recusar a autenticação na página do Razor, no controlador ou no nível do método de ação `[AllowAnonymous]` com o atributo. Definir a política de autenticação padrão para exigir que os usuários sejam autenticados protege Razor Pages e controladores adicionados recentemente. Ter a autenticação exigida por padrão é mais seguro do que depender de novos controladores e Razor Pages incluir `[Authorize]` o atributo.
+ Você pode recusar a autenticação na Razor página, controlador ou nível de método de ação com o `[AllowAnonymous]` atributo. Definir a política de autenticação padrão para exigir que os usuários sejam autenticados protege Razor páginas e controladores adicionados recentemente. Ter a autenticação exigida por padrão é mais seguro do que depender de novos controladores e Razor páginas para incluir o `[Authorize]` atributo.
 
 Adicione [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) às páginas de índice, sobre e de contato para que os usuários anônimos possam obter informações sobre o site antes de se registrarem.
 
@@ -488,20 +490,20 @@ Atualize o `Initialize` método na `SeedData` classe para criar as contas de tes
 
 [!code-csharp[](secure-data/samples/final2.1/Data/SeedData.cs?name=snippet_Initialize)]
 
-Adicione a ID de usuário do `ContactStatus` administrador e aos contatos. Faça um dos contatos "enviado" e um "rejeitado". Adicione a ID de usuário e o status a todos os contatos. Apenas um contato é mostrado:
+Adicione a ID de usuário do administrador e `ContactStatus` aos contatos. Faça um dos contatos "enviado" e um "rejeitado". Adicione a ID de usuário e o status a todos os contatos. Apenas um contato é mostrado:
 
 [!code-csharp[](secure-data/samples/final2.1/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
 ## <a name="create-owner-manager-and-administrator-authorization-handlers"></a>Criar manipuladores de autorização de administrador, gerente e proprietário
 
-Crie uma pasta de *autorização* e crie `ContactIsOwnerAuthorizationHandler` uma classe nela. O `ContactIsOwnerAuthorizationHandler` verifica se o usuário que está atuando em um recurso possui o recurso.
+Crie uma pasta de *autorização* e crie uma `ContactIsOwnerAuthorizationHandler` classe nela. O `ContactIsOwnerAuthorizationHandler` verifica se o usuário que está atuando em um recurso possui o recurso.
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 O `ContactIsOwnerAuthorizationHandler` contexto de chamadas [. Com sucesso](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) se o usuário autenticado atual for o proprietário do contato. Manipuladores de autorização geralmente:
 
 * Retornar `context.Succeed` quando os requisitos forem atendidos.
-* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha&mdash;permite que outros manipuladores de autorização sejam executados.
+* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha &mdash; permite que outros manipuladores de autorização sejam executados.
 
 Se você precisar falhar explicitamente, o contexto de retorno será retornado [. Falha](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -521,7 +523,7 @@ Crie uma `ContactAdministratorsAuthorizationHandler` classe na pasta *Authorizat
 
 ## <a name="register-the-authorization-handlers"></a>Registrar os manipuladores de autorização
 
-Os serviços que usam Entity Framework Core devem ser registrados para [injeção de dependência](xref:fundamentals/dependency-injection) usando [addscoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). O `ContactIsOwnerAuthorizationHandler` usa ASP.NET Core [identidade](xref:security/authentication/identity), que se baseia em Entity Framework Core. Registre os manipuladores com a coleção de serviços para que fiquem disponíveis para `ContactsController` o através de [injeção de dependência](xref:fundamentals/dependency-injection). Adicione o seguinte código ao final de `ConfigureServices`:
+Os serviços que usam Entity Framework Core devem ser registrados para [injeção de dependência](xref:fundamentals/dependency-injection) usando [addscoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). O `ContactIsOwnerAuthorizationHandler` usa ASP.NET Core [Identity](xref:security/authentication/identity) , que se baseia em Entity Framework Core. Registre os manipuladores com a coleção de serviços para que fiquem disponíveis para o `ContactsController` através de [injeção de dependência](xref:fundamentals/dependency-injection). Adicione o seguinte código ao final de `ConfigureServices` :
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
@@ -529,7 +531,7 @@ Os serviços que usam Entity Framework Core devem ser registrados para [injeçã
 
 ## <a name="support-authorization"></a>Autorização de suporte
 
-Nesta seção, você atualiza o Razor Pages e adiciona uma classe de requisitos de operações.
+Nesta seção, você atualizará as Razor páginas e adicionará uma classe de requisitos de operações.
 
 ### <a name="review-the-contact-operations-requirements-class"></a>Examinar a classe de requisitos de operações de contato
 
@@ -537,21 +539,21 @@ Examine a `ContactOperations` classe. Essa classe contém os requisitos aos quai
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Criar uma classe base para os contatos Razor Pages
+### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>Criar uma classe base para as páginas de contatos Razor
 
-Crie uma classe base que contenha os serviços usados na Razor Pages de contatos. A classe base coloca o código de inicialização em um local:
+Crie uma classe base que contenha os serviços usados nas páginas de contatos Razor . A classe base coloca o código de inicialização em um local:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/DI_BasePageModel.cs)]
 
 O código anterior:
 
 * Adiciona o `IAuthorizationService` serviço para acessar os manipuladores de autorização.
-* Adiciona o serviço `UserManager` de identidade.
+* Adiciona o Identity `UserManager` serviço.
 * Adicione a `ApplicationDbContext`.
 
 ### <a name="update-the-createmodel"></a>Atualizar o CREATEMODEL
 
-Atualize o Construtor criar modelo de página para usar `DI_BasePageModel` a classe base:
+Atualize o Construtor criar modelo de página para usar a `DI_BasePageModel` classe base:
 
 [!code-csharp[](secure-data/samples/final2.1/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
 
@@ -595,7 +597,7 @@ Atualize os links **Editar** e **excluir** em *pages/Contacts/index. cshtml* par
 [!code-cshtml[](secure-data/samples/final2.1/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
-> Ocultar links de usuários que não têm permissão para alterar dados não protege o aplicativo. Ocultar links torna o aplicativo mais amigável exibindo apenas links válidos. Os usuários podem invadir as URLs geradas para invocar operações de edição e exclusão nos dados que não possuem. A página Razor ou o controlador deve impor verificações de acesso para proteger os dados.
+> Ocultar links de usuários que não têm permissão para alterar dados não protege o aplicativo. Ocultar links torna o aplicativo mais amigável exibindo apenas links válidos. Os usuários podem invadir as URLs geradas para invocar operações de edição e exclusão nos dados que não possuem. A Razor página ou o controlador deve impor verificações de acesso para proteger os dados.
 
 ### <a name="update-details"></a>Atualizar detalhes
 
@@ -634,7 +636,7 @@ Se você ainda não definiu uma senha para contas de usuário propagadas, use a 
 
 * Reinicie o aplicativo para propagar o banco de dados.
 
-Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadores diferentes (ou sessões Incognito/InPrivate). Em um navegador, registre um novo usuário (por exemplo, `test@example.com`). Entre em cada navegador com um usuário diferente. Verifique as seguintes operações:
+Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadores diferentes (ou sessões Incognito/InPrivate). Em um navegador, registre um novo usuário (por exemplo, `test@example.com` ). Entre em cada navegador com um usuário diferente. Verifique as seguintes operações:
 
 * Os usuários registrados podem exibir todos os dados de contato aprovados.
 * Os usuários registrados podem editar/excluir seus próprios dados.
@@ -643,9 +645,9 @@ Uma maneira fácil de testar o aplicativo concluído é iniciar três navegadore
 
 | Usuário                | Propagado pelo aplicativo | Opções                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Não                | Edite/exclua os próprios dados.                |
-| manager@contoso.com | Sim               | Aprovar/rejeitar e editar/excluir os próprios dados. |
-| admin@contoso.com   | Sim               | Aprovar/rejeitar e editar/excluir todos os dados. |
+| test@example.com    | No                | Edite/exclua os próprios dados.                |
+| manager@contoso.com | Yes               | Aprovar/rejeitar e editar/excluir os próprios dados. |
+| admin@contoso.com   | Yes               | Aprovar/rejeitar e editar/excluir todos os dados. |
 
 Crie um contato no navegador do administrador. Copie a URL para excluir e editar do contato do administrador. Cole esses links no navegador do usuário de teste para verificar se o usuário de teste não pode executar essas operações.
 
@@ -686,7 +688,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 
 Adicione a classe [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) à pasta de *dados* .
 
-Chamada `SeedData.Initialize` de `Main`:
+Chamada `SeedData.Initialize` de `Main` :
 
 [!code-csharp[](secure-data/samples/starter2.1/Program.cs?name=snippet)]
 

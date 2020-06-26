@@ -7,17 +7,19 @@ ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: df118cdc8346b99e4e5c60c9f0441c963543f4b4
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 58781880764b26a67d71e70c225ab4ed4e5da109
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767506"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406700"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes do Auxiliar de Marca no ASP.NET Core
 
@@ -80,7 +82,7 @@ Se a classe do Componente do Auxiliar de Marca não for gerenciada com <xref:Mic
 
 ### <a name="registration-via-razor-file"></a>Registro via Razor arquivo
 
-Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado Razor em uma página de páginas ou em uma exibição do MVC. Essa técnica é usada para controlar a marcação injetada e a ordem de execução do componente Razor de um arquivo.
+Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado em uma Razor página de páginas ou em uma exibição do MVC. Essa técnica é usada para controlar a marcação injetada e a ordem de execução do componente de um Razor arquivo.
 
 `ITagHelperComponentManager` é usado para adicionar Componentes do Auxiliar de Marca ou removê-los do aplicativo. O código a seguir demonstra essa técnica com `AddressTagHelperComponent`:
 
@@ -101,9 +103,9 @@ O parâmetro `markup` fornecido é usado em `ProcessAsync` da seguinte maneira:
 
 ### <a name="registration-via-page-model-or-controller"></a>Registro por Modelo de página ou controlador
 
-Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado Razor de um modelo de página de páginas ou de um controlador MVC. Essa técnica é útil para separar a lógica do C# Razor de arquivos.
+Se o componente auxiliar de marca não estiver registrado com DI, ele poderá ser registrado de um Razor modelo de página de páginas ou de um controlador MVC. Essa técnica é útil para separar a lógica do C# de Razor arquivos.
 
-A injeção do construtor é usada para acessar uma instância de `ITagHelperComponentManager`. Um Componente do Auxiliar de Marca é adicionado à coleção de Componentes do Auxiliar de Marca da instância. O modelo Razor de página de páginas a seguir demonstra `AddressTagHelperComponent`essa técnica com:
+A injeção do construtor é usada para acessar uma instância de `ITagHelperComponentManager`. Um Componente do Auxiliar de Marca é adicionado à coleção de Componentes do Auxiliar de Marca da instância. O modelo de página de páginas a seguir Razor demonstra essa técnica com `AddressTagHelperComponent` :
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 

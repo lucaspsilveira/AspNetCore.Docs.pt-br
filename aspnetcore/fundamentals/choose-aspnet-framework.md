@@ -7,17 +7,19 @@ ms.custom: mvc, seodec18
 ms.date: 02/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: 1fb81d5a54cf332ca473af8fbe1841813a127be7
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 73495ea851cdfe5d3588b347e75f0af6adacc02e
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775876"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404932"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Escolher entre o ASP.NET 4.x e o ASP.NET Core
 
@@ -40,7 +42,7 @@ A tabela a seguir compara o ASP.NET Core com o ASP.NET 4. x.
 | ASP.NET Core | ASP.NET 4.x |
 |---|---|
 |Build para Windows, macOS ou Linux|Build para Windows|
-|Páginas é a abordagem recomendada para criar uma interface do usuário da Web a partir do ASP.NET Core 2. x. [ Razor ](xref:razor-pages/index) Consulte também [MVC](xref:mvc/overview), [API da Web](xref:tutorials/first-web-api)e [SignalR](xref:signalr/introduction).|Usar [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [API da Web](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/)ou [páginas da Web](/aspnet/web-pages)|
+|[ Razor Páginas](xref:razor-pages/index) é a abordagem recomendada para criar uma interface do usuário da Web a partir do ASP.NET Core 2. x. Consulte também [MVC](xref:mvc/overview), [API da Web](xref:tutorials/first-web-api)e [SignalR](xref:signalr/introduction) .|Usar [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr) , [MVC](/aspnet/mvc), [API da Web](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/)ou [páginas da Web](/aspnet/web-pages)|
 |Várias versões por computador|Uma versão por computador|
 |Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando C# ou F#|Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/) usando C#, vb ou F #|
 |Desempenho superior ao do ASP.NET 4.x|Bom desempenho|

@@ -1,32 +1,34 @@
 ---
 title: Introdução ao ASP.NET CoreSignalR
 author: bradygaster
-description: Saiba como a biblioteca SignalR de ASP.NET Core simplifica a adição de funcionalidades em tempo real aos aplicativos.
+description: Saiba como a biblioteca de ASP.NET Core SignalR simplifica a adição de funcionalidades em tempo real aos aplicativos.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 4e968659d23330c4b1403ab998dda9c9e6ebe080
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 816ecfc5d23e8e1d2901a8c35c657cc968fa95df
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775772"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404945"
 ---
 # <a name="introduction-to-aspnet-core-signalr"></a>Introdução ao ASP.NET CoreSignalR
 
-## <a name="what-is-signalr"></a>O que SignalRé?
+## <a name="what-is-signalr"></a>O que é SignalR ?
 
 ASP.NET Core SignalR é uma biblioteca de software livre que simplifica a adição de funcionalidades da Web em tempo real a aplicativos. A funcionalidade da Web em tempo real permite que o código do lado do servidor envie conteúdo aos clientes instantaneamente.
 
-Bons candidatos para SignalR:
+Bons candidatos para SignalR :
 
 * Aplicativos que exigem atualizações frequentes do servidor. Por exemplo, jogos, redes sociais, votação, leilão, mapas e aplicativos de GPS.
 * Painéis e aplicativos de monitoramento. Por exemplo, painéis de empresa, atualizações de vendas instantâneas ou alertas de viagem.

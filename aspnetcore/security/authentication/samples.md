@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/31/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/samples
-ms.openlocfilehash: 7cd0fe60d7917abda7d8ac0e071deca13a4136ce
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95915c28b132a1a48fb772b2663794754006627f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776546"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405348"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Exemplos de autenticação para ASP.NET Core
 
@@ -39,7 +41,7 @@ O [repositório de ASP.NET Core](https://github.com/dotnet/AspNetCore) contém o
 * Selecione uma [ramificação](https://github.com/dotnet/AspNetCore). Por exemplo, `release/3.1`
 * Clone ou baixe o [repositório ASP.NET Core](https://github.com/dotnet/AspNetCore).
 * Verifique se você instalou a versão [SDK do .NET Core](https://dotnet.microsoft.com/download/dotnet-core) correspondente ao clone do repositório ASP.NET Core.
-* Navegue até um exemplo em *AspNetCore/src/Security/Samples* e execute o exemplo `dotnet run`com.
+* Navegue até um exemplo em *AspNetCore/src/Security/Samples* e execute o exemplo com `dotnet run` .
 
 ::: moniker-end
 
@@ -60,6 +62,6 @@ O [repositório de ASP.NET Core](https://github.com/dotnet/AspNetCore) contém o
 * Selecione uma [ramificação](https://github.com/dotnet/AspNetCore). Por exemplo, `release/2.2`
 * Clone ou baixe o [repositório ASP.NET Core](https://github.com/dotnet/AspNetCore).
 * Verifique se você instalou a versão [SDK do .NET Core](https://dotnet.microsoft.com/download/dotnet-core) correspondente ao clone do repositório ASP.NET Core.
-* Navegue até um exemplo em *AspNetCore/src/Security/Samples* e execute o exemplo `dotnet run`com.
+* Navegue até um exemplo em *AspNetCore/src/Security/Samples* e execute o exemplo com `dotnet run` .
 
 ::: moniker-end

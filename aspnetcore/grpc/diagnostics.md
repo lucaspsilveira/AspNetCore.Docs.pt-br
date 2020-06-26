@@ -7,17 +7,19 @@ ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 33b2ee29830cd3012ff791c949c3a7c23a2e98c7
-ms.sourcegitcommit: 16b3abec1ed70f9a206f0cfa7cf6404eebaf693d
+ms.openlocfilehash: ca87ba5b03e7657132e5ebaba72370bde85c85d4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/17/2020
-ms.locfileid: "83444341"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406765"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Registro em log e diagnóstico no gRPC no .NET
 
@@ -40,7 +42,7 @@ os serviços gRPC e o cliente gRPC gravam logs usando o [log do .NET Core](xref:
 
 Como os serviços gRPCs são hospedados em ASP.NET Core, ele usa o sistema de registro em log de ASP.NET Core. Na configuração padrão, o gRPC registra muito pouca informação, mas isso pode ser configurado. Consulte a documentação em [log de ASP.NET Core](xref:fundamentals/logging/index#configuration) para obter detalhes sobre como configurar o log de ASP.NET Core.
 
-gRPC adiciona logs na `Grpc` categoria. Para habilitar logs detalhados do gRPC, configure os `Grpc` prefixos para o `Debug` nível em seu arquivo *appSettings. JSON* adicionando os seguintes itens à `LogLevel` subseção em `Logging` :
+gRPC adiciona logs na `Grpc` categoria. Para habilitar logs detalhados do gRPC, configure os `Grpc` prefixos para o `Debug` nível em seu *appsettings.jsno* arquivo adicionando os seguintes itens à `LogLevel` subseção em `Logging` :
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 

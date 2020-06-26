@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: ba523fba60153e2ae804f5a875cfaa1aa8fffedd
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 06d5d6e2db1cf3ccb148c24c40c264016d47a0ed
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82769096"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406583"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -33,7 +35,7 @@ Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxi
 
 O auxiliar de marca de [formulário](https://www.w3.org/TR/html401/interact/forms.html) :
 
-* Gera o [ \<formulário HTML>](https://www.w3.org/TR/html401/interact/forms.html) `action` valor do atributo para uma ação do controlador MVC ou rota nomeada
+* Gera o [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` valor do atributo HTML para uma ação do controlador MVC ou rota nomeada
 
 * Gera um [Token de verificação de solicitação](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) oculto para evitar a falsificação de solicitações entre sites (quando usado com o atributo `[ValidateAntiForgeryToken]` no método de ação HTTP Post)
 
@@ -75,7 +77,7 @@ Muitas das exibições na pasta *Modos de Exibição/Conta* (gerada quando você
 
 ## <a name="the-form-action-tag-helper"></a>Auxiliar de Marcação de Ação de Formulário
 
-O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` na marcação `<button ...>` ou `<input type="image" ...>` gerada. O atributo `formaction` controla onde um formulário envia seus dados. Ele é associado `image` a [ \<elementos de entrada>](https://www.w3.org/wiki/HTML/Elements/input) dos elementos Type e [ \<Button>](https://www.w3.org/wiki/HTML/Elements/button) . O Auxiliar de Marcação de Ação de Formulário permite o uso de vários atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` para controlar qual link `formaction` será gerado para o elemento correspondente.
+O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` na marcação `<button ...>` ou `<input type="image" ...>` gerada. O atributo `formaction` controla onde um formulário envia seus dados. Ele é associado a [\<input>](https://www.w3.org/wiki/HTML/Elements/input) elementos do tipo `image` e [\<button>](https://www.w3.org/wiki/HTML/Elements/button) elementos. O Auxiliar de Marcação de Ação de Formulário permite o uso de vários atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` para controlar qual link `formaction` será gerado para o elemento correspondente.
 
 Atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) com suporte para controlar o valor de `formaction`:
 
@@ -84,8 +86,8 @@ Atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-hel
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|O nome do controlador.|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|O nome do método da ação.|
 |[asp-area](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-area)|O nome da área.|
-|[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|O nome da Página do Razor.|
-|[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|O nome do manipulador da Página do Razor.|
+|[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|O nome da Razor página.|
+|[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|O nome do Razor manipulador de página.|
 |[asp-route](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route)|O nome da rota.|
 |[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route-value)|Um único valor de rota de URL. Por exemplo, `asp-route-id="1234"`.|
 |[asp-all-route-data](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-all-route-data)|Todos os valores de rota.|
@@ -114,7 +116,7 @@ A marcação anterior gera o seguinte HTML:
 
 ### <a name="submit-to-page-example"></a>Exemplo de Enviar a uma página
 
-A marcação a seguir envia o formulário à Página do Razor `About`:
+A marcação a seguir envia o formulário para a `About` Razor página:
 
 ```cshtml
 <form method="post">
@@ -167,7 +169,7 @@ A marcação anterior gera o seguinte HTML:
 
 ## <a name="the-input-tag-helper"></a>O auxiliar de marca de entrada
 
-O auxiliar de marca de entrada associa um elemento de [ \<>de entrada](https://www.w3.org/wiki/HTML/Elements/input) de HTML a uma expressão de modelo no modo de exibição do Razor.
+O auxiliar de marca de entrada associa um [\<input>](https://www.w3.org/wiki/HTML/Elements/input) elemento HTML a uma expressão de modelo no modo de exibição do Razor.
 
 Sintaxe:
 
@@ -205,7 +207,7 @@ O Auxiliar de marca `Input` define o atributo HTML `type` com base no tipo .NET.
 |Tipo .NET|Tipo de entrada|
 |---|---|
 |Bool|type="checkbox"|
-|String|type="text"|
+|Cadeia de caracteres|type="text"|
 |Datetime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
 |Int|type="number"|
@@ -247,7 +249,7 @@ O código acima gera o seguinte HTML:
    </form>
 ```
 
-As anotações de dados aplicadas às propriedades `Email` e `Password` geram metadados no modelo. O Auxiliar de marca de entrada consome os metadados do modelo e produz atributos [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` (consulte [Validação de modelo](../models/validation.md)). Esses atributos descrevem os validadores a serem anexados aos campos de entrada. Isso fornece validação de [jQuery](https://jquery.com/) e HTML5 discreto. Os atributos discretos têm o formato `data-val-rule="Error Message"`, em que Rule é o nome da regra de validação (como `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) Se uma mensagem de erro for fornecida no atributo, ela será exibida como o valor para o `data-val-rule` atributo. Também há atributos do formulário `data-val-ruleName-argumentName="argumentValue"` que fornecem detalhes adicionais sobre a regra, por exemplo, `data-val-maxlength-max="1024"`.
+As anotações de dados aplicadas às propriedades `Email` e `Password` geram metadados no modelo. O Auxiliar de marca de entrada consome os metadados do modelo e produz atributos [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` (consulte [Validação de modelo](../models/validation.md)). Esses atributos descrevem os validadores a serem anexados aos campos de entrada. Isso fornece validação de [jQuery](https://jquery.com/) e HTML5 discreto. Os atributos discretos têm o formato `data-val-rule="Error Message"` , em que Rule é o nome da regra de validação (como `data-val-required` , `data-val-email` , `data-val-maxlength` , etc.) Se uma mensagem de erro for fornecida no atributo, ela será exibida como o valor para o `data-val-rule` atributo. Também há atributos do formulário `data-val-ruleName-argumentName="argumentValue"` que fornecem detalhes adicionais sobre a regra, por exemplo, `data-val-maxlength-max="1024"`.
 
 ### <a name="html-helper-alternatives-to-input-tag-helper"></a>Alternativas de Auxiliar HTML ao Auxiliar de marca de entrada
 
@@ -321,7 +323,7 @@ public IActionResult Edit(int id, int colorIndex)
 }
 ```
 
-O Razor a seguir mostra como você acessa um elemento `Color` específico:
+O seguinte Razor mostra como você acessa um `Color` elemento específico:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
@@ -333,7 +335,7 @@ Exemplo usando `List<T>`:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/ToDoItem.cs?range=3-8)]
 
-O Razor a seguir mostra como iterar em uma coleção:
+Veja a seguir Razor como iterar em uma coleção:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
@@ -352,7 +354,7 @@ O modelo *Views/Shared/EditorTemplates/ToDoItem.cshtml*:
 
 O auxiliar de marca `Textarea Tag Helper` é semelhante ao Auxiliar de marca de entrada.
 
-* Gera os `id` atributos `name` e e os atributos de validação de dados do modelo para um [ \<elemento de>TextArea](https://www.w3.org/wiki/HTML/Elements/textarea) .
+* Gera os `id` atributos e e `name` os atributos de validação de dados do modelo para um [\<textarea>](https://www.w3.org/wiki/HTML/Elements/textarea) elemento.
 
 * Fornece tipagem forte.
 
@@ -382,7 +384,7 @@ O HTML a seguir é gerado:
 
 ## <a name="the-label-tag-helper"></a>O auxiliar de marca de rótulo
 
-* Gera a legenda do rótulo `for` e o atributo em um [ \<rótulo>](https://www.w3.org/wiki/HTML/Elements/label) elemento para um nome de expressão
+* Gera a legenda do rótulo e o `for` atributo em um [\<label>](https://www.w3.org/wiki/HTML/Elements/label) elemento para um nome de expressão
 
 * Alternativa de Auxiliar HTML: `Html.LabelFor`.
 
@@ -464,7 +466,7 @@ O `Validation Summary Tag Helper` é usado para exibir um resumo das mensagens d
 
 ### <a name="sample"></a>Amostra
 
-No exemplo a seguir, o modelo de dados `DataAnnotation` tem atributos, que geram mensagens de erro `<input>` de validação no elemento.  Quando ocorre um erro de validação, o Auxiliar de marca de validação exibe a mensagem de erro:
+No exemplo a seguir, o modelo de dados tem `DataAnnotation` atributos, que geram mensagens de erro de validação no `<input>` elemento.  Quando ocorre um erro de validação, o Auxiliar de marca de validação exibe a mensagem de erro:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
@@ -497,7 +499,7 @@ O código HTML gerado (quando o modelo é válido):
 
 * Tem uma alternativa de Auxiliar HTML `Html.DropDownListFor` e `Html.ListBoxFor`
 
-O `Select Tag Helper` `asp-for` especifica o nome da propriedade do modelo para o elemento [select](https://www.w3.org/wiki/HTML/Elements/select) e `asp-items` especifica os elementos [option](https://www.w3.org/wiki/HTML/Elements/option).  Por exemplo: 
+O `Select Tag Helper` `asp-for` especifica o nome da propriedade do modelo para o elemento [select](https://www.w3.org/wiki/HTML/Elements/select) e `asp-items` especifica os elementos [option](https://www.w3.org/wiki/HTML/Elements/option).  Por exemplo:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
@@ -552,7 +554,7 @@ O método `GetEnumSelectList` gera um objeto `SelectList` para uma enumeração.
 
 [!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
 
-Você pode marcar sua lista de enumeradores `Display` com o atributo para obter uma interface do usuário mais rica:
+Você pode marcar sua lista de enumeradores com o `Display` atributo para obter uma interface do usuário mais rica:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnum.cs?highlight=5,7)]
 
@@ -576,7 +578,7 @@ O HTML a seguir é gerado:
 
 ### <a name="option-group"></a>Grupo de opções
 
-O elemento HTML [ \<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) é gerado quando o modelo de exibição contém um ou `SelectListGroup` mais objetos.
+O [\<optgroup>](https://www.w3.org/wiki/HTML/Elements/optgroup) elemento HTML é gerado quando o modelo de exibição contém um ou mais `SelectListGroup` objetos.
 
 O `CountryViewModelGroup` agrupa os elementos `SelectListItem` nos grupos "América do Norte" e "Europa":
 
@@ -645,7 +647,7 @@ O modelo *Views/Shared/EditorTemplates/CountryViewModel.cshtml*:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
-Adicionar a [ \<opção HTML>](https://www.w3.org/wiki/HTML/Elements/option) elementos não é limitado ao caso *sem seleção* . Por exemplo, o seguinte método de ação e exibição gerarão HTML semelhante ao código acima:
+A adição [\<option>](https://www.w3.org/wiki/HTML/Elements/option) de elementos HTML não está limitada ao caso de *nenhuma seleção* . Por exemplo, o seguinte método de ação e exibição gerarão HTML semelhante ao código acima:
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 

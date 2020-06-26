@@ -7,17 +7,19 @@ ms.author: riande
 ms.date: 07/04/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 58f7aa30d3e916307437d56c61e80765ac0c21cf
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a106654c8a37e84e9186a2f06d90605df753e8a7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766466"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405595"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -62,8 +64,8 @@ O gerador de código para ser executado. Os geradores a seguir estão disponíve
 | ----------------- | ------------ | 
 | área      | [Faz scaffold de uma área](/aspnet/core/mvc/controllers/areas) |
   controlador| [Faz scaffold de um controlador](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  identidade  | [Faz scaffold de uma identidade](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Faz scaffold de Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
+  identidade  | [Aplica ScaffoldIdentity](/aspnet/core/security/authentication/scaffold-identity) |
+  razorpage | [Páginas do aplica Scaffold Razor](/aspnet/core/tutorials/razor-pages/model) |
   exibição      | [Faz scaffolds de um modo de exibição](/aspnet/core/mvc/views/overview) |
 
 ## <a name="options"></a>Opções
@@ -102,15 +104,15 @@ As seções a seguir detalham as opções disponíveis para os geradores com sup
 
 * Área
 * Controller
-* Identidade  
+* Identity  
 * Razorpage
-* Visualizar
+* Exibir
 
 <a name="area"></a>
 
 ### <a name="area-options"></a>Opções de área
 
-Essa ferramenta destina-se aos projetos Web do ASP.NET Core com controladores e exibições. Ele não é destinado a aplicativos de Razor Pages.
+Essa ferramenta destina-se aos projetos Web do ASP.NET Core com controladores e exibições. Ele não se destina a Razor aplicativos de páginas.
 
 Uso: `dotnet aspnet-codegenerator area AreaNameToGenerate`
 
@@ -121,13 +123,13 @@ O comando anterior gera as seguintes pastas:
     * *Controladores*
     * *Dados*
     * *Modelos*
-    * *Modos de exibição*
+    * *Exibições*
 
 <a name="ctl"></a>
 
 ### <a name="controller-options"></a>Opções de controlador
 
-A tabela a seguir lista as `aspnet-codegenerator` `controller` opções `razorpage`para o e o:
+A tabela a seguir lista as opções para o `aspnet-codegenerator` `controller` e o `razorpage` :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -153,7 +155,7 @@ Confira [Fazer scaffold do modelo de filme](/aspnet/core/tutorials/razor-pages/m
 
 <a name="rp"></a>
 
-As Razor Pages podem ser geradas por scaffolding individualmente, especificando o nome da nova página e o modelo a ser usado. Os modelos com suporte são:
+RazorAs páginas podem ser com Scaffold individualmente especificando o nome da nova página e o modelo a ser usado. Os modelos com suporte são:
 
 * `Empty`
 * `Create`
@@ -176,7 +178,7 @@ Normalmente, o modelo e o nome de arquivo gerado não são especificados e os se
 * `Details`
 * `List`
 
-A tabela a seguir lista as `aspnet-codegenerator` `razorpage` opções `controller`para o e o:
+A tabela a seguir lista as opções para o `aspnet-codegenerator` `razorpage` e o `controller` :
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 

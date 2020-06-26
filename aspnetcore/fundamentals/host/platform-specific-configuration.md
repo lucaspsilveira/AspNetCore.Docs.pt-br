@@ -8,17 +8,19 @@ ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: 8cf6a4467f041fa71b75ee8d1e7a08d8f572acf3
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 0636c62c4373533234ab252d64052b476b123bbf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106345"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405088"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usar assemblies de inicialização de hospedagem no ASP.NET Core
 
@@ -275,7 +277,7 @@ Para ativar o aprimoramento sem uma referência de pacote ao aprimoramento, espe
 A abordagem recomendada para gerar o arquivo de dependências adicionais é:
 
  1. Executar o `dotnet publish` no arquivo de manifesto do repositório de runtime mencionado na seção anterior.
- 1. Remova a referência de manifesto das bibliotecas e a `runtime` seção do arquivo *. deps. JSON* resultante.
+ 1. Remova a referência de manifesto das bibliotecas e a `runtime` seção do *.deps.jsresultante no* arquivo.
 
 No projeto de exemplo, a propriedade `store.manifest/1.0.0` é removida das seções `targets` e `libraries`:
 
@@ -438,8 +440,8 @@ dotnet nuget locals all --clear
 1. O projeto *StartupDiagnostics* usa o [PowerShell](/powershell/scripting/powershell-scripting) para modificar seu arquivo *StartupDiagnostics.deps.json*. O PowerShell é instalado por padrão em um sistema operacional Windows começando no Windows 7 SP1 e no Windows Server 2008 R2 SP1. Para obter o PowerShell em outras plataformas, consulte [Instalando várias versões do PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute o script *build.ps1* na pasta *RuntimeStore*. O script:
    * Gera o `StartupDiagnostics` pacote na pasta *obj\packages*
-   * Gera o repositório de runtime para `StartupDiagnostics` na pasta de *armazenamento*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de runtime)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um runtime diferente, substitua pelo RID correto na linha 37 do script. O armazenamento em tempo de execução para `StartupDiagnostics` posteriormente seria movido para o armazenamento de tempo de execução do usuário ou do sistema no computador em que o assembly será consumido. O local de instalação do armazenamento em tempo de execução do usuário para o `StartupDiagnostics` assembly é *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/netcoreapp 3.0/startupdiagnostics. dll*.
-   * Gera o `additionalDeps` para `StartupDiagnostics` na pasta *additionalDeps* . As dependências adicionais posteriormente seriam movidas para as dependências adicionais do usuário ou do sistema. O `StartupDiagnostics` local de instalação das dependências adicionais do usuário é *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NetCore. app/3.0.0/StartupDiagnostics. deps. JSON*.
+   * Gera o repositório de runtime para `StartupDiagnostics` na pasta de *armazenamento*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de runtime)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um runtime diferente, substitua pelo RID correto na linha 37 do script. O armazenamento em tempo de execução para `StartupDiagnostics` posteriormente seria movido para o armazenamento de tempo de execução do usuário ou do sistema no computador em que o assembly será consumido. O local de instalação do armazenamento em tempo de execução do usuário para o `StartupDiagnostics` assembly é *. dotnet/Store/x64/netcoreapp 3.0/startupdiagnostics/1.0.0/lib/netcoreapp 3.0/StartupDiagnostics.dll*.
+   * Gera o `additionalDeps` para `StartupDiagnostics` na pasta *additionalDeps* . As dependências adicionais posteriormente seriam movidas para as dependências adicionais do usuário ou do sistema. O `StartupDiagnostics` local de instalação das dependências adicionais do usuário é *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NetCore. app/3.0.0/StartupDiagnostics.deps.json*.
    * Coloca o arquivo *deploy.ps1* na pasta *deployment*.
 1. Execute o script *deploy.ps1* na pasta *deployment*. O script acrescenta:
    * `StartupDiagnostics` à variável de ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
@@ -661,7 +663,7 @@ Para ativar o aprimoramento sem uma referência de pacote ao aprimoramento, espe
 A abordagem recomendada para gerar o arquivo de dependências adicionais é:
 
  1. Executar o `dotnet publish` no arquivo de manifesto do repositório de runtime mencionado na seção anterior.
- 1. Remova a referência de manifesto das bibliotecas e a `runtime` seção do arquivo *. deps. JSON* resultante.
+ 1. Remova a referência de manifesto das bibliotecas e a `runtime` seção do *.deps.jsresultante no* arquivo.
 
 No projeto de exemplo, a propriedade `store.manifest/1.0.0` é removida das seções `targets` e `libraries`:
 
@@ -824,8 +826,8 @@ dotnet nuget locals all --clear
 1. O projeto *StartupDiagnostics* usa o [PowerShell](/powershell/scripting/powershell-scripting) para modificar seu arquivo *StartupDiagnostics.deps.json*. O PowerShell é instalado por padrão em um sistema operacional Windows começando no Windows 7 SP1 e no Windows Server 2008 R2 SP1. Para obter o PowerShell em outras plataformas, consulte [Instalando várias versões do PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute o script *build.ps1* na pasta *RuntimeStore*. O script:
    * Gera o `StartupDiagnostics` pacote na pasta *obj\packages*
-   * Gera o repositório de runtime para `StartupDiagnostics` na pasta de *armazenamento*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de runtime)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um runtime diferente, substitua pelo RID correto na linha 37 do script. O armazenamento em tempo de execução para `StartupDiagnostics` posteriormente seria movido para o armazenamento de tempo de execução do usuário ou do sistema no computador em que o assembly será consumido. O local de instalação do armazenamento em tempo de execução do usuário para o `StartupDiagnostics` assembly é *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/netcoreapp 2.2/startupdiagnostics. dll*.
-   * Gera o `additionalDeps` para `StartupDiagnostics` na pasta *additionalDeps* . As dependências adicionais posteriormente seriam movidas para as dependências adicionais do usuário ou do sistema. O `StartupDiagnostics` local de instalação das dependências adicionais do usuário é *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NetCore. app/2.2.0/StartupDiagnostics. deps. JSON*.
+   * Gera o repositório de runtime para `StartupDiagnostics` na pasta de *armazenamento*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de runtime)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um runtime diferente, substitua pelo RID correto na linha 37 do script. O armazenamento em tempo de execução para `StartupDiagnostics` posteriormente seria movido para o armazenamento de tempo de execução do usuário ou do sistema no computador em que o assembly será consumido. O local de instalação do armazenamento em tempo de execução do usuário para o `StartupDiagnostics` assembly é *. dotnet/Store/x64/netcoreapp 2.2/startupdiagnostics/1.0.0/lib/netcoreapp 2.2/StartupDiagnostics.dll*.
+   * Gera o `additionalDeps` para `StartupDiagnostics` na pasta *additionalDeps* . As dependências adicionais posteriormente seriam movidas para as dependências adicionais do usuário ou do sistema. O `StartupDiagnostics` local de instalação das dependências adicionais do usuário é *. dotnet/x64/AdditionalDeps/StartupDiagnostics/Shared/Microsoft. NetCore. app/2.2.0/StartupDiagnostics.deps.json*.
    * Coloca o arquivo *deploy.ps1* na pasta *deployment*.
 1. Execute o script *deploy.ps1* na pasta *deployment*. O script acrescenta:
    * `StartupDiagnostics` à variável de ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.

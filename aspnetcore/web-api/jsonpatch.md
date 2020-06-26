@@ -1,13 +1,26 @@
 ---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
+title: JsonPatch na API Web do ASP.NET Core
+author: rick-anderson
+description: Saiba como lidar com solicitações de JSON Patch em uma API Web do ASP.NET Core.
+ms.author: riande
+ms.custom: mvc
+ms.date: 04/02/2020
+no-loc:
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+uid: web-api/jsonpatch
+ms.openlocfilehash: 08ae366859c4466e6957592f78dda813d6670bb4
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405023"
 ---
-
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch na API Web do ASP.NET Core
 
 Por [Tom Dykstra](https://github.com/tdykstra) e [Kirk Larkin](https://github.com/serpent5)
@@ -35,7 +48,7 @@ Para habilitar o suporte a patch JSON em seu aplicativo, conclua as seguintes et
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Patch JSON, AddNewtonsoftJson e System. Text. JSON
+## <a name="json-patch-addnewtonsoftjson-and-systemtextjson"></a>Patch JSON, AddNewtonsoftJson e System.Text.Jsem
 
 `AddNewtonsoftJson`substitui os `System.Text.Json` formatadores de entrada e saída baseados em dados usados para formatar **todo** o conteúdo JSON. Para adicionar suporte ao patch JSON usando `Newtonsoft.Json` o, deixando os outros formatadores inalterados, atualize o método do projeto da `Startup.ConfigureServices` seguinte maneira:
 
@@ -101,148 +114,18 @@ A propriedade [path](https://tools.ietf.org/html/rfc6901) de um objeto de opera�
 
 Índices baseados em zero são usados para especificar os elementos da matriz. O primeiro elemento da matriz `addresses` estaria em `/addresses/0`. Para `add` o final de uma matriz, use um hífen ( `-` ) em vez de um número de índice: `/addresses/-` .
 
-### <a name="operations"></a>Operações
+### <a name="operations"></a>Operations
 
 A tabela a seguir mostra operações compatíveis conforme definido na [especificação de JSON Patch](https://tools.ietf.org/html/rfc6902):
 
 |Operação  | Observações |
-|---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
-------|---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
-----------------| | `add`     | Adicione uma propriedade ou um elemento de matriz. Para propriedade existente: definir valor. | | `remove`  | Remova uma propriedade ou elemento de matriz. | | `replace` | O mesmo é `remove` seguido pelo `add` mesmo local. | | `move`    | O mesmo que `remove` da origem seguida pelo `add` destino usando o valor da origem. | | `copy`    | O mesmo que o `add` destino usando o valor da origem. | | `test`    | Retornar código de status de êxito se valor em `path` = fornecido `value` . |
+|-----------|--------------------------------|
+| `add`     | Adicione uma propriedade ou elemento de matriz. Para a propriedade existente: defina o valor.|
+| `remove`  | Remova uma propriedade ou elemento de matriz. |
+| `replace` | É o mesmo que `remove`, seguido por `add` no mesmo local. |
+| `move`    | É o mesmo que `remove` da origem, seguido por `add` ao destino usando um valor da origem. |
+| `copy`    | É o mesmo que `add` ao destino usando um valor da origem. |
+| `test`    | Retorna o código de status de êxito se o valor em `path` é igual ao `value` fornecido.|
 
 ## <a name="json-patch-in-aspnet-core"></a>Patch JSON no ASP.NET Core
 
@@ -256,7 +139,7 @@ Em um controlador de API, um método de ação para JSON Patch:
 * Aceita um `JsonPatchDocument<T>` , normalmente com `[FromBody]` .
 * Chama `ApplyTo` no documento de patch para aplicar as alterações.
 
-Veja um exemplo:
+Aqui está um exemplo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -443,148 +326,18 @@ A propriedade [path](https://tools.ietf.org/html/rfc6901) de um objeto de opera�
 
 Índices baseados em zero são usados para especificar os elementos da matriz. O primeiro elemento da matriz `addresses` estaria em `/addresses/0`. Para `add` ao final de uma matriz, use um hífen (-) ao invés de um número de índice: `/addresses/-`.
 
-### <a name="operations"></a>Operações
+### <a name="operations"></a>Operations
 
 A tabela a seguir mostra operações compatíveis conforme definido na [especificação de JSON Patch](https://tools.ietf.org/html/rfc6902):
 
 |Operação  | Observações |
-|---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
-------|---
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
--
-Título: autor: Descrição: MS. autor: MS. Custom: MS. Date: no-loc:
-- 'Blazor'
-- 'Identity'
-- 'Let's Encrypt'
-- 'Razor'
-- SignalRuid ' ': 
-
-----------------| | `add`     | Adicione uma propriedade ou um elemento de matriz. Para propriedade existente: definir valor. | | `remove`  | Remova uma propriedade ou elemento de matriz. | | `replace` | O mesmo é `remove` seguido pelo `add` mesmo local. | | `move`    | O mesmo que `remove` da origem seguida pelo `add` destino usando o valor da origem. | | `copy`    | O mesmo que o `add` destino usando o valor da origem. | | `test`    | Retornar código de status de êxito se valor em `path` = fornecido `value` . |
+|-----------|--------------------------------|
+| `add`     | Adicione uma propriedade ou elemento de matriz. Para a propriedade existente: defina o valor.|
+| `remove`  | Remova uma propriedade ou elemento de matriz. |
+| `replace` | É o mesmo que `remove`, seguido por `add` no mesmo local. |
+| `move`    | É o mesmo que `remove` da origem, seguido por `add` ao destino usando um valor da origem. |
+| `copy`    | É o mesmo que `add` ao destino usando um valor da origem. |
+| `test`    | Retorna o código de status de êxito se o valor em `path` é igual ao `value` fornecido.|
 
 ## <a name="jsonpatch-in-aspnet-core"></a>JsonPatch em ASP.NET Core
 
@@ -598,7 +351,7 @@ Em um controlador de API, um método de ação para JSON Patch:
 * Aceita um `JsonPatchDocument<T>` , normalmente com `[FromBody]` .
 * Chama `ApplyTo` no documento de patch para aplicar as alterações.
 
-Veja um exemplo:
+Aqui está um exemplo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 

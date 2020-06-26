@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 07/30/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: fbae94f315c1bb49f1b04be7e71c841f46826216
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 08e6284a6c5fc8e8926651f6fe873a71df449acb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766479"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406648"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout no ASP.NET Core
 
@@ -59,7 +61,7 @@ O código a seguir mostra o arquivo de layout para um modelo de projeto criado c
 
 ## <a name="specifying-a-layout"></a>Especificando um layout
 
-Razoras exibições `Layout` têm uma propriedade. As exibições individuais especificam um layout com a configuração dessa propriedade:
+Razoras exibições têm uma `Layout` propriedade. As exibições individuais especificam um layout com a configuração dessa propriedade:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
@@ -79,9 +81,9 @@ Um layout, opcionalmente, pode referenciar uma ou mais *seções*, chamando `Ren
 @RenderSection("Scripts", required: false)
 ```
 
-Se uma seção obrigatória não for encontrada, uma exceção será gerada. Modos de exibição individuais especificam o conteúdo a ser processado em uma `@section` Razor seção usando a sintaxe. Se uma página ou exibição definir uma seção, ela precisará ser renderizada (ou ocorrerá um erro).
+Se uma seção obrigatória não for encontrada, uma exceção será gerada. Modos de exibição individuais especificam o conteúdo a ser processado em uma seção usando a `@section` Razor sintaxe. Se uma página ou exibição definir uma seção, ela precisará ser renderizada (ou ocorrerá um erro).
 
-Uma definição `@section` de exemplo Razor no modo de exibição páginas:
+Uma `@section` definição de exemplo no Razor modo de exibição páginas:
 
 ```html
 @section Scripts {
@@ -115,7 +117,7 @@ O corpo e cada seção em uma Razor página devem ser renderizados ou ignorados.
 
 ## <a name="importing-shared-directives"></a>Importando diretivas compartilhadas
 
-Exibições e páginas podem Razor usar diretivas para importar namespaces e usar [injeção de dependência](dependency-injection.md). Diretivas compartilhadas por diversas exibições podem ser especificadas em um arquivo *_ViewImports.cshtml* comum. O arquivo `_ViewImports` dá suporte às seguintes diretivas:
+Exibições e páginas podem usar Razor diretivas para importar namespaces e usar [injeção de dependência](dependency-injection.md). Diretivas compartilhadas por diversas exibições podem ser especificadas em um arquivo *_ViewImports.cshtml* comum. O arquivo `_ViewImports` dá suporte às seguintes diretivas:
 
 * `@addTagHelper`
 * `@removeTagHelper`
@@ -125,7 +127,7 @@ Exibições e páginas podem Razor usar diretivas para importar namespaces e usa
 * `@inherits`
 * `@inject`
 
-O arquivo não dá suporte Razor a outros recursos, como definições de funções e de seção.
+O arquivo não dá suporte a outros Razor recursos, como definições de funções e de seção.
 
 Um arquivo `_ViewImports.cshtml` de exemplo:
 

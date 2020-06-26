@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: b7c4d61c4a71939e84bdea180a2f77b6438b15d5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 0c91edc947b1a17f2dd36b281afe348aa8611bd7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774191"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406908"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Tratar solicitações com controladores no ASP.NET Core MVC
 
@@ -35,8 +37,8 @@ Por convenção, as classes do controlador:
 
 Um controlador é uma classe que pode ser instanciada, em que, pelo menos, uma das seguintes condições é verdadeira:
 
-* O nome da classe tem um sufixo `Controller`.
-* A classe herda de uma classe cujo nome é sufixado `Controller`.
+* O nome da classe tem um sufixo `Controller` .
+* A classe herda de uma classe cujo nome é sufixado `Controller` .
 * O `[Controller]` atributo é aplicado à classe.
 
 Uma classe de controlador não deve ter um atributo `[NonController]` associado.
@@ -51,7 +53,7 @@ O controlador é uma abstração no *nível da interface do usuário*. Suas resp
 
 ## <a name="defining-actions"></a>Como definir ações
 
-Os métodos públicos em um controlador, exceto aqueles com `[NonAction]` o atributo, são ações. Parâmetros em ações são associados aos dados de solicitação e validados usando o [model binding](xref:mvc/models/model-binding). A validação de modelo ocorre em tudo o que é associado ao modelo. O valor da propriedade `ModelState.IsValid` indica se o model binding e a validação foram bem-sucedidas.
+Os métodos públicos em um controlador, exceto aqueles com o `[NonAction]` atributo, são ações. Parâmetros em ações são associados aos dados de solicitação e validados usando o [model binding](xref:mvc/models/model-binding). A validação de modelo ocorre em tudo o que é associado ao modelo. O valor da propriedade `ModelState.IsValid` indica se o model binding e a validação foram bem-sucedidas.
 
 Métodos de ação devem conter uma lógica para mapear uma solicitação para um interesse de negócios. Normalmente, interesses de negócios devem ser representados como serviços acessados pelo controlador por meio da [injeção de dependência](xref:mvc/controllers/dependency-injection). Em seguida, as ações mapeiam o resultado da ação de negócios para um estado do aplicativo.
 
@@ -71,7 +73,7 @@ Há dois tipos de resultado nessa categoria: Redirecionamento e Código de Statu
 
     Esse tipo retorna um código de status HTTP. Alguns métodos auxiliares desse tipo são `BadRequest`, `NotFound` e `Ok`. Por exemplo, `return BadRequest();` produz um código de status 400 quando executado. Quando métodos como `BadRequest`, `NotFound` e `Ok` estão sobrecarregados, eles deixam de se qualificar como respondentes do Código de Status HTTP, pois a negociação de conteúdo está em andamento.
 
-* **Redirecionamento**
+* **Redirecionar**
 
     Esse tipo retorna um redirecionamento para uma ação ou um destino (usando `Redirect`, `LocalRedirect`, `RedirectToAction` ou `RedirectToRoute`). Por exemplo, `return RedirectToAction("Complete", new {id = 123});` redireciona para `Complete`, passando um objeto anônimo.
 

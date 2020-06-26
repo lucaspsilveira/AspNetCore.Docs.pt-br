@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/23/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/social/index
-ms.openlocfilehash: 880aeea4dce5f5ae6533a3293067d89f98587e72
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a2c068df85290a59d45432cb168b2c882b59405b
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777144"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405361"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -63,7 +65,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
   dotnet new webapp -o WebApp1 -au Individual
   ```
 
-  * O comando `dotnet new` cria um projeto do Razor Pages na pasta *WebApp1*.
+  * O `dotnet new` comando cria um novo Razor projeto de páginas na pasta *WebApp1* .
   * `-au Individual` cria o código para autenticação individual.
   * `-uld`usa o LocalDB, uma versão leve do SQL Server Express para Windows. Omita `-uld` para usar o SQLite.
   * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
@@ -109,7 +111,7 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
-* Selecione **criar**
+* Escolha **Criar**
 
 ![Definir a página de senha](index/_static/pass2a.png)
 

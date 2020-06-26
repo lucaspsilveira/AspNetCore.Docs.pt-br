@@ -8,17 +8,19 @@ ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: c6498704214de5e805c9bf57033529d4acc5fd3e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 61c983de33b91a16ad207d8a350daf4859c89eaf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775785"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406089"
 ---
 # <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Configuração de entrada externa do Twitter com o ASP.NET Core
 
@@ -38,10 +40,10 @@ Este exemplo mostra como permitir que os usuários [entrem com sua conta do Twit
 
 * Microsoft. AspNetCore.Identity exige que os usuários tenham um endereço de email por padrão. Vá para a guia **permissões** , clique no botão **Editar** e marque a caixa ao lado de **solicitar endereço de email dos usuários**.
 
-* Insira seu URI de desenvolvimento `/signin-twitter` com anexado no campo **URLs de retorno de chamada** (por `https://webapp128.azurewebsites.net/signin-twitter`exemplo:). O esquema de autenticação do Twitter configurado mais adiante neste exemplo tratará automaticamente `/signin-twitter` as solicitações na rota para implementar o fluxo OAuth.
+* Insira seu URI de desenvolvimento com `/signin-twitter` anexado no campo **URLs de retorno de chamada** (por exemplo: `https://webapp128.azurewebsites.net/signin-twitter` ). O esquema de autenticação do Twitter configurado mais adiante neste exemplo tratará automaticamente as solicitações na `/signin-twitter` rota para implementar o fluxo OAuth.
 
   > [!NOTE]
-  > O segmento `/signin-twitter` URI é definido como o retorno de chamada padrão do provedor de autenticação do Twitter. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação do Twitter por meio da propriedade [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) herdada da classe [twitteroptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
+  > O segmento URI `/signin-twitter` é definido como o retorno de chamada padrão do provedor de autenticação do Twitter. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação do Twitter por meio da propriedade [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) herdada da classe [twitteroptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) .
 
 * Preencha o restante do formulário e selecione **criar**. Novos detalhes do aplicativo são exibidos:
 
@@ -50,7 +52,7 @@ Este exemplo mostra como permitir que os usuários [entrem com sua conta do Twit
 Armazene configurações confidenciais, como a chave de API do consumidor do Twitter e o segredo com o [Gerenciador de segredo](xref:security/app-secrets). Para este exemplo, use as seguintes etapas:
 
 1. Inicialize o projeto para o armazenamento secreto de acordo com as instruções em [habilitar armazenamento secreto](xref:security/app-secrets#enable-secret-storage).
-1. Armazene as configurações confidenciais no repositório de segredo local com as chaves `Authentication:Twitter:ConsumerKey` de `Authentication:Twitter:ConsumerSecret`segredos e:
+1. Armazene as configurações confidenciais no repositório de segredo local com as chaves de segredos `Authentication:Twitter:ConsumerKey` e `Authentication:Twitter:ConsumerSecret` :
 
     ```dotnetcli
     dotnet user-secrets set "Authentication:Twitter:ConsumerAPIKey" "<consumer-api-key>"
@@ -93,7 +95,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-* **Somente ASP.NET Core 2. x:** Se Identity não estiver configurado chamando `services.AddIdentity` em `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste exemplo garante que isso seja feito.
+* **Somente ASP.NET Core 2. x:** Se Identity não estiver configurado chamando `services.AddIdentity` em `ConfigureServices` , a tentativa de autenticar resultará em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste exemplo garante que isso seja feito.
 * Se o banco de dados do site não tiver sido criado aplicando a migração inicial, você obterá *uma operação de banco de dados com falha ao processar o erro de solicitação* . Toque em **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas

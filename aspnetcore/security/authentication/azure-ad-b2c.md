@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 01/21/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: d62889ba6dba6748ce3d047f0d37b3a904199496
-ms.sourcegitcommit: 4a9321db7ca4e69074fa08a678dcc91e16215b1e
+ms.openlocfilehash: 4933203b8bdd8f653268c1df7ff83b8e9423341f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82850429"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405062"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação de nuvem com Azure Active Directory B2C no ASP.NET Core
 
@@ -40,7 +42,7 @@ Neste tutorial, você aprenderá a:
 
 Os itens a seguir são necessários para este passo a passos:
 
-* [Assinatura Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Uma assinatura do Microsoft Azure](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Criar o locatário Azure Active Directory B2C
@@ -53,14 +55,14 @@ No locatário Azure AD B2C recém-criado, Registre seu aplicativo usando [as eta
 
 Use os seguintes valores:
 
-| Setting                       | Valor                     | Anotações                                                                                                                                                                                              |
+| Configuração                       | Valor                     | Observações                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nome**                      | *&lt;nome do aplicativo&gt;*        | Insira um **nome** para o aplicativo que descreve seu aplicativo para os consumidores.                                                                                                                                 |
-| **Incluir aplicativo Web/API Web** | Sim                       |                                                                                                                                                                                                    |
-| **Permitir fluxo implícito**       | Sim                       |                                                                                                                                                                                                    |
-| **URL de resposta**                 | `https://localhost:44300/signin-oidc` | As URLs de Resposta são pontos de extremidade para onde o Azure AD B2C retornará os tokens que o aplicativo solicitar. O Visual Studio fornece a URL de resposta a ser usada. Por enquanto, insira `https://localhost:44300/signin-oidc` para preencher o formulário. |
+| **Incluir aplicativo Web/API Web** | Yes                       |                                                                                                                                                                                                    |
+| **Permitir fluxo implícito**       | Yes                       |                                                                                                                                                                                                    |
+| **URL de Resposta**                 | `https://localhost:44300/signin-oidc` | As URLs de Resposta são pontos de extremidade para onde o Azure AD B2C retornará os tokens que o aplicativo solicitar. O Visual Studio fornece a URL de resposta a ser usada. Por enquanto, insira `https://localhost:44300/signin-oidc` para preencher o formulário. |
 | **URI da ID do Aplicativo**                | Deixar em branco               | Não é necessário para este tutorial.                                                                                                                                                                    |
-| **Incluir cliente nativo**     | Não                        |                                                                                                                                                                                                    |
+| **Incluir cliente nativo**     | No                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
 > Se estiver configurando uma URL de resposta não localhost, esteja ciente das [restrições sobre o que é permitido na lista URL de resposta](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). 
@@ -87,10 +89,10 @@ No Visual Studio:
 
 5. Preencha o formulário com os seguintes valores:
     
-    | Setting                       | Valor                                                 |
+    | Configuração                       | Valor                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **Nome de domínio**               | *&lt;o nome de domínio do seu locatário B2C&gt;*          |
-    | **ID do aplicativo**            | *&lt;colar a ID do aplicativo da área de transferência&gt;* |
+    | **ID do Aplicativo**            | *&lt;colar a ID do aplicativo da área de transferência&gt;* |
     | **Caminho de retorno de chamada**             | *&lt;usar o valor padrão&gt;*                       |
     | **Política de inscrição ou entrada** | `B2C_1_SiUpIn`                                        |
     | **Redefinir política de senha**     | `B2C_1_SSPR`                                          |
@@ -103,18 +105,18 @@ No Visual Studio:
 Retorne à janela do navegador com as propriedades do aplicativo B2C ainda abertas. Altere a **URL de resposta** temporária especificada anteriormente para o valor copiado do Visual Studio. Selecione **salvar** na parte superior da janela.
 
 > [!TIP]
-> Se você não tiver copiado a URL de resposta, use o endereço HTTPS da guia Depurar nas propriedades do projeto Web e acrescente o valor **CallbackPath** de *appSettings. JSON*.
+> Se você não tiver copiado a URL de resposta, use o endereço HTTPS da guia Depurar nas propriedades do projeto Web e acrescente o valor **CallbackPath** de *appsettings.jsem*.
 
 ## <a name="configure-policies"></a>Configurar políticas
 
 Use as etapas na documentação do Azure AD B2C para [criar uma política de inscrição ou de entrada](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions)e, em seguida, [crie uma política de redefinição de senha](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Use os valores de exemplo fornecidos na documentação para ** Identity provedores**, **atributos de inscrição**e declarações de **aplicativo**. Usar o botão **executar agora** para testar as políticas, conforme descrito na documentação é opcional.
 
 > [!WARNING]
-> Verifique se os nomes de política são exatamente conforme descrito na documentação, pois essas políticas foram usadas na caixa de diálogo **alterar autenticação** no Visual Studio. Os nomes de política podem ser verificados em *appSettings. JSON*.
+> Verifique se os nomes de política são exatamente conforme descrito na documentação, pois essas políticas foram usadas na caixa de diálogo **alterar autenticação** no Visual Studio. Os nomes de política podem ser verificados no *appsettings.jsem*.
 
 ## <a name="configure-the-underlying-openidconnectoptionsjwtbearercookie-options"></a>Configurar as opções subjacentes de OpenIdConnectOptions/JwtBearer/cookie
 
-Para configurar as opções subjacentes diretamente, use a constante de esquema `Startup.ConfigureServices`apropriada no:
+Para configurar as opções subjacentes diretamente, use a constante de esquema apropriada no `Startup.ConfigureServices` :
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(

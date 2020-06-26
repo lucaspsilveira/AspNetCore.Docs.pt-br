@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 5/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: ea7fc0e889ab32cbaf23257b3e866519af0727aa
-ms.sourcegitcommit: 69e1a79a572b0af17d08e81af12c594b7316f2e1
+ms.openlocfilehash: f4ed16b136da37c093a72a8866301a188a8518a2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83424533"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406479"
 ---
 # <a name="test-aspnet-core-middleware"></a>Testar ASP.NET Core middleware
 
@@ -41,6 +43,14 @@ No projeto de teste, crie um teste:
 
 * Crie e inicie um host que usa o <xref:Microsoft.AspNetCore.TestHost.TestServer> .
 * Adicione todos os serviços necessários que o middleware usa.
+* Adicione o pacote NuGet [Microsoft. AspNetCore. TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) ao projeto:
+  
+  ```dotnetcli
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.*" />
+  </ItemGroup>
+  ```
+
 * Configure o pipeline de processamento para usar o middleware para o teste.
 
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
@@ -62,7 +72,7 @@ Altere a asserção para testar o middleware em condições normais de operaçã
 
 ## <a name="send-requests-with-httpcontext"></a>Enviar solicitações com HttpContext
 
-Um aplicativo de teste também pode enviar uma solicitação usando [SendAsync (ação \< HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). No exemplo a seguir, várias verificações são feitas quando `https://example.com/A/Path/?and=query` o é processado pelo middleware:
+Um aplicativo de teste também pode enviar uma solicitação usando [SendAsync (Action \<HttpContext> , CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). No exemplo a seguir, várias verificações são feitas quando `https://example.com/A/Path/?and=query` o é processado pelo middleware:
 
 ```csharp
 [Fact]

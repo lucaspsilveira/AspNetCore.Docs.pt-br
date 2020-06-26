@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 4a5689af9ffea175838a869e92752de889cbb227
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 47172339f1c82a572a8a2c5d4ba49e4906e30b29
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106670"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406869"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault provedor de configuração no ASP.NET Core
 
@@ -35,7 +37,7 @@ Este documento explica como usar o provedor de configuração do [Microsoft Azur
 
 ## <a name="packages"></a>Pacotes
 
-Adicione uma referência de pacote ao pacote [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Adicione uma referência de pacote ao [Microsoft.Extensions.Configuração. Pacote AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
 
 ## <a name="sample-app"></a>Aplicativo de exemplo
 
@@ -129,7 +131,7 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
    1. Selecione o aplicativo no Azure AD.
    1. Navegue até **certificados & segredos**.
    1. Selecione **carregar certificado** para carregar o certificado, que contém a chave pública. Um certificado *. cer*, *. pem*ou *. CRT* é aceitável.
-1. Armazene o nome do cofre de chaves, a ID do aplicativo e a impressão digital do certificado no arquivo *appSettings. JSON* do aplicativo.
+1. Armazene o nome do cofre de chaves, a ID do aplicativo e a impressão digital do certificado noappsettings.jsdo aplicativo *no* arquivo.
 1. Navegue até **cofres de chaves** na portal do Azure.
 1. Selecione o cofre de chaves que você criou no [armazenamento de segredo no ambiente de produção com Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) seção.
 1. Selecione **Políticas de acesso**.
@@ -147,7 +149,7 @@ O `Certificate` aplicativo de exemplo obtém seus valores de configuração de `
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-O certificado X. 509 é gerenciado pelo sistema operacional. O aplicativo chama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> com valores fornecidos pelo arquivo *appSettings. JSON* :
+O certificado X. 509 é gerenciado pelo sistema operacional. O aplicativo chama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> com valores fornecidos pelo *appsettings.jsno* arquivo:
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -157,7 +159,7 @@ Valores de exemplo:
 * ID do aplicativo:`627e911e-43cc-61d4-992e-12db9c81b413`
 * Impressão digital do certificado:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 [!code-json[](key-vault-configuration/samples/3.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -169,7 +171,7 @@ Quando você executa o aplicativo, uma página da Web mostra os valores secretos
 
 O aplicativo de exemplo usa identidades gerenciadas para recursos do Azure quando a `#define` instrução na parte superior do arquivo *Program.cs* é definida como `Managed` .
 
-Insira o nome do cofre no arquivo *appSettings. JSON* do aplicativo. O aplicativo de exemplo não requer uma ID de aplicativo e uma senha (segredo do cliente) quando definido para a `Managed` versão, para que você possa ignorar essas entradas de configuração. O aplicativo é implantado no Azure e o Azure autentica o aplicativo para acessar Azure Key Vault apenas usando o nome do cofre armazenado no arquivo *appSettings. JSON* .
+Insira o nome do cofre naappsettings.jsdo aplicativo *no* arquivo. O aplicativo de exemplo não requer uma ID de aplicativo e uma senha (segredo do cliente) quando definido para a `Managed` versão, para que você possa ignorar essas entradas de configuração. O aplicativo é implantado no Azure e o Azure autentica o aplicativo para acessar Azure Key Vault apenas usando o nome do cofre armazenado na *appsettings.jsno* arquivo.
 
 Implante o aplicativo de exemplo no serviço Azure App.
 
@@ -193,7 +195,7 @@ O aplicativo de exemplo:
 
 Valor de exemplo do nome do cofre de chaves:`contosovault`
     
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 ```json
 {
@@ -381,7 +383,7 @@ Este documento explica como usar o provedor de configuração do [Microsoft Azur
 
 ## <a name="packages"></a>Pacotes
 
-Adicione uma referência de pacote ao pacote [Microsoft. Extensions. Configuration. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
+Adicione uma referência de pacote ao [Microsoft.Extensions.Configuração. Pacote AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) .
 
 ## <a name="sample-app"></a>Aplicativo de exemplo
 
@@ -475,7 +477,7 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
    1. Selecione o aplicativo no Azure AD.
    1. Navegue até **certificados & segredos**.
    1. Selecione **carregar certificado** para carregar o certificado, que contém a chave pública. Um certificado *. cer*, *. pem*ou *. CRT* é aceitável.
-1. Armazene o nome do cofre de chaves, a ID do aplicativo e a impressão digital do certificado no arquivo *appSettings. JSON* do aplicativo.
+1. Armazene o nome do cofre de chaves, a ID do aplicativo e a impressão digital do certificado noappsettings.jsdo aplicativo *no* arquivo.
 1. Navegue até **cofres de chaves** na portal do Azure.
 1. Selecione o cofre de chaves que você criou no [armazenamento de segredo no ambiente de produção com Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) seção.
 1. Selecione **Políticas de acesso**.
@@ -493,7 +495,7 @@ O `Certificate` aplicativo de exemplo obtém seus valores de configuração de `
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-O certificado X. 509 é gerenciado pelo sistema operacional. O aplicativo chama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> com valores fornecidos pelo arquivo *appSettings. JSON* :
+O certificado X. 509 é gerenciado pelo sistema operacional. O aplicativo chama <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> com valores fornecidos pelo *appsettings.jsno* arquivo:
 
 [!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
@@ -503,7 +505,7 @@ Valores de exemplo:
 * ID do aplicativo:`627e911e-43cc-61d4-992e-12db9c81b413`
 * Impressão digital do certificado:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 [!code-json[](key-vault-configuration/samples/2.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -515,7 +517,7 @@ Quando você executa o aplicativo, uma página da Web mostra os valores secretos
 
 O aplicativo de exemplo usa identidades gerenciadas para recursos do Azure quando a `#define` instrução na parte superior do arquivo *Program.cs* é definida como `Managed` .
 
-Insira o nome do cofre no arquivo *appSettings. JSON* do aplicativo. O aplicativo de exemplo não requer uma ID de aplicativo e uma senha (segredo do cliente) quando definido para a `Managed` versão, para que você possa ignorar essas entradas de configuração. O aplicativo é implantado no Azure e o Azure autentica o aplicativo para acessar Azure Key Vault apenas usando o nome do cofre armazenado no arquivo *appSettings. JSON* .
+Insira o nome do cofre naappsettings.jsdo aplicativo *no* arquivo. O aplicativo de exemplo não requer uma ID de aplicativo e uma senha (segredo do cliente) quando definido para a `Managed` versão, para que você possa ignorar essas entradas de configuração. O aplicativo é implantado no Azure e o Azure autentica o aplicativo para acessar Azure Key Vault apenas usando o nome do cofre armazenado na *appsettings.jsno* arquivo.
 
 Implante o aplicativo de exemplo no serviço Azure App.
 
@@ -539,7 +541,7 @@ O aplicativo de exemplo:
 
 Valor de exemplo do nome do cofre de chaves:`contosovault`
     
-*appSettings. JSON*:
+*appsettings.jsem*:
 
 ```json
 {

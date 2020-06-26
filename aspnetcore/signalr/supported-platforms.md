@@ -1,30 +1,32 @@
 ---
 title: ASP.NET Core SignalR plataformas com suporte
 author: bradygaster
-description: Saiba mais sobre as plataformas com suporte SignalRpara ASP.NET Core.
+description: Saiba mais sobre as plataformas com suporte para ASP.NET Core SignalR .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 70a05dabb95aaf561aa78d5c8b24b430c51bd973
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 9d7dd946ae5cf83b76a83ba1faeed0bb3fc31cef
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82772599"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85405816"
 ---
-# <a name="aspnet-core-signalr-supported-platforms"></a>Plataformas com suporte do Signalr ASP.NET Core
+# <a name="aspnet-core-signalr-supported-platforms"></a>ASP.NET Core SignalR plataformas com suporte
 
 ## <a name="server-system-requirements"></a>Requisitos do sistema do servidor do
 
-O signalr para ASP.NET Core dá suporte a qualquer plataforma de servidor com suporte ASP.NET Core.
+SignalRpara ASP.NET Core dá suporte a qualquer plataforma de servidor que ASP.NET Core suporte.
 
 ## <a name="javascript-client"></a>Cliente JavaScript
 
@@ -32,10 +34,10 @@ O [cliente JavaScript](xref:signalr/javascript-client) é executado no NodeJS 8 
 
 | Navegador                         | Versão         |
 | ------------------------------- | --------------- |
-| Microsoft Edge                  | Atualizados&dagger; |
-| Mozilla Firefox                 | Atualizados&dagger; |
-| Google Chrome; inclui Android | Atualizados&dagger; |
-| Safari inclui iOS            | Atualizados&dagger; |
+| Microsoft Edge                  | Current&dagger; |
+| Mozilla Firefox                 | Current&dagger; |
+| Google Chrome; inclui Android | Current&dagger; |
+| Safari inclui iOS            | Current&dagger; |
 | Microsoft Internet Explorer     | 11              |
 
 &dagger;*Atual* refere-se à versão mais recente do navegador.

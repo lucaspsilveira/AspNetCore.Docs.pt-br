@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 09b004abd423abc9cc8e83d3bb3fea1dddf09e14
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 65095f3990c72224d95f1f5fe46d320ab8f12040
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776624"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85404828"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -59,18 +61,18 @@ O erro geralmente é causado por uma implantação quebrada no sistema de hosped
 
 * O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
 * O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O arquivo de *web.config* está ausente na implantação ou o conteúdo do arquivo de *web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
 1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado `D:\home\site\wwwroot` na pasta.
+   * Confirme se o arquivo de *web.config* está presente na implantação e se seu conteúdo está correto.
+   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na `D:\home\site\wwwroot` pasta.
    * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
 1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, <xref:host-and-deploy/directory-structure>consulte. Para obter mais informações sobre o arquivo *Web. config* , <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>consulte.
+Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
@@ -138,7 +140,7 @@ Para corrigir esse erro:
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente aplicativos direcionados `Microsoft.AspNetCore.App` à estrutura podem ser hospedados pelo [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente aplicativos direcionados à `Microsoft.AspNetCore.App` estrutura podem ser hospedados pelo [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
 
 Para corrigir esse erro, confirme se o aplicativo está direcionado para a estrutura `Microsoft.AspNetCore.App`. Confira o `.runtimeconfig.json` para verificar a estrutura de destino do aplicativo.
 
@@ -172,8 +174,8 @@ ANCM falhou ao localizar a DLL do aplicativo, que deve estar ao lado do executá
 
 Esse erro ocorre ao hospedar um aplicativo empacotado como um [executável de arquivo único](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) usando o modelo de hospedagem em processo. O modelo em processo requer que o ANCM carregue o aplicativo .NET Core no processo existente do IIS. Esse cenário não é suportado pelo modelo de implantação de arquivo único. Use **uma** das seguintes abordagens no arquivo de projeto do aplicativo para corrigir esse erro:
 
-1. Desabilite a publicação de arquivo único definindo `PublishSingleFile` a Propriedade MSBuild `false`como.
-1. Alterne para o modelo de hospedagem fora do processo definindo a `AspNetCoreHostingModel` Propriedade MSBuild como. `OutOfProcess`
+1. Desabilite a publicação de arquivo único definindo a `PublishSingleFile` Propriedade MSBuild como `false` .
+1. Alterne para o modelo de hospedagem fora do processo definindo a `AspNetCoreHostingModel` Propriedade MSBuild como `OutOfProcess` .
 
 ### <a name="5025-process-failure"></a>502.5 Falha de processo
 
@@ -249,7 +251,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 **Versão atual**
 
 1. `cd d:\home\site\wwwroot`
-1. Execute o aplicativo:
+1. Executar o aplicativo:
    * Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
      ```dotnetcli
@@ -335,10 +337,10 @@ O log de depuração do Módulo do ASP.NET Core fornece registro em log adiciona
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
      1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-     1. Abra as pastas no caminho **site** > **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
+     1. Abra as pastas no caminho **site**  >  **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
 1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas no caminho **site** > **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
+1. Abra as pastas no caminho **site**  >  **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
 
 Desabilite o registro em log de depuração quando a solução de problemas for concluída:
@@ -429,7 +431,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `dotnet .\<assembly_name>.dll`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -437,7 +439,7 @@ Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/depl
 
 Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `<assembly_name>.exe`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `<assembly_name>.exe` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -469,7 +471,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Log de depuração do módulo ASP.NET Core (IIS)
 
-Adicione as seguintes configurações do manipulador ao arquivo *Web. config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
+Adicione as seguintes configurações de manipulador ao arquivo de *web.config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
 
 ```xml
 <aspNetCore ...>
@@ -562,7 +564,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -634,18 +636,18 @@ O erro geralmente é causado por uma implantação quebrada no sistema de hosped
 
 * O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
 * O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O arquivo de *web.config* está ausente na implantação ou o conteúdo do arquivo de *web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
 1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado `D:\home\site\wwwroot` na pasta.
+   * Confirme se o arquivo de *web.config* está presente na implantação e se seu conteúdo está correto.
+   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na `D:\home\site\wwwroot` pasta.
    * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
 1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, <xref:host-and-deploy/directory-structure>consulte. Para obter mais informações sobre o arquivo *Web. config* , <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>consulte.
+Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
@@ -657,7 +659,7 @@ Esse erro ocorre no código do aplicativo durante a inicialização ou durante a
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o .NET Core CLR e encontrar o manipulador de solicitação em processo (*aspnetcorev2_inprocess. dll*). Verifique se:
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o .NET Core CLR e localizar o manipulador de solicitação em processo (*aspnetcorev2_inprocess.dll*). Verifique se:
 
 * O aplicativo destina-se ao pacote NuGet [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) ou ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 * A versão da estrutura compartilhada do ASP.NET Core a que o aplicativo se destina está instalada no computador de destino.
@@ -742,7 +744,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 **Versão atual**
 
 1. `cd d:\home\site\wwwroot`
-1. Execute o aplicativo:
+1. Executar o aplicativo:
    * Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
      ```dotnetcli
@@ -828,10 +830,10 @@ O log de depuração do Módulo do ASP.NET Core fornece registro em log adiciona
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
      1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-     1. Abra as pastas no caminho **site** > **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
+     1. Abra as pastas no caminho **site**  >  **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
 1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas no caminho **site** > **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
+1. Abra as pastas no caminho **site**  >  **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
 
 Desabilite o registro em log de depuração quando a solução de problemas for concluída:
@@ -922,7 +924,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `dotnet .\<assembly_name>.dll`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -930,7 +932,7 @@ Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/depl
 
 Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `<assembly_name>.exe`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `<assembly_name>.exe` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -962,7 +964,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Log de depuração do módulo ASP.NET Core (IIS)
 
-Adicione as seguintes configurações do manipulador ao arquivo *Web. config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
+Adicione as seguintes configurações de manipulador ao arquivo de *web.config* do aplicativo para habilitar ASP.NET Core log de depuração do módulo:
 
 ```xml
 <aspNetCore ...>
@@ -1055,7 +1057,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -1127,18 +1129,18 @@ O erro geralmente é causado por uma implantação quebrada no sistema de hosped
 
 * O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
 * O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
-* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+* O arquivo de *web.config* está ausente na implantação ou o conteúdo do arquivo de *web.config* está malformado.
 
 Execute as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
 1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
-   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado `D:\home\site\wwwroot` na pasta.
+   * Confirme se o arquivo de *web.config* está presente na implantação e se seu conteúdo está correto.
+   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na `D:\home\site\wwwroot` pasta.
    * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
 1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, <xref:host-and-deploy/directory-structure>consulte. Para obter mais informações sobre o arquivo *Web. config* , <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>consulte.
+Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
@@ -1220,7 +1222,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 **Versão atual**
 
 1. `cd d:\home\site\wwwroot`
-1. Execute o aplicativo:
+1. Executar o aplicativo:
    * Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
      ```dotnetcli
@@ -1371,7 +1373,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `dotnet .\<assembly_name>.dll`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o aplicativo, executando o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `dotnet .\<assembly_name>.dll` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -1379,7 +1381,7 @@ Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/depl
 
 Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
 
-1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name>: `<assembly_name>.exe`.
+1. Em um prompt de comando, navegue até a pasta de implantação e execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo por \<assembly_name> : `<assembly_name>.exe` .
 1. A saída do console do aplicativo, mostrando eventuais erros, é gravada na janela do console.
 1. Se os erros ocorrerem ao fazer uma solicitação para o aplicativo, faça uma solicitação para o host e a porta em que o Kestrel escuta. Usando o host e a porta padrão, faça uma solicitação para `http://localhost:5000/`. Se o aplicativo responde normalmente no endereço do ponto de extremidade do Kestrel, a probabilidade de o problema estar relacionado à configuração de hospedagem é maior e, de estar relacionado ao aplicativo, menor.
 
@@ -1486,7 +1488,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.

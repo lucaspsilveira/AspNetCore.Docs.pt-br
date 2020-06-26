@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/dependencyinjection
-ms.openlocfilehash: 16285f6f731455d6e45a04f82437793891a77668
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: d12253ad1c1442c0db5cd497393daabe280fae8d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775114"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406349"
 ---
 # <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a>Injeção de dependência em manipuladores de requisitos no ASP.NET Core
 
@@ -26,7 +28,7 @@ Os [manipuladores de autorização devem ser registrados](xref:security/authoriz
 
 Suponha que você tenha um repositório de regras que deseja avaliar dentro de um manipulador de autorização e que o repositório tenha sido registrado na coleção de serviços. A autorização irá resolver e injetar isso em seu construtor.
 
-Por exemplo, se você quisesse usar o ASP. A infraestrutura de registro em log da rede que `ILoggerFactory` você deseja injetar em seu manipulador. Esse manipulador pode ser semelhante a:
+Por exemplo, se você quisesse usar o ASP. A infraestrutura de registro em log da rede que você deseja injetar `ILoggerFactory` em seu manipulador. Esse manipulador pode ser semelhante a:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -47,7 +49,7 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-Você registraria o manipulador com `services.AddSingleton()`:
+Você registraria o manipulador com `services.AddSingleton()` :
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();

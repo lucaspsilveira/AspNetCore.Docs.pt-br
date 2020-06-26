@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 04/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: 809bdc777b6307314a7bcde82ab5e0c6888db99b
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: c711c2163908e3fdd20e3bb497f333ebd495d921
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074451"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85406830"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configuração de ASP.NET Core SignalR
 
@@ -71,7 +73,7 @@ A serialização MessagePack pode ser configurada fornecendo um delegado para a 
 
 A tabela a seguir descreve as opções para configurar SignalR hubs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 segundos | O servidor considerará o cliente desconectado se ele não tiver recebido uma mensagem (incluindo Keep-Alive) nesse intervalo. Pode levar mais tempo do que esse intervalo de tempo limite para que o cliente seja realmente marcado como desconectado, devido a como isso é implementado. O valor recomendado é o dobro do `KeepAliveInterval` valor.|
 | `HandshakeTimeout` | 15 s | Se o cliente não enviar uma mensagem de handshake inicial dentro desse intervalo de tempo, a conexão será fechada. Essa é uma configuração avançada que só deve ser modificada se os erros de tempo limite de handshake estiverem ocorrendo devido a uma latência de rede grave. Para obter mais detalhes sobre o processo de handshake, consulte a [ SignalR especificação do protocolo Hub](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -126,7 +128,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 A tabela a seguir descreve as opções para configurar SignalR as opções http avançadas do ASP.NET Core:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | O número máximo de bytes recebidos do cliente que o servidor armazena em buffer antes de aplicar a pressão de demanda. Aumentar esse valor permite que o servidor receba mensagens maiores mais rapidamente sem aplicar a pressão, mas pode aumentar o consumo de memória. |
 | `AuthorizationData` | Dados coletados automaticamente dos `Authorize` atributos aplicados à classe Hub. | Uma lista de objetos [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) usados para determinar se um cliente está autorizado a se conectar ao Hub. |
@@ -138,13 +140,13 @@ A tabela a seguir descreve as opções para configurar SignalR as opções http 
 
 O transporte de sondagem longa tem opções adicionais que podem ser configuradas usando a `LongPolling` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 segundos | A quantidade máxima de tempo que o servidor aguarda uma mensagem para enviar ao cliente antes de encerrar uma única solicitação de sondagem. A redução desse valor faz com que o cliente emita novas solicitações de sondagem com mais frequência. |
 
 O transporte WebSocket tem opções adicionais que podem ser configuradas usando a `WebSockets` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 segundos | Depois que o servidor for fechado, se o cliente falhar ao fechar dentro desse intervalo de tempo, a conexão será encerrada. |
 | `SubProtocolSelector` | `null` | Um delegado que pode ser usado para definir o `Sec-WebSocket-Protocol` cabeçalho para um valor personalizado. O delegado recebe os valores solicitados pelo cliente como entrada e é esperado para retornar o valor desejado. |
@@ -192,12 +194,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 A tabela a seguir lista os níveis de log disponíveis. O valor que você fornece para `configureLogging` definir o nível de log **mínimo** que será registrado. As mensagens registradas nesse nível **ou os níveis listados depois dela na tabela**serão registrados.
 
-| String                      | LogLevel               |
+| Cadeia de caracteres                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info`**ou**`information` | `LogLevel.Information` |
-| `warn`**ou**`warning`     | `LogLevel.Warning`     |
+| `info` **ou** `information` | `LogLevel.Information` |
+| `warn` **ou** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -349,7 +351,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opção de JavaScript | Valor Padrão | Descrição |
+| Opção de JavaScript | Valor padrão | Descrição |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `headers` | `null` | Dicionário de cabeçalhos enviado com cada solicitação HTTP. O envio de cabeçalhos no navegador não funciona para WebSockets ou <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> fluxo. |
@@ -359,7 +361,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opção Java | Valor Padrão | Descrição |
+| Opção Java | Valor padrão | Descrição |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `shouldSkipNegotiate` | `false` | Defina como `true` para ignorar a etapa de negociação. **Com suporte apenas quando o transporte WebSockets é o único transporte habilitado**. Essa configuração não pode ser habilitada ao usar o serviço do Azure SignalR . |
@@ -459,7 +461,7 @@ A serialização MessagePack pode ser configurada fornecendo um delegado para a 
 
 A tabela a seguir descreve as opções para configurar SignalR hubs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 segundos | O servidor considerará o cliente desconectado se ele não tiver recebido uma mensagem (incluindo Keep-Alive) nesse intervalo. Pode levar mais tempo do que esse intervalo de tempo limite para que o cliente seja realmente marcado como desconectado, devido a como isso é implementado. O valor recomendado é o dobro do `KeepAliveInterval` valor.|
 | `HandshakeTimeout` | 15 s | Se o cliente não enviar uma mensagem de handshake inicial dentro desse intervalo de tempo, a conexão será fechada. Essa é uma configuração avançada que só deve ser modificada se os erros de tempo limite de handshake estiverem ocorrendo devido a uma latência de rede grave. Para obter mais detalhes sobre o processo de handshake, consulte a [ SignalR especificação do protocolo Hub](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -514,7 +516,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 A tabela a seguir descreve as opções para configurar SignalR as opções http avançadas do ASP.NET Core:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | O número máximo de bytes recebidos do cliente que o servidor armazena em buffer antes de aplicar a pressão de demanda. Aumentar esse valor permite que o servidor receba mensagens maiores mais rapidamente sem aplicar a pressão, mas pode aumentar o consumo de memória. |
 | `AuthorizationData` | Dados coletados automaticamente dos `Authorize` atributos aplicados à classe Hub. | Uma lista de objetos [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) usados para determinar se um cliente está autorizado a se conectar ao Hub. |
@@ -526,13 +528,13 @@ A tabela a seguir descreve as opções para configurar SignalR as opções http 
 
 O transporte de sondagem longa tem opções adicionais que podem ser configuradas usando a `LongPolling` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 segundos | A quantidade máxima de tempo que o servidor aguarda uma mensagem para enviar ao cliente antes de encerrar uma única solicitação de sondagem. A redução desse valor faz com que o cliente emita novas solicitações de sondagem com mais frequência. |
 
 O transporte WebSocket tem opções adicionais que podem ser configuradas usando a `WebSockets` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 segundos | Depois que o servidor for fechado, se o cliente falhar ao fechar dentro desse intervalo de tempo, a conexão será encerrada. |
 | `SubProtocolSelector` | `null` | Um delegado que pode ser usado para definir o `Sec-WebSocket-Protocol` cabeçalho para um valor personalizado. O delegado recebe os valores solicitados pelo cliente como entrada e é esperado para retornar o valor desejado. |
@@ -580,12 +582,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 A tabela a seguir lista os níveis de log disponíveis. O valor que você fornece para `configureLogging` definir o nível de log **mínimo** que será registrado. As mensagens registradas nesse nível **ou os níveis listados depois dela na tabela**serão registrados.
 
-| String                      | LogLevel               |
+| Cadeia de caracteres                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info`**ou**`information` | `LogLevel.Information` |
-| `warn`**ou**`warning`     | `LogLevel.Warning`     |
+| `info` **ou** `information` | `LogLevel.Information` |
+| `warn` **ou** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -737,7 +739,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opção de JavaScript | Valor Padrão | Descrição |
+| Opção de JavaScript | Valor padrão | Descrição |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `logMessageContent` | `null` | Defina como `true` para registrar em log os bytes/caracteres de mensagens enviadas e recebidas pelo cliente. |
@@ -745,7 +747,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opção Java | Valor Padrão | Descrição |
+| Opção Java | Valor padrão | Descrição |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `shouldSkipNegotiate` | `false` | Defina como `true` para ignorar a etapa de negociação. **Com suporte apenas quando o transporte WebSockets é o único transporte habilitado**. Essa configuração não pode ser habilitada ao usar o serviço do Azure SignalR . |
@@ -845,7 +847,7 @@ A serialização MessagePack pode ser configurada fornecendo um delegado para a 
 
 A tabela a seguir descreve as opções para configurar SignalR hubs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 segundos | O servidor considerará o cliente desconectado se ele não tiver recebido uma mensagem (incluindo Keep-Alive) nesse intervalo. Pode levar mais tempo do que esse intervalo de tempo limite para que o cliente seja realmente marcado como desconectado, devido a como isso é implementado. O valor recomendado é o dobro do `KeepAliveInterval` valor.|
 | `HandshakeTimeout` | 15 s | Se o cliente não enviar uma mensagem de handshake inicial dentro desse intervalo de tempo, a conexão será fechada. Essa é uma configuração avançada que só deve ser modificada se os erros de tempo limite de handshake estiverem ocorrendo devido a uma latência de rede grave. Para obter mais detalhes sobre o processo de handshake, consulte a [ SignalR especificação do protocolo Hub](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -900,7 +902,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 A tabela a seguir descreve as opções para configurar SignalR as opções http avançadas do ASP.NET Core:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | O número máximo de bytes recebidos do cliente que o servidor armazena em buffer antes de aplicar a pressão de demanda. Aumentar esse valor permite que o servidor receba mensagens maiores mais rapidamente sem aplicar a pressão, mas pode aumentar o consumo de memória. |
 | `AuthorizationData` | Dados coletados automaticamente dos `Authorize` atributos aplicados à classe Hub. | Uma lista de objetos [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) usados para determinar se um cliente está autorizado a se conectar ao Hub. |
@@ -911,13 +913,13 @@ A tabela a seguir descreve as opções para configurar SignalR as opções http 
 
 O transporte de sondagem longa tem opções adicionais que podem ser configuradas usando a `LongPolling` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 segundos | A quantidade máxima de tempo que o servidor aguarda uma mensagem para enviar ao cliente antes de encerrar uma única solicitação de sondagem. A redução desse valor faz com que o cliente emita novas solicitações de sondagem com mais frequência. |
 
 O transporte WebSocket tem opções adicionais que podem ser configuradas usando a `WebSockets` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 segundos | Depois que o servidor for fechado, se o cliente falhar ao fechar dentro desse intervalo de tempo, a conexão será encerrada. |
 | `SubProtocolSelector` | `null` | Um delegado que pode ser usado para definir o `Sec-WebSocket-Protocol` cabeçalho para um valor personalizado. O delegado recebe os valores solicitados pelo cliente como entrada e é esperado para retornar o valor desejado. |
@@ -965,12 +967,12 @@ let connection = new signalR.HubConnectionBuilder()
 
 A tabela a seguir lista os níveis de log disponíveis. O valor que você fornece para `configureLogging` definir o nível de log **mínimo** que será registrado. As mensagens registradas nesse nível **ou os níveis listados depois dela na tabela**serão registrados.
 
-| String                      | LogLevel               |
+| Cadeia de caracteres                      | LogLevel               |
 | --------------------------- | ---------------------- |
 | `trace`                     | `LogLevel.Trace`       |
 | `debug`                     | `LogLevel.Debug`       |
-| `info`**ou**`information` | `LogLevel.Information` |
-| `warn`**ou**`warning`     | `LogLevel.Warning`     |
+| `info` **ou** `information` | `LogLevel.Information` |
+| `warn` **ou** `warning`     | `LogLevel.Warning`     |
 | `error`                     | `LogLevel.Error`       |
 | `critical`                  | `LogLevel.Critical`    |
 | `none`                      | `LogLevel.None`        |
@@ -1122,7 +1124,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opção de JavaScript | Valor Padrão | Descrição |
+| Opção de JavaScript | Valor padrão | Descrição |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `logMessageContent` | `null` | Defina como `true` para registrar em log os bytes/caracteres de mensagens enviadas e recebidas pelo cliente. |
@@ -1130,7 +1132,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opção Java | Valor Padrão | Descrição |
+| Opção Java | Valor padrão | Descrição |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `shouldSkipNegotiate` | `false` | Defina como `true` para ignorar a etapa de negociação. **Com suporte apenas quando o transporte WebSockets é o único transporte habilitado**. Essa configuração não pode ser habilitada ao usar o serviço do Azure SignalR . |
@@ -1228,7 +1230,7 @@ A serialização MessagePack pode ser configurada fornecendo um delegado para a 
 
 A tabela a seguir descreve as opções para configurar SignalR hubs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 segundos | O servidor considerará o cliente desconectado se ele não tiver recebido uma mensagem (incluindo Keep-Alive) nesse intervalo. Pode levar mais tempo do que esse intervalo de tempo limite para que o cliente seja realmente marcado como desconectado, devido a como isso é implementado. O valor recomendado é o dobro do `KeepAliveInterval` valor.|
 | `HandshakeTimeout` | 15 s | Se o cliente não enviar uma mensagem de handshake inicial dentro desse intervalo de tempo, a conexão será fechada. Essa é uma configuração avançada que só deve ser modificada se os erros de tempo limite de handshake estiverem ocorrendo devido a uma latência de rede grave. Para obter mais detalhes sobre o processo de handshake, consulte a [ SignalR especificação do protocolo Hub](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
@@ -1281,7 +1283,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 A tabela a seguir descreve as opções para configurar SignalR as opções http avançadas do ASP.NET Core:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | O número máximo de bytes recebidos do cliente que o servidor armazena em buffer. Aumentar esse valor permite que o servidor receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
 | `AuthorizationData` | Dados coletados automaticamente dos `Authorize` atributos aplicados à classe Hub. | Uma lista de objetos [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) usados para determinar se um cliente está autorizado a se conectar ao Hub. |
@@ -1292,13 +1294,13 @@ A tabela a seguir descreve as opções para configurar SignalR as opções http 
 
 O transporte de sondagem longa tem opções adicionais que podem ser configuradas usando a `LongPolling` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 segundos | A quantidade máxima de tempo que o servidor aguarda uma mensagem para enviar ao cliente antes de encerrar uma única solicitação de sondagem. A redução desse valor faz com que o cliente emita novas solicitações de sondagem com mais frequência. |
 
 O transporte WebSocket tem opções adicionais que podem ser configuradas usando a `WebSockets` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 segundos | Depois que o servidor for fechado, se o cliente falhar ao fechar dentro desse intervalo de tempo, a conexão será encerrada. |
 | `SubProtocolSelector` | `null` | Um delegado que pode ser usado para definir o `Sec-WebSocket-Protocol` cabeçalho para um valor personalizado. O delegado recebe os valores solicitados pelo cliente como entrada e é esperado para retornar o valor desejado. |
@@ -1471,7 +1473,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opção de JavaScript | Valor Padrão | Descrição |
+| Opção de JavaScript | Valor padrão | Descrição |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `logMessageContent` | `null` | Defina como `true` para registrar em log os bytes/caracteres de mensagens enviadas e recebidas pelo cliente. |
@@ -1479,7 +1481,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opção Java | Valor Padrão | Descrição |
+| Opção Java | Valor padrão | Descrição |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `shouldSkipNegotiate` | `false` | Defina como `true` para ignorar a etapa de negociação. **Com suporte apenas quando o transporte WebSockets é o único transporte habilitado**. Essa configuração não pode ser habilitada ao usar o serviço do Azure SignalR . |
@@ -1577,7 +1579,7 @@ A serialização MessagePack pode ser configurada fornecendo um delegado para a 
 
 A tabela a seguir descreve as opções para configurar SignalR hubs:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `HandshakeTimeout` | 15 s | Se o cliente não enviar uma mensagem de handshake inicial dentro desse intervalo de tempo, a conexão será fechada. Essa é uma configuração avançada que só deve ser modificada se os erros de tempo limite de handshake estiverem ocorrendo devido a uma latência de rede grave. Para obter mais detalhes sobre o processo de handshake, consulte a [ SignalR especificação do protocolo Hub](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
 | `KeepAliveInterval` | 15 s | Se o servidor não tiver enviado uma mensagem dentro desse intervalo, uma mensagem de ping será enviada automaticamente para manter a conexão aberta. Ao alterar `KeepAliveInterval` , altere a `ServerTimeout` / `serverTimeoutInMilliseconds` configuração no cliente. O `ServerTimeout` / `serverTimeoutInMilliseconds` valor recomendado é o dobro do `KeepAliveInterval` valor.  |
@@ -1629,7 +1631,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 A tabela a seguir descreve as opções para configurar SignalR as opções http avançadas do ASP.NET Core:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | O número máximo de bytes recebidos do cliente que o servidor armazena em buffer. Aumentar esse valor permite que o servidor receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
 | `AuthorizationData` | Dados coletados automaticamente dos `Authorize` atributos aplicados à classe Hub. | Uma lista de objetos [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) usados para determinar se um cliente está autorizado a se conectar ao Hub. |
@@ -1640,13 +1642,13 @@ A tabela a seguir descreve as opções para configurar SignalR as opções http 
 
 O transporte de sondagem longa tem opções adicionais que podem ser configuradas usando a `LongPolling` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `PollTimeout` | 90 segundos | A quantidade máxima de tempo que o servidor aguarda uma mensagem para enviar ao cliente antes de encerrar uma única solicitação de sondagem. A redução desse valor faz com que o cliente emita novas solicitações de sondagem com mais frequência. |
 
 O transporte WebSocket tem opções adicionais que podem ser configuradas usando a `WebSockets` Propriedade:
 
-| Opção | Valor Padrão | Descrição |
+| Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `CloseTimeout` | 5 segundos | Depois que o servidor for fechado, se o cliente falhar ao fechar dentro desse intervalo de tempo, a conexão será encerrada. |
 | `SubProtocolSelector` | `null` | Um delegado que pode ser usado para definir o `Sec-WebSocket-Protocol` cabeçalho para um valor personalizado. O delegado recebe os valores solicitados pelo cliente como entrada e é esperado para retornar o valor desejado. |
@@ -1814,7 +1816,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="javascript"></a>[JavaScript](#tab/javascript)
 
-| Opção de JavaScript | Valor Padrão | Descrição |
+| Opção de JavaScript | Valor padrão | Descrição |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `logMessageContent` | `null` | Defina como `true` para registrar em log os bytes/caracteres de mensagens enviadas e recebidas pelo cliente. |
@@ -1822,7 +1824,7 @@ Opções adicionais podem ser configuradas `WithUrl` no `withUrl` método (em Ja
 
 # <a name="java"></a>[Java](#tab/java)
 
-| Opção Java | Valor Padrão | Descrição |
+| Opção Java | Valor padrão | Descrição |
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Uma função que retorna uma cadeia de caracteres que é fornecida como um token de autenticação de portador em solicitações HTTP. |
 | `shouldSkipNegotiate` | `false` | Defina como `true` para ignorar a etapa de negociação. **Com suporte apenas quando o transporte WebSockets é o único transporte habilitado**. Essa configuração não pode ser habilitada ao usar o serviço do Azure SignalR . |
