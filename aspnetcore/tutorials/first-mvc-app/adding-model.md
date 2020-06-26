@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 29f70d6bd1d5c1223ef35b4e24e5b9c0a8465d1d
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 28274d1deccdfe9e6430aa2899854f23d3ddc12a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652379"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408975"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4, adicionar um modelo a um aplicativo ASP.NET Core MVC
 
@@ -146,7 +148,7 @@ O nome da cadeia de conexão é passado para o contexto com a chamada de um mét
 
 ## <a name="add-a-database-connection-string"></a>Adicionar uma cadeia de conexão de banco de dados
 
-Adicione uma cadeia de conexão ao arquivo *appSettings. JSON* :
+Adicione uma cadeia de conexão à *appsettings.jsno* arquivo:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -202,7 +204,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -214,7 +216,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -488,7 +490,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -507,7 +509,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries

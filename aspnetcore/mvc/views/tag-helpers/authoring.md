@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 0b60468b96ded559d180e7b3bf5f799ce2f4d7e3
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775083"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407584"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Auxiliares de marca de autor no ASP.NET Core
 
@@ -37,7 +39,7 @@ Um auxiliar de marca é qualquer classe que implementa a interface `ITagHelper`.
 
 ## <a name="a-minimal-tag-helper"></a>Um auxiliar de marca mínimo
 
-Nesta seção, você escreve um auxiliar de marca que atualiza uma marca de email. Por exemplo: 
+Nesta seção, você escreve um auxiliar de marca que atualiza uma marca de email. Por exemplo:
 
 ```html
 <email>Support</email>
@@ -57,7 +59,7 @@ Ou seja, uma marca de âncora que torna isso um link de email. Talvez você dese
 
    * Auxiliares de marcação usam uma convenção de nomenclatura que tem como alvo os elementos do nome da classe raiz (menos o *TagHelper* parte do nome de classe). Neste exemplo, o nome da raiz **EmailTagHelper** é *email* e, portanto, a marca `<email>` será direcionada. Essa convenção de nomenclatura deve funcionar para a maioria dos auxiliares de marcação, posteriormente, mostrarei como substituí-la.
 
-   * O `EmailTagHelper` classe deriva de `TagHelper`. O `TagHelper` classe fornece métodos e propriedades para gravar tag helpers.
+   * A classe `EmailTagHelper` deriva de `TagHelper`. O `TagHelper` classe fornece métodos e propriedades para gravar tag helpers.
 
    * O método `Process` substituído controla o que o auxiliar de marca faz quando é executado. A classe `TagHelper` também fornece uma versão assíncrona (`ProcessAsync`) com os mesmos parâmetros.
 
@@ -71,7 +73,7 @@ Ou seja, uma marca de âncora que torna isso um link de email. Talvez você dese
    public class Email : TagHelper
    ```
 
-1. Para tornar a `EmailTagHelper` classe disponível para todas as Razor nossas exibições, `addTagHelper` adicione a diretiva ao arquivo *views/_ViewImports. cshtml* :
+1. Para tornar a `EmailTagHelper` classe disponível para todas as nossas Razor exibições, adicione a `addTagHelper` diretiva ao arquivo *views/_ViewImports. cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
@@ -98,7 +100,7 @@ Para adicionar um auxiliar de marca para uma exibição usando um FQN, primeiro 
 
 ## <a name="setattribute-and-setcontent"></a>SetAttribute e SetContent
 
-Nesta seção, atualizaremos o `EmailTagHelper` para que ele crie uma marca de âncora válida para email. Vamos atualizá-lo para obter informações de Razor uma exibição (na forma de um `mail-to` atributo) e usá-la para gerar a âncora.
+Nesta seção, atualizaremos o `EmailTagHelper` para que ele crie uma marca de âncora válida para email. Vamos atualizá-lo para obter informações de uma Razor exibição (na forma de um `mail-to` atributo) e usá-la para gerar a âncora.
 
 Atualize a classe `EmailTagHelper` com o seguinte:
 
@@ -123,7 +125,7 @@ Essa abordagem funciona para o atributo "href" como no momento, ele não existe 
 <a name="self-closing"></a>
 
    > [!NOTE]
-   > Se você pretende escrever o autofechamento da marca de email (`<email mail-to="Rick" />`), a saída final também é o autofechamento. Para habilitar a capacidade de gravar a marca com apenas uma marca de início`<email mail-to="Rick">`(), você deve marcar a classe com o seguinte:
+   > Se você pretende escrever o autofechamento da marca de email (`<email mail-to="Rick" />`), a saída final também é o autofechamento. Para habilitar a capacidade de gravar a marca com apenas uma marca de início ( `<email mail-to="Rick">` ), você deve marcar a classe com o seguinte:
    >
    > [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailVoid.cs?highlight=1&range=6-10)]
 
@@ -199,7 +201,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Conforme mencionado anteriormente, os auxiliares de marcações convertem nomes de classes e de propriedades dos auxiliares de marcações do C# na formatação Pascal Case em [Kebab Case](https://wiki.c2.com/?KebabCase). Portanto, para usar o `WebsiteInformationTagHelper` no Razor, você escreverá `<website-information />`.
+   * Conforme mencionado anteriormente, os auxiliares de marcações convertem nomes de classes e de propriedades dos auxiliares de marcações do C# na formatação Pascal Case em [Kebab Case](https://wiki.c2.com/?KebabCase). Portanto, para usar o `WebsiteInformationTagHelper` no Razor , você escreverá `<website-information />` .
 
    * Você não identifica de forma explícita o elemento de destino com o atributo `[HtmlTargetElement]`. Portanto, o padrão de `website-information` será o destino. Se você aplicou o seguinte atributo (observe que não está em kebab case, mas corresponde ao nome da classe):
 
@@ -213,7 +215,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
    [HtmlTargetElement("Website-Information")]
    ```
 
-   * Os elementos com autofechamento não têm nenhum conteúdo. Para este exemplo, a Razor marcação usará uma marca de fechamento automático, mas o auxiliar de marca criará um elemento de [seção](https://www.w3.org/TR/html5/sections.html#the-section-element) (que não é um fechamento automático e você está gravando `section` o conteúdo dentro do elemento). Portanto, você precisa definir `TagMode` como `StartTagAndEndTag` para escrever a saída. Como alternativa, você pode comentar a linha definindo `TagMode` e escrever a marcação com uma marca de fechamento. (A marcação de exemplo é fornecida mais adiante neste tutorial.)
+   * Os elementos com autofechamento não têm nenhum conteúdo. Para este exemplo, a Razor marcação usará uma marca de fechamento automático, mas o auxiliar de marca criará um elemento de [seção](https://www.w3.org/TR/html5/sections.html#the-section-element) (que não é um fechamento automático e você está gravando o conteúdo dentro do `section` elemento). Portanto, você precisa definir `TagMode` como `StartTagAndEndTag` para escrever a saída. Como alternativa, você pode comentar a linha definindo `TagMode` e escrever a marcação com uma marca de fechamento. (A marcação de exemplo é fornecida mais adiante neste tutorial.)
 
    * O `$` (cifrão) na seguinte linha usa uma [cadeia de caracteres interpolada](/dotnet/csharp/language-reference/keywords/interpolated-strings):
 
@@ -230,7 +232,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > RazorSabe que `info` o atributo é uma classe, não uma cadeia de caracteres, e você deseja escrever código C#. Qualquer atributo do auxiliar de marca que não seja uma cadeia de caracteres deve ser escrito sem o caractere `@`.
+   > RazorSabe que o `info` atributo é uma classe, não uma cadeia de caracteres, e você deseja escrever código C#. Qualquer atributo do auxiliar de marca que não seja uma cadeia de caracteres deve ser escrito sem o caractere `@`.
 
 1. Execute o aplicativo e navegue para a exibição About sobre para ver as informações do site.
 

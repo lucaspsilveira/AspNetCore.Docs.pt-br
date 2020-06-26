@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: ddedf62c5e8363bd93c9948fd2d3418abc566539
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a8bde9633f06f41ebcb55480eb2322544db4b4da
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82767311"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408754"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de política no ASP.NET Core
 
@@ -25,7 +27,7 @@ Os esquemas de diretiva de autenticação facilitam a utilização de um único 
 * É fácil encaminhar qualquer ação de autenticação para outro esquema.
 * Encaminhe dinamicamente com base na solicitação.
 
-Todos os esquemas de autenticação que <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> usam derivado e o [\<AuthenticationHandler TOptions associado>](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+Todos os esquemas de autenticação que usam derivado <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> e [o \<TOptions> AuthenticationHandler](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1)associado:
 
 * São esquemas de política automaticamente no ASP.NET Core 2,1 e posterior.
 * Pode ser habilitado por meio da configuração das opções do esquema.

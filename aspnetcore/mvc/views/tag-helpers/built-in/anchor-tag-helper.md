@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 142ad62bbbc25fc5390331b253a6173f064ef162
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: af0f07a0f50a79f25b6a14459402f9dd8b59dae2
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82773959"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408247"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Âncora no ASP.NET Core
 
@@ -145,7 +147,7 @@ Se `asp-controller` ou `asp-action` for especificado além de `asp-route`, a rot
 
 O atributo [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) oferece suporte à criação de um dicionário ou par chave-valor. A chave é o nome do parâmetro e o valor é o valor do parâmetro.
 
-No exemplo a seguir, um dicionário é inicializado e passado para Razor um modo de exibição. Como alternativa, os dados podem ser passado com seu modelo.
+No exemplo a seguir, um dicionário é inicializado e passado para um Razor modo de exibição. Como alternativa, os dados podem ser passado com seu modelo.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAllRouteData)]
 
@@ -188,14 +190,14 @@ Considere a seguinte hierarquia de diretórios:
 * **{Nome do projeto}**
   * **wwwroot**
   * **Áreas**
-    * **Sessões**
+    * **Das**
       * **Páginas**
         * *\_ViewStart. cshtml*
-        * *Index. cshtml*
+        * *Index.cshtml*
         * *Index.cshtml.cs*
   * **Páginas**
 
-A marcação para fazer referência à página de *índice* Razor da área de *sessões* é:
+A marcação para fazer referência à página de *índice* da área de *sessões* Razor é:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -206,7 +208,7 @@ O HTML gerado:
 ```
 
 > [!TIP]
-> Para dar suporte a áreas Razor em um aplicativo de páginas, siga um destes `Startup.ConfigureServices`procedimentos em:
+> Para dar suporte a áreas em um Razor aplicativo de páginas, siga um destes procedimentos em `Startup.ConfigureServices` :
 >
 > * Defina a [versão de compatibilidade](xref:mvc/compatibility-version) para 2.1 ou posterior.
 > * Defina a propriedade [RazorPagesOptions.AllowAreas](xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.AllowAreas*) como `true`:
@@ -223,10 +225,10 @@ Considere a seguinte hierarquia de diretórios:
     * **Blogs**
       * **Controladores**
         * *HomeController.cs*
-      * **Modos de exibição**
+      * **Exibições**
         * **Início**
           * *AboutBlog.cshtml*
-          * *Index. cshtml*
+          * *Index.cshtml*
         * *\_ViewStart. cshtml*
   * **Controladores**
 
@@ -241,13 +243,13 @@ O HTML gerado:
 ```
 
 > [!TIP]
-> Para dar suporte às áreas em um aplicativo MVC, o modelo de rota deverá incluir uma referência à área, se ela existir. Esse modelo é representado pelo segundo parâmetro da chamada do `routes.MapRoute` método na *inicialização. Configure*:
+> Para dar suporte às áreas em um aplicativo MVC, o modelo de rota deverá incluir uma referência à área, se ela existir. Esse modelo é representado pelo segundo parâmetro da chamada do `routes.MapRoute` método em *Startup.Configlhar*:
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 
 ### <a name="asp-protocol"></a>asp-protocol
 
-O atributo [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) é destinado a especificar um protocolo (como `https`) em sua URL. Por exemplo: 
+O atributo [asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) é destinado a especificar um protocolo (como `https`) em sua URL. Por exemplo:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspProtocol)]
 
@@ -261,7 +263,7 @@ O nome do host no exemplo é localhost. O Auxiliar de Marca de Âncora usa o dom
 
 ### <a name="asp-host"></a>asp-host
 
-O atributo [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) é para especificar um nome do host na sua URL. Por exemplo: 
+O atributo [asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) é para especificar um nome do host na sua URL. Por exemplo:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspHost)]
 

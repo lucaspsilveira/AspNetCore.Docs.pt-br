@@ -7,17 +7,19 @@ ms.author: johluo
 ms.date: 09/03/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: fa38ec9f9cf882b1a62f74879b7d49706ee150ce
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 0d05a6dcaf6677e71181d522a9f501051ec34f9d
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452376"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407545"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Serviços do gRPC com o ASP.NET Core
 
@@ -88,7 +90,7 @@ O Kestrel [dá suporte a http/2](xref:fundamentals/servers/kestrel#http2-support
 
 Os pontos de extremidade Kestrel usados para gRPC devem ser protegidos com TLS. No desenvolvimento, um ponto de extremidade protegido com TLS é criado automaticamente `https://localhost:5001` quando o certificado de desenvolvimento de ASP.NET Core está presente. Nenhuma configuração é necessária. Um `https` prefixo verifica se o ponto de extremidade Kestrel está usando TLS.
 
-Em produção, o TLS deve ser configurado explicitamente. No exemplo de *appSettings. JSON* a seguir, um ponto de extremidade http/2 protegido com TLS é fornecido:
+Em produção, o TLS deve ser configurado explicitamente. No exemplo a seguir *appsettings.js* , um ponto de extremidade http/2 protegido com TLS é fornecido:
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 

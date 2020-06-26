@@ -6,17 +6,19 @@ ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 985c08e0994314cec8d52a6651681c93aca96514
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 59c513038d41779a4cf56a70045f9e72f8008d28
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82766505"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407714"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
 
@@ -66,7 +68,7 @@ Essa abordagem associa o aplicativo e o servidor no qual ele é implantado de um
 
 Isso configura as rotas padrão e usa XmlSerialization em Json por padrão. Adicione outro Middleware para este pipeline conforme necessário (carregamento de serviços, definições de configuração, arquivos estáticos, etc.).
 
-O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método *Program.cs* `Main` (semelhante aos aplicativos `Startup` de console) e é carregado por aí.
+O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método *Program.cs* `Main` (semelhante aos aplicativos de console) e `Startup` é carregado por aí.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -149,7 +151,7 @@ Uma parte importante do desenvolvimento da Web é a capacidade de servir ativos 
 
 No ASP.NET, arquivos estáticos são armazenados em vários diretórios e referenciados nas exibições.
 
-Em ASP.NET Core, os arquivos estáticos são armazenados na "raiz da Web" (*&lt;Content root&gt;/wwwroot*), a menos que seja configurado de outra forma. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
+Em ASP.NET Core, os arquivos estáticos são armazenados na "raiz da Web" (* &lt; Content root &gt; /wwwroot*), a menos que seja configurado de outra forma. Os arquivos são carregados no pipeline de solicitação invocando o método de extensão `UseStaticFiles` de `Startup.Configure`:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -167,7 +169,7 @@ Não há suporte para [cookies de vários valores](xref:System.Web.HttpCookie.Va
 
 ## <a name="partial-app-migration"></a>Migração de aplicativo parcial
 
-Uma abordagem para a migração de aplicativo parcial é criar um subaplicativo do IIS e mover apenas determinadas rotas de ASP.NET 4. x para ASP.NET Core enquanto preserva a estrutura de URL do aplicativo. Por exemplo, considere a estrutura de URL do aplicativo do arquivo *ApplicationHost. config* :
+Uma abordagem para a migração de aplicativo parcial é criar um subaplicativo do IIS e mover apenas determinadas rotas de ASP.NET 4. x para ASP.NET Core enquanto preserva a estrutura de URL do aplicativo. Por exemplo, considere a estrutura de URL do aplicativo do arquivo *applicationHost.config* :
 
 ```xml
 <sites>

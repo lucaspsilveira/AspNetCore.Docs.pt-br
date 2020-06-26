@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/Index
-ms.openlocfilehash: 2caf4a20302fa4d94b5eab7f814d7e22b048fbc8
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 8ada1e5aff7e4a4ff53ca0ba9852a404fdc71189
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777391"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407454"
 ---
 # <a name="aspnet-core-built-in-tag-helpers"></a>Auxiliares de marcação internos do ASP.NET Core
 
@@ -25,7 +27,7 @@ Por [Peter Kellner](https://peterkellner.net)
 
 Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
-Há auxiliares de marcação internos que não estão listados neste documento. Os auxiliares de marca não listados são usados internamente pelo mecanismo [Razor](xref:mvc/views/razor) de exibição. O auxiliar de marcação do caractere `~` (til) não está listado. O auxiliar de marcação de til é expandido para o caminho raiz do site.
+Há auxiliares de marcação internos que não estão listados neste documento. Os auxiliares de marca não listados são usados internamente pelo [Razor](xref:mvc/views/razor) mecanismo de exibição. O auxiliar de marcação do caractere `~` (til) não está listado. O auxiliar de marcação de til é expandido para o caminho raiz do site.
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 

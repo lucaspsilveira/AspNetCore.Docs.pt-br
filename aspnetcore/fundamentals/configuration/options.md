@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 9a9febba060cca591f2cbcdc03cb4c35edcfdda7
-ms.sourcegitcommit: 74d80a36103fdbd54baba0118535a4647f511913
+ms.openlocfilehash: 300b26c198e6ea07fe83af8fb9ae967e814396fb
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84529657"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408351"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
@@ -116,7 +118,7 @@ Opções nomeadas:
 * São úteis quando várias seções de configuração se associam às mesmas propriedades.
 * Diferenciam maiúsculas de minúsculas.
 
-Considere o seguinte arquivo *appSettings. JSON* :
+Considere o seguinte *appsettings.jsno* arquivo:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
 
@@ -163,7 +165,7 @@ Os serviços podem ser acessados da injeção de dependência ao configurar opç
 
 A validação de opções permite que os valores de opção sejam validados.
 
-Considere o seguinte arquivo *appSettings. JSON* :
+Considere o seguinte *appsettings.jsno* arquivo:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
@@ -269,9 +271,9 @@ public void Configure(IApplicationBuilder app,
 
 Não use <xref:Microsoft.Extensions.Options.IOptions%601> ou <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em `Startup.ConfigureServices`. Pode haver um estado inconsistente de opções devido à ordenação dos registros de serviço.
 
-## <a name="optionsconfigurationextensions-nuget-package"></a>Opções. pacote NuGet do ConfigurationExtensions
+## <a name="optionsconfigurationextensions-nuget-package"></a>Options.Configpacote NuGet do urationExtensions
 
-O pacote [Microsoft. Extensions. Options. ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) é referenciado implicitamente em aplicativos ASP.NET Core.
+O pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) é implicitamente referenciado em aplicativos ASP.NET Core.
 
 ::: moniker-end
 
@@ -469,7 +471,7 @@ A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o arquivo *appSettings. JSON* . Atualize o navegador para ver se os valores de opções foram atualizados:
+Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o *appsettings.jsno* arquivo. Atualize o navegador para ver se os valores de opções foram atualizados:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -479,7 +481,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> é demonstrado como no Exemplo 6 no aplicativo de exemplo.
 
-O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions \<TOptions> . Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
+O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configlhar](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions \<TOptions> . Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -883,7 +885,7 @@ A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o arquivo *appSettings. JSON* . Atualize o navegador para ver se os valores de opções foram atualizados:
+Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`. Salve o *appsettings.jsno* arquivo. Atualize o navegador para ver se os valores de opções foram atualizados:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -893,7 +895,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> é demonstrado como no Exemplo 6 no aplicativo de exemplo.
 
-O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions. Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions \<TOptions> . Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
+O suporte de opções nomeadas permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configlhar](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), que chama o [ConfigureNamedOptions \<TOptions> . Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) o método de extensão. As opções nomeadas diferenciam maiúsculas de minúsculas.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 

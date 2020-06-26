@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: af0c3836362233e41a79e72bd28b4a331e9763bc
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 61280a82fc46116b3ecf057a00cf3f78f0af8951
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106475"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408455"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -31,7 +33,7 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 ## <a name="prerequisites"></a>Pré-requisitos
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 ou posterior](https://github.com/PowerShell/PowerShell)
 
 ## <a name="worker-service-template"></a>Modelo de serviço de trabalho
 
@@ -42,7 +44,7 @@ O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para e
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
 
-## <a name="app-configuration"></a>Configuração de aplicativo
+## <a name="app-configuration"></a>Configuração do aplicativo
 
 O aplicativo requer uma referência de pacote para [Microsoft. Extensions. host. WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
 
@@ -53,7 +55,7 @@ O aplicativo requer uma referência de pacote para [Microsoft. Extensions. host.
 * Habilita o registro em log no log de eventos:
   * O nome do aplicativo é usado como o nome de origem padrão.
   * O nível de log padrão é *aviso* ou superior para um aplicativo com base em um modelo de ASP.NET Core que chama `CreateDefaultBuilder` para criar o host.
-  * Substitua o nível de log padrão pela `Logging:EventLog:LogLevel:Default` chave em *appSettings. JSON* / *appSettings. { Ambiente}. JSON* ou outro provedor de configuração.
+  * Substitua o nível de log padrão pela `Logging:EventLog:LogLevel:Default` chave no *appsettings.jsem* / *appSettings. { Ambiente}. JSON* ou outro provedor de configuração.
   * Somente administradores podem criar novas fontes de evento. Quando uma fonte de evento não puder ser criada usando o nome do aplicativo, um aviso será registrado em log como a fonte do *Aplicativo* e os logs de eventos serão desabilitados.
 
 Em `CreateHostBuilder` *Program.cs*:
@@ -93,7 +95,7 @@ Se o serviço executar apenas tarefas em segundo plano (por exemplo, [serviços 
 
 A FDD (Implantação Dependente de Estrutura) se baseia na presença de uma versão compartilhada em todo o sistema do .NET Core no sistema de destino. Quando o cenário FDD é adotado após a orientação deste artigo, o SDK produz um executável (*.exe*), chamado de *executável dependente de estrutura*.
 
-Se você estiver usando o [SDK da Web](#sdk), um arquivo *Web. config* , que normalmente é produzido ao publicar um aplicativo ASP.NET Core, é desnecessário para um aplicativo de serviços do Windows. Para desabilitar a criação de um arquivo *web.config*, adicione a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
+Se você estiver usando o [SDK da Web](#sdk), um arquivo *web.config* , que normalmente é produzido ao publicar um aplicativo ASP.NET Core, é desnecessário para um aplicativo de serviços do Windows. Para desabilitar a criação de um arquivo *web.config*, adicione a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
 
 ```xml
 <PropertyGroup>
@@ -248,9 +250,9 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 Quando o aplicativo é executado como um serviço, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> o define <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
 
-Os arquivos de configurações padrão do aplicativo, *appSettings. JSON* e *appSettings. { Environment}. JSON*, são carregados a partir da raiz do conteúdo do aplicativo chamando [CreateDefaultBuilder durante a construção do host](xref:fundamentals/host/generic-host#set-up-a-host).
+Os arquivos de configurações padrão do aplicativo, *appsettings.jsem* e *appSettings. { Environment}. JSON*, são carregados a partir da raiz do conteúdo do aplicativo chamando [CreateDefaultBuilder durante a construção do host](xref:fundamentals/host/generic-host#set-up-a-host).
 
-Para outros arquivos de configurações carregados pelo código do desenvolvedor no <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> , não há necessidade de chamar <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> . No exemplo a seguir, o arquivo *custom_settings. JSON* existe na raiz do conteúdo do aplicativo e é carregado sem definir explicitamente um caminho base:
+Para outros arquivos de configurações carregados pelo código do desenvolvedor no <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> , não há necessidade de chamar <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> . No exemplo a seguir, o *custom_settings.jsno* arquivo existe na raiz do conteúdo do aplicativo e é carregado sem definir explicitamente um caminho base:
 
 [!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
 
@@ -297,7 +299,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -354,9 +356,9 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 ## <a name="prerequisites"></a>Pré-requisitos
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 ou posterior](https://github.com/PowerShell/PowerShell)
 
-## <a name="app-configuration"></a>Configuração de aplicativo
+## <a name="app-configuration"></a>Configuração do aplicativo
 
 O aplicativo exige referências de pacote para [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices) e [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog).
 
@@ -631,7 +633,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -688,9 +690,9 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 ## <a name="prerequisites"></a>Pré-requisitos
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
-* [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
+* [PowerShell 6,2 ou posterior](https://github.com/PowerShell/PowerShell)
 
-## <a name="app-configuration"></a>Configuração de aplicativo
+## <a name="app-configuration"></a>Configuração do aplicativo
 
 O aplicativo exige referências de pacote para [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices) e [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog).
 
@@ -968,7 +970,7 @@ Um aplicativo em funcionamento pode falhar imediatamente após a atualização d
 1. Exclua as pastas *bin* e *obj*.
 1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e executando o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   Limpar caches de pacote também pode ser feito com a ferramenta de [nuget.exe](https://www.nuget.org/downloads) e executar o comando `nuget locals all -clear` . *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.

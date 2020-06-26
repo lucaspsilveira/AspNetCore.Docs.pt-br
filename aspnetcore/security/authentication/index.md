@@ -7,32 +7,34 @@ ms.custom: mvc
 ms.date: 03/03/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: 4e47bd91ce15836035d3e8f0a8ceed264f308b22
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: a58d48d390eefdc26cf3feb394874b0ba733e9f3
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82768631"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408338"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Visão geral da autenticação ASP.NET Core
 
 Por [Mike Rousos](https://github.com/mjrousos)
 
-A autenticação é o processo de determinação da identidade de um usuário. A [autorização](xref:security/authorization/introduction) é o processo de determinar se um usuário tem acesso a um recurso. No ASP.NET Core, a `IAuthenticationService`autenticação é tratada pelo, que é usado pelo [middleware](xref:fundamentals/middleware/index)de autenticação. O serviço de autenticação usa manipuladores de autenticação registrados para concluir as ações relacionadas à autenticação. Exemplos de ações relacionadas à autenticação incluem:
+A autenticação é o processo de determinação da identidade de um usuário. A [autorização](xref:security/authorization/introduction) é o processo de determinar se um usuário tem acesso a um recurso. No ASP.NET Core, a autenticação é tratada pelo `IAuthenticationService` , que é usado pelo [middleware](xref:fundamentals/middleware/index)de autenticação. O serviço de autenticação usa manipuladores de autenticação registrados para concluir as ações relacionadas à autenticação. Exemplos de ações relacionadas à autenticação incluem:
 
 * Autenticação de um usuário.
 * Respondendo quando um usuário não autenticado tenta acessar um recurso restrito.
 
 Os manipuladores de autenticação registrados e suas opções de configuração são chamados de "esquemas".
 
-Os esquemas de autenticação são especificados pelo registro dos serviços `Startup.ConfigureServices`de autenticação no:
+Os esquemas de autenticação são especificados pelo registro dos serviços de autenticação no `Startup.ConfigureServices` :
 
-* Chamando um método de extensão específico de esquema após uma chamada para `services.AddAuthentication` (como `AddJwtBearer` ou `AddCookie`, por exemplo). Esses métodos de extensão usam [AuthenticationBuilder. addscheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) para registrar esquemas com as configurações apropriadas.
+* Chamando um método de extensão específico de esquema após uma chamada para `services.AddAuthentication` (como `AddJwtBearer` ou `AddCookie` , por exemplo). Esses métodos de extensão usam [AuthenticationBuilder. addscheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) para registrar esquemas com as configurações apropriadas.
 * Com menos frequência, chamando [AuthenticationBuilder. addscheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) diretamente.
 
 Por exemplo, o código a seguir registra os serviços e manipuladores de autenticação para esquemas de autenticação de portador JWT e Cookie:
@@ -45,14 +47,14 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 O `AddAuthentication` parâmetro `JwtBearerDefaults.AuthenticationScheme` é o nome do esquema a ser usado por padrão quando um esquema específico não é solicitado.
 
-Se vários esquemas forem usados, as políticas de autorização (ou atributos de autorização) poderão [especificar o esquema de autenticação (ou esquemas)](xref:security/authorization/limitingidentitybyscheme) que dependem para autenticar o usuário. No exemplo acima, o esquema de autenticação de cookie poderia ser usado especificando seu nome (`CookieAuthenticationDefaults.AuthenticationScheme` por padrão, embora um nome diferente possa ser fornecido ao chamar `AddCookie`).
+Se vários esquemas forem usados, as políticas de autorização (ou atributos de autorização) poderão [especificar o esquema de autenticação (ou esquemas)](xref:security/authorization/limitingidentitybyscheme) que dependem para autenticar o usuário. No exemplo acima, o esquema de autenticação de cookie poderia ser usado especificando seu nome ( `CookieAuthenticationDefaults.AuthenticationScheme` por padrão, embora um nome diferente possa ser fornecido ao chamar `AddCookie` ).
 
 Em alguns casos, a chamada para `AddAuthentication` é feita automaticamente por outros métodos de extensão. Por exemplo, ao usar [ASP.NET Core Identity ](xref:security/authentication/identity), `AddAuthentication` é chamado internamente.
 
-O middleware de autenticação é adicionado no `Startup.Configure` chamando o <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> método de extensão no do `IApplicationBuilder`aplicativo. Chamar `UseAuthentication` registra o middleware que usa os esquemas de autenticação registrados anteriormente. Chame `UseAuthentication` antes de qualquer middleware que dependa dos usuários que estão sendo autenticados. Ao usar o roteamento de ponto de extremidade `UseAuthentication` , a chamada para deve ir:
+O middleware de autenticação é adicionado no `Startup.Configure` chamando o <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> método de extensão no do aplicativo `IApplicationBuilder` . Chamar `UseAuthentication` registra o middleware que usa os esquemas de autenticação registrados anteriormente. Chame `UseAuthentication` antes de qualquer middleware que dependa dos usuários que estão sendo autenticados. Ao usar o roteamento de ponto de extremidade, a chamada para `UseAuthentication` deve ir:
 
-* Depois `UseRouting`, para que as informações de rota estejam disponíveis para decisões de autenticação.
-* Antes `UseEndpoints`, para que os usuários sejam autenticados antes de acessar os pontos de extremidade.
+* Depois `UseRouting` , para que as informações de rota estejam disponíveis para decisões de autenticação.
+* Antes `UseEndpoints` , para que os usuários sejam autenticados antes de acessar os pontos de extremidade.
 
 ## <a name="authentication-concepts"></a>Conceitos de autenticação
 
@@ -73,7 +75,7 @@ Os esquemas são úteis como um mecanismo para se referir aos comportamentos de 
 Um manipulador de autenticação:
 
 * É um tipo que implementa o comportamento de um esquema.
-* É derivado de <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> ou <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.
+* É derivado de <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> ou <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> .
 * O tem a principal responsabilidade de autenticar usuários.
 
 Com base na configuração do esquema de autenticação e no contexto de solicitação de entrada, manipuladores de autenticação:
@@ -86,7 +88,7 @@ Com base na configuração do esquema de autenticação e no contexto de solicit
 
 ### <a name="authenticate"></a>Authenticate
 
-A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> valor que indica se a autenticação foi bem-sucedida e, nesse caso, a identidade do usuário em um tíquete de autenticação. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Os exemplos de autenticação incluem:
+A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um valor <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> que indica se a autenticação foi bem-sucedida e, nesse caso, a identidade do usuário em um tíquete de autenticação. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Os exemplos de autenticação incluem:
 
 * Um esquema de autenticação de cookie que constrói a identidade do usuário a partir de cookies.
 * Um esquema de portador JWT desserializando e Validando um token de portador JWT para construir a identidade do usuário.
@@ -96,7 +98,7 @@ A ação de autenticação de um esquema de autenticação é responsável por c
 Um desafio de autenticação é invocado pela autorização quando um usuário não autenticado solicita um ponto de extremidade que requer autenticação. Um desafio de autenticação é emitido, por exemplo, quando um usuário anônimo solicita um recurso restrito ou clica em um link de logon. A autorização invoca um desafio usando os esquemas de autenticação especificados ou o padrão, se nenhum for especificado. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Os exemplos de desafio de autenticação incluem:
 
 * Um esquema de autenticação de cookie redirecionando o usuário para uma página de logon.
-* Um esquema de portador JWT que retorna um resultado 401 `www-authenticate: bearer` com um cabeçalho.
+* Um esquema de portador JWT que retorna um resultado 401 com um `www-authenticate: bearer` cabeçalho.
 
 Uma ação de desafio deve permitir que o usuário saiba qual mecanismo de autenticação usar para acessar o recurso solicitado.
 

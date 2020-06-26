@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/implementation/subkeyderivation
-ms.openlocfilehash: c4b4076d532e33b48b3438f842507a8cda2d71b6
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f373c37a5ea4dab91463d011d3ecd6799ae6d014
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776845"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408026"
 ---
 # <a name="subkey-derivation-and-authenticated-encryption-in-aspnet-core"></a>Derivação de subchave e criptografia autenticada no ASP.NET Core
 
@@ -31,15 +33,15 @@ A maioria das chaves no anel de chave conterá alguma forma de entropia e terá 
 
 ## <a name="additional-authenticated-data-and-subkey-derivation"></a>Dados autenticados adicionais e derivação de subchave
 
-A `IAuthenticatedEncryptor` interface serve como interface principal para todas as operações de criptografia autenticadas. Seu `Encrypt` método usa dois buffers: texto não criptografado e ADDITIONALAUTHENTICATEDDATA (AAD). O fluxo de conteúdo de texto sem formatação inalterou a chamada para `IDataProtector.Protect`, mas o AAD é gerado pelo sistema e consiste em três componentes:
+A `IAuthenticatedEncryptor` interface serve como interface principal para todas as operações de criptografia autenticadas. Seu `Encrypt` método usa dois buffers: texto não criptografado e additionalAuthenticatedData (AAD). O fluxo de conteúdo de texto sem formatação inalterou a chamada para `IDataProtector.Protect` , mas o AAD é gerado pelo sistema e consiste em três componentes:
 
 1. O cabeçalho mágico de 32 bits 09 F0 C9 F0 que identifica esta versão do sistema de proteção de dados.
 
 2. A ID da chave de 128 bits.
 
-3. Uma cadeia de caracteres de comprimento variável formada pela cadeia de finalidade `IDataProtector` que criou a que está executando esta operação.
+3. Uma cadeia de caracteres de comprimento variável formada pela cadeia de finalidade que criou a `IDataProtector` que está executando esta operação.
 
-Como o AAD é exclusivo para a tupla de todos os três componentes, podemos usá-lo para derivar novas chaves de KM em vez de usar KM em todas as nossas operações de criptografia. Para cada chamada para `IAuthenticatedEncryptor.Encrypt`, ocorre o seguinte processo de derivação de chave:
+Como o AAD é exclusivo para a tupla de todos os três componentes, podemos usá-lo para derivar novas chaves de KM em vez de usar KM em todas as nossas operações de criptografia. Para cada chamada para `IAuthenticatedEncryptor.Encrypt` , ocorre o seguinte processo de derivação de chave:
 
 (K_E, K_H) = SP800_108_CTR_HMACSHA512 (K_M, AAD, contextHeader | | keymodificador)
 

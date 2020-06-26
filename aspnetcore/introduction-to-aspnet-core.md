@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/17/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 7f46051193681ecac59428b77ca1e36830c7bb63
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: f58c25ec8b47b2bd8d425d0bfd0d52df9bbc2655
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82776331"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408195"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -43,16 +45,16 @@ Milhões de desenvolvedores usam ou usaram o [ASP.NET 4. x](/aspnet/overview) pa
 O ASP.NET Core MVC fornece recursos que ajudam você a compilar [APIs Web](xref:tutorials/first-web-api) e [aplicativos Web](xref:tutorials/razor-pages/index):
 
 * O [padrão MVC (Model-View-Controller)](xref:mvc/overview) ajuda a tornar as APIs Web e os aplicativos Web testáveis.
-* [Razor Pages](xref:razor-pages/index) é um modelo de programação baseado em página que torna a criação da interface do usuário da Web mais fácil e mais produtiva.
-* A [marcação Razor](xref:mvc/views/razor) fornece uma sintaxe produtiva para [Páginas Razor](xref:razor-pages/index) e as [Exibições do MVC](xref:mvc/views/overview).
-* Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor.
+* As [ Razor páginas](xref:razor-pages/index) são um modelo de programação baseado em página que torna a criação da interface do usuário da Web mais fácil e produtiva.
+* a [ Razor marcação](xref:mvc/views/razor) fornece uma sintaxe produtiva para [ Razor páginas](xref:razor-pages/index) e [exibições do MVC](xref:mvc/views/overview).
+* Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos.
 * O suporte interno para [vários formatos de dados e negociação de conteúdo](xref:web-api/advanced/formatting) permite que as APIs Web alcancem uma ampla gama de clientes, incluindo navegadores e dispositivos móveis.
 * O [model binding](xref:mvc/models/model-binding) mapeia automaticamente os dados de solicitações HTTP para os parâmetros de método de ação.
 * A [Validação de Modelos](xref:mvc/models/validation) executa automaticamente a validação no lado do cliente e do servidor.
 
 ## <a name="client-side-development"></a>Desenvolvimento do lado do cliente
 
-O ASP.NET Core integra-se perfeitamente com estruturas conhecidas do lado do cliente e bibliotecas, incluindo [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react) e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
+O ASP.NET Core integra-se perfeitamente com estruturas e bibliotecas populares do lado do cliente, [Blazor](xref:blazor/index) incluindo [, angular](xref:spa/angular), [reagir](xref:spa/react)e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
 
 <a name="target-framework"></a>
 
@@ -76,18 +78,18 @@ Recomendamos a seguinte sequência de tutoriais para uma introdução ao desenvo
 
    |Tipo de aplicativo  |Cenário  |Tutorial  |
    |----------|----------|----------|
-   |Aplicativo Web                   | Novo desenvolvimento de interface do usuário na Web do lado do servidor |[Introdução a Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Aplicativo Web                   | Novo desenvolvimento de interface do usuário na Web do lado do servidor |[Introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start) |
    |Aplicativo Web                   | Mantendo um aplicativo MVC |[Introdução ao MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Aplicativo Web                   | Desenvolvimento de interface do usuário na Web do lado do cliente |[Introdução ao mais incrivelmente](xref:tutorials/first-blazor-app) |
+   |Aplicativo Web                   | Desenvolvimento de interface do usuário na Web do lado do cliente |[Introdução aoBlazor](xref:tutorials/first-blazor-app) |
    |API Web                   | Serviços HTTP RESTful |[Criar uma API Web](xref:tutorials/first-web-api)&dagger; |
    |Aplicativo de chamada de procedimento remoto | Serviços de primeiro contrato usando buffers de protocolo |[Introdução a um serviço gRPC](xref:tutorials/grpc/grpc-start) |
-   |Aplicativo em tempo real             | Comunicação bidirecional entre servidores e clientes conectados |[Introdução ao SignalR](xref:tutorials/signalr) |
+   |Aplicativo em tempo real             | Comunicação bidirecional entre servidores e clientes conectados |[Introdução aoSignalR](xref:tutorials/signalr) |
 
 1. Siga um tutorial que mostra como fazer o acesso a dados básico.
 
    |Cenário  |Tutorial  |
    |----------|----------|
-   |Novo desenvolvimento        |[Razor Pages com o Entity Framework Core](xref:data/ef-rp/intro) |
+   |Novo desenvolvimento        |[RazorPáginas com Entity Framework Core](xref:data/ef-rp/intro) |
    |Mantendo um aplicativo MVC |[MVC com o Entity Framework Core](xref:data/ef-mvc/intro) |
 
 1. Leia uma visão geral de ASP.NET Core [conceitos básicos](xref:fundamentals/index) que se aplicam a todos os tipos de aplicativos.
@@ -98,7 +100,7 @@ Recomendamos a seguinte sequência de tutoriais para uma introdução ao desenvo
 
 ## <a name="migrate-from-net-framework"></a>Migrar do .NET Framework
 
-Para obter um guia de referência para migrar aplicativos ASP.NET 4. x para <xref:migration/proper-to-2x/index>ASP.NET Core, consulte.
+Para obter um guia de referência para migrar aplicativos ASP.NET 4. x para ASP.NET Core, consulte <xref:migration/proper-to-2x/index> .
 
 ::: moniker-end
 
@@ -122,16 +124,16 @@ Milhões de desenvolvedores usam ou usaram o [ASP.NET 4. x](/aspnet/overview) pa
 O ASP.NET Core MVC fornece recursos que ajudam você a compilar [APIs Web](xref:tutorials/first-web-api) e [aplicativos Web](xref:tutorials/razor-pages/index):
 
 * O [padrão MVC (Model-View-Controller)](xref:mvc/overview) ajuda a tornar as APIs Web e os aplicativos Web testáveis.
-* [Razor Pages](xref:razor-pages/index) é um modelo de programação baseado em página que torna a criação da interface do usuário da Web mais fácil e mais produtiva.
-* A [marcação Razor](xref:mvc/views/razor) fornece uma sintaxe produtiva para [Páginas Razor](xref:razor-pages/index) e as [Exibições do MVC](xref:mvc/views/overview).
-* Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor.
+* As [ Razor páginas](xref:razor-pages/index) são um modelo de programação baseado em página que torna a criação da interface do usuário da Web mais fácil e produtiva.
+* a [ Razor marcação](xref:mvc/views/razor) fornece uma sintaxe produtiva para [ Razor páginas](xref:razor-pages/index) e [exibições do MVC](xref:mvc/views/overview).
+* Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos.
 * O suporte interno para [vários formatos de dados e negociação de conteúdo](xref:web-api/advanced/formatting) permite que as APIs Web alcancem uma ampla gama de clientes, incluindo navegadores e dispositivos móveis.
 * O [model binding](xref:mvc/models/model-binding) mapeia automaticamente os dados de solicitações HTTP para os parâmetros de método de ação.
 * A [Validação de Modelos](xref:mvc/models/validation) executa automaticamente a validação no lado do cliente e do servidor.
 
 ## <a name="client-side-development"></a>Desenvolvimento do lado do cliente
 
-O ASP.NET Core integra-se perfeitamente com estruturas conhecidas do lado do cliente e bibliotecas, incluindo [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react) e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
+O ASP.NET Core integra-se perfeitamente com estruturas e bibliotecas populares do lado do cliente, [Blazor](xref:blazor/index) incluindo [, angular](xref:spa/angular), [reagir](xref:spa/react)e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
 
 <a name="target-framework"></a>
 
@@ -164,10 +166,10 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
    |Tipo de aplicativo  |Cenário  |Tutorial  |
    |----------|----------|----------|
-   |Aplicativo Web                   | Para novo desenvolvimento        |[Introdução a Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Aplicativo Web                   | Para novo desenvolvimento        |[Introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start) |
    |Aplicativo Web                   | Para manter um aplicativo MVC |[Introdução ao MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |API Web                   |                            |[Criar uma API Web](xref:tutorials/first-web-api)&dagger; |
-   |Aplicativo em tempo real             |                            |[Introdução ao SignalR](xref:tutorials/signalr) |
+   |Aplicativo em tempo real             |                            |[Introdução aoSignalR](xref:tutorials/signalr) |
 
 1. Siga um tutorial que mostra como fazer o acesso a dados básico.
 
@@ -184,7 +186,7 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
 ## <a name="migrate-from-net-framework"></a>Migrar do .NET Framework
 
-Para obter um guia de referência para migrar aplicativos ASP.NET para <xref:migration/proper-to-2x/index>ASP.NET Core, consulte.
+Para obter um guia de referência para migrar aplicativos ASP.NET para ASP.NET Core, consulte <xref:migration/proper-to-2x/index> .
 
 ::: moniker-end
 
@@ -236,7 +238,7 @@ O snippet de código C# precedente é referenciado no arquivo de markdown do tó
 [!code-csharp[](sample/SampleApp/Program.cs?name=snippet_WebHostDefaults)]
 ```
 
-Você pode ignorar (ou remover) com segurança as `#region` diretivas `#endregion` e que envolvem o código. Não altere o código nessas diretivas se você planeja executar os cenários de exemplo descritos no tópico. Fique à vontade para alterar o código ao experimentar com outros cenários.
+Você pode ignorar (ou remover) com segurança as `#region` `#endregion` diretivas e que envolvem o código. Não altere o código nessas diretivas se você planeja executar os cenários de exemplo descritos no tópico. Fique à vontade para alterar o código ao experimentar com outros cenários.
 
 Para obter mais informações, veja [Contribuir para a documentação do ASP.NET: snippets de código](https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
 

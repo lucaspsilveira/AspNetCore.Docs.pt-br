@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 37a50fa2939eb31e66925fa907212d54577bd20b
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 13c4a8e287e4b62a1429f67fbe83ff5b0dc65f52
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106566"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408273"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -68,7 +70,7 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 | -------- | ------------------- |
 | Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identity | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Sessão | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). |
+| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). |
 | TempData | Proteção de dados (cookies criptografados) (consulte <xref:security/data-protection/configuration/overview> ) ou sessão (consulte [Gerenciamento de sessão e estado: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 

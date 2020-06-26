@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 3c8bf27a97de92a42817d4af625976a4920001aa
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 530455c85c4c869f06ba795d9fb63dcfd1c8d5cf
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84145545"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407220"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrar de ASP.NET Web API para ASP.NET Core
 
@@ -73,7 +75,7 @@ A solução agora contém dois projetos. As seções a seguir explicam como migr
 
 ## <a name="migrate-configuration"></a>Migrar configuração
 
-ASP.NET Core não usa a pasta *App_Start* ou o arquivo *global. asax* . Além disso, o arquivo *Web. config* é adicionado no momento da publicação.
+ASP.NET Core não usa a pasta *App_Start* ou o arquivo *global. asax* . Além disso, o arquivo de *web.config* é adicionado no momento da publicação.
 
 A classe `Startup`:
 
@@ -186,7 +188,7 @@ A solução agora contém dois projetos. As seções a seguir explicam como migr
 ASP.NET Core não usa:
 
 * *App_Start* pasta ou o arquivo *global. asax*
-* o arquivo *Web. config* é adicionado no momento da publicação.
+* *web.config* arquivo é adicionado no momento da publicação.
 
 A classe `Startup`:
 

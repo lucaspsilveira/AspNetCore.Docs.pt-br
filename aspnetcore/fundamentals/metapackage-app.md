@@ -7,25 +7,27 @@ ms.author: riande
 ms.date: 09/24/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/metapackage-app
-ms.openlocfilehash: 5f3511b31b45b2c4ad4467bb49d4eaacf22ad437
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 89f447699e8219ec4dd48b2342095d86a011860f
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775551"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407961"
 ---
 # <a name="microsoftaspnetcoreapp-for-aspnet-core"></a>Microsoft. AspNetCore. app para ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
- A estrutura compartilhada do ASP.NET Core`Microsoft.AspNetCore.App`() contém assemblies que são desenvolvidos e suportados pela Microsoft. `Microsoft.AspNetCore.App`é instalado quando o [SDK do .NET Core 3,0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.0) está instalado. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll* ) que estão instalados no computador e inclui um componente de tempo de execução e um pacote de direcionamento. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+ A estrutura compartilhada do ASP.NET Core ( `Microsoft.AspNetCore.App` ) contém assemblies que são desenvolvidos e suportados pela Microsoft. `Microsoft.AspNetCore.App`é instalado quando o [SDK do .NET Core 3,0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.0) está instalado. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll* ) que estão instalados no computador e inclui um componente de tempo de execução e um pacote de direcionamento. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
-* Projetos direcionados ao `Microsoft.NET.Sdk.Web` SDK referenciam implicitamente `Microsoft.AspNetCore.App` a estrutura.
+* Projetos direcionados ao `Microsoft.NET.Sdk.Web` SDK referenciam implicitamente a `Microsoft.AspNetCore.App` estrutura.
 
 Nenhuma referência adicional é necessária para esses projetos:
 
@@ -55,7 +57,7 @@ O [metapacote](/dotnet/core/packages#metapackages) [Microsoft. AspNetCore. app](
 * Inclui todos os pacotes com suporte pela equipe do ASP.NET Core, exceto aqueles que contêm dependências de terceiros (que não sejam aqueles mencionados anteriormente).
 * Inclui todos os pacotes com suporte pela equipe do Entity Framework Core, exceto aqueles que contêm dependências de terceiros (que não sejam aqueles mencionados anteriormente).
 
-Todos os recursos do ASP.NET Core 2.x e do Entity Framework Core 2.x são incluídos no pacote `Microsoft.AspNetCore.App`. Os modelos de projeto padrão direcionados ASP.NET Core 2. x usam este pacote. Recomendamos que os aplicativos que visam ASP.NET Core 2. x e Entity Framework Core 2 `Microsoft.AspNetCore.App` . x usem o pacote.
+Todos os recursos do ASP.NET Core 2.x e do Entity Framework Core 2.x são incluídos no pacote `Microsoft.AspNetCore.App`. Os modelos de projeto padrão direcionados ASP.NET Core 2. x usam este pacote. Recomendamos que os aplicativos que visam ASP.NET Core 2. x e Entity Framework Core 2. x usem o `Microsoft.AspNetCore.App` pacote.
 
 O número de versão do metapacote `Microsoft.AspNetCore.App` representa a versão mínima do ASP.NET Core e a versão do Entity Framework Core.
 
@@ -67,7 +69,7 @@ O uso do metapacote `Microsoft.AspNetCore.App` fornece restrições de versões 
 
 Aplicativos que usam o metapacote `Microsoft.AspNetCore.App` aproveitam automaticamente a estrutura compartilhada do ASP.NET Core. Quando você usa o metapacote `Microsoft.AspNetCore.App`, **** nenhum&mdash; ativo dos pacotes NuGet do ASP.NET Core referenciados é implantado com o aplicativo, porque a estrutura compartilhada do ASP.NET Core contém esses ativos. Os ativos na estrutura compartilhada são pré-compilados para melhorar o tempo de inicialização do aplicativo. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
-O arquivo de projeto a seguir `Microsoft.AspNetCore.App` referencia o metapacote para ASP.NET Core e representa um modelo típico do ASP.NET Core 2,2:
+O arquivo de projeto a seguir referencia o `Microsoft.AspNetCore.App` metapacote para ASP.NET Core e representa um modelo típico do ASP.NET Core 2,2:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

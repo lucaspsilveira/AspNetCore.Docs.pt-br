@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 9/25/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/compatibility-version
-ms.openlocfilehash: 45eca0bedc2e4e5c74936ae5d1bf525774467b2a
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 42d1a991a3fb676a5d3a2e0bc024a78afd18b588
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774204"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408650"
 ---
 # <a name="compatibility-version-for-aspnet-core-mvc"></a>Versão de compatibilidade do ASP.NET Core MVC
 
@@ -29,7 +31,7 @@ De [Rick Anderson](https://twitter.com/RickAndMSFT)
 O <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> método é não operacional para aplicativos ASP.NET Core 3,0. Ou seja, chamar `SetCompatibilityVersion` com qualquer valor de <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion> não afeta o aplicativo.
 
 * A próxima versão secundária do ASP.NET Core pode fornecer um novo `CompatibilityVersion` valor.
-* `CompatibilityVersion`os `Version_2_0` valores `Version_2_2` são marcados `[Obsolete(...)]`.
+* `CompatibilityVersion`os `Version_2_0` valores `Version_2_2` são marcados `[Obsolete(...)]` .
 * Veja [alterações de API de interrupção em antifalsificação, CORS, diagnóstico, MVC e roteamento](https://github.com/aspnet/Announcements/issues/387). Essa lista inclui alterações significativas para as opções de compatibilidade.
 
 Para ver como `SetCompatibilityVersion` o funciona com os aplicativos ASP.NET Core 2. x, selecione a [versão ASP.NET Core 2,2 deste artigo](https://docs.microsoft.com/aspnet/core/mvc/compatibility-version?view=aspnetcore-2.2).
@@ -46,7 +48,7 @@ O código a seguir define o modo de compatibilidade para o ASP.NET Core 2.2:
 
 É recomendável que você teste seu aplicativo usando a versão mais recente (`CompatibilityVersion.Latest`). Estimamos que a maioria dos aplicativos não terão alterações da falha de comportamento usando a versão mais recente.
 
-Os aplicativos que `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` chamam são protegidos contra alterações de comportamento potencialmente quebras introduzidas nas versões MVC do ASP.NET Core 2.1/2.2. Essa proteção:
+Os aplicativos que chamam `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` são protegidos contra alterações de comportamento potencialmente quebras introduzidas nas versões MVC do ASP.NET Core 2.1/2.2. Essa proteção:
 
 * Não se aplica a todas as alterações da 2.1 e posteriores, ela é direcionada às possíveis alterações da falha de comportamento do runtime do ASP.NET Core no subsistema de MVC.
 * Não estende para o ASP.NET Core 3,0.

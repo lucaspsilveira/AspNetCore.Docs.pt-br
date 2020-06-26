@@ -6,27 +6,29 @@ ms.author: riande
 ms.date: 02/11/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: b88f2627eabc536f2d3b8e677020a67bfd1a40ba
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 95c19b671602b45ba217dcb551110854cbbee359
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775642"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408962"
 ---
-# <a name="configure-aspnet-core-identity"></a>Configurar identidade de ASP.NET Core
+# <a name="configure-aspnet-core-identity"></a>Configurar ASP.NET CoreIdentity
 
-ASP.NET Core identidade usa valores padrão para configurações como política de senha, bloqueio e configuração de cookie. Essas configurações podem ser substituídas na `Startup` classe.
+ASP.NET Core Identity usa valores padrão para configurações como política de senha, bloqueio e configuração de cookie. Essas configurações podem ser substituídas na `Startup` classe.
 
-## <a name="identity-options"></a>Opções de identidade
+## <a name="identity-options"></a>IdentityOpções
 
-A classe [identityoptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) representa as opções que podem ser usadas para configurar o sistema de identidade. `IdentityOptions`deve ser definido **após** a `AddIdentity` chamada `AddDefaultIdentity`ou.
+A classe [identityoptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) representa as opções que podem ser usadas para configurar o Identity sistema. `IdentityOptions`deve ser definido **após** a chamada `AddIdentity` ou `AddDefaultIdentity` .
 
-### <a name="claims-identity"></a>Identidade de declarações
+### <a name="claims-identity"></a>DeclaraçõesIdentity
 
 [Identityoptions. ClaimsIdentity](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) especifica o [ClaimsIdentityOptions](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) com as propriedades mostradas na tabela a seguir.
 
@@ -43,9 +45,9 @@ O bloqueio é definido no método [PasswordSignInAsync](/dotnet/api/microsoft.as
 
 [!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
 
-O código anterior é baseado no modelo `Login` de identidade. 
+O código anterior se baseia no `Login` Identity modelo. 
 
-As opções de bloqueio são `StartUp.ConfigureServices`definidas em:
+As opções de bloqueio são definidas em `StartUp.ConfigureServices` :
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
@@ -63,7 +65,7 @@ Uma autenticação bem-sucedida redefine a contagem de tentativas de acesso com 
 
 ### <a name="password"></a>Senha
 
-Por padrão, a identidade requer que as senhas contenham um caractere maiúsculo, um caractere minúsculo, um dígito e um caractere não alfanumérico. As senhas devem ter pelo menos seis caracteres. As [passwordoptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) podem ser definidas `Startup.ConfigureServices`em.
+Por padrão, Identity o requer que as senhas contenham um caractere maiúsculo, um caractere minúsculo, um dígito e um caractere não alfanumérico. As senhas devem ter pelo menos seis caracteres. As [passwordoptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) podem ser definidas em `Startup.ConfigureServices` .
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -112,7 +114,7 @@ Por padrão, a identidade requer que as senhas contenham um caractere maiúsculo
 
 ### <a name="sign-in"></a>Conexão
 
-O código a seguir `SignIn` define as configurações (para valores padrão):
+O código a seguir define `SignIn` as configurações (para valores padrão):
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -143,7 +145,7 @@ O [identityoptions. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityop
 |       [ChangeEmailTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider)       |                                     Obtém ou define o `ChangeEmailTokenProvider` usado para gerar tokens usados em emails de confirmação de alteração de e-mail.                                     |
 | [ChangePhoneNumberTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) |                                      Obtém ou define o `ChangePhoneNumberTokenProvider` usado para gerar tokens usados ao alterar números de telefone.                                      |
 | [EmailConfirmationTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.emailconfirmationtokenprovider) |                                             Obtém ou define o provedor de token usado para gerar tokens usados em emails de confirmação de conta.                                              |
-|     [PasswordResetTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider)     | Obtém ou define o [>\<de TUser IUserTwoFactorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) usado para gerar tokens usados em emails de redefinição de senha. |
+|     [PasswordResetTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider)     | Obtém ou define o [IUserTwoFactorTokenProvider \<TUser> ](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) usado para gerar tokens usados em emails de redefinição de senha. |
 |                    [ProviderMap](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap)                    |                Usado para construir um [provedor de token de usuário](/dotnet/api/microsoft.aspnetcore.identity.tokenproviderdescriptor) com a chave usada como o nome do provedor.                 |
 
 ### <a name="user"></a>Usuário
@@ -159,7 +161,7 @@ O [identityoptions. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityop
 
 ### <a name="cookie-settings"></a>Configurações de cookie
 
-Configure o cookie do aplicativo no `Startup.ConfigureServices`. [ConfigureApplicationCookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) deve ser chamado **depois** de `AddIdentity` chamar `AddDefaultIdentity`ou.
+Configure o cookie do aplicativo no `Startup.ConfigureServices` . [ConfigureApplicationCookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) deve ser chamado **depois** `AddIdentity` de chamar `AddDefaultIdentity` ou.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -187,10 +189,10 @@ Para obter mais informações, consulte [CookieAuthenticationOptions](/dotnet/ap
 
 | Opção | Descrição |
 | ------ | ----------- |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | O modo de compatibilidade usado ao aplicar o hash de novas senhas. O padrão é <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. O primeiro byte de uma senha com hash, chamado de *marcador de formato*, especifica a versão do algoritmo de hash usado para fazer o hash da senha. Ao verificar uma senha em relação a um hash, <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> o método seleciona o algoritmo correto com base no primeiro byte. Um cliente é capaz de autenticar, independentemente de qual versão do algoritmo foi usada para fazer o hash da senha. Definir o modo de compatibilidade afeta o hash de *novas senhas*. |
-| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | O número de iterações usadas ao aplicar o hash de senhas usando PBKDF2. Esse valor é usado somente quando o <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> é definido como <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. O valor deve ser um inteiro positivo e o padrão é `10000`. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | O modo de compatibilidade usado ao aplicar o hash de novas senhas. O padrão é <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. O primeiro byte de uma senha com hash, chamado de *marcador de formato*, especifica a versão do algoritmo de hash usado para fazer o hash da senha. Ao verificar uma senha em relação a um hash, o <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> método seleciona o algoritmo correto com base no primeiro byte. Um cliente é capaz de autenticar, independentemente de qual versão do algoritmo foi usada para fazer o hash da senha. Definir o modo de compatibilidade afeta o hash de *novas senhas*. |
+| <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | O número de iterações usadas ao aplicar o hash de senhas usando PBKDF2. Esse valor é usado somente quando o <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> é definido como <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . O valor deve ser um inteiro positivo e o padrão é `10000` . |
 
-No exemplo a seguir, o <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> é definido como `12000` em `Startup.ConfigureServices`:
+No exemplo a seguir, o <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> é definido como `12000` em `Startup.ConfigureServices` :
 
 ```csharp
 // using Microsoft.AspNetCore.Identity;

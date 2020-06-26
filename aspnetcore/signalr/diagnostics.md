@@ -8,17 +8,19 @@ ms.custom: signalr
 ms.date: 06/12/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 7d7ea0fe69f258c01177c7755eaee61ab42400ce
-ms.sourcegitcommit: 490434a700ba8c5ed24d849bd99d8489858538e3
+ms.openlocfilehash: f2b864d47c98a031872be676a68143bd79f49829
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102943"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409092"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro em log e diagnóstico no ASP.NET CoreSignalR
 
@@ -111,7 +113,7 @@ Se você quiser enviar logs para um sistema de registro em log personalizado, po
 
 Para obter logs do cliente .NET, você pode usar o `ConfigureLogging` método em `HubConnectionBuilder` . Isso funciona da mesma maneira que o `ConfigureLogging` método em `WebHostBuilder` e `HostBuilder` . Você pode configurar os mesmos provedores de log usados no ASP.NET Core. No entanto, você precisa instalar e habilitar manualmente os pacotes NuGet para os provedores de log individuais.
 
-Para adicionar o log de cliente .NET a um Blazor aplicativo Webassembly, consulte <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> .
+Para adicionar o log de cliente .NET a um Blazor WebAssembly aplicativo, consulte <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging> .
 
 ### <a name="console-logging"></a>Log de console
 
@@ -220,7 +222,7 @@ Métricas é uma representação de medidas de dados em intervalos de tempo. Por
 
 SignalRas métricas do servidor são relatadas na <xref:Microsoft.AspNetCore.Http.Connections> origem do evento.
 
-| Nome                    | Descrição                 |
+| Name                    | Descrição                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Total de conexões iniciadas   |
 | `connections-stopped`   | Total de conexões interrompidas   |

@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 892663a533a207df84b0fce9af259a7dc212bc9b
-ms.sourcegitcommit: 5e462c3328c70f95969d02adce9c71592049f54c
+ms.openlocfilehash: f791dae5915c87d4c36f23419961e3c53e888743
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85292770"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85409066"
 ---
 # <a name="build-your-first-blazor-app"></a>Crie seu primeiro Blazor aplicativo
 
@@ -71,7 +73,7 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 1. Adicione o `Counter` componente ao componente do aplicativo `Index` adicionando um `<Counter />` elemento ao `Index` componente ( `Index.razor` ).
 
-   Se você estiver usando Blazor o Webassembly para essa experiência, um `SurveyPrompt` componente será usado pelo `Index` componente. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um Blazor aplicativo de servidor para essa experiência, adicione o `<Counter />` elemento ao `Index` componente:
+   Se você estiver usando Blazor WebAssembly o para essa experiência, um `SurveyPrompt` componente será usado pelo `Index` componente. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um Blazor Server aplicativo para essa experiência, adicione o `<Counter />` elemento ao `Index` componente:
 
    `Pages/Index.razor`:
 
@@ -111,9 +113,9 @@ A `@page` diretiva na parte superior do `Counter.razor` arquivo especifica que o
 
 ## <a name="dependency-injection"></a>Injeção de dependência
 
-### <a name="blazor-server-experience"></a>BlazorExperiência do servidor
+### <a name="blazor-server-experience"></a>Blazor Serverocorrer
 
-Se estiver trabalhando com um Blazor aplicativo de servidor, o `WeatherForecastService` serviço será registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no `Startup.ConfigureServices` . Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
+Se estiver trabalhando com um Blazor Server aplicativo, o `WeatherForecastService` serviço será registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no `Startup.ConfigureServices` . Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -127,9 +129,9 @@ O componente `FetchData` usa o serviço injetado, como `ForecastService`, para r
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-### <a name="blazor-webassembly-experience"></a>BlazorExperiência de Webassembly
+### <a name="blazor-webassembly-experience"></a>Blazor WebAssemblyocorrer
 
-Se estiver trabalhando com um Blazor aplicativo Webassembly, <xref:System.Net.Http.HttpClient> será injetado para obter dados de previsão do tempo do `weather.json` arquivo na `wwwroot/sample-data` pasta.
+Se estiver trabalhando com um Blazor WebAssembly aplicativo, <xref:System.Net.Http.HttpClient> será injetado para obter dados de previsão do tempo do `weather.json` arquivo na `wwwroot/sample-data` pasta.
 
 `Pages/FetchData.razor`:
 

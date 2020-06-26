@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: 144cc8988ba5797265b38f0f7364f528e0dbb97e
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 23ddad23214d3e1a66415fc8706c30de838357fa
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777417"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407428"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Ambiente no ASP.NET Core
 
@@ -47,7 +49,7 @@ O exemplo a seguir usa um Auxiliar de Marca de Ambiente. O conteúdo será rende
 
 ## <a name="include-and-exclude-attributes"></a>incluir e excluir atributos
 
-`include`& o controle de atributos que renderiza o conteúdo incluído com base nos nomes de ambiente de hospedagem incluídos ou `exclude` excluídos.
+`include`o & `exclude` controle de atributos que renderiza o conteúdo incluído com base nos nomes de ambiente de hospedagem incluídos ou excluídos.
 
 ### <a name="include"></a>include
 

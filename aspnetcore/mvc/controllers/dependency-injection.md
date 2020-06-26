@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 02/24/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: a7df6a5fa2d49efc332c4684ea8192f143cdebf5
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 67861b2cdb946f7cd630770507181ee853b7fbfd
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775694"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408416"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Injeção de dependência em controladores no ASP.NET Core
 
@@ -60,7 +62,7 @@ O <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> habilita a injeção de 
 
 Acessar definições de configuração ou do aplicativo de dentro de um controlador é um padrão comum. O *padrão de opções* descrito em <xref:fundamentals/configuration/options> é a abordagem preferencial para gerenciar as configurações. Em geral, não convém injetar <xref:Microsoft.Extensions.Configuration.IConfiguration> diretamente em um controlador.
 
-Crie uma classe que representa as opções. Por exemplo: 
+Crie uma classe que representa as opções. Por exemplo:
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 

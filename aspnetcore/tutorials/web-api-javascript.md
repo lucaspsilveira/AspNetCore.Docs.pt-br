@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 11/26/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: c3eb003812a31d8cf3168453fcc11601ffba19fb
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 4031289e43af75ef2026661dbecbbbce30593d43
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774347"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407974"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: chamar uma API Web do ASP.NET Core com JavaScript
 
@@ -54,18 +56,18 @@ A chamada `fetch` mais simples aceita um parâmetro único que representa a rota
 
 1. Crie uma pasta *js* dentro da pasta *wwwroot* .
 
-1. Adicione um arquivo HTML chamado *index. html* à pasta *wwwroot* . Substitua o conteúdo de *index. html* pela seguinte marcação:
+1. Adicione um arquivo HTML chamado *index.html* à pasta *wwwroot* . Substitua o conteúdo de *index.html* pela seguinte marcação:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Adicione um arquivo JavaScript chamado *site. js* à pasta *wwwroot/js* . Substitua o conteúdo de *site. js* pelo código a seguir:
+1. Adicione um arquivo JavaScript chamado *site.js* à pasta *wwwroot/js* . Substitua o conteúdo de *site.js* pelo código a seguir:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 Uma alteração nas configurações de inicialização do projeto ASP.NET Core pode ser necessária para testar a página HTML localmente:
 
 1. Abra *Properties\launchSettings.json*.
-1. Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index. html*&mdash;o arquivo padrão do projeto.
+1. Remova a `launchUrl` propriedade para forçar o aplicativo a abrir em *index.html* &mdash; o arquivo padrão do projeto.
 
 Esta amostra chama todos os métodos CRUD da API Web. A seguir, são apresentadas explicações sobre as solicitações de API Web.
 

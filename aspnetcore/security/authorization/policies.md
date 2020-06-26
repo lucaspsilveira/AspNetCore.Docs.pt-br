@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 533bddc9c4499dad99cfdb3089045ea10aed4548
-ms.sourcegitcommit: 4437f4c149f1ef6c28796dcfaa2863b4c088169c
+ms.openlocfilehash: 8c68f2a15d07909d4576a2426d92f9beaa91fbb7
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85074156"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408065"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em políticas no ASP.NET Core
 
@@ -127,7 +129,9 @@ As políticas são aplicadas às Razor páginas usando o `[Authorize]` atributo 
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-As políticas também podem ser aplicadas a Razor páginas usando uma [Convenção de autorização](xref:security/authorization/razor-pages-authorization).
+As políticas ***não*** podem ser aplicadas no Razor nível do manipulador de páginas, elas devem ser aplicadas à página.
+
+As políticas podem ser aplicadas a Razor páginas usando uma [Convenção de autorização](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisitos
 

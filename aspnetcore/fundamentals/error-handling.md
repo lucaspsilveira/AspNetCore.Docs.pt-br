@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: bbd16e2e045a24f018eb59b67dfdf50d9bed6f32
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 46654b61d631ef36a6501c6bf6c187ec064a7c9a
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775031"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407675"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
@@ -26,7 +28,7 @@ Por [Tom Dykstra](https://github.com/tdykstra/) e [Steve Smith](https://ardalis.
 
 Este artigo aborda abordagens comuns para lidar com erros em ASP.NET Core aplicativos Web. Consulte <xref:web-api/handle-errors> para APIs da Web.
 
-[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Como baixar](xref:index#how-to-download-a-sample).) O artigo inclui instruções sobre como definir diretivas de pré-processador (`#if`, `#endif`, `#define`) no aplicativo de exemplo para habilitar cenários diferentes.
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples). ([Como baixar](xref:index#how-to-download-a-sample).) O artigo inclui instruções sobre como definir diretivas de pré-processador ( `#if` , `#endif` , `#define` ) no aplicativo de exemplo para habilitar cenários diferentes.
 
 ## <a name="developer-exception-page"></a>Página de exceção do desenvolvedor
 
@@ -44,7 +46,7 @@ A página inclui as seguintes informações sobre a exceção e a solicitação:
 * Rastreamento de pilha
 * Parâmetros de cadeia de caracteres de consulta (se houver algum)
 * Cookies (se houver algum)
-* Cabeçalhos
+* headers
 
 Para ver a Página de exceção do desenvolvedor no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples), use a diretiva de pré-processador `DevEnvironment` e selecione **Disparar uma exceção** na página inicial.
 
@@ -59,7 +61,7 @@ No exemplo a seguir, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensio
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-O Razor modelo de aplicativo pages fornece uma página de erro (*. cshtml*) <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> e`ErrorModel`uma classe () na pasta *páginas* . Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
+O Razor modelo de aplicativo pages fornece uma página de erro (*. cshtml*) e uma <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> classe ( `ErrorModel` ) na pasta *páginas* . Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
 
 ```csharp
 [AllowAnonymous]
@@ -70,7 +72,7 @@ public IActionResult Error()
 }
 ```
 
-Não marque o método de ação do manipulador de erros com atributos do método `HttpGet`http, como. Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
+Não marque o método de ação do manipulador de erros com atributos do método HTTP, como `HttpGet` . Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
 
 ### <a name="access-the-exception"></a>Acessar a exceção
 
@@ -139,7 +141,7 @@ O método de extensão <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensi
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithRedirect)]
 
-O modelo de URL pode incluir um espaço reservado `{0}` para o código de status, conforme mostrado no exemplo. Se o modelo de URL começar com um til (~), este será substituído pelo `PathBase` do aplicativo. Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição Razor ou página do MVC para o ponto de extremidade. Para obter Razor um exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+O modelo de URL pode incluir um espaço reservado `{0}` para o código de status, conforme mostrado no exemplo. Se o modelo de URL começar com um til (~), este será substituído pelo `PathBase` do aplicativo. Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição ou Razor página do MVC para o ponto de extremidade. Para obter um Razor exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Este método normalmente é usado quando o aplicativo:
 
@@ -155,14 +157,14 @@ O método de extensão <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensi
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesWithReExecute)]
 
-Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição Razor ou página do MVC para o ponto de extremidade. Para obter Razor um exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
+Se você apontar para um ponto de extremidade dentro do aplicativo, crie uma exibição ou Razor página do MVC para o ponto de extremidade. Para obter um Razor exemplo de páginas, consulte *páginas/StatusCode. cshtml* no [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples).
 
 Este método normalmente é usado quando o aplicativo tem que:
 
 * Processar a solicitação sem redirecionar para um ponto de extremidade diferente. Para aplicativos Web, a barra de endereços do navegador do cliente reflete o ponto de extremidade originalmente solicitado.
 * Preservar e retornar o código de status original com a resposta.
 
-Os modelos de URL e cadeia de caracteres de consulta podem incluir um espaço reservado (`{0}`) para o código de status. O modelo de URL deve começar com uma barra (`/`). Ao usar um espaço reservado no caminho, verifique se o ponto de extremidade (página ou controlador) pode processar o segmento de linha. Por exemplo, uma Razor página de erros deve aceitar o valor do segmento de caminho opcional `@page` com a diretiva:
+Os modelos de URL e cadeia de caracteres de consulta podem incluir um espaço reservado (`{0}`) para o código de status. O modelo de URL deve começar com uma barra (`/`). Ao usar um espaço reservado no caminho, verifique se o ponto de extremidade (página ou controlador) pode processar o segmento de linha. Por exemplo, uma Razor página de erros deve aceitar o valor do segmento de caminho opcional com a `@page` diretiva:
 
 ```cshtml
 @page "{code?}"
@@ -174,9 +176,9 @@ O ponto de extremidade que processa o erro pode obter a URL original que gerou o
 
 ## <a name="disable-status-code-pages"></a>Desabilitar páginas de código de status
 
-Para desabilitar páginas de código de status para um controlador MVC ou um método de [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) ação, use o atributo.
+Para desabilitar páginas de código de status para um controlador MVC ou um método de ação, use o [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) atributo.
 
-Para desabilitar as páginas de código de status para solicitações Razor específicas em um método de manipulador de páginas ou em <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>um controlador MVC, use:
+Para desabilitar as páginas de código de status para solicitações específicas em um Razor método de manipulador de páginas ou em um controlador MVC, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature> :
 
 ```csharp
 var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();

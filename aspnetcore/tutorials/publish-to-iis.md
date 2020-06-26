@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 10/03/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: aa79ce604539b4f09d6f17d4f43da28a6b615f53
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 837a66ef36f1394df87d56132e146ef23a5d5659
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774568"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85407883"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Publicar um aplicativo ASP.NET Core no IIS
 
@@ -65,9 +67,9 @@ Baixe o instalador usando o seguinte link:
 
 1. Forneça um **Nome do site** e defina o **Caminho físico** como a pasta de implantação do aplicativo que você criou. Forneça a configuração **Associação** e crie o site ao selecionar **OK**.
 
-## <a name="create-an-aspnet-core-razor-pages-app"></a>Criar um aplicativo Razor Pages do ASP.NET Core
+## <a name="create-an-aspnet-core-razor-pages-app"></a>Criar um Razor aplicativo de páginas ASP.NET Core
 
-Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
+Siga o <xref:getting-started> tutorial para criar um Razor aplicativo de páginas.
 
 ## <a name="publish-and-deploy-the-app"></a>Publicar e implantar o aplicativo
 

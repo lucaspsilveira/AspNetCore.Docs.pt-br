@@ -1,37 +1,39 @@
 ---
 title: Redis backplane para ASP.NET Core SignalR escalar horizontalmente
 author: bradygaster
-description: Saiba como configurar um backplane Redis para habilitar a expansão para um aplicativo ASP.NET Core SignalR .
+description: Saiba como configurar um backplane Redis para habilitar a expansão para um SignalR aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: 6068890f4089a13add05bf8cf8009367e343adce
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: 58c1ff2c9334e75535f6e5f0f418976176822724
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82775343"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408468"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-signalr-scale-out"></a>Configurar um Redis backplane para ASP.NET Core SignalR escalar horizontalmente
 
 Por [Andrew Stanton-enfermaria](https://twitter.com/anurse), [Brady GASTER](https://twitter.com/bradygaster)e [Tom Dykstra](https://github.com/tdykstra),
 
-Este artigo explica SignalRaspectos específicos da configuração de um servidor [Redis](https://redis.io/) a ser usado para escalar horizontalmente um SignalR aplicativo ASP.NET Core.
+Este artigo explica SignalR aspectos específicos da configuração de um servidor [Redis](https://redis.io/) a ser usado para escalar horizontalmente um SignalR aplicativo ASP.NET Core.
 
 ## <a name="set-up-a-redis-backplane"></a>Configurar um backplane Redis
 
 * Implantar um servidor Redis.
 
   > [!IMPORTANT] 
-  > Para uso em produção, um backplane Redis é recomendado somente quando executado na mesma data center que o SignalR aplicativo. Caso contrário, a latência de rede degrada o desempenho. Se seu SignalR aplicativo estiver em execução na nuvem do Azure, recomendamos SignalR o serviço do Azure em vez de um backplane Redis. Você pode usar o serviço de cache Redis do Azure para ambientes de desenvolvimento e teste.
+  > Para uso em produção, um backplane Redis é recomendado somente quando executado na mesma data center que o SignalR aplicativo. Caso contrário, a latência de rede degrada o desempenho. Se seu SignalR aplicativo estiver em execução na nuvem do Azure, recomendamos o serviço do Azure SignalR em vez de um backplane Redis. Você pode usar o serviço de cache Redis do Azure para ambientes de desenvolvimento e teste.
 
   Para saber mais, consulte os recursos a seguir:
 
@@ -42,7 +44,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 ::: moniker range="= aspnetcore-2.1"
 
 * No SignalR aplicativo, instale o `Microsoft.AspNetCore.SignalR.Redis` pacote NuGet.
-* No `Startup.ConfigureServices` método, chame `AddRedis` após: `AddSignalR`
+* No `Startup.ConfigureServices` método, chame `AddRedis` após `AddSignalR` :
 
   ```csharp
   services.AddSignalR().AddRedis("<your_Redis_connection_string>");
@@ -72,13 +74,13 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`-Depende de StackExchange. Redis 2. X.X. Este é o pacote recomendado para o ASP.NET Core 2,2 e posterior.
   * `Microsoft.AspNetCore.SignalR.Redis`-Depende de StackExchange. Redis 1. X.X. Este pacote não está incluído no ASP.NET Core 3,0 e posterior.
 
-* No `Startup.ConfigureServices` método, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* No `Startup.ConfigureServices` método, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> :
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
 
- Ao usar `Microsoft.AspNetCore.SignalR.Redis`o, <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>chame.
+ Ao usar o `Microsoft.AspNetCore.SignalR.Redis` , chame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*> .
 
 * Configure as opções conforme necessário:
  
@@ -93,7 +95,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
     });
   ```
 
- Ao usar `Microsoft.AspNetCore.SignalR.Redis`o, <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>chame.
+ Ao usar o `Microsoft.AspNetCore.SignalR.Redis` , chame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*> .
 
   No código anterior, `options.Configuration` é inicializado com tudo o que foi especificado na cadeia de conexão.
 
@@ -107,7 +109,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* No `Startup.ConfigureServices` método, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* No `Startup.ConfigureServices` método, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> :
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
@@ -132,7 +134,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 
 ::: moniker-end
 
-* Se você estiver usando um servidor Redis para vários SignalR aplicativos, use um prefixo de canal diferente para SignalR cada aplicativo.
+* Se você estiver usando um servidor Redis para vários SignalR aplicativos, use um prefixo de canal diferente para cada SignalR aplicativo.
 
   Definir um prefixo de canal isola um SignalR aplicativo de outros que usam prefixos de canal diferentes. Se você não atribuir prefixos diferentes, uma mensagem enviada de um aplicativo para todos os seus próprios clientes acessará todos os clientes de todos os aplicativos que usam o servidor Redis como um backplane.
 
@@ -145,7 +147,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 
 ## <a name="redis-server-errors"></a>Erros do servidor Redis
 
-Quando um servidor Redis fica inativo SignalR , o gera exceções que indicam que as mensagens não serão entregues. Algumas mensagens de exceção típicas:
+Quando um servidor Redis fica inativo, o SignalR gera exceções que indicam que as mensagens não serão entregues. Algumas mensagens de exceção típicas:
 
 * *Falha ao gravar mensagem*
 * *Falha ao invocar o método de Hub ' MethodName '*

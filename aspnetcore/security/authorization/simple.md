@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 10/14/2016
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: b5f97038145ed479c315af50a35d6c64d85425a7
-ms.sourcegitcommit: fa67462abdf0cc4051977d40605183c629db7c64
+ms.openlocfilehash: 497103a14591476f3167602631b6b011264f5086
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84652955"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408325"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>Autorização simples no ASP.NET Core
 
@@ -84,7 +86,7 @@ Isso permitiria apenas usuários autenticados para o `AccountController` , excet
 
 ## <a name="authorize-attribute-and-razor-pages"></a>Autorizar atributo e Razor páginas
 
-O <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ***não*** pode ser aplicado a Razor manipuladores de página. Por exemplo, `[Authorize]` não pode ser aplicado a `OnGet` , `OnPost` ou a qualquer outro manipulador de página.
+O <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> ***não*** pode ser aplicado a Razor manipuladores de página. Por exemplo, `[Authorize]` não pode ser aplicado a `OnGet` , `OnPost` ou a qualquer outro manipulador de página. Considere o uso de um controlador MVC ASP.NET Core para páginas com diferentes requisitos de autorização para diferentes manipuladores.
 
 As duas abordagens a seguir podem ser usadas para aplicar a autorização aos Razor métodos do manipulador de página:
 

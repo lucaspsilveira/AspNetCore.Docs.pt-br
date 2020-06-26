@@ -7,17 +7,19 @@ ms.custom: mvc
 ms.date: 09/24/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: 1efd7c1a63baea4312a4a01cd9cd9c7582375d97
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: c767ff4c2a1e0d5d10ccb3ff855126f541c04f64
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82777348"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408234"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Auxiliar de marca de link no ASP.NET Core
 
@@ -29,7 +31,7 @@ O [auxiliar de marca de link](xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHe
 
 O auxiliar de marca de link permite que você especifique uma CDN para o arquivo CSS e um fallback quando a CDN não estiver disponível. O auxiliar de marca de link fornece a vantagem de desempenho de uma CDN com a robustez da hospedagem local.
 
-A marcação Razor a seguir mostra `head` o elemento de um arquivo de layout criado com o modelo de aplicativo Web ASP.NET Core:
+A marcação a seguir Razor mostra o `head` elemento de um arquivo de layout criado com o modelo de aplicativo Web ASP.NET Core:
 
 [!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
@@ -37,7 +39,7 @@ Este é um HTML renderizado do código anterior (em um ambiente que não é de d
 
 [!code-csharp[](link-tag-helper/sample/HtmlPage1.html)]
 
-No código anterior, o auxiliar de marca de link gerou `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` o elemento e o JavaScript a seguir, que é usado para verificar o arquivo *bootstrap. min. css* solicitado está disponível na CDN. Nesse caso, o arquivo CSS estava disponível para que o auxiliar de marca gerasse o `<link />` elemento com o arquivo CSS da CDN.
+No código anterior, o auxiliar de marca de link gerou o `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` elemento e o JavaScript a seguir, que é usado para verificar o arquivo *bootstrap. min. css* solicitado está disponível na CDN. Nesse caso, o arquivo CSS estava disponível para que o auxiliar de marca gerasse o `<link />` elemento com o arquivo CSS da CDN.
 
 ## <a name="commonly-used-link-tag-helper-attributes"></a>Atributos auxiliares de marca de link usados com frequência
 

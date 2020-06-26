@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 04/06/2020
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: 1e243d31a1c6b1f6ac6c9f7966ce07ecb01ceae5
-ms.sourcegitcommit: 6a71b560d897e13ad5b61d07afe4fcb57f8ef6dc
+ms.openlocfilehash: 9c679f6cb56397632eb99708bd2edd83c55ecf50
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84106176"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408260"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
@@ -170,7 +172,7 @@ A tabela a seguir fornece exemplos comuns de padrões de glob.
 |---------|---------|
 |`directory/file.txt`|Corresponde a um arquivo específico em um diretório específico.|
 |`directory/*.txt`|Corresponde a todos os arquivos com a extensão *.txt* em um diretório específico.|
-|`directory/*/appsettings.json`|Corresponde a todos os arquivos *appSettings. JSON* em diretórios exatamente um nível abaixo da pasta do *diretório* .|
+|`directory/*/appsettings.json`|Corresponde a todos os *appsettings.jsem* arquivos em diretórios exatamente um nível abaixo da pasta do *diretório* .|
 |`directory/**/*.txt`|Corresponde a todos os arquivos com uma extensão *. txt* encontrado em qualquer lugar na pasta do *diretório* .|
 
 ::: moniker-end

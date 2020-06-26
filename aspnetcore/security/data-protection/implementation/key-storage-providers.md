@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 12/05/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: cdf10cd26f3eb9af386f782475eeabbda50f0df9
-ms.sourcegitcommit: 1250c90c8d87c2513532be5683640b65bfdf9ddb
+ms.openlocfilehash: 1bbea6f16d57d5cc107c95293e2788271bfce601
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83153341"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408039"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Provedores de armazenamento de chaves no ASP.NET Core
 
@@ -126,7 +128,7 @@ Para obter mais informações, consulte estes tópicos:
 
 **Aplica-se somente a implantações do Windows.**
 
-Às vezes, o aplicativo pode não ter acesso de gravação ao sistema de arquivos. Considere um cenário em que um aplicativo está sendo executado como uma conta de serviço virtual (como a identidade do pool de aplicativos *w3wp. exe*). Nesses casos, o administrador pode provisionar uma chave do registro acessível pela identidade da conta de serviço. Chame o método de extensão [PersistKeysToRegistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , conforme mostrado abaixo. Forneça uma [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) apontando para o local onde as chaves de criptografia devem ser armazenadas:
+Às vezes, o aplicativo pode não ter acesso de gravação ao sistema de arquivos. Considere um cenário em que um aplicativo está sendo executado como uma conta de serviço virtual (como a identidade do pool de aplicativos do *w3wp.exe*). Nesses casos, o administrador pode provisionar uma chave do registro acessível pela identidade da conta de serviço. Chame o método de extensão [PersistKeysToRegistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) , conforme mostrado abaixo. Forneça uma [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) apontando para o local onde as chaves de criptografia devem ser armazenadas:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -147,7 +149,7 @@ O pacote [Microsoft. AspNetCore. dataprotection. EntityFrameworkCore](https://ww
 
 Com esse pacote, as chaves podem ser compartilhadas entre várias instâncias de um aplicativo Web.
 
-Para configurar o provedor de EF Core, chame o método [PersistKeysToDbContext \< TContext>](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
+Para configurar o provedor de EF Core, chame o método [PersistKeysToDbContext \<TContext> ](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) :
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 

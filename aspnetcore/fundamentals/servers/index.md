@@ -8,17 +8,19 @@ ms.custom: mvc
 ms.date: 11/07/2019
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 9d57fcd5883a869c5421b88321d4a279f3f938c9
-ms.sourcegitcommit: cd73744bd75fdefb31d25ab906df237f07ee7a0a
+ms.openlocfilehash: 6ddb786b8f03a7256aeca6605c48467a297b0855
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84452142"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408741"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementações de servidor Web em ASP.NET Core
 
@@ -164,7 +166,7 @@ O servidor é iniciado quando o IDE (Ambiente de Desenvolvimento Integrado) ou o
 
 Ao iniciar o aplicativo usando um prompt de comando na pasta do projeto, o [dotnet run](/dotnet/core/tools/dotnet-run) inicia o aplicativo e o servidor (apenas Kestrel e HTTP.sys). A configuração é especificada pela opção `-c|--configuration`, que é definida como `Debug` (padrão) ou `Release`.
 
-Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` o ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , use a `--launch-profile {PROFILE NAME}` opção com o `dotnet run` comando ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
+Um *launchSettings.jsno* arquivo fornece configuração ao iniciar um aplicativo com `dotnet run` o ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um *launchSettings.jsno* arquivo, use a `--launch-profile {PROFILE NAME}` opção com o `dotnet run` comando ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Suporte do HTTP/2
 

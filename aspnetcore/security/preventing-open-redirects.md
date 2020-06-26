@@ -6,17 +6,19 @@ ms.author: riande
 ms.date: 07/07/2017
 no-loc:
 - Blazor
+- Blazor Server
+- Blazor WebAssembly
 - Identity
 - Let's Encrypt
 - Razor
 - SignalR
 uid: security/preventing-open-redirects
-ms.openlocfilehash: ad4c9806146567b6ef1f5e78eaeca96cb649c1af
-ms.sourcegitcommit: 70e5f982c218db82aa54aa8b8d96b377cfc7283f
+ms.openlocfilehash: eb18c599d84fd08ffe97867b67a837303af188db
+ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774386"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85408143"
 ---
 # <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Impedir ataques de redirecionamento abertos no ASP.NET Core
 
@@ -32,9 +34,9 @@ Como a URL de destino é especificada na QueryString da solicitação, um usuár
 
 ### <a name="an-example-attack"></a>Um ataque de exemplo
 
-Um usuário mal-intencionado pode desenvolver um ataque destinado a permitir que o usuário mal-intencionado acesse as credenciais de um usuário ou informações confidenciais. Para iniciar o ataque, o usuário mal-intencionado convencer o usuário a clicar em um link para a página de logon do site com `returnUrl` um valor de QueryString adicionado à URL. Por exemplo, considere um aplicativo no `contoso.com` que inclui uma página de logon `http://contoso.com/Account/LogOn?returnUrl=/Home/About`em. O ataque segue estas etapas:
+Um usuário mal-intencionado pode desenvolver um ataque destinado a permitir que o usuário mal-intencionado acesse as credenciais de um usuário ou informações confidenciais. Para iniciar o ataque, o usuário mal-intencionado convencer o usuário a clicar em um link para a página de logon do site com um `returnUrl` valor de QueryString adicionado à URL. Por exemplo, considere um aplicativo no `contoso.com` que inclui uma página de logon em `http://contoso.com/Account/LogOn?returnUrl=/Home/About` . O ataque segue estas etapas:
 
-1. O usuário clica em um link mal-intencionado `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` para (a segunda URL é "Contoso**1**. com", não "contoso.com").
+1. O usuário clica em um link mal-intencionado para `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (a segunda URL é "Contoso**1**. com", não "contoso.com").
 2. O usuário faz logon com êxito.
 3. O usuário é redirecionado (pelo site) para `http://contoso1.com/Account/LogOn` (um site mal-intencionado que é exatamente como um site real).
 4. O usuário faz logon novamente (concedendo ao site mal-intencionado suas credenciais) e é Redirecionado de volta para o site real.
@@ -43,7 +45,7 @@ O usuário provavelmente acredita que a primeira tentativa de fazer logon falhou
 
 ![Abrir processo de ataque de redirecionamento](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-Além das páginas de logon, alguns sites fornecem páginas de redirecionamento ou pontos de extremidade. Imagine que seu aplicativo tenha uma página com um redirecionamento aberto `/Home/Redirect`. Um invasor pode criar, por exemplo, um link em um email que vá para `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. Um usuário típico irá examinar a URL e vê-la começar com o nome do site. Confiando nele, eles clicarão no link. O redirecionamento aberto, em seguida, enviaria o usuário para o site de phishing, que parece ser idêntico ao seu, e o usuário provavelmente fazer logon no que eles acreditam ser seu site.
+Além das páginas de logon, alguns sites fornecem páginas de redirecionamento ou pontos de extremidade. Imagine que seu aplicativo tenha uma página com um redirecionamento aberto `/Home/Redirect` . Um invasor pode criar, por exemplo, um link em um email que vá para `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login` . Um usuário típico irá examinar a URL e vê-la começar com o nome do site. Confiando nele, eles clicarão no link. O redirecionamento aberto, em seguida, enviaria o usuário para o site de phishing, que parece ser idêntico ao seu, e o usuário provavelmente fazer logon no que eles acreditam ser seu site.
 
 ## <a name="protecting-against-open-redirect-attacks"></a>Protegendo contra ataques de redirecionamento abertos
 
