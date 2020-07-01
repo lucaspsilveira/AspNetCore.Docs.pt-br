@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: cc30cedd51af06ffc7e17d36d4426fa45c452015
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 412cd7a39a0eed6800e15d235102ed367da5f746
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407740"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793483"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
@@ -52,7 +52,8 @@ Use a implementação `IHtmlLocalizer<T>` para recursos que contêm HTML. O `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 No nível mais baixo, você pode obter `IStringLocalizerFactory` com a [Injeção de Dependência](dependency-injection.md):
 
@@ -83,12 +84,13 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 Para usar um arquivo de recurso compartilhado em uma exibição, injete `IHtmlLocalizer<T>`:
 
@@ -136,19 +138,19 @@ Um arquivo de recurso é um mecanismo útil para separar cadeias de caracteres l
 
 1. No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta que conterá o arquivo de recurso > **Adicionar** > **Novo Item**.
 
-    ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
+   ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
 
-2. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
+1. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
 
-    ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
+   ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
 
-3. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
+1. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
 
-    ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
+   ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
 
-    O Visual Studio mostra o arquivo *Welcome.es.resx*.
+   O Visual Studio mostra o arquivo *Welcome.es.resx*.
 
-    ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
+   ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Nomenclatura do arquivo de recurso
 
@@ -160,7 +162,6 @@ No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` co
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Ponto  |
 | Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
 
 Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 
@@ -222,24 +223,25 @@ A localização é configurada no método `Startup.ConfigureServices`:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
+* `AddLocalization`Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
 
-* `AddViewLocalization` Adiciona suporte para os arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
+* `AddViewLocalization`Adiciona suporte para arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
 
-* `AddDataAnnotationsLocalization` Adiciona suporte para as mensagens de validação `DataAnnotations` localizadas por meio de abstrações `IStringLocalizer`.
+* `AddDataAnnotationsLocalization`Adiciona suporte para mensagens de validação localizadas `DataAnnotations` por meio de `IStringLocalizer` abstrações.
 
 ### <a name="localization-middleware"></a>Middleware de localização
 
 A cultura atual em uma solicitação é definida no [Middleware](xref:fundamentals/middleware/index) de localização. O middleware de localização é habilitado no método `Startup.Configure`. O middleware de localização precisa ser configurado antes de qualquer middleware que possa verificar a cultura de solicitação (por exemplo, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` inicializa um objeto `RequestLocalizationOptions`. Em cada solicitação, a lista de `RequestCultureProvider` em `RequestLocalizationOptions` é enumerada e o primeiro provedor que pode determinar com êxito a cultura de solicitação é usado. Os provedores padrão são obtidos da classe `RequestLocalizationOptions`:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 A lista padrão é apresentada do mais específico ao menos específico. Mais adiante neste artigo, veremos como você pode alterar a ordem e até mesmo adicionar um provedor de cultura personalizado. Se nenhum dos provedores pode determinar a cultura de solicitação, o `DefaultRequestCulture` é usado.
 
@@ -251,7 +253,9 @@ Alguns aplicativos usarão uma cadeia de caracteres de consulta para definir a [
 
 Se você passar somente uma das duas (`culture` ou `ui-culture`), o provedor da cadeia de caracteres de consulta definirá os dois valores usando aquela que foi passada. Por exemplo, a definição apenas da cultura definirá a `Culture` e a `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
@@ -261,7 +265,9 @@ O `CookieRequestCultureProvider` `DefaultCookieName` retorna o nome de cookie pa
 
 O formato do cookie é `c=%LANGCODE%|uic=%LANGCODE%`, em que `c` é `Culture` e `uic` é `UICulture`, por exemplo:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 Se você especificar apenas as informações de cultura e a cultura da interface do usuário, a cultura especificada será usada para as informações de cultura e para a cultura da interface do usuário.
 
@@ -273,17 +279,17 @@ O [cabeçalho Accept-Language](https://www.w3.org/International/questions/qa-acc
 
 1. No ícone de engrenagem, toque em **Opções da Internet**.
 
-2. Toque em **Idiomas**.
+1. Toque em **Idiomas**.
 
-    ![Opções da Internet](localization/_static/lang.png)
+   ![Opções da Internet](localization/_static/lang.png)
 
-3. Toque em **Definir Preferências de Idioma**.
+1. Toque em **Definir Preferências de Idioma**.
 
-4. Toque em **Adicionar um idioma**.
+1. Toque em **Adicionar um idioma**.
 
-5. Adicione o idioma.
+1. Adicione o idioma.
 
-6. Toque no idioma e, em seguida, em **Mover Para Cima**.
+1. Toque no idioma e, em seguida, em **Mover Para Cima**.
 
 ### <a name="use-a-custom-provider"></a>Usar um provedor personalizado
 
@@ -400,7 +406,8 @@ Use a implementação `IHtmlLocalizer<T>` para recursos que contêm HTML. O `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 No nível mais baixo, você pode obter `IStringLocalizerFactory` com a [Injeção de Dependência](dependency-injection.md):
 
@@ -431,12 +438,13 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 Para usar um arquivo de recurso compartilhado em uma exibição, injete `IHtmlLocalizer<T>`:
 
@@ -484,19 +492,19 @@ Um arquivo de recurso é um mecanismo útil para separar cadeias de caracteres l
 
 1. No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta que conterá o arquivo de recurso > **Adicionar** > **Novo Item**.
 
-    ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
+   ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
 
-2. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
+1. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
 
-    ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
+   ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
 
-3. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
+1. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
 
-    ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
+   ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
 
-    O Visual Studio mostra o arquivo *Welcome.es.resx*.
+   O Visual Studio mostra o arquivo *Welcome.es.resx*.
 
-    ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
+   ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Nomenclatura do arquivo de recurso
 
@@ -508,7 +516,6 @@ No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` co
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Ponto  |
 | Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
 
 Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 
@@ -570,24 +577,25 @@ A localização é configurada no método `Startup.ConfigureServices`:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
+* `AddLocalization`Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
 
-* `AddViewLocalization` Adiciona suporte para os arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
+* `AddViewLocalization`Adiciona suporte para arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
 
-* `AddDataAnnotationsLocalization` Adiciona suporte para as mensagens de validação `DataAnnotations` localizadas por meio de abstrações `IStringLocalizer`.
+* `AddDataAnnotationsLocalization`Adiciona suporte para mensagens de validação localizadas `DataAnnotations` por meio de `IStringLocalizer` abstrações.
 
 ### <a name="localization-middleware"></a>Middleware de localização
 
 A cultura atual em uma solicitação é definida no [Middleware](xref:fundamentals/middleware/index) de localização. O middleware de localização é habilitado no método `Startup.Configure`. O middleware de localização precisa ser configurado antes de qualquer middleware que possa verificar a cultura de solicitação (por exemplo, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` inicializa um objeto `RequestLocalizationOptions`. Em cada solicitação, a lista de `RequestCultureProvider` em `RequestLocalizationOptions` é enumerada e o primeiro provedor que pode determinar com êxito a cultura de solicitação é usado. Os provedores padrão são obtidos da classe `RequestLocalizationOptions`:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 A lista padrão é apresentada do mais específico ao menos específico. Mais adiante neste artigo, veremos como você pode alterar a ordem e até mesmo adicionar um provedor de cultura personalizado. Se nenhum dos provedores pode determinar a cultura de solicitação, o `DefaultRequestCulture` é usado.
 
@@ -595,11 +603,15 @@ A lista padrão é apresentada do mais específico ao menos específico. Mais ad
 
 Alguns aplicativos usarão uma cadeia de caracteres de consulta para definir a [cultura e a cultura da interface do usuário](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Para aplicativos que usam a abordagem do cabeçalho Accept-Language ou do cookie, a adição de uma cadeia de caracteres de consulta à URL é útil para depurar e testar o código. Por padrão, o `QueryStringRequestCultureProvider` é registrado como o primeiro provedor de localização na lista `RequestCultureProvider`. Passe os parâmetros `culture` e `ui-culture` da cadeia de caracteres de consulta. O seguinte exemplo define a cultura específica (idioma e região) como espanhol/México:
 
-   `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX&ui-culture=es-MX
+```
 
 Se você passar somente uma das duas (`culture` ou `ui-culture`), o provedor da cadeia de caracteres de consulta definirá os dois valores usando aquela que foi passada. Por exemplo, a definição apenas da cultura definirá a `Culture` e a `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
@@ -609,7 +621,9 @@ O `CookieRequestCultureProvider` `DefaultCookieName` retorna o nome de cookie pa
 
 O formato do cookie é `c=%LANGCODE%|uic=%LANGCODE%`, em que `c` é `Culture` e `uic` é `UICulture`, por exemplo:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 Se você especificar apenas as informações de cultura e a cultura da interface do usuário, a cultura especificada será usada para as informações de cultura e para a cultura da interface do usuário.
 
@@ -621,17 +635,17 @@ O [cabeçalho Accept-Language](https://www.w3.org/International/questions/qa-acc
 
 1. No ícone de engrenagem, toque em **Opções da Internet**.
 
-2. Toque em **Idiomas**.
+1. Toque em **Idiomas**.
 
-    ![Opções da Internet](localization/_static/lang.png)
+   ![Opções da Internet](localization/_static/lang.png)
 
-3. Toque em **Definir Preferências de Idioma**.
+1. Toque em **Definir Preferências de Idioma**.
 
-4. Toque em **Adicionar um idioma**.
+1. Toque em **Adicionar um idioma**.
 
-5. Adicione o idioma.
+1. Adicione o idioma.
 
-6. Toque no idioma e, em seguida, em **Mover Para Cima**.
+1. Toque no idioma e, em seguida, em **Mover Para Cima**.
 
 ### <a name="use-a-custom-provider"></a>Usar um provedor personalizado
 
@@ -747,7 +761,8 @@ Use a implementação `IHtmlLocalizer<T>` para recursos que contêm HTML. O `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 No nível mais baixo, você pode obter `IStringLocalizerFactory` com a [Injeção de Dependência](dependency-injection.md):
 
@@ -778,12 +793,13 @@ A implementação padrão de `IViewLocalizer` encontra o arquivo de recurso com 
 Um arquivo de recurso em francês pode conter o seguinte:
 
 | Chave | Valor |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 A exibição renderizada contém a marcação HTML do arquivo de recurso.
 
-**Observação:** em geral, recomendamos localizar somente o texto e não o HTML.
+> [!NOTE]
+> Em geral, somente Localize texto, não HTML.
 
 Para usar um arquivo de recurso compartilhado em uma exibição, injete `IHtmlLocalizer<T>`:
 
@@ -831,19 +847,19 @@ Um arquivo de recurso é um mecanismo útil para separar cadeias de caracteres l
 
 1. No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta que conterá o arquivo de recurso > **Adicionar** > **Novo Item**.
 
-    ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
+   ![Menu contextual aninhado: no Gerenciador de Soluções, um menu contextual é aberto para Recursos. Um segundo menu contextual é aberto para Adicionar mostrando o comando Novo Item realçado.](localization/_static/newi.png)
 
-2. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
+1. Na caixa **Pesquisar modelos instalados**, insira "recurso" e nomeie o arquivo.
 
-    ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
+   ![Caixa de diálogo Adicionar Novo Item](localization/_static/res.png)
 
-3. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
+1. Insira o valor da chave (cadeia de caracteres nativa) na coluna **Nome** e a cadeia de caracteres traduzida na coluna **Valor**.
 
-    ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
+   ![Arquivo Welcome.es.resx (o arquivo de recurso Welcome em espanhol) com a palavra Hello na coluna Nome e a palavra Hola (Olá, em espanhol) na coluna valor](localization/_static/hola.png)
 
-    O Visual Studio mostra o arquivo *Welcome.es.resx*.
+   O Visual Studio mostra o arquivo *Welcome.es.resx*.
 
-    ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
+   ![Gerenciador de Soluções mostrando o arquivo de recurso Welcome em espanhol (es)](localization/_static/se.png)
 
 ## <a name="resource-file-naming"></a>Nomenclatura do arquivo de recurso
 
@@ -855,7 +871,6 @@ No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` co
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Ponto  |
 | Resources/Controllers/HomeController.fr.resx  | Caminho |
-|    |     |
 
 Os arquivos de recurso usando `@inject IViewLocalizer` em Razor exibições seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Razorexiba os arquivos de recurso que imitam o caminho do arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
 
@@ -917,24 +932,25 @@ A localização é configurada no método `Startup.ConfigureServices`:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
+* `AddLocalization`Adiciona os serviços de localização ao contêiner de serviços. O código acima também define o caminho de recursos como "Resources".
 
-* `AddViewLocalization` Adiciona suporte para os arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
+* `AddViewLocalization`Adiciona suporte para arquivos de exibição localizados. Nesta amostra, a localização de exibição se baseia no sufixo do arquivo de exibição. Por exemplo, "fr" no arquivo *Index.fr.cshtml*.
 
-* `AddDataAnnotationsLocalization` Adiciona suporte para as mensagens de validação `DataAnnotations` localizadas por meio de abstrações `IStringLocalizer`.
+* `AddDataAnnotationsLocalization`Adiciona suporte para mensagens de validação localizadas `DataAnnotations` por meio de `IStringLocalizer` abstrações.
 
 ### <a name="localization-middleware"></a>Middleware de localização
 
 A cultura atual em uma solicitação é definida no [Middleware](xref:fundamentals/middleware/index) de localização. O middleware de localização é habilitado no método `Startup.Configure`. O middleware de localização precisa ser configurado antes de qualquer middleware que possa verificar a cultura de solicitação (por exemplo, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` inicializa um objeto `RequestLocalizationOptions`. Em cada solicitação, a lista de `RequestCultureProvider` em `RequestLocalizationOptions` é enumerada e o primeiro provedor que pode determinar com êxito a cultura de solicitação é usado. Os provedores padrão são obtidos da classe `RequestLocalizationOptions`:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 A lista padrão é apresentada do mais específico ao menos específico. Mais adiante neste artigo, veremos como você pode alterar a ordem e até mesmo adicionar um provedor de cultura personalizado. Se nenhum dos provedores pode determinar a cultura de solicitação, o `DefaultRequestCulture` é usado.
 
@@ -942,11 +958,15 @@ A lista padrão é apresentada do mais específico ao menos específico. Mais ad
 
 Alguns aplicativos usarão uma cadeia de caracteres de consulta para definir a [cultura e a cultura da interface do usuário](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). Para aplicativos que usam a abordagem do cabeçalho Accept-Language ou do cookie, a adição de uma cadeia de caracteres de consulta à URL é útil para depurar e testar o código. Por padrão, o `QueryStringRequestCultureProvider` é registrado como o primeiro provedor de localização na lista `RequestCultureProvider`. Passe os parâmetros `culture` e `ui-culture` da cadeia de caracteres de consulta. O seguinte exemplo define a cultura específica (idioma e região) como espanhol/México:
 
-   `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX&ui-culture=es-MX
+```
 
 Se você passar somente uma das duas (`culture` ou `ui-culture`), o provedor da cadeia de caracteres de consulta definirá os dois valores usando aquela que foi passada. Por exemplo, a definição apenas da cultura definirá a `Culture` e a `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
@@ -956,7 +976,9 @@ O `CookieRequestCultureProvider` `DefaultCookieName` retorna o nome de cookie pa
 
 O formato do cookie é `c=%LANGCODE%|uic=%LANGCODE%`, em que `c` é `Culture` e `uic` é `UICulture`, por exemplo:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 Se você especificar apenas as informações de cultura e a cultura da interface do usuário, a cultura especificada será usada para as informações de cultura e para a cultura da interface do usuário.
 
@@ -968,24 +990,24 @@ O [cabeçalho Accept-Language](https://www.w3.org/International/questions/qa-acc
 
 1. No ícone de engrenagem, toque em **Opções da Internet**.
 
-2. Toque em **Idiomas**.
+1. Toque em **Idiomas**.
 
-    ![Opções da Internet](localization/_static/lang.png)
+   ![Opções da Internet](localization/_static/lang.png)
 
-3. Toque em **Definir Preferências de Idioma**.
+1. Toque em **Definir Preferências de Idioma**.
 
-4. Toque em **Adicionar um idioma**.
+1. Toque em **Adicionar um idioma**.
 
-5. Adicione o idioma.
+1. Adicione o idioma.
 
-6. Toque no idioma e, em seguida, em **Mover Para Cima**.
+1. Toque no idioma e, em seguida, em **Mover Para Cima**.
 
 ### <a name="the-content-language-http-header"></a>O cabeçalho HTTP do idioma do conteúdo
 
 O cabeçalho da entidade de [linguagem de conteúdo](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) :
 
- - É usado para descrever os idiomas destinados ao público.
- - Permite que um usuário diferencie de acordo com a linguagem preferencial dos usuários.
+* É usado para descrever os idiomas destinados ao público.
+* Permite que um usuário diferencie de acordo com a linguagem preferencial dos usuários.
 
 Os cabeçalhos de entidade são usados tanto em solicitações HTTP quanto em respostas.
 
@@ -993,8 +1015,8 @@ O `Content-Language` cabeçalho pode ser adicionado definindo a propriedade `App
 
 Adicionando o `Content-Language` cabeçalho:
 
- - Permite que o RequestLocalizationMiddleware defina o `Content-Language` cabeçalho com o `CurrentUICulture` .
- - Elimina a necessidade de definir o cabeçalho de resposta `Content-Language` explicitamente.
+* Permite que o RequestLocalizationMiddleware defina o `Content-Language` cabeçalho com o `CurrentUICulture` .
+* Elimina a necessidade de definir o cabeçalho de resposta `Content-Language` explicitamente.
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions

@@ -4,7 +4,7 @@ author: jamesnk
 description: Saiba como configurar os serviços gRPCs em ASP.NET Core para que possam ser chamados de aplicativos de navegador usando o gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 05/26/2020
+ms.date: 06/29/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,18 +14,23 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 37932e755a0ef2149fb2336d2dcef87d3347d1a4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 20f72deb9895111a6e691eb1ee5cd7419c8c4cb4
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404750"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793506"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Usar o gRPC em aplicativos de navegador
 
 Por [James Newton – King](https://twitter.com/jamesnk)
 
-Não é possível chamar um serviço gRPC HTTP/2 de um aplicativo baseado em navegador. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) é um protocolo que permite que aplicativos e JavaScript do navegador Blazor chamem serviços gRPCs. Este artigo explica como usar o gRPC-Web no .NET Core.
+ Saiba como configurar um serviço gRPC existente do ASP.NET Core para ser chamado de aplicativos de navegador, usando o protocolo [gRPC-Web](https://github.com/grpc/grpc/blob/2a388793792cc80944334535b7c729494d209a7e/doc/PROTOCOL-WEB.md) . gRPC-Web permite que aplicativos e JavaScript do navegador Blazor chamem serviços gRPCs. Não é possível chamar um serviço gRPC HTTP/2 de um aplicativo baseado em navegador. os serviços gRPCs hospedados no ASP.NET Core podem ser configurados para dar suporte a gRPC-Web juntamente com HTTP/2 gRPC.
+
+
+Para obter instruções sobre como adicionar um serviço gRPC a um aplicativo ASP.NET Core existente, consulte [Adicionar serviços gRPC a um aplicativo ASP.NET Core](xref:grpc/aspnetcore#add-grpc-services-to-an-aspnet-core-app).
+
+Para obter instruções sobre como criar um projeto gRPC, consulte <xref:tutorials/grpc/grpc-start> .
 
 ## <a name="grpc-web-in-aspnet-core-vs-envoy"></a>gRPC-Web em ASP.NET Core vs. Envoy
 
@@ -34,7 +39,7 @@ Há duas opções de como adicionar gRPC-Web a um aplicativo ASP.NET Core:
 * Suporte a gRPC-Web juntamente com gRPC HTTP/2 em ASP.NET Core. Essa opção usa o middleware fornecido pelo `Grpc.AspNetCore.Web` pacote.
 * Use o suporte gRPC da Web [do Envoy proxy](https://www.envoyproxy.io/) para converter GRPC-Web em gRPC http/2. Em seguida, a chamada traduzida é encaminhada para o aplicativo ASP.NET Core.
 
-Há prós e contras em cada abordagem. Se você já estiver usando o Envoy como um proxy no ambiente do seu aplicativo, talvez faça sentido também usá-lo para fornecer suporte gRPC à Web. Se você quiser uma solução simples para o gRPC-Web que requer apenas ASP.NET Core, `Grpc.AspNetCore.Web` é uma boa opção.
+Há prós e contras em cada abordagem. Se o ambiente de um aplicativo já estiver usando o Envoy como um proxy, talvez faça sentido também usar o Envoy para fornecer suporte de gRPC para a Web. Para uma solução básica para o gRPC-Web que requer apenas ASP.NET Core, `Grpc.AspNetCore.Web` é uma boa opção.
 
 ## <a name="configure-grpc-web-in-aspnet-core"></a>Configurar gRPC-Web no ASP.NET Core
 
@@ -65,7 +70,7 @@ Como alternativa, o middleware gRPC-Web pode ser configurado para que todos os s
 
 A segurança do navegador impede que uma página da Web faça solicitações para um domínio diferente daquele que servia a página da Web. Essa restrição se aplica a fazer chamadas gRPC com aplicativos de navegador. Por exemplo, um aplicativo de navegador servido pelo `https://www.contoso.com` é impedido de chamar gRPC-Web Services hospedados no `https://services.contoso.com` . O CORS (compartilhamento de recursos entre origens) pode ser usado para relaxar essa restrição.
 
-Para permitir que o aplicativo de navegador faça chamadas gRPC-Web entre origens, configure o [CORS no ASP.NET Core](xref:security/cors). Use o suporte interno a CORS e exponha cabeçalhos específicos do gRPC com <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*> .
+Para permitir que um aplicativo de navegador faça chamadas gRPC-Web entre origens, configure o [CORS no ASP.NET Core](xref:security/cors). Use o suporte interno a CORS e exponha cabeçalhos específicos do gRPC com <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A> .
 
 [!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 

@@ -14,16 +14,16 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: 8244acb39a345875d80c5528a822de23f78b6e38
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 9df7f370eb550172493478bcd8d94a9541926fec
+ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403541"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85793554"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Reutilização de objeto com objectpool no ASP.NET Core
 
-Por [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak)e [Rick Anderson](https://twitter.com/RickAndMSFT)
+Por [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak)e [Günther Foidl](https://github.com/gfoidl)
 
 <xref:Microsoft.Extensions.ObjectPool>faz parte da infraestrutura de ASP.NET Core que dá suporte à manutenção de um grupo de objetos na memória para reutilização em vez de permitir que os objetos sejam coletados como lixo.
 
@@ -42,7 +42,9 @@ O pool de objetos nem sempre melhora o desempenho:
 
 Use o pool de objetos somente depois de coletar dados de desempenho usando cenários realistas para seu aplicativo ou biblioteca.
 
-**Aviso: o `ObjectPool` não implementa `IDisposable` . Não é recomendável usá-lo com tipos que precisam de descarte.**
+::: moniker range="< aspnetcore-3.0"
+**Aviso: o `ObjectPool` não implementa `IDisposable` . Não é recomendável usá-lo com tipos que precisam de descarte.** `ObjectPool`no ASP.NET Core 3,0 e posterior dá suporte ao `IDisposable` .
+::: moniker-end
 
 **Observação: o objectpool não coloca um limite no número de objetos que ele alocará, ele coloca um limite no número de objetos que será mantido.**
 
@@ -63,7 +65,20 @@ O objectpool pode ser usado em um aplicativo de várias maneiras:
 
 ## <a name="how-to-use-objectpool"></a>Como usar o objectpool
 
-Chame <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> para obter um objeto e <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> retornar o objeto.  Não há nenhum requisito para que você retorne todos os objetos. Se você não retornar um objeto, ele será coletado como lixo.
+Chame <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> para obter um objeto e <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> retornar o objeto.  Não há nenhum requisito para que você retorne todos os objetos. Se você não retornar um objeto, ele será coletado como lixo.
+
+::: moniker range=">= aspnetcore-3.0"
+Quando <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> é usado e `T` implementa `IDisposable` :
+
+* Os itens que ***não*** forem retornados ao pool serão descartados.
+* Quando o pool é Descartado por DI, todos os itens no pool são descartados.
+
+Observação: depois que o pool é Descartado:
+
+* A chamada `Get` gera um `ObjectDisposedException` .
+* `return`descarta o item determinado.
+
+::: moniker-end
 
 ## <a name="objectpool-sample"></a>Exemplo de objectpool
 
