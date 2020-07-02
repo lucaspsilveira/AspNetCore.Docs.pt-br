@@ -1,8 +1,8 @@
 ## <a name="debug-diagnostics"></a>Diagnóstico de depuração
 
-Para obter uma saída de diagnóstico de `Logging:LogLevel:Microsoft` roteamento `Debug`detalhada, defina como. Por exemplo, no ambiente de desenvolvimento, defina *appSettings. Development. JSON*:
+Para obter uma saída de diagnóstico de roteamento detalhada, defina `Logging:LogLevel:Microsoft` como `Debug` . No ambiente de desenvolvimento, defina o nível de log em *appsettings.Development.jsem*:
 
-```JSON
+```json
 {
   "Logging": {
     "LogLevel": {
@@ -12,3 +12,4 @@ Para obter uma saída de diagnóstico de `Logging:LogLevel:Microsoft` roteamento
     }
   }
 }
+```
