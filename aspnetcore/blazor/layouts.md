@@ -5,7 +5,7 @@ description: Saiba como criar componentes de layout reutilizáveis para Blazor a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 06/23/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: f405bb655b2879bd546420d99ff645401ead92fc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fe78a144b413bf97be83d20b11148e1856608f78
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402514"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944224"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>BlazorLayouts de ASP.NET Core
 
@@ -80,6 +80,9 @@ As seguintes `_Imports.razor` importações de arquivo:
 O `_Imports.razor` arquivo é semelhante ao [arquivo _ViewImports. cshtml para Razor exibições e páginas](xref:mvc/views/layout#importing-shared-directives) , mas é aplicado especificamente a Razor arquivos de componente.
 
 A especificação de um layout em `_Imports.razor` substitui um layout especificado como o *Layout padrão*do roteador.
+
+> [!WARNING]
+> **Não** adicione uma Razor `@layout` diretiva ao `_Imports.razor` arquivo raiz, o que resulta em um loop infinito de layouts no aplicativo. Para controlar o layout do aplicativo padrão, especifique o layout no `Router` componente. Para obter mais informações, consulte a seção [Layout padrão](#default-layout) .
 
 ## <a name="nested-layouts"></a>Layouts aninhados
 

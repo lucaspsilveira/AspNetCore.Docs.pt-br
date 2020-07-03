@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: f58c25ec8b47b2bd8d425d0bfd0d52df9bbc2655
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2ad97dd7eb38b4cb69fa7af5ae1e1d1837a97443
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408195"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944560"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -80,7 +80,7 @@ Recomendamos a seguinte sequência de tutoriais para uma introdução ao desenvo
    |----------|----------|----------|
    |Aplicativo Web                   | Novo desenvolvimento de interface do usuário na Web do lado do servidor |[Introdução às Razor páginas](xref:tutorials/razor-pages/razor-pages-start) |
    |Aplicativo Web                   | Mantendo um aplicativo MVC |[Introdução ao MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Aplicativo Web                   | Desenvolvimento de interface do usuário na Web do lado do cliente |[Introdução aoBlazor](xref:tutorials/first-blazor-app) |
+   |Aplicativo Web                   | Desenvolvimento de interface do usuário na Web do lado do cliente |[Introdução aoBlazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) |
    |API Web                   | Serviços HTTP RESTful |[Criar uma API Web](xref:tutorials/first-web-api)&dagger; |
    |Aplicativo de chamada de procedimento remoto | Serviços de primeiro contrato usando buffers de protocolo |[Introdução a um serviço gRPC](xref:tutorials/grpc/grpc-start) |
    |Aplicativo em tempo real             | Comunicação bidirecional entre servidores e clientes conectados |[Introdução aoSignalR](xref:tutorials/signalr) |

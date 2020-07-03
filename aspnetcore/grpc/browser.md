@@ -4,7 +4,7 @@ author: jamesnk
 description: Saiba como configurar os serviços gRPCs em ASP.NET Core para que possam ser chamados de aplicativos de navegador usando o gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/29/2020
+ms.date: 06/30/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 20f72deb9895111a6e691eb1ee5cd7419c8c4cb4
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 05ff343f7116509128b7370a50bcfa3c67ffb9fe
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793506"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944226"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Usar o gRPC em aplicativos de navegador
 
@@ -79,6 +79,15 @@ O código anterior:
 * Chamadas `AddCors` para adicionar serviços CORS e configura uma política CORS que expõe cabeçalhos específicos do gRPC.
 * Chamadas `UseCors` para adicionar o MIDDLEWARE CORS após o roteamento e antes dos pontos de extremidade.
 * Especifica o `endpoints.MapGrpcService<GreeterService>()` método que oferece suporte a CORS com `RequiresCors` .
+
+### <a name="grpc-web-and-streaming"></a>gRPC-Web e streaming
+
+O gRPC tradicional sobre HTTP/2 dá suporte a streaming em todas as direções. gRPC-Web oferece suporte limitado para streaming:
+
+* gRPC-os clientes do navegador da Web não dão suporte à chamada de métodos de streaming bidirecional e transmissão de cliente.
+* ASP.NET Core serviços gRPC hospedados no serviço Azure App e no IIS não dão suporte a streaming bidirecional.
+
+Ao usar gRPC-Web, recomendamos apenas o uso de métodos unários e métodos de transmissão de servidor.
 
 ## <a name="call-grpc-web-from-the-browser"></a>Chamar gRPC-Web do navegador
 

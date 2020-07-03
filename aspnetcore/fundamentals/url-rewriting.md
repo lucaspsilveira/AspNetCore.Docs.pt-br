@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: c41ba2e067c8dc978b1359db548733c5f8890a2b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: dbdb7cd86218fd9ba63ae4ac2aa516836d4fd1a1
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408377"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944289"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
@@ -194,15 +194,15 @@ O acento circunflexo (`^`) no início da expressão significa que a correspondê
 
 No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não há nenhum acento circunflexo (`^`) no início do regex. Portanto, qualquer caractere pode preceder `redirect-rule/` no caminho para uma correspondência com êxito.
 
-| Caminho                               | Corresponder a |
+| Caminho                               | Correspondência |
 | ---------------------------------- | :---: |
-| `/redirect-rule/1234/5678`         | Yes   |
+| `/redirect-rule/1234/5678`         | Sim   |
 | `/my-cool-redirect-rule/1234/5678` | Sim   |
 | `/anotherredirect-rule/1234/5678`  | Sim   |
 
 A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a caminhos se eles são iniciados com `rewrite-rule/`. Na tabela a seguir, observe a diferença na correspondência.
 
-| Caminho                              | Corresponder a |
+| Caminho                              | Correspondência |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sim   |
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
@@ -325,7 +325,7 @@ O middleware dá suporte às seguintes variáveis de servidor do Módulo de Reco
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> para implementar sua própria lógica de regra em um método. `Add` expõe o <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, que disponibiliza o <xref:Microsoft.AspNetCore.Http.HttpContext> para uso no método. O [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determina como o processamento adicional de pipeline é feito. Defina o valor como um dos campos <xref:Microsoft.AspNetCore.Rewrite.RuleResult> descritos na tabela a seguir.
 
-| `RewriteContext.Result`              | Ação                                                           |
+| Resultado do contexto de regravação               | Ação                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (padrão) | Continuar aplicando regras.                                         |
 | `RuleResult.EndResponse`             | Parar de aplicar regras e enviar a resposta.                       |
@@ -548,15 +548,15 @@ O acento circunflexo (`^`) no início da expressão significa que a correspondê
 
 No exemplo anterior com a regra de redirecionamento, `redirect-rule/(.*)`, não há nenhum acento circunflexo (`^`) no início do regex. Portanto, qualquer caractere pode preceder `redirect-rule/` no caminho para uma correspondência com êxito.
 
-| Caminho                               | Corresponder a |
+| Caminho                               | Correspondência |
 | ---------------------------------- | :---: |
-| `/redirect-rule/1234/5678`         | Yes   |
+| `/redirect-rule/1234/5678`         | Sim   |
 | `/my-cool-redirect-rule/1234/5678` | Sim   |
 | `/anotherredirect-rule/1234/5678`  | Sim   |
 
 A regra de reconfiguração, `^rewrite-rule/(\d+)/(\d+)`, corresponde apenas a caminhos se eles são iniciados com `rewrite-rule/`. Na tabela a seguir, observe a diferença na correspondência.
 
-| Caminho                              | Corresponder a |
+| Caminho                              | Correspondência |
 | --------------------------------- | :---: |
 | `/rewrite-rule/1234/5678`         | Sim   |
 | `/my-cool-rewrite-rule/1234/5678` | Não    |
@@ -679,7 +679,7 @@ O middleware dá suporte às seguintes variáveis de servidor do Módulo de Reco
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> para implementar sua própria lógica de regra em um método. `Add` expõe o <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, que disponibiliza o <xref:Microsoft.AspNetCore.Http.HttpContext> para uso no método. O [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determina como o processamento adicional de pipeline é feito. Defina o valor como um dos campos <xref:Microsoft.AspNetCore.Rewrite.RuleResult> descritos na tabela a seguir.
 
-| `RewriteContext.Result`              | Ação                                                           |
+| Resultado do contexto de regravação               | Ação                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (padrão) | Continuar aplicando regras.                                         |
 | `RuleResult.EndResponse`             | Parar de aplicar regras e enviar a resposta.                       |

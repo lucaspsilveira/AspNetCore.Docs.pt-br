@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5e413fad090ff2cb5e1379bf7311caf159a57a4b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 5a9ed8d6737352f56be78039a895a85f22dec361
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408585"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944645"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -183,6 +183,10 @@ Em [Azure app serviço](https://azure.microsoft.com/services/app-service/), sele
 Para saber mais, confira [Aplicativos do Azure: substituir a configuração do aplicativo usando o portal do Azure](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 Consulte [prefixos de cadeia de conexão](#constr) para obter informações sobre cadeias de conexão do banco de dados
+
+### <a name="environment-variables-set-in-launchsettingsjson"></a>Variáveis de ambiente definidas no launchSettings.jsem
+
+As variáveis de ambiente definidas no *launchSettings.js* substituir aquelas definidas no ambiente do sistema.
 
 <a name="clcp"></a>
 
@@ -751,6 +755,8 @@ Este tópico pertence apenas à *configuração do aplicativo*. Outros aspectos 
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
+As variáveis de ambiente definidas no *launchSettings.js* substituir aquelas definidas no ambiente do sistema.
+
 Para obter mais informações sobre como migrar a configuração de aplicativo de versões anteriores do ASP.NET, consulte <xref:migration/proper-to-2x/index#store-configurations> .
 
 ## <a name="add-configuration-from-an-external-assembly"></a>Adicionar configuração de um assembly externo
@@ -904,7 +910,7 @@ public class HomeController : Controller
 
 Os provedores de configuração não podem utilizar a DI, pois ela não é disponibilizada quando eles são configurados pelo host.
 
-### <a name="keys"></a>Teclas
+### <a name="keys"></a>simétricas
 
 As chaves de configuração adotam as convenções a seguir:
 

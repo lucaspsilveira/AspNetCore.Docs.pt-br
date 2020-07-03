@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 2fce394202be5df9af67e8afca27a0914f410402
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 60a2ff43945bcb92136b3bb8e622669d51ea3b19
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399030"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944452"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Manipulação de eventos de ASP.NET Core Blazor
 
@@ -229,8 +229,6 @@ O valor do atributo também pode ser uma expressão. No exemplo a seguir, `shoul
 ```razor
 <input @onkeypress:preventDefault="shouldPreventDefault" />
 ```
-
-Um manipulador de eventos não é necessário para impedir a ação padrão. O manipulador de eventos e a prevenção de cenários de ação padrão podem ser usados de forma independente.
 
 ## <a name="stop-event-propagation"></a>Parar a propagação do evento
 

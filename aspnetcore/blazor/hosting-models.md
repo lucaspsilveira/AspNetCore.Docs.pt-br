@@ -15,22 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: ba43ff052fbd290412fa27cf57ace3ee3491f8d0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 56681e713e008188d57166da9c8fd4eb6923928c
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402553"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944211"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>BlazorModelos de hospedagem ASP.NET Core
 
 Por [Daniel Roth](https://github.com/danroth27)
 
 Blazoro é uma estrutura da Web criada para executar o lado do cliente no navegador em um tempo de execução .NET baseado em [Webassembly](https://webassembly.org/)( *Blazor WebAssembly* ) ou no lado do servidor em ASP.NET Core ( *Blazor Server* ). Independentemente do modelo de hospedagem, os modelos de aplicativo e componente *são os mesmos*.
-
-Para criar um projeto para os modelos de hospedagem descritos neste artigo, consulte <xref:blazor/get-started> .
-
-Para configuração avançada, consulte <xref:blazor/fundamentals/configuration> .
 
 ## Blazor WebAssembly
 
@@ -155,7 +151,6 @@ Ao usar o IIS, as sessões adesivas são habilitadas com Application Request Rou
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* <xref:blazor/get-started>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

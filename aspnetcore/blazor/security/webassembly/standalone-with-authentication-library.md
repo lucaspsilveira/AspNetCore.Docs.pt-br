@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: be87257c5f901e9b3d1ba6a8d7c6b811419c433f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: df957c5ee385b29ca390c014187a4c10e79d37f4
+ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402189"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85944630"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>Proteger um Blazor WebAssembly aplicativo ASP.NET Core autônomo com a biblioteca de autenticação
 
@@ -36,7 +36,7 @@ dotnet new blazorwasm -au Individual
 
 Para especificar o local de saída, que cria uma pasta de projeto, se ela não existir, inclua a opção de saída no comando com um caminho (por exemplo, `-o BlazorSample` ). O nome da pasta também se torna parte do nome do projeto.
 
-No Visual Studio, [crie um Blazor WebAssembly aplicativo](xref:blazor/get-started). Defina a **autenticação** para **contas de usuário individuais** com a opção **armazenar contas de usuário no aplicativo** .
+Se estiver usando o Visual Studio para criar um Blazor WebAssembly aplicativo, defina a **autenticação** para **contas de usuário individuais** com a opção **armazenar contas de usuário no aplicativo** .
 
 ## <a name="authentication-package"></a>Pacote de autenticação
 
