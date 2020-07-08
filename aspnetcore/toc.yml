@@ -369,6 +369,8 @@
           uid: blazor/call-javascript-from-dotnet
         - name: Chamar .NET do JavaScript
           uid: blazor/call-dotnet-from-javascript
+        - name: Chamar uma API Web do WebAssembly
+          uid: blazor/call-web-api
         - name: Segurança e identidade
           items:
             - name: Visão geral
@@ -409,8 +411,6 @@
           uid: blazor/state-management
         - name: Depurar WebAssembly
           uid: blazor/debug
-        - name: Chamar uma API Web do WebAssembly
-          uid: blazor/call-web-api
         - name: Desempenho do WebAssembly
           uid: blazor/webassembly-performance-best-practices
         - name: Aplicativos Web progressivos
