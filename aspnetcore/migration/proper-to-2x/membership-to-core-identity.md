@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: f039772f4276d0e8bcec2629350eba2ec0e7418c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: afad542a18a357a77f4542511a3d2c3108dbfb31
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399680"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059766"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-identity"></a>Migrar da autenticação de associação do ASP.NET para o ASP.NET Core 2,0Identity
 
@@ -75,36 +75,33 @@ Há diferenças sutis nas estruturas de tabela e nos campos para associação e 
 
 ### <a name="users"></a>Usuários
 
-|*Identity<br>dbo. AspNetUsers*        ||*Membership <br> (dbo. aspnet_Users/dbo. aspnet_Membership)*||
-|----------------------------------------|-----------------------------------------------------------|
-|**Nome do campo**                 |**Tipo**|**Nome do campo**                                    |**Tipo**|
-|`Id`                           |string  |`aspnet_Users.UserId`                             |string  |
-|`UserName`                     |string  |`aspnet_Users.UserName`                           |string  |
-|`Email`                        |string  |`aspnet_Membership.Email`                         |string  |
-|`NormalizedUserName`           |string  |`aspnet_Users.LoweredUserName`                    |string  |
-|`NormalizedEmail`              |string  |`aspnet_Membership.LoweredEmail`                  |string  |
-|`PhoneNumber`                  |string  |`aspnet_Users.MobileAlias`                        |string  |
-|`LockoutEnabled`               |bit     |`aspnet_Membership.IsLockedOut`                   |bit     |
+|Identity<br>( `dbo.AspNetUsers` ) coluna  |Tipo     |Associação<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` ) coluna|Tipo      |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
+| `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
+| `Email`                         | `string`| `aspnet_Membership.Email`                                  | `string` |
+| `NormalizedUserName`            | `string`| `aspnet_Users.LoweredUserName`                             | `string` |
+| `NormalizedEmail`               | `string`| `aspnet_Membership.LoweredEmail`                           | `string` |
+| `PhoneNumber`                   | `string`| `aspnet_Users.MobileAlias`                                 | `string` |
+| `LockoutEnabled`                | `bit`   | `aspnet_Membership.IsLockedOut`                            | `bit`    |
 
 > [!NOTE]
 > Nem todos os mapeamentos de campo se assemelham a relações um-para-um de associação a ASP.NET Core Identity . A tabela anterior usa o esquema de usuário de associação padrão e o mapeia para o esquema de ASP.NET Core Identity . Todos os outros campos personalizados que foram usados para associação precisam ser mapeados manualmente. Nesse mapeamento, não há nenhum mapa para senhas, pois os critérios de senha e os Salts de senha não são migrados entre os dois. **É recomendável deixar a senha como nula e solicitar que os usuários redefinam suas senhas.** Em ASP.NET Core Identity , `LockoutEnd` deve ser definido como alguma data no futuro se o usuário estiver bloqueado. Isso é mostrado no script de migração.
 
 ### <a name="roles"></a>Funções
 
-|*Identity<br>dbo. AspNetRoles)*        ||*Associação <br> (dbo. aspnet_Roles)*||
+|Identity<br>( `dbo.AspNetRoles` ) coluna|Tipo|Associação<br>( `dbo.aspnet_Roles` ) coluna|Tipo|
 |----------------------------------------|-----------------------------------|
-|**Nome do campo**                 |**Tipo**|**Nome do campo**   |**Tipo**         |
-|`Id`                           |string  |`RoleId`         | string          |
-|`Name`                         |string  |`RoleName`       | string          |
-|`NormalizedName`               |string  |`LoweredRoleName`| string          |
+|`Id`                           |`string`|`RoleId`         | `string`        |
+|`Name`                         |`string`|`RoleName`       | `string`        |
+|`NormalizedName`               |`string`|`LoweredRoleName`| `string`        |
 
 ### <a name="user-roles"></a>Funções de usuário
 
-|*Identity<br>dbo. AspNetUserRoles*||*Associação <br> (dbo. aspnet_UsersInRoles)*||
-|------------------------------------|------------------------------------------|
-|**Nome do campo**           |**Tipo**  |**Nome do campo**|**Tipo**                   |
-|`RoleId`                 |string    |`RoleId`      |string                     |
-|`UserId`                 |string    |`UserId`      |string                     |
+|Identity<br>( `dbo.AspNetUserRoles` ) coluna|Tipo|Associação<br>( `dbo.aspnet_UsersInRoles` ) coluna|Tipo|
+|-------------------------|----------|--------------|---------------------------|
+|`RoleId`                 |`string`  |`RoleId`      |`string`                   |
+|`UserId`                 |`string`  |`UserId`      |`string`                   |
 
 Referencie as tabelas de mapeamento anteriores ao criar um script de migração para *usuários* e *funções*. O exemplo a seguir pressupõe que você tenha dois bancos de dados em um servidor de banco de dados. Um banco de dados contém o esquema de associação do ASP.NET existente. O outro banco de dados *CoreIdentitySample* foi criado usando as etapas descritas anteriormente. Os comentários são incluídos embutidos para obter mais detalhes.
 

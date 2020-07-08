@@ -5,7 +5,7 @@ description: Saiba como usar Razor métodos de ciclo de vida do componente em AS
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 312a265dd251eadf876b4252e3d9f9858adcde1b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6b9653356659700ae8396a01b38c04d59a86625f
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400980"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059884"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>BlazorCiclo de vida ASP.NET Core
 
@@ -174,6 +174,8 @@ Para obter mais informações, consulte <xref:blazor/webassembly-performance-bes
 ## <a name="state-changes"></a>Alterações de estado
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>Notifica o componente de que seu estado foi alterado. Quando aplicável, <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> a chamada faz com que o componente seja rerenderizado.
+
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>é chamado automaticamente para <xref:Microsoft.AspNetCore.Components.EventCallback> métodos. Para obter mais informações, consulte <xref:blazor/components/event-handling#eventcallback>.
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>Tratar ações assíncronas incompletas no processamento
 

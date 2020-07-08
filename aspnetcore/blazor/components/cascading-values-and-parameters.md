@@ -5,7 +5,7 @@ description: Saiba como fluir dados de um componente ancestral para componentes 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,16 +15,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: c72bf5584c7e0afdeadbb4103b5e58d91ae8c1e9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c426be21b520520c6745ada95be35816f7365c21
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399212"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059923"
 ---
 # <a name="aspnet-core-blazor-cascading-values-and-parameters"></a>ASP.NET Core Blazor valores e parâmetros em cascata
 
-## <a name="cascading-values-and-parameters"></a>Valores e parâmetros em cascata
+De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
+
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 Em alguns cenários, é inconveniente fluir dados de um componente ancestral para um componente descendente usando [parâmetros de componente](xref:blazor/components/index#component-parameters), especialmente quando há várias camadas de componente. Valores e parâmetros em cascata resolvem esse problema fornecendo uma maneira conveniente para um componente ancestral fornecer um valor para todos os seus componentes descendentes. Valores e parâmetros em cascata também fornecem uma abordagem para que os componentes sejam coordenados.
 
@@ -114,8 +116,8 @@ No aplicativo de exemplo, o `CascadingValuesParametersTheme` componente associa 
 Para propagar vários valores do mesmo tipo dentro da mesma subárvore, forneça uma <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> cadeia de caracteres exclusiva para cada <xref:Microsoft.AspNetCore.Components.CascadingValue%601> componente e seu [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) atributo correspondente. No exemplo a seguir, dois <xref:Microsoft.AspNetCore.Components.CascadingValue%601> componentes em cascata diferentes instâncias de `MyCascadingType` por nome:
 
 ```razor
-<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
-    <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+<CascadingValue Value="@parentCascadeParameter1" Name="CascadeParam1">
+    <CascadingValue Value="@ParentCascadeParameter2" Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
@@ -155,6 +157,8 @@ O aplicativo de exemplo tem uma `ITab` interface que implementa as guias:
 O `CascadingValuesParametersTabSet` componente usa o `TabSet` componente, que contém vários `Tab` componentes:
 
 ```razor
+@page "/CascadingValuesParametersTabSet"
+
 <TabSet>
     <Tab Title="First tab">
         <h4>Greetings from the first tab!</h4>
@@ -176,6 +180,10 @@ O `CascadingValuesParametersTabSet` componente usa o `TabSet` componente, que co
         </Tab>
     }
 </TabSet>
+
+@code {
+    private bool showThirdTab;
+}
 ```
 
 Os `Tab` componentes filho não são passados explicitamente como parâmetros para `TabSet` . Em vez disso, os `Tab` componentes filho fazem parte do conteúdo filho do `TabSet` . No entanto, o `TabSet` ainda precisa saber sobre cada `Tab` componente para que ele possa renderizar os cabeçalhos e a guia ativa. Para habilitar essa coordenação sem a necessidade de código adicional, o `TabSet` componente *pode fornecer a si mesmo como um valor em cascata* que é então coletado pelos componentes descendentes `Tab` .

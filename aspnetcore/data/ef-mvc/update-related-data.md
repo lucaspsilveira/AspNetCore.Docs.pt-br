@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 59bf94f6818108f09e9af147559fc304f48936bc
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 066bebf95a941fca5e7cc175c4c0d6d56abc9cb5
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401305"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060053"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core
 
@@ -143,7 +143,7 @@ O código faz o seguinte:
 
 * Obtém a entidade Instructor atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`. Isso é o mesmo que você fez no método HttpGet `Edit`.
 
-* Atualiza a entidade Instructor recuperada com valores do associador de modelos. A sobrecarga `TryUpdateModel` permite que você adicione à lista de permissões as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado no [segundo tutorial](crud.md).
+* Atualiza a entidade Instructor recuperada com valores do associador de modelos. A `TryUpdateModel` sobrecarga permite que você declare as propriedades que deseja incluir. Isso impede o excesso de postagem, conforme explicado no [segundo tutorial](crud.md).
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -211,7 +211,7 @@ Em seguida, adicione o código que é executado quando o usuário clica em **Sal
 
 A assinatura do método agora é diferente do método HttpGet `Edit` e, portanto, o nome do método é alterado de `EditPost` para `Edit` novamente.
 
-Como a exibição não tem uma coleção de entidades Course, o associador de modelos não pode atualizar automaticamente a propriedade de navegação `CourseAssignments`. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a propriedade `CourseAssignments` do model binding. Isso não exige nenhuma alteração no código que chama `TryUpdateModel`, porque você está usando a sobrecarga da lista de permissões e `CourseAssignments` não está na lista de inclusões.
+Como a exibição não tem uma coleção de entidades Course, o associador de modelos não pode atualizar automaticamente a propriedade de navegação `CourseAssignments`. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a `CourseAssignments` propriedade da Associação de modelo. Isso não exige nenhuma alteração no código que chama `TryUpdateModel` porque você está usando a sobrecarga que requer aprovação explícita e `CourseAssignments` não está na lista de inclusões.
 
 Se nenhuma caixa de seleção foi marcada, o código em `UpdateInstructorCourses` inicializa a propriedade de navegação `CourseAssignments` com uma coleção vazia e retorna:
 

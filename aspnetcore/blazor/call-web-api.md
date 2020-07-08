@@ -5,7 +5,7 @@ description: Saiba como chamar uma API da Web de um Blazor WebAssembly aplicativ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2020
+ms.date: 06/24/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 2d910def31e4035c1d9cbacb3aaa721dd699c273
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a2e320eb24d47de9e704c2a5355d28cf90bad0cd
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400733"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059936"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API da Web de ASP.NET CoreBlazor
 
@@ -158,7 +158,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
   Chamadas para <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> retornar um <xref:System.Net.Http.HttpResponseMessage> . Para desserializar o conteúdo JSON da mensagem de resposta, use o <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> método de extensão:
   
   ```csharp
-  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
 <xref:System.Net.Http>inclui métodos de extensão adicionais para enviar solicitações HTTP e receber respostas HTTP. <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType>é usado para enviar uma solicitação HTTP DELETE para uma API da Web.
@@ -304,7 +304,7 @@ protected override async Task OnInitializedAsync()
 ```
 
 > [!NOTE]
-> O exemplo anterior é para fins de demonstração. Um aplicativo de servidor de API Web pode ser configurado para retornar JSON mesmo quando um ponto de extremidade não existe ou um exceção sem tratamento no servidor ocorre.
+> O exemplo anterior é para fins de demonstração. Um aplicativo de servidor de API Web pode ser configurado para retornar JSON mesmo quando um ponto de extremidade não existe ou uma exceção sem tratamento no servidor ocorre.
 
 Para obter mais informações, consulte <xref:blazor/fundamentals/handle-errors>.
 
@@ -314,7 +314,9 @@ A segurança do navegador impede que uma página da Web faça solicitações par
 
 O [ Blazor WebAssembly aplicativo de exemplo (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstra o uso do CORS no componente Call Web API ( `Pages/CallWebAPI.razor` ).
 
-Para permitir que outros sites façam solicitações de compartilhamento de recursos entre origens (CORS) para seu aplicativo, consulte <xref:security/cors> .
+Para obter mais informações e exemplos de código de solicitações seguras, consulte <xref:blazor/security/webassembly/additional-scenarios> . Para obter mais informações sobre o CORS com solicitações seguras, consulte a [seção CORS](xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors) do artigo anterior.
+
+Para obter mais informações, consulte <xref:security/cors>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

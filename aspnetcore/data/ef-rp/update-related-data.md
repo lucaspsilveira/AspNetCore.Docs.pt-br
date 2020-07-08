@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: b084404a7fdd8b2fc18c407bd11705ccd1c496c1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b442a4ce1f63c047c123315626f559155fd06424
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406297"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060131"
 ---
 # <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Parte 7, Razor páginas com EF Core no ASP.NET Core dados relacionados à atualização
 
@@ -158,7 +158,7 @@ Crie a classe base *Pages/Instructors/InstructorCoursesPageModel.cs*:
 
 A `InstructorCoursesPageModel` é a classe base que será usada para os modelos de página Editar e Criar. `PopulateAssignedCourseData` lê todas as entidades `Course` para popular `AssignedCourseDataList`. Para cada curso, o código define a `CourseID`, o título e se o instrutor está ou não atribuído ao curso. Um [HashSet](/dotnet/api/system.collections.generic.hashset-1) é usado para pesquisas eficientes.
 
-Como a Razor página não tem uma coleção de entidades de curso, o associador de modelo não pode atualizar automaticamente a `CourseAssignments` propriedade de navegação. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a propriedade `CourseAssignments` do model binding. Isso não exige nenhuma alteração no código que chama `TryUpdateModel`, porque você está usando a sobrecarga da lista de permissões e `CourseAssignments` não está na lista de inclusões.
+Como a Razor página não tem uma coleção de entidades de curso, o associador de modelo não pode atualizar automaticamente a `CourseAssignments` propriedade de navegação. Em vez de usar o associador de modelos para atualizar a propriedade de navegação `CourseAssignments`, faça isso no novo método `UpdateInstructorCourses`. Portanto, você precisa excluir a propriedade `CourseAssignments` do model binding. Isso não requer nenhuma alteração no código que chama `TryUpdateModel` porque você está usando a sobrecarga com propriedades declaradas e `CourseAssignments` não está na lista de inclusões.
 
 Se nenhuma caixa de seleção foi marcada, o código em `UpdateInstructorCourses` inicializa a propriedade de navegação `CourseAssignments` com uma coleção vazia e retorna:
 

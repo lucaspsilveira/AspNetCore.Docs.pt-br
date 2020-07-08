@@ -5,7 +5,7 @@ description: Saiba mais sobre as ferramentas disponíveis para criar Blazor apli
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/07/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -16,12 +16,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems-set-one
-ms.openlocfilehash: 538257597ec5c6c705d8280a817c409debe22224
-ms.sourcegitcommit: c6467f86c09b1f608b09d37d33c8c43de7ae8bc7
+ms.openlocfilehash: bda287e54efadf8575c15c7b621416f20ae591c9
+ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946816"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86093331"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>Ferramentas para ASP.NET CoreBlazor
 
@@ -43,6 +43,8 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 
 1. Pressione <kbd>Ctrl</kbd> + <kbd>F5</kbd> para executar o aplicativo.
 
+Para obter mais informações sobre como confiar no certificado de desenvolvimento ASP.NET Core HTTPS, consulte <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos> .
+
 ::: zone-end
 
 ::: zone pivot="os-linux"
@@ -55,9 +57,7 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 
 1. Instale a versão mais recente do [Visual Studio Code](https://code.visualstudio.com/).
 
-1. Instale a extensão mais recente [do C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true` .
-
-   Para definir `debug.javascript.usePreview` como `true` usar a interface do usuário do **File**vs Code, abra  >  **Preferences**  >  **configurações** de preferências de arquivo e pesquise por `debug javascript use preview` . Marque a caixa de seleção para **usar o novo depurador de JavaScript em visualização para Node.js e Chrome**.
+1. Instale a extensão mais recente [do C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 1. Para obter uma Blazor WebAssembly experiência, execute o seguinte comando em um shell de comando:
 
@@ -78,6 +78,16 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 1. O IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
 
 1. Pressione <kbd>Ctrl</kbd> + <kbd>F5</kbd> para executar o aplicativo.
+
+## <a name="trust-a-development-certificate"></a>Confiar em um certificado de desenvolvimento
+
+Não há uma maneira centralizada de confiar em um certificado no Linux. Normalmente, uma das seguintes abordagens é adotada:
+
+* Exclua a URL do aplicativo na lista de exclusões do navegador.
+* Confiar em todos os certificados autoassinados para `localhost` .
+* Adicione o certificado à lista de certificados confiáveis no navegador.
+
+Para obter mais informações, consulte as diretrizes fornecidas pelo seu navegador e distribuição do Linux.
 
 ::: zone-end
 
@@ -104,6 +114,6 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 
 1. Selecione **executar**  >  **Iniciar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **executar**  >  **Iniciar Depuração** ou o botão Executar (&#9654;) para executar o aplicativo *com o depurador*.
 
-Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue. As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado.
+Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue. As senhas de usuário e de conjunto de chaves são necessárias para confiar no certificado. Para obter mais informações sobre como confiar no certificado de desenvolvimento ASP.NET Core HTTPS, consulte <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos> .
 
 ::: zone-end

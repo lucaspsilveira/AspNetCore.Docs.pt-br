@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 08efb79f5085acff455744e46ca411777b2641e5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: caf9e99bcd4a1887fe5d69a3641fabee08573ef1
+ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406154"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86093311"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparar serviços gRPC com APIs HTTP
 
@@ -38,7 +38,7 @@ A tabela a seguir oferece uma comparação de alto nível dos recursos entre as 
 | Carga útil          | [Protobuf (pequeno, binário)](#performance)           | JSON (grande, legível por humanos)  |
 | Prescriptiveness | [Especificação estrita](#strict-specification)      | Cancelar. Qualquer HTTP é válido.     |
 | Streaming        | [Cliente, servidor, bidirecional](#streaming)       | Cliente, servidor                |
-| Suporte ao navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Yes                           |
+| Suporte ao navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Sim                           |
 | Segurança         | Transporte (TLS)                                    | Transporte (TLS)               |
 | Geração de código de cliente | [Sim](#code-generation)                      | OpenAPI + ferramentas de terceiros |
 
@@ -104,7 +104,7 @@ o gRPC é bem adequado para os seguintes cenários:
 Nem todos os recursos de gRPC têm suporte no gRPC-Web. Não há suporte para o streaming bidirecional e de cliente, e há suporte limitado para streaming de servidor.
 
 > [!TIP]
-> O .NET Core tem suporte experimental para gRPC-Web. Visite <xref:grpc/browser> para obter mais informações.
+> O .NET Core tem suporte para gRPC-Web. Visite <xref:grpc/browser> para obter mais informações.
 
 ### <a name="not-human-readable"></a>Não legível por humanos
 

@@ -5,7 +5,7 @@ description: Saiba mais sobre os Blazor recursos de manipulação de eventos, in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 60a2ff43945bcb92136b3bb8e622669d51ea3b19
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: f15f7e0fc7ef460cefffd817a7d0fa40c1f919b2
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944452"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059793"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>Manipulação de eventos de ASP.NET Core Blazor
 
@@ -183,7 +183,7 @@ Quando o botão estiver selecionado no `ChildComponent` :
 * O `ParentComponent` `ShowMessage` método é chamado. `messageText`é atualizado e exibido no `ParentComponent` .
 * Uma chamada para [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) não é necessária no método do retorno de chamada ( `ShowMessage` ). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>é chamado automaticamente para renderizar novamente o `ParentComponent` , assim como eventos filho, rerenderização de componente em manipuladores de eventos que são executados dentro do filho.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback>e <xref:Microsoft.AspNetCore.Components.EventCallback%601> permitir delegados assíncronos. <xref:Microsoft.AspNetCore.Components.EventCallback%601>é fortemente tipado e requer um tipo de argumento específico. <xref:Microsoft.AspNetCore.Components.EventCallback>está com tipo fraco e permite qualquer tipo de argumento.
+<xref:Microsoft.AspNetCore.Components.EventCallback>e <xref:Microsoft.AspNetCore.Components.EventCallback%601> permitir delegados assíncronos. <xref:Microsoft.AspNetCore.Components.EventCallback>é de tipo fraco e permite a passagem de qualquer argumento de tipo em `InvokeAsync(Object)` . <xref:Microsoft.AspNetCore.Components.EventCallback%601>é fortemente tipado e requer a passagem de um `T` argumento no `InvokeAsync(T)` que seja atribuível ao `TValue` .
 
 ```razor
 <ChildComponent 

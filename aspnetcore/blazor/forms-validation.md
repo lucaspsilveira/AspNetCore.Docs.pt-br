@@ -5,7 +5,7 @@ description: Saiba como usar formatos e cenários de validação de campo no Bla
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 925051d7426470aebfddbdb5ff83d7dab9f82726
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: f31a1f1d8942c9d9654dc26e946c022cf21ed9d1
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944426"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059858"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
 
@@ -445,6 +445,14 @@ O <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> componente 
 
 Os <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> componentes e oferecem suporte a atributos arbitrários. Qualquer atributo que não corresponda a um parâmetro de componente é adicionado ao `<div>` elemento gerado ou `<ul>` .
 
+Controle o estilo das mensagens de validação na folha de estilos do aplicativo ( `wwwroot/css/app.css` ou `wwwroot/css/site.css` ). A `validation-message` classe padrão define a cor do texto das mensagens de validação como vermelho:
+
+```css
+.validation-message {
+    color: red;
+}
+```
+
 ### <a name="custom-validation-attributes"></a>Atributos de validação personalizados
 
 Para garantir que um resultado de validação esteja corretamente associado a um campo ao usar um [atributo de validação personalizado](xref:mvc/models/validation#custom-attributes), passe o contexto de validação <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> ao criar o <xref:System.ComponentModel.DataAnnotations.ValidationResult> :
@@ -603,7 +611,7 @@ Um efeito colateral da abordagem anterior é que um <xref:Microsoft.AspNetCore.C
 }
 ```
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 > InvalidOperationException: EditForm requer um parâmetro de modelo ou um parâmetro EditContext, mas não ambos.
 

@@ -5,7 +5,7 @@ description: Saiba como depurar Blazor aplicativos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 07/06/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 9fe51b8c7eafdd62cc6fc1a820135d9ee5ff010e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c48eb19c5a1759aace112e2afb1637c649173a3d
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401006"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86059897"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core de depuraçãoBlazor WebAssembly
 
@@ -105,13 +105,7 @@ Ao depurar seu Blazor WebAssembly aplicativo, você também pode depurar o códi
 
 ## <a name="visual-studio-code"></a>Visual Studio Code
 
-Para depurar um Blazor WebAssembly aplicativo no Visual Studio Code:
- 
-Instale a [extensão C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true` .
-
-![Extensões](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-extensions.png)
-
-![Depurador de visualização JS](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
+Para obter informações sobre como instalar Visual Studio Code para Blazor desenvolvimento de aplicativos, consulte <xref:blazor/tooling> .
 
 ### <a name="debug-standalone-blazor-webassembly"></a>Depurar autônomoBlazor WebAssembly
 
@@ -220,11 +214,17 @@ As opções de configuração de inicialização a seguir têm suporte para o `b
 
 1. Execute uma compilação de depuração do aplicativo no ambiente de desenvolvimento.
 
-1. Pressione <kbd>Shift</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>.
+1. Inicie um navegador e navegue até a URL do aplicativo (por exemplo, `https://localhost:5001` ).
 
-1. O navegador deve ser executado com a depuração remota habilitada. Se a depuração remota estiver desabilitada, uma página de erro **não é possível localizar a guia do navegador depurável** será gerada. A página de erro contém instruções para executar o navegador com a porta de depuração aberta para que o Blazor proxy de depuração possa se conectar ao aplicativo. *Feche todas as instâncias do navegador* e reinicie o navegador conforme instruído.
+1. No navegador, tente iniciar a depuração remota pressionando <kbd>Shift</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>.
 
-Depois que o navegador estiver em execução com a depuração remota habilitada, o atalho de teclado de depuração abrirá uma nova guia do depurador. Após alguns instantes, a guia **fontes** mostra uma lista dos assemblies .net no aplicativo. Expanda cada assembly e localize os `.cs` / `.razor` arquivos de origem disponíveis para depuração. Defina pontos de interrupção, alterne de volta para a guia do aplicativo e os pontos de interrupção serão atingidos quando o código for executado. Depois que um ponto de interrupção é atingido, a etapa única (<kbd>F10</kbd>) por meio da execução do código ou retomar (<kbd>F8</kbd>) normalmente.
+   O navegador deve estar em execução com a depuração remota habilitada, que não é o padrão. Se a depuração remota estiver desabilitada, uma página de erro **não é possível localizar a guia do navegador depurável** será renderizada com instruções para iniciar o navegador com a porta de depuração aberta. Siga as instruções para seu navegador, que abre uma nova janela do navegador. Feche a janela anterior do navegador.
+
+1. Depois que o navegador estiver em execução com a depuração remota habilitada, o atalho de teclado de depuração (<kbd>Shift</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>) abrirá uma nova guia do depurador.
+
+1. Após alguns instantes, a guia **fontes** mostra uma lista dos assemblies .net do aplicativo dentro do `file://` nó.
+
+1. No código do componente ( `.razor` arquivos) e em arquivos de código C# ( `.cs` ), os pontos de interrupção definidos por você são atingidos quando o código é executado. Depois que um ponto de interrupção é atingido, a etapa única (<kbd>F10</kbd>) por meio da execução do código ou retomar (<kbd>F8</kbd>) normalmente.
 
 Blazorfornece um proxy de depuração que implementa o [protocolo devtools do Chrome](https://chromedevtools.github.io/devtools-protocol/) e aumenta o protocolo com o. Informações específicas de rede. Quando o atalho de teclado de depuração é pressionado, Blazor o aponta para o Chrome devtools no proxy. O proxy se conecta à janela do navegador que você está procurando depurar (portanto, a necessidade de habilitar a depuração remota).
 
@@ -232,7 +232,7 @@ Blazorfornece um proxy de depuração que implementa o [protocolo devtools do Ch
 
 Os mapas de origem do navegador permitem que o navegador mapeie arquivos compilados de volta para seus arquivos de origem originais e normalmente são usados para depuração do lado do cliente. No entanto, o Blazor atualmente não mapeia C# diretamente para JavaScript/WASM. Em vez disso, a Blazor interpretação de Il no navegador, portanto, os mapas de origem não são relevantes.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Se você estiver executando erros, as dicas a seguir podem ajudar:
 

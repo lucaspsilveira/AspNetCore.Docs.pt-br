@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 7ac6dc983454153792610a07c1df01fbc38c8d67
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 25464817314f79c5bfd11d982cc9b09a3c72df15
+ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400824"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86060339"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -565,14 +565,14 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o `$` caractere e correspondem ao final da cadeia de caracteres. Os `^` `$` caracteres e garantem que a expressão regular corresponda ao valor do parâmetro de rota inteiro. Sem os `^` `$` caracteres e, a expressão regular corresponde a qualquer subcadeia de caracteres dentro da cadeia de caracteres, o que geralmente é indesejável. A tabela a seguir fornece exemplos e explica por que eles correspondem ou falham na correspondência:
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
@@ -1436,26 +1436,26 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Observações |
-| ---------- | ------- | --------------- | ----- |
-| `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro. |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou ' false. Não diferencia maiúsculas de minúsculas. |
+| Constraint | Exemplo | Correspondências de exemplo | Observações |
+|------------|---------|-----------------|-------|
+| `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro.|
+| `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` . Não diferencia maiúsculas de minúsculas.|
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Corresponde a um `DateTime` valor válido na cultura invariável. Consulte o aviso anterior.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Corresponde a um `decimal` valor válido na cultura invariável. Consulte o aviso anterior.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Corresponde a um `double` valor válido na cultura invariável. Consulte o aviso anterior.|
 | `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Corresponde a um `float` valor válido na cultura invariável. Consulte o aviso anterior.|
-| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Corresponde a um `Guid` valor válido. |
-| `long` | `{ticks:long}` | `123456789`, `-123456789` | Corresponde a um `long` valor válido. |
-| `minlength(value)` | `{username:minlength(4)}` | `Rick` | A cadeia de caracteres deve ter pelo menos 4 caracteres. |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | A cadeia de caracteres tem no máximo 8 caracteres. |
-| `length(length)` | `{filename:length(12)}` | `somefile.txt` | A cadeia de caracteres deve ter exatamente 12 caracteres. |
-| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | A cadeia de caracteres deve ser pelo menos 8 e ter no máximo 16 caracteres. |
-| `min(value)` | `{age:min(18)}` | `19` | O valor inteiro deve ser pelo menos 18. |
-| `max(value)` | `{age:max(120)}` | `91` | Valor inteiro máximo de 120. |
-| `range(min,max)` | `{age:range(18,120)}` | `91` | O valor inteiro deve ser pelo menos 18 e o máximo de 120. |
-| `alpha` | `{name:alpha}` | `Rick` | A cadeia de caracteres deve consistir em um ou mais caracteres alfabéticos `a` - `z` .  Não diferencia maiúsculas de minúsculas. |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular. Confira dicas sobre como definir uma expressão regular. |
-| `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro esteja presente durante a geração de URL. |
+| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Corresponde a um `Guid` valor válido.|
+| `long` | `{ticks:long}` | `123456789`, `-123456789` | Corresponde a um `long` valor válido.|
+| `minlength(value)` | `{username:minlength(4)}` | `Rick` | A cadeia de caracteres deve ter pelo menos 4 caracteres.|
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | A cadeia de caracteres tem no máximo 8 caracteres.|
+| `length(length)` | `{filename:length(12)}` | `somefile.txt` | A cadeia de caracteres deve ter exatamente 12 caracteres.|
+| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | A cadeia de caracteres deve ser pelo menos 8 e ter no máximo 16 caracteres.|
+| `min(value)` | `{age:min(18)}` | `19` | O valor inteiro deve ser pelo menos 18.|
+| `max(value)` | `{age:max(120)}` | `91` | Valor inteiro máximo de 120.|
+| `range(min,max)` | `{age:range(18,120)}` | `91` | O valor inteiro deve ser pelo menos 18 e o máximo de 120.|
+| `alpha` | `{name:alpha}` | `Rick` | A cadeia de caracteres deve consistir em um ou mais caracteres alfabéticos `a` - `z` . Não diferencia maiúsculas de minúsculas.|
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular. Confira dicas sobre como definir uma expressão regular.|
+| `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro esteja presente durante a geração de URL.|
 
 Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
@@ -1486,14 +1486,14 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere de cursor e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de sinal de dólar `$` e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
@@ -1930,14 +1930,14 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | 123abc456 | Yes   | A subcadeia de caracteres corresponde     |
-| `[a-z]{2}`   | mz        | Yes   | Corresponde à expressão    |
-| `[a-z]{2}`   | MZ        | Yes   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | No    | Confira `^` e `$` acima |
-| `^[a-z]{2}$` | 123abc456 | No    | Confira `^` e `$` acima |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
+| `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
