@@ -16,12 +16,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems-set-one
-ms.openlocfilehash: bda287e54efadf8575c15c7b621416f20ae591c9
-ms.sourcegitcommit: d1fa3d69dda675d7a52c7100742dfa6297413376
+ms.openlocfilehash: 30a76eda0e94ee7bb2b2d3db918bc029865bdf1a
+ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 07/08/2020
-ms.locfileid: "86093331"
+ms.locfileid: "86147652"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>Ferramentas para ASP.NET CoreBlazor
 
@@ -103,12 +103,7 @@ Para obter mais informações, consulte as diretrizes fornecidas pelo seu navega
 
    Para obter informações sobre os dois Blazor modelos de hospedagem *Blazor WebAssembly* e *Blazor Server* , consulte <xref:blazor/hosting-models> .
 
-1. Confirme as seguintes configurações:
-
-   * **Estrutura de destino** definida como **.NET Core 3,1**.
-   * **Autenticação** definida como **sem autenticação**.
-   
-   Selecione **Avançar**.
+1. Confirme se a **autenticação** está definida como **sem autenticação**. Selecione **Avançar**.
 
 1. No campo **nome do projeto** , nomeie o aplicativo `WebApplication1` . Selecione **Criar**.
 

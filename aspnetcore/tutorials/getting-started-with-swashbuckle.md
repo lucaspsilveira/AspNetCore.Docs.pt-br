@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: 0a47ed3338ebfbc5361a6082978d407543fb95c5
-ms.sourcegitcommit: b06511252f165dd4590ba9b5beca4153fa220779
+ms.openlocfilehash: bf6375f8f63bb9db50c423706a48363f53e96549
+ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85459773"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86147657"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introdução ao Swashbuckle e ao ASP.NET Core
 
@@ -44,7 +44,7 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
 * Da janela **Console do Gerenciador de Pacotes**:
   * Ir para **Exibir**  >  **outro**  >  **console do Gerenciador de pacotes** do Windows
   * Navegue para o diretório no qual o arquivo *TodoApi.csproj* está localizado
-  * Execute o comando a seguir:
+  * Execute o seguinte comando:
 
     ```powershell
     Install-Package Swashbuckle.AspNetCore -Version 5.5.0
@@ -124,7 +124,7 @@ No método `Startup.Configure`, habilite o middleware para atender ao documento 
 
 A chamada do método `UseSwaggerUI` precedente habilita o [middleware de arquivos estáticos](xref:fundamentals/static-files). Se estiver direcionando .NET Framework ou o .NET Core 1. x, adicione o pacote NuGet [Microsoft. AspNetCore. StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) ao projeto.
 
-Inicie o aplicativo e navegue até `http://localhost:<port>/swagger/v1/swagger.json`. O documento gerado que descreve os pontos de extremidade é exibido conforme é mostrado na [Especificação do Swagger (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
+Inicie o aplicativo e navegue até `http://localhost:<port>/swagger/v1/swagger.json`. O documento gerado descrevendo os pontos de extremidade aparece como mostrado na [especificação de openapi (openapi.jsem)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
 
 A interface do usuário do Swagger pode ser encontrada em `http://localhost:<port>/swagger`. Explore a API por meio da interface do usuário do Swagger e incorpore-a em outros programas.
 

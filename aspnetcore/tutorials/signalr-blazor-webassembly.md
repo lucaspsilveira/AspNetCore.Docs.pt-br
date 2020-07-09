@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 5a58e7ae28842e2e8a0f3bae8f47e252839903fe
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d5aa7520a637b18e014519134dfe2d2139e7c11d
+ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408871"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86147776"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usar ASP.NET Core SignalR comBlazor WebAssembly
 
@@ -104,14 +104,7 @@ Siga as orientações para sua escolha de ferramentas:
 
 1. Escolha o modelo de ** Blazor WebAssembly aplicativo** . Selecione **Avançar**.
 
-   Confirme as seguintes configurações:
-
-   * **Estrutura de destino** definida como **.NET Core 3,1**.
-   * **Autenticação** definida como **sem autenticação**.
-
-   Marque a caixa de seleção **ASP.NET Core hospedado** .
-
-   Selecione **Avançar**.
+1. Confirme se a **autenticação** está definida como **sem autenticação**. Marque a caixa de seleção **ASP.NET Core hospedado** . Selecione **Avançar**.
 
 1. No campo **nome do projeto** , nomeie o aplicativo `BlazorSignalRApp` . Selecione **Criar**.
 
