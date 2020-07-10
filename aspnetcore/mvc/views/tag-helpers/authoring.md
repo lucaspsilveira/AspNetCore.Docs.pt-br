@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 5e250debb5c4c2ef00b844557d31ed8281d2ff2f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e630bf4b0c121796315be077623abae73d240b37
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407584"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212462"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Auxiliares de marca de autor no ASP.NET Core
 
@@ -87,14 +87,14 @@ Ou seja, uma marca de âncora que torna isso um link de email. Talvez você dese
 
 <!--
 the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
-    [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
+    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
 Para adicionar um auxiliar de marca para uma exibição usando um FQN, primeiro adicione o FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) e, em seguida, o **nome do assembly** (*AuthoringTagHelpers*, não necessariamente o `namespace`). A maioria dos desenvolvedores vão preferir usar a sintaxe de curinga. [Introdução ao tag helpers](intro.md) apresenta detalhes sobre a sintaxe de adição, remoção, hierarquia e curinga do tag helper.
 
 1. Atualize a marcação no arquivo *Views/Home/Contact.cshtml* com essas alterações:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Execute o aplicativo e use seu navegador favorito para exibir o código-fonte HTML para verificar se as marcas de email são substituídas pela marcação de âncora (por exemplo, `<a>Support</a>`). *Suporte* e *Marketing* são renderizados como links, mas não têm um atributo `href` para torná-los funcionais. Corrigiremos isso na próxima seção.
 
@@ -118,7 +118,7 @@ Essa abordagem funciona para o atributo "href" como no momento, ele não existe 
 
 1. Atualize a marcação no arquivo *Views/Home/Contact.cshtml* com essas alterações:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
 1. Execute o aplicativo e verifique se ele gera os links corretos.
 
@@ -147,7 +147,7 @@ Nesta seção, escreveremos um auxiliar de email assíncrono.
 
 1. Faça a alteração a seguir no arquivo *Views/Home/Contact.cshtml* para que o auxiliar de marca possa obter o email de destino.
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
 1. Execute o aplicativo e verifique se ele gera links de email válidos.
 
@@ -163,7 +163,7 @@ Nesta seção, escreveremos um auxiliar de email assíncrono.
 
 1. Modifique a exibição *About.cshtml* para que ela contenha um valor de atributo `bold`. O código completo é mostrado abaixo.
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
 1. Execute o aplicativo. Use seu navegador favorito para inspecionar a origem e verificar a marcação.
 
@@ -225,7 +225,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
 
 1. Adicione a marcação a seguir à exibição *About.cshtml*. A marcação realçada exibe as informações do site.
 
-   [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
    > [!NOTE]
    > Na Razor marcação mostrada abaixo:
@@ -251,7 +251,7 @@ O auxiliar de marca de condição renderiza a saída quando recebe um valor true
 
 1. Substitua o conteúdo do arquivo *Views/Home/Index.cshtml* pela seguinte marcação:
 
-   [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
+   [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
 
 1. Substitua o método `Index` no controlador `Home` pelo seguinte código:
 
@@ -281,7 +281,7 @@ Como esses dois auxiliares estão intimamente relacionados e você poderá refat
 
 1. Adicione a seguinte marcação ao final do arquivo *Views/Home/Contact.cshtml*:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
 
 1. Execute o aplicativo e verifique se o tag helper renderiza a âncora corretamente.
 

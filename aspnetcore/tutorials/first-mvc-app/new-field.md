@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 06db91e2b226f0e9222bf256f4c89fa2f8a3eb18
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: acd5d38f156dbcd23a82796bdded051a103880eb
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405114"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213092"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Parte 8, adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
@@ -41,7 +41,7 @@ Adicionar uma propriedade `Rating` a *Models/Movie.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
-Compilar o aplicativo
+Criar o aplicativo
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -69,7 +69,7 @@ Atualize os modelos de exibição para exibir, criar e editar a nova propriedade
 
 Edite o arquivo */Views/Movies/Index.cshtml* e adicione um campo `Rating`:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
 
 Atualize */Views/Movies/Create.cshtml* com um campo `Rating`.
 

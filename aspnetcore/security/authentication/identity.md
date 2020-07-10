@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 31970bd2b52ad83c116067d258aa9dca2d9b3b66
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 6ac565bfa4862168fa143417ab5a81c51b620f16
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793569"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212453"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução ao Identity no ASP.NET Core
 
@@ -185,7 +185,7 @@ No código anterior, o código `return RedirectToPage();` precisa ser um redirec
 
 Post é especificado nas *páginas/Shared/_LoginPartial. cshtml*:
 
-[!code-csharp[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
+[!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
 ## <a name="test-identity"></a>TestarIdentity
 
@@ -216,7 +216,7 @@ Para obter mais informações e diretrizes sobre como migrar seu Identity reposi
 
 Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos de senha.
 
-## <a name="adddefaultidentity-and-addidentity"></a>AddDefaultIdentity e addidentity
+## <a name="adddefaultidentity-and-addidentity"></a>ADDDEFAULT Identity e AddIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>foi introduzido no ASP.NET Core 2,1. Chamar `AddDefaultIdentity` é semelhante a chamar o seguinte:
 
@@ -224,7 +224,7 @@ Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
-Consulte [AddDefaultIdentity Source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) para obter mais informações.
+Consulte a [ Identity fonte padrão](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) para obter mais informações.
 
 ## <a name="prevent-publish-of-static-identity-assets"></a>Impedir a publicação de Identity ativos estáticos
 
@@ -271,7 +271,7 @@ Neste tópico, você aprenderá a usar o Identity para registrar, fazer logon e 
 
 <a name="adi"></a>
 
-## <a name="adddefaultidentity-and-addidentity"></a>AddDefaultIdentity e addidentity
+## <a name="adddefaultidentity-and-addidentity"></a>ADDDEFAULT Identity e AddIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>foi introduzido no ASP.NET Core 2,1. Chamar `AddDefaultIdentity` é semelhante a chamar o seguinte:
 
@@ -279,7 +279,7 @@ Neste tópico, você aprenderá a usar o Identity para registrar, fazer logon e 
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
-Consulte [AddDefaultIdentity Source](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) para obter mais informações.
+Consulte a [ Identity fonte padrão](https://github.com/dotnet/AspNetCore/blob/release/2.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) para obter mais informações.
 
 ## <a name="create-a-web-app-with-authentication"></a>Criar um aplicativo Web com autenticação
 
@@ -346,7 +346,7 @@ Identityé habilitado chamando [UseAuthentication](/dotnet/api/microsoft.aspnetc
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
-Para obter mais informações, consulte a [classe identityoptions](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) e a [inicialização do aplicativo](xref:fundamentals/startup).
+Para obter mais informações, consulte a [ Identity classe Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) e a [inicialização do aplicativo](xref:fundamentals/startup).
 
 ## <a name="scaffold-register-login-and-logout"></a>Registro em Scaffold, logon e logoff
 
@@ -402,7 +402,7 @@ O link **fazer logoff** invoca a `LogoutModel.OnPost` ação.
 
 Post é especificado nas *páginas/Shared/_LoginPartial. cshtml*:
 
-[!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
+[!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
 ## <a name="test-identity"></a>TestarIdentity
 

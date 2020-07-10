@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 066bebf95a941fca5e7cc175c4c0d6d56abc9cb5
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 754ca2f94b1abde30ae650c9c3bcf00499520383
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060053"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212576"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core
 
@@ -87,19 +87,19 @@ Para otimizar o desempenho das páginas Detalhes do Curso e Excluir, adicione ch
 
 Em *Views/Courses/Create.cshtml*, adicione uma opção "Selecionar Departamento" à lista suspensa **Departamento**, altere a legenda de **DepartmentID** para **Departamento** e adicione uma mensagem de validação.
 
-[!code-html[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
 
 Em *Views/Courses/Edit.cshtml*, faça a mesma alteração no campo Departamento que você acabou de fazer em *Create.cshtml*.
 
 Também em *Views/Courses/Edit.cshtml*, adicione um campo de número de curso antes do campo **Título**. Como o número de curso é a chave primária, ele é exibido, mas não pode ser alterado.
 
-[!code-html[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
 
 Já existe um campo oculto (`<input type="hidden">`) para o número de curso na exibição Editar. A adição de um auxiliar de marcação `<label>` não elimina a necessidade do campo oculto, porque ele não faz com que o número de curso seja incluído nos dados postados quando o usuário clica em **Salvar** na página **Editar**.
 
 Em *Views/Courses/Delete.cshtml*, adicione um campo de número de curso na parte superior e altere a ID do departamento para o nome do departamento.
 
-[!code-html[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
 Em *Views/Courses/Details.cshtml*, faça a mesma alteração que você acabou de fazer para *Delete.cshtml*.
 
@@ -171,7 +171,7 @@ O código faz o seguinte:
 
 Em *Views/Instructors/Edit.cshtml*, adicione um novo campo para editar o local do escritório, ao final, antes do botão **Salvar**:
 
-[!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
 Execute o aplicativo, selecione a guia **Instrutores** e, em seguida, clique em **Editar** em um instrutor. Altere o **Local do Escritório** e clique em **Salvar**.
 
@@ -235,7 +235,7 @@ Em *Views/Instructors/Edit.cshtml*, adicione um campo **Cursos** com uma matriz 
 > [!NOTE]
 > Quando você colar o código no Visual Studio, as quebras de linha poderão ser alteradas de uma forma que divide o código. Se o código ficar com aparência diferente depois de colá-lo, pressione Ctrl + Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@:</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de runtime. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Esse problema foi corrigido no Visual Studio 2019.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
 Esse código cria uma tabela HTML que contém três colunas. Em cada coluna há uma caixa de seleção, seguida de uma legenda que consiste no número e título do curso. Todas as caixas de seleção têm o mesmo nome ("selectedCourses"), o que informa ao associador de modelos de que elas devem ser tratadas como um grupo. O atributo de valor de cada caixa de seleção é definido com o valor de `CourseID`. Quando a página é postada, o associador de modelos passa uma matriz para o controlador que consiste nos valores `CourseID` para apenas as caixas de seleção marcadas.
 
@@ -299,7 +299,7 @@ Se você modificar a propriedade `CourseAssignments` dessa forma, poderá remove
 
 Em *Views/Instructor/Create.cshtml*, adicione uma caixa de texto de local do escritório e caixas de seleção para cursos antes do botão Enviar. Como no caso da página Editar, [corrija a formatação se o Visual Studio reformatar o código quando você o colar](#notepad).
 
-[!code-html[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 
 Faça o teste executando o aplicativo e criando um instrutor.
 

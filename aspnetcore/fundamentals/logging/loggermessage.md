@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: dc90c6cdbcea7c36079bcb4a032014998056b56d
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: cf391c773a1187dd96e3719e0fb11d6244c8e94d
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401162"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212778"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
 
@@ -153,7 +153,7 @@ O aplicativo de exemplo tem um botão **Limpar Tudo** para excluir todas as aspa
 
 Habilite `IncludeScopes` na seção de agente do console de *appSettings.json*:
 
-[!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 Para criar um escopo de log, adicione um campo para conter um delegado <xref:System.Func%601> para o escopo. O aplicativo de exemplo cria um campo chamado `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
@@ -321,7 +321,7 @@ O aplicativo de exemplo tem um botão **Limpar Tudo** para excluir todas as aspa
 
 Habilite `IncludeScopes` na seção de agente do console de *appSettings.json*:
 
-[!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 Para criar um escopo de log, adicione um campo para conter um delegado <xref:System.Func%601> para o escopo. O aplicativo de exemplo cria um campo chamado `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 

@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 06d5d6e2db1cf3ccb148c24c40c264016d47a0ed
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 7a92f2b5bc791f268b897878db08a9f9f4f7bf0c
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406583"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212403"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -45,7 +45,7 @@ O auxiliar de marca de [formulário](https://www.w3.org/TR/html401/interact/form
 
 Exemplo:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
 
 O Auxiliar de marca de formulário acima gera o HTML a seguir:
 
@@ -62,7 +62,7 @@ O runtime do MVC gera o valor do atributo `action` dos atributos `asp-controller
 
 O atributo do Auxiliar de Marca `asp-route` também pode gerar a marcação para o atributo HTML `action`. Um aplicativo com uma [rota](../../fundamentals/routing.md) chamada `register` poderia usar a seguinte marcação para a página de registro:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
 Muitas das exibições na pasta *Modos de Exibição/Conta* (gerada quando você cria um novo aplicativo Web com *Contas de usuário individuais*) contêm o atributo [asp-route-returnurl](xref:mvc/views/working-with-forms):
 
@@ -229,7 +229,7 @@ Exemplo:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
 
 O código acima gera o seguinte HTML:
 
@@ -299,7 +299,7 @@ Você também pode navegar para propriedades filho usando o caminho da proprieda
 
 Na exibição, associamos a `Address.AddressLine1`:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
 
 O HTML a seguir é gerado para `Address.AddressLine1`:
 
@@ -325,11 +325,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 O seguinte Razor mostra como você acessa um `Color` elemento específico:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
 O modelo *Views/Shared/EditorTemplates/String.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
 Exemplo usando `List<T>`:
 
@@ -337,11 +337,11 @@ Exemplo usando `List<T>`:
 
 Veja a seguir Razor como iterar em uma coleção:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
 O modelo *Views/Shared/EditorTemplates/ToDoItem.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
 `foreach` deve ser usado, se possível, quando o valor está prestes a ser usado em um contexto equivalente `asp-for` ou `Html.DisplayFor`. Em geral, `for` é melhor do que `foreach` (se o cenário permitir) porque não é necessário alocar um enumerador; no entanto, avaliar um indexador em uma expressão LINQ pode ser caro, o que deve ser minimizado.
 
@@ -364,7 +364,7 @@ Exemplo:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
 
 O HTML a seguir é gerado:
 
@@ -400,7 +400,7 @@ Exemplo:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
 
 O HTML a seguir é gerado para o elemento `<label>`:
 
@@ -470,7 +470,7 @@ No exemplo a seguir, o modelo de dados tem `DataAnnotation` atributos, que geram
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
 
 O código HTML gerado (quando o modelo é válido):
 
@@ -501,7 +501,7 @@ O código HTML gerado (quando o modelo é válido):
 
 O `Select Tag Helper` `asp-for` especifica o nome da propriedade do modelo para o elemento [select](https://www.w3.org/wiki/HTML/Elements/select) e `asp-items` especifica os elementos [option](https://www.w3.org/wiki/HTML/Elements/option).  Por exemplo:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 Exemplo:
 
@@ -538,7 +538,7 @@ Que gera o seguinte HTML (com "CA" selecionado):
 
 O valor do atributo `asp-for` é um caso especial e não requer um prefixo `Model`, os outros atributos do Auxiliar de marca requerem (como `asp-items`)
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 ### <a name="enum-binding"></a>Associação de enumeração
 
@@ -552,7 +552,7 @@ Exemplo:
 
 O método `GetEnumSelectList` gera um objeto `SelectList` para uma enumeração.
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
 
 Você pode marcar sua lista de enumeradores com o `Display` atributo para obter uma interface do usuário mais rica:
 
@@ -617,7 +617,7 @@ O Auxiliar de Marca de Seleção gerará automaticamente o atributo [multiple = 
 
 Com a seguinte exibição:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
 
 Gera o seguinte HTML:
 
@@ -641,17 +641,17 @@ Gera o seguinte HTML:
 
 Se acabar usando a opção "não especificado" em várias páginas, você poderá criar um modelo para eliminar o HTML de repetição:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
 O modelo *Views/Shared/EditorTemplates/CountryViewModel.cshtml*:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
 A adição [\<option>](https://www.w3.org/wiki/HTML/Elements/option) de elementos HTML não está limitada ao caso de *nenhuma seleção* . Por exemplo, o seguinte método de ação e exibição gerarão HTML semelhante ao código acima:
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 
 O elemento `<option>` correto será selecionado (contém o atributo `selected="selected"`) dependendo do valor atual de `Country`.
 

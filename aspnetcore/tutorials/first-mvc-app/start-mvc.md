@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 01321d68defafbe79371250669f921307bcfdba6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: d4eb1744b1186704603430584b3da0793f90ee49
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407038"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213087"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -84,7 +84,7 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
    ```dotnetcli
    dotnet new mvc -o MvcMovie
@@ -106,14 +106,12 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
   ![seleção de modelo de aplicativo Web macOS](start-mvc/_static/web_app_template_vsmac.png)
 
-* Confirme as seguintes configurações:
+* Na caixa de diálogo **configurar seu novo aplicativo Web** :
 
-  * **Estrutura de destino** definida como **.NET Core 3,1**.
-  * **Autenticação** definida como **sem autenticação**.
-   
+  * Confirme se a **autenticação** está definida como **sem autenticação**.
+  * Se for apresentada uma opção para selecionar uma **estrutura de destino**, selecione a versão 3. x mais recente.
+
   Selecione **Avançar**.
-
-  ![seleção do macOS .NET Core 3,1](start-mvc/_static/new_project_31_vsmac.png)
 
 * Nomeie o projeto **MvcMovie** e, em seguida, selecione **Criar**.
 
@@ -129,8 +127,8 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. Observe que a barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web.
-* Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar modo de não depuração para iniciar o aplicativo e exibir alterações rapidamente.
+* O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. Observe que a barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Uma porta aleatória é usada para o servidor Web quando o Visual Studio cria um projeto Web.
+* Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para iniciar o aplicativo rapidamente e exibir as alterações.
 * Você pode iniciar o aplicativo no modo de não depuração ou de depuração por meio do item de menu **Depurar**:
 
   ![Menu Depurar](start-mvc/_static/debug_menu.png)
@@ -161,7 +159,7 @@ Selecione **executar**  >  **Iniciar sem depuração** para iniciar o aplicativo
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, você verá um número da porta diferente.
+* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Uma porta aleatória é usada para o servidor Web quando o Visual Studio cria um projeto Web. Quando você executar o aplicativo, você verá um número da porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
   A imagem a seguir mostra o aplicativo:
@@ -239,7 +237,7 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
    ```dotnetcli
    dotnet new mvc -o MvcMovie
@@ -259,9 +257,12 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 * Em Visual Studio para Mac anteriores à versão 8,6, selecione aplicativo Web do aplicativo **.NET Core**  >  **App**  >  **(Model-View-Controller)**  >  **Avançar**. Na versão 8,6 ou posterior, selecione **Web e aplicativo de console**  >  **App**  >  **aplicativos Web (Model-View-Controller)**  >  **Avançar**.
 
-* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , aceite a **estrutura de destino** padrão do **.NET Core 2,2**.
+* Na caixa de diálogo **configurar seu novo aplicativo Web** :
 
-  ![Seleção do .NET Core 2.2 do macOS](./start-mvc/_static/new_project_22_vsmac.png)
+  * Confirme se a **autenticação** está definida como **sem autenticação**.
+  * Se for apresentada uma opção para selecionar uma **estrutura de destino**, selecione a versão 2. x mais recente.
+
+  Selecione **Avançar**.
 
 * Nomeie o projeto **MvcMovie** e, em seguida, selecione **Criar**.
 
@@ -275,8 +276,8 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. Observe que a barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web.
-* Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar modo de não depuração para iniciar o aplicativo e exibir alterações rapidamente.
+* O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. Observe que a barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Uma porta aleatória é usada para o servidor Web quando o Visual Studio cria um projeto Web.
+* Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para iniciar o aplicativo rapidamente e exibir as alterações.
 * Você pode iniciar o aplicativo no modo de não depuração ou de depuração por meio do item de menu **Depurar**:
 
   ![Menu Depurar](start-mvc/_static/debug_menu.png)
@@ -285,7 +286,7 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para consentir com o acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
@@ -303,7 +304,7 @@ Pressione Ctrl + F5 para execução sem o depurador.
 
   Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para atualizar a página e exibir alterações.
 
-* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para consentir com o acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
@@ -317,10 +318,10 @@ Selecione **executar**  >  **Iniciar sem depuração** para iniciar o aplicativo
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, você verá um número da porta diferente.
+* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Uma porta aleatória é usada para o servidor Web quando o Visual Studio cria um projeto Web. Quando você executar o aplicativo, você verá um número da porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
-* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para consentir com o acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](./start-mvc/_static/output_privacy_macos.png)
 

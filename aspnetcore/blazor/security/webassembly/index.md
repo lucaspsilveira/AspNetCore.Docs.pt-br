@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 3fdea9f553cbd37f2c27740487cfe030ebd81937
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0ff580dd7cbefdfe3121b30490f99e0235d93bc3
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402085"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176157"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core seguroBlazor WebAssembly
 
@@ -55,6 +55,18 @@ A [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nug
 * Quando o Blazor WebAssembly aplicativo carrega o ponto de extremidade de retorno de chamada de logon ( `/authentication/login-callback` ), a resposta de autenticação é processada.
   * Se o processo de autenticação for concluído com êxito, o usuário será autenticado e, opcionalmente, enviado de volta para a URL protegida original solicitada pelo usuário.
   * Se o processo de autenticação falhar por algum motivo, o usuário será enviado à página de falha de logon ( `/authentication/login-failed` ) e um erro será exibido.
+
+## <a name="authentication-component"></a>componente `Authentication`
+
+O `Authentication` componente ( `Pages/Authentication.razor` ) lida com operações de autenticação remota e permite que o aplicativo:
+
+* Configurar rotas de aplicativo para Estados de autenticação.
+* Defina o conteúdo da interface do usuário para Estados de autenticação.
+* Gerenciar o estado de autenticação.
+
+As ações de autenticação, como registrar ou assinar um usuário, são passadas para o Blazor componente da estrutura <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore%601> , que persiste e controla o estado nas operações de autenticação.
+
+Para obter mais informações e exemplos, consulte <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## <a name="authorization"></a>Autorização
 

@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 597f396237151f49a9ae333973e91d8f4f7c6ff1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ff9e01df002ac0fc94ced6d5d093099d66a14f36
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401370"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176287"
 ---
 # <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Parte 8, Razor páginas com EF Core em ASP.NET Core-Concurrency
 
@@ -86,7 +86,7 @@ O EF Core gera exceções `DbConcurrencyException` quando detecta conflitos. O m
 
 * Configurar o EF Core para incluir os valores originais das colunas configuradas como [tokens de simultaneidade](/ef/core/modeling/concurrency) na cláusula Where dos comandos Update e Delete.
 
-  Quando `SaveChanges` é chamado, a cláusula WHERE procura os valores originais de quaisquer propriedades anotadas com o atributo [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute). As declarações de atualização não encontrarão uma linha a ser atualizada se qualquer uma das propriedades do token de simultaneidade for alteradas desde a primeira leitura da linha. O EF Core interpreta isso como um conflito de simultaneidade. Para tabelas de banco de dados que têm muitas colunas, essa abordagem pode resultar em cláusulas Where muito grandes e pode exigir grandes quantidades de estado. Portanto, essa abordagem geralmente não é recomendada e não é o método usado neste tutorial.
+  Quando `SaveChanges` é chamado, a cláusula WHERE procura os valores originais de quaisquer propriedades anotadas com o <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> atributo. As declarações de atualização não encontrarão uma linha a ser atualizada se qualquer uma das propriedades do token de simultaneidade for alteradas desde a primeira leitura da linha. O EF Core interpreta isso como um conflito de simultaneidade. Para tabelas de banco de dados que têm muitas colunas, essa abordagem pode resultar em cláusulas Where muito grandes e pode exigir grandes quantidades de estado. Portanto, essa abordagem geralmente não é recomendada e não é o método usado neste tutorial.
 
 * Na tabela de banco de dados, inclua uma coluna de acompanhamento que pode ser usada para determinar quando uma linha é alterada.
 
@@ -98,7 +98,7 @@ Em *Models/Department.cs*, adicione uma propriedade de controle chamada RowVersi
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
-O atributo [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) é o que identifica a coluna como uma coluna de acompanhamento de simultaneidade. A API fluente é uma maneira alternativa de especificar a propriedade de acompanhamento:
+O <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> atributo é o que identifica a coluna como uma coluna de controle de simultaneidade. A API fluente é uma maneira alternativa de especificar a propriedade de acompanhamento:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -250,7 +250,7 @@ Atualize a página *Pages\Departments\Index.cshtml*:
 
 O código a seguir mostra a página atualizada:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## <a name="update-the-edit-page-model"></a>Atualizar o modelo da página Editar
 
@@ -258,7 +258,7 @@ Atualize *Pages\Departments\Edit.cshtml.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
-O [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) é atualizado com o valor `rowVersion` da entidade quando ele foi buscado no método `OnGet`. O EF Core gera um comando SQL UPDATE com uma cláusula WHERE que contém o valor `RowVersion` original. Se nenhuma linha for afetada pelo comando UPDATE (nenhuma linha tem o valor `RowVersion` original), uma exceção `DbUpdateConcurrencyException` será gerada.
+O <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> é atualizado com o `rowVersion` valor da entidade quando ele foi buscado no `OnGet` método. O EF Core gera um comando SQL UPDATE com uma cláusula WHERE que contém o valor `RowVersion` original. Se nenhuma linha for afetada pelo comando UPDATE (nenhuma linha tem o valor `RowVersion` original), uma exceção `DbUpdateConcurrencyException` será gerada.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
 
@@ -282,16 +282,16 @@ O código realçado a seguir define o valor `RowVersion` com o novo valor recupe
 
 A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valor `RowVersion` antigo. Na Razor página, o `ModelState` valor de um campo tem precedência sobre os valores de Propriedade do modelo quando ambos estão presentes.
 
-### <a name="update-the-razor-page"></a>Atualizar a Razor página
+### <a name="update-the-edit-page"></a>Atualizar a página Editar
 
 Atualize *Pages/Departments/Edit.cshtml* com o seguinte código:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 O código anterior:
 
 * Atualiza a diretiva `page` de `@page` para `@page "{id:int}"`.
-* Adiciona uma versão de linha oculta. `RowVersion` deve ser adicionado para que o postback associe o valor.
+* Adiciona uma versão de linha oculta. `RowVersion`deve ser adicionado para que o postback associe o valor.
 * Exibe o último byte de `RowVersion` para fins de depuração.
 * Substitui `ViewData` pelo `InstructorNameSL` fortemente tipado.
 
@@ -323,7 +323,7 @@ Essa janela do navegador não pretendia alterar o campo Name. Copie e cole o val
 
 Clique em **Salvar** novamente. O valor inserido na segunda guia do navegador foi salvo. Você verá os valores salvos na página Índice.
 
-## <a name="update-the-delete-page"></a>Atualizar a página Excluir
+## <a name="update-the-delete-page-model"></a>Atualizar o modelo de página de exclusão
 
 Atualize *Pages/Departments/Delete.cshtml.cs* com o seguinte código:
 
@@ -335,11 +335,11 @@ A página Excluir detectou conflitos de simultaneidade quando a entidade foi alt
 * Uma exceção DbUpdateConcurrencyException é gerada.
 * `OnGetAsync` é chamado com o `concurrencyError`.
 
-### <a name="update-the-delete-razor-page"></a>Atualizar a Razor página excluir
+### <a name="update-the-delete-page"></a>Atualizar a página Excluir
 
 Atualize *Pages/Departments/Delete.cshtml* com o seguinte código:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
 O código anterior faz as seguintes alterações:
 
@@ -347,7 +347,7 @@ O código anterior faz as seguintes alterações:
 * Adiciona uma mensagem de erro.
 * Substitua FirstMidName por FullName no campo **Administrador**.
 * Altere `RowVersion` para exibir o último byte.
-* Adiciona uma versão de linha oculta. O `RowVersion` deve ser adicionado para que o postgit add back associe o valor.
+* Adiciona uma versão de linha oculta. `RowVersion`deve ser adicionado para que o postback associe o valor.
 
 ### <a name="test-concurrency-conflicts"></a>Testar os conflitos de simultaneidade
 
@@ -365,7 +365,7 @@ Altere o orçamento na primeira guia do navegador e clique em **Salvar**.
 
 O navegador mostra a página de Índice com o valor alterado e o indicador de rowVersion atualizado. Observe o indicador de rowVersion atualizado: ele é exibido no segundo postback na outra guia.
 
-Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do banco de dados. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
+Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do banco de dados. Clicar em **excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizado.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -526,7 +526,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
- Execute o comando a seguir:
+ Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
@@ -550,7 +550,7 @@ Atualize a página Índice:
 
 A seguinte marcação mostra a página atualizada:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### <a name="update-the-edit-page-model"></a>Atualizar o modelo da página Editar
 
@@ -582,7 +582,7 @@ A instrução `ModelState.Remove` é obrigatória porque `ModelState` tem o valo
 
 Atualize *Pages/Departments/Edit.cshtml* com a seguinte marcação:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 A marcação anterior:
 
@@ -637,7 +637,7 @@ A página Excluir detectou conflitos de simultaneidade quando a entidade foi alt
 
 Atualize *Pages/Departments/Delete.cshtml* com o seguinte código:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 O código anterior faz as seguintes alterações:
 
@@ -663,7 +663,7 @@ Altere o orçamento na primeira guia do navegador e clique em **Salvar**.
 
 O navegador mostra a página de Índice com o valor alterado e o indicador de rowVersion atualizado. Observe o indicador de rowVersion atualizado: ele é exibido no segundo postback na outra guia.
 
-Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do BD. Clicar em **Excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizada e o departamento tenha sido excluído.
+Exclua o departamento de teste da segunda guia. Um erro de simultaneidade é exibido com os valores atuais do BD. Clicar em **excluir** exclui a entidade, a menos que `RowVersion` tenha sido atualizado.
 
 Consulte [Herança](xref:data/ef-mvc/inheritance) para saber como herdar um modelo de dados.
 

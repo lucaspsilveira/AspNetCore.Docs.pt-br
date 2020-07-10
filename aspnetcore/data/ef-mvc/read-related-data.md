@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: f2e989b2c6370d862b4d1e6550b09cb47b5747c1
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: abd5c4e474e30c119e2bea9e3cce3d2b277e0daf
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401513"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212747"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: ler dados relacionados-ASP.NET MVC com EF Core
 
@@ -83,7 +83,7 @@ Substitua o método `Index` pelo seguinte código, que usa um nome mais apropria
 
 Abra *Views/Courses/Index.cshtml* e substitua o código de modelo pelo código a seguir. As alterações são realçadas:
 
-[!code-html[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 Você fez as seguintes alterações no código gerado por scaffolding:
 
@@ -179,7 +179,7 @@ Em seguida, se um curso foi selecionado, o curso selecionado é recuperado na li
 
 Em *Views/Instructors/Index.cshtml*, substitua o código de modelo pelo código a seguir. As alterações são realçadas.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
 
 Você fez as seguintes alterações no código existente:
 
@@ -221,7 +221,7 @@ Execute o aplicativo e selecione a guia **instrutores** . A página exibe a prop
 
 No arquivo *Views/Instructors/Index.cshtml*, após o elemento de tabela de fechamento (ao final do arquivo), adicione o código a seguir. Esse código exibe uma lista de cursos relacionados a um instrutor quando um instrutor é selecionado.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 
 Esse código lê a propriedade `Courses` do modelo de exibição para exibir uma lista de cursos. Também fornece um hiperlink **Selecionar** que envia a ID do curso selecionado para o método de ação `Index`.
 
@@ -231,7 +231,7 @@ Atualize a página e selecione um instrutor. Agora, você verá uma grade que ex
 
 Após o bloco de código que você acabou de adicionar, adicione o código a seguir. Isso exibe uma lista dos alunos que estão registrados em um curso quando esse curso é selecionado.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
 
 Esse código lê a propriedade Enrollments do modelo de exibição para exibir uma lista dos alunos registrados no curso.
 

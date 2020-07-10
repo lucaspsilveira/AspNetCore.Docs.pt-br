@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
-ms.openlocfilehash: c767ff4c2a1e0d5d10ccb3ff855126f541c04f64
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ac9f6449e2b7b135318ecf116e1dba7b33ddff83
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408234"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212391"
 ---
 # <a name="link-tag-helper-in-aspnet-core"></a>Auxiliar de marca de link no ASP.NET Core
 
@@ -33,11 +33,11 @@ O auxiliar de marca de link permite que você especifique uma CDN para o arquivo
 
 A marcação a seguir Razor mostra o `head` elemento de um arquivo de layout criado com o modelo de aplicativo Web ASP.NET Core:
 
-[!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
+[!code-cshtml[](link-tag-helper/sample/_Layout.cshtml?name=snippet)]
 
 Este é um HTML renderizado do código anterior (em um ambiente que não é de desenvolvimento):
 
-[!code-csharp[](link-tag-helper/sample/HtmlPage1.html)]
+[!code-html[](link-tag-helper/sample/HtmlPage1.html)]
 
 No código anterior, o auxiliar de marca de link gerou o `<meta name="x-stylesheet-fallback-test" content="" class="sr-only" />` elemento e o JavaScript a seguir, que é usado para verificar o arquivo *bootstrap. min. css* solicitado está disponível na CDN. Nesse caso, o arquivo CSS estava disponível para que o auxiliar de marca gerasse o `<link />` elemento com o arquivo CSS da CDN.
 

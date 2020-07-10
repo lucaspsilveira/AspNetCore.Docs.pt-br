@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 0974abfe632fd897c08435b82a7c695534cc3139
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 77c12b98462c8a84ab807abef247573b6a028fcc
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793607"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213158"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Parte 4, adicionar um modelo a um aplicativo ASP.NET Core MVC
 
@@ -204,7 +204,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -216,7 +216,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -409,7 +409,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de Marca](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
@@ -490,7 +490,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -509,7 +509,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -690,7 +690,7 @@ return View(movie);
 
 Examine o conteúdo do arquivo *Views/Movies/Details.cshtml*:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
 Incluindo uma instrução `@model` na parte superior do arquivo de exibição, você pode especificar o tipo de objeto esperado pela exibição. Quando você criou o controlador de filmes, a seguinte instrução `@model` foi automaticamente incluída na parte superior do arquivo *Details.cshtml*:
 
@@ -708,17 +708,17 @@ Quando você criou o controlador de filmes, o scaffolding incluiu automaticament
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 A diretiva `@model` permite acessar a lista de filmes que o controlador passou para a exibição usando um objeto `Model` fortemente tipado. Por exemplo, na exibição *Index.cshtml*, o código executa um loop pelos filmes com uma instrução `foreach` no objeto `Model` fortemente tipado:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`), cada item no loop é tipado como `Movie`. Entre outros benefícios, isso significa que você obtém a verificação do tempo de compilação do código:
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de Marca](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]

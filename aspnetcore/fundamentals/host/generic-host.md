@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 5a2d39af6c921323ae9113fd4aca27dcdedd44a5
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 26aef561ba299403df0dad9893fecd5e2a15ab0e
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793462"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213005"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -225,7 +225,7 @@ Host.CreateDefaultBuilder(args)
     //...
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, confira:
 
 * [Conceitos básicos: raiz de conteúdo](xref:fundamentals/index#content-root)
 * [WebRoot](#webroot)
@@ -437,7 +437,7 @@ Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot` e
 webBuilder.UseWebRoot("public");
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, confira:
 
 * [Conceitos básicos: raiz da Web](xref:fundamentals/index#web-root)
 * [ContentRoot](#contentroot)
@@ -446,7 +446,7 @@ Para obter mais informações, consulte:
 
 Chame métodos na implementação de <xref:Microsoft.Extensions.Hosting.IHost> criada para iniciar e parar o aplicativo. Esses métodos afetam todas as implementações de <xref:Microsoft.Extensions.Hosting.IHostedService> que são registradas no contêiner de serviço.
 
-### <a name="run"></a>Execute
+### <a name="run"></a>Executar
 
 <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> executa o aplicativo e bloqueia o thread de chamada até que o host seja desligado.
 
@@ -650,7 +650,7 @@ Durante o desenvolvimento, ao usar o [Visual Studio](https://visualstudio.micros
 
 *hostsettings.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
 
 Configuração adicional pode ser fornecida com as chaves [applicationName](#application-key-name) e [contentRoot](#content-root).
 
@@ -670,15 +670,15 @@ Exemplo da configuração de aplicativo usando <xref:Microsoft.Extensions.Hostin
 
 *appsettings.jsem*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.json)]
 
 *appsettings.Development.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.Development.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.Development.json)]
 
 *appsettings.Production.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.Production.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.Production.json)]
 
 Para mover arquivos de configurações para o diretório de saída, especifique os arquivos de configurações como [itens de projeto do MSBuild](/visualstudio/msbuild/common-msbuild-project-items) no arquivo de projeto. O aplicativo de exemplo move os arquivos de configurações de aplicativo JSON e *hostsettings.json* com o seguinte item `<Content>`:
 
@@ -766,7 +766,7 @@ public static class Extensions
 
 A implementação <xref:Microsoft.Extensions.Hosting.IHost> é responsável por iniciar e parar as implementações <xref:Microsoft.Extensions.Hosting.IHostedService> que estão registradas no contêiner de serviço.
 
-### <a name="run"></a>Execute
+### <a name="run"></a>Executar
 
 <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> executa o aplicativo e bloqueia o thread de chamada até que o host seja desligado:
 
@@ -1200,7 +1200,7 @@ Host.CreateDefaultBuilder(args)
     //...
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, confira:
 
 * [Conceitos básicos: raiz de conteúdo](xref:fundamentals/index#content-root)
 * [WebRoot](#webroot)
@@ -1425,7 +1425,7 @@ Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot` e
 webBuilder.UseWebRoot("public");
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, confira:
 
 * [Conceitos básicos: raiz da Web](xref:fundamentals/index#web-root)
 * [ContentRoot](#contentroot)
@@ -1434,7 +1434,7 @@ Para obter mais informações, consulte:
 
 Chame métodos na implementação de <xref:Microsoft.Extensions.Hosting.IHost> criada para iniciar e parar o aplicativo. Esses métodos afetam todas as implementações de <xref:Microsoft.Extensions.Hosting.IHostedService> que são registradas no contêiner de serviço.
 
-### <a name="run"></a>Execute
+### <a name="run"></a>Executar
 
 <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> executa o aplicativo e bloqueia o thread de chamada até que o host seja desligado.
 

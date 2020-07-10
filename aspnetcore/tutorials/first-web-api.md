@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: 63f91086a7e9d71add7f7a5d58d96f46fa76353c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 79f36168d0430ceee3794cfb5a4e29f3671ac73f
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407779"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212627"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
 
@@ -87,7 +87,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
-* Execute os seguintes comandos:
+* Execute os comandos a seguir:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
@@ -114,9 +114,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
   ![seleção de modelo de API do macOS](first-web-api-mac/_static/api_template.png)
 
-* Confirme se a **estrutura de destino** está definida como **.NET Core 3,1**. Selecione **Avançar**.
-
-  ![seleção do macOS .NET Core 3,1](first-web-api-mac/_static/api_31_config.png)
+* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , selecione a **estrutura de destino**.NET Core 3. x mais recente. Selecione **Avançar**.
 
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
@@ -196,7 +194,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
@@ -287,7 +285,7 @@ O código anterior:
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Execute os seguintes comandos:
+Execute os comandos a seguir:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -575,7 +573,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
-* Execute os seguintes comandos:
+* Execute os comandos a seguir:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
@@ -594,7 +592,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 * Em Visual Studio para Mac anteriores à versão 8,6, selecione API de aplicativo do **.NET Core**  >  **App**  >  **API**  >  **Avançar**. Na versão 8,6 ou posterior, selecione **Web e API de aplicativo de console**  >  **App**  >  **API**  >  **Avançar**.
   
-* Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, aceite a **Estrutura de Destino** padrão **.NET Core 2.2*.
+* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , selecione a **estrutura de destino**.NET Core 2. x mais recente. Selecione **Avançar**.
 
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
@@ -622,7 +620,7 @@ Selecione **executar**  >  **Iniciar Depuração** para iniciar o aplicativo. O 
 
 ---
 
-O seguinte JSON é retornado:
+O JSON a seguir será retornado:
 
 ```json
 ["value1","value2"]
@@ -634,7 +632,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no nome do projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto. Selecione **Adicionar**  >  **nova pasta**. Nomeie a pasta como *Modelos*.
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
@@ -966,7 +964,7 @@ A exclusão de um item pendente é feita definindo o `type` na chamada do AJAX c
 
 [Exibir ou baixar o código de exemplo para este tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). Consulte [como baixar](xref:index#how-to-download-a-sample).
 
-Para saber mais, consulte os recursos a seguir:
+Para obter mais informações, consulte os seguintes recursos:
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>

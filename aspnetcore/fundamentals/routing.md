@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 25464817314f79c5bfd11d982cc9b09a3c72df15
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 18f1aee5ac33b17914bd182e46453120e14b31ab
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060339"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176201"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -84,7 +84,7 @@ O `MapGet` método é usado para definir um **ponto de extremidade**. Um ponto d
 
 Os pontos de extremidade que podem ser correspondidos e executados pelo aplicativo são configurados no `UseEndpoints` . Por exemplo,,, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*> e [métodos semelhantes](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) conectam delegados de solicitação ao sistema de roteamento.
 Métodos adicionais podem ser usados para conectar ASP.NET Core recursos do Framework ao sistema de roteamento:
-- [MapRazorPages para Razor páginas](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
+- [Mapear Razor páginas para Razor páginas](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 - [MapControllers para controladores](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 - [MapHub \<THub> paraSignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
 - [MapGrpcService \<TService> para gRPC](xref:grpc/aspnetcore)
@@ -565,7 +565,7 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o `$` caractere e correspondem ao final da cadeia de caracteres. Os `^` `$` caracteres e garantem que a expressão regular corresponda ao valor do parâmetro de rota inteiro. Sem os `^` `$` caracteres e, a expressão regular corresponde a qualquer subcadeia de caracteres dentro da cadeia de caracteres, o que geralmente é indesejável. A tabela a seguir fornece exemplos e explica por que eles correspondem ou falham na correspondência:
 
-| Expression   | String    | Correspondência | Comentário               |
+| Expressão   | Cadeia de caracteres    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -806,7 +806,7 @@ Em seguida, os **valores aceitos** podem ser usados para expandir o modelo de ro
 
 Valores explicitamente fornecidos que não correspondem a um segmento da rota são adicionados à cadeia de caracteres de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Result                  |
+| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |
@@ -936,7 +936,7 @@ Declarar seu próprio tipo permite que você adicione sua própria funcionalidad
 app.UseEndpoints(endpoints =>
 {
     // Your framework
-    endpoints.MapMyFramework(...).RequrireAuthorization()
+    endpoints.MapMyFramework(...).RequireAuthorization()
                                  .WithMyFrameworkFeature(awesome: true);
 
     endpoints.MapHealthChecks("/healthz");
@@ -988,7 +988,7 @@ app.UseAuthorization(new AuthorizationPolicy() { ... });
 app.UseEndpoints(endpoints =>
 {
     // Your framework
-    endpoints.MapMyFramework(...).RequrireAuthorization();
+    endpoints.MapMyFramework(...).RequireAuthorization();
 });
 ```
 
@@ -1486,7 +1486,7 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{` ,,,, `}
 
 As expressões regulares usadas no roteamento geralmente começam com o `^` caractere de cursor e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de sinal de dólar `$` e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | String    | Correspondência | Comentário               |
+| Expressão   | Cadeia de caracteres    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -1571,7 +1571,7 @@ Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os 
 
 Valores fornecidos explicitamente, mas que não correspondem a um segmento da rota, são adicionados à cadeia de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Result                  |
+| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |
@@ -1930,7 +1930,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expression   | String    | Correspondência | Comentário               |
+| Expressão   | Cadeia de caracteres    | Correspondência | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -1977,7 +1977,7 @@ Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os 
 
 Valores fornecidos explicitamente, mas que não correspondem a um segmento da rota, são adicionados à cadeia de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Result                  |
+| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |

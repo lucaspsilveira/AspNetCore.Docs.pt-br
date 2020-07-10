@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: f31a1f1d8942c9d9654dc26e946c022cf21ed9d1
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: b57e2a34f79691f7f2b1ed69cfad25de00c5ca13
+ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059858"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86176214"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
 
@@ -72,6 +72,8 @@ No exemplo anterior:
 * O <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> componente anexa o suporte à validação usando anotações de dados.
 * O <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> componente resume as mensagens de validação.
 * `HandleValidSubmit`é disparado quando o formulário é enviado com êxito (aprovado na validação).
+
+## <a name="built-in-forms-components"></a>Componentes de formulários internos
 
 Um conjunto de componentes de entrada internos está disponível para receber e validar a entrada do usuário. As entradas são validadas quando são alteradas e quando um formulário é enviado. Os componentes de entrada disponíveis são mostrados na tabela a seguir.
 
@@ -611,7 +613,7 @@ Um efeito colateral da abordagem anterior é que um <xref:Microsoft.AspNetCore.C
 }
 ```
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 > InvalidOperationException: EditForm requer um parâmetro de modelo ou um parâmetro EditContext, mas não ambos.
 

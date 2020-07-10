@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 40902da52217505822abd9bfd889ecafdd4d88e0
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 272b5a89601a9e6ef24f3e60a3da7e2a40297c97
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407831"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213105"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -100,7 +100,7 @@ Recomendamos que você nomeie o arquivo de exibição *Default.cshtml* e use o c
 
 Para personalizar o caminho de pesquisa de exibição, modifique a Razor <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> coleção. Por exemplo, para procurar exibições no caminho "nome do componente/Components/{View}/{View nome}", adicione um novo item à coleção:
 
-[!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+[!code-csharp[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
 
 No código anterior, o espaço reservado " {0} " representa o caminho "Components/{View Component Name}/{View Name}".
 

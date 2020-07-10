@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 0cc452b25392fe92c87ef346b2e16350fb3ec19a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 335eac4b1533f4156e00f9d0140f921fa492e71a
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405881"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212969"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Injeção de dependência em exibições no ASP.NET Core
 
@@ -61,7 +61,7 @@ Um exemplo do uso de `@inject`:
 
 Um serviço pode ser injetado em uma exibição usando a diretiva `@inject`. Você pode observar que o `@inject` adiciona uma propriedade à exibição e preenche a propriedade usando a DI.
 
-[!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
+[!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
 Essa exibição exibe uma lista de instâncias `ToDoItem`, junto com um resumo mostrando estatísticas gerais. O resumo é populado com base no `StatisticsService` injetado. Esse serviço é registrado para injeção de dependência em `ConfigureServices` em *Startup.cs*:
 

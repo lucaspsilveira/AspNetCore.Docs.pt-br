@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: a22bc9f9156b671d7bf17b56b62e384a60b2568b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b473b8575a870b91d83e5494103d39486ef4fee1
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405257"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86213044"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Parte 6, métodos e exibições do controlador no ASP.NET Core
 
@@ -42,7 +42,7 @@ Procure o controlador `Movies` e mantenha o ponteiro do mouse pressionado sobre 
 
 Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo Auxiliar de Marcação de Âncora do MVC Core no arquivo *Views/Movies/Index.cshtml*.
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
 Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em Razor arquivos. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do `href` atributo HTML do método de ação do controlador e da ID da rota. Use o **modo de exibição de origem** do seu navegador favorito ou use as ferramentas de desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
@@ -106,7 +106,7 @@ O atributo `HttpPost` especifica que esse método `Edit` pode ser invocado *some
 
 O atributo `ValidateAntiForgeryToken` é usado para [prevenir a falsificação de uma solicitação](xref:security/anti-request-forgery) e é associado a um token antifalsificação gerado no arquivo de exibição de edição (*Views/Movies/Edit.cshtml*). O arquivo de exibição de edição gera o token antifalsificação com o [Auxiliar de Marcação de Formulário](xref:mvc/views/working-with-forms).
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
 O [Auxiliar de Marcação de Formulário](xref:mvc/views/working-with-forms) gera um token antifalsificação oculto que deve corresponder ao token antifalsificação gerado `[ValidateAntiForgeryToken]` no método `Edit` do controlador Movies. Para obter mais informações, consulte [Falsificação de antissolicitação](xref:security/anti-request-forgery).
 
@@ -116,7 +116,7 @@ O método `HttpGet Edit` usa o parâmetro `ID` de filme, pesquisa o filme usando
 
 Quando o sistema de scaffolding criou a exibição de Edição, ele examinou a classe `Movie` e o código criado para renderizar os elementos `<label>` e `<input>` de cada propriedade da classe. O seguinte exemplo mostra a exibição de Edição que foi gerada pelo sistema de scaffolding do Visual Studio:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/EditOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/EditOriginal.cshtml)]
 
 Observe como o modelo de exibição tem uma instrução `@model MvcMovie.Models.Movie` na parte superior do arquivo. `@model MvcMovie.Models.Movie` especifica que a exibição espera que o modelo de exibição seja do tipo `Movie`.
 

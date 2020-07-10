@@ -13,12 +13,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 97e3f60480bc8e7e88c8361e5b13f02d98765d9e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 77b230f14b4eef60d771daf8fe09288a9dd3c69c
+ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405296"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86212997"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução às Razor páginas no ASP.NET Core
 
@@ -44,7 +44,7 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -67,7 +67,7 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 * No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 * Crie um aplicativo Web ASP.NET Core e selecione **Avançar**.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
-* Nomeie o projeto **RazorPagesMovie**. É importante nomear o projeto *RazorPagesMovie* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
+* Nomeie o projeto ** Razor PagesMovie**. É importante nomear o projeto * Razor PagesMovie* para que os namespaces correspondam quando você copiar e colar o código.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/config.png)
 
 * Selecione **ASP.NET Core 3,1** no menu suspenso, **aplicativo Web**e, em seguida, selecione **criar**.
@@ -84,17 +84,17 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
 * Altere para o diretório (`cd`) que contém o projeto.
 
-* Execute os seguintes comandos:
+* Execute os comandos a seguir:
 
   ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
 
-  * O `dotnet new` comando cria um novo Razor projeto de páginas na pasta *RazorPagesMovie* .
-  * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
+  * O `dotnet new` comando cria um novo Razor projeto de páginas na pasta * Razor PagesMovie* .
+  * O `code` comando abre a pasta * Razor PagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' Razor PagesMovie '. Adicioná-los?** Selecione **Sim**.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
@@ -108,16 +108,14 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
   ![seleção de modelo de aplicativo Web macOS](razor-pages-start/_static/web_app_template_vsmac.png)
 
-* Confirme as seguintes configurações:
+* Na caixa de diálogo **configurar seu novo aplicativo Web** :
 
-  * **Estrutura de destino** definida como **.NET Core 3,1**.
-  * **Autenticação** definida como **sem autenticação**.
-   
+  * Confirme se a **autenticação** está definida como **sem autenticação**.
+  * Se for apresentada uma opção para selecionar uma **estrutura de destino**, selecione a versão 3. x mais recente.
+
   Selecione **Avançar**.
 
-  ![seleção do macOS .NET Core 3,1](razor-pages-start/_static/targetframework3.png)
-
-* Nomeie o projeto **RazorPagesMovie** e, em seguida, selecione **Criar**.
+* Nomeie o projeto ** Razor PagesMovie**e, em seguida, selecione **criar**.
 
   ![nome do macOS o projeto](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -190,7 +188,7 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -216,7 +214,7 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
   ![novo Aplicativo Web ASP.NET Core](razor-pages-start/_static/np_2.1.png)
 
-* Nomeie o projeto **RazorPagesMovie**. É importante nomear o projeto *RazorPagesMovie* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
+* Nomeie o projeto ** Razor PagesMovie**. É importante nomear o projeto * Razor PagesMovie* para que os namespaces correspondam quando você copiar e colar o código.
 
   ![novo Aplicativo Web ASP.NET Core](razor-pages-start/_static/config.png)
 
@@ -234,17 +232,17 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
 * Altere para o diretório (`cd`) que contém o projeto.
 
-* Execute os seguintes comandos:
+* Execute os comandos a seguir:
 
   ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
 
-  * O `dotnet new` comando cria um novo Razor projeto de páginas na pasta *RazorPagesMovie* .
-  * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
+  * O `dotnet new` comando cria um novo Razor projeto de páginas na pasta * Razor PagesMovie* .
+  * O `code` comando abre a pasta * Razor PagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' Razor PagesMovie '. Adicioná-los?** Selecione **Sim**.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
@@ -256,11 +254,14 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
 * Em Visual Studio para Mac anteriores à versão 8,6, selecione aplicativo Web do aplicativo **.NET Core**  >  **App**  >  **Web Application**  >  **Avançar**. Na versão 8,6 ou posterior, selecione aplicativo Web do aplicativo Web **e de console**  >  **App**  >  **Web Application**  >  **próximo**.
 
-* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** como **.NET Core 3,1**.
+* Na caixa de diálogo **configurar seu novo aplicativo Web** :
 
-  ![Seleção do .NET Core 3.0 do macOS](razor-pages-start/_static/targetframework3.png)
+  * Confirme se a **autenticação** está definida como **sem autenticação**.
+  * Se for apresentada uma opção para selecionar uma **estrutura de destino**, selecione a versão 2. x mais recente.
 
-* Nomeie o projeto **RazorPagesMovie** e, em seguida, selecione **Criar**.
+  Selecione **Avançar**.
+
+* Nomeie o projeto ** Razor PagesMovie**e, em seguida, selecione **criar**.
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -276,7 +277,7 @@ No final deste tutorial, você terá um Razor aplicativo Web de páginas de trab
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
-  O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web.
+  O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local. Uma porta aleatória é usada para o servidor Web quando o Visual Studio cria um projeto Web.
 
 * Na página inicial do aplicativo, selecione **Aceitar** para dar consentimento de acompanhamento.
 
