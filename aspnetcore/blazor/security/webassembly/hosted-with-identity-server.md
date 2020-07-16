@@ -15,18 +15,21 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 1e5b4e37acd11280ec41c137426ecc4776d231be
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: de1f8955693d2e73e624e2513b6ef4e075ff3406
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176238"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407691"
 ---
 # <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Proteger um Blazor WebAssembly aplicativo ASP.NET Core hospedado com o Identity servidor
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn) e [Luke Latham](https://github.com/guardrex)
 
 Este artigo explica como criar um novo Blazor aplicativo hospedado que usa o [ Identity servidor do](https://identityserver.io/) para autenticar usuários e chamadas de API.
+
+> [!NOTE]
+> Para configurar um aplicativo autônomo ou hospedado Blazor WebAssembly para usar uma instância de servidor externa existente Identity , siga as orientações em <xref:blazor/security/webassembly/standalone-with-authentication-library> .
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

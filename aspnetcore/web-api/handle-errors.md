@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: f756d9abfb92fd4d6d51d8762967ac2288b54b2a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0abb5e78e1971925c8e741386c65bdf71a0f0072
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405751"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407626"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Tratar erros em APIs da Web ASP.NET Core
 
@@ -42,7 +42,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-No ASP.NET Core 3,0 e posterior, a página de exceção do desenvolvedor exibirá uma resposta de texto sem formatação se o cliente não solicitar saída formatada em HTML. A saída a seguir é exibida:
+No ASP.NET Core 3,0 e posterior, a página de exceção do desenvolvedor exibirá uma resposta de texto sem formatação se o cliente não solicitar saída formatada em HTML. O seguinte resultado é exibido:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -290,11 +290,11 @@ A resposta de erro pode ser configurada de uma das seguintes maneiras:
 1. [Implementar ProblemDetailsFactory](#implement-problemdetailsfactory)
 1. [Usar ApiBehaviorOptions. ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 
-### <a name="implement-problemdetailsfactory"></a>Implementar ProblemDetailsFactory
+### <a name="implement-problemdetailsfactory"></a>Implementa `ProblemDetailsFactory`
 
-O MVC usa `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` para produzir todas as instâncias do <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> e do <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> . Isso inclui respostas de erro de cliente, respostas de erro de falha de validação e os `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem> métodos auxiliares and.
+O MVC usa <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?displayProperty=fullName> para produzir todas as instâncias do <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> e do <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> . Isso inclui respostas de erro de cliente, respostas de erro de falha de validação e os <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType> métodos auxiliares and.
 
-Para personalizar a resposta dos detalhes do problema, registre uma implementação personalizada do `ProblemDetailsFactory` no `Startup.ConfigureServices` :
+Para personalizar a resposta dos detalhes do problema, registre uma implementação personalizada do <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> no `Startup.ConfigureServices` :
 
 ```csharp
 public void ConfigureServices(IServiceCollection serviceCollection)

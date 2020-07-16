@@ -5,7 +5,7 @@ description: Saiba como depurar Blazor aplicativos.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/15/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: c48eb19c5a1759aace112e2afb1637c649173a3d
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 828fb0ce5101407b6f40195138d59c335eec389f
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059897"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407665"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core de depuraçãoBlazor WebAssembly
 
@@ -48,8 +48,8 @@ Continuaremos a melhorar a experiência de depuração em versões futuras.
 
 A depuração requer um dos seguintes navegadores:
 
+* Google Chrome (versão 70 ou posterior) (padrão)
 * Microsoft Edge (versão 80 ou posterior)
-* Google Chrome (versão 70 ou posterior)
 
 ## <a name="enable-debugging-for-visual-studio-and-visual-studio-code"></a>Habilitar depuração para Visual Studio e Visual Studio Code
 
@@ -133,13 +133,13 @@ Para obter informações sobre como instalar Visual Studio Code para Blazor dese
 
 ### <a name="debug-hosted-blazor-webassembly"></a>Depuração hospedadaBlazor WebAssembly
 
-1. Abra o Blazor WebAssembly aplicativo hospedado no vs Code.
+1. Abra a Blazor WebAssembly pasta de solução do aplicativo hospedado no vs Code.
 
 1. Se não houver uma configuração de inicialização definida para o projeto, a notificação a seguir será exibida. Selecione **Sim** na barra superior.
 
    ![Adicionar ativos necessários](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
-1. Na janela de seleção, selecione o projeto de *servidor* dentro da solução hospedada.
+1. Na paleta de comandos na parte superior da janela, selecione o projeto de *servidor* dentro da solução hospedada.
 
 Um `launch.json` arquivo é gerado com a configuração de inicialização para iniciar o depurador.
 
@@ -160,7 +160,7 @@ Para anexar a um aplicativo em execução Blazor , crie um `launch.json` arquivo
 
 ### <a name="launch-configuration-options"></a>Opções de configuração de inicialização
 
-As opções de configuração de inicialização a seguir têm suporte para o `blazorwasm` tipo de depuração.
+As opções de configuração de inicialização a seguir têm suporte para o `blazorwasm` tipo de depuração ( `.vscode/launch.json` ).
 
 | Opção    | Descrição |
 | --------- | ----------- |
@@ -198,17 +198,23 @@ As opções de configuração de inicialização a seguir têm suporte para o `b
 }
 ```
 
-#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app"></a>Iniciar e depurar um Blazor WebAssembly aplicativo hospedado
+#### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Iniciar e depurar um Blazor WebAssembly aplicativo hospedado com o Microsoft Edge
+
+A configuração do navegador usa como padrão o Google Chrome. Ao usar o Microsoft Edge para depuração, defina `browser` como `edge` . Para usar o Google Chrome, não defina a `browser` opção ou defina o valor da opção como `chrome` .
 
 ```json
 {
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
-  "name": "Launch and Debug Hosted App",
+  "hosted": true,
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}"
+  "cwd": "${workspaceFolder}/Server",
+  "browser": "edge"
 }
 ```
+
+No exemplo anterior, `MyHostedApp.Server.dll` é o assembly do aplicativo do *servidor* . A `.vscode` pasta está localizada na pasta da solução ao lado das `Client` pastas, `Server` e `Shared` .
 
 ## <a name="debug-in-the-browser"></a>Depurar no navegador
 

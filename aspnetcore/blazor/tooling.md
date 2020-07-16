@@ -16,12 +16,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 0bd38d8d16365a80d7954c860a4e20e2280c36b2
-ms.sourcegitcommit: e216e8f4afa21215dc38124c28d5ee19f5ed7b1e
+ms.openlocfilehash: 33245e669b317ed577a8a1652b2eed8f9ea5b915
+ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86239602"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86407639"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>Ferramentas para ASP.NET CoreBlazor
 
@@ -87,7 +87,7 @@ Não há uma maneira centralizada de confiar em um certificado no Linux. Normalm
 * Confiar em todos os certificados autoassinados para `localhost` .
 * Adicione o certificado à lista de certificados confiáveis no navegador.
 
-Para obter mais informações, consulte as diretrizes fornecidas pelo seu navegador e distribuição do Linux.
+Para obter mais informações, consulte a orientação fornecida pela distribuição do seu navegador e do Linux.
 
 ::: zone-end
 
