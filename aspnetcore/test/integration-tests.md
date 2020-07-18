@@ -5,7 +5,7 @@ description: Saiba como testes de integração garantem que os componentes do ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/20/2020
+ms.date: 07/14/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: 6e4a0065486f6d9d6744dcd21de10ec76782f210
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c050665f630c0973abe6c9d08a4652597441639f
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405868"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445275"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -114,7 +114,7 @@ O projeto de teste deve:
 * Referencie o pacote [Microsoft. AspNetCore. Mvc. Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) .
 * Especifique o SDK da Web no arquivo de projeto ( `<Project Sdk="Microsoft.NET.Sdk.Web">` ).
 
-Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/RazorPagesProject. Tests/RazorPagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
+Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/ Razor PagesProject. Tests/ Razor PagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
 
 * [xUnit](https://www.nuget.org/packages/xunit)
 * [xUnit. Runner. VisualStudio](https://www.nuget.org/packages/xunit.runner.visualstudio)
@@ -310,7 +310,7 @@ O aplicativo de teste pode simular um <xref:Microsoft.AspNetCore.Authentication.
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
 
-O `TestAuthHandler` é chamado para autenticar um usuário quando o esquema de autenticação é definido como `Test` onde o `AddAuthentication` está registrado para `ConfigureTestServices` :
+O `TestAuthHandler` é chamado para autenticar um usuário quando o esquema de autenticação é definido como `Test` onde o `AddAuthentication` está registrado para o `ConfigureTestServices` . É importante que o `Test` esquema corresponda ao esquema esperado pelo aplicativo. Caso contrário, a autenticação não funcionará.
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
 
@@ -363,10 +363,10 @@ O [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/
 
 | Aplicativo | Diretório do projeto | Descrição |
 | --- | ----------------- | ----------- |
-| Aplicativo de mensagens (o SUT) | *src/RazorPagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
-| Aplicativo de teste | *testes/RazorPagesProject. Tests* | Usado para testar a integração do SUT. |
+| Aplicativo de mensagens (o SUT) | *src/ Razor PagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
+| Aplicativo de teste | *testes/ Razor PagesProject. Tests* | Usado para testar a integração do SUT. |
 
-Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/RazorPagesProject. Tests* :
+Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/ Razor PagesProject. Tests* :
 
 ```console
 dotnet test
@@ -389,7 +389,7 @@ Embora o aplicativo não use o padrão de repositório e não seja um exemplo ef
 
 ### <a name="test-app-organization"></a>Organização de aplicativos de teste
 
-O aplicativo de teste é um aplicativo de console dentro do diretório *tests/RazorPagesProject. Tests* .
+O aplicativo de teste é um aplicativo de console dentro do diretório *tests/ Razor PagesProject. Tests* .
 
 | Testar diretório do aplicativo | Descrição |
 | ------------------ | ----------- |
@@ -504,7 +504,7 @@ O projeto de teste deve:
   * [Microsoft. AspNetCore. Mvc. Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/)
 * Especifique o SDK da Web no arquivo de projeto ( `<Project Sdk="Microsoft.NET.Sdk.Web">` ). O SDK da Web é necessário ao fazer referência ao [metapacote do Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
-Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/RazorPagesProject. Tests/RazorPagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
+Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/ Razor PagesProject. Tests/ Razor PagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
 
 * [xUnit](https://www.nuget.org/packages/xunit/)
 * [xUnit. Runner. VisualStudio](https://www.nuget.org/packages/xunit.runner.visualstudio/)
@@ -754,10 +754,10 @@ O [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/
 
 | Aplicativo | Diretório do projeto | Descrição |
 | --- | ----------------- | ----------- |
-| Aplicativo de mensagens (o SUT) | *src/RazorPagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
-| Aplicativo de teste | *testes/RazorPagesProject. Tests* | Usado para testar a integração do SUT. |
+| Aplicativo de mensagens (o SUT) | *src/ Razor PagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
+| Aplicativo de teste | *testes/ Razor PagesProject. Tests* | Usado para testar a integração do SUT. |
 
-Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/RazorPagesProject. Tests* :
+Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/ Razor PagesProject. Tests* :
 
 ```dotnetcli
 dotnet test
@@ -780,7 +780,7 @@ Embora o aplicativo não use o padrão de repositório e não seja um exemplo ef
 
 ### <a name="test-app-organization"></a>Organização de aplicativos de teste
 
-O aplicativo de teste é um aplicativo de console dentro do diretório *tests/RazorPagesProject. Tests* .
+O aplicativo de teste é um aplicativo de console dentro do diretório *tests/ Razor PagesProject. Tests* .
 
 | Testar diretório do aplicativo | Descrição |
 | ------------------ | ----------- |

@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 65095f3990c72224d95f1f5fe46d320ab8f12040
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 17ada36c40997353528f922bece5acc34ce760d2
+ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404828"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86445379"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -47,7 +47,7 @@ Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto ASP.NET Core usa como padrão a hospedagem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
 
 ### <a name="40314-forbidden"></a>403,14 proibido
 
@@ -74,7 +74,7 @@ Execute as seguintes etapas:
 
 Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
-### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
+### <a name="500-internal-server-error"></a>Erro interno de servidor 500
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
@@ -177,7 +177,7 @@ Esse erro ocorre ao hospedar um aplicativo empacotado como um [executável de ar
 1. Desabilite a publicação de arquivo único definindo a `PublishSingleFile` Propriedade MSBuild como `false` .
 1. Alterne para o modelo de hospedagem fora do processo definindo a `AspNetCoreHostingModel` Propriedade MSBuild como `OutOfProcess` .
 
-### <a name="5025-process-failure"></a>502.5 Falha de processo
+### <a name="5025-process-failure"></a>Falha de processo 502.5
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
@@ -226,14 +226,14 @@ O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
 1. No portal do Azure, abra o aplicativo nos **Serviços de Aplicativos**.
-1. Selecione **Diagnóstico e solução de problemas**.
+1. Selecione **Diagnosticar e solucionar problemas**.
 1. Selecione o título **Ferramentas de Diagnóstico**.
 1. Em **Ferramentas de Suporte**, selecione o botão **Eventos do Aplicativo**.
 1. Examine o erro mais recente fornecido pela entrada *IIS AspNetCoreModule* ou *IIS AspNetCoreModule V2* na coluna **Origem**.
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -243,7 +243,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -264,7 +264,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
      {ASSEMBLY NAME}.exe
      ```
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -273,7 +273,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 #### <a name="test-a-64-bit-x64-app"></a>Testar um aplicativo de 64 bits (x64)
 
@@ -286,7 +286,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
   1. `cd D:\home\site\wwwroot`
   1. Execute o aplicativo: `{ASSEMBLY NAME}.exe`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -295,38 +295,28 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 ### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
-
-O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro úteis não encontradas no Log de Eventos do Aplicativo. Para habilitar e exibir logs de stdout:
-
-1. Navegue até a folha **Diagnosticar e resolver problemas** no portal do Azure.
-1. Em **SELECIONAR CATEGORIA DE PROBLEMA**, selecione o botão **Aplicativo Web Inoperante**.
-1. Em **Soluções Sugeridas** > **Habilitar o Redirecionamento de Log de Stdout**, selecione o botão para **Abrir o Console do Kudu para editar o Web.Config**.
-1. No **Console de Diagnóstico** do Kudu, abra as pastas no caminho **site** > **wwwroot**. Role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
-1. Clique no ícone de lápis ao lado do arquivo *web.config*.
-1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
-1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
-1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
-1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra a pasta **LogFiles**.
-1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
-1. Quando o arquivo de log é aberto, o erro é exibido.
-
-Desabilite o registro em log de stdout quando a solução de problemas for concluída:
-
-1. No **Console de Diagnóstico** do Kudu, retorne para o caminho **site** > **wwwroot** para revelar o arquivo *web.config*. Abra o arquivo **web.config** novamente, selecionando o ícone de lápis.
-1. Defina **stdoutLogEnabled** para `false`.
-1. Selecione **Salvar** para salvar o arquivo.
-
-Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
 
 > [!WARNING]
 > Falha ao desabilitar o log de stdout pode levar a falhas de aplicativo ou de servidor. Não há limites para o tamanho do arquivo de log ou para o número de arquivos de log criados. Somente use o log de stdout para solucionar problemas de inicialização de aplicativo.
 >
 > Para registro em log geral em um aplicativo ASP.NET Core após a inicialização, use uma biblioteca de registro em log que limita o tamanho do arquivo de log e realiza a rotação de logs. Para obter mais informações, veja [provedores de log de terceiros](xref:fundamentals/logging/index#third-party-logging-providers).
+
+O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro úteis não encontradas no Log de Eventos do Aplicativo. Para habilitar e exibir logs de stdout:
+
+1. No portal do Azure, navegue até o aplicativo Web.
+1. Na folha **serviço de aplicativo** , insira **kudu** na caixa de pesquisa.
+1. Selecione **ferramentas avançadas** > **ir**para.
+1. Selecione **console de depuração > cmd**.
+1. Navegue até *site/wwwroot*
+1. Selecione o ícone de lápis para editar o arquivo de *web.config* .
+1. No `<aspNetCore />` elemento, defina `stdoutLogEnabled="true"` e selecione **salvar**.
+
+Desabilite o log de stdout quando a solução de problemas for concluída por meio da configuração `stdoutLogEnabled="false"` .
+
+Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
 
 ### <a name="aspnet-core-module-debug-log-azure-app-service"></a>Log de depuração do módulo ASP.NET Core (serviço Azure App)
 
@@ -335,10 +325,10 @@ O log de depuração do Módulo do ASP.NET Core fornece registro em log adiciona
 1. Para habilitar o log de diagnóstico avançado, execute um destes procedimentos:
    * Siga as instruções em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para configurar o aplicativo para um log de diagnósticos avançado. Reimplante o aplicativo.
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
-     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
      1. Abra as pastas no caminho **site**  >  **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site**  >  **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
@@ -380,7 +370,7 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
@@ -622,7 +612,7 @@ Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto ASP.NET Core usa como padrão a hospedagem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de 502,5 processo* ou uma *falha de início de 500,30* que ocorre quando a depuração local pode ser diagnosticada usando o Conselho neste tópico.
 
 ### <a name="40314-forbidden"></a>403,14 proibido
 
@@ -649,7 +639,7 @@ Execute as seguintes etapas:
 
 Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
-### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
+### <a name="500-internal-server-error"></a>Erro interno de servidor 500
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
@@ -670,7 +660,7 @@ O processo de trabalho falha. O aplicativo não foi iniciado.
 
 O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o manipulador de solicitação de hospedagem fora do processo. Verifique se a *aspnetcorev2_outofprocess.dll* está presente em uma subpasta próxima a *aspnetcorev2.dll*.
 
-### <a name="5025-process-failure"></a>502.5 Falha de processo
+### <a name="5025-process-failure"></a>Falha de processo 502.5
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
@@ -719,14 +709,14 @@ O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
 1. No portal do Azure, abra o aplicativo nos **Serviços de Aplicativos**.
-1. Selecione **Diagnóstico e solução de problemas**.
+1. Selecione **Diagnosticar e solucionar problemas**.
 1. Selecione o título **Ferramentas de Diagnóstico**.
 1. Em **Ferramentas de Suporte**, selecione o botão **Eventos do Aplicativo**.
 1. Examine o erro mais recente fornecido pela entrada *IIS AspNetCoreModule* ou *IIS AspNetCoreModule V2* na coluna **Origem**.
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -736,7 +726,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -757,7 +747,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
      {ASSEMBLY NAME}.exe
      ```
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -766,7 +756,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 #### <a name="test-a-64-bit-x64-app"></a>Testar um aplicativo de 64 bits (x64)
 
@@ -779,7 +769,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
   1. `cd D:\home\site\wwwroot`
   1. Execute o aplicativo: `{ASSEMBLY NAME}.exe`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -788,7 +778,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 ### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
 
@@ -802,7 +792,7 @@ O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Retorne ao portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -828,10 +818,10 @@ O log de depuração do Módulo do ASP.NET Core fornece registro em log adiciona
 1. Para habilitar o log de diagnóstico avançado, execute um destes procedimentos:
    * Siga as instruções em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para configurar o aplicativo para um log de diagnósticos avançado. Reimplante o aplicativo.
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
-     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
      1. Abra as pastas no caminho **site**  >  **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site**  >  **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
@@ -873,7 +863,7 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
@@ -1115,7 +1105,7 @@ Lista tópicos adicionais de solução de problemas.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de processo 502,5* que ocorre ao depurar localmente pode ser diagnosticada usando o Conselho neste tópico.
+No Visual Studio, um projeto ASP.NET Core usa como padrão a hospedagem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de processo 502,5* que ocorre ao depurar localmente pode ser diagnosticada usando o Conselho neste tópico.
 
 ### <a name="40314-forbidden"></a>403,14 proibido
 
@@ -1142,13 +1132,13 @@ Execute as seguintes etapas:
 
 Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure> . Para obter mais informações sobre o arquivo de *web.config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig> .
 
-### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
+### <a name="500-internal-server-error"></a>Erro interno de servidor 500
 
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
 Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. Execute o aplicativo em um prompt de comando no servidor ou habilite o log de stdout do Módulo do ASP.NET Core para solucionar o problema.
 
-### <a name="5025-process-failure"></a>502.5 Falha de processo
+### <a name="5025-process-failure"></a>Falha de processo 502.5
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
@@ -1197,14 +1187,14 @@ O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é configurado
 Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e solucionar problemas** no portal do Azure:
 
 1. No portal do Azure, abra o aplicativo nos **Serviços de Aplicativos**.
-1. Selecione **Diagnóstico e solução de problemas**.
+1. Selecione **Diagnosticar e solucionar problemas**.
 1. Selecione o título **Ferramentas de Diagnóstico**.
 1. Em **Ferramentas de Suporte**, selecione o botão **Eventos do Aplicativo**.
 1. Examine o erro mais recente fornecido pela entrada *IIS AspNetCoreModule* ou *IIS AspNetCoreModule V2* na coluna **Origem**.
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles** .
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -1214,7 +1204,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -1235,7 +1225,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
      {ASSEMBLY NAME}.exe
      ```
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -1244,7 +1234,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 #### <a name="test-a-64-bit-x64-app"></a>Testar um aplicativo de 64 bits (x64)
 
@@ -1257,7 +1247,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
   1. `cd D:\home\site\wwwroot`
   1. Execute o aplicativo: `{ASSEMBLY NAME}.exe`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 **Implantação dependente da estrutura em execução em uma versão de visualização**
 
@@ -1266,7 +1256,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+A saída do console do aplicativo, mostrando todos os erros, é canalizada para o console do Kudu.
 
 ### <a name="aspnet-core-module-stdout-log-azure-app-service"></a>Log de stdout do módulo ASP.NET Core (serviço Azure App)
 
@@ -1280,7 +1270,7 @@ O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Volte para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Retorne ao portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -1322,7 +1312,7 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o **botão &rarr; ir** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
