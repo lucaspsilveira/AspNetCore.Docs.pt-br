@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: e22d76be26a892fd9e5ba91ae36f8d105060e190
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: e7e9bc76a2bba1c15b32c97f0f3629285f256499
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86213154"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568699"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução às Razor páginas no ASP.NET Core
 
@@ -323,7 +323,7 @@ A página criar para o `Movie` modelo mostra exibe erros com valores inválidos:
 
 ![Formulário da exibição de filmes com vários erros de validação do lado do cliente do jQuery](~/tutorials/razor-pages/validation/_static/val.png)
 
-Para obter mais informações, confira:
+Para obter mais informações, consulte:
 
 * [Adicionar validação ao aplicativo de filme](xref:tutorials/razor-pages/validation)
 * [Validação de modelo no ASP.NET Core](xref:mvc/models/validation).
@@ -577,7 +577,7 @@ O `?` após `handler` significa que o parâmetro de rota é opcional.
 
 A configuração e as configurações nas seções a seguir não são exigidas pela maioria dos aplicativos.
 
-Para configurar opções avançadas, use o método de extensão <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> :
+Para configurar opções avançadas, use a <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> sobrecarga que configura <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> :
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 

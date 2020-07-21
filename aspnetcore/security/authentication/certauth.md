@@ -14,12 +14,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 2c58a274e8de0b1205b223287b7690b1d5caed23
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 06803ee57824bbfac5725763938abbb9db0e360a
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445119"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568841"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
@@ -630,13 +630,13 @@ A renegociação de TLS foi uma maneira antiga de implementar certificados de cl
 - O HTTP/2 [proíbe explicitamente](https://tools.ietf.org/html/rfc7540#section-9.2.1) a renegociação.
 - O TLS 1,3 [removeu](https://tools.ietf.org/html/rfc8740#section-1) o suporte para a renegociação.
 
-O ASP.NET Core 5 Preview 4 e posterior adiciona um suporte mais conveniente para certificados de cliente opcionais. Para obter mais informações, consulte o [exemplo de certificados opcionais](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+O ASP.NET Core 5 Preview 7 e posterior adiciona um suporte mais conveniente para certificados de cliente opcionais. Para obter mais informações, consulte o [exemplo de certificados opcionais](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 A seguinte abordagem dá suporte a certificados de cliente opcionais:
 
 * Configure a associação para o domínio e o subdomínio:
   * Por exemplo, configure associações em `contoso.com` e `myClient.contoso.com` . O `contoso.com` host não requer um certificado de cliente, mas sim `myClient.contoso.com` .
-  * Para obter mais informações, confira:
+  * Para obter mais informações, consulte:
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>

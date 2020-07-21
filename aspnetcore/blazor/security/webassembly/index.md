@@ -5,7 +5,7 @@ description: Saiba como proteger Blazor aplicativos WebAssemlby como spas (aplic
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 07/16/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 0ff580dd7cbefdfe3121b30490f99e0235d93bc3
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: fbb3f6d254e6d294edc7af59d7980a1d67e4a801
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176157"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86568802"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core seguroBlazor WebAssembly
 
@@ -73,6 +73,22 @@ Para obter mais informações e exemplos, consulte <xref:blazor/security/webasse
 Em Blazor WebAssembly aplicativos, as verificações de autorização podem ser ignoradas porque todo o código do lado do cliente pode ser modificado por usuários. Isso também ocorre com todas as tecnologias de aplicativo do lado do cliente, incluindo estruturas de SPA do JavaScript ou aplicativos nativos em qualquer sistema operacional.
 
 **Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
+
+## <a name="require-authorization-for-the-entire-app"></a>Exigir autorização para o aplicativo inteiro
+
+Aplique o [ `[Authorize]` atributo](xref:blazor/security/index#authorize-attribute) ([documentação da API](xref:System.Web.Mvc.AuthorizeAttribute)) a cada Razor componente do aplicativo usando uma das seguintes abordagens:
+
+* Use a [`@attribute`](xref:mvc/views/razor#attribute) diretiva no `_Imports.razor` arquivo:
+
+  ```razor
+  @using Microsoft.AspNetCore.Authorization
+  @attribute [Authorize]
+  ```
+
+* Adicione o atributo a cada Razor componente na `Pages` pasta.
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> **Não** há suporte para a definição de um para uma política com.
 
 ## <a name="refresh-tokens"></a>Tokens de atualização
 

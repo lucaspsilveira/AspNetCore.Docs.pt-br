@@ -6,19 +6,19 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
 no-loc:
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: tutorials/first-web-api
 ms.openlocfilehash: 79f36168d0430ceee3794cfb5a4e29f3671ac73f
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.sourcegitcommit: d9ae1f352d372a20534b57e23646c1a1d9171af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2020
+ms.lasthandoff: 07/21/2020
 ms.locfileid: "86212627"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
@@ -29,7 +29,7 @@ Este tutorial ensina os conceitos básicos da criação de uma API Web com o ASP
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Neste tutorial, você aprenderá como:
+Neste tutorial, você aprende a:
 
 > [!div class="checklist"]
 > * Criar um projeto de API Web.
@@ -87,7 +87,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
-* Execute os comandos a seguir:
+* Execute os seguintes comandos:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
@@ -285,7 +285,7 @@ O código anterior:
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Execute os comandos a seguir:
+Execute os seguintes comandos:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -512,7 +512,7 @@ Consulte [o tutorial: chamar uma API Web do ASP.NET Core com JavaScript](xref:tu
 
 ::: moniker range="< aspnetcore-3.0"
 
-Neste tutorial, você aprenderá como:
+Neste tutorial, você aprende a:
 
 > [!div class="checklist"]
 > * Criar um projeto de API Web.
@@ -573,7 +573,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
-* Execute os comandos a seguir:
+* Execute os seguintes comandos:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
@@ -917,7 +917,7 @@ Adicione um arquivo HTML chamado *index.html* ao diretório *wwwroot*. Substitua
 
 [!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
 
-Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substitua o conteúdo pelo código a seguir:
+Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substitua o conteúdo pelo seguinte código:
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 
@@ -958,7 +958,7 @@ A exclusão de um item pendente é feita definindo o `type` na chamada do AJAX c
 
 ## <a name="add-authentication-support-to-a-web-api"></a>Adicionar suporte de autenticação a uma API da Web
 
-[!INCLUDE[](~/includes/IdentityServer4.md)]
+[!INCLUDE[](~/includes/:::no-loc(Identity):::Server4.md)]
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
