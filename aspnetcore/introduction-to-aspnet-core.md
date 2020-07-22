@@ -133,7 +133,7 @@ O ASP.NET Core MVC fornece recursos que ajudam você a compilar [APIs Web](xref:
 
 ## <a name="client-side-development"></a>Desenvolvimento do lado do cliente
 
-O ASP.NET Core integra-se perfeitamente com estruturas e bibliotecas populares do lado do cliente, [Blazor](xref:blazor/index) incluindo [, angular](xref:spa/angular), [reagir](xref:spa/react)e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
+O ASP.NET Core integra-se perfeitamente com estruturas e bibliotecas populares do lado do cliente, [Blazor](xref:blazor/index) incluindo [, Angular](xref:spa/angular), [React](xref:spa/react) e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
 
 <a name="target-framework"></a>
 
